@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 21 de setembre de 2026 · **Estat:** 18 preguntes (13 de la unitat 7 i 5 de la PAU)
-· 286 minuts d'examen al banc · 21 comprovacions del validador, 9 de sortida del build i 19 de
+· 286 minuts d'examen al banc · 21 comprovacions del validador, 9 de sortida del build i 33 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -17,8 +17,8 @@ El projecte ha passat per cinc sessions. La primera va avaluar un `main.tex` fet
 altra IA i en va treure les lliçons. La segona va construir l'arquitectura: el build, el lloc
 web, l'Action de GitHub i les proves. La tercera va completar la unitat 7, amb 13 preguntes
 verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer de juny de
-2026. La cinquena va revisar el projecte sencer, en va corregir quatre errors i va fixar les
-prioritats. La màquina funciona de punta a punta. El que queda és sobretot contingut: primer
+2026. La cinquena va revisar el projecte sencer, en va corregir quatre errors, va fixar les
+prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La màquina funciona de punta a punta. El que queda és sobretot contingut: primer
 els temes de la u8, que acaba l'1 de novembre, i després els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -126,6 +126,13 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
   `.github/workflows/`, i per això `compila.yml` no hi ha arribat mai: al Codespace, `git
   status` el mostrava com a fitxer no seguit. L'Action «Compila el banc» no s'havia executat
   mai, i els PDF del repositori són els del ZIP complet (vegeu 7.1).
+- **Exàmens amb opcions, a petició del professor.** Fins aquí, l'examen era una llista de
+  temes, i cada tema hi sortia com a molt un cop. Això no permetia muntar ni l'examen de la PAU
+  de juny de 2026, on la 1 i la 4a són totes dues d'anàlisi: l'adreça en perdia la 4a sense
+  avisar. Ara l'examen és una llista de preguntes. Un clic a un tema hi afegeix una pregunta,
+  i cada targeta té ▲ ▼ per moure-la, ✕ per treure-la i «Opció de l'anterior» per convertir-la
+  en una alternativa de la pregunta anterior. Les etiquetes (1, 2, 3, 4a, 4b) es deriven de
+  l'ordre i surten tal qual al `.tex`: «Pregunta 4a». Les adreces antigues continuen valent.
 
 ---
 
@@ -152,6 +159,9 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 | Lliurament per canvis, a partir de l'estat del repositori | Proposta acceptada | Substituir el repositori per un ZIP pot desfer canvis fets entre sessions |
 | Els PDF i el catàleg només els desa l'Action | Disseny | Si també se'n fa commit en local, xoquen amb el commit del bot |
 | `--preambul` només canvia la compilació | Disseny | El catàleg ha de portar sempre el preàmbul oficial |
+| L'examen és una llista de preguntes; un tema hi pot sortir més d'un cop | Professor | Un examen com el de la PAU té dues preguntes d'anàlisi (1 i 4a) |
+| Opcions amb «Opció de l'anterior»; els números es deriven de l'ordre | Disseny | Mai hi pot haver números repetits ni forats |
+| Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
 
@@ -192,11 +202,15 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
   falla, per validació o per compilació, no toca cap fitxer. Un de correcte els escriu tots,
   `--pregunta` només escriu els de la pregunta indicada i `--preambul` no arriba al catàleg.
   També s'ha confirmat amb el `pdflatex` real.
-- `prova_paritat.py`: 19 comprovacions. El lloc (executant l'`app.js` real) i el build
-  munten el mateix `.tex`, byte a byte, també amb preguntes PAU i amb la procedència al lloc
-  exacte. Tres adreces mal formades s'ignoren sense que la pàgina peti.
-- En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues, secció PAU i
-  adreces mal formades.
+- `prova_paritat.py`: 33 comprovacions. El lloc (executant l'`app.js` real) i el build
+  munten el mateix `.tex`, byte a byte, també amb preguntes PAU, amb la procedència al lloc
+  exacte i amb opcions (1, 2, 3, 4a, 4b). Tres adreces mal formades s'ignoren sense que la
+  pàgina peti. Les accions de les targetes (afegir, moure, treure, marcar opció, canviar de
+  variant) donen les etiquetes, els punts i l'adreça esperats.
+- En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues, secció PAU,
+  adreces mal formades i l'examen de la PAU de 2026 muntat amb clics (1, 2, 3, 4a, 4b), també
+  a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
+  *Overfull*.
 - La compilació amb el preàmbul oficial, amb `lmodern` i `babel` català (sessió 5). Les 18
   preguntes ocupen una pàgina, sense cap *Overfull*. El `main.tex` baixat de l'examen de 2026
   compila en 2 pàgines, i el de solucions, en 5.
@@ -328,9 +342,11 @@ fitxers de font que canvia. Tot es fa des de la web de GitHub; no cal el Codespa
 - **A l'inici de la sessió**, el professor baixa el repositori de GitHub (Code → Download ZIP)
   i el puja a la conversa. No serveix el ZIP de la sessió anterior, perquè pot no incloure
   canvis fets després.
-- **Al final**, la sessió lliura un ZIP amb una sola carpeta, `banc-preguntes/`, que conté
-  només els fitxers de font que canvien, amb els camins del repositori. Mai no porta PDF, ni
-  `cataleg.js`, ni res de `.github/workflows/`.
+- **Al final**, la sessió lliura un ZIP amb només els fitxers de font que canvien,
+  **directament a l'arrel del ZIP** i amb els camins del repositori (`build/build.py`,
+  `README.md`…). No hi ha cap carpeta que els emboliqui, perquè l'extractor descomprimeix el ZIP
+  tal com ve a l'arrel del repositori. Mai no porta PDF, ni `cataleg.js`, ni res de
+  `.github/workflows/`.
 - **Per aplicar-lo**, el professor puja el ZIP a la carpeta `_uploads` (Add file → Upload
   files). Un workflow del repositori el descomprimeix a l'arrel i en fa commit, amb el missatge
   «Auto-extract uploaded zip».
@@ -341,9 +357,8 @@ fitxers de font que canvia. Tot es fa des de la web de GitHub; no cal el Codespa
   permís per escriure-hi. Es creen i s'editen des de la web de GitHub, enganxant-ne el
   contingut.
 
-**Aquest lliurament (sessió 5)** es fa en dos passos. Primer, un ZIP amb sis fitxers per
-`_uploads`: `build/build.py`, `build/prova_sortida.py` (nou), `build/prova_paritat.py`,
-`assets/app.js`, `README.md` i `handout.md`. Després, cal crear `.github/workflows/compila.yml`
+**Aquest lliurament (sessió 5)** es fa en dos passos. Primer, un ZIP amb vuit fitxers per
+`_uploads` (vegeu l'apartat 11). Després, cal crear `.github/workflows/compila.yml`
 des de la web, perquè el repositori no el té (vegeu 2.5). En crear-lo, l'Action s'executa per
 primera vegada i compila tots els PDF amb el preàmbul oficial. D'aquesta manera se
 substitueixen els del ZIP complet, que s'havien compilat sense `lmodern` ni `babel`. L'Action
@@ -429,7 +444,6 @@ l'ordre numèric.
 - Al mòbil, llista de temes plegable. Ara la llista queda sencera abans de l'examen.
 - Els noms de les unitats apareixen en passar el ratolí per sobre, i això no funciona en
   pantalles tàctils. Cal mostrar-los d'una altra manera.
-- Poder reordenar les preguntes de l'examen. Ara surten en l'ordre en què es trien.
 
 ### 7.6 Decisions obertes
 
@@ -448,6 +462,9 @@ l'ordre numèric.
   vegada. Amb `SOURCE_DATE_EPOCH` i `FORCE_SOURCE_DATE=1` fixos a l'Action, dos builds
   idèntics no canvien cap PDF (comprovat a la sessió 5). Caldria fer el mateix amb el camp
   `generat` del catàleg, que ara canvia a cada build.
+- **Instruccions de les opcions.** El `.tex` només diu «Pregunta 4a» i «Pregunta 4b»; no hi
+  afegeix cap frase del tipus «responeu-ne una», perquè depèn del tractament (el punt
+  següent). Mentrestant, el professor l'escriu al `.tex`.
 - **Tractament de vosaltres o de tu.** Si un examen barreja preguntes PAU (literals, amb
   vosaltres) amb preguntes del banc (amb tu), hi conviuen les dues formes.
 - Si s'hi incorporen les **pistes** del repositori `pau` (els PDF `-p`), com una tercera vista
@@ -530,6 +547,7 @@ del primer exercici.
 | Si la branca avança durant el build, el push del bot és rebutjat | `git pull --rebase` i fins a tres intents |
 | pdfTeX escriu la data i un identificador a cada PDF | `SOURCE_DATE_EPOCH` (pendent, 7.6) |
 | Provar el build sense TeX | Un `pdflatex` fals al PATH, com fa `prova_sortida.py` |
+| Moure una pregunta podria desfer un grup d'opcions (4a, 4b) | Les marques d'opció es queden a les places; només es mouen les preguntes |
 
 ---
 
@@ -537,17 +555,20 @@ del primer exercici.
 
 És el primer lliurament amb el mètode nou (7.1). Té dues parts.
 
-El ZIP `banc-preguntes-sessio5.zip`, per pujar a `_uploads`, conté una carpeta
-`banc-preguntes/` amb només els sis fitxers de font que canvien:
+El ZIP d'aquesta sessió, per pujar a `_uploads`, porta tots els canvis de la sessió 5 (les
+correccions i els exàmens amb opcions): vuit fitxers de font, directament a l'arrel. Substitueix
+el ZIP anterior de la mateixa sessió. Si aquell ja s'havia pujat, aquest el completa.
 
 | Fitxer | Canvi |
 |---|---|
 | `build/build.py` | Compila en una carpeta temporal i publica només si no hi ha cap error. `--preambul` ja no toca el catàleg |
 | `build/prova_sortida.py` | **Nou.** 9 comprovacions del que escriu el build i quan |
-| `build/prova_paritat.py` | 3 comprovacions noves d'adreces mal formades (19 en total) |
-| `assets/app.js` | Adreces mal formades: descodificació tolerant i `PER_TEMA` sense prototip |
-| `README.md` | Principi 3, opcions del build, proves, fitxers generats, `_uploads` i com veure el lloc des del Codespace |
-| `handout.md` | Sessió 5: revisió, correccions, decisions, calendari i flux de lliurament |
+| `build/prova_paritat.py` | 33 comprovacions: adreces mal formades, exàmens amb opcions i accions de les targetes |
+| `assets/app.js` | L'examen, una llista de preguntes amb opcions (1, 2, 3, 4a, 4b). Adreces mal formades: descodificació tolerant i `PER_TEMA` sense prototip |
+| `assets/style.css` | Botons ▲ ▼ ✕, botó d'opció i targetes d'opció amb vora discontínua |
+| `index.html` | Text d'ajuda: cada clic afegeix una pregunta |
+| `README.md` | Ús amb opcions, principi 3, opcions del build, proves, fitxers generats, `_uploads` i com veure el lloc des del Codespace |
+| `handout.md` | Sessió 5: revisió, correccions, exàmens amb opcions, decisions, calendari i flux de lliurament |
 
 El fitxer `.github/workflows/compila.yml` es crea des de la web de GitHub, enganxant-ne el
 contingut. Porta un pas nou per a la prova de sortida i el reintent del push del bot.

@@ -17,18 +17,31 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
 ## Ús
 
 1. Obre `index.html` amb doble clic. No cal servidor ni connexió.
-2. A l'esquerra, tria temes. Estan agrupats per unitat, i la PAU hi té el seu grup propi,
-   amb quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat.
-3. Cada tema triat es converteix en una pregunta d'examen. Amb ◀ ▶ passes d'una variant a
-   l'altra del mateix tema.
-4. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
+2. A l'esquerra hi ha els temes, agrupats per unitat. La PAU hi té el seu grup propi, amb
+   quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat.
+3. **Cada clic a un tema hi afegeix una pregunta** d'aquell tema. Un segon clic n'afegeix una
+   altra, si n'hi ha. El quadret diu quantes n'hi ha a l'examen, i el número de la dreta,
+   quantes en té el tema.
+4. Cada pregunta és una targeta. Amb ◀ ▶ passes d'una variant a l'altra del mateix tema, amb
+   ▲ ▼ la mous i amb ✕ la treus. Una mateixa pregunta no hi pot sortir dues vegades.
+5. **Opció de l'anterior** converteix una pregunta en una alternativa de la pregunta anterior:
+   l'alumne en respon una de les dues. Per fer un examen com el de la PAU, tria'n cinc i marca
+   l'opció a la cinquena. Queden numerades com a 1, 2, 3, 4a i 4b. Les opcions compten una
+   sola vegada als punts i als minuts.
+6. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
    sola.
-5. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les
-   solucions intercalades. Quatre preguntes fan 10 punts, i el comptador es posa verd quan hi
-   arriba.
+7. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les
+   solucions intercalades. Cada pregunta hi porta la seva etiqueta, per exemple «Pregunta
+   4a». El comptador es posa verd quan l'examen fa 10 punts.
 
-La selecció queda desada a l'adreça (`index.html#analisi:ana-26j-q1,limits-punt:q002`): es
-pot desar als marcadors i recuperar-la exactament igual.
+L'examen queda desat a l'adreça, i es pot guardar als marcadors i recuperar exactament igual:
+
+```
+index.html#analisi:ana-26j-q1,algebra:alg-26j-q2,probabilitat:pro-26j-q3,analisi:ana-26j-q4a|geometria:geo-26j-q4b
+```
+
+La coma separa preguntes i la barra uneix les opcions d'una mateixa pregunta. Les adreces
+desades abans d'haver-hi opcions continuen funcionant.
 
 Les targetes PAU porten un accent taronja, la procedència i la llista d'unitats que la classe
 ha d'haver fet per poder resoldre la pregunta sencera («cal haver fet: u7 · u8 · u12»).
@@ -68,7 +81,7 @@ El projecte segueix cinc principis. Totes les decisions de disseny en surten.
 
 ```
 index.html                 la pàgina (única)
-assets/app.js              lògica del lloc: selecció, variants, assemblatge, descàrregues
+assets/app.js              lògica del lloc: examen, opcions, variants, assemblatge, descàrregues
 assets/style.css           estil (clar i fosc)
 cataleg.js                 GENERAT: totes les preguntes, el preàmbul i la plantilla
 temes.json                 unitats i temes (slugs estables)

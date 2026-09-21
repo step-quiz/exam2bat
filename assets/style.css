@@ -53,6 +53,7 @@ button:focus-visible{outline:2px solid var(--acc);outline-offset:2px;}
 .tema.tria{background:var(--acc-tint);box-shadow:inset 4px 0 0 var(--acc);
   border-color:color-mix(in srgb,var(--acc) 40%,var(--border));}
 .tema.buit{opacity:.5;}
+.tema.tria:disabled{opacity:.7;}
 .tema-nom{flex:1;font-size:.83rem;}
 .tema-n{font-family:'Source Code Pro',monospace;font-size:.66rem;color:var(--muted);}
 .marca{width:17px;height:17px;border:1.5px solid var(--border);border-radius:4px;
@@ -66,8 +67,7 @@ button:focus-visible{outline:2px solid var(--acc);outline-offset:2px;}
 
 .carta{background:var(--surface);border:1px solid var(--border);border-radius:8px;
   padding:14px 16px;box-shadow:inset 4px 0 0 var(--acc);}
-.carta.sensepr{box-shadow:inset 4px 0 0 var(--alerta);}
-.carta-dalt{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px;}
+.carta-dalt{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px;}
 .num{font-family:'Source Code Pro',monospace;font-weight:600;font-size:.72rem;
   background:var(--acc);padding:2px 8px;border-radius:3px;}
 .carta-tema{font-size:.72rem;color:var(--acc);font-weight:700;}
@@ -125,7 +125,8 @@ button:disabled{opacity:.4;cursor:not-allowed;filter:none;}
 button:not(.secundari):not(.tema),
 button.secundari:hover,
 .num,
-.tema.tria .marca{color:var(--sobre-acc);}
+.tema.tria .marca,
+.opcio-btn[aria-pressed="true"]{color:var(--sobre-acc);}
 
 /* ── grups d'unitat a la llista de temes ───────────────────────────── */
 #temes .grup{list-style:none;margin:12px 0 2px;font-family:'Source Code Pro',monospace;
@@ -142,3 +143,9 @@ button.secundari:hover,
 .pau-badge{font-family:'Source Code Pro',monospace;font-size:.64rem;font-weight:600;
   color:var(--pau);border:1px solid var(--pau);border-radius:3px;padding:1px 6px;}
 .meta abbr{text-decoration:none;border-bottom:1px dotted var(--muted);cursor:help;}
+
+/* ── ordre de l'examen i opcions (4a, 4b) ──────────────────────────── */
+.ordre{display:flex;gap:4px;margin-left:auto;}
+.ordre button{padding:3px 9px;min-height:30px;}
+.opcio-btn[aria-pressed="true"]{background:var(--acc);}
+.carta.opcio{border-style:dashed;}

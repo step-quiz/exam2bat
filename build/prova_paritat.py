@@ -5,8 +5,9 @@
 #  ─────────────────────────────────────────────────────────────────────
 #  Executa els fitxers reals cataleg.js + assets/app.js dins de Node amb
 #  un DOM mínim, simula una adreça amb quatre temes i compara el resultat
-#  amb munta() de build.py. També comprova el recompte de punts i que
-#  una adreça amb codis inexistents no trenca la pàgina.
+#  amb munta() de build.py. També comprova el recompte de punts, que
+#  una adreça amb codis inexistents no trenca la pàgina, i els exàmens
+#  amb opcions (1, 2, 3, 4a, 4b): etiquetes, punts i accions.
 #
 #  Ús:   python3 build/prova_paritat.py      (cal node i cataleg.js)
 # ═══════════════════════════════════════════════════════════════════════
@@ -22,7 +23,7 @@ from build import munta, cos_amb_capcalera  # noqa: E402
 
 HARNES = r"""
 const fs = require('fs'), vm = require('vm');
-const [arrel, hash] = process.argv.slice(1);
+const [arrel, hash, accions] = process.argv.slice(1);
 function el() {
   return { innerHTML:'', className:'', title:'', type:'', textContent:'', disabled:false,
     dataset:{}, style:{}, children:[], setAttribute(){}, appendChild(c){ this.children.push(c); return c; },
@@ -39,8 +40,10 @@ vm.runInContext(fs.readFileSync(arrel + '/cataleg.js', 'utf8'), ctx, { filename:
 // Tema buit sintètic: la prova no pot dependre que el banc real en tingui cap.
 vm.runInContext("BANC.temes.push({slug:'__buit__', unitat:'u7', nom:'Tema buit de prova', descripcio:''})", ctx);
 vm.runInContext(fs.readFileSync(arrel + '/assets/app.js', 'utf8'), ctx, { filename: 'app.js' });
+if (accions) vm.runInContext(accions, ctx, { filename: 'accions.js' });
 const r = vm.runInContext(`({
   ids: triades().map(q => q.id),
+  etiquetes: etiquetes(),
   tex: munta(cossosTriats(), false),
   sol: munta(cossosTriats(), true),
   recompte: document.querySelector('#recompte').innerHTML,
@@ -54,8 +57,10 @@ class AppPetada(Exception):
     """app.js ha llançat una excepció dins de Node: al navegador, pàgina en blanc."""
 
 
-def web(hash_: str) -> dict:
-    r = subprocess.run(["node", "-e", HARNES, str(ARREL), hash_],
+def web(hash_: str, accions: str = "") -> dict:
+    """Obre el lloc amb l'adreça #hash_, hi executa `accions` (els mateixos
+    clics que faria el professor, com a crides d'app.js) i en torna l'estat."""
+    r = subprocess.run(["node", "-e", HARNES, str(ARREL), hash_, accions],
                        capture_output=True, text=True)
     if r.returncode:
         raise AppPetada(r.stderr.strip())
@@ -120,6 +125,53 @@ def main() -> int:
     r = web("limits-punt:q001")
     comprova("una pregunta del banc no porta cap línia de procedència", "\\procedencia{" not in
              r["tex"].split("\\begin{document}")[1], "")
+
+    # 1d. Un examen com el de la PAU: 1, 2, 3, 4a i 4b, amb dues preguntes d'anàlisi
+    def cossos(ids, etiquetes):
+        return [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {e}", per_id[i]["procedencia"])
+                for i, e in zip(ids, etiquetes)]
+
+    pau = "analisi:ana-26j-q1,algebra:alg-26j-q2,probabilitat:pro-26j-q3,analisi:ana-26j-q4a|geometria:geo-26j-q4b"
+    ana1, alg2, pro3, ana4a, geo4b = ("pau/analisi/ana-26j-q1", "pau/algebra/alg-26j-q2",
+                                      "pau/probabilitat/pro-26j-q3", "pau/analisi/ana-26j-q4a",
+                                      "pau/geometria/geo-26j-q4b")
+    r = web(pau)
+    comprova("un tema pot sortir dues vegades (la 1 i la 4a són d'anàlisi)",
+             r["ids"] == [ana1, alg2, pro3, ana4a, geo4b], r["ids"])
+    comprova("les etiquetes són 1, 2, 3, 4a i 4b", r["etiquetes"] == ["1", "2", "3", "4a", "4b"], r["etiquetes"])
+    for sol, clau in ((False, "tex"), (True, "sol")):
+        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"]), sol)
+        comprova(f"paritat JS = Python amb opcions ({'amb' if sol else 'sense'} solucions, {len(py)} caràcters)",
+                 py == r[clau])
+    comprova("el .tex diu «Pregunta 4a» i «Pregunta 4b»",
+             "\\encapcalament{Pregunta 4a}" in r["tex"] and "\\encapcalament{Pregunta 4b}" in r["tex"])
+    comprova("les opcions compten una vegada: 5 preguntes, se'n responen 4, 10,00 punts",
+             all(s in r["recompte"] for s in ("5 preguntes", "se'n responen 4", "10,00 punts")), r["recompte"])
+    comprova("l'adreça conserva les opcions", r["hash"] == pau, r["hash"])
+
+    # 1e. Les accions de les targetes, com les faria el professor
+    cinc = pau.replace("|", ",")
+    r = web(cinc)
+    comprova("sense cap opció, cinc preguntes són 1, 2, 3, 4 i 5 (12,50 punts)",
+             r["etiquetes"] == ["1", "2", "3", "4", "5"] and "12,50 punts" in r["recompte"], r["etiquetes"])
+    r = web(cinc, "commutaOpcio(4)")
+    comprova("«Opció de l'anterior» a la cinquena → 4a i 4b",
+             r["etiquetes"] == ["1", "2", "3", "4a", "4b"] and r["hash"] == pau, r["hash"])
+    r = web(pau, "mou(4, -1)")
+    comprova("▲ a la 4b la porta a la 4a, i l'estructura es manté",
+             r["ids"][3:] == [geo4b, ana4a] and r["etiquetes"] == ["1", "2", "3", "4a", "4b"], r["ids"])
+    r = web(pau, "treu(3)")
+    comprova("✕ a la 4a: la 4b passa a ser la 4 i surten 10,00 punts",
+             r["ids"] == [ana1, alg2, pro3, geo4b] and r["etiquetes"] == ["1", "2", "3", "4"]
+             and "se'n responen" not in r["recompte"] and "10,00 punts" in r["recompte"], r["recompte"])
+    r = web("", "afegeix('limits-punt'); afegeix('limits-punt'); afegeix('limits-punt')")
+    comprova("cada clic a un tema n'afegeix una pregunta diferent, fins que s'esgoten",
+             r["ids"] == ["u7/limits-punt/q001", "u7/limits-punt/q002"], r["ids"])
+    r = web("limits-punt:q001,limits-punt:q002", "rota(0, 1)")
+    comprova("◀ ▶ no hi posa una pregunta que ja és a l'examen",
+             r["ids"] == ["u7/limits-punt/q001", "u7/limits-punt/q002"], r["ids"])
+    r = web("limits-punt:q001", "rota(0, 1)")
+    comprova("◀ ▶ passa a la variant següent si és lliure", r["ids"] == ["u7/limits-punt/q002"], r["ids"])
 
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")

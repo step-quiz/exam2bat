@@ -2,6 +2,13 @@
    Banc de preguntes — lògica del lloc.
    Vanilla. Cap dependència. Llegeix el global BANC de cataleg.js.
 
+   L'EXAMEN
+   És una llista ordenada de places. Cada plaça té una pregunta (un tema i
+   una variant d'aquell tema) i una marca «opció»: una plaça marcada és una
+   alternativa de l'anterior, i l'alumne en respon una. Els números (1, 2,
+   3, 4a, 4b) no es guarden enlloc: es deriven de l'ordre i de les marques,
+   i per això mai no n'hi pot haver de repetits ni de forats.
+
    REGLES D'AQUEST FITXER
    1. L'assemblatge del .tex fa servir BANC.plantilla, el mateix fitxer
       que fa servir build/build.py. Aquí no hi ha cap plantilla escrita.
@@ -13,6 +20,7 @@
    4. L'adreça guarda codis estables (tema:q002), mai posicions.
    5. Cap adreça, per mal formada que sigui, pot trencar la pàgina: el que
       no s'entén s'ignora.
+   6. Una mateixa pregunta no surt mai dues vegades en un examen.
    ═══════════════════════════════════════════════════════════════════════ */
 
 // Sense prototip: així #__proto__ o #constructor no hi troben res. Amb {},
@@ -22,9 +30,8 @@ BANC.temes.forEach(t => { PER_TEMA[t.slug] = []; });
 BANC.preguntes.forEach(p => { (PER_TEMA[p.tema] ||= []).push(p); });
 Object.values(PER_TEMA).forEach(l => l.sort((a, b) => a.codi.localeCompare(b.codi)));
 
-let seleccio = [];        // slugs, en l'ordre en què es trien
-const variant = {};       // slug → índex dins PER_TEMA[slug]
-const visor = {};         // slug → 'enunciat' | 'solucio' | undefined
+let examen = [];          // places { slug, i, opcio }; i és l'índex dins PER_TEMA[slug]
+const visor = {};         // id de pregunta → 'enunciat' | 'solucio' | undefined
 
 // ── utilitats ────────────────────────────────────────────────────────
 const $ = s => document.querySelector(s);
@@ -55,54 +62,125 @@ const ambCapcalera = (q, etiqueta) =>
   + (q.procedencia ? `\\procedencia{${q.procedencia}}\n` : '')
   + q.tex.trim();
 
-const preguntaDe = slug => (PER_TEMA[slug] || [])[variant[slug] || 0];
+// ── l'examen ─────────────────────────────────────────────────────────
+const preguntaDe = p => PER_TEMA[p.slug][p.i];
 
-/** Les preguntes que entraran a l'examen, en ordre. Els temes buits no
- *  compten: la numeració de les targetes i la del .tex són la mateixa. */
-const triades = () => seleccio.map(preguntaDe).filter(Boolean);
+/** Les preguntes de l'examen, en ordre. */
+const triades = () => examen.map(preguntaDe);
 
-// ── estat a l'adreça:  #bolzano-biseccio:q001,limits-punt:q002 ────────
+/** Variants d'un tema que ja són a l'examen, sense comptar la plaça `excepte`. */
+const usades = (slug, excepte = -1) =>
+  new Set(examen.filter((p, k) => k !== excepte && p.slug === slug).map(p => p.i));
+
+/** Primera variant del tema que encara no és a l'examen, o -1. */
+function primeraLliure(slug) {
+  const u = usades(slug);
+  return PER_TEMA[slug].findIndex((_, i) => !u.has(i));
+}
+
+/** Les places agrupades per pregunta: cada grup és una pregunta i les seves
+ *  opcions. La primera plaça sempre obre grup. */
+function grups() {
+  const g = [];
+  examen.forEach((p, k) => { if (k && p.opcio) g[g.length - 1].push(k); else g.push([k]); });
+  return g;
+}
+
+/** Etiqueta de cada plaça: 1, 2, 3, 4a, 4b… */
+function etiquetes() {
+  const et = [];
+  grups().forEach((g, n) => g.forEach((k, j) => {
+    et[k] = `${n + 1}${g.length > 1 ? String.fromCharCode(97 + j) : ''}`;
+  }));
+  return et;
+}
+
+// ── estat a l'adreça ─────────────────────────────────────────────────
+//   #analisi:ana-26j-q1,algebra:alg-26j-q2,analisi:ana-26j-q4a|geometria:geo-26j-q4b
+// La coma separa preguntes; la barra uneix les opcions d'una mateixa
+// pregunta (4a|4b). Les adreces antigues, sense barres, continuen valent.
 function llegeixHash() {
   let cru = location.hash.replace(/^#/, '');
   // Un % solt o una adreça retallada fan petar decodeURIComponent. Els slugs
   // i els codis són ASCII: si no es pot descodificar, es llegeix tal com és.
   try { cru = decodeURIComponent(cru); } catch { /* es queda sense descodificar */ }
-  cru.split(',').filter(Boolean).forEach(tros => {
-    const [slug, codi] = tros.split(':');
-    const llista = PER_TEMA[slug];
-    if (!llista || seleccio.includes(slug)) return;
-    seleccio.push(slug);
-    const i = llista.findIndex(q => q.codi === codi);
-    variant[slug] = i >= 0 ? i : 0;       // codi desaparegut → la primera
+  cru.split(',').forEach(grup => {
+    let primera = true;
+    grup.split('|').forEach(tros => {
+      const [slug, codi] = tros.split(':');
+      const llista = PER_TEMA[slug];
+      if (!llista) return;
+      let i = llista.findIndex(q => q.codi === codi);
+      if (i >= 0 && usades(slug).has(i)) return;      // regla 6
+      if (i < 0) i = primeraLliure(slug);              // codi desaparegut → la primera lliure
+      if (i < 0) return;                               // tema buit o sense variants lliures
+      examen.push({ slug, i, opcio: !primera });
+      primera = false;
+    });
   });
 }
 
 function escriuHash() {
-  const s = seleccio.map(slug => {
-    const q = preguntaDe(slug);
-    return q ? `${slug}:${q.codi}` : slug;
-  }).join(',');
+  const s = examen.map((p, k) =>
+    (k ? (p.opcio ? '|' : ',') : '') + `${p.slug}:${preguntaDe(p).codi}`).join('');
   history.replaceState(null, '', s ? '#' + s : location.pathname + location.search);
 }
 
 // ── accions ──────────────────────────────────────────────────────────
-function commuta(slug) {
-  const i = seleccio.indexOf(slug);
-  if (i >= 0) { seleccio.splice(i, 1); delete visor[slug]; }
-  else { seleccio.push(slug); variant[slug] ??= 0; }
+/** Un clic a un tema hi afegeix una pregunta: la primera variant lliure. */
+function afegeix(slug) {
+  const i = primeraLliure(slug);
+  if (i < 0) return;
+  examen.push({ slug, i, opcio: false });
   pinta();
 }
 
-function rota(slug, pas) {
-  const n = PER_TEMA[slug].length;
-  if (n < 2) return;
-  variant[slug] = ((variant[slug] || 0) + pas + n) % n;
-  if (visor[slug]) visor[slug] = 'enunciat';
+function treu(k) {
+  const p = examen[k];
+  // Si encapçalava un grup (4a), la seva opció següent (4b) passa a encapçalar-lo.
+  if (!p.opcio && examen[k + 1]?.opcio) examen[k + 1].opcio = false;
+  delete visor[preguntaDe(p).id];
+  examen.splice(k, 1);
+  if (examen.length) examen[0].opcio = false;
   pinta();
 }
 
-function mostra(slug, quin) {
-  visor[slug] = visor[slug] === quin ? undefined : quin;
+/** Mou la pregunta de la plaça k a la plaça k+pas. Les marques d'opció es
+ *  queden a les places: l'estructura (1, 2, 3, 4a, 4b) no canvia, i són les
+ *  preguntes les que passen d'una plaça a l'altra. */
+function mou(k, pas) {
+  const j = k + pas;
+  if (j < 0 || j >= examen.length) return;
+  const a = examen[k], b = examen[j];
+  [a.slug, a.i, b.slug, b.i] = [b.slug, b.i, a.slug, a.i];
+  pinta();
+}
+
+/** Converteix la plaça k en opció de l'anterior, o la hi torna a separar. */
+function commutaOpcio(k) {
+  if (k === 0) return;
+  examen[k].opcio = !examen[k].opcio;
+  pinta();
+}
+
+/** Passa a la variant següent (o anterior) del mateix tema que no sigui ja
+ *  a l'examen (regla 6). */
+function rota(k, pas) {
+  const p = examen[k], n = PER_TEMA[p.slug].length, altres = usades(p.slug, k);
+  for (let s = 1; s < n; s++) {
+    const i = ((p.i + pas * s) % n + n) % n;
+    if (altres.has(i)) continue;
+    const obert = visor[preguntaDe(p).id];
+    delete visor[preguntaDe(p).id];
+    p.i = i;
+    if (obert) visor[preguntaDe(p).id] = 'enunciat';
+    pinta();
+    return;
+  }
+}
+
+function mostra(id, quin) {
+  visor[id] = visor[id] === quin ? undefined : quin;
   pinta();
 }
 
@@ -123,44 +201,44 @@ function pintaTemes() {
 
 function pintaTema(ul, t) {
   const n = PER_TEMA[t.slug].length;
-  const triat = seleccio.includes(t.slug);
+  const dins = examen.filter(p => p.slug === t.slug).length;
   const li = document.createElement('li');
   const b = document.createElement('button');
   b.type = 'button';
-  b.className = 'tema' + (triat ? ' tria' : '') + (n ? '' : ' buit');
-  b.title = t.descripcio;
-  b.setAttribute('aria-pressed', String(triat));
-  b.innerHTML = `<span class="marca" aria-hidden="true">${triat ? '✓' : ''}</span>
+  b.className = 'tema' + (dins ? ' tria' : '') + (n ? '' : ' buit');
+  b.disabled = dins >= n;           // tema buit, o totes les variants ja hi són
+  b.title = !n ? "Encara no hi ha cap pregunta d'aquest tema."
+    : dins >= n ? "Totes les preguntes d'aquest tema ja són a l'examen."
+    : t.descripcio;
+  b.setAttribute('aria-label', `Afegeix una pregunta de ${t.nom} (${dins} de ${n} a l'examen)`);
+  b.innerHTML = `<span class="marca" aria-hidden="true">${dins || (n ? '+' : '')}</span>
     <span class="tema-nom">${esc(t.nom)}</span>
     <span class="tema-n">${n}</span>`;
-  b.onclick = () => commuta(t.slug);
+  b.onclick = () => afegeix(t.slug);
   li.appendChild(b);
   ul.appendChild(li);
 }
 
-function pintaCarta(slug, posicio) {
-  const tema = BANC.temes.find(t => t.slug === slug);
-  const llista = PER_TEMA[slug];
-  const div = document.createElement('div');
-
-  if (!llista.length) {
-    div.className = 'carta sensepr';
-    div.innerHTML = `<div class="carta-dalt"><span class="carta-tema">${esc(tema.nom)}</span></div>
-      <div class="meta">Encara no hi ha cap pregunta d'aquest tema. No comptarà a l'examen.</div>`;
-    return div;
-  }
-
-  const q = preguntaDe(slug);
+function pintaCarta(k, etiqueta) {
+  const p = examen[k], q = preguntaDe(p), llista = PER_TEMA[p.slug];
+  const tema = BANC.temes.find(t => t.slug === p.slug);
   const esPau = Boolean(q.procedencia);
+  const potRotar = llista.length - usades(p.slug, k).size > 1;
   const unitatsTxt = q.unitats.length
     ? q.unitats.map(u => `<abbr title="${esc(BANC.unitats[u]?.subtitol || '')}">${esc(u)}</abbr>`).join(' · ')
     : 'per definir';
-  div.className = 'carta' + (esPau ? ' pau' : '');
+  const div = document.createElement('div');
+  div.className = 'carta' + (esPau ? ' pau' : '') + (k && p.opcio ? ' opcio' : '');
   div.innerHTML = `
     <div class="carta-dalt">
-      <span class="num">Pregunta ${posicio}</span>
+      <span class="num">Pregunta ${esc(etiqueta)}</span>
       <span class="carta-tema">${esc(tema.nom)}</span>
       ${esPau ? `<span class="pau-badge">${esc(q.procedencia)}</span>` : ''}
+      <span class="ordre">
+        <button type="button" class="secundari" data-fer="amunt" aria-label="Puja-la" title="Puja-la" ${k === 0 ? 'disabled' : ''}>▲</button>
+        <button type="button" class="secundari" data-fer="avall" aria-label="Baixa-la" title="Baixa-la" ${k === examen.length - 1 ? 'disabled' : ''}>▼</button>
+        <button type="button" class="secundari" data-fer="treu" aria-label="Treu-la de l'examen" title="Treu-la de l'examen">✕</button>
+      </span>
     </div>
     <div class="carta-titol">${esc(q.titol)}</div>
     <div class="meta">
@@ -171,18 +249,20 @@ function pintaCarta(slug, posicio) {
       <span>${esc(q.codi)}</span>
     </div>
     <div class="accions">
-      <button type="button" class="secundari" data-fer="enunciat" aria-pressed="${visor[slug] === 'enunciat'}">Enunciat</button>
-      <button type="button" class="secundari" data-fer="solucio" aria-pressed="${visor[slug] === 'solucio'}">Solució</button>
+      <button type="button" class="secundari" data-fer="enunciat" aria-pressed="${visor[q.id] === 'enunciat'}">Enunciat</button>
+      <button type="button" class="secundari" data-fer="solucio" aria-pressed="${visor[q.id] === 'solucio'}">Solució</button>
       <button type="button" class="secundari" data-fer="tex">.tex</button>
+      ${k ? `<button type="button" class="secundari opcio-btn" data-fer="opcio" aria-pressed="${p.opcio}"
+        title="L'alumne respon aquesta pregunta o l'anterior: queden numerades com a 4a i 4b">Opció de l'anterior</button>` : ''}
       <span class="variant">
-        <button type="button" class="secundari" data-fer="prev" aria-label="Variant anterior" ${llista.length < 2 ? 'disabled' : ''}>◀</button>
-        <span>${(variant[slug] || 0) + 1}/${llista.length}</span>
-        <button type="button" class="secundari" data-fer="next" aria-label="Variant següent" ${llista.length < 2 ? 'disabled' : ''}>▶</button>
+        <button type="button" class="secundari" data-fer="prev" aria-label="Variant anterior" ${potRotar ? '' : 'disabled'}>◀</button>
+        <span>${p.i + 1}/${llista.length}</span>
+        <button type="button" class="secundari" data-fer="next" aria-label="Variant següent" ${potRotar ? '' : 'disabled'}>▶</button>
       </span>
     </div>`;
 
-  if (visor[slug]) {
-    const src = visor[slug] === 'solucio' ? q.pdf_solucio : q.pdf;
+  if (visor[q.id]) {
+    const src = visor[q.id] === 'solucio' ? q.pdf_solucio : q.pdf;
     const v = document.createElement('div');
     v.className = 'visor';
     v.innerHTML = `<iframe src="${esc(src)}#toolbar=0&amp;navpanes=0" title="${esc(q.titol)}"></iframe>
@@ -192,12 +272,16 @@ function pintaCarta(slug, posicio) {
   }
 
   const fer = {
-    enunciat: () => mostra(slug, 'enunciat'),
-    solucio:  () => mostra(slug, 'solucio'),
+    enunciat: () => mostra(q.id, 'enunciat'),
+    solucio:  () => mostra(q.id, 'solucio'),
     tex:      () => baixa(`${q.id.replace(/\//g, '-')}.tex`,
-                          munta([ambCapcalera(q, `Pregunta ${posicio}`)], false)),
-    prev:     () => rota(slug, -1),
-    next:     () => rota(slug, +1),
+                          munta([ambCapcalera(q, `Pregunta ${etiqueta}`)], false)),
+    prev:     () => rota(k, -1),
+    next:     () => rota(k, +1),
+    amunt:    () => mou(k, -1),
+    avall:    () => mou(k, +1),
+    treu:     () => treu(k),
+    opcio:    () => commutaOpcio(k),
   };
   div.querySelectorAll('button[data-fer]').forEach(b => { b.onclick = fer[b.dataset.fer]; });
   return div;
@@ -208,20 +292,20 @@ function pinta() {
 
   const cont = $('#seleccio');
   cont.innerHTML = '';
-  if (!seleccio.length) {
-    cont.innerHTML = '<div class="cap">Tria temes a l\'esquerra i aniran apareixent aquí com a preguntes d\'examen.</div>';
+  if (!examen.length) {
+    cont.innerHTML = '<div class="cap">Tria temes a l\'esquerra: cada clic hi afegeix una pregunta.</div>';
   }
-  let posicio = 0;
-  seleccio.forEach(slug => {
-    const plena = PER_TEMA[slug].length > 0;
-    cont.appendChild(pintaCarta(slug, plena ? ++posicio : null));
-  });
+  const et = etiquetes();
+  examen.forEach((_, k) => cont.appendChild(pintaCarta(k, et[k])));
 
-  const qs = triades();
-  const cent = qs.reduce((s, q) => s + Math.round(q.punts * 100), 0);
-  const minuts = qs.reduce((s, q) => s + q.minuts, 0);
+  // Les opcions d'una mateixa pregunta compten una sola vegada: l'alumne en
+  // respon una. Dels minuts, es compta la més llarga.
+  const qs = triades(), gs = grups();
+  const cent = gs.reduce((s, g) => s + Math.max(...g.map(k => Math.round(qs[k].punts * 100))), 0);
+  const minuts = gs.reduce((s, g) => s + Math.max(...g.map(k => qs[k].minuts)), 0);
   $('#recompte').innerHTML = qs.length
-    ? `<span class="seg">${qs.length} ${qs.length === 1 ? 'pregunta' : 'preguntes'}</span> · `
+    ? `<span class="seg">${qs.length} ${qs.length === 1 ? 'pregunta' : 'preguntes'}</span>`
+      + (gs.length < qs.length ? ` <span class="seg">(se'n responen ${gs.length})</span>` : '') + ' · '
       + `<span class="seg ${cent === 1000 ? 'just' : 'fora'}">${num(cent / 100)} punts</span> · `
       + `<span class="seg">~${minuts} min</span>`
     : 'Cap pregunta triada';
@@ -232,7 +316,10 @@ function pinta() {
 }
 
 // ── arrencada ────────────────────────────────────────────────────────
-const cossosTriats = () => triades().map((q, i) => ambCapcalera(q, `Pregunta ${i + 1}`));
+const cossosTriats = () => {
+  const et = etiquetes();
+  return triades().map((q, k) => ambCapcalera(q, `Pregunta ${et[k]}`));
+};
 
 $('#baixa-tex').onclick = () => baixa('main.tex', munta(cossosTriats(), false));
 $('#baixa-sol').onclick = () => baixa('main-solucions.tex', munta(cossosTriats(), true));
