@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-21 12:46 UTC",
+ "generat": "2026-09-21 19:46 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
