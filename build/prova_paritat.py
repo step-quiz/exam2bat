@@ -36,6 +36,8 @@ const ctx = vm.createContext({
   URL, Blob, setTimeout, console,
 });
 vm.runInContext(fs.readFileSync(arrel + '/cataleg.js', 'utf8'), ctx, { filename: 'cataleg.js' });
+// Tema buit sintètic: la prova no pot dependre que el banc real en tingui cap.
+vm.runInContext("BANC.temes.push({slug:'__buit__', unitat:'u7', nom:'Tema buit de prova', descripcio:''})", ctx);
 vm.runInContext(fs.readFileSync(arrel + '/assets/app.js', 'utf8'), ctx, { filename: 'app.js' });
 const r = vm.runInContext(`({
   ids: triades().map(q => q.id),
@@ -68,12 +70,12 @@ def main() -> int:
         print(f"  {'✓' if cond else '✗'} {nom}" + (f"\n      {detall}" if not cond and detall else ""))
 
     # 1. Paritat amb quatre temes (un d'ells buit, que no ha de comptar)
-    hash_ = "limits-grafica:q001,limits-infinit,continuitat-trossos:q001,bolzano-biseccio:q001,limits-punt:q001"
+    hash_ = "limits-grafica:q001,__buit__,continuitat-trossos:q001,bolzano-biseccio:q001,limits-punt:q001"
     r = web(hash_)
     esperat = ["u7/limits-grafica/q001", "u7/continuitat-trossos/q001",
                "u7/bolzano-biseccio/q001", "u7/limits-punt/q001"]
     comprova("el tema buit no entra a l'examen", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}") for n, i in enumerate(esperat, 1)]
+    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
     for sol, clau in ((False, "tex"), (True, "sol")):
         py = munta(banc["plantilla"], banc["preambul"], cossos, sol)
         igual = py == r[clau]
@@ -82,6 +84,38 @@ def main() -> int:
             f"longituds {len(py)} i {len(r[clau])}")
         comprova(f"paritat JS = Python ({'amb' if sol else 'sense'} solucions, {len(py)} caràcters)", igual, detall)
     comprova("el recompte diu 10,00 punts", "10,00 punts" in r["recompte"], r["recompte"])
+
+    # 1b. Paritat amb segones variants i els temes nous
+    hash_ = "limits-grafica:q002,parametres-ab:q001,bolzano-biseccio:q002,limits-infinit:q001"
+    r = web(hash_)
+    esperat = ["u7/limits-grafica/q002", "u7/parametres-ab/q001",
+               "u7/bolzano-biseccio/q002", "u7/limits-infinit/q001"]
+    comprova("les variants q002 es trien per codi", r["ids"] == esperat, r["ids"])
+    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
+    py = munta(banc["plantilla"], banc["preambul"], cossos, True)
+    comprova(f"paritat JS = Python amb variants ({len(py)} caràcters)", py == r["sol"])
+    comprova("el recompte torna a dir 10,00 punts", "10,00 punts" in r["recompte"], r["recompte"])
+
+    # 1c. Un examen PAU sencer (juny 2026): paritat i línia de procedència
+    hash_ = "analisi:ana-26j-q1,algebra:alg-26j-q2,probabilitat:pro-26j-q3,geometria:geo-26j-q4b"
+    r = web(hash_)
+    esperat = ["pau/analisi/ana-26j-q1", "pau/algebra/alg-26j-q2",
+               "pau/probabilitat/pro-26j-q3", "pau/geometria/geo-26j-q4b"]
+    comprova("un examen PAU sencer es tria per codi", r["ids"] == esperat, r["ids"])
+    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}", per_id[i]["procedencia"])
+              for n, i in enumerate(esperat, 1)]
+    py = munta(banc["plantilla"], banc["preambul"], cossos, False)
+    comprova(f"paritat JS = Python amb preguntes PAU ({len(py)} caràcters)", py == r["tex"])
+    linies = r["tex"].splitlines()
+    ok = all(linies[linies.index(f"\\encapcalament{{Pregunta {n}}}") + 1]
+             == "\\procedencia{PAU juny 2026, sèrie 1}" for n in range(1, 5))
+    comprova("cada pregunta PAU comença amb «PAU juny 2026, sèrie 1»", ok)
+    comprova("el recompte de l'examen PAU diu 10,00 punts", "10,00 punts" in r["recompte"], r["recompte"])
+    r = web("analisi:ana-26j-q4a")
+    comprova("l'opció 4A es tria com a variant del bloc d'anàlisi", r["ids"] == ["pau/analisi/ana-26j-q4a"], r["ids"])
+    r = web("limits-punt:q001")
+    comprova("una pregunta del banc no porta cap línia de procedència", "\\procedencia{" not in
+             r["tex"].split("\\begin{document}")[1], "")
 
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")

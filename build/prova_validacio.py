@@ -40,6 +40,32 @@ def edita_meta(canvi):
     return f
 
 
+QP = "pau/analisi/ana-26j-q1"
+
+
+def mou(de, a):
+    def f(r):
+        (r / a).parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(r / de), str(r / a))
+    return f
+
+
+def edita_text(ruta, vell, nou):
+    def f(r):
+        t = (r / ruta).read_text(encoding="utf-8")
+        assert vell in t, f"la prova no troba «{vell}» a {ruta}"
+        (r / ruta).write_text(t.replace(vell, nou, 1), encoding="utf-8")
+    return f
+
+
+def edita_json(ruta, canvi):
+    def f(r):
+        d = json.loads((r / ruta).read_text(encoding="utf-8"))
+        canvi(d)
+        (r / ruta).write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
+    return f
+
+
 AVARIES = [
     ("apartats que sumen 2,25",
      edita_tex(r"\apartat{1,25}", r"\apartat{1}"), "han de sumar 2,50"),
@@ -59,6 +85,32 @@ AVARIES = [
      edita_meta(lambda m: m.update(dificultat="alta")), "dificultat"),
     ("clau obligatòria absent",
      edita_meta(lambda m: m.pop("titol")), "falta la clau"),
+    ("graella de TikZ sense step explícit",
+     edita_tex(r"\begin{apartats}", "\\begin{tikzpicture}[x=0.9cm]\\draw[gray] (0,0) grid (3,3);\\end{tikzpicture}\n\\begin{apartats}"),
+     "grid sense step"),
+    # ── preguntes PAU ──
+    ("codi PAU mal format",
+     mou(QP, "pau/analisi/ana-2026-q1"), "codi PAU mal format"),
+    ("convocatòria PAU inexistent",
+     mou(QP, "pau/analisi/ana-27j-q1"), "no és a pau/convocatories.json"),
+    ("prefix de bloc que no correspon a la carpeta",
+     mou(QP, "pau/algebra/ana-26j-q1"), "no correspon al bloc"),
+    ("unitat inexistent als requisits d'una PAU",
+     edita_json(f"{QP}/meta.json", lambda m: m.update(unitats=["u99"])), "unitat inexistent"),
+    ("clau del banc dins d'una PAU (origen)",
+     edita_json(f"{QP}/meta.json", lambda m: m.update(origen=[44])), "clau desconeguda"),
+    ("procedència escrita a mà",
+     edita_text(f"{QP}/pregunta.tex", "Considereu", "\\procedencia{PAU juny 2026, sèrie 1}\nConsidereu"),
+     "la línia PAU la posa el build"),
+    ("convocatòria sense font",
+     edita_json("pau/convocatories.json", lambda d: d["26j"].pop("font")), "cal «font»"),
+    ("sèrie que no és un enter",
+     edita_json("pau/convocatories.json", lambda d: d["26j"].update(serie="1")), "han de ser enters"),
+    # ── taxonomia ──
+    ("slug duplicat a temes.json",
+     edita_json("temes.json", lambda d: d["temes"].append(dict(d["temes"][0]))), "slug duplicat"),
+    ("tema d'una unitat desat en una altra",
+     mou("u7/limits-punt/q001", "pau/limits-punt/q001"), "pertany a «u7»"),
     ("meta.json que no és JSON",
      lambda r: meta(r).write_text("{ titol: sense cometes }", encoding="utf-8"), "JSON vàlid"),
 ]

@@ -44,7 +44,12 @@ function munta(cossos, solucions) {
     .replace('%%COS%%', () => cossos.join('\n\n'));
 }
 
-const ambCapcalera = (tex, etiqueta) => `\\encapcalament{${etiqueta}}\n${tex.trim()}`;
+/** Idèntic a cos_amb_capcalera() de build.py: capçalera, procedència PAU
+ *  (si n'hi ha) i cos. La procedència surt del catàleg, mai del .tex. */
+const ambCapcalera = (q, etiqueta) =>
+  `\\encapcalament{${etiqueta}}\n`
+  + (q.procedencia ? `\\procedencia{${q.procedencia}}\n` : '')
+  + q.tex.trim();
 
 const preguntaDe = slug => (PER_TEMA[slug] || [])[variant[slug] || 0];
 
@@ -98,22 +103,32 @@ function mostra(slug, quin) {
 function pintaTemes() {
   const ul = $('#temes');
   ul.innerHTML = '';
-  BANC.temes.forEach(t => {
-    const n = PER_TEMA[t.slug].length;
-    const triat = seleccio.includes(t.slug);
-    const li = document.createElement('li');
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'tema' + (triat ? ' tria' : '') + (n ? '' : ' buit');
-    b.title = t.descripcio;
-    b.setAttribute('aria-pressed', String(triat));
-    b.innerHTML = `<span class="marca" aria-hidden="true">${triat ? '✓' : ''}</span>
-      <span class="tema-nom">${esc(t.nom)}</span>
-      <span class="tema-n">${n}</span>`;
-    b.onclick = () => commuta(t.slug);
-    li.appendChild(b);
-    ul.appendChild(li);
+  Object.entries(BANC.unitats).forEach(([u, info]) => {
+    const temes = BANC.temes.filter(t => t.unitat === u);
+    if (!temes.length) return;
+    const cap = document.createElement('li');
+    cap.className = 'grup' + (u === 'pau' ? ' grup-pau' : '');
+    cap.innerHTML = `<span>${esc(info.nom)}</span> ${esc(info.subtitol)}`;
+    ul.appendChild(cap);
+    temes.forEach(t => pintaTema(ul, t));
   });
+}
+
+function pintaTema(ul, t) {
+  const n = PER_TEMA[t.slug].length;
+  const triat = seleccio.includes(t.slug);
+  const li = document.createElement('li');
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'tema' + (triat ? ' tria' : '') + (n ? '' : ' buit');
+  b.title = t.descripcio;
+  b.setAttribute('aria-pressed', String(triat));
+  b.innerHTML = `<span class="marca" aria-hidden="true">${triat ? '✓' : ''}</span>
+    <span class="tema-nom">${esc(t.nom)}</span>
+    <span class="tema-n">${n}</span>`;
+  b.onclick = () => commuta(t.slug);
+  li.appendChild(b);
+  ul.appendChild(li);
 }
 
 function pintaCarta(slug, posicio) {
@@ -129,18 +144,23 @@ function pintaCarta(slug, posicio) {
   }
 
   const q = preguntaDe(slug);
-  div.className = 'carta';
+  const esPau = Boolean(q.procedencia);
+  const unitatsTxt = q.unitats.length
+    ? q.unitats.map(u => `<abbr title="${esc(BANC.unitats[u]?.subtitol || '')}">${esc(u)}</abbr>`).join(' · ')
+    : 'per definir';
+  div.className = 'carta' + (esPau ? ' pau' : '');
   div.innerHTML = `
     <div class="carta-dalt">
       <span class="num">Pregunta ${posicio}</span>
       <span class="carta-tema">${esc(tema.nom)}</span>
+      ${esPau ? `<span class="pau-badge">${esc(q.procedencia)}</span>` : ''}
     </div>
     <div class="carta-titol">${esc(q.titol)}</div>
     <div class="meta">
       <span>${q.apartats.map(num).join(' + ')} = ${num(q.punts)} punts</span>
       <span>${esc(q.dificultat)}</span>
       <span>~${q.minuts} min</span>
-      <span>llibre: ${q.origen.map(esc).join(', ')}</span>
+      ${esPau ? `<span>cal haver fet: ${unitatsTxt}</span>` : `<span>llibre: ${q.origen.map(esc).join(', ')}</span>`}
       <span>${esc(q.codi)}</span>
     </div>
     <div class="accions">
@@ -168,7 +188,7 @@ function pintaCarta(slug, posicio) {
     enunciat: () => mostra(slug, 'enunciat'),
     solucio:  () => mostra(slug, 'solucio'),
     tex:      () => baixa(`${q.id.replace(/\//g, '-')}.tex`,
-                          munta([ambCapcalera(q.tex, `Pregunta ${posicio}`)], false)),
+                          munta([ambCapcalera(q, `Pregunta ${posicio}`)], false)),
     prev:     () => rota(slug, -1),
     next:     () => rota(slug, +1),
   };
@@ -205,7 +225,7 @@ function pinta() {
 }
 
 // ── arrencada ────────────────────────────────────────────────────────
-const cossosTriats = () => triades().map((q, i) => ambCapcalera(q.tex, `Pregunta ${i + 1}`));
+const cossosTriats = () => triades().map((q, i) => ambCapcalera(q, `Pregunta ${i + 1}`));
 
 $('#baixa-tex').onclick = () => baixa('main.tex', munta(cossosTriats(), false));
 $('#baixa-sol').onclick = () => baixa('main-solucions.tex', munta(cossosTriats(), true));

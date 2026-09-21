@@ -126,3 +126,19 @@ button:not(.secundari):not(.tema),
 button.secundari:hover,
 .num,
 .tema.tria .marca{color:var(--sobre-acc);}
+
+/* ── grups d'unitat a la llista de temes ───────────────────────────── */
+#temes .grup{list-style:none;margin:12px 0 2px;font-family:'Source Code Pro',monospace;
+  font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+#temes .grup:first-child{margin-top:0;}
+#temes .grup span{font-weight:600;color:var(--txt);}
+#temes .grup-pau span{color:var(--pau);}
+
+/* ── preguntes PAU: accent propi i procedència visible ─────────────── */
+:root{--pau:#b45309;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--pau:#fbbf24;}}
+.carta.pau{box-shadow:inset 4px 0 0 var(--pau);}
+.carta.pau .num{background:var(--pau);}
+.pau-badge{font-family:'Source Code Pro',monospace;font-size:.64rem;font-weight:600;
+  color:var(--pau);border:1px solid var(--pau);border-radius:3px;padding:1px 6px;}
+.meta abbr{text-decoration:none;border-bottom:1px dotted var(--muted);cursor:help;}

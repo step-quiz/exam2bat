@@ -1,0 +1,8 @@
+{
+  "titol": "Límits d'una funció a trossos amb paràmetre i indeterminació 0/0",
+  "temes_secundaris": ["limits-punt"],
+  "dificultat": "●●○",
+  "origen": [76, 88, 90],
+  "minuts": 12,
+  "etiquetes": ["a trossos", "0/0", "límits laterals", "paràmetre"]
+}

@@ -33,6 +33,17 @@ CLAUS_META = {
 }
 DIFICULTATS = {"●○○", "●●○", "●●●"}
 
+# Preguntes PAU: viuen a pau/<bloc>/<codi>/ i el codi és l'identificador del
+# repositori pau (p. ex. ana-26j-q1). Del codi se'n dedueix la convocatòria,
+# i de la convocatòria (pau/convocatories.json) la línia de procedència.
+CLAUS_META_PAU = {
+    "titol": str, "unitats": list, "dificultat": str, "minuts": int, "etiquetes": list,
+}
+BLOCS_PAU = {"alg": "algebra", "geo": "geometria", "ana": "analisi", "pro": "probabilitat"}
+CODI_PAU = re.compile(r"^(alg|geo|ana|pro)-(\d{2}(?:i|j2|j|s))-(q\d[a-z]*)$")
+CODI_BANC = re.compile(r"^q\d{3}$")
+MESOS = {"juny", "setembre"}
+
 errors: list[str] = []
 avisos: list[str] = []
 
@@ -69,8 +80,12 @@ def valida_plantilla(plantilla: str, preambul: str) -> None:
             error("preambul.tex", f"conté el marcador reservat {m}")
 
 
-def cos_amb_capcalera(tex: str, etiqueta: str) -> str:
-    return "\\encapcalament{%s}\n%s" % (etiqueta, tex.strip())
+def cos_amb_capcalera(tex: str, etiqueta: str, procedencia: str | None = None) -> str:
+    """Capçalera + (procedència PAU) + cos. app.js fa exactament el mateix."""
+    cap = "\\encapcalament{%s}\n" % etiqueta
+    if procedencia:
+        cap += "\\procedencia{%s}\n" % procedencia
+    return cap + tex.strip()
 
 
 # ── validació ──────────────────────────────────────────────────────────
@@ -107,18 +122,33 @@ def valida_tex(tex: str, on: str) -> None:
             error(on, r"\end{solucio} ha d'anar sol a la seva línia")
     if obre == 0:
         avis(on, "no té solució")
+    if r"\procedencia" in tex:
+        error(on, "conté \\procedencia; la línia PAU la posa el build a partir del codi")
+    # TikZ fa els passos del grid en cm absoluts (step=1cm per defecte). Si la
+    # figura té x= o y= diferents d'1 cm, la graella queda desquadrada respecte
+    # dels enters i l'alumne llegeix valors falsos. Exigim step explícit.
+    for ordre in re.findall(r"\\draw(?:\[[^\]]*\])?[^;]*?\bgrid\b[^;]*;", tex):
+        if "step=" not in ordre:
+            error(on, "grid sense step= explícit (la graella quedaria desquadrada)")
 
 
-def valida_meta(meta: dict, on: str, slugs: set[str]) -> None:
-    for clau, tipus in CLAUS_META.items():
+def valida_meta(meta: dict, on: str, slugs: set[str], esquema: dict = CLAUS_META,
+                unitats_valides: set[str] = frozenset()) -> None:
+    for clau, tipus in esquema.items():
         if clau not in meta:
             error(on, f"falta la clau «{clau}» a meta.json")
         elif not isinstance(meta[clau], tipus):
             error(on, f"«{clau}» hauria de ser {tipus.__name__}")
-    for extra in set(meta) - set(CLAUS_META):
+    for extra in set(meta) - set(esquema):
         error(on, f"clau desconeguda a meta.json: «{extra}»")
     if meta.get("dificultat") not in DIFICULTATS:
         error(on, "«dificultat» ha de ser ●○○, ●●○ o ●●●")
+    if esquema is CLAUS_META_PAU:
+        for u in meta.get("unitats", []):
+            if u not in unitats_valides:
+                error(on, f"unitat inexistent a «unitats»: «{u}»")
+        if meta.get("unitats") == []:
+            avis(on, "«unitats» és buida: la targeta no podrà dir fins on cal haver arribat")
     for t in meta.get("temes_secundaris", []):
         if t not in slugs:
             error(on, f"tema secundari inexistent: «{t}»")
@@ -130,11 +160,14 @@ def compila(document: str, desti: Path, on: str) -> int | None:
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         (tmp / "main.tex").write_text(document, encoding="utf-8")
+        # Sense text=True: pdflatex escriu els caràcters accentuats en la
+        # codificació de la font (T1), no en UTF-8. Descodifiquem tolerant.
         r = subprocess.run(
             ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "main.tex"],
-            cwd=tmp, capture_output=True, text=True)
+            cwd=tmp, capture_output=True)
+        sortida = r.stdout.decode("utf-8", errors="replace")
         log = (tmp / "main.log").read_text(encoding="utf-8", errors="replace") \
-            if (tmp / "main.log").exists() else r.stdout
+            if (tmp / "main.log").exists() else sortida
         if r.returncode != 0 or not (tmp / "main.pdf").exists():
             primera = next((l for l in log.splitlines() if l.startswith("! ")), "error desconegut")
             error(on, f"no compila → {primera}")
@@ -162,14 +195,36 @@ def main() -> int:
     for t in temes_doc["temes"]:
         if t["unitat"] not in unitats:
             error("temes.json", f"«{t['slug']}» apunta a una unitat inexistent")
+    llista_slugs = [t["slug"] for t in temes_doc["temes"]]
+    for sl in sorted({x for x in llista_slugs if llista_slugs.count(x) > 1}):
+        error("temes.json", f"slug duplicat: «{sl}» (l'adreça del lloc en depèn)")
+    tema_unitat = {t["slug"]: t["unitat"] for t in temes_doc["temes"]}
+
+    convocatories = {}
+    fitxer_conv = ARREL / "pau" / "convocatories.json"
+    if fitxer_conv.exists():
+        try:
+            convocatories = {k: v for k, v in json.loads(fitxer_conv.read_text(encoding="utf-8")).items()
+                             if not k.startswith("_")}
+        except json.JSONDecodeError as e:
+            error("pau/convocatories.json", f"no és JSON vàlid ({e})")
+        for k, c in convocatories.items():
+            on_c = f"pau/convocatories.json «{k}»"
+            if not (isinstance(c.get("any"), int) and isinstance(c.get("serie"), int)):
+                error(on_c, "«any» i «serie» han de ser enters")
+            if c.get("mes") not in MESOS:
+                error(on_c, f"«mes» ha de ser un de {sorted(MESOS)}")
+            if not str(c.get("font", "")).strip():
+                error(on_c, "cal «font»: una sèrie sense font no s'imprimeix en un examen")
 
     plantilla = (ARREL / "build" / "embolcall.tex").read_text(encoding="utf-8")
     preambul = Path(args.preambul).read_text(encoding="utf-8")
     valida_plantilla(plantilla, preambul)
 
-    carpetes = sorted(d for d in ARREL.glob("u*/*/q*") if (d / "meta.json").exists())
-    if args.pregunta:
-        carpetes = [d for d in carpetes if args.pregunta in str(d)]
+    # El catàleg SEMPRE inclou totes les preguntes. --pregunta només limita
+    # quines es compilen; si filtrés el catàleg, en deixaria un de mutilat.
+    carpetes = sorted(m.parent for m in ARREL.glob("*/*/*/meta.json")
+                      if m.parts[-4] in unitats or re.fullmatch(r"u\d+|pau", m.parts[-4]))
 
     preguntes = []
     vistos: set[str] = set()
@@ -179,8 +234,32 @@ def main() -> int:
         ident = f"{unitat}/{tema}/{codi}"
         on = ident
 
+        if unitat not in unitats:
+            error(on, f"la unitat «{unitat}» no és a temes.json")
+            continue
         if tema not in slugs:
             error(on, f"el tema «{tema}» no és a temes.json")
+            continue
+        if tema_unitat[tema] != unitat:
+            error(on, f"el tema «{tema}» pertany a «{tema_unitat[tema]}», no a «{unitat}»")
+            continue
+        es_pau = unitat == "pau"
+        procedencia = None
+        if es_pau:
+            mt = CODI_PAU.match(codi)
+            if not mt:
+                error(on, "codi PAU mal format: ha de ser com ana-26j-q1 (bloc-convocatòria-exercici)")
+                continue
+            if BLOCS_PAU[mt.group(1)] != tema:
+                error(on, f"el prefix «{mt.group(1)}» no correspon al bloc «{tema}»")
+                continue
+            conv = convocatories.get(mt.group(2))
+            if conv is None:
+                error(on, f"la convocatòria «{mt.group(2)}» no és a pau/convocatories.json")
+                continue
+            procedencia = f"PAU {conv['mes']} {conv['any']}, sèrie {conv['serie']}"
+        elif not CODI_BANC.match(codi):
+            error(on, "codi mal format: ha de ser q001, q002…")
             continue
         if ident in vistos:
             error(on, "identificador repetit")
@@ -192,7 +271,8 @@ def main() -> int:
         except json.JSONDecodeError as e:
             error(on, f"meta.json no és JSON vàlid ({e})")
             continue
-        valida_meta(meta, on, slugs)
+        valida_meta(meta, on, slugs, CLAUS_META_PAU if es_pau else CLAUS_META,
+                    {u for u in unitats if u != "pau"})
 
         if not (dir_q / "pregunta.tex").exists():
             error(on, "falta pregunta.tex")
@@ -206,8 +286,9 @@ def main() -> int:
 
         pdf_e = dir_q / "out" / "enunciat.pdf"
         pdf_s = dir_q / "out" / "solucio.pdf"
-        if not args.nomes_cataleg:
-            cos = cos_amb_capcalera(tex, "Pregunta")
+        compilar = not args.nomes_cataleg and (args.pregunta is None or args.pregunta in ident)
+        if compilar:
+            cos = cos_amb_capcalera(tex, "Pregunta", procedencia)
             pagines = compila(munta(plantilla, preambul, [cos], False), pdf_e, on)
             compila(munta(plantilla, preambul, [cos], True), pdf_s, on)
             if pagines and pagines > 1:
@@ -226,6 +307,8 @@ def main() -> int:
             "minuts": meta.get("minuts", 0),
             "etiquetes": meta.get("etiquetes", []),
             "temes_secundaris": meta.get("temes_secundaris", []),
+            "procedencia": procedencia,
+            "unitats": meta.get("unitats", []),
             "tex": tex,
             "pdf": f"{ident}/out/enunciat.pdf",
             "pdf_solucio": f"{ident}/out/solucio.pdf",
@@ -252,7 +335,8 @@ def main() -> int:
     (ARREL / "cataleg.js").write_text(sortida, encoding="utf-8")
 
     minuts = sum(q["minuts"] for q in preguntes)
-    print(f"\n✓ {len(preguntes)} preguntes · {len(slugs)} temes · "
+    n = len(preguntes)
+    print(f"\n✓ {n} {'pregunta' if n == 1 else 'preguntes'} · {len(slugs)} temes · "
           f"{minuts} min de banc · cataleg.js {len(sortida)//1024} kB")
     return 0
 

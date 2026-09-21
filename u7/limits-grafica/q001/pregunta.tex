@@ -5,7 +5,7 @@ plens, punts que sí que hi pertanyen.
 \begin{center}
 \begin{tikzpicture}[x=0.95cm,y=0.78cm]
   % Branques:  2-e^x  |  recta (0,3)-(2,1)  |  2/(4-x)  |  1-1/(x-4)^2
-  \draw[gray!55,very thin] (-5,-3) grid (8,4);
+  \draw[gray!55,very thin,step=1] (-5,-3) grid (8,4);
   \draw[->] (-5.4,0) -- (8.6,0) node[below right] {$x$};
   \draw[->] (0,-3.4) -- (0,4.6) node[above left] {$y$};
   \foreach \i in {-4,-2,2,6,8} \draw (\i,0.12) -- (\i,-0.12) node[below,font=\scriptsize] {$\i$};

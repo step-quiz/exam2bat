@@ -1,23 +1,114 @@
 {
   "unitats": {
-    "u7": { "nom": "Unitat 7", "subtitol": "Límits i continuïtat" }
+    "u7": {
+      "nom": "Unitat 7",
+      "subtitol": "Límits i continuïtat"
+    },
+    "u8": {
+      "nom": "Unitat 8",
+      "subtitol": "Derivades"
+    },
+    "u9": {
+      "nom": "Unitat 9",
+      "subtitol": "Aplicacions de les derivades"
+    },
+    "u10": {
+      "nom": "Unitat 10",
+      "subtitol": "Representació de funcions"
+    },
+    "u11": {
+      "nom": "Unitat 11",
+      "subtitol": "Integrals"
+    },
+    "u12": {
+      "nom": "Unitat 12",
+      "subtitol": "La integral definida"
+    },
+    "u13": {
+      "nom": "Unitat 13",
+      "subtitol": "Probabilitat"
+    },
+    "u14": {
+      "nom": "Unitat 14",
+      "subtitol": "Distribucions de probabilitat"
+    },
+    "pau": {
+      "nom": "PAU",
+      "subtitol": "Preguntes reals de les proves d'accés"
+    }
   },
   "temes": [
-    { "slug": "limits-grafica",         "unitat": "u7", "nom": "Límits a partir d'una gràfica",
-      "descripcio": "Llegir límits laterals, límits a l'infinit i continuïtat sobre una gràfica donada." },
-    { "slug": "limits-infinit",         "unitat": "u7", "nom": "Límits en l'infinit",
-      "descripcio": "Racionals, potències, radicals i exponencials quan x tendeix a ±∞." },
-    { "slug": "limits-punt",            "unitat": "u7", "nom": "Límits en un punt",
-      "descripcio": "Indeterminació 0/0, factorització i límits laterals." },
-    { "slug": "limits-trossos",         "unitat": "u7", "nom": "Límits de funcions a trossos",
-      "descripcio": "Límits en els punts d'enganxament i en l'infinit." },
-    { "slug": "continuitat-trossos",    "unitat": "u7", "nom": "Continuïtat de funcions a trossos",
-      "descripcio": "Estudi i classificació de discontinuïtats en funcions definides per trossos." },
-    { "slug": "parametres-ab",          "unitat": "u7", "nom": "Paràmetres per a la continuïtat",
-      "descripcio": "Determinar a i b perquè una funció a trossos sigui contínua." },
-    { "slug": "domini-discontinuitats", "unitat": "u7", "nom": "Domini i discontinuïtats",
-      "descripcio": "Domini de radicals i logaritmes, i classificació de discontinuïtats de racionals." },
-    { "slug": "bolzano-biseccio",       "unitat": "u7", "nom": "Bolzano i bisecció",
-      "descripcio": "Teorema de Bolzano, acotació d'arrels per bisecció i punts de tall de corbes." }
+    {
+      "slug": "limits-grafica",
+      "unitat": "u7",
+      "nom": "Límits a partir d'una gràfica",
+      "descripcio": "Llegir límits laterals, límits a l'infinit i continuïtat sobre una gràfica donada."
+    },
+    {
+      "slug": "limits-infinit",
+      "unitat": "u7",
+      "nom": "Límits en l'infinit",
+      "descripcio": "Racionals, potències, radicals i exponencials quan x tendeix a ±∞."
+    },
+    {
+      "slug": "limits-punt",
+      "unitat": "u7",
+      "nom": "Límits en un punt",
+      "descripcio": "Indeterminació 0/0, factorització i límits laterals."
+    },
+    {
+      "slug": "limits-trossos",
+      "unitat": "u7",
+      "nom": "Límits de funcions a trossos",
+      "descripcio": "Límits en els punts d'enganxament i en l'infinit."
+    },
+    {
+      "slug": "continuitat-trossos",
+      "unitat": "u7",
+      "nom": "Continuïtat de funcions a trossos",
+      "descripcio": "Estudi i classificació de discontinuïtats en funcions definides per trossos."
+    },
+    {
+      "slug": "parametres-ab",
+      "unitat": "u7",
+      "nom": "Paràmetres per a la continuïtat",
+      "descripcio": "Determinar a i b perquè una funció a trossos sigui contínua."
+    },
+    {
+      "slug": "domini-discontinuitats",
+      "unitat": "u7",
+      "nom": "Domini i discontinuïtats",
+      "descripcio": "Domini de radicals i logaritmes, i classificació de discontinuïtats de racionals."
+    },
+    {
+      "slug": "bolzano-biseccio",
+      "unitat": "u7",
+      "nom": "Bolzano i bisecció",
+      "descripcio": "Teorema de Bolzano, acotació d'arrels per bisecció i punts de tall de corbes."
+    },
+    {
+      "slug": "algebra",
+      "unitat": "pau",
+      "nom": "Àlgebra",
+      "descripcio": "Matrius, determinants i sistemes lineals amb paràmetre."
+    },
+    {
+      "slug": "geometria",
+      "unitat": "pau",
+      "nom": "Geometria",
+      "descripcio": "Rectes i plans a l'espai, distàncies, àrees i volums."
+    },
+    {
+      "slug": "analisi",
+      "unitat": "pau",
+      "nom": "Anàlisi",
+      "descripcio": "Continuïtat, derivades, optimització, representació i integrals."
+    },
+    {
+      "slug": "probabilitat",
+      "unitat": "pau",
+      "nom": "Probabilitat",
+      "descripcio": "Probabilitat total, Bayes i distribucions."
+    }
   ]
 }
