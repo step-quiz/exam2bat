@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Banc de preguntes · Matemàtiques II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Banc de preguntes</h1>
+    <div class="hd-sub">Matemàtiques II · CT</div>
+  </div>
+  <div class="site-label" id="segell"></div>
+</header>
+
+<main>
+  <section id="columna-temes">
+    <h2>Temes</h2>
+    <p class="ajuda">Tria'n un per pregunta d'examen. Quatre temes fan 10 punts.</p>
+    <ul id="temes"></ul>
+  </section>
+
+  <section id="columna-seleccio">
+    <h2>Examen</h2>
+    <div id="seleccio"></div>
+  </section>
+</main>
+
+<footer id="barra">
+  <div id="recompte">Cap tema triat</div>
+  <div class="botons">
+    <button id="baixa-tex" disabled>main.tex</button>
+    <button id="baixa-sol" class="secundari" disabled>amb solucions</button>
+  </div>
+</footer>
+
+<script src="cataleg.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

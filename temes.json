@@ -1,0 +1,23 @@
+{
+  "unitats": {
+    "u7": { "nom": "Unitat 7", "subtitol": "Límits i continuïtat" }
+  },
+  "temes": [
+    { "slug": "limits-grafica",         "unitat": "u7", "nom": "Límits a partir d'una gràfica",
+      "descripcio": "Llegir límits laterals, límits a l'infinit i continuïtat sobre una gràfica donada." },
+    { "slug": "limits-infinit",         "unitat": "u7", "nom": "Límits en l'infinit",
+      "descripcio": "Racionals, potències, radicals i exponencials quan x tendeix a ±∞." },
+    { "slug": "limits-punt",            "unitat": "u7", "nom": "Límits en un punt",
+      "descripcio": "Indeterminació 0/0, factorització i límits laterals." },
+    { "slug": "limits-trossos",         "unitat": "u7", "nom": "Límits de funcions a trossos",
+      "descripcio": "Límits en els punts d'enganxament i en l'infinit." },
+    { "slug": "continuitat-trossos",    "unitat": "u7", "nom": "Continuïtat de funcions a trossos",
+      "descripcio": "Estudi i classificació de discontinuïtats en funcions definides per trossos." },
+    { "slug": "parametres-ab",          "unitat": "u7", "nom": "Paràmetres per a la continuïtat",
+      "descripcio": "Determinar a i b perquè una funció a trossos sigui contínua." },
+    { "slug": "domini-discontinuitats", "unitat": "u7", "nom": "Domini i discontinuïtats",
+      "descripcio": "Domini de radicals i logaritmes, i classificació de discontinuïtats de racionals." },
+    { "slug": "bolzano-biseccio",       "unitat": "u7", "nom": "Bolzano i bisecció",
+      "descripcio": "Teorema de Bolzano, acotació d'arrels per bisecció i punts de tall de corbes." }
+  ]
+}

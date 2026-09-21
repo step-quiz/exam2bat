@@ -1,0 +1,8 @@
+{
+  "titol": "Càlcul de límits: infinit, indeterminació 0/0 i funció a trossos",
+  "temes_secundaris": ["limits-infinit", "limits-trossos"],
+  "dificultat": "●●○",
+  "origen": [46, 48, 76, 88, 90],
+  "minuts": 15,
+  "etiquetes": ["racionals", "0/0", "a trossos", "ordres d'infinit"]
+}

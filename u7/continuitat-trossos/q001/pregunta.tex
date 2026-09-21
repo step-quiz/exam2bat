@@ -1,0 +1,42 @@
+\begin{apartats}
+
+\apartat{1,25}
+Determina els valors de $a$ i $b$ perquè la funció següent sigui contínua a tots els
+punts de $\mathbb{R}$.
+\[
+f(x)=\begin{cases}
+  x^2-a & \si{x<-1},\\[3pt]
+  bx+2  & \si{-1\le x\le 2},\\[3pt]
+  ax+b  & \si{x>2}.
+\end{cases}
+\]
+
+\begin{solucio}
+Cada branca és contínua al seu tros, de manera que només cal imposar la continuïtat
+als enganxaments.\\
+En $x=-1$: $\lim_{x\to-1^-}f(x)=1-a$ i $f(-1)=-b+2$, d'on $1-a=-b+2$, és a dir $b=a+1$.\\
+En $x=2$: $f(2)=2b+2$ i $\lim_{x\to2^+}f(x)=2a+b$, d'on $2b+2=2a+b$, és a dir $b=2a-2$.\\
+Igualant: $a+1=2a-2\Rightarrow \boxed{a=3}$ i $\boxed{b=4}$.
+\end{solucio}
+
+\apartat{1,25}
+Estudia la continuïtat de la funció $h$ en $x=0$, $x=2$ i $x=3$, i classifica'n els
+tipus de discontinuïtat que presenta.
+\[
+h(x)=\begin{cases}
+  2x+1 & \si{x<0},\\[3pt]
+  e^{x} & \si{0\le x\le 2},\\[3pt]
+  \dfrac{x-2}{x^2-5x+6} & \si{x>2}.
+\end{cases}
+\]
+
+\begin{solucio}
+Per a $x>2$, $\dfrac{x-2}{(x-2)(x-3)}=\dfrac{1}{x-3}$.\\
+$x=0$: laterals $1$ i $e^0=1$, i $h(0)=1$. \textbf{És contínua.}\\
+$x=2$: $h(2)=e^2$ i $\lim_{x\to2^-}h(x)=e^2$, però $\lim_{x\to2^+}h(x)=\frac{1}{2-3}=-1$.
+Laterals finits i diferents: \textbf{salt finit}.\\
+$x=3$: $h(3)$ no existeix i els laterals valen $-\infty$ i $+\infty$:
+\textbf{salt infinit} (asímptota vertical $x=3$).
+\end{solucio}
+
+\end{apartats}
