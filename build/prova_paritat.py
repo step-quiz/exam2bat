@@ -50,11 +50,15 @@ process.stdout.write(JSON.stringify(r));
 """
 
 
+class AppPetada(Exception):
+    """app.js ha llançat una excepció dins de Node: al navegador, pàgina en blanc."""
+
+
 def web(hash_: str) -> dict:
     r = subprocess.run(["node", "-e", HARNES, str(ARREL), hash_],
                        capture_output=True, text=True)
     if r.returncode:
-        raise SystemExit(f"app.js ha petat dins de Node:\n{r.stderr}")
+        raise AppPetada(r.stderr.strip())
     return json.loads(r.stdout)
 
 
@@ -124,6 +128,19 @@ def main() -> int:
     comprova("l'adreça es normalitza a codis estables",
              r["hash"] == "bolzano-biseccio:q001,limits-punt:q001", r["hash"])
 
+    # 2b. Adreces mal formades: el que no s'entén s'ignora; la pàgina no peta
+    for hash_, nom in (("limits-punt:q001,%", "un % solt"),
+                       ("limits-punt:q001,%E2%9C", "una seqüència UTF-8 retallada"),
+                       ("__proto__:q001,constructor,limits-punt:q001", "noms interns de JavaScript")):
+        try:
+            r = web(hash_)
+            ok = r["ids"] == ["u7/limits-punt/q001"] and r["hash"] == "limits-punt:q001"
+            detall = f"{r['ids']} · #{r['hash']}"
+        except AppPetada as e:
+            ok = False
+            detall = "app.js peta: " + next((l for l in str(e).splitlines() if "Error" in l), str(e)[:120])
+        comprova(f"una adreça amb {nom} s'ignora sense petar", ok, detall)
+
     # 3. Una selecció buida
     r = web("")
     comprova("sense selecció no hi ha preguntes", r["ids"] == [] and "Cap" in r["recompte"], r["recompte"])
@@ -133,4 +150,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except AppPetada as e:
+        sys.exit(f"app.js ha petat dins de Node:\n{e}")

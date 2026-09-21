@@ -6,11 +6,15 @@
 #
 #    --nomes-cataleg     no compila res, només revalida i regenera el
 #                        catàleg (ràpid, per a canvis de meta.json)
-#    --preambul FITXER   fa servir un altre preàmbul (per a proves)
-#    --pregunta RUTA     compila només aquesta pregunta
+#    --preambul FITXER   compila amb un altre preàmbul (per a proves, si a
+#                        l'entorn falten paquets). Aquests PDF no són
+#                        definitius; el catàleg porta sempre l'oficial.
+#    --pregunta RUTA     compila només les preguntes que la contenen
 #
-#  El build FALLA (codi 1) i no escriu res si hi ha cap error. És
-#  deliberat: val més no publicar que publicar un banc inconsistent.
+#  El build FALLA (codi 1) i no escriu res si hi ha cap error: ni PDF ni
+#  catàleg. Els PDF es compilen en una carpeta temporal i només es copien
+#  a out/ al final, quan ja se sap que tot és correcte. És deliberat: val
+#  més no publicar que publicar un banc inconsistent.
 # ═══════════════════════════════════════════════════════════════════════
 
 import argparse
@@ -71,13 +75,17 @@ def munta(plantilla: str, preambul: str, cossos: list[str], solucions: bool) -> 
 MARCADORS = ("%%SOLUCIONS%%", "%%PREAMBUL%%", "%%COS%%")
 
 
-def valida_plantilla(plantilla: str, preambul: str) -> None:
+def valida_plantilla(plantilla: str) -> None:
     for m in MARCADORS:
         n = plantilla.count(m)
         if n != 1:
             error("embolcall.tex", f"{m} hi apareix {n} cops (ha de ser exactament 1)")
+
+
+def valida_preambul(preambul: str, on: str) -> None:
+    for m in MARCADORS:
         if m in preambul:
-            error("preambul.tex", f"conté el marcador reservat {m}")
+            error(on, f"conté el marcador reservat {m}")
 
 
 def cos_amb_capcalera(tex: str, etiqueta: str, procedencia: str | None = None) -> str:
@@ -182,11 +190,13 @@ def compila(document: str, desti: Path, on: str) -> int | None:
 
 
 # ── programa ───────────────────────────────────────────────────────────
-def main() -> int:
+def construeix(provisional: Path) -> int:
+    """Valida, compila els PDF dins de `provisional` i, només si no hi ha
+    cap error, els copia a out/ i escriu el catàleg."""
     p = argparse.ArgumentParser()
     p.add_argument("--nomes-cataleg", action="store_true")
-    p.add_argument("--preambul", default=str(ARREL / "build" / "preambul.tex"))
-    p.add_argument("--pregunta", default=None)
+    p.add_argument("--preambul", default=None, metavar="FITXER")
+    p.add_argument("--pregunta", default=None, metavar="RUTA")
     args = p.parse_args()
 
     temes_doc = json.loads((ARREL / "temes.json").read_text(encoding="utf-8"))
@@ -218,8 +228,18 @@ def main() -> int:
                 error(on_c, "cal «font»: una sèrie sense font no s'imprimeix en un examen")
 
     plantilla = (ARREL / "build" / "embolcall.tex").read_text(encoding="utf-8")
-    preambul = Path(args.preambul).read_text(encoding="utf-8")
-    valida_plantilla(plantilla, preambul)
+    valida_plantilla(plantilla)
+    # El catàleg porta SEMPRE el preàmbul oficial: és el que el lloc posa als
+    # .tex que es baixen. --preambul només canvia amb què es compila aquí.
+    preambul = (ARREL / "build" / "preambul.tex").read_text(encoding="utf-8")
+    valida_preambul(preambul, "preambul.tex")
+    preambul_compila = preambul
+    if args.preambul:
+        preambul_compila = Path(args.preambul).read_text(encoding="utf-8")
+        valida_preambul(preambul_compila, args.preambul)
+        if preambul_compila != preambul and not args.nomes_cataleg:
+            avis(args.preambul, "els PDF s'han compilat amb aquest preàmbul i no amb l'oficial: "
+                 "no són definitius (el catàleg sí que porta l'oficial)")
 
     # El catàleg SEMPRE inclou totes les preguntes. --pregunta només limita
     # quines es compilen; si filtrés el catàleg, en deixaria un de mutilat.
@@ -284,13 +304,15 @@ def main() -> int:
                 error(on, f"conté el marcador reservat {m}")
         apartats = punts_del_tex(tex, on)
 
-        pdf_e = dir_q / "out" / "enunciat.pdf"
-        pdf_s = dir_q / "out" / "solucio.pdf"
         compilar = not args.nomes_cataleg and (args.pregunta is None or args.pregunta in ident)
         if compilar:
+            # Els PDF van a la carpeta provisional, amb la mateixa estructura que
+            # el banc. Només es copien a out/ al final, si no hi ha cap error.
             cos = cos_amb_capcalera(tex, "Pregunta", procedencia)
-            pagines = compila(munta(plantilla, preambul, [cos], False), pdf_e, on)
-            compila(munta(plantilla, preambul, [cos], True), pdf_s, on)
+            pagines = compila(munta(plantilla, preambul_compila, [cos], False),
+                              provisional / ident / "out" / "enunciat.pdf", on)
+            compila(munta(plantilla, preambul_compila, [cos], True),
+                    provisional / ident / "out" / "solucio.pdf", on)
             if pagines and pagines > 1:
                 avis(on, f"l'enunciat ocupa {pagines} pàgines")
             estat = "✓" if not any(e.startswith(on + ":") for e in errors) else "✗"
@@ -322,6 +344,13 @@ def main() -> int:
             print(f"  ERROR {e}", file=sys.stderr)
         return 1
 
+    # Cap error: ara, i només ara, es publiquen els PDF compilats.
+    pdfs = sorted(provisional.rglob("*.pdf"))
+    for pdf in pdfs:
+        desti = ARREL / pdf.relative_to(provisional)
+        desti.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(pdf, desti)
+
     banc = {
         "generat": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "unitats": temes_doc["unitats"],
@@ -337,8 +366,13 @@ def main() -> int:
     minuts = sum(q["minuts"] for q in preguntes)
     n = len(preguntes)
     print(f"\n✓ {n} {'pregunta' if n == 1 else 'preguntes'} · {len(slugs)} temes · "
-          f"{minuts} min de banc · cataleg.js {len(sortida)//1024} kB")
+          f"{minuts} min de banc · {len(pdfs)} PDF desats · cataleg.js {len(sortida)//1024} kB")
     return 0
+
+
+def main() -> int:
+    with tempfile.TemporaryDirectory(prefix="banc-") as tmp:
+        return construeix(Path(tmp))
 
 
 if __name__ == "__main__":

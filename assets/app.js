@@ -11,9 +11,13 @@
    3. Tot text que arriba del catàleg passa per esc() abans d'entrar a
       l'HTML: un títol com "f(x) per a x<2" no pot trencar la pàgina.
    4. L'adreça guarda codis estables (tema:q002), mai posicions.
+   5. Cap adreça, per mal formada que sigui, pot trencar la pàgina: el que
+      no s'entén s'ignora.
    ═══════════════════════════════════════════════════════════════════════ */
 
-const PER_TEMA = {};
+// Sense prototip: així #__proto__ o #constructor no hi troben res. Amb {},
+// hi trobarien les propietats d'Object i la pàgina petaria (regla 5).
+const PER_TEMA = Object.create(null);
 BANC.temes.forEach(t => { PER_TEMA[t.slug] = []; });
 BANC.preguntes.forEach(p => { (PER_TEMA[p.tema] ||= []).push(p); });
 Object.values(PER_TEMA).forEach(l => l.sort((a, b) => a.codi.localeCompare(b.codi)));
@@ -59,7 +63,10 @@ const triades = () => seleccio.map(preguntaDe).filter(Boolean);
 
 // ── estat a l'adreça:  #bolzano-biseccio:q001,limits-punt:q002 ────────
 function llegeixHash() {
-  const cru = decodeURIComponent(location.hash.replace(/^#/, ''));
+  let cru = location.hash.replace(/^#/, '');
+  // Un % solt o una adreça retallada fan petar decodeURIComponent. Els slugs
+  // i els codis són ASCII: si no es pot descodificar, es llegeix tal com és.
+  try { cru = decodeURIComponent(cru); } catch { /* es queda sense descodificar */ }
   cru.split(',').filter(Boolean).forEach(tros => {
     const [slug, codi] = tros.split(':');
     const llista = PER_TEMA[slug];

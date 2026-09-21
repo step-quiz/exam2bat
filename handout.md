@@ -1,7 +1,8 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 21 de setembre de 2026 · **Estat:** 18 preguntes (13 de la unitat 7 i 5 de la PAU)
-· 286 minuts d'examen al banc · 21 comprovacions del validador, cadascuna amb la seva prova
+· 286 minuts d'examen al banc · 21 comprovacions del validador, 9 de sortida del build i 19 de
+paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
 detall perquè qualsevol persona pugui reprendre el projecte sense haver seguit les converses
@@ -12,12 +13,14 @@ arribat i cap on ha d'anar.
 
 ## 1. Resum
 
-El projecte ha passat per quatre sessions. La primera va avaluar un `main.tex` fet per una
+El projecte ha passat per cinc sessions. La primera va avaluar un `main.tex` fet per una
 altra IA i en va treure les lliçons. La segona va construir l'arquitectura: el build, el lloc
 web, l'Action de GitHub i les proves. La tercera va completar la unitat 7, amb 13 preguntes
 verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer de juny de
-2026. La màquina funciona de punta a punta. El que queda és sobretot contingut: 57 preguntes
-PAU per importar i els temes de les unitats 8 a 14.
+2026. La cinquena va revisar el projecte sencer, en va corregir quatre errors i va fixar les
+prioritats. La màquina funciona de punta a punta. El que queda és sobretot contingut: primer
+els temes de la u8, que acaba l'1 de novembre, i després els 56 exercicis PAU pendents i la
+resta d'unitats.
 
 ---
 
@@ -79,7 +82,9 @@ original.
 
 Es va analitzar el repositori `pau`: 62 preguntes, cadascuna amb enunciat (`-e`), pistes del
 professor (`-p`) i **criteri d'avaluació oficial** (`-s`). Les 62 valen 2,5 punts amb
-apartats múltiples de 0,25, i per tant encaixen al banc sense excepcions.
+apartats múltiples de 0,25, i per tant encaixen al banc sense excepcions. La sessió 5 va
+trobar que dues d'aquestes entrades són el mateix exercici: són 61 exercicis diferents
+(vegeu 7.6).
 
 La sèrie només apareix a la capçalera del criteri oficial del **primer exercici** de cada
 document. D'allà se'n van treure set. Les de juny de 2023 les va confirmar el professor: van
@@ -94,6 +99,33 @@ Probabilitat), i cada pregunta indica fins a quina unitat cal haver arribat.
 Es va importar l'examen sencer de juny de 2026, sèrie 1: exercicis 1, 2, 3, 4A i 4B. Es van
 verificar 32 resultats dels criteris oficials, i es va trobar una errada al document oficial:
 $D(4{,}5)=6{,}85$, quan el valor correcte és 6,875. Es va corregir amb una *Nota del banc*.
+
+### 2.5 Sessió 5 · Revisió i correccions
+
+Una revisió completa del codi, de les dades i de les 18 preguntes, contrastada amb els
+repositoris `pau` i `sol` i amb el full de programació del curs.
+
+- **Codi.** És net i està ben estructurat. S'hi van trobar quatre errors, tots corregits
+  (vegeu l'apartat 4). El catàleg podia portar un preàmbul de prova i un build fallit deixava
+  PDF escrits a `out/`. A més, una adreça mal formada deixava la pàgina en blanc, i el push del
+  bot fallava si la branca avançava durant el build. Cada correcció té la seva prova, i s'ha
+  comprovat que la prova falla amb el codi antic.
+- **Contingut.** Es va fer una segona verificació independent de les 18 preguntes i no s'hi
+  va trobar cap error. Tots els `origen` són dins dels 23 exercicis assignats a la u7.
+- **Compilació real.** Per primera vegada es va compilar amb `lmodern` i `babel` català, els
+  mateixos paquets que instal·la l'Action. Les 18 preguntes ocupen una pàgina i no hi ha cap
+  *Overfull*. L'examen PAU de juny de 2026 baixat del lloc compila en 2 pàgines, i la versió
+  amb solucions, en 5.
+- **Repositori `pau`.** `pro-25s-q3ab` i `ana-25s-q3c` són el mateix exercici: els tres PDF
+  (`-e`, `-p`, `-s`) tenen el mateix text. Hi ha 61 exercicis diferents, no 62, i en queden 56
+  per importar (vegeu 7.6).
+- **Programació del curs.** El full «2Bat - Unitats i feina Classroom» dona els títols de les
+  unitats 1 a 6 i l'ordre real del curs, que no és el numèric (vegeu 7.4 i 7.5).
+- **Repositori real (`step-quiz/exam2bat`).** Els lliuraments s'hi apliquen pujant el ZIP a
+  `_uploads`, i un workflow d'extracció en fa commit. Aquest bot no pot escriure a
+  `.github/workflows/`, i per això `compila.yml` no hi ha arribat mai: al Codespace, `git
+  status` el mostrava com a fitxer no seguit. L'Action «Compila el banc» no s'havia executat
+  mai, i els PDF del repositori són els del ZIP complet (vegeu 7.1).
 
 ---
 
@@ -114,6 +146,12 @@ $D(4{,}5)=6{,}85$, quan el valor correcte és 6,875. Es va corregir amb una *Not
 | Enunciats PAU literals (vosaltres) | Disseny, **revisable** | Fidelitat a l'examen real |
 | Solució PAU = criteri oficial + pauta | Disseny | Autoritat i utilitat per corregir; les errades es corregeixen amb nota |
 | Apartats PAU numerats a), b), c) | Disseny | Coherència dins d'un examen muntat |
+| Primer la u8, després la PAU | Professor | La u8 acaba l'1 de novembre; la PAU no té data |
+| El filtre PAU segueix l'ordre real del curs | Proposta acceptada | El curs fa u7–u10, u13, u14, u1–u6, u11 i u12: l'ordre numèric enganyaria |
+| La u4 (Vectors a l'espai) es fa dins de la u5 | Professor | Manera habitual de programar-la |
+| Lliurament per canvis, a partir de l'estat del repositori | Proposta acceptada | Substituir el repositori per un ZIP pot desfer canvis fets entre sessions |
+| Els PDF i el catàleg només els desa l'Action | Disseny | Si també se'n fa commit en local, xoquen amb el commit del bot |
+| `--preambul` només canvia la compilació | Disseny | El catàleg ha de portar sempre el preàmbul oficial |
 
 ---
 
@@ -135,6 +173,10 @@ $D(4{,}5)=6{,}85$, quan el valor correcte és 6,875. Es va corregir amb una *Not
 | La prova de paritat depenia que un tema real fos buit | `prova_paritat.py` | Tema buit sintètic |
 | Fórmules llargues en línia desbordaven | 2 preguntes | Passades a mode destacat |
 | $D(4{,}5)=6{,}85$ en lloc de 6,875 | **Criteri oficial** PAU 2026 | Valor correcte i *Nota del banc* |
+| `--preambul` escrivia el preàmbul de prova al catàleg, i els `.tex` baixats en sortien sense `babel` | `build.py` | El catàleg porta sempre `build/preambul.tex`, i el build avisa que aquells PDF no són definitius |
+| Un build fallit deixava a `out/` els PDF que ja havia compilat | `build.py` | Es compila en una carpeta temporal i es copia a `out/` només si no hi ha cap error |
+| Una adreça amb un `%` solt, o amb `#__proto__` o `#constructor`, deixava la pàgina en blanc | `app.js` | Descodificació tolerant i `PER_TEMA` sense prototip |
+| El push del bot era rebutjat si la branca avançava durant el build | `compila.yml` | `git pull --rebase` i fins a tres intents |
 
 ---
 
@@ -146,17 +188,24 @@ $D(4{,}5)=6{,}85$, quan el valor correcte és 6,875. Es va corregir amb una *Not
   tots els límits a l'infinit.
 - 32 resultats dels criteris oficials de juny de 2026, per un mètode independent.
 - `prova_validacio.py`: 21 avaries provocades, cadascuna rebutjada pel build.
-- `prova_paritat.py`: 16 comprovacions. El lloc (executant l'`app.js` real) i el build
+- `prova_sortida.py`: 9 comprovacions, sense TeX (un `pdflatex` fals al PATH). Un build que
+  falla, per validació o per compilació, no toca cap fitxer. Un de correcte els escriu tots,
+  `--pregunta` només escriu els de la pregunta indicada i `--preambul` no arriba al catàleg.
+  També s'ha confirmat amb el `pdflatex` real.
+- `prova_paritat.py`: 19 comprovacions. El lloc (executant l'`app.js` real) i el build
   munten el mateix `.tex`, byte a byte, també amb preguntes PAU i amb la procedència al lloc
-  exacte.
-- En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues i secció PAU. El
-  `main.tex` baixat de l'examen de 2026 compila en dues pàgines, sense cap desbordament.
+  exacte. Tres adreces mal formades s'ignoren sense que la pàgina peti.
+- En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues, secció PAU i
+  adreces mal formades.
+- La compilació amb el preàmbul oficial, amb `lmodern` i `babel` català (sessió 5). Les 18
+  preguntes ocupen una pàgina, sense cap *Overfull*. El `main.tex` baixat de l'examen de 2026
+  compila en 2 pàgines, i el de solucions, en 5.
+- El pas de desar de l'Action, simulat amb un remot local i un clon superficial en quatre
+  casos. Sense canvis, no fa res. En un push normal, desa. Si la branca ha avançat, incorpora el
+  commit nou i desa. Si hi ha un conflicte, falla sense desar res.
 
 **No verificat en aquest entorn:**
 
-- La compilació amb `lmodern` i `babel` en català, perquè aquí no hi són. Els PDF d'aquest
-  ZIP s'han compilat sense aquestes dues línies; el contingut és idèntic, però la tipografia
-  i el guionatge poden variar lleugerament. L'Action de GitHub sí que les té.
 - El visor de PDF incrustat, perquè el navegador sense pantalla no en té. Si un navegador no
   el mostra, cada targeta té un enllaç per obrir el PDF en una pestanya.
 
@@ -198,7 +247,7 @@ $D(4{,}5)=6{,}85$, quan el valor correcte és 6,875. Es va corregir amb una *Not
 | `26j` | juny 2026 | 1 | Capçalera del criteri oficial: ana-26j-q1-s.pdf. |
 | `26j2` | juny 2026 | 5 | Capçalera del criteri oficial: ana-26j2-q1-s.pdf. |
 
-### 6.3 Seguiment de les 62 preguntes PAU
+### 6.3 Seguiment de les 62 entrades PAU (61 exercicis)
 
 Ordenades de la més recent a la més antiga, que és l'ordre d'importació recomanat.
 
@@ -221,8 +270,8 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 | `geo-25j-q4b` | juny 2025 · s1 | Geometria | Pla perpendicular a x+y=0 i recta mediadora | pendent |
 | `ana-25s-q1` | setembre 2025 · s3 | Anàlisi | Optimització: terreny triangular A(m) mínim | pendent |
 | `alg-25s-q2` | setembre 2025 · s3 | Àlgebra | Sistema lineal amb paràmetre m | pendent |
-| `pro-25s-q3ab` | setembre 2025 · s3 | Probabilitat | Sesamoïditis: probabilitat total i Bayes | pendent |
-| `ana-25s-q3c` | setembre 2025 · s3 | Anàlisi | Trobar a, b, c de f(x)=ax³+bx²+cx per condicions | pendent |
+| `pro-25s-q3ab` | setembre 2025 · s3 | Probabilitat | Sesamoïditis: probabilitat total i Bayes | pendent · **mateix exercici que `ana-25s-q3c`** (7.6) |
+| `ana-25s-q3c` | setembre 2025 · s3 | Anàlisi | Trobar a, b, c de f(x)=ax³+bx²+cx per condicions | pendent · **mateix exercici que `pro-25s-q3ab`** (7.6) |
 | `ana-25s-q4a` | setembre 2025 · s3 | Anàlisi | Vitrall Sagrada Família: sin(x/4) i cos(x/4) | pendent |
 | `geo-25s-q4b` | setembre 2025 · s3 | Geometria | Plans paral·lels a 2x−y+z=5 i distàncies | pendent |
 | `ana-25i-q1` | juny 2025 · s4 | Anàlisi | f(x)=√(1+x³): domini, derivada, tangent | pendent |
@@ -271,30 +320,58 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 
 ## 7. Feina pendent
 
-### 7.1 Just després d'aplicar aquest ZIP
+### 7.1 Com s'apliquen els lliuraments
 
-1. Substituir el contingut del repositori pel d'aquest ZIP, i fer commit i push.
-2. **Llançar l'Action a mà** (Actions → Compila el banc → Run workflow). Els PDF del ZIP
-   s'han compilat sense `lmodern` ni `babel` català, i si el push només canvia fitxers que
-   l'Action no vigila, no es regenerarien sols.
-3. Comprovar que els sis passos de l'Action surten en verd.
+Des de la sessió 5, cada sessió parteix de l'estat actual del repositori i lliura només els
+fitxers de font que canvia. Tot es fa des de la web de GitHub; no cal el Codespace.
 
-### 7.2 Dades que ha d'aportar el professor
+- **A l'inici de la sessió**, el professor baixa el repositori de GitHub (Code → Download ZIP)
+  i el puja a la conversa. No serveix el ZIP de la sessió anterior, perquè pot no incloure
+  canvis fets després.
+- **Al final**, la sessió lliura un ZIP amb una sola carpeta, `banc-preguntes/`, que conté
+  només els fitxers de font que canvien, amb els camins del repositori. Mai no porta PDF, ni
+  `cataleg.js`, ni res de `.github/workflows/`.
+- **Per aplicar-lo**, el professor puja el ZIP a la carpeta `_uploads` (Add file → Upload
+  files). Un workflow del repositori el descomprimeix a l'arrel i en fa commit, amb el missatge
+  «Auto-extract uploaded zip».
+- **Després, cal llançar el build a mà** des d'Actions → Compila el banc → Run workflow.
+  GitHub no encadena els workflows: un commit fet pel bot d'extracció no dispara cap altre
+  workflow, tampoc «Compila el banc».
+- **Els workflows** (`.github/workflows/`) no poden arribar per `_uploads`, perquè el bot no té
+  permís per escriure-hi. Es creen i s'editen des de la web de GitHub, enganxant-ne el
+  contingut.
 
-- **Els títols de les unitats 1 a 6** (àlgebra i geometria). S'han d'afegir a `temes.json`, i
-  llavors es poden omplir les `unitats` de `alg-26j-q2`, de `geo-26j-q4b` i de les altres
-  preguntes d'àlgebra i geometria que s'importin. Mentre no hi siguin, les targetes diuen
-  «per definir» i el build n'avisa.
+**Aquest lliurament (sessió 5)** es fa en dos passos. Primer, un ZIP amb sis fitxers per
+`_uploads`: `build/build.py`, `build/prova_sortida.py` (nou), `build/prova_paritat.py`,
+`assets/app.js`, `README.md` i `handout.md`. Després, cal crear `.github/workflows/compila.yml`
+des de la web, perquè el repositori no el té (vegeu 2.5). En crear-lo, l'Action s'executa per
+primera vegada i compila tots els PDF amb el preàmbul oficial. D'aquesta manera se
+substitueixen els del ZIP complet, que s'havien compilat sense `lmodern` ni `babel`. L'Action
+té set passos, i tots han de sortir en verd.
+
+### 7.2 Dades del professor
+
+- **Unitats 1 a 6: resolt.** Els títols surten del full de programació i la u4 la va confirmar
+  el professor. Són Matrius (u1), Determinants (u2), Sistemes d'equacions (u3), Vectors a
+  l'espai (u4, que es fa dins de la u5), Rectes i plans en l'espai (u5) i Angles i distàncies
+  a l'espai (u6). S'han d'afegir a `temes.json`, i llavors es poden omplir les `unitats`
+  d'`alg-26j-q2` i de `geo-26j-q4b`. Mentre no hi siguin, les targetes diuen «per definir» i el
+  build n'avisa. Una PAU que necessiti vectors ha de dir `u5`, no `u4`.
+- **Pendent de confirmar: l'exercici 92 de la u8.** Surt a les setmanes 5 i 7, tant al full de
+  programació com a `tasques.js` del repositori `sol`. Cal saber si és volgut abans de
+  calibrar els temes de la u8.
 - Opcionalment, **confirmar amb els originals** les sèries de `23s` (2) i `24j` (1), que avui
   provenen d'una rèplica pública.
 
-### 7.3 Importació PAU: 57 preguntes en 10 convocatòries
+### 7.3 Importació PAU: 56 exercicis en 10 convocatòries
+
+Es fa després de la u8 (decisió de la sessió 5).
 
 | Convocatòria | Sèrie | Pendents |
 |---|---|---|
 | `26j2` juny 2026 | 5 | 5 |
 | `25j` juny 2025 | 1 | 5 |
-| `25s` setembre 2025 | 3 | 6 |
+| `25s` setembre 2025 | 3 | 5 exercicis (6 entrades al repositori `pau`; vegeu 7.6) |
 | `25i` juny 2025 | 4 | 5 |
 | `24s` setembre 2024 | 3 | 6 |
 | `24j` juny 2024 | 1 | 6 |
@@ -310,18 +387,45 @@ s'han de refer en TikZ; compten el doble de feina.
 Les preguntes anteriors a 2025 segueixen el format antic, en què es triaven 4 qüestions de
 6. Continuen sent de 2,5 punts i hi encaixen igual.
 
-### 7.4 Contingut del banc
+### 7.4 Contingut del banc, en l'ordre del calendari
 
+L'ordre de les unitats el fixa la programació del curs: el full «2Bat - Unitats i feina
+Classroom» i, per a les setmanes ja programades, `tasques.js` del repositori `sol`. No és
+l'ordre numèric.
+
+| Unitat | Setmanes | Última data límit |
+|---|---|---|
+| u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta** |
+| u8 Derivades | 5–7 | 1 de novembre de 2026 · **la següent** |
+| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 |
+| u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 |
+| u13 Probabilitat | 13–14 | 20 de desembre de 2026 |
+| u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 |
+| u1 Matrius | 18–19 | 24 de gener de 2027 |
+| u2 Determinants | 20–22 | 14 de febrer de 2027 |
+| u3 Sistemes d'equacions | 23–25 | 7 de març de 2027 |
+| u5 Rectes i plans en l'espai (amb la u4) | 26–30 | 11 d'abril de 2027 |
+| u6 Angles i distàncies a l'espai | 31–32 | 25 d'abril de 2027 |
+| u11 Integrals | 33–34 | 9 de maig de 2027 |
+| u12 La integral definida | 35–36 | 23 de maig de 2027 |
+
+- **Temes i preguntes de la u8**, que són la prioritat. Cal seguir el mateix patró de la u7:
+  taxonomia de temes, calibratge amb els exercicis assignats a les setmanes 5 a 7 i verificació
+  per dos camins. Són 17 exercicis, 16 de diferents (vegeu 7.2).
+- Després, les unitats en l'ordre de la taula.
 - Segona variant per a `limits-infinit`, `limits-trossos` i `parametres-ab`, els tres temes
   de la u7 que només en tenen una.
-- Temes i preguntes de les unitats 8 a 14. Avui `temes.json` ja coneix aquestes unitats
-  (les necessiten els requisits de les PAU), però només la 7 hi té temes. Cal seguir el
-  mateix patró de la u7: taxonomia, calibratge amb els exercicis assignats i verificació.
 
 ### 7.5 Millores del lloc
 
-- **Filtre de preguntes PAU per unitats fetes** («fins a la u9»). Amb 29 preguntes d'anàlisi,
-  recórrer-les amb ◀ ▶ serà feixuc. És la millora més necessària quan avanci la importació.
+- **Filtre de preguntes PAU per unitats fetes.** Amb 29 preguntes d'anàlisi, recórrer-les amb
+  ◀ ▶ serà feixuc: és la millora més necessària quan avanci la importació. El filtre ha de
+  seguir l'**ordre real del curs** de la taula de 7.4, no l'ordre numèric: «fins a la u9» vol
+  dir u7, u8 i u9, però «fins a la u1» inclou també la u10, la u13 i la u14. Aquesta seqüència
+  s'ha de desar com a dada, per exemple a `temes.json`, i no s'ha de deduir dels números. Un
+  cop existeixi, la u1 i les altres unitats noves s'hi afegeixen en l'ordre del curs.
+- **Conservar els visors PDF oberts.** Ara cada clic torna a pintar totes les targetes: els
+  `iframe` es recreen i els PDF es tornen a carregar. Amb molts visors oberts es notarà.
 - Al mòbil, llista de temes plegable. Ara la llista queda sencera abans de l'examen.
 - Els noms de les unitats apareixen en passar el ratolí per sobre, i això no funciona en
   pantalles tàctils. Cal mostrar-los d'una altra manera.
@@ -329,6 +433,21 @@ Les preguntes anteriors a 2025 segueixen el format antic, en què es triaven 4 q
 
 ### 7.6 Decisions obertes
 
+- **Com s'importa l'exercici 3 de setembre de 2025.** El repositori `pau` el té dues vegades,
+  com a `pro-25s-q3ab` i com a `ana-25s-q3c`. És un sol exercici de 2,5 punts: a) i b) de
+  probabilitat, i c) de derivades. Si s'importen totes dues entrades, un examen el podria
+  portar dues vegades. Si només s'importen a) i b), sumen 1,5 punts i el build les rebutja.
+  La proposta és importar-lo **una sola vegada**, al bloc de probabilitat i amb els tres
+  apartats. Cal triar el codi abans, perquè serà permanent:
+  - `pro-25s-q3ab` manté l'identificador del repositori `pau`, però suggereix que només té
+    els apartats a) i b);
+  - `pro-25s-q3` descriu millor l'exercici, però trenca la regla que el codi és el del
+    repositori `pau`.
+- **Fer els PDF reproduïbles.** pdfTeX hi escriu la data i un identificador. Per això cada
+  build reescriu tots els PDF encara que no canviïn, i el commit del bot els toca tots cada
+  vegada. Amb `SOURCE_DATE_EPOCH` i `FORCE_SOURCE_DATE=1` fixos a l'Action, dos builds
+  idèntics no canvien cap PDF (comprovat a la sessió 5). Caldria fer el mateix amb el camp
+  `generat` del catàleg, que ara canvia a cada build.
 - **Tractament de vosaltres o de tu.** Si un examen barreja preguntes PAU (literals, amb
   vosaltres) amb preguntes del banc (amb tu), hi conviuen les dues formes.
 - Si s'hi incorporen les **pistes** del repositori `pau` (els PDF `-p`), com una tercera vista
@@ -340,8 +459,21 @@ Les preguntes anteriors a 2025 segueixen el format antic, en què es triaven 4 q
 
 ## 8. Riscos i limitacions coneguts
 
-- **Permís `workflow` a Codespaces.** Un push que modifica `.github/workflows/` pot ser
-  rebutjat per falta de permís; en aquest cas, cal pujar el fitxer des de la web de GitHub.
+- **Els workflows no poden arribar per `_uploads`.** El bot d'extracció no té permís per
+  escriure a `.github/workflows/`, i un push des del Codespace, amb el permís per defecte,
+  tampoc. Es creen i s'editen des de la web de GitHub.
+- **El build no es dispara sol després d'una pujada a `_uploads`.** El commit del bot
+  d'extracció no activa cap altre workflow: cal llançar «Compila el banc» a mà (7.1).
+- **Fitxers generats per una altra via.** Els PDF i `cataleg.js` només els ha de generar
+  l'Action. Si n'arriben per `_uploads` o des del Codespace, poden no coincidir amb les fonts.
+  A més, si arriben mentre l'Action treballa, el pas de desar xoca i falla sense desar res
+  (simulat a la sessió 5).
+- **PDF no reproduïbles.** Cada build reescriu tots els PDF encara que no canviïn (vegeu 7.6).
+- **GitHub Pages publicaria les solucions.** Amb el pla gratuït, Pages només publica
+  repositoris públics. Amb GitHub Pro publica repositoris privats, però el lloc publicat és
+  públic: qualsevol persona amb l'adreça veuria les solucions. Només GitHub Enterprise Cloud
+  permet un lloc privat. Per veure el lloc des de GitHub sense publicar res, vegeu el README
+  («Veure el lloc des del Codespace»).
 - **Quota de minuts.** Les Actions en repositoris privats consumeixen minuts del pla
   gratuït. Cada build instal·la TeX Live i en gasta uns pocs.
 - **Visor de PDF.** Depèn del navegador; hi ha l'enllaç alternatiu.
@@ -369,9 +501,11 @@ Les preguntes anteriors a 2025 segueixen el format antic, en què es triaven 4 q
    etiquetes.
 6. **Compilar** amb `python3 build/build.py --pregunta pau/`. Cada enunciat ha d'ocupar una
    pàgina, i no hi pot haver cap *Overfull*: les fórmules llargues en línia han de passar a mode
-   destacat.
-7. **Passar les proves**: `prova_validacio.py` i `prova_paritat.py`.
+   destacat. Si a l'entorn falten paquets, s'afegeix `--preambul` amb un preàmbul reduït, i el
+   build avisa que aquells PDF no són definitius.
+7. **Passar les proves**: `prova_validacio.py`, `prova_sortida.py` i `prova_paritat.py`.
 8. **Fer un PDF de revisió del lot** perquè el professor el contrasti amb els originals.
+9. **Lliurar només les fonts**, pel mètode de 7.1. Mai PDF ni `cataleg.js`.
 
 Si el repositori `pau` incorpora convocatòries noves, s'han d'afegir a
 `pau/convocatories.json` amb la seva font. La sèrie es troba a la capçalera del criteri oficial
@@ -391,12 +525,31 @@ del primer exercici.
 | `\si` xoca amb `siunitx` si mai s'hi carrega | El build fallaria en voler redefinir-la; caldria reanomenar-la |
 | `grep [ÈE]` no funciona amb UTF-8 | Fer servir Python amb normalització Unicode |
 | El commit del bot podria tornar a disparar l'Action | Filtre de camins, `[skip ci]` i `GITHUB_TOKEN` |
+| `decodeURIComponent` llança una excepció amb un `%` solt | `try/catch`: l'adreça es llegeix sense descodificar (regla 5 d'`app.js`) |
+| Un objecte `{}` troba `__proto__` i `constructor` com si fossin temes | `PER_TEMA` es crea amb `Object.create(null)` |
+| Si la branca avança durant el build, el push del bot és rebutjat | `git pull --rebase` i fins a tres intents |
+| pdfTeX escriu la data i un identificador a cada PDF | `SOURCE_DATE_EPOCH` (pendent, 7.6) |
+| Provar el build sense TeX | Un `pdflatex` fals al PATH, com fa `prova_sortida.py` |
 
 ---
 
 ## 11. Aquest lliurament
 
-Aquest ZIP conté **l'estat complet del projecte** i substitueix tots els lliuraments
-anteriors (`banc-preguntes.zip`, `actualitzacio-u7.zip` i `actualitzacio-pau.zip`). Inclou
-les fonts, les proves, l'Action, el catàleg generat i els PDF. Obrint `index.html` amb doble
-clic, el lloc funciona immediatament.
+És el primer lliurament amb el mètode nou (7.1). Té dues parts.
+
+El ZIP `banc-preguntes-sessio5.zip`, per pujar a `_uploads`, conté una carpeta
+`banc-preguntes/` amb només els sis fitxers de font que canvien:
+
+| Fitxer | Canvi |
+|---|---|
+| `build/build.py` | Compila en una carpeta temporal i publica només si no hi ha cap error. `--preambul` ja no toca el catàleg |
+| `build/prova_sortida.py` | **Nou.** 9 comprovacions del que escriu el build i quan |
+| `build/prova_paritat.py` | 3 comprovacions noves d'adreces mal formades (19 en total) |
+| `assets/app.js` | Adreces mal formades: descodificació tolerant i `PER_TEMA` sense prototip |
+| `README.md` | Principi 3, opcions del build, proves, fitxers generats, `_uploads` i com veure el lloc des del Codespace |
+| `handout.md` | Sessió 5: revisió, correccions, decisions, calendari i flux de lliurament |
+
+El fitxer `.github/workflows/compila.yml` es crea des de la web de GitHub, enganxant-ne el
+contingut. Porta un pas nou per a la prova de sortida i el reintent del push del bot.
+
+No porta cap PDF ni `cataleg.js`: els genera l'Action la primera vegada que s'executa.

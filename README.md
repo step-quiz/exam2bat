@@ -45,8 +45,10 @@ El projecte segueix cinc principis. Totes les decisions de disseny en surten.
    `build/preambul.tex`. L'assemblatge d'un examen el fa `build/embolcall.tex`, i és la
    mateixa plantilla per al build (Python) i per al lloc (JavaScript). Una prova
    n'assegura la paritat byte a byte.
-3. **Validació que falla tancada.** Si una pregunta no compleix alguna regla, el build falla
-   i no publica res. Val més no publicar que publicar un banc inconsistent.
+3. **Validació que falla tancada.** Si una pregunta no compleix alguna regla, o no compila, el
+   build falla i no escriu res: ni un sol PDF ni el catàleg. Els PDF es compilen en una
+   carpeta temporal i només es copien a `out/` quan tot és correcte. Val més no publicar que
+   publicar un banc inconsistent.
 4. **Lloc sense dependències.** És HTML, CSS i JavaScript sense cap llibreria. El catàleg
    incrusta el codi LaTeX de cada pregunta, així que el lloc no fa cap petició i funciona
    obert com a fitxer local.
@@ -75,6 +77,7 @@ build/
   preambul.tex             preàmbul compartit (congelat)
   embolcall.tex            plantilla d'assemblatge (compartida amb app.js)
   prova_validacio.py       comprova que cada regla fa fallar el build
+  prova_sortida.py         comprova que un build que falla no escriu res
   prova_paritat.py         comprova que el lloc i el build munten el mateix .tex
 u7/<tema>/<q001>/          preguntes del banc: pregunta.tex, meta.json, out/
 pau/convocatories.json     registre de convocatòries PAU i les seves sèries (amb font)
@@ -90,8 +93,9 @@ handout.md                 feina feta i feina pendent
 1. Copia una carpeta existent, per exemple `u7/bolzano-biseccio/q002/`, amb el codi següent
    lliure: `u7/bolzano-biseccio/q003/`.
 2. Edita `pregunta.tex` i `meta.json`. No toquis res de `out/`.
-3. `git push`. L'Action valida, compila i desa els PDF. Si alguna cosa falla, no es desa res,
-   i la pestanya **Actions** en diu el motiu exacte.
+3. Puja-ho al repositori. Amb `git push`, l'Action s'executa sola. Si ho puges per `_uploads`,
+   llança-la a mà (vegeu «GitHub i compilació»). L'Action valida, compila i desa els PDF. Si
+   alguna cosa falla, no es desa res, i la pestanya **Actions** en diu el motiu exacte.
 
 Un tema nou s'afegeix primer a `temes.json` i després se'n crea la carpeta.
 
@@ -196,25 +200,56 @@ build avisa.
 
 ```
 python3 build/prova_validacio.py   # 21 avaries provocades: cadascuna ha de fer fallar el build
+python3 build/prova_sortida.py     # un build que falla no escriu res (no cal TeX)
 python3 build/build.py             # valida i compila (cal TeX Live)
 python3 build/prova_paritat.py     # el .tex del lloc = el del build, byte a byte (cal Node)
 ```
 
-Opcions de `build.py`: `--nomes-cataleg` revalida i regenera el catàleg sense compilar;
-`--pregunta RUTA` compila només les preguntes que la contenen (el catàleg sempre les inclou
-totes).
+Opcions de `build.py`:
+
+- `--nomes-cataleg` revalida i regenera el catàleg sense compilar.
+- `--pregunta RUTA` compila només les preguntes que la contenen. El catàleg sempre les inclou
+  totes.
+- `--preambul FITXER` compila amb un altre preàmbul, per exemple si a l'entorn falten
+  paquets. Aquests PDF no són definitius i el build ho avisa. El catàleg porta sempre
+  `build/preambul.tex`, que és el que el lloc posa als `.tex` que es baixen.
 
 ## GitHub i compilació
 
 L'Action `.github/workflows/compila.yml` s'executa sola quan canvia una font. Primer executa
-les proves del validador, després el build complet, després la prova de paritat, i
-finalment desa els PDF i el catàleg amb un commit propi. També es pot llançar a mà, des de
-**Actions → Compila el banc → Run workflow**.
+les proves del validador i la de sortida, després el build complet, després la prova de
+paritat, i finalment desa els PDF i el catàleg amb un commit propi. Si mentrestant algú ha fet
+push a la branca, el bot incorpora aquell commit i torna a provar-ho, fins a tres cops. També es
+pot llançar a mà, des de **Actions → Compila el banc → Run workflow**.
+
+**Canvis que arriben per `_uploads`.** Els lliuraments es pugen com a ZIP a la carpeta
+`_uploads`, i un workflow d'extracció els descomprimeix a l'arrel. Aquest commit del bot **no**
+dispara «Compila el banc», perquè GitHub no encadena workflows. Per això, després de cada
+pujada que canviï fonts, cal llançar el build a mà. Els fitxers de `.github/workflows/` no poden
+arribar per aquesta via, perquè el bot no hi té permís: es creen i s'editen des de la web de
+GitHub.
+
+**Els PDF i `cataleg.js` només els desa l'Action.** Si fas un build al Codespace, no en facis
+commit: `git restore cataleg.js '*.pdf'` els deixa com eren. Si no, el commit del bot els
+tornaria a modificar i el següent `git pull` donaria conflictes. Abans de començar a treballar,
+sempre `git pull`.
 
 El repositori ha de ser **privat**, perquè conté les solucions. Amb el pla gratuït de GitHub,
 les Actions en repositoris privats consumeixen minuts d'una quota mensual; cada build en
-gasta uns pocs. GitHub Pages no es pot fer servir des d'un repositori privat, i per això el
-lloc està pensat per obrir-se en local.
+gasta uns pocs.
+
+GitHub Pages no serveix per publicar el lloc. Amb el pla gratuït només publica repositoris
+públics, i amb un pla de pagament el lloc publicat seria igualment públic, amb les solucions.
+Per això el lloc està pensat per obrir-se en local: baixant el repositori (Code → Download
+ZIP) i fent doble clic a `index.html`.
+
+### Veure el lloc des del Codespace
+
+1. Al terminal del Codespace: `python3 -m http.server 8000`.
+2. A la pestanya **Ports**, el port 8000 → icona del globus («Open in Browser»).
+
+El port és **privat** per defecte: només hi pot entrar qui ha creat el Codespace, identificat
+a GitHub. No el canviïs a «Public». Per aturar el servidor, `Ctrl+C` al terminal.
 
 ## Procedència i drets
 
