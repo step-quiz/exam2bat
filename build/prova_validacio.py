@@ -69,9 +69,9 @@ def edita_json(ruta, canvi):
 
 AVARIES = [
     ("apartats que sumen 2,25",
-     edita_tex(r"\apartat{1,25}", r"\apartat{1}"), "han de sumar 2,50"),
+     edita_tex(r"\apartat{0,75}", r"\apartat{0,5}"), "han de sumar 2,50"),
     ("apartat que no és múltiple de 0,25",
-     edita_tex(r"\apartat{1,25}", r"\apartat{1,3}"), "múltiple de 0,25"),
+     edita_tex(r"\apartat{0,75}", r"\apartat{0,7}"), "múltiple de 0,25"),
     ("\\end{solucio} enganxat a text",
      edita_tex("\\end{solucio}", "fi. \\end{solucio}"), "sol a la seva línia"),
     ("\\usepackage dins d'una pregunta",
@@ -131,9 +131,10 @@ AVARIES = [
     ("minuts_curt més gran que minuts",
      edita_json(f"{QM}/meta.json", lambda m: m.update(minuts_curt=99)), "no pot ser més gran"),
     ("minuts_curt sense versió de 50 min",
-     edita_meta(lambda m: m.update(minuts_curt=5)), "sense versió de 50 min"),
-    ("marcador %%MODE%% dins d'una pregunta",
-     edita_tex(r"\apartat{1,25}", "%%MODE%%\n\\apartat{1,25}"), "marcador reservat %%MODE%%"),
+     edita_json(f"{QP}/meta.json", lambda m: m.update(minuts_curt=5)), "sense versió de 50 min"),
+    ("\\begin{nomesllarg} amb text a la mateixa línia",
+     edita_text(f"{QM}/pregunta.tex", "\\begin{nomesllarg}\n", "\\begin{nomesllarg} Opcional.\n"),
+     "\\begin{nomesllarg} ha d'anar sol"),
 ]
 
 

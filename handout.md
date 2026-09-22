@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 19 preguntes (14 de la unitat 7 i 5 de la PAU)
-· 307 minuts d'examen al banc · 29 comprovacions del validador, 9 de sortida del build i 53 de
+**Data:** 22 de setembre de 2026 · **Estat:** 21 preguntes (16 de la unitat 7 i 5 de la PAU)
+· 400 minuts d'examen al banc · 29 comprovacions del validador, 9 de sortida del build i 53 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -19,11 +19,10 @@ web, l'Action de GitHub i les proves. La tercera va completar la unitat 7, amb 1
 verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer de juny de
 2026. La cinquena va revisar el projecte sencer, en va corregir quatre errors, va fixar les
 prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La sisena va donar aire al
-format i va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, amb la primera pregunta
-ja reescrita a mida PAU. La màquina funciona de punta a punta. El que queda és sobretot
-contingut: primer, reescriure a mida PAU les 12 preguntes restants de la u7, abans de l'examen
-de mitjan octubre; després, la u8, que acaba l'1 de novembre, els 56 exercicis PAU pendents i
-la resta d'unitats.
+format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescriure a mida PAU
+totes les preguntes de la u7, amb dues de noves. La màquina funciona de punta a punta. El que
+queda és sobretot contingut: la u8, que acaba l'1 de novembre, els 56 exercicis PAU pendents
+i la resta d'unitats.
 
 ---
 
@@ -170,6 +169,18 @@ professor la va aprovar, i es va implementar:
   de `limits-infinit` (`q002`), amb un apartat de paràmetre nou. El límit
   $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits) queda reservat: no és a cap
   exercici assignat (vegeu 2.1).
+- **El `.tex` baixat surt net**, a petició del professor. Abans de muntar l'examen, el lloc i
+  el build passen cada pregunta per `materialitza()`: a 50 min, fora els blocs `nomesllarg` i
+  els punts de 50 min escrits directament; a 1 h 30, cap marca de 50 min. El que diu el `.tex`
+  és exactament el que surt al PDF, i el preàmbul ja no sap res de modalitats.
+- **Reescriptura de les 12 preguntes restants de la u7**, amb dos patrons per a la versió de
+  50 min. En el primer, tres apartats petits (0,75 + 0,75 + 1) i a 50 min en queden dos
+  d'1,25. En el segon, un apartat gran i un de petit (1,5 + 1), i a 50 min queda el gran sol,
+  de 2,5 punts. Les llistes de subapartats es redueixen a 2 o 4 elements, i les funcions i les
+  fraccions van en mode destacat. El que sobrava ha fet **dues preguntes noves**:
+  `limits-infinit/q003` (tres límits de la q001 i un apartat nou de dos paràmetres) i
+  `parametres-ab/q002` (l'apartat de paràmetres de `continuitat-trossos/q001`, que era d'aquest
+  tema, i un apartat nou). La resta queda reservada (vegeu 7.4).
 
 ---
 
@@ -205,6 +216,8 @@ professor la va aprovar, i es va implementar:
 | La versió de 50 min la decideix qui escriu la pregunta (`\apartat[..]{..}` i `nomesllarg`) | Proposta acceptada | Els punts s'han de repartir a mà en múltiples de 0,25, i un apartat sovint depèn de l'anterior |
 | Les preguntes PAU també poden entrar a l'examen de 50 min | Professor | Amb una versió de 50 min feta a mà, o senceres |
 | Format: `\bigskip` entre preguntes i apartats; fórmules destacades amb el mateix aire | Professor | Els exàmens eren difícils de llegir |
+| El `.tex` baixat surt net: el que diu és el que surt al PDF | Professor | Per poder-lo editar abans de compilar-lo |
+| Dos patrons de versió de 50 min: dos apartats d'1,25, o un de sol de 2,5 | Disseny | Els punts queden rodons i cada versió és una tasca coherent |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
@@ -260,9 +273,10 @@ professor la va aprovar, i es va implementar:
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
-- Sessió 6: el build real amb el preàmbul oficial i el format nou (42 PDF, tots els enunciats
-  en una pàgina), i en Chromium el selector de durada. El `.tex` de 50 min baixat del lloc
-  compila, amb i sense solucions.
+- Sessió 6: el build real amb el preàmbul oficial i el format nou: 21 preguntes i 74 PDF, tots
+  els enunciats d'una pàgina, també els de 50 min. En Chromium, el selector de durada. L'examen
+  de cinc preguntes de la u7 fa 15 apartats i uns 72 minuts a 1 h 30, i 10 apartats i uns 44
+  minuts a 50 min. Els `.tex` baixats no porten cap marca de l'altra modalitat i compilen.
 - La compilació amb el preàmbul oficial, amb `lmodern` i `babel` català (sessió 5). Les 18
   preguntes ocupen una pàgina, sense cap *Overfull*. El `main.tex` baixat de l'examen de 2026
   compila en 2 pàgines, i el de solucions, en 5.
@@ -279,24 +293,29 @@ professor la va aprovar, i es va implementar:
 
 ## 6. Inventari
 
-### 6.1 Unitat 7 · Límits i continuïtat (14 preguntes)
+### 6.1 Unitat 7 · Límits i continuïtat (16 preguntes)
 
-| Tema | Codi | Títol | Punts | Dif. | Llibre |
-|---|---|---|---|---|---|
-| Bolzano i bisecció | `q001` | Teorema de Bolzano, bisecció i punt de tall de dues corbes | 1,00 + 0,75 + 0,75 | ●●○ | 112, 113, 114, 120 |
-| Bolzano i bisecció | `q002` | Bolzano per assolir un valor, arrel amb error menor que una dècima i punt de tall | 1,00 + 1,00 + 0,50 | ●●○ | 43, 113, 114, 120 |
-| Continuïtat de funcions a trossos | `q001` | Paràmetres de continuïtat i classificació en una funció a trossos | 1,25 + 1,25 | ●●○ | 40, 103, 106 |
-| Continuïtat de funcions a trossos | `q002` | Continuïtat d'una funció a trossos amb logaritme i d'una funció amb valor absolut | 1,25 + 1,25 | ●●● | 93, 102 |
-| Domini i discontinuïtats | `q001` | Domini, classificació de discontinuïtats i construcció d'una racional | 0,75 + 1,00 + 0,75 | ●●○ | 47, 93, 94 |
-| Domini i discontinuïtats | `q002` | Dominis amb radical i logaritme, discontinuïtats d'una racional amb Ruffini i funció inventada | 0,75 + 1,00 + 0,75 | ●●○ | 47, 93, 94 |
-| Límits a partir d'una gràfica | `q001` | Límits i continuïtat llegits sobre una gràfica | 1,25 + 1,25 | ●○○ | 44, 66, 68, 92 |
-| Límits a partir d'una gràfica | `q002` | Límits i continuïtat sobre una gràfica amb un angle, un forat i una asímptota | 1,25 + 1,25 | ●●○ | 44, 66, 68, 92 |
-| Límits en l'infinit | `q001` | Límits en l'infinit: racionals, potències, exponencials i un paràmetre | 1,00 + 0,75 + 0,75 | ●●○ | 45, 46, 48 |
-| Límits en l'infinit | `q002` | Límits en l'infinit de funcions racionals i un paràmetre | 0,75 + 0,75 + 1,00 · 50 min: 1,25 + 1,25 | ●●○ | 46, 48 |
-| Límits en un punt | `q001` | Límits en un punt: indeterminació 0/0, límits laterals i funció a trossos | 0,75 + 0,75 + 1,00 · 50 min: 1,25 + 1,25 | ●●○ | 76, 88, 90 |
-| Límits en un punt | `q002` | Límits en un punt: 0/0 amb Ruffini, funció amb radical i límits infinits | 1,00 + 0,75 + 0,75 | ●●○ | 70, 76 |
-| Límits de funcions a trossos | `q001` | Límits d'una funció a trossos amb paràmetre i indeterminació 0/0 | 0,75 + 1,25 + 0,50 | ●●○ | 76, 88, 90 |
-| Paràmetres per a la continuïtat | `q001` | Paràmetres de continuïtat amb exponencial i logaritme, i un paràmetre amb dues solucions | 1,50 + 1,00 | ●●○ | 40, 102, 106 |
+Totes reescrites a mida PAU a la sessió 6, amb la versió de 50 min. Els minuts són
+estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades reals (vegeu 7.4).
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Bolzano i bisecció | `q001` | Teorema de Bolzano, bisecció i punt de tall de dues corbes | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 112, 113, 114, 120 |
+| Bolzano i bisecció | `q002` | Bolzano per assolir un valor, arrel amb error menor que una dècima i punt de tall | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 10 | ●●○ | 43, 113, 114, 120 |
+| Continuïtat de funcions a trossos | `q001` | Continuïtat d'una funció a trossos amb exponencial i racional, punt per punt | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 11 | ●●○ | 103 |
+| Continuïtat de funcions a trossos | `q002` | Continuïtat d'una funció a trossos amb logaritme i d'una funció amb valor absolut | 1,25 + 1,25 | 2,50 | 20 · 11 | ●●● | 93, 102 |
+| Domini i discontinuïtats | `q001` | Domini, classificació de discontinuïtats i construcció d'una racional | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 47, 93, 94 |
+| Domini i discontinuïtats | `q002` | Dominis amb radical i logaritme, discontinuïtats d'una racional amb Ruffini i funció inventada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 47, 93, 94 |
+| Límits a partir d'una gràfica | `q001` | Límits i continuïtat llegits sobre una gràfica | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 44, 66, 68, 92 |
+| Límits a partir d'una gràfica | `q002` | Límits i continuïtat sobre una gràfica amb un angle, un forat i una asímptota | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 44, 66, 68, 92 |
+| Límits de funcions a trossos | `q001` | Límits d'una funció a trossos amb paràmetre i indeterminació 0/0 | 0,75 + 1,25 + 0,50 | 1,00 + 1,50 | 18 · 12 | ●●○ | 76, 88, 90 |
+| Límits en l'infinit | `q001` | Límits en l'infinit: racionals, exponencials i un paràmetre | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 45, 46, 48 |
+| Límits en l'infinit | `q002` | Límits en l'infinit de funcions racionals i un paràmetre | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 46, 48 |
+| Límits en l'infinit | `q003` | Límits en l'infinit: mateix grau, radicals i dos paràmetres | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 45, 46, 48 |
+| Límits en un punt | `q001` | Límits en un punt: indeterminació 0/0, límits laterals i funció a trossos | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 20 · 11 | ●●○ | 76, 88, 90 |
+| Límits en un punt | `q002` | Límits en un punt: 0/0 amb Ruffini i límits infinits amb laterals | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 70, 76 |
+| Paràmetres per a la continuïtat | `q001` | Paràmetres de continuïtat amb exponencial i logaritme, i un paràmetre amb dues solucions | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 40, 102, 106 |
+| Paràmetres per a la continuïtat | `q002` | Paràmetres de continuïtat en una funció a tres trossos i en una de dos | 1,50 + 1,00 | 2,50 | 18 · 11 | ●●○ | 40, 106 |
 
 ### 6.2 Registre de convocatòries PAU
 
@@ -460,7 +479,7 @@ l'ordre numèric.
 
 | Unitat | Setmanes | Última data límit |
 |---|---|---|
-| u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, en reescriptura |
+| u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, reescrita a la sessió 6 |
 | u8 Derivades | 5–7 | 1 de novembre de 2026 · **la següent** |
 | u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 |
 | u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 |
@@ -474,21 +493,21 @@ l'ordre numèric.
 | u11 Integrals | 33–34 | 9 de maig de 2027 |
 | u12 La integral definida | 35–36 | 23 de maig de 2027 |
 
-- **Reescriure a mida PAU les 12 preguntes restants de la u7**, cadascuna amb la seva versió
-  de 50 min, abans de l'examen de la u7 (mitjan octubre). És la prioritat. El patró és el de
-  `limits-punt/q001`: 2 o 3 apartats d'una sola tasca, uns 20 minuts; a 50 min, uns 11. Els
-  apartats que sobrin es converteixen en preguntes noves: no es llença res. Els `minuts`
-  s'han de recalibrar amb el mateix criteri: els d'ara es queden curts gairebé tres vegades.
+- **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
+  estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
 - **Temes i preguntes de la u8.** Cal seguir el mateix patró: taxonomia de temes, calibratge amb
   els exercicis assignats a les setmanes 5 a 7 i verificació per dos camins. Són 17 exercicis,
   16 de diferents (vegeu 7.2).
 - Després, les unitats en l'ordre de la taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
-- Segona variant per a `limits-trossos` i `parametres-ab`, els dos temes de la u7 que només
-  en tenen una.
-- **Material reservat:** $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), tret de
-  la pregunta pilot. Es farà servir si la classe treballa la jerarquia d'infinits.
+- Segona variant per a `limits-trossos`, l'únic tema de la u7 que només en té una.
+- **Material reservat** de la reescriptura, per si cal:
+  - $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), de l'antiga `limits-punt/q001`.
+    No és a cap exercici assignat.
+  - Lectures de límits a l'infinit i en $x=4$ de les gràfiques de `limits-grafica/q001` i `q002`.
+  - Els tres límits de $\frac{2x}{\sqrt{x^2+5}}$ de l'antiga `limits-punt/q002`: només
+    demanaven substituir, massa directes per a un apartat.
 
 ### 7.5 Millores del lloc
 
@@ -619,25 +638,21 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 6. Parteix del v4 de la sessió 5, que ja és al repositori, i
-conté només els fitxers que canvien, directament a l'arrel del ZIP:
+És el segon lliurament de la sessió 6. Parteix del primer (`banc-preguntes-sessio6.zip`), que
+ja és al repositori, i conté només els fitxers que canvien, directament a l'arrel del ZIP:
 
 | Fitxer | Canvi |
 |---|---|
-| `build/preambul.tex` | Format nou (espais i fórmules destacades) i modalitats: `\apartat[..]{..}` i `nomesllarg` |
-| `build/embolcall.tex` | `\newif\ifcurt` i el marcador `%%MODE%%` |
-| `build/build.py` | Punts de les dues modalitats, validacions, `minuts_curt`, PDF de 50 min i catàleg |
-| `build/prova_validacio.py` | 29 avaries: 8 de noves, de les modalitats |
-| `build/prova_sortida.py` | `--pregunta` també escriu els PDF de 50 min |
-| `build/prova_paritat.py` | 53 comprovacions: 9 de noves, de la modalitat de 50 min |
-| `assets/app.js` | La modalitat: punts, minuts, PDF, `.tex`, etiqueta «sencera» i adreça `50min/` |
-| `assets/style.css` | Selector de durada i etiqueta «sencera» |
-| `index.html` | Selector «1 h 30 / 50 min» |
-| `u7/limits-punt/q001/` | Reescrita a mida PAU, amb versió de 50 min |
-| `u7/limits-infinit/q002/` | **Nova**: segona variant, amb els límits a l'infinit de la pilot |
-| `README.md` | Durada, regles, macros i `minuts_curt` |
-| `handout.md` | Sessió 6 |
+| `build/build.py` | `materialitza()`: cada modalitat es compila neta; fora `%%MODE%%` |
+| `build/embolcall.tex` | Fora `\ifcurt` i `%%MODE%%` |
+| `build/preambul.tex` | Fora la lògica de modalitats: el preàmbul ja no en sap res |
+| `build/prova_validacio.py` | 29 avaries, adaptades al contingut nou |
+| `build/prova_sortida.py` | Adaptada a `parametres-ab/q001` nova |
+| `build/prova_paritat.py` | 53 comprovacions: el `.tex` de cada modalitat, net |
+| `assets/app.js` | `materialitza()`, igual que la de `build.py` |
+| `u7/*/q00*/` | Les 12 preguntes reescrites de la u7 i les 2 noves: `limits-infinit/q003` i `parametres-ab/q002` |
+| `README.md` | El `.tex` net i les modalitats |
+| `handout.md` | Sessió 6: `.tex` net, reescriptura i inventari nou |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
-cal fer **Run workflow**: com que canvia el preàmbul, l'Action torna a compilar totes les
-preguntes amb el format nou.
+cal fer **Run workflow**: l'Action torna a compilar totes les preguntes.

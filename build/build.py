@@ -14,6 +14,8 @@
 #  Modalitats: cada pregunta té una versió per a l'examen d'1 h 30 i, si
 #  el .tex la defineix (\apartat[50 min]{1 h 30} i nomesllarg), una altra
 #  per al de 50 min, amb els seus PDF (enunciat-curt.pdf, solucio-curt.pdf).
+#  Abans de compilar, materialitza() deixa cada versió neta: el que diu el
+#  .tex és exactament el que surt al PDF. El lloc fa el mateix.
 #
 #  El build FALLA (codi 1) i no escriu res si hi ha cap error: ni PDF ni
 #  catàleg. Els PDF es compilen en una carpeta temporal i només es copien
@@ -68,20 +70,18 @@ def avis(on: str, msg: str) -> None:
 
 
 # ── assemblatge ────────────────────────────────────────────────────────
-def munta(plantilla: str, preambul: str, cossos: list[str], solucions: bool,
-          curt: bool = False) -> str:
+def munta(plantilla: str, preambul: str, cossos: list[str], solucions: bool) -> str:
     """Construeix un .tex complet. El lloc web fa EXACTAMENT això mateix
     amb la mateixa plantilla; per això la plantilla és un fitxer i no
     està escrita dins del codi."""
     # count=1: el mateix que String.replace de JavaScript (només la primera).
     return (plantilla
             .replace("%%SOLUCIONS%%", r"\solucionstrue" if solucions else r"\solucionsfalse", 1)
-            .replace("%%MODE%%", r"\curttrue" if curt else r"\curtfalse", 1)
             .replace("%%PREAMBUL%%", preambul, 1)
             .replace("%%COS%%", "\n\n".join(cossos), 1))
 
 
-MARCADORS = ("%%SOLUCIONS%%", "%%MODE%%", "%%PREAMBUL%%", "%%COS%%")
+MARCADORS = ("%%SOLUCIONS%%", "%%PREAMBUL%%", "%%COS%%")
 
 
 def valida_plantilla(plantilla: str) -> None:
@@ -178,6 +178,32 @@ def punts_del_tex(tex: str, on: str) -> tuple[list[int], list[int], bool]:
             error(on, f"a l'examen de 50 min, els apartats sumen {sum(curt)/100:.2f} "
                       "i han de sumar 2,50")
     return llarg, curt, diferent
+
+
+RE_APARTAT_OPCIONAL = re.compile(r"\\apartat\[([^\]]*)\]\{([^}]*)\}")
+
+
+def materialitza(tex: str, curt: bool) -> str:
+    """La versió d'una pregunta per a una modalitat, neta: sense cap marca de
+    l'altra. A 50 min, fora els blocs nomesllarg i \\apartat[x]{y} → \\apartat{x};
+    a 1 h 30, fora només les línies del bloc i \\apartat[x]{y} → \\apartat{y}.
+    materialitza() d'app.js fa EXACTAMENT el mateix."""
+    sortida: list[str] = []
+    dins = False
+    for linia in tex.split("\n"):
+        net = linia.strip()
+        if net == r"\begin{nomesllarg}":
+            dins = True
+            continue
+        if net == r"\end{nomesllarg}":
+            dins = False
+            continue
+        if dins and curt:
+            continue
+        sortida.append(linia)
+    net = RE_APARTAT_OPCIONAL.sub(
+        lambda m: "\\apartat{" + (m.group(1) if curt else m.group(2)) + "}", "\n".join(sortida))
+    return re.sub(r"\n{3,}", "\n\n", net)
 
 
 def valida_tex(tex: str, on: str) -> None:
@@ -383,7 +409,7 @@ def construeix(provisional: Path) -> int:
         if compilar:
             # Els PDF van a la carpeta provisional, amb la mateixa estructura que
             # el banc. Només es copien a out/ al final, si no hi ha cap error.
-            cos = cos_amb_capcalera(tex, "Pregunta", procedencia)
+            cos = cos_amb_capcalera(materialitza(tex, False), "Pregunta", procedencia)
             pagines = compila(munta(plantilla, preambul_compila, [cos], False),
                               provisional / ident / "out" / "enunciat.pdf", on)
             compila(munta(plantilla, preambul_compila, [cos], True),
@@ -391,9 +417,10 @@ def construeix(provisional: Path) -> int:
             if pagines and pagines > 1:
                 avis(on, f"l'enunciat ocupa {pagines} pàgines")
             if te_curt:
-                pagines_curt = compila(munta(plantilla, preambul_compila, [cos], False, curt=True),
+                cos_curt = cos_amb_capcalera(materialitza(tex, True), "Pregunta", procedencia)
+                pagines_curt = compila(munta(plantilla, preambul_compila, [cos_curt], False),
                                        provisional / ident / "out" / "enunciat-curt.pdf", on)
-                compila(munta(plantilla, preambul_compila, [cos], True, curt=True),
+                compila(munta(plantilla, preambul_compila, [cos_curt], True),
                         provisional / ident / "out" / "solucio-curt.pdf", on)
                 if pagines_curt and pagines_curt > 1:
                     avis(on, f"l'enunciat de 50 min ocupa {pagines_curt} pàgines")

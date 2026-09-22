@@ -28,8 +28,8 @@
    LA MODALITAT
    L'examen és d'1 h 30 (per defecte) o de 50 min. A 50 min, cada pregunta
    fa servir la seva versió de 50 min (punts, minuts i PDF propis) si en
-   té; si no, hi va sencera. El .tex porta \\curttrue o \\curtfalse, i el
-   preàmbul fa la resta.
+   té; si no, hi va sencera. materialitza() deixa cada pregunta neta per a
+   la modalitat: el .tex que es baixa diu exactament el que surt al PDF.
    ═══════════════════════════════════════════════════════════════════════ */
 
 // Sense prototip: així #__proto__ o #constructor no hi troben res. Amb {},
@@ -68,21 +68,39 @@ function baixa(nom, text) {
 }
 
 /** Idèntic a munta() de build.py: mateixa plantilla, mateix ordre,
- *  cada marcador substituït un sol cop. La modalitat és la de l'examen. */
+ *  cada marcador substituït un sol cop. */
 function munta(cossos, solucions) {
   return BANC.plantilla
     .replace('%%SOLUCIONS%%', () => solucions ? '\\solucionstrue' : '\\solucionsfalse')
-    .replace('%%MODE%%', () => curt ? '\\curttrue' : '\\curtfalse')
     .replace('%%PREAMBUL%%', () => BANC.preambul)
     .replace('%%COS%%', () => cossos.join('\n\n'));
 }
 
+/** Idèntic a materialitza() de build.py: la versió d'una pregunta per a una
+ *  modalitat, neta. A 50 min, fora els blocs nomesllarg i \\apartat[x]{y} →
+ *  \\apartat{x}; a 1 h 30, fora només les línies del bloc i → \\apartat{y}. */
+function materialitza(tex, esCurt) {
+  const sortida = [];
+  let dins = false;
+  for (const linia of tex.split('\n')) {
+    const net = linia.trim();
+    if (net === '\\begin{nomesllarg}') { dins = true; continue; }
+    if (net === '\\end{nomesllarg}') { dins = false; continue; }
+    if (dins && esCurt) continue;
+    sortida.push(linia);
+  }
+  return sortida.join('\n')
+    .replace(/\\apartat\[([^\]]*)\]\{([^}]*)\}/g, (_, c, l) => `\\apartat{${esCurt ? c : l}}`)
+    .replace(/\n{3,}/g, () => '\n\n');
+}
+
 /** Idèntic a cos_amb_capcalera() de build.py: capçalera, procedència PAU
- *  (si n'hi ha) i cos. La procedència surt del catàleg, mai del .tex. */
+ *  (si n'hi ha) i cos, ja net per a la modalitat de l'examen. La procedència
+ *  surt del catàleg, mai del .tex. */
 const ambCapcalera = (q, etiqueta) =>
   `\\encapcalament{${etiqueta}}\n`
   + (q.procedencia ? `\\procedencia{${q.procedencia}}\n` : '')
-  + q.tex.trim();
+  + materialitza(q.tex, curt).trim();
 
 // ── l'examen ─────────────────────────────────────────────────────────
 const preguntaDe = p => PER_TEMA[p.slug][p.i];

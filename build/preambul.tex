@@ -6,9 +6,10 @@
 %  · Aquest fitxer NO es compila sol. És un fragment.
 %  · Qui el fa servir (build.py o el lloc web) SEMPRE emet, per aquest
 %    ordre:  \documentclass → \newif\ifsolucions + \solucions(true|false)
-%            → \newif\ifcurt + \curt(true|false) → aquest fitxer
-%            → \begin{document} → cossos → \end{document}
-%  · \ifcurt diu la modalitat: examen d'1 h 30 (false) o de 50 min (true).
+%            → aquest fitxer → \begin{document} → cossos → \end{document}
+%  · Les preguntes hi arriben ja netes per a una modalitat (1 h 30 o 50 min):
+%    build.py i el lloc les passen per materialitza(). Aquest preàmbul no
+%    sap res de modalitats.
 %  · Tota pregunta del banc compila amb AQUEST preàmbul i cap altre.
 %    Si una pregunta necessita un paquet nou, s'afegeix aquí i es torna
 %    a compilar TOT el banc. Mai un \usepackage dins d'una pregunta.
@@ -39,17 +40,13 @@
 
 % ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────
 % \apartat{0,75} escriu "(0,75 punts)".  build.py llegeix aquests valors
-% del .tex: la puntuació viu AQUÍ i enlloc més. L'opcional, si hi és, és la
-% puntuació a l'examen de 50 min: \apartat[1,25]{0,75}.
+% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \apartat[1,25]{0,75}
+% porta també la puntuació de 50 min, però materialitza() el deixa com a
+% \apartat{0,75} o \apartat{1,25} abans d'arribar aquí.
 \makeatletter
 \newcommand{\bp@ptsmot}[1]{\def\bp@a{#1}\def\bp@u{1}%
   \ifx\bp@a\bp@u 1~punt\else #1~punts\fi}
-% Modalitat: \apartat[1,25]{0,75} val 0,75 punts a l'examen d'1 h 30 i 1,25 al
-% de 50 min. Sense l'opcional, la mateixa puntuació a tots dos.
-\newcommand{\apartat}[2][]{%
-  \ifcurt\if\relax\detokenize{#1}\relax\def\bp@v{#2}\else\def\bp@v{#1}\fi
-  \else\def\bp@v{#2}\fi
-  \item \textit{(\expandafter\bp@ptsmot\expandafter{\bp@v})}\enspace\ignorespaces}
+\newcommand{\apartat}[1]{\item \textit{(\bp@ptsmot{#1})}\enspace\ignorespaces}
 \makeatother
 \newenvironment{apartats}
   {\begin{enumerate}[label=\textbf{\alph*)},leftmargin=*,itemsep=\bigskipamount,
@@ -94,12 +91,6 @@
 \else
   \excludecomment{solucio}
 \fi
-
-% ── 5b. Apartats que només surten a l'examen d'1 h 30 ─────────────────
-% \begin{nomesllarg} … \end{nomesllarg} envolta un apartat sencer, amb la
-% seva solució. A l'examen de 50 min no hi surt, i els apartats de després
-% es tornen a lletrejar sols. \end{nomesllarg} va SOL a la seva línia.
-\ifcurt \excludecomment{nomesllarg} \else \includecomment{nomesllarg} \fi
 
 % ── 6. Procedència de les preguntes PAU ───────────────────────────────
 % La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just

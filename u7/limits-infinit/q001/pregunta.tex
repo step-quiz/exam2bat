@@ -1,40 +1,42 @@
 \begin{apartats}
 
-\apartat{1}
+\apartat[1,25]{0,75}
 Calcula els límits següents:
-\begin{graella}{3}
+\begin{graella}{2}
   \sa \lim_{x\to+\infty}\frac{5x-2}{3x^2+x+1} &
-  \sa \lim_{x\to-\infty}\frac{2x^3-x}{1-x^2} &
-  \sa \lim_{x\to-\infty}\frac{6x^2-5}{3x^2+2x}
+  \sa \lim_{x\to-\infty}\frac{2x^3-x}{1-x^2}
 \end{graella}
 
 \begin{solucio}
 i) El grau del denominador és més gran que el del numerador: el límit val $0$.\\
 ii) El grau del numerador és més gran. El quocient dels termes de grau més alt és
-$\dfrac{2x^3}{-x^2}=-2x$, que tendeix a $+\infty$ quan $x\to-\infty$: el límit és $+\infty$.\\
-iii) Mateix grau: quocient dels coeficients principals, $\dfrac{6}{3}=2$.
+$\dfrac{2x^3}{-x^2}=-2x$, que tendeix a $+\infty$ quan $x\to-\infty$: el límit és $+\infty$.
 \end{solucio}
 
+\begin{nomesllarg}
 \apartat{0,75}
 Calcula els límits següents:
-\begin{graella}{4}
-  \sa \lim_{x\to+\infty}\frac{1}{\sqrt[3]{x}} &
+\begin{graella}{2}
   \sa \lim_{x\to+\infty}\left(\frac34\right)^{x} &
-  \sa \lim_{x\to-\infty}2^{-x} &
-  \sa \lim_{x\to-\infty}\sqrt{1-x}
+  \sa \lim_{x\to-\infty}2^{-x}
 \end{graella}
 
 \begin{solucio}
-i) $\sqrt[3]{x}\to+\infty$, per tant el quocient tendeix a $0$.\\
-ii) La base és més petita que $1$: $\left(\tfrac34\right)^{x}\to0$.\\
-iii) Si $x\to-\infty$, aleshores $-x\to+\infty$ i $2^{-x}\to+\infty$.\\
-iv) Si $x\to-\infty$, aleshores $1-x\to+\infty$ i $\sqrt{1-x}\to+\infty$.
+i) La base és més petita que $1$: $\left(\tfrac34\right)^{x}\to0$.\\
+ii) Si $x\to-\infty$, aleshores $-x\to+\infty$ i $2^{-x}\to+\infty$.
 \end{solucio}
+\end{nomesllarg}
 
-\apartat{0,75}
-Considera la funció $f(x)=\dfrac{kx^2-3x}{2x^2+5}$, on $k$ és un nombre real.
-Determina $k$ perquè $\lim_{x\to+\infty}f(x)=3$. Existeix algun valor de $k$ per al qual
-aquest límit sigui $+\infty$? Justifica-ho.
+\apartat[1,25]{1}
+Considera la funció
+\[
+f(x)=\frac{kx^2-3x}{2x^2+5},
+\]
+on $k$ és un nombre real. Determina $k$ perquè
+\[
+\lim_{x\to+\infty}f(x)=3 .
+\]
+Existeix algun valor de $k$ per al qual aquest límit sigui $+\infty$? Justifica-ho.
 
 \begin{solucio}
 Si $k\neq0$, numerador i denominador tenen grau $2$ i el límit val $\dfrac{k}{2}$.

@@ -1,8 +1,16 @@
 {
-  "titol": "Paràmetres de continuïtat i classificació en una funció a trossos",
-  "temes_secundaris": ["parametres-ab"],
+  "titol": "Continuïtat d'una funció a trossos amb exponencial i racional, punt per punt",
+  "temes_secundaris": [],
   "dificultat": "●●○",
-  "origen": [40, 103, 106],
-  "minuts": 15,
-  "etiquetes": ["sistema d'equacions", "salt finit", "salt infinit", "e^x"]
+  "origen": [
+    103
+  ],
+  "minuts": 16,
+  "etiquetes": [
+    "a trossos",
+    "exponencial",
+    "salt finit",
+    "salt infinit"
+  ],
+  "minuts_curt": 11
 }

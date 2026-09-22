@@ -19,7 +19,7 @@ from pathlib import Path
 
 ARREL = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ARREL / "build"))
-from build import munta, cos_amb_capcalera  # noqa: E402
+from build import munta, cos_amb_capcalera, materialitza  # noqa: E402
 
 HARNES = r"""
 const fs = require('fs'), vm = require('vm');
@@ -89,7 +89,7 @@ def main() -> int:
     esperat = ["u7/limits-grafica/q001", "u7/continuitat-trossos/q001",
                "u7/bolzano-biseccio/q001", "u7/limits-punt/q001"]
     comprova("el tema buit no entra a l'examen", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
+    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
     for sol, clau in ((False, "tex"), (True, "sol")):
         py = munta(banc["plantilla"], banc["preambul"], cossos, sol)
         igual = py == r[clau]
@@ -105,7 +105,7 @@ def main() -> int:
     esperat = ["u7/limits-grafica/q002", "u7/parametres-ab/q001",
                "u7/bolzano-biseccio/q002", "u7/limits-infinit/q001"]
     comprova("les variants q002 es trien per codi", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
+    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
     py = munta(banc["plantilla"], banc["preambul"], cossos, True)
     comprova(f"paritat JS = Python amb variants ({len(py)} caràcters)", py == r["sol"])
     comprova("el recompte torna a dir 10,00 punts", "10,00 punts" in r["recompte"], r["recompte"])
@@ -116,7 +116,7 @@ def main() -> int:
     esperat = ["pau/analisi/ana-26j-q1", "pau/algebra/alg-26j-q2",
                "pau/probabilitat/pro-26j-q3", "pau/geometria/geo-26j-q4b"]
     comprova("un examen PAU sencer es tria per codi", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {n}", per_id[i]["procedencia"])
+    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Pregunta {n}", per_id[i]["procedencia"])
               for n, i in enumerate(esperat, 1)]
     py = munta(banc["plantilla"], banc["preambul"], cossos, False)
     comprova(f"paritat JS = Python amb preguntes PAU ({len(py)} caràcters)", py == r["tex"])
@@ -132,8 +132,9 @@ def main() -> int:
              r["tex"].split(INICI_COS, 1)[1], "")
 
     # 1d. Un examen com el de la PAU: 1, 2, 3, 4a i 4b, amb dues preguntes d'anàlisi
-    def cossos(ids, etiquetes):
-        return [cos_amb_capcalera(per_id[i]["tex"], f"Pregunta {e}", per_id[i]["procedencia"])
+    def cossos(ids, etiquetes, curt=False):
+        return [cos_amb_capcalera(materialitza(per_id[i]["tex"], curt), f"Pregunta {e}",
+                                  per_id[i]["procedencia"])
                 for i, e in zip(ids, etiquetes)]
 
     pau = "analisi:ana-26j-q1,algebra:alg-26j-q2,probabilitat:pro-26j-q3,analisi:ana-26j-q4a|geometria:geo-26j-q4b"
@@ -216,20 +217,25 @@ def main() -> int:
 
     # 1g. La modalitat: examen d'1 h 30 (per defecte) o de 50 min
     r = web("limits-punt:q001")
-    comprova("sense prefix, l'examen és d'1 h 30",
-             "\\curtfalse" in r["tex"] and "de 90 min" in r["recompte"], r["recompte"])
+    cos = r["sol"].split(INICI_COS, 1)[1]
+    comprova("sense prefix, l'examen és d'1 h 30: tres apartats i cap marca de 50 min",
+             cos.count("\\apartat{") == 3 and "\\apartat[" not in cos and "nomesllarg" not in cos
+             and "Estudia si existeix" in cos and "de 90 min" in r["recompte"], r["recompte"])
     r = web("50min/limits-punt:q001")
-    comprova("amb el prefix 50min/, l'examen és de 50 min",
-             "\\curttrue" in r["tex"] and "\\curtfalse" not in r["tex"], r["recompte"])
+    cos = r["sol"].split(INICI_COS, 1)[1]
+    comprova("amb el prefix 50min/, el .tex ja és el de 50 min: dos apartats d'1,25 i res més",
+             cos.count("\\apartat{1,25}") == 2 and cos.count("\\apartat{") == 2
+             and "\\apartat[" not in cos and "nomesllarg" not in cos
+             and "Estudia si existeix" not in cos, cos[:200])
     for sol, clau in ((False, "tex"), (True, "sol")):
-        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"]), sol, curt=True)
+        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"], curt=True), sol)
         comprova(f"paritat JS = Python a 50 min ({'amb' if sol else 'sense'} solucions)", py == r[clau])
     comprova("a 50 min compten els minuts de la versió de 50 min", "~11 de 50 min" in r["recompte"],
              r["recompte"])
     comprova("l'adreça conserva la modalitat", r["hash"] == "50min/limits-punt:q001", r["hash"])
-    r = web("50min/bolzano-biseccio:q001")
+    r = web("50min/analisi:ana-26j-q1")
     comprova("una pregunta sense versió de 50 min hi va sencera, amb els seus minuts",
-             "~14 de 50 min" in r["recompte"], r["recompte"])
+             "~22 de 50 min" in r["recompte"], r["recompte"])
     r = web("limits-punt:q001", "curt = true; pinta()")
     comprova("en canviar a 50 min, l'adreça ho recull", r["hash"] == "50min/limits-punt:q001", r["hash"])
     r = web("50min/%")

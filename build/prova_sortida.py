@@ -88,7 +88,7 @@ def main() -> int:
         #    s'han compilat bé quan el build descobreix l'error.
         with tempfile.TemporaryDirectory() as t1:
             banc = copia_banc(Path(t1))
-            edita(banc / "u7/parametres-ab/q001/pregunta.tex", r"\apartat{1,5}", r"\apartat{1,25}")
+            edita(banc / "u7/parametres-ab/q001/pregunta.tex", r"\apartat[2,5]{1,5}", r"\apartat[2,5]{1,25}")
             abans = empremta(banc)
             r = build(banc, fals)
             tocats = sorted(k for k, v in empremta(banc).items() if abans.get(k) != v)

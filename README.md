@@ -35,7 +35,9 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
 6. **Durada.** A dalt de l'examen tries **1 h 30** o **50 min**. A 50 min, cada pregunta fa
    servir la seva versió de 50 min: menys apartats i els punts repartits de nou. Si no en té,
    hi va sencera i la targeta ho diu amb l'etiqueta «sencera». El comptador compara els
-   minuts amb la durada triada.
+   minuts amb la durada triada. El `.tex` que baixes ja surt net per a aquesta durada: no hi
+   ha els apartats que es treuen, i els punts hi són escrits tal com surten. El que diu el
+   `.tex` és exactament el que surt al PDF.
 7. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
    sola. Tot segueix la durada triada.
 8. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les
@@ -181,6 +183,10 @@ convocatòria existeixi al registre.
 | `\apartat{0,75}` | **a)** *(0,75 punts)* |
 | `\apartat[1,25]{0,75}` | 0,75 punts a l'examen d'1 h 30 i 1,25 al de 50 min |
 | `\begin{nomesllarg} … \end{nomesllarg}` | un apartat sencer, amb la seva solució, que només surt a l'examen d'1 h 30; els de després es tornen a lletrejar sols |
+
+Aquestes dues marques només són a les fonts. Abans de compilar o de baixar un `.tex`,
+`materialitza()` (a `build.py` i a `app.js`, idèntiques) deixa la pregunta neta per a la
+durada triada, i el preàmbul no en veu mai cap.
 | `\begin{graella}{3} \sa … & \sa … \end{graella}` | i) ii) iii) en columnes, amb els `\lim` en mode display |
 | `\si{-1\le x\le 2}` dins de `cases` | «si −1 ≤ x ≤ 2», amb el signe ben espaiat |
 | `\begin{solucio} … \end{solucio}` | només apareix a la versió amb solucions, en blau |
