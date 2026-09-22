@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-22 14:16 UTC",
+ "generat": "2026-09-22 19:50 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -89,6 +89,42 @@ const BANC = {
    "descripcio": "Teorema de Bolzano, acotació d'arrels per bisecció i punts de tall de corbes."
   },
   {
+   "slug": "tvm-derivada-punt",
+   "unitat": "u8",
+   "nom": "TVM i derivada en un punt",
+   "descripcio": "Taxa de variació mitjana en un interval i derivada en un punt per definició."
+  },
+  {
+   "slug": "derivada-definicio",
+   "unitat": "u8",
+   "nom": "Funció derivada per definició",
+   "descripcio": "La funció derivada com a límit del quocient incremental: polinomis, arrels i racionals."
+  },
+  {
+   "slug": "regles-derivacio",
+   "unitat": "u8",
+   "nom": "Regles de derivació",
+   "descripcio": "Derivades de funcions elementals, sumes, productes i quocients."
+  },
+  {
+   "slug": "regla-cadena",
+   "unitat": "u8",
+   "nom": "Regla de la cadena",
+   "descripcio": "Derivades de funcions compostes: potències, exponencials, logaritmes i trigonomètriques."
+  },
+  {
+   "slug": "recta-tangent",
+   "unitat": "u8",
+   "nom": "Recta tangent i normal",
+   "descripcio": "Equacions de les rectes tangent i normal a la gràfica d'una funció en un punt."
+  },
+  {
+   "slug": "tangent-condicions",
+   "unitat": "u8",
+   "nom": "Tangents amb condicions",
+   "descripcio": "Tangents paral·leles a una recta, tangents horitzontals i triangles amb els eixos."
+  },
+  {
    "slug": "algebra",
    "unitat": "pau",
    "nom": "Àlgebra",
@@ -114,7 +150,11 @@ const BANC = {
   }
  ],
  "plantilla": "\\documentclass[11pt,a4paper]{article}\n\\newif\\ifsolucions\n%%SOLUCIONS%%\n%%PREAMBUL%%\n\\begin{document}\n%%COS%%\n\\end{document}\n",
- "preambul": "% ═══════════════════════════════════════════════════════════════════════\n%  PREÀMBUL COMPARTIT DEL BANC DE PREGUNTES\n%  ─────────────────────────────────────────────────────────────────────\n%  CONTRACTE (llegeix-ho abans de tocar res):\n%\n%  · Aquest fitxer NO es compila sol. És un fragment.\n%  · Qui el fa servir (build.py o el lloc web) SEMPRE emet, per aquest\n%    ordre:  \\documentclass → \\newif\\ifsolucions + \\solucions(true|false)\n%            → aquest fitxer → \\begin{document} → cossos → \\end{document}\n%  · Les preguntes hi arriben ja netes per a una modalitat (1 h 30 o 50 min):\n%    build.py i el lloc les passen per materialitza(). Aquest preàmbul no\n%    sap res de modalitats.\n%  · Tota pregunta del banc compila amb AQUEST preàmbul i cap altre.\n%    Si una pregunta necessita un paquet nou, s'afegeix aquí i es torna\n%    a compilar TOT el banc. Mai un \\usepackage dins d'una pregunta.\n% ═══════════════════════════════════════════════════════════════════════\n\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage[catalan]{babel}\n\\usepackage{amsmath,amssymb}\n\\usepackage{array}\n\\usepackage{tikz}\n\\usepackage{enumitem}\n\\usepackage{xcolor}\n\\usepackage{comment}\n\\usepackage{needspace}\n\\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2cm,right=2cm]{geometry}\n\n\\setlength{\\parindent}{0pt}\n\\setlength{\\parskip}{3pt}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n",
+ "preambul": "% =====================================================================\n%  headers.tex — Paquets i format de pàgina\n%  Matemàtiques II · 2n de Batxillerat\n%  ─────────────────────────────────────────────────────────────────────\n%  Aquest fitxer i defs.tex són la FONT ÚNICA del format del banc: els\n%  fan servir el build (per als PDF de cada pregunta), el lloc web (per\n%  als .tex que es baixen) i la carpeta d'exàmens del professorat.\n%  Un paquet nou s'afegeix AQUÍ, mai dins d'una pregunta, i es recompila\n%  tot el banc.\n% =====================================================================\n\n% ── Tipografia i idioma ──────────────────────────────────────────────\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage[catalan]{babel}\n\\usepackage{microtype}\n\n% ── Matemàtiques ─────────────────────────────────────────────────────\n\\usepackage{amsmath,amssymb}\n\n% ── Pàgina ───────────────────────────────────────────────────────────\n\\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2cm,right=2cm]{geometry}\n\\usepackage{fancyhdr}\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot[C]{\\small\\thepage}\n\\renewcommand{\\headrulewidth}{0pt}\n\n% ── Taules, llistes, figures ─────────────────────────────────────────\n\\usepackage{array}             % >{\\displaystyle} a graella, m{} a la capçalera\n\\usepackage{tabularx}          % taules d'amplada fixa\n\\usepackage[table]{xcolor}     % colors i \\cellcolor\n\\usepackage{graphicx}          % imatges (les fa servir la capçalera de la carpeta)\n\\usepackage{tikz}              % gràfiques\n\\usepackage{enumitem}          % entorn apartats\n\\usepackage{needspace}         % \\Needspace a \\encapcalament\n\\usepackage{comment}           % entorn solucio\n\n% =====================================================================\n%  defs.tex — Macros del banc de preguntes\n%  ─────────────────────────────────────────────────────────────────────\n%  Va sempre després de headers.tex i abans de \\begin{document}, amb\n%  \\newif\\ifsolucions ja declarat. Vegeu headers.tex.\n% =====================================================================\n\n% ── 0. Segell de versió ──────────────────────────────────────────────\n% build.py hi afegeix, al final, \\def\\bancversio{...}. Cada examen que\n% baixa el lloc comença amb \\bancrequereix{...}: si el defs.tex és d'una\n% altra versió, LaTeX avisa i cal tornar a baixar l'entorn.\n\\makeatletter\n\\newcommand{\\bancrequereix}[1]{%\n  \\def\\bp@v{#1}%\n  \\ifx\\bp@v\\bancversio\\else\n    \\GenericWarning{}{Banc de preguntes: aquest defs.tex (\\bancversio) no és el\n      que va generar l'examen (#1). Torna a baixar headers.tex i defs.tex}%\n  \\fi}\n\\makeatother\n\n% ── 0b. Capçalera d'examen: buida al banc ────────────────────────────\n% El banc no porta cap dada de cap centre: ni logo, ni segell, ni curs, ni\n% departament. Això viu NOMÉS a la carpeta d'exàmens del professorat, en un\n% capsalera.tex que main.tex incorpora si hi és. Aquí, la macro no escriu\n% res, i per això els PDF del banc i el lloc web no ensenyen cap capçalera.\n\\providecommand{\\capsaleraexamen}{}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 1b. Ela geminada (l·l) ───────────────────────────────────────────\n% El punt volat es compon com un símbol solt i queda massa separat de les\n% eles: «paral · lela». Amb una mica de kerning, «paral·lela».\n\\DeclareUnicodeCharacter{00B7}{\\kern-0.1em\\textperiodcentered\\kern-0.1em}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n\n\\def\\bancversio{125cde18}\n",
+ "headers": "% =====================================================================\n%  headers.tex — Paquets i format de pàgina\n%  Matemàtiques II · 2n de Batxillerat\n%  ─────────────────────────────────────────────────────────────────────\n%  Aquest fitxer i defs.tex són la FONT ÚNICA del format del banc: els\n%  fan servir el build (per als PDF de cada pregunta), el lloc web (per\n%  als .tex que es baixen) i la carpeta d'exàmens del professorat.\n%  Un paquet nou s'afegeix AQUÍ, mai dins d'una pregunta, i es recompila\n%  tot el banc.\n% =====================================================================\n\n% ── Tipografia i idioma ──────────────────────────────────────────────\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage[catalan]{babel}\n\\usepackage{microtype}\n\n% ── Matemàtiques ─────────────────────────────────────────────────────\n\\usepackage{amsmath,amssymb}\n\n% ── Pàgina ───────────────────────────────────────────────────────────\n\\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2cm,right=2cm]{geometry}\n\\usepackage{fancyhdr}\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot[C]{\\small\\thepage}\n\\renewcommand{\\headrulewidth}{0pt}\n\n% ── Taules, llistes, figures ─────────────────────────────────────────\n\\usepackage{array}             % >{\\displaystyle} a graella, m{} a la capçalera\n\\usepackage{tabularx}          % taules d'amplada fixa\n\\usepackage[table]{xcolor}     % colors i \\cellcolor\n\\usepackage{graphicx}          % imatges (les fa servir la capçalera de la carpeta)\n\\usepackage{tikz}              % gràfiques\n\\usepackage{enumitem}          % entorn apartats\n\\usepackage{needspace}         % \\Needspace a \\encapcalament\n\\usepackage{comment}           % entorn solucio\n",
+ "defs": "% =====================================================================\n%  defs.tex — Macros del banc de preguntes\n%  ─────────────────────────────────────────────────────────────────────\n%  Va sempre després de headers.tex i abans de \\begin{document}, amb\n%  \\newif\\ifsolucions ja declarat. Vegeu headers.tex.\n% =====================================================================\n\n% ── 0. Segell de versió ──────────────────────────────────────────────\n% build.py hi afegeix, al final, \\def\\bancversio{...}. Cada examen que\n% baixa el lloc comença amb \\bancrequereix{...}: si el defs.tex és d'una\n% altra versió, LaTeX avisa i cal tornar a baixar l'entorn.\n\\makeatletter\n\\newcommand{\\bancrequereix}[1]{%\n  \\def\\bp@v{#1}%\n  \\ifx\\bp@v\\bancversio\\else\n    \\GenericWarning{}{Banc de preguntes: aquest defs.tex (\\bancversio) no és el\n      que va generar l'examen (#1). Torna a baixar headers.tex i defs.tex}%\n  \\fi}\n\\makeatother\n\n% ── 0b. Capçalera d'examen: buida al banc ────────────────────────────\n% El banc no porta cap dada de cap centre: ni logo, ni segell, ni curs, ni\n% departament. Això viu NOMÉS a la carpeta d'exàmens del professorat, en un\n% capsalera.tex que main.tex incorpora si hi és. Aquí, la macro no escriu\n% res, i per això els PDF del banc i el lloc web no ensenyen cap capçalera.\n\\providecommand{\\capsaleraexamen}{}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 1b. Ela geminada (l·l) ───────────────────────────────────────────\n% El punt volat es compon com un símbol solt i queda massa separat de les\n% eles: «paral · lela». Amb una mica de kerning, «paral·lela».\n\\DeclareUnicodeCharacter{00B7}{\\kern-0.1em\\textperiodcentered\\kern-0.1em}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n\n\\def\\bancversio{125cde18}\n",
+ "main": "% =====================================================================\n%  main.tex — Carpeta d'exàmens\n%  Compila amb:  pdflatex main.tex\n% =====================================================================\n\n\\documentclass[11pt,a4paper]{article}\n\n% Interruptor: \\solucionstrue → surten les solucions (full del professorat)\n\\newif\\ifsolucions \\solucionsfalse\n\n\\input{headers.tex}\n\\input{defs.tex}\n\n% La capçalera del centre (logo, curs, departament, casella de nota) NO és al\n% banc: viu aquí, a la teva carpeta. Si hi tens un capsalera.tex, s'incorpora;\n% si no, els exàmens surten sense capçalera.\n\\IfFileExists{capsalera.tex}{\\input{capsalera.tex}}{}\n\n\\begin{document}\n\\input{prova-1.tex}\n%\\input{prova-2.tex}\n\\end{document}\n",
+ "versio": "125cde18",
  "preguntes": [
   {
    "id": "pau/algebra/alg-26j-q2",
@@ -866,6 +906,48 @@ const BANC = {
    "pdf_solucio_curt": "u7/limits-trossos/q001/out/solucio-curt.pdf"
   },
   {
+   "id": "u7/limits-trossos/q002",
+   "unitat": "u7",
+   "tema": "limits-trossos",
+   "codi": "q002",
+   "titol": "Límits d'una funció a trossos amb un paràmetre: 0/0, laterals i infinit",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.25,
+    0.5
+   ],
+   "apartats_curt": [
+    1.0,
+    1.5
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    76,
+    88,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "a trossos",
+    "paràmetre",
+    "0/0",
+    "límits laterals"
+   ],
+   "temes_secundaris": [
+    "limits-punt"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\ng(x)=\\begin{cases}\n  \\dfrac{x^2-1}{x+1} & \\si{x<2},\\\\[8pt]\n  3x+k & \\si{x\\ge 2},\n\\end{cases}\n\\]\non $k$ és un nombre real.\n\n\\begin{apartats}\n\n\\apartat[1]{0,75}\nCalcula els límits següents:\n\\begin{graella}{2}\n  \\sa \\lim_{x\\to-1}g(x) & \\sa \\lim_{x\\to0}g(x)\n\\end{graella}\n\n\\begin{solucio}\nTots dos punts són a la branca $x<2$.\\\\\nEn $x=-1$ hi ha una indeterminació $0/0$:\n$\\dfrac{x^2-1}{x+1}=\\dfrac{(x+1)(x-1)}{x+1}=x-1\\to-2$.\nEl límit val $-2$, tot i que $g(-1)$ no existeix.\\\\\nEn $x=0$ se substitueix directament: $\\dfrac{-1}{1}=-1$.\n\\end{solucio}\n\n\\apartat[1,5]{1,25}\nCalcula, en funció de $k$, els límits laterals de $g$ en $x=2$. Per a quin valor de $k$\nexisteix $\\lim_{x\\to2}g(x)$? Quant val aquest límit?\n\n\\begin{solucio}\n$\\lim_{x\\to2^-}g(x)=\\dfrac{4-1}{2+1}=1$ \\quad i \\quad $\\lim_{x\\to2^+}g(x)=6+k$.\\\\\nEl límit existeix si i només si els dos laterals coincideixen: $6+k=1$, és a dir\n$\\boxed{k=-5}$. Aleshores $\\lim_{x\\to2}g(x)=1$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,5}\nPer a $k=-5$, calcula els límits següents:\n\\begin{graella}{2}\n  \\sa \\lim_{x\\to-\\infty}g(x) & \\sa \\lim_{x\\to+\\infty}g(x)\n\\end{graella}\n\n\\begin{solucio}\nQuan $x\\to-\\infty$ actua la primera branca, que per a $x\\ne-1$ és $x-1\\to-\\infty$.\\\\\nQuan $x\\to+\\infty$ actua la segona: $3x-5\\to+\\infty$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u7/limits-trossos/q002/out/enunciat.pdf",
+   "pdf_solucio": "u7/limits-trossos/q002/out/solucio.pdf",
+   "pdf_curt": "u7/limits-trossos/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/limits-trossos/q002/out/solucio-curt.pdf"
+  },
+  {
    "id": "u7/parametres-ab/q001",
    "unitat": "u7",
    "tema": "parametres-ab",
@@ -942,6 +1024,350 @@ const BANC = {
    "pdf_solucio": "u7/parametres-ab/q002/out/solucio.pdf",
    "pdf_curt": "u7/parametres-ab/q002/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u7/parametres-ab/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/derivada-definicio/q001",
+   "unitat": "u8",
+   "tema": "derivada-definicio",
+   "codi": "q001",
+   "titol": "Funció derivada per definició: un polinomi, una arrel i una racional",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    87,
+    88
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "definició de derivada",
+    "conjugat",
+    "racionals"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nAplicant la definició de derivada, calcula la funció derivada de\n\\[\nf(x)=2x^2-3x .\n\\]\n\n\\begin{solucio}\n\\[\nf'(x)=\\lim_{h\\to0}\\frac{2(x+h)^2-3(x+h)-\\left(2x^2-3x\\right)}{h}\n=\\lim_{h\\to0}\\frac{4xh+2h^2-3h}{h}=\\lim_{h\\to0}(4x+2h-3)=4x-3 .\n\\]\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nAplicant la definició de derivada, calcula la funció derivada de\n\\[\ng(x)=\\sqrt{x+3} .\n\\]\n\n\\begin{solucio}\nMultipliquem i dividim pel conjugat:\n\\[\n\\begin{aligned}\ng'(x)&=\\lim_{h\\to0}\\frac{\\sqrt{x+h+3}-\\sqrt{x+3}}{h}\n=\\lim_{h\\to0}\\frac{(x+h+3)-(x+3)}{h\\left(\\sqrt{x+h+3}+\\sqrt{x+3}\\right)}\\\\\n&=\\lim_{h\\to0}\\frac{1}{\\sqrt{x+h+3}+\\sqrt{x+3}}=\\frac{1}{2\\sqrt{x+3}} ,\n\\end{aligned}\n\\]\nper a $x>-3$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nAplicant la definició de derivada, calcula la funció derivada de\n\\[\nk(x)=\\frac{4}{x} .\n\\]\n\n\\begin{solucio}\n\\[\nk'(x)=\\lim_{h\\to0}\\frac{\\frac{4}{x+h}-\\frac{4}{x}}{h}\n=\\lim_{h\\to0}\\frac{4x-4(x+h)}{h\\,x(x+h)}\n=\\lim_{h\\to0}\\frac{-4}{x(x+h)}=-\\frac{4}{x^2} ,\n\\]\nper a $x\\neq0$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/derivada-definicio/q001/out/enunciat.pdf",
+   "pdf_solucio": "u8/derivada-definicio/q001/out/solucio.pdf",
+   "pdf_curt": "u8/derivada-definicio/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/derivada-definicio/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/recta-tangent/q001",
+   "unitat": "u8",
+   "tema": "recta-tangent",
+   "codi": "q001",
+   "titol": "Rectes tangent i normal, i una tangent amb un paràmetre",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    40,
+    41
+   ],
+   "minuts": 16,
+   "minuts_curt": 10,
+   "etiquetes": [
+    "recta tangent",
+    "recta normal",
+    "paràmetre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^3-2x+1 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba l'equació de la recta tangent a la gràfica de $f$ en el punt d'abscissa $x=1$.\n\n\\begin{solucio}\n$f(1)=1-2+1=0$ i $f'(x)=3x^2-2$, d'on $f'(1)=1$.\\\\\nTangent: $y-f(1)=f'(1)(x-1)$, és a dir $y=x-1$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba l'equació de la recta normal a la gràfica de $f$ en el mateix punt.\n\n\\begin{solucio}\nLa normal és perpendicular a la tangent: el seu pendent és $-\\dfrac{1}{f'(1)}=-1$.\\\\\nNormal: $y-0=-(x-1)$, és a dir $y=-x+1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nLa gràfica de $g(x)=x^2+ax-4$ passa pel punt $P(2,6)$. Troba $a$ i l'equació de la recta\ntangent a la gràfica de $g$ en $P$.\n\n\\begin{solucio}\n$g(2)=4+2a-4=2a=6$, d'on $\\boxed{a=3}$.\\\\\n$g'(x)=2x+3$ i $g'(2)=7$. Tangent: $y-6=7(x-2)$, és a dir $y=7x-8$.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u8/recta-tangent/q001/out/enunciat.pdf",
+   "pdf_solucio": "u8/recta-tangent/q001/out/solucio.pdf",
+   "pdf_curt": "u8/recta-tangent/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/recta-tangent/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/recta-tangent/q002",
+   "unitat": "u8",
+   "tema": "recta-tangent",
+   "codi": "q002",
+   "titol": "Rectes tangent i normal en el tall amb l'eix d'abscisses, i tangent a x ln x",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    21,
+    46
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "recta tangent",
+    "recta normal",
+    "racionals"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba l'equació de la recta tangent a la gràfica de\n\\[\nf(x)=\\frac{x-3}{x+1}\n\\]\nen el punt on talla l'eix d'abscisses.\n\n\\begin{solucio}\n$f(x)=0\\iff x=3$: el punt és $(3,0)$.\\\\\n$f'(x)=\\dfrac{(x+1)-(x-3)}{(x+1)^2}=\\dfrac{4}{(x+1)^2}$, d'on $f'(3)=\\dfrac{4}{16}=\\dfrac14$.\\\\\nTangent: $y=\\dfrac14(x-3)$, és a dir $y=\\dfrac{x}{4}-\\dfrac34$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba l'equació de la recta normal a la gràfica de $f$ en aquest mateix punt.\n\n\\begin{solucio}\nPendent de la normal: $-\\dfrac{1}{1/4}=-4$. Normal: $y=-4(x-3)$, és a dir $y=-4x+12$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nTroba l'equació de la recta tangent a la gràfica de $g(x)=x\\ln x$ en el punt d'abscissa\n$x=e$.\n\n\\begin{solucio}\n$g(e)=e\\ln e=e$. $g'(x)=\\ln x+x\\cdot\\dfrac1x=\\ln x+1$, d'on $g'(e)=2$.\\\\\nTangent: $y-e=2(x-e)$, és a dir $y=2x-e$.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u8/recta-tangent/q002/out/enunciat.pdf",
+   "pdf_solucio": "u8/recta-tangent/q002/out/solucio.pdf",
+   "pdf_curt": "u8/recta-tangent/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/recta-tangent/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/regla-cadena/q001",
+   "unitat": "u8",
+   "tema": "regla-cadena",
+   "codi": "q001",
+   "titol": "Regla de la cadena: potències, exponencials, logaritmes i trigonomètriques",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    93,
+    97
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "regla de la cadena",
+    "logaritmes",
+    "trigonomètriques"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDeriva les funcions següents:\n\\begin{graella}{2}\n  \\sa f(x)=\\left(3x^2-1\\right)^4 & \\sa g(x)=e^{x^2+2x}\n\\end{graella}\n\n\\begin{solucio}\ni) $f'(x)=4\\left(3x^2-1\\right)^3\\cdot6x=24x\\left(3x^2-1\\right)^3$.\\\\\nii) $g'(x)=(2x+2)\\,e^{x^2+2x}$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nDeriva les funcions següents i simplifica'n el resultat:\n\\begin{graella}{2}\n  \\sa h(x)=\\ln\\left(x^3+2x\\right) & \\sa k(x)=\\ln\\sqrt{2x^2+1}\n\\end{graella}\n\n\\begin{solucio}\ni) $h'(x)=\\dfrac{3x^2+2}{x^3+2x}$.\\\\\nii) Com que $k(x)=\\tfrac12\\ln\\left(2x^2+1\\right)$,\n$k'(x)=\\dfrac12\\cdot\\dfrac{4x}{2x^2+1}=\\dfrac{2x}{2x^2+1}$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDeriva la funció\n\\[\nm(x)=\\sin^2(3x)\n\\]\ni calcula $m'\\!\\left(\\frac{\\pi}{12}\\right)$.\n\n\\begin{solucio}\n$m'(x)=2\\sin(3x)\\cdot\\cos(3x)\\cdot3=6\\sin(3x)\\cos(3x)$.\\\\\nEn $x=\\frac{\\pi}{12}$, $3x=\\frac{\\pi}{4}$:\n$m'\\!\\left(\\dfrac{\\pi}{12}\\right)=6\\cdot\\dfrac{\\sqrt2}{2}\\cdot\\dfrac{\\sqrt2}{2}=3$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/regla-cadena/q001/out/enunciat.pdf",
+   "pdf_solucio": "u8/regla-cadena/q001/out/solucio.pdf",
+   "pdf_curt": "u8/regla-cadena/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/regla-cadena/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/regles-derivacio/q001",
+   "unitat": "u8",
+   "tema": "regles-derivacio",
+   "codi": "q001",
+   "titol": "Regles de derivació: sumes, productes i quocients",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    86,
+    92,
+    93
+   ],
+   "minuts": 16,
+   "minuts_curt": 10,
+   "etiquetes": [
+    "regles de derivació",
+    "producte",
+    "quocient"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDeriva les funcions següents:\n\\begin{graella}{2}\n  \\sa f(x)=4\\sqrt{x}-\\frac{3}{x}+2 & \\sa g(x)=x^3-5\\ln x+e^{x}\n\\end{graella}\n\n\\begin{solucio}\ni) $f(x)=4x^{1/2}-3x^{-1}+2$, i per tant $f'(x)=\\dfrac{2}{\\sqrt{x}}+\\dfrac{3}{x^2}$.\\\\\nii) $g'(x)=3x^2-\\dfrac{5}{x}+e^{x}$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nDeriva les funcions següents:\n\\begin{graella}{2}\n  \\sa h(x)=x^2e^{x} & \\sa k(x)=\\frac{x^2+1}{x-2}\n\\end{graella}\n\n\\begin{solucio}\ni) Derivada d'un producte: $h'(x)=2x\\,e^{x}+x^2e^{x}=\\left(x^2+2x\\right)e^{x}$.\\\\\nii) Derivada d'un quocient:\n$k'(x)=\\dfrac{2x(x-2)-\\left(x^2+1\\right)}{(x-2)^2}=\\dfrac{x^2-4x-1}{(x-2)^2}$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDeriva la funció\n\\[\nm(x)=x^2\\sin x\n\\]\ni calcula $m'(\\pi)$.\n\n\\begin{solucio}\n$m'(x)=2x\\sin x+x^2\\cos x$, i $m'(\\pi)=2\\pi\\cdot0+\\pi^2\\cdot(-1)=-\\pi^2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/regles-derivacio/q001/out/enunciat.pdf",
+   "pdf_solucio": "u8/regles-derivacio/q001/out/solucio.pdf",
+   "pdf_curt": "u8/regles-derivacio/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/regles-derivacio/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/regles-derivacio/q002",
+   "unitat": "u8",
+   "tema": "regles-derivacio",
+   "codi": "q002",
+   "titol": "Regles de derivació: arrels, exponencials, logaritmes, productes i quocients",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    86,
+    92,
+    93
+   ],
+   "minuts": 16,
+   "minuts_curt": 10,
+   "etiquetes": [
+    "regles de derivació",
+    "exponencials",
+    "logaritmes"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDeriva les funcions següents:\n\\begin{graella}{2}\n  \\sa f(x)=2x^5-\\sqrt[3]{x} & \\sa g(x)=3\\cdot2^{x}+\\log_2 x\n\\end{graella}\n\n\\begin{solucio}\ni) $f(x)=2x^5-x^{1/3}$, i per tant $f'(x)=10x^4-\\dfrac{1}{3\\sqrt[3]{x^2}}$.\\\\\nii) $g'(x)=3\\cdot2^{x}\\ln2+\\dfrac{1}{x\\ln2}$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nDeriva les funcions següents:\n\\begin{graella}{2}\n  \\sa h(x)=(3x-1)\\ln x & \\sa k(x)=\\frac{e^{x}}{x+1}\n\\end{graella}\n\n\\begin{solucio}\ni) $h'(x)=3\\ln x+(3x-1)\\cdot\\dfrac1x=3\\ln x+3-\\dfrac1x$.\\\\\nii) $k'(x)=\\dfrac{e^{x}(x+1)-e^{x}}{(x+1)^2}=\\dfrac{x\\,e^{x}}{(x+1)^2}$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDeriva la funció\n\\[\nm(x)=\\frac{\\sin x}{x}\n\\]\ni calcula $m'\\!\\left(\\frac{\\pi}{2}\\right)$.\n\n\\begin{solucio}\n$m'(x)=\\dfrac{x\\cos x-\\sin x}{x^2}$, i\n$m'\\!\\left(\\dfrac{\\pi}{2}\\right)=\\dfrac{\\frac{\\pi}{2}\\cdot0-1}{\\pi^2/4}=-\\dfrac{4}{\\pi^2}$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/regles-derivacio/q002/out/enunciat.pdf",
+   "pdf_solucio": "u8/regles-derivacio/q002/out/solucio.pdf",
+   "pdf_curt": "u8/regles-derivacio/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/regles-derivacio/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/tangent-condicions/q001",
+   "unitat": "u8",
+   "tema": "tangent-condicions",
+   "codi": "q001",
+   "titol": "Tangents paral·leles a una recta donada i tangents horitzontals",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    54
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "recta tangent",
+    "rectes paral·leles",
+    "tangent horitzontal"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^3-3x+2 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba els punts de la gràfica de $f$ en què la recta tangent és paral·lela a la recta\n$y=9x-4$.\n\n\\begin{solucio}\nRectes paral·leles tenen el mateix pendent: cal $f'(x)=9$.\\\\\n$f'(x)=3x^2-3=9\\iff x^2=4\\iff x=\\pm2$.\\\\\n$f(2)=8-6+2=4$ i $f(-2)=-8+6+2=0$: els punts són $\\boxed{(2,4)}$ i $\\boxed{(-2,0)}$.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nEscriu les equacions de les rectes tangents en aquests punts.\n\n\\begin{solucio}\nEn $(2,4)$: $y-4=9(x-2)$, és a dir $y=9x-14$.\\\\\nEn $(-2,0)$: $y=9(x+2)$, és a dir $y=9x+18$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els punts de la gràfica de $f$ en què la recta tangent és horitzontal.\n\n\\begin{solucio}\nTangent horitzontal vol dir pendent $0$: $f'(x)=3x^2-3=0\\iff x=\\pm1$.\\\\\n$f(1)=0$ i $f(-1)=4$: els punts són $(1,0)$ i $(-1,4)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/tangent-condicions/q001/out/enunciat.pdf",
+   "pdf_solucio": "u8/tangent-condicions/q001/out/solucio.pdf",
+   "pdf_curt": "u8/tangent-condicions/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/tangent-condicions/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/tangent-condicions/q002",
+   "unitat": "u8",
+   "tema": "tangent-condicions",
+   "codi": "q002",
+   "titol": "Tangent a una racional, triangle amb els eixos i tangents paral·leles",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    54,
+    58
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "recta tangent",
+    "àrea",
+    "rectes paral·leles"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=\\frac{x+3}{x-1} .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba l'equació de la recta tangent a la gràfica de $f$ en el punt d'abscissa $x=3$.\n\n\\begin{solucio}\n$f(3)=\\dfrac{6}{2}=3$. $f'(x)=\\dfrac{(x-1)-(x+3)}{(x-1)^2}=\\dfrac{-4}{(x-1)^2}$, d'on\n$f'(3)=-1$.\\\\\nTangent: $y-3=-(x-3)$, és a dir $y=-x+6$.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nCalcula l'àrea del triangle que aquesta recta tangent forma amb els eixos de coordenades.\n\n\\begin{solucio}\nLa recta $y=-x+6$ talla els eixos en $(6,0)$ i $(0,6)$. El triangle és rectangle, amb catets\nde longitud $6$: l'àrea és $\\dfrac{6\\cdot6}{2}=\\boxed{18}$ unitats quadrades.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nHi ha algun altre punt de la gràfica de $f$ en què la recta tangent sigui paral·lela a\naquesta? Si n'hi ha, troba'l.\n\n\\begin{solucio}\nCal $f'(x)=-1$: $\\dfrac{-4}{(x-1)^2}=-1\\iff(x-1)^2=4\\iff x=3$ o $x=-1$.\\\\\nSí: el punt d'abscissa $x=-1$, que és $\\left(-1,f(-1)\\right)=(-1,-1)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/tangent-condicions/q002/out/enunciat.pdf",
+   "pdf_solucio": "u8/tangent-condicions/q002/out/solucio.pdf",
+   "pdf_curt": "u8/tangent-condicions/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/tangent-condicions/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u8/tvm-derivada-punt/q001",
+   "unitat": "u8",
+   "tema": "tvm-derivada-punt",
+   "codi": "q001",
+   "titol": "Taxa de variació mitjana i derivada en un punt per definició",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    30,
+    32,
+    37
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "TVM",
+    "definició de derivada",
+    "polinomis"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^2-4x+1 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula la taxa de variació mitjana de $f$ als intervals $[1,3]$ i $[3,5]$, i interpreta'n el\nresultat.\n\n\\begin{solucio}\n$f(1)=-2$, $f(3)=-2$ i $f(5)=6$.\\\\\n$\\mathrm{TVM}[1,3]=\\dfrac{f(3)-f(1)}{3-1}=\\dfrac{-2-(-2)}{2}=0$: entre $x=1$ i $x=3$ la\nfunció acaba on havia començat, i en mitjana no creix ni decreix.\\\\\n$\\mathrm{TVM}[3,5]=\\dfrac{f(5)-f(3)}{5-3}=\\dfrac{6-(-2)}{2}=4$: en aquest interval la funció\ncreix, en mitjana, $4$ unitats per cada unitat de $x$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nCalcula $f'(3)$ aplicant la definició de derivada.\n\n\\begin{solucio}\n\\[\nf'(3)=\\lim_{h\\to0}\\frac{f(3+h)-f(3)}{h}\n=\\lim_{h\\to0}\\frac{(3+h)^2-4(3+h)+1-(-2)}{h}\n=\\lim_{h\\to0}\\frac{h^2+2h}{h}=\\lim_{h\\to0}(h+2)=2 .\n\\]\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula la taxa de variació mitjana de $f$ a l'interval $[3;\\,3{,}1]$ i compara-la amb\n$f'(3)$. Com s'explica el resultat?\n\n\\begin{solucio}\n$f(3{,}1)=9{,}61-12{,}4+1=-1{,}79$, i\n$\\mathrm{TVM}[3;\\,3{,}1]=\\dfrac{-1{,}79-(-2)}{0{,}1}=\\dfrac{0{,}21}{0{,}1}=2{,}1$.\\\\\nÉs molt a prop de $f'(3)=2$: la derivada és el límit de les taxes de variació mitjanes als\nintervals $[3,3+h]$ quan $h\\to0$. Aquí, $\\mathrm{TVM}[3,3+h]=h+2$, que per a $h=0{,}1$ val\n$2{,}1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u8/tvm-derivada-punt/q001/out/enunciat.pdf",
+   "pdf_solucio": "u8/tvm-derivada-punt/q001/out/solucio.pdf",
+   "pdf_curt": "u8/tvm-derivada-punt/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u8/tvm-derivada-punt/q001/out/solucio-curt.pdf"
   }
  ]
 };
