@@ -41,6 +41,7 @@ def edita_meta(canvi):
 
 
 QP = "pau/analisi/ana-26j-q1"
+QM = "u7/limits-punt/q001"      # té versió de 50 min
 
 
 def mou(de, a):
@@ -113,6 +114,26 @@ AVARIES = [
      mou("u7/limits-punt/q001", "pau/limits-punt/q001"), "pertany a «u7»"),
     ("meta.json que no és JSON",
      lambda r: meta(r).write_text("{ titol: sense cometes }", encoding="utf-8"), "JSON vàlid"),
+    # ── modalitats: la pregunta pilot és la primera amb versió de 50 min ──
+    ("punts de 50 min que no sumen 2,50",
+     edita_text(f"{QM}/pregunta.tex", r"\apartat[1,25]{1}", r"\apartat[1]{1}"),
+     "a l'examen de 50 min, els apartats sumen"),
+    ("puntuació de 50 min dins de nomesllarg",
+     edita_text(f"{QM}/pregunta.tex", "\\begin{nomesllarg}\n\\apartat{0,75}",
+                "\\begin{nomesllarg}\n\\apartat[0,75]{0,75}"), "no hi pot dur puntuació"),
+    ("\\end{nomesllarg} enganxat a text",
+     edita_text(f"{QM}/pregunta.tex", "\\end{nomesllarg}", "Fi. \\end{nomesllarg}"),
+     "\\end{nomesllarg} ha d'anar sol"),
+    ("nomesllarg sense tancar",
+     edita_text(f"{QM}/pregunta.tex", "\\end{nomesllarg}\n", ""), "sense tancar"),
+    ("versió de 50 min sense minuts_curt",
+     edita_json(f"{QM}/meta.json", lambda m: m.pop("minuts_curt")), "falta «minuts_curt»"),
+    ("minuts_curt més gran que minuts",
+     edita_json(f"{QM}/meta.json", lambda m: m.update(minuts_curt=99)), "no pot ser més gran"),
+    ("minuts_curt sense versió de 50 min",
+     edita_meta(lambda m: m.update(minuts_curt=5)), "sense versió de 50 min"),
+    ("marcador %%MODE%% dins d'una pregunta",
+     edita_tex(r"\apartat{1,25}", "%%MODE%%\n\\apartat{1,25}"), "marcador reservat %%MODE%%"),
 ]
 
 

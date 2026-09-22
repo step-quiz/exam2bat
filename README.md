@@ -32,9 +32,13 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
    la separa (1, 2, 3, 4, 5); a qualsevol altra, la converteix en una alternativa de
    l'anterior. Una opció compta una sola vegada als punts, i als minuts es compta la més
    llarga.
-6. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
-   sola.
-7. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les
+6. **Durada.** A dalt de l'examen tries **1 h 30** o **50 min**. A 50 min, cada pregunta fa
+   servir la seva versió de 50 min: menys apartats i els punts repartits de nou. Si no en té,
+   hi va sencera i la targeta ho diu amb l'etiqueta «sencera». El comptador compara els
+   minuts amb la durada triada.
+7. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
+   sola. Tot segueix la durada triada.
+8. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les
    solucions intercalades. Cada pregunta hi porta la seva etiqueta, per exemple «Pregunta
    4a». El comptador es posa verd quan l'examen fa 10 punts.
 
@@ -44,8 +48,9 @@ L'examen queda desat a l'adreça, i es pot guardar als marcadors i recuperar exa
 index.html#analisi:ana-26j-q1,algebra:alg-26j-q2,probabilitat:pro-26j-q3,analisi:ana-26j-q4a|geometria:geo-26j-q4b
 ```
 
-La coma separa preguntes i la barra uneix les opcions d'una mateixa pregunta. Les adreces
-desades abans d'haver-hi opcions continuen funcionant.
+La coma separa preguntes i la barra uneix les opcions d'una mateixa pregunta. Un examen de
+50 min porta el prefix `50min/` (`index.html#50min/limits-punt:q001,…`). Les adreces desades
+abans continuen funcionant: són exàmens d'1 h 30.
 
 Les targetes PAU porten un accent taronja, la procedència i la llista d'unitats que la classe
 ha d'haver fet per poder resoldre la pregunta sencera («cal haver fet: u7 · u8 · u12»).
@@ -73,10 +78,11 @@ El projecte segueix cinc principis. Totes les decisions de disseny en surten.
    desades i els exàmens ja muntats en depenen.
 
 ```
- pregunta.tex ─┐                      ┌─► out/enunciat.pdf
- meta.json    ─┼─► build/build.py ───┼─► out/solucio.pdf
- temes.json   ─┤   (valida, compila)  └─► cataleg.js ──► index.html + assets/app.js
- pau/convocatories.json ─┘                                 (tria, previsualitza, munta .tex)
+ pregunta.tex ─┐                      ┌─► out/enunciat.pdf, out/solucio.pdf
+ meta.json    ─┼─► build/build.py ───┼─► out/enunciat-curt.pdf, out/solucio-curt.pdf
+ temes.json   ─┤   (valida, compila)  │    (només si té versió de 50 min)
+ pau/convocatories.json ─┘            └─► cataleg.js ──► index.html + assets/app.js
+                                                          (tria, previsualitza, munta .tex)
 ```
 
 ---
@@ -152,14 +158,15 @@ El procediment complet per importar una convocatòria és a `handout.md`.
 |---|---|---|
 | 1 | Les fonts són `pregunta.tex` i `meta.json`. `out/` i `cataleg.js` són **generats**: no s'editen mai. | l'Action els sobreescriu |
 | 2 | Tota pregunta val **2,50 punts**. Cada apartat és múltiple de **0,25**. | `build.py` |
-| 3 | La puntuació s'escriu **només** a `\apartat{...}`. Enlloc més. | `build.py` la llegeix del `.tex` |
+| 3 | La puntuació s'escriu **només** a `\apartat{...}`. Enlloc més. L'opcional és la de 50 min: `\apartat[1,25]{0,75}`. Les dues puntuacions sumen 2,50. | `build.py` la llegeix del `.tex` |
 | 4 | Una pregunta és **només el cos**: sense `\documentclass`, `\usepackage` ni `\begin{document}`. | `build.py` |
 | 5 | Hi ha **un sol preàmbul**, `build/preambul.tex`. Un paquet nou s'hi afegeix allà i es recompila tot. | `build.py` |
 | 6 | Els codis `q001`, `q002`… són **permanents**: mai es renumeren ni es reaprofiten. | tu |
-| 7 | `\end{solucio}` va **sol a la seva línia**. | `build.py` |
+| 7 | `\end{solucio}`, `\begin{nomesllarg}` i `\end{nomesllarg}` van **sols a la seva línia**. | `build.py` |
 | 8 | Tota graella de TikZ declara el pas: `grid` sempre amb `step=1` (o el que calgui). Sense, TikZ fa passos d'1 cm i la graella queda desquadrada respecte dels enters. | `build.py` |
 | 9 | La línia «PAU juny 2026, sèrie 1» **no s'escriu mai a mà**: la posa el build a partir del codi de la pregunta i de `pau/convocatories.json`. | `build.py` |
 | 10 | Una sèrie entra al registre **només amb font**. Una dada sense font no s'imprimeix en un examen. | `build.py` |
+| 11 | La versió de 50 min la decideix **qui escriu la pregunta**: quins apartats es treuen (`nomesllarg`) i com es reparteixen els punts. Amb versió de 50 min, `meta.json` porta `minuts_curt`; sense, no el porta. | `build.py` |
 
 A més, el build comprova: que els slugs de `temes.json` siguin únics; que cada tema sigui a
 la carpeta de la seva unitat; que el format dels codis sigui correcte (`q001` al banc,
@@ -172,6 +179,8 @@ convocatòria existeixi al registre.
 |---|---|
 | `\begin{apartats} … \end{apartats}` | llista a) b) c) |
 | `\apartat{0,75}` | **a)** *(0,75 punts)* |
+| `\apartat[1,25]{0,75}` | 0,75 punts a l'examen d'1 h 30 i 1,25 al de 50 min |
+| `\begin{nomesllarg} … \end{nomesllarg}` | un apartat sencer, amb la seva solució, que només surt a l'examen d'1 h 30; els de després es tornen a lletrejar sols |
 | `\begin{graella}{3} \sa … & \sa … \end{graella}` | i) ii) iii) en columnes, amb els `\lim` en mode display |
 | `\si{-1\le x\le 2}` dins de `cases` | «si −1 ≤ x ≤ 2», amb el signe ben espaiat |
 | `\begin{solucio} … \end{solucio}` | només apareix a la versió amb solucions, en blau |
@@ -195,7 +204,9 @@ Una pregunta del banc:
 ```
 
 `origen` són els exercicis del llibre que inspiren la pregunta. `dificultat` és `●○○`, `●●○`
-o `●●●`. El tema principal és la carpeta on viu la pregunta.
+o `●●●`. El tema principal és la carpeta on viu la pregunta. `minuts` és el temps a l'examen
+d'1 h 30. Si la pregunta té versió de 50 min, `minuts_curt` n'és el temps (per exemple,
+`"minuts": 20, "minuts_curt": 11`).
 
 Una pregunta PAU no té `origen` ni `temes_secundaris`. En lloc d'això té `unitats`, que diu
 fins on ha d'haver arribat la classe per poder-la fer sencera. Si la llista és buida, el
@@ -216,7 +227,7 @@ build avisa.
 ## Proves
 
 ```
-python3 build/prova_validacio.py   # 21 avaries provocades: cadascuna ha de fer fallar el build
+python3 build/prova_validacio.py   # 29 avaries provocades: cadascuna ha de fer fallar el build
 python3 build/prova_sortida.py     # un build que falla no escriu res (no cal TeX)
 python3 build/build.py             # valida i compila (cal TeX Live)
 python3 build/prova_paritat.py     # el .tex del lloc = el del build, byte a byte (cal Node)

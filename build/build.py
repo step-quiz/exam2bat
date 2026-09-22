@@ -11,6 +11,10 @@
 #                        definitius; el catàleg porta sempre l'oficial.
 #    --pregunta RUTA     compila només les preguntes que la contenen
 #
+#  Modalitats: cada pregunta té una versió per a l'examen d'1 h 30 i, si
+#  el .tex la defineix (\apartat[50 min]{1 h 30} i nomesllarg), una altra
+#  per al de 50 min, amb els seus PDF (enunciat-curt.pdf, solucio-curt.pdf).
+#
 #  El build FALLA (codi 1) i no escriu res si hi ha cap error: ni PDF ni
 #  catàleg. Els PDF es compilen en una carpeta temporal i només es copien
 #  a out/ al final, quan ja se sap que tot és correcte. És deliberat: val
@@ -36,6 +40,9 @@ CLAUS_META = {
     "origen": list, "minuts": int, "etiquetes": list,
 }
 DIFICULTATS = {"●○○", "●●○", "●●●"}
+# Claus que poden faltar. minuts_curt: minuts a l'examen de 50 min; és
+# obligatòria si la pregunta té versió de 50 min, i prohibida si no en té.
+OPCIONALS_META = {"minuts_curt": int}
 
 # Preguntes PAU: viuen a pau/<bloc>/<codi>/ i el codi és l'identificador del
 # repositori pau (p. ex. ana-26j-q1). Del codi se'n dedueix la convocatòria,
@@ -61,18 +68,20 @@ def avis(on: str, msg: str) -> None:
 
 
 # ── assemblatge ────────────────────────────────────────────────────────
-def munta(plantilla: str, preambul: str, cossos: list[str], solucions: bool) -> str:
+def munta(plantilla: str, preambul: str, cossos: list[str], solucions: bool,
+          curt: bool = False) -> str:
     """Construeix un .tex complet. El lloc web fa EXACTAMENT això mateix
     amb la mateixa plantilla; per això la plantilla és un fitxer i no
     està escrita dins del codi."""
     # count=1: el mateix que String.replace de JavaScript (només la primera).
     return (plantilla
             .replace("%%SOLUCIONS%%", r"\solucionstrue" if solucions else r"\solucionsfalse", 1)
+            .replace("%%MODE%%", r"\curttrue" if curt else r"\curtfalse", 1)
             .replace("%%PREAMBUL%%", preambul, 1)
             .replace("%%COS%%", "\n\n".join(cossos), 1))
 
 
-MARCADORS = ("%%SOLUCIONS%%", "%%PREAMBUL%%", "%%COS%%")
+MARCADORS = ("%%SOLUCIONS%%", "%%MODE%%", "%%PREAMBUL%%", "%%COS%%")
 
 
 def valida_plantilla(plantilla: str) -> None:
@@ -97,24 +106,78 @@ def cos_amb_capcalera(tex: str, etiqueta: str, procedencia: str | None = None) -
 
 
 # ── validació ──────────────────────────────────────────────────────────
-def punts_del_tex(tex: str, on: str) -> list[int]:
-    """Llegeix els \\apartat{...}. La puntuació viu al .tex i enlloc més."""
-    cent: list[int] = []
-    for brut in re.findall(r"\\apartat\{([^}]*)\}", tex):
-        net = brut.strip().replace(",", ".")
-        try:
-            valor = round(float(net) * 100)
-        except ValueError:
-            error(on, f"\\apartat{{{brut}}} no és un nombre")
+RE_APARTAT = re.compile(r"\\apartat(?:\[([^\]]*)\])?\{([^}]*)\}")
+RE_NOMESLLARG = re.compile(r"\\(begin|end)\{nomesllarg\}")
+
+
+def centesimes(brut: str, on: str, com: str) -> int | None:
+    """«1,25» → 125. Els punts es compten en centèsimes per no arrossegar decimals."""
+    try:
+        valor = round(float(brut.strip().replace(",", ".")) * 100)
+    except ValueError:
+        error(on, f"{com} no és un nombre")
+        return None
+    if valor % GRA:
+        error(on, f"{com} no és múltiple de 0,25")
+    return valor
+
+
+def trams_nomesllarg(tex: str, on: str) -> list[tuple[int, int]]:
+    """Posicions [inici, final) del contingut de cada bloc nomesllarg."""
+    trams: list[tuple[int, int]] = []
+    obert = None
+    for m in RE_NOMESLLARG.finditer(tex):
+        if m.group(1) == "begin":
+            if obert is not None:
+                error(on, "hi ha un nomesllarg dins d'un altre")
+            obert = m.end()
+        elif obert is None:
+            error(on, r"\end{nomesllarg} sense \begin{nomesllarg}")
+        else:
+            trams.append((obert, m.start()))
+            obert = None
+    if obert is not None:
+        error(on, r"\begin{nomesllarg} sense tancar")
+    return trams
+
+
+def punts_del_tex(tex: str, on: str) -> tuple[list[int], list[int], bool]:
+    """Llegeix els \\apartat[50 min]{1 h 30}. La puntuació viu al .tex i enlloc
+    més. Torna els punts de l'examen d'1 h 30, els de l'examen de 50 min (sense
+    els apartats de nomesllarg) i si la versió de 50 min és diferent."""
+    trams = trams_nomesllarg(tex, on)
+    llarg: list[int] = []
+    curt: list[int] = []
+    diferent = bool(trams)
+    for m in RE_APARTAT.finditer(tex):
+        opcional, brut = m.group(1), m.group(2)
+        valor = centesimes(brut, on, f"\\apartat{{{brut}}}")
+        if valor is None:
             continue
-        if valor % GRA:
-            error(on, f"\\apartat{{{brut}}} no és múltiple de 0,25")
-        cent.append(valor)
-    if not cent:
+        llarg.append(valor)
+        if any(a <= m.start() < b for a, b in trams):
+            if opcional is not None:
+                error(on, "un apartat de nomesllarg no surt a l'examen de 50 min: "
+                          "no hi pot dur puntuació entre claudàtors")
+            continue
+        if opcional is None:
+            curt.append(valor)
+        else:
+            diferent = True
+            v = centesimes(opcional, on, f"\\apartat[{opcional}]")
+            if v is not None:
+                curt.append(v)
+    if not llarg:
         error(on, "no hi ha cap \\apartat{...}")
-    elif sum(cent) != PUNTS_PREGUNTA:
-        error(on, f"els apartats sumen {sum(cent)/100:.2f} i han de sumar 2,50")
-    return cent
+    elif sum(llarg) != PUNTS_PREGUNTA:
+        error(on, f"els apartats sumen {sum(llarg)/100:.2f} i han de sumar 2,50")
+    if diferent and llarg:
+        if not curt:
+            error(on, "a l'examen de 50 min no hi queda cap apartat")
+        elif sum(curt) != PUNTS_PREGUNTA:
+            error(on, f"a l'examen de 50 min, els apartats sumen {sum(curt)/100:.2f} "
+                      "i han de sumar 2,50")
+    return llarg, curt, diferent
 
 
 def valida_tex(tex: str, on: str) -> None:
@@ -125,9 +188,11 @@ def valida_tex(tex: str, on: str) -> None:
     tanca = len(re.findall(r"\\end\{solucio\}", tex))
     if obre != tanca:
         error(on, f"{obre} \\begin{{solucio}} i {tanca} \\end{{solucio}}")
-    for linia in tex.splitlines():
-        if r"\end{solucio}" in linia and linia.strip() != r"\end{solucio}":
-            error(on, r"\end{solucio} ha d'anar sol a la seva línia")
+    # El paquet comment exigeix que aquestes línies no portin res més.
+    for ordre in (r"\end{solucio}", r"\begin{nomesllarg}", r"\end{nomesllarg}"):
+        for linia in tex.splitlines():
+            if ordre in linia and linia.strip() != ordre:
+                error(on, f"{ordre} ha d'anar sol a la seva línia")
     if obre == 0:
         avis(on, "no té solució")
     if r"\procedencia" in tex:
@@ -147,8 +212,11 @@ def valida_meta(meta: dict, on: str, slugs: set[str], esquema: dict = CLAUS_META
             error(on, f"falta la clau «{clau}» a meta.json")
         elif not isinstance(meta[clau], tipus):
             error(on, f"«{clau}» hauria de ser {tipus.__name__}")
-    for extra in set(meta) - set(esquema):
+    for extra in set(meta) - set(esquema) - set(OPCIONALS_META):
         error(on, f"clau desconeguda a meta.json: «{extra}»")
+    for clau, tipus in OPCIONALS_META.items():
+        if clau in meta and not isinstance(meta[clau], tipus):
+            error(on, f"«{clau}» hauria de ser {tipus.__name__}")
     if meta.get("dificultat") not in DIFICULTATS:
         error(on, "«dificultat» ha de ser ●○○, ●●○ o ●●●")
     if esquema is CLAUS_META_PAU:
@@ -302,7 +370,14 @@ def construeix(provisional: Path) -> int:
         for m in MARCADORS:
             if m in tex:
                 error(on, f"conté el marcador reservat {m}")
-        apartats = punts_del_tex(tex, on)
+        apartats, apartats_curt, te_curt = punts_del_tex(tex, on)
+        if te_curt and "minuts_curt" not in meta:
+            error(on, "té versió de 50 min: falta «minuts_curt» a meta.json")
+        if not te_curt and "minuts_curt" in meta:
+            error(on, "«minuts_curt» sense versió de 50 min (cap \\apartat[..] ni nomesllarg)")
+        if isinstance(meta.get("minuts_curt"), int) and isinstance(meta.get("minuts"), int) \
+                and meta["minuts_curt"] > meta["minuts"]:
+            error(on, "«minuts_curt» no pot ser més gran que «minuts»")
 
         compilar = not args.nomes_cataleg and (args.pregunta is None or args.pregunta in ident)
         if compilar:
@@ -315,18 +390,29 @@ def construeix(provisional: Path) -> int:
                     provisional / ident / "out" / "solucio.pdf", on)
             if pagines and pagines > 1:
                 avis(on, f"l'enunciat ocupa {pagines} pàgines")
+            if te_curt:
+                pagines_curt = compila(munta(plantilla, preambul_compila, [cos], False, curt=True),
+                                       provisional / ident / "out" / "enunciat-curt.pdf", on)
+                compila(munta(plantilla, preambul_compila, [cos], True, curt=True),
+                        provisional / ident / "out" / "solucio-curt.pdf", on)
+                if pagines_curt and pagines_curt > 1:
+                    avis(on, f"l'enunciat de 50 min ocupa {pagines_curt} pàgines")
             estat = "✓" if not any(e.startswith(on + ":") for e in errors) else "✗"
             print(f"  {estat} {ident:<40} {' + '.join(f'{a/100:.2f}' for a in apartats):<22}"
-                  f" {pagines or '?'} pàg.")
+                  f" {pagines or '?'} pàg."
+                  + (f"  · 50 min: {' + '.join(f'{a/100:.2f}' for a in apartats_curt)}" if te_curt else ""))
 
         preguntes.append({
             "id": ident, "unitat": unitat, "tema": tema, "codi": codi,
             "titol": meta.get("titol", ""),
             "punts": sum(apartats) / 100,
             "apartats": [a / 100 for a in apartats],
+            "apartats_curt": [a / 100 for a in apartats_curt],
+            "te_curt": te_curt,
             "dificultat": meta.get("dificultat", ""),
             "origen": meta.get("origen", []),
             "minuts": meta.get("minuts", 0),
+            "minuts_curt": meta.get("minuts_curt", meta.get("minuts", 0)),
             "etiquetes": meta.get("etiquetes", []),
             "temes_secundaris": meta.get("temes_secundaris", []),
             "procedencia": procedencia,
@@ -334,6 +420,9 @@ def construeix(provisional: Path) -> int:
             "tex": tex,
             "pdf": f"{ident}/out/enunciat.pdf",
             "pdf_solucio": f"{ident}/out/solucio.pdf",
+            # Sense versió de 50 min, a l'examen de 50 min hi va la pregunta sencera.
+            "pdf_curt": f"{ident}/out/{'enunciat-curt' if te_curt else 'enunciat'}.pdf",
+            "pdf_solucio_curt": f"{ident}/out/{'solucio-curt' if te_curt else 'solucio'}.pdf",
         })
 
     for a in avisos:

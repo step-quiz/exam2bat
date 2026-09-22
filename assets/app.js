@@ -24,6 +24,12 @@
    5. Cap adreça, per mal formada que sigui, pot trencar la pàgina: el que
       no s'entén s'ignora.
    6. Una mateixa pregunta no surt mai dues vegades en un examen.
+
+   LA MODALITAT
+   L'examen és d'1 h 30 (per defecte) o de 50 min. A 50 min, cada pregunta
+   fa servir la seva versió de 50 min (punts, minuts i PDF propis) si en
+   té; si no, hi va sencera. El .tex porta \\curttrue o \\curtfalse, i el
+   preàmbul fa la resta.
    ═══════════════════════════════════════════════════════════════════════ */
 
 // Sense prototip: així #__proto__ o #constructor no hi troben res. Amb {},
@@ -41,6 +47,13 @@ const visor = {};         // id de pregunta → 'enunciat' | 'solucio' | undefin
 const estructura = [false, false, false, false, true];
 const esOpcio = k => k > 0 && Boolean(estructura[k]);
 
+let curt = false;         // modalitat: false = examen d'1 h 30, true = de 50 min
+const durada = () => (curt ? 50 : 90);
+const apartatsDe = q => (curt ? q.apartats_curt : q.apartats);
+const minutsDe = q => (curt ? q.minuts_curt : q.minuts);
+const pdfDe = (q, solucio) => (curt ? (solucio ? q.pdf_solucio_curt : q.pdf_curt)
+                                    : (solucio ? q.pdf_solucio : q.pdf));
+
 // ── utilitats ────────────────────────────────────────────────────────
 const $ = s => document.querySelector(s);
 const num = n => n.toFixed(2).replace('.', ',');
@@ -55,10 +68,11 @@ function baixa(nom, text) {
 }
 
 /** Idèntic a munta() de build.py: mateixa plantilla, mateix ordre,
- *  cada marcador substituït un sol cop. */
+ *  cada marcador substituït un sol cop. La modalitat és la de l'examen. */
 function munta(cossos, solucions) {
   return BANC.plantilla
     .replace('%%SOLUCIONS%%', () => solucions ? '\\solucionstrue' : '\\solucionsfalse')
+    .replace('%%MODE%%', () => curt ? '\\curttrue' : '\\curtfalse')
     .replace('%%PREAMBUL%%', () => BANC.preambul)
     .replace('%%COS%%', () => cossos.join('\n\n'));
 }
@@ -105,13 +119,16 @@ function etiquetes() {
 
 // ── estat a l'adreça ─────────────────────────────────────────────────
 //   #analisi:ana-26j-q1,algebra:alg-26j-q2,analisi:ana-26j-q4a|geometria:geo-26j-q4b
+//   #50min/limits-punt:q001,…   (examen de 50 min)
 // La coma separa preguntes; la barra uneix les opcions d'una mateixa
-// pregunta (4a|4b). Les adreces antigues, sense barres, continuen valent.
+// pregunta (4a|4b). Les adreces antigues, sense barres ni prefix, continuen
+// valent: són exàmens d'1 h 30.
 function llegeixHash() {
   let cru = location.hash.replace(/^#/, '');
   // Un % solt o una adreça retallada fan petar decodeURIComponent. Els slugs
   // i els codis són ASCII: si no es pot descodificar, es llegeix tal com és.
   try { cru = decodeURIComponent(cru); } catch { /* es queda sense descodificar */ }
+  if (cru.startsWith('50min/')) { curt = true; cru = cru.slice('50min/'.length); }
   cru.split(',').forEach(grup => {
     let primera = true;
     grup.split('|').forEach(tros => {
@@ -132,7 +149,8 @@ function llegeixHash() {
 function escriuHash() {
   const s = examen.map((p, k) =>
     (k ? (esOpcio(k) ? '|' : ',') : '') + `${p.slug}:${preguntaDe(p).codi}`).join('');
-  history.replaceState(null, '', s ? '#' + s : location.pathname + location.search);
+  const h = (curt ? '50min/' : '') + s;
+  history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
 }
 
 // ── accions ──────────────────────────────────────────────────────────
@@ -239,6 +257,7 @@ function pintaCarta(k, etiqueta) {
       <span class="num">Pregunta ${esc(etiqueta)}</span>
       <span class="carta-tema">${esc(tema.nom)}</span>
       ${esPau ? `<span class="pau-badge">${esc(q.procedencia)}</span>` : ''}
+      ${curt && !q.te_curt ? `<span class="sencera" title="No té versió de 50 min: hi va sencera.">sencera</span>` : ''}
       <span class="ordre">
         <button type="button" class="secundari" data-fer="amunt" aria-label="Puja-la" title="Puja-la" ${k === 0 ? 'disabled' : ''}>▲</button>
         <button type="button" class="secundari" data-fer="avall" aria-label="Baixa-la" title="Baixa-la" ${k === examen.length - 1 ? 'disabled' : ''}>▼</button>
@@ -247,9 +266,9 @@ function pintaCarta(k, etiqueta) {
     </div>
     <div class="carta-titol">${esc(q.titol)}</div>
     <div class="meta">
-      <span>${q.apartats.map(num).join(' + ')} = ${num(q.punts)} punts</span>
+      <span>${apartatsDe(q).map(num).join(' + ')} = ${num(apartatsDe(q).reduce((s, a) => s + a, 0))} punts</span>
       <span>${esc(q.dificultat)}</span>
-      <span>~${q.minuts} min</span>
+      <span>~${minutsDe(q)} min</span>
       ${esPau ? `<span>cal haver fet: ${unitatsTxt}</span>` : `<span>llibre: ${q.origen.map(esc).join(', ')}</span>`}
       <span>${esc(q.codi)}</span>
     </div>
@@ -267,7 +286,7 @@ function pintaCarta(k, etiqueta) {
     </div>`;
 
   if (visor[q.id]) {
-    const src = visor[q.id] === 'solucio' ? q.pdf_solucio : q.pdf;
+    const src = pdfDe(q, visor[q.id] === 'solucio');
     const v = document.createElement('div');
     v.className = 'visor';
     v.innerHTML = `<iframe src="${esc(src)}#toolbar=0&amp;navpanes=0" title="${esc(q.titol)}"></iframe>
@@ -307,15 +326,19 @@ function pinta() {
   // Les opcions d'una mateixa pregunta compten una sola vegada: l'alumne en
   // respon una. Dels minuts, es compta la més llarga.
   const qs = triades(), gs = grups();
-  const cent = gs.reduce((s, g) => s + Math.max(...g.map(k => Math.round(qs[k].punts * 100))), 0);
-  const minuts = gs.reduce((s, g) => s + Math.max(...g.map(k => qs[k].minuts)), 0);
+  const centDe = q => Math.round(apartatsDe(q).reduce((s, a) => s + a, 0) * 100);
+  const cent = gs.reduce((s, g) => s + Math.max(...g.map(k => centDe(qs[k]))), 0);
+  const minuts = gs.reduce((s, g) => s + Math.max(...g.map(k => minutsDe(qs[k]))), 0);
   $('#recompte').innerHTML = qs.length
     ? `<span class="seg">${qs.length} ${qs.length === 1 ? 'pregunta' : 'preguntes'}</span>`
       + (gs.length < qs.length ? ` <span class="seg">(se'n responen ${gs.length})</span>` : '') + ' · '
       + `<span class="seg ${cent === 1000 ? 'just' : 'fora'}">${num(cent / 100)} punts</span> · `
-      + `<span class="seg">~${minuts} min</span>`
+      + `<span class="seg ${minuts > durada() ? 'fora' : ''}">~${minuts} de ${durada()} min</span>`
     : 'Cap pregunta triada';
 
+  $('.durada').querySelectorAll('button[data-durada]').forEach(b => {
+    b.setAttribute('aria-pressed', String((b.dataset.durada === 'curt') === curt));
+  });
   $('#baixa-tex').disabled = !qs.length;
   $('#baixa-sol').disabled = !qs.length;
   escriuHash();
@@ -327,6 +350,9 @@ const cossosTriats = () => {
   return triades().map((q, k) => ambCapcalera(q, `Pregunta ${et[k]}`));
 };
 
+$('.durada').querySelectorAll('button[data-durada]').forEach(b => {
+  b.onclick = () => { curt = b.dataset.durada === 'curt'; pinta(); };
+});
 $('#baixa-tex').onclick = () => baixa('main.tex', munta(cossosTriats(), false));
 $('#baixa-sol').onclick = () => baixa('main-solucions.tex', munta(cossosTriats(), true));
 $('#segell').textContent = `${BANC.preguntes.length} preguntes · ${BANC.generat}`;

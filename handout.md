@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 21 de setembre de 2026 · **Estat:** 18 preguntes (13 de la unitat 7 i 5 de la PAU)
-· 286 minuts d'examen al banc · 21 comprovacions del validador, 9 de sortida del build i 44 de
+**Data:** 22 de setembre de 2026 · **Estat:** 19 preguntes (14 de la unitat 7 i 5 de la PAU)
+· 307 minuts d'examen al banc · 29 comprovacions del validador, 9 de sortida del build i 53 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -18,9 +18,12 @@ altra IA i en va treure les lliçons. La segona va construir l'arquitectura: el 
 web, l'Action de GitHub i les proves. La tercera va completar la unitat 7, amb 13 preguntes
 verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer de juny de
 2026. La cinquena va revisar el projecte sencer, en va corregir quatre errors, va fixar les
-prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La màquina funciona de punta a punta. El que queda és sobretot contingut: primer
-els temes de la u8, que acaba l'1 de novembre, i després els 56 exercicis PAU pendents i la
-resta d'unitats.
+prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La sisena va donar aire al
+format i va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, amb la primera pregunta
+ja reescrita a mida PAU. La màquina funciona de punta a punta. El que queda és sobretot
+contingut: primer, reescriure a mida PAU les 12 preguntes restants de la u7, abans de l'examen
+de mitjan octubre; després, la u8, que acaba l'1 de novembre, els 56 exercicis PAU pendents i
+la resta d'unitats.
 
 ---
 
@@ -137,6 +140,37 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
   ser la **per defecte**, per a preguntes dels temes, de la PAU o combinades. L'estructura és
   de les places, no de les preguntes: treure o moure preguntes no desfà la 4a i la 4b.
 
+### 2.6 Sessió 6 · Format i modalitats d'examen
+
+El professor va detectar dos problemes en un examen muntat amb el banc:
+
+- **El format era massa compacte.** Hi havia 7 pt entre preguntes i 5 pt entre apartats, i les
+  fórmules destacades quedaven enganxades al text quan la línia d'abans era curta.
+- **Les preguntes eren massa llargues.** Un examen de quatre preguntes de la u7 li costaria
+  150 minuts a l'alumnat. El lloc n'estimava 56, i la PAU en dona 90 per a quatre exercicis.
+  Un exercici PAU té 2 o 3 apartats, i cada apartat és **una sola tasca** d'uns 7 minuts; les
+  preguntes del banc tenien apartats que eren llistes (set límits, la continuïtat en tres
+  punts).
+
+Es va fer una prova pilot (format, i una pregunta a mida PAU en les dues modalitats), el
+professor la va aprovar, i es va implementar:
+
+- **Format**, al preàmbul i per a tot el banc: `\bigskip` entre preguntes i entre apartats,
+  més aire entre els subapartats d'una graella, i les fórmules destacades sempre amb el mateix
+  espai. Amb el preàmbul oficial, les 19 preguntes continuen ocupant una pàgina.
+- **Dues modalitats.** El banc es pensa per a l'examen d'1 h 30. La versió de 50 min la decideix
+  qui escriu la pregunta: `\apartat[1,25]{0,75}` dona la puntuació de 50 min, i un bloc
+  `nomesllarg` treu un apartat sencer. El build valida que totes dues puntuacions sumin 2,50,
+  exigeix `minuts_curt` i compila els PDF de 50 min. Al lloc, un selector «1 h 30 / 50 min»
+  canvia els punts, els minuts, els PDF i el `.tex`. Una pregunta sense versió de 50 min hi va
+  sencera, amb l'etiqueta «sencera».
+- **La pregunta pilot**, `limits-punt/q001`, reescrita: tres tasques (0/0, límit que no
+  existeix, funció a trossos), uns 20 minuts; a 50 min, dues tasques de 1,25 punts, uns 11
+  minuts. Els seus límits a l'infinit, que a més no eren del tema, són ara la segona variant
+  de `limits-infinit` (`q002`), amb un apartat de paràmetre nou. El límit
+  $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits) queda reservat: no és a cap
+  exercici assignat (vegeu 2.1).
+
 ---
 
 ## 3. Decisions preses
@@ -166,6 +200,11 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 | Per defecte, l'estructura de la PAU: 1, 2, 3, 4a, 4b | Professor | L'alumnat fa la 1, la 2 i la 3 i tria entre la 4a i la 4b; val per a temes, PAU i exàmens combinats |
 | L'estructura és de les places, no de les preguntes | Disseny | Treure o moure preguntes no desfà la 4a i la 4b |
 | «Opció de l'anterior» canvia l'estructura d'una plaça; els números es deriven de l'estructura | Disseny | Mai hi pot haver números repetits ni forats |
+| Cada pregunta, a mida d'un exercici PAU: 2 o 3 apartats d'una sola tasca, uns 20 minuts | Professor | Un examen d'1 h 30 són quatre preguntes, com la PAU |
+| Dues modalitats, 1 h 30 i 50 min; el banc es pensa per a la d'1 h 30 | Professor | Els exàmens de classe són d'una d'aquestes dues durades |
+| La versió de 50 min la decideix qui escriu la pregunta (`\apartat[..]{..}` i `nomesllarg`) | Proposta acceptada | Els punts s'han de repartir a mà en múltiples de 0,25, i un apartat sovint depèn de l'anterior |
+| Les preguntes PAU també poden entrar a l'examen de 50 min | Professor | Amb una versió de 50 min feta a mà, o senceres |
+| Format: `\bigskip` entre preguntes i apartats; fórmules destacades amb el mateix aire | Professor | Els exàmens eren difícils de llegir |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
@@ -203,22 +242,27 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 - Les respostes de les 13 preguntes de la u7, amb càlcul simbòlic i un segon mètode per a
   tots els límits a l'infinit.
 - 32 resultats dels criteris oficials de juny de 2026, per un mètode independent.
-- `prova_validacio.py`: 21 avaries provocades, cadascuna rebutjada pel build.
+- `prova_validacio.py`: 29 avaries provocades, cadascuna rebutjada pel build. Les 8 de la
+  sessió 6 són de les modalitats.
 - `prova_sortida.py`: 9 comprovacions, sense TeX (un `pdflatex` fals al PATH). Un build que
   falla, per validació o per compilació, no toca cap fitxer. Un de correcte els escriu tots,
   `--pregunta` només escriu els de la pregunta indicada i `--preambul` no arriba al catàleg.
   També s'ha confirmat amb el `pdflatex` real.
-- `prova_paritat.py`: 44 comprovacions. El lloc (executant l'`app.js` real) i el build
+- `prova_paritat.py`: 53 comprovacions. El lloc (executant l'`app.js` real) i el build
   munten el mateix `.tex`, byte a byte, també amb preguntes PAU, amb la procedència al lloc
   exacte i amb opcions (1, 2, 3, 4a, 4b). Tres adreces mal formades s'ignoren sense que la
   pàgina peti. Les accions de les targetes (afegir, moure, treure, marcar opció, canviar de
   variant) donen les etiquetes, els punts i l'adreça esperats. Cinc clics donen per defecte
-  1, 2, 3, 4a i 4b, també en un examen que combina temes i PAU.
+  1, 2, 3, 4a i 4b, també en un examen que combina temes i PAU. A 50 min, el lloc i el build
+  munten el mateix `.tex`, i els minuts i l'adreça segueixen la modalitat.
 - En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues, secció PAU,
   adreces mal formades i l'examen de la PAU de 2026 muntat amb clics (1, 2, 3, 4a, 4b), també
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 6: el build real amb el preàmbul oficial i el format nou (42 PDF, tots els enunciats
+  en una pàgina), i en Chromium el selector de durada. El `.tex` de 50 min baixat del lloc
+  compila, amb i sense solucions.
 - La compilació amb el preàmbul oficial, amb `lmodern` i `babel` català (sessió 5). Les 18
   preguntes ocupen una pàgina, sense cap *Overfull*. El `main.tex` baixat de l'examen de 2026
   compila en 2 pàgines, i el de solucions, en 5.
@@ -235,7 +279,7 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 
 ## 6. Inventari
 
-### 6.1 Unitat 7 · Límits i continuïtat (13 preguntes)
+### 6.1 Unitat 7 · Límits i continuïtat (14 preguntes)
 
 | Tema | Codi | Títol | Punts | Dif. | Llibre |
 |---|---|---|---|---|---|
@@ -248,7 +292,8 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 | Límits a partir d'una gràfica | `q001` | Límits i continuïtat llegits sobre una gràfica | 1,25 + 1,25 | ●○○ | 44, 66, 68, 92 |
 | Límits a partir d'una gràfica | `q002` | Límits i continuïtat sobre una gràfica amb un angle, un forat i una asímptota | 1,25 + 1,25 | ●●○ | 44, 66, 68, 92 |
 | Límits en l'infinit | `q001` | Límits en l'infinit: racionals, potències, exponencials i un paràmetre | 1,00 + 0,75 + 0,75 | ●●○ | 45, 46, 48 |
-| Límits en un punt | `q001` | Càlcul de límits: infinit, indeterminació 0/0 i funció a trossos | 1,00 + 0,75 + 0,75 | ●●○ | 46, 48, 76, 88, 90 |
+| Límits en l'infinit | `q002` | Límits en l'infinit de funcions racionals i un paràmetre | 0,75 + 0,75 + 1,00 · 50 min: 1,25 + 1,25 | ●●○ | 46, 48 |
+| Límits en un punt | `q001` | Límits en un punt: indeterminació 0/0, límits laterals i funció a trossos | 0,75 + 0,75 + 1,00 · 50 min: 1,25 + 1,25 | ●●○ | 76, 88, 90 |
 | Límits en un punt | `q002` | Límits en un punt: 0/0 amb Ruffini, funció amb radical i límits infinits | 1,00 + 0,75 + 0,75 | ●●○ | 70, 76 |
 | Límits de funcions a trossos | `q001` | Límits d'una funció a trossos amb paràmetre i indeterminació 0/0 | 0,75 + 1,25 + 0,50 | ●●○ | 76, 88, 90 |
 | Paràmetres per a la continuïtat | `q001` | Paràmetres de continuïtat amb exponencial i logaritme, i un paràmetre amb dues solucions | 1,50 + 1,00 | ●●○ | 40, 102, 106 |
@@ -415,7 +460,7 @@ l'ordre numèric.
 
 | Unitat | Setmanes | Última data límit |
 |---|---|---|
-| u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta** |
+| u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, en reescriptura |
 | u8 Derivades | 5–7 | 1 de novembre de 2026 · **la següent** |
 | u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 |
 | u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 |
@@ -429,12 +474,21 @@ l'ordre numèric.
 | u11 Integrals | 33–34 | 9 de maig de 2027 |
 | u12 La integral definida | 35–36 | 23 de maig de 2027 |
 
-- **Temes i preguntes de la u8**, que són la prioritat. Cal seguir el mateix patró de la u7:
-  taxonomia de temes, calibratge amb els exercicis assignats a les setmanes 5 a 7 i verificació
-  per dos camins. Són 17 exercicis, 16 de diferents (vegeu 7.2).
+- **Reescriure a mida PAU les 12 preguntes restants de la u7**, cadascuna amb la seva versió
+  de 50 min, abans de l'examen de la u7 (mitjan octubre). És la prioritat. El patró és el de
+  `limits-punt/q001`: 2 o 3 apartats d'una sola tasca, uns 20 minuts; a 50 min, uns 11. Els
+  apartats que sobrin es converteixen en preguntes noves: no es llença res. Els `minuts`
+  s'han de recalibrar amb el mateix criteri: els d'ara es queden curts gairebé tres vegades.
+- **Temes i preguntes de la u8.** Cal seguir el mateix patró: taxonomia de temes, calibratge amb
+  els exercicis assignats a les setmanes 5 a 7 i verificació per dos camins. Són 17 exercicis,
+  16 de diferents (vegeu 7.2).
 - Després, les unitats en l'ordre de la taula.
-- Segona variant per a `limits-infinit`, `limits-trossos` i `parametres-ab`, els tres temes
-  de la u7 que només en tenen una.
+- **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
+  reparteixen els punts.
+- Segona variant per a `limits-trossos` i `parametres-ab`, els dos temes de la u7 que només
+  en tenen una.
+- **Material reservat:** $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), tret de
+  la pregunta pilot. Es farà servir si la classe treballa la jerarquia d'infinits.
 
 ### 7.5 Millores del lloc
 
@@ -558,23 +612,32 @@ del primer exercici.
 | Provar el build sense TeX | Un `pdflatex` fals al PATH, com fa `prova_sortida.py` |
 | Moure o treure una pregunta podria desfer la 4a i la 4b | L'estructura és de les places: només es mouen les preguntes |
 | El preàmbul cita `\begin{document}` en un comentari | Per trobar el cos del `.tex`, cal buscar la línia exacta, no el text |
+| Una fórmula destacada després d'una línia curta queda enganxada (TeX hi posa l'espai «curt») | El preàmbul iguala `\abovedisplayshortskip` a l'espai normal |
+| En un Chromium sense pantalla, obrir un PDF el descarrega | Una prova que baixa el `.tex` no ha d'obrir cap visor abans |
 
 ---
 
 ## 11. Aquest lliurament
 
-És l'últim lliurament de la sessió 5. Parteix del v3, que ja és al repositori, i conté només
-els cinc fitxers que canvien, directament a l'arrel del ZIP:
+És el lliurament de la sessió 6. Parteix del v4 de la sessió 5, que ja és al repositori, i
+conté només els fitxers que canvien, directament a l'arrel del ZIP:
 
 | Fitxer | Canvi |
 |---|---|
-| `assets/app.js` | L'estructura de la PAU (1, 2, 3, 4a, 4b), per defecte i de les places: treure o moure preguntes no la desfà |
-| `index.html` | Text d'ajuda: l'examen és, per defecte, com el de la PAU |
-| `build/prova_paritat.py` | 44 comprovacions: estructura per defecte, exàmens combinats i el tall correcte del cos del `.tex` |
-| `README.md` | Ús: l'estructura per defecte i els exàmens combinats |
-| `handout.md` | Sessió 5: estructura per defecte, decisions, errors, verificacions i risc d'Ubuntu 26 |
+| `build/preambul.tex` | Format nou (espais i fórmules destacades) i modalitats: `\apartat[..]{..}` i `nomesllarg` |
+| `build/embolcall.tex` | `\newif\ifcurt` i el marcador `%%MODE%%` |
+| `build/build.py` | Punts de les dues modalitats, validacions, `minuts_curt`, PDF de 50 min i catàleg |
+| `build/prova_validacio.py` | 29 avaries: 8 de noves, de les modalitats |
+| `build/prova_sortida.py` | `--pregunta` també escriu els PDF de 50 min |
+| `build/prova_paritat.py` | 53 comprovacions: 9 de noves, de la modalitat de 50 min |
+| `assets/app.js` | La modalitat: punts, minuts, PDF, `.tex`, etiqueta «sencera» i adreça `50min/` |
+| `assets/style.css` | Selector de durada i etiqueta «sencera» |
+| `index.html` | Selector «1 h 30 / 50 min» |
+| `u7/limits-punt/q001/` | Reescrita a mida PAU, amb versió de 50 min |
+| `u7/limits-infinit/q002/` | **Nova**: segona variant, amb els límits a l'infinit de la pilot |
+| `README.md` | Durada, regles, macros i `minuts_curt` |
+| `handout.md` | Sessió 6 |
 
-Els lliuraments anteriors de la sessió van ser el v2 (correccions), substituït pel v3, i el
-v3 (correccions i opcions), ja aplicat. `compila.yml` es va crear des de la web.
-
-No porta cap PDF ni `cataleg.js`. Després de pujar-lo a `_uploads`, cal fer **Run workflow**.
+No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
+cal fer **Run workflow**: com que canvia el preàmbul, l'Action torna a compilar totes les
+preguntes amb el format nou.

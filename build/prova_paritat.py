@@ -214,6 +214,27 @@ def main() -> int:
     comprova("una adreça antiga de quatre preguntes, amb una cinquena, també fa 4a i 4b",
              r["etiquetes"] == pau5, r["etiquetes"])
 
+    # 1g. La modalitat: examen d'1 h 30 (per defecte) o de 50 min
+    r = web("limits-punt:q001")
+    comprova("sense prefix, l'examen és d'1 h 30",
+             "\\curtfalse" in r["tex"] and "de 90 min" in r["recompte"], r["recompte"])
+    r = web("50min/limits-punt:q001")
+    comprova("amb el prefix 50min/, l'examen és de 50 min",
+             "\\curttrue" in r["tex"] and "\\curtfalse" not in r["tex"], r["recompte"])
+    for sol, clau in ((False, "tex"), (True, "sol")):
+        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"]), sol, curt=True)
+        comprova(f"paritat JS = Python a 50 min ({'amb' if sol else 'sense'} solucions)", py == r[clau])
+    comprova("a 50 min compten els minuts de la versió de 50 min", "~11 de 50 min" in r["recompte"],
+             r["recompte"])
+    comprova("l'adreça conserva la modalitat", r["hash"] == "50min/limits-punt:q001", r["hash"])
+    r = web("50min/bolzano-biseccio:q001")
+    comprova("una pregunta sense versió de 50 min hi va sencera, amb els seus minuts",
+             "~14 de 50 min" in r["recompte"], r["recompte"])
+    r = web("limits-punt:q001", "curt = true; pinta()")
+    comprova("en canviar a 50 min, l'adreça ho recull", r["hash"] == "50min/limits-punt:q001", r["hash"])
+    r = web("50min/%")
+    comprova("una adreça de 50 min mal formada no peta", r["ids"] == [], r["ids"])
+
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")
     comprova("codi inexistent → primera variant, sense petar",

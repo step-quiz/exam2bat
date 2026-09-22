@@ -127,8 +127,10 @@ def main() -> int:
             r = build(banc, fals, "--pregunta", "u7/limits-punt/q001")
             tocats = sorted(k for k, v in empremta(banc).items()
                             if abans.get(k) != v and k.endswith(".pdf"))
-            esperats = ["u7/limits-punt/q001/out/enunciat.pdf", "u7/limits-punt/q001/out/solucio.pdf"]
-            comprova("--pregunta només escriu els dos PDF d'aquella pregunta",
+            # La pregunta té versió de 50 min: quatre PDF.
+            esperats = sorted(f"u7/limits-punt/q001/out/{nom}.pdf"
+                              for nom in ("enunciat", "enunciat-curt", "solucio", "solucio-curt"))
+            comprova("--pregunta només escriu els PDF d'aquella pregunta, també els de 50 min",
                      r.returncode == 0 and tocats == esperats, f"codi {r.returncode}; tocats {tocats}")
 
         # 5. --preambul: els PDF es compilen amb el de prova; el catàleg porta l'oficial.

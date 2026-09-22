@@ -149,3 +149,11 @@ button.secundari:hover,
 .ordre button{padding:3px 9px;min-height:30px;}
 .opcio-btn[aria-pressed="true"]{background:var(--acc);}
 .carta.opcio{border-style:dashed;}
+
+/* ── durada de l'examen: 1 h 30 o 50 min ──────────────────────────── */
+.capcal-examen{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.durada{display:inline-flex;gap:4px;}
+.durada button{padding:4px 12px;min-height:32px;}
+.durada button[aria-pressed="true"]{background:var(--acc);color:var(--sobre-acc);}
+.sencera{font-family:'Source Code Pro',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--muted);border:1px dashed var(--border);border-radius:4px;padding:1px 6px;}
