@@ -6,9 +6,9 @@
 #
 #    --nomes-cataleg     no compila res, només revalida i regenera el
 #                        catàleg (ràpid, per a canvis de meta.json)
-#    --preambul FITXER   compila amb un altre preàmbul (per a proves, si a
-#                        l'entorn falten paquets). Aquests PDF no són
-#                        definitius; el catàleg porta sempre l'oficial.
+#    --headers FITXER    compila amb uns altres paquets (per a proves, si a
+#                        l'entorn en falten). Aquests PDF no són definitius;
+#                        el catàleg porta sempre els oficials.
 #    --pregunta RUTA     compila només les preguntes que la contenen
 #
 #  Modalitats: cada pregunta té una versió per a l'examen d'1 h 30 i, si
@@ -24,6 +24,7 @@
 # ═══════════════════════════════════════════════════════════════════════
 
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -289,7 +290,7 @@ def construeix(provisional: Path) -> int:
     cap error, els copia a out/ i escriu el catàleg."""
     p = argparse.ArgumentParser()
     p.add_argument("--nomes-cataleg", action="store_true")
-    p.add_argument("--preambul", default=None, metavar="FITXER")
+    p.add_argument("--headers", default=None, metavar="FITXER")
     p.add_argument("--pregunta", default=None, metavar="RUTA")
     args = p.parse_args()
 
@@ -323,17 +324,26 @@ def construeix(provisional: Path) -> int:
 
     plantilla = (ARREL / "build" / "embolcall.tex").read_text(encoding="utf-8")
     valida_plantilla(plantilla)
-    # El catàleg porta SEMPRE el preàmbul oficial: és el que el lloc posa als
-    # .tex que es baixen. --preambul només canvia amb què es compila aquí.
-    preambul = (ARREL / "build" / "preambul.tex").read_text(encoding="utf-8")
-    valida_preambul(preambul, "preambul.tex")
+    # El format viu en dos fitxers: headers.tex (paquets) i defs.tex (macros).
+    # El catàleg porta SEMPRE els oficials, perquè són els que el lloc posa als
+    # .tex que es baixen. --headers només canvia amb què es compila aquí.
+    headers = (ARREL / "build" / "headers.tex").read_text(encoding="utf-8")
+    defs = (ARREL / "build" / "defs.tex").read_text(encoding="utf-8")
+    valida_preambul(headers, "headers.tex")
+    valida_preambul(defs, "defs.tex")
+    # Segell: identifica aquesta versió del format. El .tex d'un examen el
+    # comprova, i així un defs.tex vell no passa desapercebut.
+    versio = hashlib.sha256((headers + defs).encode("utf-8")).hexdigest()[:8]
+    defs += f"\n\\def\\bancversio{{{versio}}}\n"
+    preambul = headers + "\n" + defs
     preambul_compila = preambul
-    if args.preambul:
-        preambul_compila = Path(args.preambul).read_text(encoding="utf-8")
-        valida_preambul(preambul_compila, args.preambul)
-        if preambul_compila != preambul and not args.nomes_cataleg:
-            avis(args.preambul, "els PDF s'han compilat amb aquest preàmbul i no amb l'oficial: "
-                 "no són definitius (el catàleg sí que porta l'oficial)")
+    if args.headers:
+        altres = Path(args.headers).read_text(encoding="utf-8")
+        valida_preambul(altres, args.headers)
+        preambul_compila = altres + "\n" + defs
+        if altres != headers and not args.nomes_cataleg:
+            avis(args.headers, "els PDF s'han compilat amb aquests paquets i no amb els oficials: "
+                 "no són definitius (el catàleg sí que porta els oficials)")
 
     # El catàleg SEMPRE inclou totes les preguntes. --pregunta només limita
     # quines es compilen; si filtrés el catàleg, en deixaria un de mutilat.
@@ -473,6 +483,10 @@ def construeix(provisional: Path) -> int:
         "temes": temes_doc["temes"],
         "plantilla": plantilla,
         "preambul": preambul,
+        "headers": headers,
+        "defs": defs,
+        "main": (ARREL / "build" / "main.tex").read_text(encoding="utf-8"),
+        "versio": versio,
         "preguntes": preguntes,
     }
     sortida = ("/* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */\n"

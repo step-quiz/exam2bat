@@ -157,3 +157,11 @@ button.secundari:hover,
 .durada button[aria-pressed="true"]{background:var(--acc);color:var(--sobre-acc);}
 .sencera{font-family:'Source Code Pro',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.04em;
   color:var(--muted);border:1px dashed var(--border);border-radius:4px;padding:1px 6px;}
+
+/* ── entorn de la carpeta d'exàmens i número de prova ──────────────── */
+.entorn{margin-top:22px;border-top:1px solid var(--border);padding-top:14px;}
+.botons-entorn{display:flex;gap:6px;flex-wrap:wrap;}
+.botons-entorn button{padding:4px 10px;min-height:30px;}
+#barra label[for="numprova"]{font-family:'Source Code Pro',monospace;font-size:.7rem;color:var(--muted);}
+#numprova{width:3.4rem;padding:5px 6px;border:1px solid var(--border);border-radius:6px;
+  background:var(--surface);color:var(--txt);font:inherit;font-size:.78rem;}

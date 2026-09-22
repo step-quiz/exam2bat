@@ -44,8 +44,9 @@ if (accions) vm.runInContext(accions, ctx, { filename: 'accions.js' });
 const r = vm.runInContext(`({
   ids: triades().map(q => q.id),
   etiquetes: etiquetes(),
-  tex: munta(cossosTriats(), false),
-  sol: munta(cossosTriats(), true),
+  tex: munta(pecesExamen(), false),
+  prova: pecesExamen().join('\\n\\n') + '\\n',
+  sol: munta(pecesExamen(), true),
   recompte: document.querySelector('#recompte').innerHTML,
   hash: location.hash,
 })`, ctx);
@@ -75,6 +76,10 @@ def web(hash_: str, accions: str = "") -> dict:
 def main() -> int:
     banc = json.loads((ARREL / "cataleg.js").read_text(encoding="utf-8")
                       .split("const BANC = ", 1)[1].rstrip().rstrip(";"))
+
+    def peces(cossos):
+        """Les peces d'un examen, en el mateix ordre que les munta el lloc."""
+        return [f"\\bancrequereix{{{banc['versio']}}}", "\\capsaleraexamen", *cossos]
     per_id = {q["id"]: q for q in banc["preguntes"]}
     fallades = 0
 
@@ -89,9 +94,9 @@ def main() -> int:
     esperat = ["u7/limits-grafica/q001", "u7/continuitat-trossos/q001",
                "u7/bolzano-biseccio/q001", "u7/limits-punt/q001"]
     comprova("el tema buit no entra a l'examen", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
+    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Q{n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
     for sol, clau in ((False, "tex"), (True, "sol")):
-        py = munta(banc["plantilla"], banc["preambul"], cossos, sol)
+        py = munta(banc["plantilla"], banc["preambul"], peces(cossos), sol)
         igual = py == r[clau]
         detall = "" if igual else next(
             (f"primera diferència al caràcter {k}" for k, (a, b) in enumerate(zip(py, r[clau])) if a != b),
@@ -105,8 +110,8 @@ def main() -> int:
     esperat = ["u7/limits-grafica/q002", "u7/parametres-ab/q001",
                "u7/bolzano-biseccio/q002", "u7/limits-infinit/q001"]
     comprova("les variants q002 es trien per codi", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Pregunta {n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
-    py = munta(banc["plantilla"], banc["preambul"], cossos, True)
+    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Q{n}", per_id[i]["procedencia"]) for n, i in enumerate(esperat, 1)]
+    py = munta(banc["plantilla"], banc["preambul"], peces(cossos), True)
     comprova(f"paritat JS = Python amb variants ({len(py)} caràcters)", py == r["sol"])
     comprova("el recompte torna a dir 10,00 punts", "10,00 punts" in r["recompte"], r["recompte"])
 
@@ -116,12 +121,12 @@ def main() -> int:
     esperat = ["pau/analisi/ana-26j-q1", "pau/algebra/alg-26j-q2",
                "pau/probabilitat/pro-26j-q3", "pau/geometria/geo-26j-q4b"]
     comprova("un examen PAU sencer es tria per codi", r["ids"] == esperat, r["ids"])
-    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Pregunta {n}", per_id[i]["procedencia"])
+    cossos = [cos_amb_capcalera(materialitza(per_id[i]["tex"], False), f"Q{n}", per_id[i]["procedencia"])
               for n, i in enumerate(esperat, 1)]
-    py = munta(banc["plantilla"], banc["preambul"], cossos, False)
+    py = munta(banc["plantilla"], banc["preambul"], peces(cossos), False)
     comprova(f"paritat JS = Python amb preguntes PAU ({len(py)} caràcters)", py == r["tex"])
     linies = r["tex"].splitlines()
-    ok = all(linies[linies.index(f"\\encapcalament{{Pregunta {n}}}") + 1]
+    ok = all(linies[linies.index(f"\\encapcalament{{Q{n}}}") + 1]
              == "\\procedencia{PAU juny 2026, sèrie 1}" for n in range(1, 5))
     comprova("cada pregunta PAU comença amb «PAU juny 2026, sèrie 1»", ok)
     comprova("el recompte de l'examen PAU diu 10,00 punts", "10,00 punts" in r["recompte"], r["recompte"])
@@ -133,7 +138,7 @@ def main() -> int:
 
     # 1d. Un examen com el de la PAU: 1, 2, 3, 4a i 4b, amb dues preguntes d'anàlisi
     def cossos(ids, etiquetes, curt=False):
-        return [cos_amb_capcalera(materialitza(per_id[i]["tex"], curt), f"Pregunta {e}",
+        return [cos_amb_capcalera(materialitza(per_id[i]["tex"], curt), f"Q{e}",
                                   per_id[i]["procedencia"])
                 for i, e in zip(ids, etiquetes)]
 
@@ -146,11 +151,11 @@ def main() -> int:
              r["ids"] == [ana1, alg2, pro3, ana4a, geo4b], r["ids"])
     comprova("les etiquetes són 1, 2, 3, 4a i 4b", r["etiquetes"] == ["1", "2", "3", "4a", "4b"], r["etiquetes"])
     for sol, clau in ((False, "tex"), (True, "sol")):
-        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"]), sol)
+        py = munta(banc["plantilla"], banc["preambul"], peces(cossos(r["ids"], r["etiquetes"])), sol)
         comprova(f"paritat JS = Python amb opcions ({'amb' if sol else 'sense'} solucions, {len(py)} caràcters)",
                  py == r[clau])
-    comprova("el .tex diu «Pregunta 4a» i «Pregunta 4b»",
-             "\\encapcalament{Pregunta 4a}" in r["tex"] and "\\encapcalament{Pregunta 4b}" in r["tex"])
+    comprova("el .tex diu «Q4a» i «Q4b»",
+             "\\encapcalament{Q4a}" in r["tex"] and "\\encapcalament{Q4b}" in r["tex"])
     comprova("les opcions compten una vegada: 5 preguntes, se'n responen 4, 10,00 punts",
              all(s in r["recompte"] for s in ("5 preguntes", "se'n responen 4", "10,00 punts")), r["recompte"])
     comprova("l'adreça conserva les opcions", r["hash"] == pau, r["hash"])
@@ -192,7 +197,7 @@ def main() -> int:
              all(s in r["recompte"] for s in ("5 preguntes", "se'n responen 4", "10,00 punts")), r["recompte"])
     comprova("es poden combinar preguntes dels temes i de la PAU", r["ids"] == combinat, r["ids"])
     for sol, clau in ((False, "tex"), (True, "sol")):
-        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"]), sol)
+        py = munta(banc["plantilla"], banc["preambul"], peces(cossos(r["ids"], r["etiquetes"])), sol)
         comprova(f"paritat JS = Python en un examen combinat ({'amb' if sol else 'sense'} solucions)",
                  py == r[clau])
     comprova("només les tres preguntes PAU porten la línia de procedència",
@@ -228,7 +233,7 @@ def main() -> int:
              and "\\apartat[" not in cos and "nomesllarg" not in cos
              and "Estudia si existeix" not in cos, cos[:200])
     for sol, clau in ((False, "tex"), (True, "sol")):
-        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"], curt=True), sol)
+        py = munta(banc["plantilla"], banc["preambul"], peces(cossos(r["ids"], r["etiquetes"], curt=True)), sol)
         comprova(f"paritat JS = Python a 50 min ({'amb' if sol else 'sense'} solucions)", py == r[clau])
     comprova("a 50 min compten els minuts de la versió de 50 min", "~11 de 50 min" in r["recompte"],
              r["recompte"])
@@ -240,6 +245,35 @@ def main() -> int:
     comprova("en canviar a 50 min, l'adreça ho recull", r["hash"] == "50min/limits-punt:q001", r["hash"])
     r = web("50min/%")
     comprova("una adreça de 50 min mal formada no peta", r["ids"] == [], r["ids"])
+
+    # 1h. El fitxer prova-N.tex: el cos de l'examen, per a la carpeta del professorat
+    r = web("limits-punt:q001,bolzano-biseccio:q001")
+    comprova("el prova-N.tex no porta preàmbul ni \\begin{document}",
+             "\\documentclass" not in r["prova"] and "\\begin{document}" not in r["prova"],
+             r["prova"][:80])
+    comprova("comença pel segell de versió i per la crida a la capçalera",
+             r["prova"].startswith(f"\\bancrequereix{{{banc['versio']}}}\n\n\\capsaleraexamen"),
+             r["prova"][:60])
+    comprova("porta les preguntes numerades Q1, Q2…",
+             "\\encapcalament{Q1}" in r["prova"] and "\\encapcalament{Q2}" in r["prova"])
+    comprova("i és exactament el cos del fitxer «tot en un»", r["prova"].strip() in r["tex"])
+    comprova("el catàleg porta l'entorn: main.tex, headers.tex i defs.tex",
+             all(banc.get(k, "").strip() for k in ("main", "headers", "defs")))
+    comprova("i el defs.tex hi declara el segell de versió",
+             f"\\def\\bancversio{{{banc['versio']}}}" in banc["defs"])
+
+    # 1i. El banc és públic: no hi pot haver cap dada del centre
+    rastres = ("logo-institut", "Nom i cognoms", "Qualificació:", "DEPARTAMENT DE",
+               "cursacademic", "Miquel Tarradell")
+    tot = banc["headers"] + banc["defs"] + banc["main"] + banc["plantilla"]
+    trobats = [r for r in rastres if r in tot]
+    comprova("els fitxers de format no porten cap dada del centre", not trobats, str(trobats))
+    cataleg_sencer = (ARREL / "cataleg.js").read_text(encoding="utf-8")
+    trobats = [r for r in rastres if r in cataleg_sencer]
+    comprova("ni el catàleg tampoc", not trobats, str(trobats))
+    comprova("la capçalera d'examen és buida al banc i es pot redefinir a la carpeta",
+             "\\providecommand{\\capsaleraexamen}{}" in banc["defs"]
+             and "capsalera.tex" in banc["main"], "")
 
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")

@@ -4,8 +4,8 @@
 #  ─────────────────────────────────────────────────────────────────────
 #  1. Un build que falla no escriu res: ni PDF ni catàleg.
 #  2. Un build correcte escriu els PDF que ha compilat, i només aquests.
-#  3. --preambul només canvia la compilació: el catàleg porta sempre el
-#     preàmbul oficial, que és el que el lloc posa als .tex que es baixen.
+#  3. --headers només canvia la compilació: el catàleg porta sempre els
+#     fitxers de format oficials, que són els que el lloc posa als .tex.
 #
 #  No cal TeX. La prova posa al PATH un pdflatex fals que «compila» en un
 #  instant i copia dins del PDF el .tex que ha rebut: així es veu quins
@@ -133,20 +133,25 @@ def main() -> int:
             comprova("--pregunta només escriu els PDF d'aquella pregunta, també els de 50 min",
                      r.returncode == 0 and tocats == esperats, f"codi {r.returncode}; tocats {tocats}")
 
-        # 5. --preambul: els PDF es compilen amb el de prova; el catàleg porta l'oficial.
+        # 5. --headers: els PDF es compilen amb uns altres paquets; el catàleg
+        #    porta sempre els oficials, amb el segell de versió del format.
         with tempfile.TemporaryDirectory() as t5:
             banc = copia_banc(Path(t5))
-            oficial = (banc / "build/preambul.tex").read_text(encoding="utf-8")
-            de_prova = Path(t5) / "preambul-prova.tex"
-            de_prova.write_text(PROVA + "\n" + oficial.replace("\\usepackage{lmodern}\n", ""),
+            oficials = (banc / "build/headers.tex").read_text(encoding="utf-8")
+            de_prova = Path(t5) / "headers-prova.tex"
+            de_prova.write_text(PROVA + "\n" + oficials.replace("\\usepackage{microtype}\n", ""),
                                 encoding="utf-8")
-            r = build(banc, fals, "--preambul", str(de_prova))
+            r = build(banc, fals, "--headers", str(de_prova))
             pdf = (banc / "u7/limits-punt/q001/out/enunciat.pdf").read_text(encoding="utf-8", errors="replace")
-            comprova("--preambul compila els PDF amb el preàmbul de prova",
+            comprova("--headers compila els PDF amb els paquets de prova",
                      r.returncode == 0 and PROVA in pdf, f"codi {r.returncode}\n{r.stderr[-300:]}")
-            comprova("però el catàleg porta el preàmbul oficial",
-                     r.returncode == 0 and cataleg(banc)["preambul"] == oficial,
-                     "el catàleg porta un preàmbul que no és build/preambul.tex")
+            comprova("però el catàleg porta els paquets oficials",
+                     r.returncode == 0 and cataleg(banc)["headers"] == oficials,
+                     "el catàleg porta uns headers que no són build/headers.tex")
+            comprova("i el defs del catàleg porta el segell de versió",
+                     r.returncode == 0
+                     and f"\\def\\bancversio{{{cataleg(banc)['versio']}}}" in cataleg(banc)["defs"],
+                     "falta el segell al defs.tex del catàleg")
             comprova("i el build avisa que aquests PDF no són definitius",
                      "no són definitius" in r.stdout, r.stdout[-300:])
 

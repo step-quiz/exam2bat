@@ -15,6 +15,8 @@
    REGLES D'AQUEST FITXER
    1. L'assemblatge del .tex fa servir BANC.plantilla, el mateix fitxer
       que fa servir build/build.py. Aquí no hi ha cap plantilla escrita.
+      El format viu a BANC.headers i BANC.defs (build/headers.tex i
+      build/defs.tex): el lloc no en té cap còpia.
    2. Tot String.replace amb contingut LaTeX fa servir una FUNCIÓ com a
       substitut: amb una cadena, JavaScript interpretaria $$, $' i $&
       (freqüents en LaTeX) i corrompria el .tex sense avisar.
@@ -317,7 +319,7 @@ function pintaCarta(k, etiqueta) {
     enunciat: () => mostra(q.id, 'enunciat'),
     solucio:  () => mostra(q.id, 'solucio'),
     tex:      () => baixa(`${q.id.replace(/\//g, '-')}.tex`,
-                          munta([ambCapcalera(q, `Pregunta ${etiqueta}`)], false)),
+                          munta([ambCapcalera(q, `Q${etiqueta}`)], false)),
     prev:     () => rota(k, -1),
     next:     () => rota(k, +1),
     amunt:    () => mou(k, -1),
@@ -357,6 +359,8 @@ function pinta() {
   $('.durada').querySelectorAll('button[data-durada]').forEach(b => {
     b.setAttribute('aria-pressed', String((b.dataset.durada === 'curt') === curt));
   });
+  $('#baixa-prova').disabled = !qs.length;
+  $('#baixa-prova').textContent = `prova-${numProva()}.tex`;
   $('#baixa-tex').disabled = !qs.length;
   $('#baixa-sol').disabled = !qs.length;
   escriuHash();
@@ -365,14 +369,26 @@ function pinta() {
 // ── arrencada ────────────────────────────────────────────────────────
 const cossosTriats = () => {
   const et = etiquetes();
-  return triades().map((q, k) => ambCapcalera(q, `Pregunta ${et[k]}`));
+  return triades().map((q, k) => ambCapcalera(q, `Q${et[k]}`));
 };
+
+/** Les peces d'un examen, en ordre: el segell de versió del format, la
+ *  capçalera del centre i les preguntes. Van al prova-N.tex i, dins de la
+ *  plantilla, al fitxer «tot en un». */
+const pecesExamen = () => [`\\bancrequereix{${BANC.versio}}`, '\\capsaleraexamen', ...cossosTriats()];
+
+const numProva = () => Math.max(1, parseInt($('#numprova').value, 10) || 1);
 
 $('.durada').querySelectorAll('button[data-durada]').forEach(b => {
   b.onclick = () => { curt = b.dataset.durada === 'curt'; pinta(); };
 });
-$('#baixa-tex').onclick = () => baixa('main.tex', munta(cossosTriats(), false));
-$('#baixa-sol').onclick = () => baixa('main-solucions.tex', munta(cossosTriats(), true));
+$('#baixa-prova').onclick = () => baixa(`prova-${numProva()}.tex`, pecesExamen().join('\n\n') + '\n');
+$('#baixa-tex').onclick = () => baixa('examen-sencer.tex', munta(pecesExamen(), false));
+$('#baixa-sol').onclick = () => baixa('examen-sencer-solucions.tex', munta(pecesExamen(), true));
+$('#numprova').oninput = () => { $('#baixa-prova').textContent = `prova-${numProva()}.tex`; };
+$('.botons-entorn').querySelectorAll('button[data-entorn]').forEach(b => {
+  b.onclick = () => baixa(`${b.dataset.entorn}.tex`, BANC[b.dataset.entorn]);
+});
 $('#segell').textContent = `${BANC.preguntes.length} preguntes · ${BANC.generat}`;
 
 llegeixHash();

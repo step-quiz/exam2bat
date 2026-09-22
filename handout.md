@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 21 preguntes (16 de la unitat 7 i 5 de la PAU)
-· 400 minuts d'examen al banc · 29 comprovacions del validador, 9 de sortida del build i 53 de
+**Data:** 22 de setembre de 2026 · **Estat:** 31 preguntes (17 de la unitat 7, 9 de la unitat
+8 i 5 de la PAU) · 576 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -20,9 +20,12 @@ verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer 
 2026. La cinquena va revisar el projecte sencer, en va corregir quatre errors, va fixar les
 prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La sisena va donar aire al
 format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescriure a mida PAU
-totes les preguntes de la u7, amb dues de noves. La màquina funciona de punta a punta. El que
-queda és sobretot contingut: la u8, que acaba l'1 de novembre, els 56 exercicis PAU pendents
-i la resta d'unitats.
+totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va fer la u8
+sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
+lloc dona el cos de la prova per a la carpeta del professorat. La màquina funciona de punta a
+punta. El que queda és
+sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
+resta d'unitats.
 
 ---
 
@@ -182,6 +185,51 @@ professor la va aprovar, i es va implementar:
   `parametres-ab/q002` (l'apartat de paràmetres de `continuitat-trossos/q001`, que era d'aquest
   tema, i un apartat nou). La resta queda reservada (vegeu 7.4).
 
+### 2.7 Sessió 7 · La unitat 8
+
+- **`limits-trossos/q002`**, la segona variant que faltava a la u7: una altra funció a trossos
+  amb paràmetre, amb la mateixa estructura que la q001. La u7 queda amb 17 preguntes i tots
+  els temes amb dues variants, llevat dels que en tenen tres.
+- **La unitat 8, sencera.** Els 16 exercicis assignats a les setmanes 5 a 7 surten de tres
+  seccions del llibre, i d'aquí els **sis temes**: TVM i derivada en un punt (30, 31, 32, 37),
+  funció derivada per definició (87, 88), regles de derivació (86, 92, 93), regla de la cadena
+  (93, 97), recta tangent i normal (21, 40, 41, 46) i tangents amb condicions (54, 58). La
+  secció de derivabilitat del llibre no té cap exercici assignat, i per això el banc no hi té
+  tema.
+- **Nou preguntes**, una per tema i dues per als tres temes que més surten als exàmens (regles,
+  recta tangent i tangents amb condicions). Totes a mida PAU, amb versió de 50 min, i amb
+  funcions semblants a les del llibre però mai les mateixes.
+- **Ela geminada.** El punt volat es componia com un símbol solt i quedava separat
+  («paral · lela»). El preàmbul ara l'acosta amb una mica de kerning, i això arregla també
+  «anul·la» i «cancel·la» de la u7.
+
+### 2.8 Sessió 8 · La carpeta d'exàmens
+
+El professor ja tenia una carpeta pròpia per als exàmens, amb `main.tex`, `headers.tex`,
+`defs.tex` i el logo del centre, i el seu `defs.tex` era una còpia del preàmbul del banc d'un
+lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi ha adaptat.
+
+- **El format del banc es parteix en dos**, com el tenia ell: `build/headers.tex` (paquets) i
+  `build/defs.tex` (macros). Continuen sent la font única: els fan servir el build, el lloc i
+  la seva carpeta. `build/preambul.tex` desapareix.
+- **El banc no porta cap dada del centre.** El lloc és accessible, i per això ni el logo, ni el
+  segell, ni el departament, ni la casella de nota hi poden ser. A `defs.tex`,
+  `\capsaleraexamen` no escriu res, i els PDF del banc surten sense capçalera. La capçalera de
+  debò viu en un `capsalera.tex` de la carpeta del professorat, que `main.tex` incorpora amb
+  `\IfFileExists` si el troba: així surt només quan compila ell, a Overleaf. Del seu entorn,
+  el banc sí que adopta `microtype` i `fancyhdr`, que no diuen res de cap centre.
+- **El lloc dona `prova-N.tex`**: el cos de l'examen, sense preàmbul, amb les solucions a dins.
+  Qui decideix si surten és l'interruptor `\solucionstrue` del seu `main.tex`, i per això ara
+  n'hi ha prou amb un sol fitxer per a les dues versions. El número surt d'un camp al costat del
+  botó.
+- **Una secció «Entorn»** al lloc baixa `main.tex`, `headers.tex` i `defs.tex` sempre al dia.
+- **Segell de versió.** `build.py` calcula un identificador del format i l'afegeix al
+  `defs.tex` que es publica. Cada examen comença amb `\bancrequereix{...}`: si el `defs.tex`
+  és d'una altra versió, LaTeX avisa al registre.
+- **Les preguntes es diuen `Q1`, `Q2`, `Q4a`** al `.tex`, a petició del professor. A les
+  targetes del lloc continuen dient «Pregunta 4a».
+- Es manté el fitxer «tot en un», ara amb el nom `examen-sencer.tex`.
+
 ---
 
 ## 3. Decisions preses
@@ -218,6 +266,13 @@ professor la va aprovar, i es va implementar:
 | Format: `\bigskip` entre preguntes i apartats; fórmules destacades amb el mateix aire | Professor | Els exàmens eren difícils de llegir |
 | El `.tex` baixat surt net: el que diu és el que surt al PDF | Professor | Per poder-lo editar abans de compilar-lo |
 | Dos patrons de versió de 50 min: dos apartats d'1,25, o un de sol de 2,5 | Disseny | Els punts queden rodons i cada versió és una tasca coherent |
+| La u8 no té tema de derivabilitat | Disseny | Cap exercici assignat d'aquella secció; el banc no surt mai dels exercicis assignats |
+| Dues variants per als temes de la u8 que més surten als exàmens | Disseny | Regles de derivació, recta tangent i tangents amb condicions |
+| El lloc dona el cos de l'examen (`prova-N.tex`), no un fitxer sencer | Professor | La capçalera, el logo i el curs viuen a la seva carpeta |
+| Les preguntes es diuen `Q1`, `Q2`, `Q4a` al `.tex` | Professor | Més curt al full de l'examen |
+| El format del banc es parteix en `headers.tex` i `defs.tex` | Proposta acceptada | És la partició que ja feia servir el professor, i continua sent font única |
+| El `defs.tex` publicat porta un segell de versió | Disseny | Un `defs.tex` desfasat avisava en silenci, o fallava de qualsevol manera |
+| Cap dada del centre al banc: logo, segell, departament i casella de nota viuen a `capsalera.tex`, fora del repositori | Professor | El lloc és accessible i no ha de mostrar res de l'institut |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
@@ -273,6 +328,16 @@ professor la va aprovar, i es va implementar:
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 8: la carpeta d'exàmens sencera, muntada amb els fitxers que dona el lloc i el logo
+  del professor: compila en 3 pàgines sense solucions i en 4 amb solucions, sense cap
+  *Overfull*. Amb un `defs.tex` d'una altra versió, LaTeX escriu l'avís al registre. Sense
+  `capsalera.tex`, la carpeta compila igualment i els exàmens surten sense capçalera; amb el
+  fitxer, la capçalera hi surt. Cap PDF del banc no en porta, i dues comprovacions de la prova
+  de paritat vigilen que ni els fitxers de format ni el catàleg tinguin dades del centre.
+- Sessió 7: les 31 preguntes compilen amb el preàmbul oficial en les dues modalitats (114 PDF,
+  tots els enunciats d'una pàgina). Cada resultat nou de la u8, comprovat amb SymPy a més del
+  càlcul de la solució. Un examen de mostra de la u8 fa uns 68 minuts dels 90 a la modalitat
+  llarga, i uns 42 dels 50 a la curta.
 - Sessió 6: el build real amb el preàmbul oficial i el format nou: 21 preguntes i 74 PDF, tots
   els enunciats d'una pàgina, també els de 50 min. En Chromium, el selector de durada. L'examen
   de cinc preguntes de la u7 fa 15 apartats i uns 72 minuts a 1 h 30, i 10 apartats i uns 44
@@ -293,10 +358,10 @@ professor la va aprovar, i es va implementar:
 
 ## 6. Inventari
 
-### 6.1 Unitat 7 · Límits i continuïtat (16 preguntes)
+### 6.1 Unitat 7 · Límits i continuïtat (17 preguntes)
 
-Totes reescrites a mida PAU a la sessió 6, amb la versió de 50 min. Els minuts són
-estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades reals (vegeu 7.4).
+Totes a mida PAU, amb la versió de 50 min. Els minuts són estimacions (1 h 30 · 50 min) i
+s'han de calibrar amb dades reals (vegeu 7.4).
 
 | Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
 |---|---|---|---|---|---|---|---|
@@ -309,6 +374,7 @@ estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades reals (vegeu 7.4).
 | Límits a partir d'una gràfica | `q001` | Límits i continuïtat llegits sobre una gràfica | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 44, 66, 68, 92 |
 | Límits a partir d'una gràfica | `q002` | Límits i continuïtat sobre una gràfica amb un angle, un forat i una asímptota | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 44, 66, 68, 92 |
 | Límits de funcions a trossos | `q001` | Límits d'una funció a trossos amb paràmetre i indeterminació 0/0 | 0,75 + 1,25 + 0,50 | 1,00 + 1,50 | 18 · 12 | ●●○ | 76, 88, 90 |
+| Límits de funcions a trossos | `q002` | Límits d'una funció a trossos amb un paràmetre: 0/0, laterals i infinit | 0,75 + 1,25 + 0,50 | 1,00 + 1,50 | 18 · 12 | ●●○ | 76, 88, 90 |
 | Límits en l'infinit | `q001` | Límits en l'infinit: racionals, exponencials i un paràmetre | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 45, 46, 48 |
 | Límits en l'infinit | `q002` | Límits en l'infinit de funcions racionals i un paràmetre | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 46, 48 |
 | Límits en l'infinit | `q003` | Límits en l'infinit: mateix grau, radicals i dos paràmetres | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 45, 46, 48 |
@@ -317,7 +383,24 @@ estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades reals (vegeu 7.4).
 | Paràmetres per a la continuïtat | `q001` | Paràmetres de continuïtat amb exponencial i logaritme, i un paràmetre amb dues solucions | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 40, 102, 106 |
 | Paràmetres per a la continuïtat | `q002` | Paràmetres de continuïtat en una funció a tres trossos i en una de dos | 1,50 + 1,00 | 2,50 | 18 · 11 | ●●○ | 40, 106 |
 
-### 6.2 Registre de convocatòries PAU
+### 6.2 Unitat 8 · Derivades (9 preguntes)
+
+Sis temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 5 a 7. La
+secció de derivabilitat no en té cap d'assignat, i per això el banc no hi té tema.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Funció derivada per definició | `q001` | Funció derivada per definició: un polinomi, una arrel i una racional | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 87, 88 |
+| Recta tangent i normal | `q001` | Rectes tangent i normal, i una tangent amb un paràmetre | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 40, 41 |
+| Recta tangent i normal | `q002` | Rectes tangent i normal en el tall amb l'eix d'abscisses, i tangent a x ln x | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 21, 46 |
+| Regla de la cadena | `q001` | Regla de la cadena: potències, exponencials, logaritmes i trigonomètriques | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 93, 97 |
+| Regles de derivació | `q001` | Regles de derivació: sumes, productes i quocients | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 86, 92, 93 |
+| Regles de derivació | `q002` | Regles de derivació: arrels, exponencials, logaritmes, productes i quocients | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 86, 92, 93 |
+| TVM i derivada en un punt | `q001` | Taxa de variació mitjana i derivada en un punt per definició | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 30, 32, 37 |
+| Tangents amb condicions | `q001` | Tangents paral·leles a una recta donada i tangents horitzontals | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54 |
+| Tangents amb condicions | `q002` | Tangent a una racional, triangle amb els eixos i tangents paral·leles | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54, 58 |
+
+### 6.3 Registre de convocatòries PAU
 
 | Codi | Convocatòria | Sèrie | Font |
 |---|---|---|---|
@@ -333,7 +416,7 @@ estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades reals (vegeu 7.4).
 | `26j` | juny 2026 | 1 | Capçalera del criteri oficial: ana-26j-q1-s.pdf. |
 | `26j2` | juny 2026 | 5 | Capçalera del criteri oficial: ana-26j2-q1-s.pdf. |
 
-### 6.3 Seguiment de les 62 entrades PAU (61 exercicis)
+### 6.4 Seguiment de les 62 entrades PAU (61 exercicis)
 
 Ordenades de la més recent a la més antiga, que és l'ordre d'importació recomanat.
 
@@ -480,8 +563,8 @@ l'ordre numèric.
 | Unitat | Setmanes | Última data límit |
 |---|---|---|
 | u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, reescrita a la sessió 6 |
-| u8 Derivades | 5–7 | 1 de novembre de 2026 · **la següent** |
-| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 |
+| u8 Derivades | 5–7 | 1 de novembre de 2026 · **feta** |
+| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **la següent** |
 | u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 |
 | u13 Probabilitat | 13–14 | 20 de desembre de 2026 |
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 |
@@ -495,13 +578,11 @@ l'ordre numèric.
 
 - **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
   estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
-- **Temes i preguntes de la u8.** Cal seguir el mateix patró: taxonomia de temes, calibratge amb
-  els exercicis assignats a les setmanes 5 a 7 i verificació per dos camins. Són 17 exercicis,
-  16 de diferents (vegeu 7.2).
-- Després, les unitats en l'ordre de la taula.
+- **Temes i preguntes de la u9**, amb el mateix patró. Després, les unitats en l'ordre de la
+  taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
-- Segona variant per a `limits-trossos`, l'únic tema de la u7 que només en té una.
+- Segones variants per als sis temes de la u8, que ara en tenen una o dues.
 - **Material reservat** de la reescriptura, per si cal:
   - $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), de l'antiga `limits-punt/q001`.
     No és a cap exercici assignat.
@@ -638,21 +719,22 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el segon lliurament de la sessió 6. Parteix del primer (`banc-preguntes-sessio6.zip`), que
-ja és al repositori, i conté només els fitxers que canvien, directament a l'arrel del ZIP:
+És el lliurament de la sessió 8. Parteix del de la sessió 7, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `build/build.py` | `materialitza()`: cada modalitat es compila neta; fora `%%MODE%%` |
-| `build/embolcall.tex` | Fora `\ifcurt` i `%%MODE%%` |
-| `build/preambul.tex` | Fora la lògica de modalitats: el preàmbul ja no en sap res |
-| `build/prova_validacio.py` | 29 avaries, adaptades al contingut nou |
-| `build/prova_sortida.py` | Adaptada a `parametres-ab/q001` nova |
-| `build/prova_paritat.py` | 53 comprovacions: el `.tex` de cada modalitat, net |
-| `assets/app.js` | `materialitza()`, igual que la de `build.py` |
-| `u7/*/q00*/` | Les 12 preguntes reescrites de la u7 i les 2 noves: `limits-infinit/q003` i `parametres-ab/q002` |
-| `README.md` | El `.tex` net i les modalitats |
-| `handout.md` | Sessió 6: `.tex` net, reescriptura i inventari nou |
+| `build/headers.tex` | **Nou**: paquets i format de pàgina (amb `microtype` i `fancyhdr`) |
+| `build/defs.tex` | **Nou**: macros del banc i segell de versió; la capçalera d'examen hi és buida |
+| `build/main.tex` | **Nou**: plantilla de la carpeta d'exàmens; incorpora `capsalera.tex` si hi és |
+| `build/build.py` | Llegeix els dos fitxers de format, calcula el segell i els desa al catàleg; `--preambul` passa a ser `--headers` |
+| `build/prova_paritat.py` | 62 comprovacions: etiquetes `Q`, peces de l'examen, fitxer `prova-N.tex` i cap dada del centre |
+| `build/prova_sortida.py` | 10 comprovacions: `--headers` i el segell |
+| `assets/app.js` | `prova-N.tex`, secció Entorn, etiquetes `Q` i número de prova |
+| `assets/style.css`, `index.html` | Camp del número de prova i botons de l'entorn |
+| `README.md`, `handout.md` | La carpeta d'exàmens |
+
+**Cal esborrar `build/preambul.tex` a mà**, des de la web de GitHub: un ZIP no pot esborrar
+fitxers, i aquell ja no el llegeix ningú. Obre'l, fes clic a la paperera i confirma el commit.
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
-cal fer **Run workflow**: l'Action torna a compilar totes les preguntes.
+cal fer **Run workflow**.
