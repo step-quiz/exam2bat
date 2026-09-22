@@ -41,38 +41,9 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
    `.tex` és exactament el que surt al PDF.
 7. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
    sola. Tot segueix la durada triada.
-8. A baix: **prova-N.tex** baixa el cos de l'examen per a la carpeta d'exàmens (vegeu més
-   avall). Cada pregunta hi porta la seva etiqueta: `\encapcalament{Q4a}`. Les solucions hi
-   van a dins, i les fa sortir l'interruptor `\solucionstrue` del teu `main.tex`. **Tot en
-   un** i **amb solucions** baixen l'examen en un sol fitxer, preàmbul inclòs, per si no vols
-   carpeta. El comptador es posa verd quan l'examen fa 10 punts.
-
-### La carpeta d'exàmens
-
-Es prepara un sol cop. A la columna dels temes, l'apartat **Entorn** baixa els tres fitxers:
-
-```
-examens/
-  main.tex            \input de la prova que vulguis compilar
-  headers.tex         paquets i format de pàgina
-  defs.tex            macros del banc, amb el segell de versió
-  capsalera.tex       la capçalera del teu centre (la poses tu)
-  logo-institut.png   el teu logo (el poses tu)
-  prova-1.tex         cos de l'examen, baixat del lloc
-  prova-2.tex         …
-```
-
-**El banc no porta cap dada de cap centre**: ni logo, ni segell, ni departament, ni casella de
-nota. Aquí, `\capsaleraexamen` no escriu res, i per això els PDF del banc i el lloc web no
-ensenyen cap capçalera. Si a la carpeta hi ha un `capsalera.tex` que la redefineixi, `main.tex`
-l'incorpora tot sol i la capçalera surt només quan compiles tu.
-
-Per fer un examen: tria les preguntes, baixa `prova-N.tex`, posa'l a la carpeta i compila
-`main.tex`. Per al full del professorat, canvia `\solucionsfalse` per `\solucionstrue`.
-
-Si el `defs.tex` que tens és d'una altra versió que l'examen, LaTeX avisa al registre: «aquest
-defs.tex no és el que va generar l'examen». Aleshores, torna a baixar `headers.tex` i
-`defs.tex` des d'**Entorn**.
+8. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les
+   solucions intercalades. Cada pregunta hi porta la seva etiqueta, per exemple «Pregunta
+   4a». El comptador es posa verd quan l'examen fa 10 punts.
 
 L'examen queda desat a l'adreça, i es pot guardar als marcadors i recuperar exactament igual:
 
@@ -95,9 +66,8 @@ El projecte segueix cinc principis. Totes les decisions de disseny en surten.
 
 1. **Font única.** Les úniques fonts són `pregunta.tex` i `meta.json` de cada pregunta. Els
    PDF de `out/` i `cataleg.js` són fitxers generats, i no s'editen mai a mà.
-2. **Un sol format i una sola plantilla.** Totes les preguntes compilen amb
-   `build/headers.tex` (paquets) i `build/defs.tex` (macros), que són també els que es baixen
-   des d'**Entorn**. L'assemblatge d'un examen el fa `build/embolcall.tex`, i és la
+2. **Un sol preàmbul i una sola plantilla.** Totes les preguntes compilen amb
+   `build/preambul.tex`. L'assemblatge d'un examen el fa `build/embolcall.tex`, i és la
    mateixa plantilla per al build (Python) i per al lloc (JavaScript). Una prova
    n'assegura la paritat byte a byte.
 3. **Validació que falla tancada.** Si una pregunta no compleix alguna regla, o no compila, el
@@ -114,9 +84,8 @@ El projecte segueix cinc principis. Totes les decisions de disseny en surten.
  pregunta.tex ─┐                      ┌─► out/enunciat.pdf, out/solucio.pdf
  meta.json    ─┼─► build/build.py ───┼─► out/enunciat-curt.pdf, out/solucio-curt.pdf
  temes.json   ─┤   (valida, compila)  │    (només si té versió de 50 min)
- headers.tex  ─┤                      └─► cataleg.js ──► index.html + assets/app.js
- defs.tex     ─┤                                          (tria, previsualitza, munta
- pau/convocatories.json ─┘                                 prova-N.tex i l'entorn)
+ pau/convocatories.json ─┘            └─► cataleg.js ──► index.html + assets/app.js
+                                                          (tria, previsualitza, munta .tex)
 ```
 
 ---
@@ -127,13 +96,11 @@ El projecte segueix cinc principis. Totes les decisions de disseny en surten.
 index.html                 la pàgina (única)
 assets/app.js              lògica del lloc: examen, opcions, variants, assemblatge, descàrregues
 assets/style.css           estil (clar i fosc)
-cataleg.js                 GENERAT: preguntes, format (headers i defs) i plantilles
+cataleg.js                 GENERAT: totes les preguntes, el preàmbul i la plantilla
 temes.json                 unitats i temes (slugs estables)
 build/
   build.py                 valida, compila els PDF i genera cataleg.js
-  headers.tex              paquets i format de pàgina (congelat)
-  defs.tex                 macros del banc (congelat)
-  main.tex                 plantilla de la carpeta d'exàmens
+  preambul.tex             preàmbul compartit (congelat)
   embolcall.tex            plantilla d'assemblatge (compartida amb app.js)
   prova_validacio.py       comprova que cada regla fa fallar el build
   prova_sortida.py         comprova que un build que falla no escriu res
@@ -197,7 +164,7 @@ El procediment complet per importar una convocatòria és a `handout.md`.
 | 2 | Tota pregunta val **2,50 punts**. Cada apartat és múltiple de **0,25**. | `build.py` |
 | 3 | La puntuació s'escriu **només** a `\apartat{...}`. Enlloc més. L'opcional és la de 50 min: `\apartat[1,25]{0,75}`. Les dues puntuacions sumen 2,50. | `build.py` la llegeix del `.tex` |
 | 4 | Una pregunta és **només el cos**: sense `\documentclass`, `\usepackage` ni `\begin{document}`. | `build.py` |
-| 5 | Hi ha **un sol format**: `build/headers.tex` i `build/defs.tex`. Un paquet nou s'afegeix allà i es recompila tot. | `build.py` |
+| 5 | Hi ha **un sol preàmbul**, `build/preambul.tex`. Un paquet nou s'hi afegeix allà i es recompila tot. | `build.py` |
 | 6 | Els codis `q001`, `q002`… són **permanents**: mai es renumeren ni es reaprofiten. | tu |
 | 7 | `\end{solucio}`, `\begin{nomesllarg}` i `\end{nomesllarg}` van **sols a la seva línia**. | `build.py` |
 | 8 | Tota graella de TikZ declara el pas: `grid` sempre amb `step=1` (o el que calgui). Sense, TikZ fa passos d'1 cm i la graella queda desquadrada respecte dels enters. | `build.py` |
@@ -210,7 +177,7 @@ la carpeta de la seva unitat; que el format dels codis sigui correcte (`q001` al
 `ana-26j-q1` a la PAU); que el prefix d'una PAU correspongui al seu bloc; i que la
 convocatòria existeixi al registre.
 
-## Macros de `defs.tex`
+## Macros del preàmbul
 
 | Escrius | Surt |
 |---|---|
@@ -221,7 +188,7 @@ convocatòria existeixi al registre.
 
 Aquestes dues marques només són a les fonts. Abans de compilar o de baixar un `.tex`,
 `materialitza()` (a `build.py` i a `app.js`, idèntiques) deixa la pregunta neta per a la
-durada triada, i `defs.tex` no en veu mai cap.
+durada triada, i el preàmbul no en veu mai cap.
 | `\begin{graella}{3} \sa … & \sa … \end{graella}` | i) ii) iii) en columnes, amb els `\lim` en mode display |
 | `\si{-1\le x\le 2}` dins de `cases` | «si −1 ≤ x ≤ 2», amb el signe ben espaiat |
 | `\begin{solucio} … \end{solucio}` | només apareix a la versió amb solucions, en blau |
@@ -279,9 +246,9 @@ Opcions de `build.py`:
 - `--nomes-cataleg` revalida i regenera el catàleg sense compilar.
 - `--pregunta RUTA` compila només les preguntes que la contenen. El catàleg sempre les inclou
   totes.
-- `--headers FITXER` compila amb uns altres paquets, per exemple si a l'entorn en falten.
-  Aquests PDF no són definitius i el build ho avisa. El catàleg porta sempre
-  `build/headers.tex` i `build/defs.tex`, que són els que el lloc posa als `.tex`.
+- `--preambul FITXER` compila amb un altre preàmbul, per exemple si a l'entorn falten
+  paquets. Aquests PDF no són definitius i el build ho avisa. El catàleg porta sempre
+  `build/preambul.tex`, que és el que el lloc posa als `.tex` que es baixen.
 
 ## GitHub i compilació
 

@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 22 de setembre de 2026 · **Estat:** 31 preguntes (17 de la unitat 7, 9 de la unitat
-8 i 5 de la PAU) · 576 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+8 i 5 de la PAU) · 576 minuts d'examen al banc · 29 comprovacions del validador, 9 de sortida del build i 53 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -21,9 +21,7 @@ verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer 
 prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La sisena va donar aire al
 format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescriure a mida PAU
 totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va fer la u8
-sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
-lloc dona el cos de la prova per a la carpeta del professorat. La màquina funciona de punta a
-punta. El que queda és
+sencera: sis temes i nou preguntes. La màquina funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -203,33 +201,6 @@ professor la va aprovar, i es va implementar:
   («paral · lela»). El preàmbul ara l'acosta amb una mica de kerning, i això arregla també
   «anul·la» i «cancel·la» de la u7.
 
-### 2.8 Sessió 8 · La carpeta d'exàmens
-
-El professor ja tenia una carpeta pròpia per als exàmens, amb `main.tex`, `headers.tex`,
-`defs.tex` i el logo del centre, i el seu `defs.tex` era una còpia del preàmbul del banc d'un
-lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi ha adaptat.
-
-- **El format del banc es parteix en dos**, com el tenia ell: `build/headers.tex` (paquets) i
-  `build/defs.tex` (macros). Continuen sent la font única: els fan servir el build, el lloc i
-  la seva carpeta. `build/preambul.tex` desapareix.
-- **El banc no porta cap dada del centre.** El lloc és accessible, i per això ni el logo, ni el
-  segell, ni el departament, ni la casella de nota hi poden ser. A `defs.tex`,
-  `\capsaleraexamen` no escriu res, i els PDF del banc surten sense capçalera. La capçalera de
-  debò viu en un `capsalera.tex` de la carpeta del professorat, que `main.tex` incorpora amb
-  `\IfFileExists` si el troba: així surt només quan compila ell, a Overleaf. Del seu entorn,
-  el banc sí que adopta `microtype` i `fancyhdr`, que no diuen res de cap centre.
-- **El lloc dona `prova-N.tex`**: el cos de l'examen, sense preàmbul, amb les solucions a dins.
-  Qui decideix si surten és l'interruptor `\solucionstrue` del seu `main.tex`, i per això ara
-  n'hi ha prou amb un sol fitxer per a les dues versions. El número surt d'un camp al costat del
-  botó.
-- **Una secció «Entorn»** al lloc baixa `main.tex`, `headers.tex` i `defs.tex` sempre al dia.
-- **Segell de versió.** `build.py` calcula un identificador del format i l'afegeix al
-  `defs.tex` que es publica. Cada examen comença amb `\bancrequereix{...}`: si el `defs.tex`
-  és d'una altra versió, LaTeX avisa al registre.
-- **Les preguntes es diuen `Q1`, `Q2`, `Q4a`** al `.tex`, a petició del professor. A les
-  targetes del lloc continuen dient «Pregunta 4a».
-- Es manté el fitxer «tot en un», ara amb el nom `examen-sencer.tex`.
-
 ---
 
 ## 3. Decisions preses
@@ -268,11 +239,6 @@ lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi h
 | Dos patrons de versió de 50 min: dos apartats d'1,25, o un de sol de 2,5 | Disseny | Els punts queden rodons i cada versió és una tasca coherent |
 | La u8 no té tema de derivabilitat | Disseny | Cap exercici assignat d'aquella secció; el banc no surt mai dels exercicis assignats |
 | Dues variants per als temes de la u8 que més surten als exàmens | Disseny | Regles de derivació, recta tangent i tangents amb condicions |
-| El lloc dona el cos de l'examen (`prova-N.tex`), no un fitxer sencer | Professor | La capçalera, el logo i el curs viuen a la seva carpeta |
-| Les preguntes es diuen `Q1`, `Q2`, `Q4a` al `.tex` | Professor | Més curt al full de l'examen |
-| El format del banc es parteix en `headers.tex` i `defs.tex` | Proposta acceptada | És la partició que ja feia servir el professor, i continua sent font única |
-| El `defs.tex` publicat porta un segell de versió | Disseny | Un `defs.tex` desfasat avisava en silenci, o fallava de qualsevol manera |
-| Cap dada del centre al banc: logo, segell, departament i casella de nota viuen a `capsalera.tex`, fora del repositori | Professor | El lloc és accessible i no ha de mostrar res de l'institut |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
@@ -328,12 +294,6 @@ lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi h
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
-- Sessió 8: la carpeta d'exàmens sencera, muntada amb els fitxers que dona el lloc i el logo
-  del professor: compila en 3 pàgines sense solucions i en 4 amb solucions, sense cap
-  *Overfull*. Amb un `defs.tex` d'una altra versió, LaTeX escriu l'avís al registre. Sense
-  `capsalera.tex`, la carpeta compila igualment i els exàmens surten sense capçalera; amb el
-  fitxer, la capçalera hi surt. Cap PDF del banc no en porta, i dues comprovacions de la prova
-  de paritat vigilen que ni els fitxers de format ni el catàleg tinguin dades del centre.
 - Sessió 7: les 31 preguntes compilen amb el preàmbul oficial en les dues modalitats (114 PDF,
   tots els enunciats d'una pàgina). Cada resultat nou de la u8, comprovat amb SymPy a més del
   càlcul de la solució. Un examen de mostra de la u8 fa uns 68 minuts dels 90 a la modalitat
@@ -719,22 +679,16 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 8. Parteix del de la sessió 7, que ja és al repositori.
+És el lliurament de la sessió 7. Parteix dels dos de la sessió 6, que ja són al repositori, i
+conté només els fitxers que canvien, directament a l'arrel del ZIP:
 
 | Fitxer | Canvi |
 |---|---|
-| `build/headers.tex` | **Nou**: paquets i format de pàgina (amb `microtype` i `fancyhdr`) |
-| `build/defs.tex` | **Nou**: macros del banc i segell de versió; la capçalera d'examen hi és buida |
-| `build/main.tex` | **Nou**: plantilla de la carpeta d'exàmens; incorpora `capsalera.tex` si hi és |
-| `build/build.py` | Llegeix els dos fitxers de format, calcula el segell i els desa al catàleg; `--preambul` passa a ser `--headers` |
-| `build/prova_paritat.py` | 62 comprovacions: etiquetes `Q`, peces de l'examen, fitxer `prova-N.tex` i cap dada del centre |
-| `build/prova_sortida.py` | 10 comprovacions: `--headers` i el segell |
-| `assets/app.js` | `prova-N.tex`, secció Entorn, etiquetes `Q` i número de prova |
-| `assets/style.css`, `index.html` | Camp del número de prova i botons de l'entorn |
-| `README.md`, `handout.md` | La carpeta d'exàmens |
-
-**Cal esborrar `build/preambul.tex` a mà**, des de la web de GitHub: un ZIP no pot esborrar
-fitxers, i aquell ja no el llegeix ningú. Obre'l, fes clic a la paperera i confirma el commit.
+| `temes.json` | Els sis temes de la u8 |
+| `u7/limits-trossos/q002/` | **Nova**: la segona variant que faltava a la u7 |
+| `u8/*/q00*/` | **Noves**: les nou preguntes de la u8 |
+| `build/preambul.tex` | Ela geminada: el punt volat, acostat a les eles |
+| `handout.md` | Sessió 7: la u8, inventari nou i feina pendent |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
-cal fer **Run workflow**.
+cal fer **Run workflow**: com que canvia el preàmbul, es tornen a compilar totes les preguntes.

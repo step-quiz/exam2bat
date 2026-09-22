@@ -87,6 +87,42 @@
       "descripcio": "Teorema de Bolzano, acotació d'arrels per bisecció i punts de tall de corbes."
     },
     {
+      "slug": "tvm-derivada-punt",
+      "unitat": "u8",
+      "nom": "TVM i derivada en un punt",
+      "descripcio": "Taxa de variació mitjana en un interval i derivada en un punt per definició."
+    },
+    {
+      "slug": "derivada-definicio",
+      "unitat": "u8",
+      "nom": "Funció derivada per definició",
+      "descripcio": "La funció derivada com a límit del quocient incremental: polinomis, arrels i racionals."
+    },
+    {
+      "slug": "regles-derivacio",
+      "unitat": "u8",
+      "nom": "Regles de derivació",
+      "descripcio": "Derivades de funcions elementals, sumes, productes i quocients."
+    },
+    {
+      "slug": "regla-cadena",
+      "unitat": "u8",
+      "nom": "Regla de la cadena",
+      "descripcio": "Derivades de funcions compostes: potències, exponencials, logaritmes i trigonomètriques."
+    },
+    {
+      "slug": "recta-tangent",
+      "unitat": "u8",
+      "nom": "Recta tangent i normal",
+      "descripcio": "Equacions de les rectes tangent i normal a la gràfica d'una funció en un punt."
+    },
+    {
+      "slug": "tangent-condicions",
+      "unitat": "u8",
+      "nom": "Tangents amb condicions",
+      "descripcio": "Tangents paral·leles a una recta, tangents horitzontals i triangles amb els eixos."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",
