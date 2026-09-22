@@ -3,11 +3,14 @@
    Vanilla. Cap dependència. Llegeix el global BANC de cataleg.js.
 
    L'EXAMEN
-   És una llista ordenada de places. Cada plaça té una pregunta (un tema i
-   una variant d'aquell tema) i una marca «opció»: una plaça marcada és una
-   alternativa de l'anterior, i l'alumne en respon una. Els números (1, 2,
-   3, 4a, 4b) no es guarden enlloc: es deriven de l'ordre i de les marques,
-   i per això mai no n'hi pot haver de repetits ni de forats.
+   És un marc de places que s'omplen per ordre: la primera pregunta triada
+   va a la primera plaça, i així successivament. L'estructura diu quines
+   places són una opció de l'anterior (l'alumne en respon una), i és de les
+   PLACES, no de les preguntes: moure o treure preguntes no la desfà. Per
+   defecte és la de la PAU: 1, 2, 3, 4a, 4b, vinguin d'on vinguin les
+   preguntes (temes, PAU o totes dues coses). Els números no es guarden
+   enlloc: es deriven de l'estructura, i per això mai no n'hi pot haver de
+   repetits ni de forats.
 
    REGLES D'AQUEST FITXER
    1. L'assemblatge del .tex fa servir BANC.plantilla, el mateix fitxer
@@ -30,8 +33,13 @@ BANC.temes.forEach(t => { PER_TEMA[t.slug] = []; });
 BANC.preguntes.forEach(p => { (PER_TEMA[p.tema] ||= []).push(p); });
 Object.values(PER_TEMA).forEach(l => l.sort((a, b) => a.codi.localeCompare(b.codi)));
 
-let examen = [];          // places { slug, i, opcio }; i és l'índex dins PER_TEMA[slug]
+let examen = [];          // preguntes en ordre: { slug, i }; i és l'índex dins PER_TEMA[slug]
 const visor = {};         // id de pregunta → 'enunciat' | 'solucio' | undefined
+
+// estructura[k]: la plaça k és una opció de l'anterior? Per defecte, la de la
+// PAU: la cinquena plaça és l'opció b de la quarta (1, 2, 3, 4a, 4b).
+const estructura = [false, false, false, false, true];
+const esOpcio = k => k > 0 && Boolean(estructura[k]);
 
 // ── utilitats ────────────────────────────────────────────────────────
 const $ = s => document.querySelector(s);
@@ -78,11 +86,11 @@ function primeraLliure(slug) {
   return PER_TEMA[slug].findIndex((_, i) => !u.has(i));
 }
 
-/** Les places agrupades per pregunta: cada grup és una pregunta i les seves
- *  opcions. La primera plaça sempre obre grup. */
+/** Les places ocupades, agrupades per pregunta: cada grup és una pregunta i
+ *  les seves opcions. La primera plaça sempre obre grup. */
 function grups() {
   const g = [];
-  examen.forEach((p, k) => { if (k && p.opcio) g[g.length - 1].push(k); else g.push([k]); });
+  examen.forEach((_, k) => { if (esOpcio(k)) g[g.length - 1].push(k); else g.push([k]); });
   return g;
 }
 
@@ -114,7 +122,8 @@ function llegeixHash() {
       if (i >= 0 && usades(slug).has(i)) return;      // regla 6
       if (i < 0) i = primeraLliure(slug);              // codi desaparegut → la primera lliure
       if (i < 0) return;                               // tema buit o sense variants lliures
-      examen.push({ slug, i, opcio: !primera });
+      estructura[examen.length] = !primera;            // la plaça que ocuparà
+      examen.push({ slug, i });
       primera = false;
     });
   });
@@ -122,7 +131,7 @@ function llegeixHash() {
 
 function escriuHash() {
   const s = examen.map((p, k) =>
-    (k ? (p.opcio ? '|' : ',') : '') + `${p.slug}:${preguntaDe(p).codi}`).join('');
+    (k ? (esOpcio(k) ? '|' : ',') : '') + `${p.slug}:${preguntaDe(p).codi}`).join('');
   history.replaceState(null, '', s ? '#' + s : location.pathname + location.search);
 }
 
@@ -131,35 +140,31 @@ function escriuHash() {
 function afegeix(slug) {
   const i = primeraLliure(slug);
   if (i < 0) return;
-  examen.push({ slug, i, opcio: false });
+  examen.push({ slug, i });
   pinta();
 }
 
+/** Treu la pregunta de la plaça k. Les de després pugen una plaça, i
+ *  l'estructura es queda com era, perquè és de les places. */
 function treu(k) {
-  const p = examen[k];
-  // Si encapçalava un grup (4a), la seva opció següent (4b) passa a encapçalar-lo.
-  if (!p.opcio && examen[k + 1]?.opcio) examen[k + 1].opcio = false;
-  delete visor[preguntaDe(p).id];
+  delete visor[preguntaDe(examen[k]).id];
   examen.splice(k, 1);
-  if (examen.length) examen[0].opcio = false;
   pinta();
 }
 
-/** Mou la pregunta de la plaça k a la plaça k+pas. Les marques d'opció es
- *  queden a les places: l'estructura (1, 2, 3, 4a, 4b) no canvia, i són les
- *  preguntes les que passen d'una plaça a l'altra. */
+/** Intercanvia la pregunta de la plaça k amb la de la plaça k+pas.
+ *  L'estructura no canvia: són les preguntes les que canvien de plaça. */
 function mou(k, pas) {
   const j = k + pas;
   if (j < 0 || j >= examen.length) return;
-  const a = examen[k], b = examen[j];
-  [a.slug, a.i, b.slug, b.i] = [b.slug, b.i, a.slug, a.i];
+  [examen[k], examen[j]] = [examen[j], examen[k]];
   pinta();
 }
 
 /** Converteix la plaça k en opció de l'anterior, o la hi torna a separar. */
 function commutaOpcio(k) {
   if (k === 0) return;
-  examen[k].opcio = !examen[k].opcio;
+  estructura[k] = !esOpcio(k);
   pinta();
 }
 
@@ -228,7 +233,7 @@ function pintaCarta(k, etiqueta) {
     ? q.unitats.map(u => `<abbr title="${esc(BANC.unitats[u]?.subtitol || '')}">${esc(u)}</abbr>`).join(' · ')
     : 'per definir';
   const div = document.createElement('div');
-  div.className = 'carta' + (esPau ? ' pau' : '') + (k && p.opcio ? ' opcio' : '');
+  div.className = 'carta' + (esPau ? ' pau' : '') + (esOpcio(k) ? ' opcio' : '');
   div.innerHTML = `
     <div class="carta-dalt">
       <span class="num">Pregunta ${esc(etiqueta)}</span>
@@ -252,7 +257,7 @@ function pintaCarta(k, etiqueta) {
       <button type="button" class="secundari" data-fer="enunciat" aria-pressed="${visor[q.id] === 'enunciat'}">Enunciat</button>
       <button type="button" class="secundari" data-fer="solucio" aria-pressed="${visor[q.id] === 'solucio'}">Solució</button>
       <button type="button" class="secundari" data-fer="tex">.tex</button>
-      ${k ? `<button type="button" class="secundari opcio-btn" data-fer="opcio" aria-pressed="${p.opcio}"
+      ${k ? `<button type="button" class="secundari opcio-btn" data-fer="opcio" aria-pressed="${esOpcio(k)}"
         title="L'alumne respon aquesta pregunta o l'anterior: queden numerades com a 4a i 4b">Opció de l'anterior</button>` : ''}
       <span class="variant">
         <button type="button" class="secundari" data-fer="prev" aria-label="Variant anterior" ${potRotar ? '' : 'disabled'}>◀</button>
@@ -293,7 +298,8 @@ function pinta() {
   const cont = $('#seleccio');
   cont.innerHTML = '';
   if (!examen.length) {
-    cont.innerHTML = '<div class="cap">Tria temes a l\'esquerra: cada clic hi afegeix una pregunta.</div>';
+    cont.innerHTML = '<div class="cap">Tria temes a l\'esquerra: cada clic hi afegeix una pregunta. '
+      + 'Les cinc primeres queden com a la PAU: 1, 2, 3, 4a i 4b.</div>';
   }
   const et = etiquetes();
   examen.forEach((_, k) => cont.appendChild(pintaCarta(k, et[k])));

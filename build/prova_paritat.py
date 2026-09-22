@@ -53,6 +53,11 @@ process.stdout.write(JSON.stringify(r));
 """
 
 
+# El cos de l'examen comença a la LÍNIA \begin{document}. No n'hi ha prou de
+# buscar-ne el text: el preàmbul el cita en un comentari, i s'hi tallaria abans.
+INICI_COS = "\n\\begin{document}\n"
+
+
 class AppPetada(Exception):
     """app.js ha llançat una excepció dins de Node: al navegador, pàgina en blanc."""
 
@@ -124,7 +129,7 @@ def main() -> int:
     comprova("l'opció 4A es tria com a variant del bloc d'anàlisi", r["ids"] == ["pau/analisi/ana-26j-q4a"], r["ids"])
     r = web("limits-punt:q001")
     comprova("una pregunta del banc no porta cap línia de procedència", "\\procedencia{" not in
-             r["tex"].split("\\begin{document}")[1], "")
+             r["tex"].split(INICI_COS, 1)[1], "")
 
     # 1d. Un examen com el de la PAU: 1, 2, 3, 4a i 4b, amb dues preguntes d'anàlisi
     def cossos(ids, etiquetes):
@@ -152,7 +157,7 @@ def main() -> int:
     # 1e. Les accions de les targetes, com les faria el professor
     cinc = pau.replace("|", ",")
     r = web(cinc)
-    comprova("sense cap opció, cinc preguntes són 1, 2, 3, 4 i 5 (12,50 punts)",
+    comprova("una adreça amb cinc preguntes separades per comes les manté separades: 1…5",
              r["etiquetes"] == ["1", "2", "3", "4", "5"] and "12,50 punts" in r["recompte"], r["etiquetes"])
     r = web(cinc, "commutaOpcio(4)")
     comprova("«Opció de l'anterior» a la cinquena → 4a i 4b",
@@ -172,6 +177,42 @@ def main() -> int:
              r["ids"] == ["u7/limits-punt/q001", "u7/limits-punt/q002"], r["ids"])
     r = web("limits-punt:q001", "rota(0, 1)")
     comprova("◀ ▶ passa a la variant següent si és lliure", r["ids"] == ["u7/limits-punt/q002"], r["ids"])
+
+    # 1f. Per defecte, l'estructura és la de la PAU (1, 2, 3, 4a, 4b), també amb
+    #     preguntes dels temes, i es poden combinar temes i PAU en un mateix examen.
+    cinc_clics = ("afegeix('limits-punt'); afegeix('analisi'); afegeix('bolzano-biseccio'); "
+                  "afegeix('probabilitat'); afegeix('geometria')")
+    combinat = ["u7/limits-punt/q001", "pau/analisi/ana-26j-q1", "u7/bolzano-biseccio/q001",
+                "pau/probabilitat/pro-26j-q3", "pau/geometria/geo-26j-q4b"]
+    pau5 = ["1", "2", "3", "4a", "4b"]
+    r = web("", cinc_clics)
+    comprova("per defecte, cinc clics donen 1, 2, 3, 4a i 4b", r["etiquetes"] == pau5, r["etiquetes"])
+    comprova("i l'examen fa 10,00 punts: se'n responen 4",
+             all(s in r["recompte"] for s in ("5 preguntes", "se'n responen 4", "10,00 punts")), r["recompte"])
+    comprova("es poden combinar preguntes dels temes i de la PAU", r["ids"] == combinat, r["ids"])
+    for sol, clau in ((False, "tex"), (True, "sol")):
+        py = munta(banc["plantilla"], banc["preambul"], cossos(r["ids"], r["etiquetes"]), sol)
+        comprova(f"paritat JS = Python en un examen combinat ({'amb' if sol else 'sense'} solucions)",
+                 py == r[clau])
+    comprova("només les tres preguntes PAU porten la línia de procedència",
+             r["tex"].split(INICI_COS, 1)[1].count("\\procedencia{") == 3)
+    comprova("l'adreça el desa amb la 4a i la 4b",
+             r["hash"] == "limits-punt:q001,analisi:ana-26j-q1,bolzano-biseccio:q001,"
+                          "probabilitat:pro-26j-q3|geometria:geo-26j-q4b", r["hash"])
+    r = web("", cinc_clics + "; treu(1); afegeix('continuitat-trossos')")
+    comprova("l'estructura és de les places: ✕ a la 2 i un clic nou tornen a fer 1, 2, 3, 4a, 4b",
+             r["etiquetes"] == pau5 and r["ids"][-1] == "u7/continuitat-trossos/q001", r["ids"])
+    r = web("", cinc_clics + "; treu(1); afegeix('continuitat-trossos'); mou(4, -1); mou(3, -1); mou(2, -1)")
+    comprova("amb ▲, la pregunta nova passa a ser la 2 i la 4a i la 4b no es mouen",
+             r["ids"][1] == "u7/continuitat-trossos/q001" and r["etiquetes"] == pau5
+             and r["ids"][3:] == combinat[3:], r["ids"])
+    r = web("", cinc_clics + "; commutaOpcio(4)")
+    comprova("«Opció de l'anterior» a la 4b la separa: 1, 2, 3, 4 i 5",
+             r["etiquetes"] == ["1", "2", "3", "4", "5"] and "12,50 punts" in r["recompte"], r["etiquetes"])
+    r = web("limits-punt:q001,analisi:ana-26j-q1,bolzano-biseccio:q001,probabilitat:pro-26j-q3",
+            "afegeix('geometria')")
+    comprova("una adreça antiga de quatre preguntes, amb una cinquena, també fa 4a i 4b",
+             r["etiquetes"] == pau5, r["etiquetes"])
 
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")

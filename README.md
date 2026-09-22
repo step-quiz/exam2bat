@@ -24,10 +24,14 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
    quantes en té el tema.
 4. Cada pregunta és una targeta. Amb ◀ ▶ passes d'una variant a l'altra del mateix tema, amb
    ▲ ▼ la mous i amb ✕ la treus. Una mateixa pregunta no hi pot sortir dues vegades.
-5. **Opció de l'anterior** converteix una pregunta en una alternativa de la pregunta anterior:
-   l'alumne en respon una de les dues. Per fer un examen com el de la PAU, tria'n cinc i marca
-   l'opció a la cinquena. Queden numerades com a 1, 2, 3, 4a i 4b. Les opcions compten una
-   sola vegada als punts i als minuts.
+5. **Per defecte, l'examen té l'estructura de la PAU.** Les cinc primeres preguntes queden
+   numerades com a 1, 2, 3, 4a i 4b: l'alumne fa la 1, la 2 i la 3, i tria entre la 4a i la 4b.
+   Val igual per a preguntes dels temes, de la PAU o barrejades en qualsevol ordre.
+   L'estructura és de les places, no de les preguntes: si en treus o en mous una, la 4a i la
+   4b continuen al seu lloc. **Opció de l'anterior** canvia l'estructura d'una plaça. A la 4b,
+   la separa (1, 2, 3, 4, 5); a qualsevol altra, la converteix en una alternativa de
+   l'anterior. Una opció compta una sola vegada als punts, i als minuts es compta la més
+   llarga.
 6. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
    sola.
 7. A baix: **main.tex** baixa l'examen sencer, i **amb solucions**, la versió amb les

@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 21 de setembre de 2026 · **Estat:** 18 preguntes (13 de la unitat 7 i 5 de la PAU)
-· 286 minuts d'examen al banc · 21 comprovacions del validador, 9 de sortida del build i 33 de
+· 286 minuts d'examen al banc · 21 comprovacions del validador, 9 de sortida del build i 44 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -133,6 +133,9 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
   i cada targeta té ▲ ▼ per moure-la, ✕ per treure-la i «Opció de l'anterior» per convertir-la
   en una alternativa de la pregunta anterior. Les etiquetes (1, 2, 3, 4a, 4b) es deriven de
   l'ordre i surten tal qual al `.tex`: «Pregunta 4a». Les adreces antigues continuen valent.
+  Després, també a petició del professor, l'estructura de la PAU (1, 2, 3, 4a, 4b) va passar a
+  ser la **per defecte**, per a preguntes dels temes, de la PAU o combinades. L'estructura és
+  de les places, no de les preguntes: treure o moure preguntes no desfà la 4a i la 4b.
 
 ---
 
@@ -160,7 +163,9 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 | Els PDF i el catàleg només els desa l'Action | Disseny | Si també se'n fa commit en local, xoquen amb el commit del bot |
 | `--preambul` només canvia la compilació | Disseny | El catàleg ha de portar sempre el preàmbul oficial |
 | L'examen és una llista de preguntes; un tema hi pot sortir més d'un cop | Professor | Un examen com el de la PAU té dues preguntes d'anàlisi (1 i 4a) |
-| Opcions amb «Opció de l'anterior»; els números es deriven de l'ordre | Disseny | Mai hi pot haver números repetits ni forats |
+| Per defecte, l'estructura de la PAU: 1, 2, 3, 4a, 4b | Professor | L'alumnat fa la 1, la 2 i la 3 i tria entre la 4a i la 4b; val per a temes, PAU i exàmens combinats |
+| L'estructura és de les places, no de les preguntes | Disseny | Treure o moure preguntes no desfà la 4a i la 4b |
+| «Opció de l'anterior» canvia l'estructura d'una plaça; els números es deriven de l'estructura | Disseny | Mai hi pot haver números repetits ni forats |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
@@ -187,6 +192,7 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
 | Un build fallit deixava a `out/` els PDF que ja havia compilat | `build.py` | Es compila en una carpeta temporal i es copia a `out/` només si no hi ha cap error |
 | Una adreça amb un `%` solt, o amb `#__proto__` o `#constructor`, deixava la pàgina en blanc | `app.js` | Descodificació tolerant i `PER_TEMA` sense prototip |
 | El push del bot era rebutjat si la branca avançava durant el build | `compila.yml` | `git pull --rebase` i fins a tres intents |
+| La prova «una pregunta del banc no porta cap línia de procedència» no comprovava res: tallava el `.tex` per un comentari del preàmbul que cita `\begin{document}` | `prova_paritat.py` | Es talla per la línia exacta `\begin{document}` |
 
 ---
 
@@ -202,15 +208,17 @@ repositoris `pau` i `sol` i amb el full de programació del curs.
   falla, per validació o per compilació, no toca cap fitxer. Un de correcte els escriu tots,
   `--pregunta` només escriu els de la pregunta indicada i `--preambul` no arriba al catàleg.
   També s'ha confirmat amb el `pdflatex` real.
-- `prova_paritat.py`: 33 comprovacions. El lloc (executant l'`app.js` real) i el build
+- `prova_paritat.py`: 44 comprovacions. El lloc (executant l'`app.js` real) i el build
   munten el mateix `.tex`, byte a byte, també amb preguntes PAU, amb la procedència al lloc
   exacte i amb opcions (1, 2, 3, 4a, 4b). Tres adreces mal formades s'ignoren sense que la
   pàgina peti. Les accions de les targetes (afegir, moure, treure, marcar opció, canviar de
-  variant) donen les etiquetes, els punts i l'adreça esperats.
+  variant) donen les etiquetes, els punts i l'adreça esperats. Cinc clics donen per defecte
+  1, 2, 3, 4a i 4b, també en un examen que combina temes i PAU.
 - En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues, secció PAU,
   adreces mal formades i l'examen de la PAU de 2026 muntat amb clics (1, 2, 3, 4a, 4b), també
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
-  *Overfull*.
+  *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
+  Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
 - La compilació amb el preàmbul oficial, amb `lmodern` i `babel` català (sessió 5). Les 18
   preguntes ocupen una pàgina, sense cap *Overfull*. El `main.tex` baixat de l'examen de 2026
   compila en 2 pàgines, i el de solucions, en 5.
@@ -357,12 +365,9 @@ fitxers de font que canvia. Tot es fa des de la web de GitHub; no cal el Codespa
   permís per escriure-hi. Es creen i s'editen des de la web de GitHub, enganxant-ne el
   contingut.
 
-**Aquest lliurament (sessió 5)** es fa en dos passos. Primer, un ZIP amb vuit fitxers per
-`_uploads` (vegeu l'apartat 11). Després, cal crear `.github/workflows/compila.yml`
-des de la web, perquè el repositori no el té (vegeu 2.5). En crear-lo, l'Action s'executa per
-primera vegada i compila tots els PDF amb el preàmbul oficial. D'aquesta manera se
-substitueixen els del ZIP complet, que s'havien compilat sense `lmodern` ni `babel`. L'Action
-té set passos, i tots han de sortir en verd.
+**A la sessió 5**, `compila.yml` es va crear des de la web, i l'Action va sortir en verd per
+primera vegada: set passos, amb tots els PDF compilats amb el preàmbul oficial. L'últim
+lliurament de la sessió és l'apartat 11.
 
 ### 7.2 Dades del professor
 
@@ -493,6 +498,10 @@ l'ordre numèric.
   («Veure el lloc des del Codespace»).
 - **Quota de minuts.** Les Actions en repositoris privats consumeixen minuts del pla
   gratuït. Cada build instal·la TeX Live i en gasta uns pocs.
+- **Ubuntu 26 a partir del 19 d'octubre de 2026.** `ubuntu-latest` hi passarà, amb un TeX Live
+  nou que podria canviar la compaginació sense fer fallar el build. A la sessió 5 es va
+  recomanar fixar `runs-on: ubuntu-24.04` i passar a `actions/checkout@v5`, que també treu
+  l'avís de Node 20. Són dues línies de `compila.yml`, que es canvien des de la web.
 - **Visor de PDF.** Depèn del navegador; hi ha l'enllaç alternatiu.
 - **SymPy 1.14** s'equivoca amb límits d'exponencials a $-\infty$. Qualsevol verificació ha de
   tenir un segon mètode.
@@ -547,30 +556,25 @@ del primer exercici.
 | Si la branca avança durant el build, el push del bot és rebutjat | `git pull --rebase` i fins a tres intents |
 | pdfTeX escriu la data i un identificador a cada PDF | `SOURCE_DATE_EPOCH` (pendent, 7.6) |
 | Provar el build sense TeX | Un `pdflatex` fals al PATH, com fa `prova_sortida.py` |
-| Moure una pregunta podria desfer un grup d'opcions (4a, 4b) | Les marques d'opció es queden a les places; només es mouen les preguntes |
+| Moure o treure una pregunta podria desfer la 4a i la 4b | L'estructura és de les places: només es mouen les preguntes |
+| El preàmbul cita `\begin{document}` en un comentari | Per trobar el cos del `.tex`, cal buscar la línia exacta, no el text |
 
 ---
 
 ## 11. Aquest lliurament
 
-És el primer lliurament amb el mètode nou (7.1). Té dues parts.
-
-El ZIP d'aquesta sessió, per pujar a `_uploads`, porta tots els canvis de la sessió 5 (les
-correccions i els exàmens amb opcions): vuit fitxers de font, directament a l'arrel. Substitueix
-el ZIP anterior de la mateixa sessió. Si aquell ja s'havia pujat, aquest el completa.
+És l'últim lliurament de la sessió 5. Parteix del v3, que ja és al repositori, i conté només
+els cinc fitxers que canvien, directament a l'arrel del ZIP:
 
 | Fitxer | Canvi |
 |---|---|
-| `build/build.py` | Compila en una carpeta temporal i publica només si no hi ha cap error. `--preambul` ja no toca el catàleg |
-| `build/prova_sortida.py` | **Nou.** 9 comprovacions del que escriu el build i quan |
-| `build/prova_paritat.py` | 33 comprovacions: adreces mal formades, exàmens amb opcions i accions de les targetes |
-| `assets/app.js` | L'examen, una llista de preguntes amb opcions (1, 2, 3, 4a, 4b). Adreces mal formades: descodificació tolerant i `PER_TEMA` sense prototip |
-| `assets/style.css` | Botons ▲ ▼ ✕, botó d'opció i targetes d'opció amb vora discontínua |
-| `index.html` | Text d'ajuda: cada clic afegeix una pregunta |
-| `README.md` | Ús amb opcions, principi 3, opcions del build, proves, fitxers generats, `_uploads` i com veure el lloc des del Codespace |
-| `handout.md` | Sessió 5: revisió, correccions, exàmens amb opcions, decisions, calendari i flux de lliurament |
+| `assets/app.js` | L'estructura de la PAU (1, 2, 3, 4a, 4b), per defecte i de les places: treure o moure preguntes no la desfà |
+| `index.html` | Text d'ajuda: l'examen és, per defecte, com el de la PAU |
+| `build/prova_paritat.py` | 44 comprovacions: estructura per defecte, exàmens combinats i el tall correcte del cos del `.tex` |
+| `README.md` | Ús: l'estructura per defecte i els exàmens combinats |
+| `handout.md` | Sessió 5: estructura per defecte, decisions, errors, verificacions i risc d'Ubuntu 26 |
 
-El fitxer `.github/workflows/compila.yml` es crea des de la web de GitHub, enganxant-ne el
-contingut. Porta un pas nou per a la prova de sortida i el reintent del push del bot.
+Els lliuraments anteriors de la sessió van ser el v2 (correccions), substituït pel v3, i el
+v3 (correccions i opcions), ja aplicat. `compila.yml` es va crear des de la web.
 
-No porta cap PDF ni `cataleg.js`: els genera l'Action la primera vegada que s'executa.
+No porta cap PDF ni `cataleg.js`. Després de pujar-lo a `_uploads`, cal fer **Run workflow**.
