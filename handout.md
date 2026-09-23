@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 38 preguntes (24 de la unitat 7, 9 de la unitat
-8 i 5 de la PAU) · 704 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+**Data:** 22 de setembre de 2026 · **Estat:** 47 preguntes (24 de la unitat 7, 18 de la unitat
+8 i 5 de la PAU) · 868 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -23,7 +23,8 @@ format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescr
 totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va fer la u8
 sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
 lloc dona el cos de la prova per a la carpeta del professorat. La novena va completar la u7
-amb una tercera variant de cada tema. La màquina funciona de punta a punta. El que queda és
+amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. La màquina
+funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -259,6 +260,20 @@ els ha adoptat perquè no es perdin a la descàrrega següent:
 
 El seu `capsalera.tex` no es toca: és seu, i no és al repositori.
 
+### 2.10 Sessió 10 · Tercera variant de tots els temes de la u8
+
+Nou preguntes noves, fins a deixar els sis temes amb tres variants: dues per a «TVM i derivada
+en un punt», dues per a «Funció derivada per definició», dues per a «Regla de la cadena» i una
+per a cadascun dels altres tres.
+
+- Les variants fan les mateixes tasques que les germanes, amb funcions i números diferents, i
+  cap no repeteix un exercici del llibre.
+- `tvm-derivada-punt/q003` és l'única amb context: la posició d'un objecte, amb velocitat
+  mitjana i velocitat instantània. Serveix per si es vol una pregunta més aplicada.
+- `recta-tangent/q003` treballa la tangent a una exponencial i una tangent de pendent donat amb
+  paràmetre, que és el que demana l'exercici 45 del llibre.
+- Tots els resultats, comprovats amb SymPy a més del càlcul escrit a la solució.
+
 ---
 
 ## 3. Decisions preses
@@ -358,6 +373,8 @@ El seu `capsalera.tex` no es toca: és seu, i no és al repositori.
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 10: les 47 preguntes compilen amb el preàmbul oficial en les dues modalitats (178 PDF,
+  tots d'una pàgina), i les 32 derivades i límits nous de la u8 estan verificats amb SymPy.
 - Sessió 9: les 38 preguntes compilen amb el preàmbul oficial en les dues modalitats (142 PDF,
   tots d'una pàgina). Els resultats de les set variants noves, comprovats amb SymPy a més del
   càlcul de la solució, i la gràfica nova, revisada sobre el PDF compilat.
@@ -424,22 +441,32 @@ reals (vegeu 7.4).
 | Paràmetres per a la continuïtat | `q002` | Paràmetres de continuïtat en una funció a tres trossos i en una de dos | 1,50 + 1,00 | 2,50 | 18 · 11 | ●●○ | 40, 106 |
 | Paràmetres per a la continuïtat | `q003` | Paràmetres de continuïtat: un sistema de dues equacions i un cas amb dues solucions | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 40, 102, 106 |
 
-### 6.2 Unitat 8 · Derivades (9 preguntes)
+### 6.2 Unitat 8 · Derivades (18 preguntes)
 
-Sis temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 5 a 7. La
-secció de derivabilitat no en té cap d'assignat, i per això el banc no hi té tema.
+Sis temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 5 a 7, amb
+tres variants cadascun. La secció de derivabilitat no en té cap d'assignat, i per això el banc
+no hi té tema.
 
 | Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
 |---|---|---|---|---|---|---|---|
 | Funció derivada per definició | `q001` | Funció derivada per definició: un polinomi, una arrel i una racional | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 87, 88 |
+| Funció derivada per definició | `q002` | Funció derivada per definició: polinomi, arrel decreixent i racional | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 87, 88 |
+| Funció derivada per definició | `q003` | Funció derivada per definició: cub, racional i arrel | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 87, 88 |
 | Recta tangent i normal | `q001` | Rectes tangent i normal, i una tangent amb un paràmetre | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 40, 41 |
 | Recta tangent i normal | `q002` | Rectes tangent i normal en el tall amb l'eix d'abscisses, i tangent a x ln x | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 21, 46 |
+| Recta tangent i normal | `q003` | Rectes tangent i normal a una exponencial, i una tangent de pendent donat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 40, 41, 45 |
 | Regla de la cadena | `q001` | Regla de la cadena: potències, exponencials, logaritmes i trigonomètriques | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 93, 97 |
+| Regla de la cadena | `q002` | Regla de la cadena: potències, exponencials, logaritmes i arrels | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 93, 97 |
+| Regla de la cadena | `q003` | Regla de la cadena: potències, exponencials de base 2, logaritmes i arrels | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 93, 97 |
 | Regles de derivació | `q001` | Regles de derivació: sumes, productes i quocients | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 86, 92, 93 |
 | Regles de derivació | `q002` | Regles de derivació: arrels, exponencials, logaritmes, productes i quocients | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 86, 92, 93 |
+| Regles de derivació | `q003` | Regles de derivació: potències, arrels, logaritmes, productes i quocients | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 86, 92, 93 |
 | TVM i derivada en un punt | `q001` | Taxa de variació mitjana i derivada en un punt per definició | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 30, 32, 37 |
+| TVM i derivada en un punt | `q002` | TVM i derivada en un punt d'una funció racional | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 31, 32, 37 |
+| TVM i derivada en un punt | `q003` | Velocitat mitjana i velocitat instantània per definició | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 30, 31, 37 |
 | Tangents amb condicions | `q001` | Tangents paral·leles a una recta donada i tangents horitzontals | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54 |
 | Tangents amb condicions | `q002` | Tangent a una racional, triangle amb els eixos i tangents paral·leles | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54, 58 |
+| Tangents amb condicions | `q003` | Tangents horitzontals i tangents paral·leles a rectes donades | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54 |
 
 ### 6.3 Registre de convocatòries PAU
 
@@ -623,8 +650,8 @@ l'ordre numèric.
   taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
-- Segones i terceres variants per als sis temes de la u8, que ara en tenen una o dues. La u7
-  ja en té tres per tema.
+- La u7 i la u8 ja tenen tres variants per tema: se'n poden muntar tres exàmens de cada
+  unitat sense repetir cap pregunta.
 - **Material reservat** de la reescriptura, per si cal:
   - $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), de l'antiga `limits-punt/q001`.
     No és a cap exercici assignat.
@@ -762,16 +789,12 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 9. Parteix del de la sessió 8, que ja és al repositori.
+És el lliurament de la sessió 10. Parteix del de la sessió 9, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `u7/*/q003/` | **Noves**: les set variants que faltaven, una per tema |
-| `build/defs.tex` | `\colorgrafica`: el color de les gràfiques, blau per defecte |
-| `build/main.tex` | Les dues línies de l'interruptor de solucions |
-| `u7/limits-grafica/q001,q002` i `pau/analisi/ana-26j-q1` | Dibuixen amb `\colorgrafica` |
-| `build/prova_paritat.py` | Dues comprovacions ajustades i dues de noves: cap pregunta no escriu colors |
-| `README.md`, `handout.md` | Estat, inventari de la u7 i sessió 9 |
+| `u8/*/q002` i `u8/*/q003` | **Noves**: les nou variants que faltaven, fins a tres per tema |
+| `README.md`, `handout.md` | Estat, inventari de la u8 i sessió 10 |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
 cal fer **Run workflow**.
