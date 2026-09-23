@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-23 11:48 UTC",
+ "generat": "2026-09-23 11:54 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -147,6 +147,36 @@ const BANC = {
    "unitat": "u9",
    "nom": "Optimització",
    "descripcio": "Problemes de màxim i mínim: plantejar la funció, derivar-la i justificar l'extrem."
+  },
+  {
+   "slug": "domini-talls",
+   "unitat": "u10",
+   "nom": "Domini i punts de tall",
+   "descripcio": "Domini de funcions racionals, amb radicals, logarítmiques i exponencials, i talls amb els eixos."
+  },
+  {
+   "slug": "asimptotes",
+   "unitat": "u10",
+   "nom": "Asímptotes i branques infinites",
+   "descripcio": "Asímptotes verticals, horitzontals i obliqües, i gràfiques a partir d'unes asímptotes donades."
+  },
+  {
+   "slug": "estudi-racional",
+   "unitat": "u10",
+   "nom": "Estudi i gràfica d'una funció racional",
+   "descripcio": "Domini, talls, asímptotes, monotonia, curvatura i representació d'una funció racional."
+  },
+  {
+   "slug": "estudi-polinomica",
+   "unitat": "u10",
+   "nom": "Estudi i gràfica d'una funció polinòmica",
+   "descripcio": "Talls, monotonia, extrems, curvatura i representació d'una funció polinòmica."
+  },
+  {
+   "slug": "estudi-trossos",
+   "unitat": "u10",
+   "nom": "Estudi i gràfica d'una funció a trossos",
+   "descripcio": "Continuïtat, asímptotes, monotonia i representació d'una funció definida a trossos."
   },
   {
    "slug": "algebra",
@@ -363,6 +393,209 @@ const BANC = {
    "pdf_solucio": "pau/probabilitat/pro-26j-q3/out/solucio.pdf",
    "pdf_curt": "pau/probabilitat/pro-26j-q3/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/probabilitat/pro-26j-q3/out/solucio.pdf"
+  },
+  {
+   "id": "u10/asimptotes/q001",
+   "unitat": "u10",
+   "tema": "asimptotes",
+   "codi": "q001",
+   "titol": "Asímptotes de funcions racionals i gràfica a partir d'unes asímptotes donades",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    62,
+    63,
+    38
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "asímptotes",
+    "obliqua",
+    "inventa"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba totes les asímptotes de la funció\n\\[\nf(x)=\\frac{2x-1}{x+3} .\n\\]\n\n\\begin{solucio}\n\\textbf{Vertical}: el denominador s'anul·la en $x=-3$ i el numerador no ($-7\\neq0$), i\n$\\lim_{x\\to-3^-}f(x)=+\\infty$ i $\\lim_{x\\to-3^+}f(x)=-\\infty$: asímptota vertical\n$\\boxed{x=-3}$.\\\\\n\\textbf{Horitzontal}: numerador i denominador tenen el mateix grau, i\n$\\lim_{x\\to\\pm\\infty}f(x)=\\dfrac21=2$: asímptota horitzontal $\\boxed{y=2}$.\\\\\nCom que hi ha asímptota horitzontal, no n'hi pot haver cap d'obliqua.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba totes les asímptotes de la funció\n\\[\ng(x)=\\frac{x^2+1}{x-1} .\n\\]\n\n\\begin{solucio}\n\\textbf{Vertical}: $x=1$, perquè el denominador s'hi anul·la i el numerador val $2\\neq0$.\\\\\n\\textbf{Obliqua}: el grau del numerador supera en $1$ el del denominador. Dividint,\n$\\dfrac{x^2+1}{x-1}=x+1+\\dfrac{2}{x-1}$, i el terme que sobra tendeix a $0$: asímptota\nobliqua $\\boxed{y=x+1}$. No hi ha asímptota horitzontal.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nDibuixa la gràfica d'una funció que tingui domini $\\mathbb{R}\\setminus\\{2\\}$, asímptota\nvertical $x=2$ i asímptota horitzontal $y=-1$, i escriu-ne una expressió.\n\n\\begin{solucio}\nPer exemple, $f(x)=-1+\\dfrac{1}{x-2}$: el domini és $\\mathbb{R}\\setminus\\{2\\}$, en $x=2$ els\nlímits laterals són $\\mp\\infty$ i $\\lim_{x\\to\\pm\\infty}f(x)=-1$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.5cm,y=0.5cm]\n  \\draw[gray!55,very thin,step=1] (-3,-5) grid (7,3);\n  \\draw[->] (-3.4,0) -- (7.4,0) node[below right] {$x$};\n  \\draw[->] (0,-5.4) -- (0,3.4) node[above left] {$y$};\n  \\foreach \\i in {-2,2,4,6} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {-4,-2,2} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[dashed,thick] (2,-5) -- (2,3);\n  \\draw[dashed,thick] (-3,-1) -- (7,-1);\n  \\begin{scope}\n    \\clip (-3,-5) rectangle (7,3);\n    \\draw[\\colorgrafica,very thick,domain=-3:1.75,samples=100,smooth] plot (\\x,{-1+1/(\\x-2)});\n    \\draw[\\colorgrafica,very thick,domain=2.25:7,samples=100,smooth] plot (\\x,{-1+1/(\\x-2)});\n  \\end{scope}\n\\end{tikzpicture}\n\\end{center}\nQualsevol altra funció amb aquestes asímptotes també val.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u10/asimptotes/q001/out/enunciat.pdf",
+   "pdf_solucio": "u10/asimptotes/q001/out/solucio.pdf",
+   "pdf_curt": "u10/asimptotes/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u10/asimptotes/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u10/domini-talls/q001",
+   "unitat": "u10",
+   "tema": "domini-talls",
+   "codi": "q001",
+   "titol": "Domini de racionals, radicals i logaritmes, i punts de tall",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    43,
+    45,
+    100
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "domini",
+    "punts de tall",
+    "radicals"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDetermina el domini de les funcions següents:\n\\begin{graella}{3}\n  \\sa f(x)=\\frac{x+1}{x^2-4} & \\sa g(x)=\\sqrt{x^2-x-6} & \\sa h(x)=\\ln(3-x)\n\\end{graella}\n\n\\begin{solucio}\ni) Cal que el denominador no s'anul·li: $x^2-4=0$ en $x=\\pm2$. Domini:\n$\\mathbb{R}\\setminus\\{-2,2\\}$.\\\\\nii) Cal $x^2-x-6=(x-3)(x+2)\\ge0$: domini $(-\\infty,-2]\\cup[3,+\\infty)$.\\\\\niii) Cal $3-x>0$: domini $(-\\infty,3)$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nDetermina el domini i els punts de tall amb els eixos de\n\\[\nf(x)=\\frac{x^2-9}{x+2} .\n\\]\n\n\\begin{solucio}\n\\textbf{Domini}: $x+2\\neq0$, és a dir $\\mathbb{R}\\setminus\\{-2\\}$.\\\\\n\\textbf{Tall amb l'eix $OY$}: $f(0)=\\dfrac{-9}{2}$, el punt $\\left(0,-\\tfrac92\\right)$.\\\\\n\\textbf{Talls amb l'eix $OX$}: $f(x)=0$ quan el numerador s'anul·la i el denominador no:\n$x^2-9=0$ dona $x=3$ i $x=-3$. Els punts són $(3,0)$ i $(-3,0)$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDetermina el domini de\n\\[\nk(x)=\\frac{\\sqrt{x+1}}{x-2} .\n\\]\n\n\\begin{solucio}\nCal complir dues condicions alhora: $x+1\\ge0$, és a dir $x\\ge-1$, i $x-2\\neq0$.\\\\\nDomini: $[-1,+\\infty)\\setminus\\{2\\}$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u10/domini-talls/q001/out/enunciat.pdf",
+   "pdf_solucio": "u10/domini-talls/q001/out/solucio.pdf",
+   "pdf_curt": "u10/domini-talls/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u10/domini-talls/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u10/estudi-polinomica/q001",
+   "unitat": "u10",
+   "tema": "estudi-polinomica",
+   "codi": "q001",
+   "titol": "Estudi i gràfica de x³−3x²+4: talls amb arrel doble, extrems i inflexió",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    75,
+    78,
+    84,
+    88
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "polinòmiques",
+    "representació",
+    "punt d'inflexió"
+   ],
+   "temes_secundaris": [
+    "estudi-racional"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^3-3x^2+4 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba'n els punts de tall amb els eixos, estudia'n la monotonia i troba'n els extrems\nrelatius.\n\n\\begin{solucio}\n\\textbf{Talls}: $f(0)=4$, el punt $(0,4)$. Per a l'eix $OX$, $x=-1$ és arrel\n($f(-1)=-1-3+4=0$) i, dividint, $f(x)=(x+1)(x-2)^2$: els talls són $(-1,0)$ i $(2,0)$, aquest\núltim amb arrel doble.\\\\\n\\textbf{Monotonia}: $f'(x)=3x^2-6x=3x(x-2)$, que s'anul·la en $x=0$ i $x=2$.\\\\\n$f$ \\textbf{creix} a $(-\\infty,0)$, \\textbf{decreix} a $(0,2)$ i \\textbf{creix} a\n$(2,+\\infty)$.\\\\\n\\textbf{Màxim relatiu} $(0,4)$ i \\textbf{mínim relatiu} $(2,0)$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia'n la curvatura i troba'n el punt d'inflexió.\n\n\\begin{solucio}\n$f''(x)=6x-6$, que s'anul·la en $x=1$.\\\\\n$f''<0$ a $(-\\infty,1)$: \\textbf{còncava}. \\quad $f''>0$ a $(1,+\\infty)$: \\textbf{convexa}.\\\\\nCom que la curvatura hi canvia i $f(1)=2$, el punt d'inflexió és $(1,2)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nRepresenta la funció amb tota la informació anterior.\n\n\\begin{solucio}\nLa gràfica puja fins al màxim $(0,4)$, baixa fins a tocar l'eix en el mínim $(2,0)$ i torna a\npujar. Les branques infinites van cap a $-\\infty$ i $+\\infty$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.75cm,y=0.45cm]\n  \\draw[gray!55,very thin,step=1] (-2,-2) grid (4,7);\n  \\draw[->] (-2.4,0) -- (4.4,0) node[below right] {$x$};\n  \\draw[->] (0,-2.4) -- (0,7.4) node[above left] {$y$};\n  \\foreach \\i in {-1,1,2,3} \\draw (\\i,0.15) -- (\\i,-0.15) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {2,4,6} \\draw (0.08,\\j) -- (-0.08,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\begin{scope}\n    \\clip (-2,-2) rectangle (4,7);\n    \\draw[\\colorgrafica,very thick,domain=-1.25:3.2,samples=120,smooth] plot (\\x,{\\x*\\x*\\x-3*\\x*\\x+4});\n  \\end{scope}\n  \\fill (0,4) circle (2.2pt); \\fill (2,0) circle (2.2pt);\n  \\draw[fill=white,thick] (1,2) circle (2.2pt);\n  \\node[font=\\scriptsize] at (1.75,2.6) {inflexió};\n\\end{tikzpicture}\n\\end{center}\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u10/estudi-polinomica/q001/out/enunciat.pdf",
+   "pdf_solucio": "u10/estudi-polinomica/q001/out/solucio.pdf",
+   "pdf_curt": "u10/estudi-polinomica/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u10/estudi-polinomica/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u10/estudi-racional/q001",
+   "unitat": "u10",
+   "tema": "estudi-racional",
+   "codi": "q001",
+   "titol": "Estudi i gràfica de x²/(x−1): asímptota obliqua, extrems i curvatura",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●●",
+   "origen": [
+    41,
+    63,
+    75,
+    91
+   ],
+   "minuts": 22,
+   "minuts_curt": 13,
+   "etiquetes": [
+    "racionals",
+    "asímptota obliqua",
+    "representació"
+   ],
+   "temes_secundaris": [
+    "asimptotes",
+    "estudi-polinomica"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=\\frac{x^2}{x-1} .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nTroba'n el domini, els punts de tall amb els eixos i totes les asímptotes.\n\n\\begin{solucio}\n\\textbf{Domini}: $\\mathbb{R}\\setminus\\{1\\}$.\\\\\n\\textbf{Talls}: $f(x)=0$ només si $x^2=0$, i $f(0)=0$: la gràfica passa per l'origen\n$(0,0)$, que és alhora el tall amb els dos eixos.\\\\\n\\textbf{Vertical}: en $x=1$ el numerador val $1\\neq0$, i els laterals valen $-\\infty$ (per\nl'esquerra) i $+\\infty$ (per la dreta): asímptota $\\boxed{x=1}$.\\\\\n\\textbf{Obliqua}: dividint, $\\dfrac{x^2}{x-1}=x+1+\\dfrac{1}{x-1}$, i el residu tendeix a $0$:\nasímptota $\\boxed{y=x+1}$. No hi ha asímptota horitzontal.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia'n la curvatura.\n\n\\begin{solucio}\n$f'(x)=\\dfrac{x^2-2x}{(x-1)^2}$ i, derivant un altre cop i simplificant,\n$f''(x)=\\dfrac{2}{(x-1)^3}$.\\\\\nEl signe és el de $(x-1)^3$: $f''<0$ a $(-\\infty,1)$, on la funció és \\textbf{còncava}, i\n$f''>0$ a $(1,+\\infty)$, on és \\textbf{convexa}.\\\\\nNo hi ha punts d'inflexió, perquè $f''$ no s'anul·la mai i en $x=1$ la funció no està\ndefinida.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nEstudia'n la monotonia i els extrems, i representa la funció.\n\n\\begin{solucio}\n$f'(x)=\\dfrac{2x(x-1)-x^2}{(x-1)^2}=\\dfrac{x^2-2x}{(x-1)^2}=\\dfrac{x(x-2)}{(x-1)^2}$.\\\\\nEl denominador és positiu, així que el signe és el de $x(x-2)$: $f$ \\textbf{creix} a\n$(-\\infty,0)$, \\textbf{decreix} a $(0,1)$ i a $(1,2)$, i \\textbf{creix} a $(2,+\\infty)$.\\\\\n\\textbf{Màxim relatiu} $(0,0)$ i \\textbf{mínim relatiu} $(2,4)$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.55cm,y=0.32cm]\n  \\draw[gray!55,very thin,step=1] (-3,-8) grid (5,10);\n  \\draw[->] (-3.4,0) -- (5.4,0) node[below right] {$x$};\n  \\draw[->] (0,-8.4) -- (0,10.6) node[above left] {$y$};\n  \\foreach \\i in {-2,2,4} \\draw (\\i,0.2) -- (\\i,-0.2) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {-6,-2,4,8} \\draw (0.1,\\j) -- (-0.1,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[dashed,thick] (1,-8) -- (1,10);\n  \\draw[dashed,thick] (-3,-2) -- (5,6);\n  \\begin{scope}\n    \\clip (-3,-8) rectangle (5,10);\n    \\draw[\\colorgrafica,very thick,domain=-3:0.88,samples=120,smooth] plot (\\x,{(\\x*\\x)/(\\x-1)});\n    \\draw[\\colorgrafica,very thick,domain=1.11:5,samples=120,smooth] plot (\\x,{(\\x*\\x)/(\\x-1)});\n  \\end{scope}\n  \\fill (0,0) circle (2pt); \\fill (2,4) circle (2pt);\n\\end{tikzpicture}\n\\end{center}\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u10/estudi-racional/q001/out/enunciat.pdf",
+   "pdf_solucio": "u10/estudi-racional/q001/out/solucio.pdf",
+   "pdf_curt": "u10/estudi-racional/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u10/estudi-racional/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u10/estudi-trossos/q001",
+   "unitat": "u10",
+   "tema": "estudi-trossos",
+   "codi": "q001",
+   "titol": "Estudi i gràfica d'una funció a trossos amb asímptota horitzontal",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    108,
+    37
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "a trossos",
+    "representació",
+    "asímptotes"
+   ],
+   "temes_secundaris": [
+    "estudi-racional"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=\\begin{cases}\n  x^2 & \\si{x\\le 1},\\\\[4pt]\n  2-\\dfrac{1}{x} & \\si{x>1}.\n\\end{cases}\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nEstudia'n la continuïtat i troba'n les asímptotes.\n\n\\begin{solucio}\nCada branca és contínua al seu tros, i en $x=1$: $f(1)=1$, $\\lim_{x\\to1^-}f(x)=1$ i\n$\\lim_{x\\to1^+}f(x)=2-1=1$. La funció és \\textbf{contínua a tot $\\mathbb{R}$}.\\\\\n\\textbf{Asímptotes verticals}: no n'hi ha. L'únic punt problemàtic de la segona branca seria\n$x=0$, que no és al seu tros.\\\\\n\\textbf{Horitzontals}: $\\lim_{x\\to+\\infty}f(x)=2$, i per tant $y=2$ és asímptota horitzontal\nper la dreta. Per l'esquerra, $\\lim_{x\\to-\\infty}x^2=+\\infty$: no n'hi ha.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia'n la monotonia i troba'n els extrems.\n\n\\begin{solucio}\nPer a $x<1$: $f'(x)=2x$, negativa a $(-\\infty,0)$ i positiva a $(0,1)$.\\\\\nPer a $x>1$: $f'(x)=\\dfrac{1}{x^2}>0$, sempre creixent.\\\\\nAixí, $f$ \\textbf{decreix} a $(-\\infty,0)$ i \\textbf{creix} a $(0,+\\infty)$: hi ha un\n\\textbf{mínim} en $(0,0)$, que a més és el mínim absolut.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nRepresenta la funció.\n\n\\begin{solucio}\nA l'esquerra de $x=1$ és la paràbola $y=x^2$; a la dreta, una branca creixent que s'acosta a\n$y=2$ sense arribar-hi. Les dues branques s'enganxen en $(1,1)$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.75cm,y=0.75cm]\n  \\draw[gray!55,very thin,step=1] (-2,-1) grid (7,4);\n  \\draw[->] (-2.4,0) -- (7.4,0) node[below right] {$x$};\n  \\draw[->] (0,-1.4) -- (0,4.4) node[above left] {$y$};\n  \\foreach \\i in {-1,1,2,4,6} \\draw (\\i,0.1) -- (\\i,-0.1) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {1,2,3} \\draw (0.1,\\j) -- (-0.1,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[dashed,thick] (-2,2) -- (7,2);\n  \\begin{scope}\n    \\clip (-2,-1) rectangle (7,4);\n    \\draw[\\colorgrafica,very thick,domain=-2:1,samples=60,smooth] plot (\\x,{\\x*\\x});\n    \\draw[\\colorgrafica,very thick,domain=1:7,samples=100,smooth] plot (\\x,{2-1/\\x});\n  \\end{scope}\n  \\fill (1,1) circle (2.2pt); \\fill (0,0) circle (2.2pt);\n\\end{tikzpicture}\n\\end{center}\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u10/estudi-trossos/q001/out/enunciat.pdf",
+   "pdf_solucio": "u10/estudi-trossos/q001/out/solucio.pdf",
+   "pdf_curt": "u10/estudi-trossos/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u10/estudi-trossos/q001/out/solucio-curt.pdf"
   },
   {
    "id": "u7/bolzano-biseccio/q001",
