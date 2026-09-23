@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-23 05:42 UTC",
+ "generat": "2026-09-23 11:48 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -2097,6 +2097,44 @@ const BANC = {
    "pdf_solucio_curt": "u9/curvatura-inflexio/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u9/curvatura-inflexio/q003",
+   "unitat": "u9",
+   "tema": "curvatura-inflexio",
+   "codi": "q003",
+   "titol": "Curvatura d'una cúbica i d'un logaritme, i el punt d'inflexió del grau 3",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    66,
+    67
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "curvatura",
+    "punts d'inflexió",
+    "logaritmes"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nEstudia la curvatura i troba els punts d'inflexió de la funció\n\\[\nf(x)=x^3-6x^2+9x+1 .\n\\]\n\n\\begin{solucio}\n$f'(x)=3x^2-12x+9$ i $f''(x)=6x-12$, que s'anul·la en $x=2$.\\\\\n$f''<0$ a $(-\\infty,2)$: \\textbf{còncava} (cap avall). \\quad $f''>0$ a $(2,+\\infty)$:\n\\textbf{convexa} (cap amunt).\\\\\nCom que la curvatura hi canvia i $f(2)=8-24+18+1=3$, el punt d'inflexió és $\\boxed{(2,3)}$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia la curvatura de la funció $g(x)=\\ln\\left(x^2+1\\right)$ i troba'n els punts d'inflexió.\n\n\\begin{solucio}\n$g'(x)=\\dfrac{2x}{x^2+1}$ i\n$g''(x)=\\dfrac{2\\left(x^2+1\\right)-2x\\cdot2x}{\\left(x^2+1\\right)^2}\n=\\dfrac{2-2x^2}{\\left(x^2+1\\right)^2}$.\\\\\nEl denominador és positiu, així que el signe és el de $2-2x^2$: \\textbf{convexa} a $(-1,1)$ i\n\\textbf{còncava} fora.\\\\\nPunts d'inflexió: $(-1,\\ln2)$ i $(1,\\ln2)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nPot una funció polinòmica de grau $3$ no tenir cap punt d'inflexió? Raona-ho.\n\n\\begin{solucio}\nSi $f(x)=ax^3+bx^2+cx+d$ amb $a\\neq0$, aleshores $f''(x)=6ax+2b$, que és una recta de pendent\n$6a\\neq0$.\\\\\nUna recta no horitzontal s'anul·la exactament un cop i hi canvia de signe. Per tant, una\nfunció polinòmica de grau $3$ té \\textbf{sempre exactament un punt d'inflexió}, i no pot no\ntenir-ne cap.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/curvatura-inflexio/q003/out/enunciat.pdf",
+   "pdf_solucio": "u9/curvatura-inflexio/q003/out/solucio.pdf",
+   "pdf_curt": "u9/curvatura-inflexio/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/curvatura-inflexio/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u9/extrems-parametres/q001",
    "unitat": "u9",
    "tema": "extrems-parametres",
@@ -2178,6 +2216,47 @@ const BANC = {
    "pdf_solucio_curt": "u9/extrems-parametres/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u9/extrems-parametres/q003",
+   "unitat": "u9",
+   "tema": "extrems-parametres",
+   "codi": "q003",
+   "titol": "Dos paràmetres a partir d'un extrem, una funció inventada i un raonament sobre el grau",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    39,
+    44,
+    58
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "paràmetres",
+    "extrems",
+    "inventa"
+   ],
+   "temes_secundaris": [
+    "monotonia-extrems"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nLa funció\n\\[\nf(x)=ax^3+bx^2\n\\]\nté un extrem relatiu en el punt $(2,4)$. Troba $a$ i $b$, digues de quin tipus d'extrem es\ntracta i troba l'altre extrem relatiu de $f$.\n\n\\begin{solucio}\n\\textbf{Passa per $(2,4)$}: $8a+4b=4$. \\quad \\textbf{Extrem en $x=2$}: $f'(x)=3ax^2+2bx$ i\n$f'(2)=12a+4b=0$.\\\\\nRestant les dues equacions: $4a=-4$, d'on $\\boxed{a=-1}$, i llavors $-8+4b=4$, és a dir\n$\\boxed{b=3}$.\\\\\nAmb $f(x)=-x^3+3x^2$: $f'(x)=-3x^2+6x=-3x(x-2)$, que s'anul·la en $x=0$ i $x=2$.\\\\\n$f$ decreix a $(-\\infty,0)$, creix a $(0,2)$ i decreix a $(2,+\\infty)$: en $(2,4)$ hi ha un\n\\textbf{màxim relatiu} i en $(0,0)$, un \\textbf{mínim relatiu}.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\n\\textbf{Inventa.} Escriu una funció polinòmica que tingui exactament dos extrems relatius: un\nmàxim en $x=0$ i un mínim en $x=4$. Justifica-ho.\n\n\\begin{solucio}\nCal que $f'$ s'anul·li en $0$ i en $4$, i que hi canviï de positiva a negativa i de negativa a\npositiva, respectivament. La paràbola $f'(x)=3x(x-4)$ ho compleix: és positiva abans\nde $0$, negativa entre $0$ i $4$ i positiva després.\\\\\nIntegrant: $f(x)=x^3-6x^2$.\\\\\nComprovació: $f'(x)=3x^2-12x=3x(x-4)$, amb màxim en $x=0$ i mínim en $x=4$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nPot una funció polinòmica de grau $3$ tenir exactament \\textbf{un} extrem relatiu? Raona-ho.\n\n\\begin{solucio}\nSi $f$ té grau $3$, $f'$ és de grau $2$ i pot tenir dues arrels diferents, una de doble o cap.\\\\\nAmb dues arrels diferents, $f'$ canvia de signe dues vegades: \\textbf{dos extrems}.\\\\\nAmb una arrel doble, $f'$ no canvia de signe: \\textbf{cap extrem} (per exemple, $f(x)=x^3$).\\\\\nSense arrels reals, $f'$ tampoc no canvia de signe: \\textbf{cap extrem}.\\\\\nPer tant, \\textbf{no és possible} tenir-ne exactament un.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/extrems-parametres/q003/out/enunciat.pdf",
+   "pdf_solucio": "u9/extrems-parametres/q003/out/solucio.pdf",
+   "pdf_curt": "u9/extrems-parametres/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/extrems-parametres/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u9/monotonia-extrems/q001",
    "unitat": "u9",
    "tema": "monotonia-extrems",
@@ -2256,6 +2335,45 @@ const BANC = {
    "pdf_solucio_curt": "u9/monotonia-extrems/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u9/monotonia-extrems/q003",
+   "unitat": "u9",
+   "tema": "monotonia-extrems",
+   "codi": "q003",
+   "titol": "Monotonia amb un punt crític que no és extrem, i el criteri de la derivada segona",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    42,
+    50,
+    51
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "monotonia",
+    "extrems",
+    "derivada segona"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^4-4x^3 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nEstudia la monotonia de $f$ i troba'n els extrems relatius.\n\n\\begin{solucio}\n$f'(x)=4x^3-12x^2=4x^2(x-3)$, que s'anul·la en $x=0$ i en $x=3$.\\\\\nCom que $4x^2\\ge0$, el signe de $f'$ és el de $x-3$: negatiu a $(-\\infty,3)$ i positiu a\n$(3,+\\infty)$.\\\\\nPer tant, $f$ \\textbf{decreix} a $(-\\infty,3)$ i \\textbf{creix} a $(3,+\\infty)$.\\\\\nEn $x=3$ passa de decréixer a créixer: \\textbf{mínim relatiu} $(3,-27)$.\\\\\nEn $x=0$ la derivada s'anul·la però \\textbf{no canvia de signe}: no hi ha extrem. Que\n$f'(a)=0$ no vol dir que en $a$ hi hagi un màxim o un mínim.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nAplica el criteri de la derivada segona als dos punts on s'anul·la $f'$. Què hi passa?\n\n\\begin{solucio}\n$f''(x)=12x^2-24x=12x(x-2)$.\\\\\n$f''(3)=36>0$: confirma el \\textbf{mínim} en $x=3$.\\\\\n$f''(0)=0$: el criteri \\textbf{no decideix}. Cal tornar al signe de $f'$, que no canvia en\n$x=0$, i per tant allà no hi ha extrem.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nDemostra que la funció $h(x)=2x+\\sin x$ és creixent a tot $\\mathbb{R}$.\n\n\\begin{solucio}\n$h'(x)=2+\\cos x$. Com que $-1\\le\\cos x\\le1$, es compleix $h'(x)\\ge2-1=1>0$ per a tot $x$.\\\\\nLa derivada és sempre positiva, i per tant $h$ \\textbf{creix a tot $\\mathbb{R}$}.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/monotonia-extrems/q003/out/enunciat.pdf",
+   "pdf_solucio": "u9/monotonia-extrems/q003/out/solucio.pdf",
+   "pdf_curt": "u9/monotonia-extrems/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/monotonia-extrems/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u9/optimitzacio/q001",
    "unitat": "u9",
    "tema": "optimitzacio",
@@ -2330,6 +2448,44 @@ const BANC = {
    "pdf_solucio": "u9/optimitzacio/q002/out/solucio.pdf",
    "pdf_curt": "u9/optimitzacio/q002/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u9/optimitzacio/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/optimitzacio/q003",
+   "unitat": "u9",
+   "tema": "optimitzacio",
+   "codi": "q003",
+   "titol": "Optimització: prat rectangular amb un costat al riu",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    77,
+    86
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "optimització",
+    "àrea",
+    "context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Es vol tancar un prat rectangular al costat d'un riu, de manera que el costat del riu no\nnecessita tanca. Es disposa de $400$ metres de tanca per als altres tres costats. Anomenem $y$\nla longitud de cadascun dels dos costats perpendiculars al riu.\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nComprova que l'àrea del prat és $A(y)=400y-2y^2$ i digues entre quins valors pot variar $y$.\n\n\\begin{solucio}\nSi els dos costats perpendiculars al riu fan $y$ cadascun, el costat paral·lel al riu fa\n$400-2y$. Per tant,\n\\[\nA(y)=y\\,(400-2y)=400y-2y^2 .\n\\]\nPerquè el prat existeixi cal $y>0$ i $400-2y>0$: $y\\in(0,200)$.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nTroba les dimensions del prat de més àrea i calcula aquesta àrea.\n\n\\begin{solucio}\n$A'(y)=400-4y=0\\iff y=100$.\\\\\nAleshores el costat paral·lel al riu fa $400-200=200$ metres: el prat fa\n$\\boxed{100\\times200}$ metres i l'àrea màxima és $\\boxed{20\\,000}$ m$^2$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nJustifica que el valor trobat dona un màxim i no un mínim.\n\n\\begin{solucio}\n$A''(y)=-4<0$ per a tot $y$: la funció és còncava i, per tant, en $y=100$ hi ha un\n\\textbf{màxim}.\\\\\nTambé es veu pel signe de $A'$: positiva a $(0,100)$ i negativa a $(100,200)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u9/optimitzacio/q003/out/enunciat.pdf",
+   "pdf_solucio": "u9/optimitzacio/q003/out/solucio.pdf",
+   "pdf_curt": "u9/optimitzacio/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/optimitzacio/q003/out/solucio-curt.pdf"
   }
  ]
 };
