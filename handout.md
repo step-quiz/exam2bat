@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 47 preguntes (24 de la unitat 7, 18 de la unitat
-8 i 5 de la PAU) · 868 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+**Data:** 22 de setembre de 2026 · **Estat:** 55 preguntes (24 de la unitat 7, 18 de la unitat
+8, 8 de la unitat 9 i 5 de la PAU) · 1.024 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -23,8 +23,8 @@ format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescr
 totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va fer la u8
 sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
 lloc dona el cos de la prova per a la carpeta del professorat. La novena va completar la u7
-amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. La màquina
-funciona de punta a punta. El que queda és
+amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. L'onzena va obrir la u9,
+amb quatre temes i dues variants de cadascun. La màquina funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -274,6 +274,22 @@ per a cadascun dels altres tres.
   paràmetre, que és el que demana l'exercici 45 del llibre.
 - Tots els resultats, comprovats amb SymPy a més del càlcul escrit a la solució.
 
+### 2.11 Sessió 11 · La unitat 9
+
+Els 16 exercicis assignats a les setmanes 8 a 10 surten de tres seccions del llibre, i d'aquí
+els **quatre temes**: monotonia i extrems relatius, extrems amb paràmetres i gràfiques,
+curvatura i punts d'inflexió, i optimització. Les seccions de teoremes i de la regla de
+l'Hôpital no tenen cap exercici assignat, i per tant el banc no hi té tema, igual que amb la
+derivabilitat de la u8.
+
+- **Vuit preguntes**, dues per tema. Falta la tercera variant de cadascun.
+- `extrems-parametres/q002` treballa una capacitat que la PAU demana sovint: llegir els extrems
+  de $f$ a la **gràfica de $f'$**. Porta una figura nova.
+- Les dues d'optimització segueixen el patró de la PAU: plantejar la funció, trobar-ne l'extrem
+  i **justificar-lo**. Una és geomètrica (rectangle sota una paràbola) i l'altra, de context
+  (capsa sense tapa).
+- Tots els resultats, comprovats amb SymPy a més del càlcul escrit a la solució.
+
 ---
 
 ## 3. Decisions preses
@@ -311,6 +327,7 @@ per a cadascun dels altres tres.
 | El `.tex` baixat surt net: el que diu és el que surt al PDF | Professor | Per poder-lo editar abans de compilar-lo |
 | Dos patrons de versió de 50 min: dos apartats d'1,25, o un de sol de 2,5 | Disseny | Els punts queden rodons i cada versió és una tasca coherent |
 | La u8 no té tema de derivabilitat | Disseny | Cap exercici assignat d'aquella secció; el banc no surt mai dels exercicis assignats |
+| La u9 no té tema de teoremes ni de la regla de l'Hôpital | Disseny | Mateix criteri: no hi ha cap exercici assignat d'aquestes seccions |
 | Dues variants per als temes de la u8 que més surten als exàmens | Disseny | Regles de derivació, recta tangent i tangents amb condicions |
 | El lloc dona el cos de l'examen (`prova-N.tex`), no un fitxer sencer | Professor | La capçalera, el logo i el curs viuen a la seva carpeta |
 | Les preguntes es diuen `Q1`, `Q2`, `Q4a` al `.tex` | Professor | Més curt al full de l'examen |
@@ -373,6 +390,9 @@ per a cadascun dels altres tres.
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 11: les 55 preguntes compilen amb el preàmbul oficial en les dues modalitats (210 PDF,
+  tots d'una pàgina). Els resultats de la u9, verificats amb SymPy, i les dues figures noves,
+  revisades sobre el PDF compilat.
 - Sessió 10: les 47 preguntes compilen amb el preàmbul oficial en les dues modalitats (178 PDF,
   tots d'una pàgina), i les 32 derivades i límits nous de la u8 estan verificats amb SymPy.
 - Sessió 9: les 38 preguntes compilen amb el preàmbul oficial en les dues modalitats (142 PDF,
@@ -468,7 +488,25 @@ no hi té tema.
 | Tangents amb condicions | `q002` | Tangent a una racional, triangle amb els eixos i tangents paral·leles | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54, 58 |
 | Tangents amb condicions | `q003` | Tangents horitzontals i tangents paral·leles a rectes donades | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54 |
 
-### 6.3 Registre de convocatòries PAU
+### 6.3 Unitat 9 · Aplicacions de les derivades (8 preguntes)
+
+Quatre temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 8 a 10:
+creixement i extrems (39, 41, 42, 44, 50, 51, 58), concavitat (66, 67, 70) i optimització (77,
+79, 86, 87). Les seccions de teoremes i de la regla de l'Hôpital no en tenen cap d'assignat, i
+per això el banc no hi té tema. Dues variants per tema; en falta la tercera (vegeu 7.4).
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Curvatura i punts d'inflexió | `q001` | Curvatura i punts d'inflexió d'un polinomi de grau 4 i d'una exponencial | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 66, 67 |
+| Curvatura i punts d'inflexió | `q002` | Coeficients d'una cúbica a partir d'un punt, una inflexió i un extrem | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 70 |
+| Extrems amb paràmetres i gràfiques | `q001` | Paràmetre a partir d'un extrem, una funció inventada i el nombre màxim d'extrems | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 39, 44, 58 |
+| Extrems amb paràmetres i gràfiques | `q002` | Extrems llegits a la gràfica de la derivada | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 39, 41 |
+| Monotonia i extrems relatius | `q001` | Monotonia i extrems d'una cúbica, amb la derivada segona | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 42, 50, 51 |
+| Monotonia i extrems relatius | `q002` | Monotonia i extrems d'una funció racional, i extrems en un interval tancat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 42, 50, 51 |
+| Optimització | `q001` | Optimització: rectangle inscrit sota una paràbola | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 86, 87 |
+| Optimització | `q002` | Optimització: capsa sense tapa a partir d'un cartró quadrat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 77, 79 |
+
+### 6.4 Registre de convocatòries PAU
 
 | Codi | Convocatòria | Sèrie | Font |
 |---|---|---|---|
@@ -484,7 +522,7 @@ no hi té tema.
 | `26j` | juny 2026 | 1 | Capçalera del criteri oficial: ana-26j-q1-s.pdf. |
 | `26j2` | juny 2026 | 5 | Capçalera del criteri oficial: ana-26j2-q1-s.pdf. |
 
-### 6.4 Seguiment de les 62 entrades PAU (61 exercicis)
+### 6.5 Seguiment de les 62 entrades PAU (61 exercicis)
 
 Ordenades de la més recent a la més antiga, que és l'ordre d'importació recomanat.
 
@@ -592,6 +630,9 @@ lliurament de la sessió és l'apartat 11.
   a l'espai (u6). S'han d'afegir a `temes.json`, i llavors es poden omplir les `unitats`
   d'`alg-26j-q2` i de `geo-26j-q4b`. Mentre no hi siguin, les targetes diuen «per definir» i el
   build n'avisa. Una PAU que necessiti vectors ha de dir `u5`, no `u4`.
+- **Pendent de confirmar: els exercicis 30 i 34 de la u9.** Són a les setmanes 9 i 10, però al
+  solucionari no surten a cap secció d'aplicacions de la derivada: el 34 hi apareix com un
+  exercici de domini d'un logaritme, i el 30 no s'hi troba. Els altres catorze sí que encaixen.
 - **Pendent de confirmar: l'exercici 92 de la u8.** Surt a les setmanes 5 i 7, tant al full de
   programació com a `tasques.js` del repositori `sol`. Cal saber si és volgut abans de
   calibrar els temes de la u8.
@@ -632,8 +673,8 @@ l'ordre numèric.
 |---|---|---|
 | u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, reescrita a la sessió 6 |
 | u8 Derivades | 5–7 | 1 de novembre de 2026 · **feta** |
-| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **la següent** |
-| u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 |
+| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **feta**, falta la tercera variant |
+| u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 · **la següent** |
 | u13 Probabilitat | 13–14 | 20 de desembre de 2026 |
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 |
 | u1 Matrius | 18–19 | 24 de gener de 2027 |
@@ -646,7 +687,8 @@ l'ordre numèric.
 
 - **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
   estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
-- **Temes i preguntes de la u9**, amb el mateix patró. Després, les unitats en l'ordre de la
+- **Tercera variant dels quatre temes de la u9**, que ara en tenen dues.
+- **Temes i preguntes de la u10**, amb el mateix patró. Després, les unitats en l'ordre de la
   taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
@@ -789,12 +831,13 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 10. Parteix del de la sessió 9, que ja és al repositori.
+És el lliurament de la sessió 11. Parteix del de la sessió 10, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `u8/*/q002` i `u8/*/q003` | **Noves**: les nou variants que faltaven, fins a tres per tema |
-| `README.md`, `handout.md` | Estat, inventari de la u8 i sessió 10 |
+| `temes.json` | Els quatre temes de la u9 |
+| `u9/*/q001` i `u9/*/q002` | **Noves**: vuit preguntes, dues per tema |
+| `README.md`, `handout.md` | Estat, inventari de la u9 i sessió 11 |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
 cal fer **Run workflow**.

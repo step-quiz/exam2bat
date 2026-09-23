@@ -123,6 +123,30 @@
       "descripcio": "Tangents paral·leles a una recta, tangents horitzontals i triangles amb els eixos."
     },
     {
+      "slug": "monotonia-extrems",
+      "unitat": "u9",
+      "nom": "Monotonia i extrems relatius",
+      "descripcio": "Creixement i decreixement, màxims i mínims relatius, amb la primera i la segona derivada."
+    },
+    {
+      "slug": "extrems-parametres",
+      "unitat": "u9",
+      "nom": "Extrems amb paràmetres i gràfiques",
+      "descripcio": "Paràmetres a partir d'un extrem, extrems llegits a la gràfica de la derivada i nombre màxim d'extrems."
+    },
+    {
+      "slug": "curvatura-inflexio",
+      "unitat": "u9",
+      "nom": "Curvatura i punts d'inflexió",
+      "descripcio": "Concavitat, convexitat, punts d'inflexió i coeficients a partir de condicions."
+    },
+    {
+      "slug": "optimitzacio",
+      "unitat": "u9",
+      "nom": "Optimització",
+      "descripcio": "Problemes de màxim i mínim: plantejar la funció, derivar-la i justificar l'extrem."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",
