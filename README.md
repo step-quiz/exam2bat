@@ -10,8 +10,8 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
 
 > **Estat a 22 de setembre de 2026:** 55 preguntes. N'hi ha 24 de la unitat 7 (Límits i
 > continuïtat) en 8 temes i 18 de la unitat 8 (Derivades) en 6 temes, totes amb tres variants
-> per tema; 8 de la unitat 9 (Aplicacions de les derivades) en 4 temes, amb dues variants, i 5
-> de la PAU (l'examen sencer de juny de 2026). El detall de la feina feta i pendent és a
+> per tema; 12 de la unitat 9 (Aplicacions de les derivades) en 4 temes, també amb tres
+> variants, i 5 de la PAU (l'examen sencer de juny de 2026). El detall de la feina feta i pendent és a
 > [`handout.md`](handout.md).
 
 ---

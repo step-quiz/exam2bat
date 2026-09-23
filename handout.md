@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 55 preguntes (24 de la unitat 7, 18 de la unitat
-8, 8 de la unitat 9 i 5 de la PAU) · 1.024 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+**Data:** 22 de setembre de 2026 · **Estat:** 59 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9 i 5 de la PAU) · 1.100 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -23,8 +23,8 @@ format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescr
 totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va fer la u8
 sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
 lloc dona el cos de la prova per a la carpeta del professorat. La novena va completar la u7
-amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. L'onzena va obrir la u9,
-amb quatre temes i dues variants de cadascun. La màquina funciona de punta a punta. El que queda és
+amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. L'onzena i la dotzena van fer la u9,
+amb quatre temes i tres variants de cadascun. La màquina funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -290,6 +290,20 @@ derivabilitat de la u8.
   (capsa sense tapa).
 - Tots els resultats, comprovats amb SymPy a més del càlcul escrit a la solució.
 
+### 2.12 Sessió 12 · Tercera variant de la u9
+
+Quatre preguntes, una per tema, amb casos que les altres dues variants no tocaven:
+
+- `monotonia-extrems/q003`: $f(x)=x^4-4x^3$ té un punt crític en $x=0$ que **no és extrem**,
+  perquè la derivada s'hi anul·la sense canviar de signe. A més, el criteri de la derivada
+  segona hi falla ($f''(0)=0$) i cal tornar al signe de $f'$.
+- `extrems-parametres/q003`: dos paràmetres alhora, a partir d'un punt i d'un extrem, i un
+  raonament sobre si una cúbica pot tenir exactament un extrem (no pot).
+- `curvatura-inflexio/q003`: una cúbica, un logaritme i el fet que tota funció polinòmica de
+  grau 3 té exactament un punt d'inflexió.
+- `optimitzacio/q003`: un prat amb un costat al riu, que és el problema d'optimització més
+  clàssic i el més senzill dels tres.
+
 ---
 
 ## 3. Decisions preses
@@ -390,6 +404,8 @@ derivabilitat de la u8.
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 12: les 59 preguntes compilen en les dues modalitats (226 PDF, tots d'una pàgina), i
+  els resultats de les quatre variants noves estan verificats amb SymPy.
 - Sessió 11: les 55 preguntes compilen amb el preàmbul oficial en les dues modalitats (210 PDF,
   tots d'una pàgina). Els resultats de la u9, verificats amb SymPy, i les dues figures noves,
   revisades sobre el PDF compilat.
@@ -488,23 +504,27 @@ no hi té tema.
 | Tangents amb condicions | `q002` | Tangent a una racional, triangle amb els eixos i tangents paral·leles | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54, 58 |
 | Tangents amb condicions | `q003` | Tangents horitzontals i tangents paral·leles a rectes donades | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 54 |
 
-### 6.3 Unitat 9 · Aplicacions de les derivades (8 preguntes)
+### 6.3 Unitat 9 · Aplicacions de les derivades (12 preguntes)
 
 Quatre temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 8 a 10:
 creixement i extrems (39, 41, 42, 44, 50, 51, 58), concavitat (66, 67, 70) i optimització (77,
 79, 86, 87). Les seccions de teoremes i de la regla de l'Hôpital no en tenen cap d'assignat, i
-per això el banc no hi té tema. Dues variants per tema; en falta la tercera (vegeu 7.4).
+per això el banc no hi té tema. Tres variants per tema.
 
 | Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
 |---|---|---|---|---|---|---|---|
 | Curvatura i punts d'inflexió | `q001` | Curvatura i punts d'inflexió d'un polinomi de grau 4 i d'una exponencial | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 66, 67 |
 | Curvatura i punts d'inflexió | `q002` | Coeficients d'una cúbica a partir d'un punt, una inflexió i un extrem | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 70 |
+| Curvatura i punts d'inflexió | `q003` | Curvatura d'una cúbica i d'un logaritme, i el punt d'inflexió del grau 3 | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 66, 67 |
 | Extrems amb paràmetres i gràfiques | `q001` | Paràmetre a partir d'un extrem, una funció inventada i el nombre màxim d'extrems | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 39, 44, 58 |
 | Extrems amb paràmetres i gràfiques | `q002` | Extrems llegits a la gràfica de la derivada | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 39, 41 |
+| Extrems amb paràmetres i gràfiques | `q003` | Dos paràmetres a partir d'un extrem, una funció inventada i un raonament sobre el grau | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 39, 44, 58 |
 | Monotonia i extrems relatius | `q001` | Monotonia i extrems d'una cúbica, amb la derivada segona | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 42, 50, 51 |
 | Monotonia i extrems relatius | `q002` | Monotonia i extrems d'una funció racional, i extrems en un interval tancat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 42, 50, 51 |
+| Monotonia i extrems relatius | `q003` | Monotonia amb un punt crític que no és extrem, i el criteri de la derivada segona | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 42, 50, 51 |
 | Optimització | `q001` | Optimització: rectangle inscrit sota una paràbola | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 86, 87 |
 | Optimització | `q002` | Optimització: capsa sense tapa a partir d'un cartró quadrat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 77, 79 |
+| Optimització | `q003` | Optimització: prat rectangular amb un costat al riu | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 77, 86 |
 
 ### 6.4 Registre de convocatòries PAU
 
@@ -673,7 +693,7 @@ l'ordre numèric.
 |---|---|---|
 | u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, reescrita a la sessió 6 |
 | u8 Derivades | 5–7 | 1 de novembre de 2026 · **feta** |
-| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **feta**, falta la tercera variant |
+| u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **feta** |
 | u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 · **la següent** |
 | u13 Probabilitat | 13–14 | 20 de desembre de 2026 |
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 |
@@ -687,12 +707,11 @@ l'ordre numèric.
 
 - **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
   estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
-- **Tercera variant dels quatre temes de la u9**, que ara en tenen dues.
 - **Temes i preguntes de la u10**, amb el mateix patró. Després, les unitats en l'ordre de la
   taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
-- La u7 i la u8 ja tenen tres variants per tema: se'n poden muntar tres exàmens de cada
+- La u7, la u8 i la u9 tenen tres variants per tema: se'n poden muntar tres exàmens de cada
   unitat sense repetir cap pregunta.
 - **Material reservat** de la reescriptura, per si cal:
   - $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), de l'antiga `limits-punt/q001`.
@@ -831,13 +850,12 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 11. Parteix del de la sessió 10, que ja és al repositori.
+És el lliurament de la sessió 12. Parteix del de la sessió 11, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els quatre temes de la u9 |
-| `u9/*/q001` i `u9/*/q002` | **Noves**: vuit preguntes, dues per tema |
-| `README.md`, `handout.md` | Estat, inventari de la u9 i sessió 11 |
+| `u9/*/q003` | **Noves**: la tercera variant dels quatre temes |
+| `README.md`, `handout.md` | Estat, inventari de la u9 i sessió 12 |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
 cal fer **Run workflow**.
