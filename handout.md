@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 59 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9 i 5 de la PAU) · 1.100 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+**Data:** 22 de setembre de 2026 · **Estat:** 64 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9, 5 de la unitat 10 i 5 de la PAU) · 1.200 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -24,7 +24,8 @@ totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va 
 sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
 lloc dona el cos de la prova per a la carpeta del professorat. La novena va completar la u7
 amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. L'onzena i la dotzena van fer la u9,
-amb quatre temes i tres variants de cadascun. La màquina funciona de punta a punta. El que queda és
+amb quatre temes i tres variants de cadascun, i la tretzena va obrir la u10. La màquina
+funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -304,6 +305,22 @@ Quatre preguntes, una per tema, amb casos que les altres dues variants no tocave
 - `optimitzacio/q003`: un prat amb un costat al riu, que és el problema d'optimització més
   clàssic i el més senzill dels tres.
 
+### 2.13 Sessió 13 · La unitat 10
+
+Els 16 exercicis assignats a les setmanes 11, 12 i 17 donen **cinc temes**: domini i punts de
+tall, asímptotes i branques infinites, i l'estudi complet de tres famílies de funcions
+(racional, polinòmica i a trossos). La secció de simetries i periodicitat no té cap exercici
+assignat, i per tant el banc no hi té tema.
+
+- **Cinc preguntes**, una per tema: ja permeten muntar un examen sencer de la unitat. En
+  falten dues variants de cadascun.
+- Les tres preguntes d'estudi complet porten **la gràfica dibuixada a la solució**, i per això
+  el full del professorat serveix de model del que ha de sortir a l'alumnat.
+- El repartiment d'apartats hi és important: a la versió de 50 min es treu la curvatura, però
+  mai el dibuix. Un examen curt de representació sense gràfica no tindria sentit.
+- `estudi-racional/q001` és la més difícil del banc fins ara (●●●): asímptota obliqua, dues
+  branques i un extrem a cada costat.
+
 ---
 
 ## 3. Decisions preses
@@ -342,6 +359,7 @@ Quatre preguntes, una per tema, amb casos que les altres dues variants no tocave
 | Dos patrons de versió de 50 min: dos apartats d'1,25, o un de sol de 2,5 | Disseny | Els punts queden rodons i cada versió és una tasca coherent |
 | La u8 no té tema de derivabilitat | Disseny | Cap exercici assignat d'aquella secció; el banc no surt mai dels exercicis assignats |
 | La u9 no té tema de teoremes ni de la regla de l'Hôpital | Disseny | Mateix criteri: no hi ha cap exercici assignat d'aquestes seccions |
+| A la u10, la versió de 50 min treu la curvatura, mai la gràfica | Disseny | Una pregunta de representació sense dibuix no té sentit |
 | Dues variants per als temes de la u8 que més surten als exàmens | Disseny | Regles de derivació, recta tangent i tangents amb condicions |
 | El lloc dona el cos de l'examen (`prova-N.tex`), no un fitxer sencer | Professor | La capçalera, el logo i el curs viuen a la seva carpeta |
 | Les preguntes es diuen `Q1`, `Q2`, `Q4a` al `.tex` | Professor | Més curt al full de l'examen |
@@ -404,6 +422,9 @@ Quatre preguntes, una per tema, amb casos que les altres dues variants no tocave
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 13: les 64 preguntes compilen en les dues modalitats (246 PDF, tots d'una pàgina).
+  Els estudis de la u10, verificats amb SymPy, i les tres gràfiques de les solucions,
+  revisades sobre el PDF compilat: asímptotes, extrems i talls hi coincideixen amb l'estudi.
 - Sessió 12: les 59 preguntes compilen en les dues modalitats (226 PDF, tots d'una pàgina), i
   els resultats de les quatre variants noves estan verificats amb SymPy.
 - Sessió 11: les 55 preguntes compilen amb el preàmbul oficial en les dues modalitats (210 PDF,
@@ -526,7 +547,23 @@ per això el banc no hi té tema. Tres variants per tema.
 | Optimització | `q002` | Optimització: capsa sense tapa a partir d'un cartró quadrat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 77, 79 |
 | Optimització | `q003` | Optimització: prat rectangular amb un costat al riu | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 77, 86 |
 
-### 6.4 Registre de convocatòries PAU
+### 6.4 Unitat 10 · Representació de funcions (5 preguntes)
+
+Cinc temes, de les cinc seccions del llibre amb exercicis assignats a les setmanes 11, 12 i 17:
+domini i recorregut (43, 45, 100), asímptotes (62, 63, 38), representació (41, 84, 88, 91),
+funcions a trossos (108, 37) i els problemes de context (123, 124). La secció de simetries i
+periodicitat no en té cap d'assignat, i per això el banc no hi té tema. Una variant per tema;
+en falten dues (vegeu 7.4).
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Asímptotes i branques infinites | `q001` | Asímptotes de funcions racionals i gràfica a partir d'unes asímptotes donades | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 62, 63, 38 |
+| Domini i punts de tall | `q001` | Domini de racionals, radicals i logaritmes, i punts de tall | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 45, 100 |
+| Estudi i gràfica d'una funció a trossos | `q001` | Estudi i gràfica d'una funció a trossos amb asímptota horitzontal | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 108, 37 |
+| Estudi i gràfica d'una funció polinòmica | `q001` | Estudi i gràfica de x³−3x²+4: talls amb arrel doble, extrems i inflexió | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 75, 78, 84, 88 |
+| Estudi i gràfica d'una funció racional | `q001` | Estudi i gràfica de x²/(x−1): asímptota obliqua, extrems i curvatura | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 22 · 13 | ●●● | 41, 63, 75, 91 |
+
+### 6.5 Registre de convocatòries PAU
 
 | Codi | Convocatòria | Sèrie | Font |
 |---|---|---|---|
@@ -542,7 +579,7 @@ per això el banc no hi té tema. Tres variants per tema.
 | `26j` | juny 2026 | 1 | Capçalera del criteri oficial: ana-26j-q1-s.pdf. |
 | `26j2` | juny 2026 | 5 | Capçalera del criteri oficial: ana-26j2-q1-s.pdf. |
 
-### 6.5 Seguiment de les 62 entrades PAU (61 exercicis)
+### 6.6 Seguiment de les 62 entrades PAU (61 exercicis)
 
 Ordenades de la més recent a la més antiga, que és l'ordre d'importació recomanat.
 
@@ -694,7 +731,7 @@ l'ordre numèric.
 | u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, reescrita a la sessió 6 |
 | u8 Derivades | 5–7 | 1 de novembre de 2026 · **feta** |
 | u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **feta** |
-| u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 · **la següent** |
+| u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 · **oberta**, una variant per tema |
 | u13 Probabilitat | 13–14 | 20 de desembre de 2026 |
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 |
 | u1 Matrius | 18–19 | 24 de gener de 2027 |
@@ -707,8 +744,9 @@ l'ordre numèric.
 
 - **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
   estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
-- **Temes i preguntes de la u10**, amb el mateix patró. Després, les unitats en l'ordre de la
-  taula.
+- **Segona i tercera variant dels cinc temes de la u10**, que ara en tenen una.
+- **Temes i preguntes de la u13**, la següent per calendari (20 de desembre). Després, les
+  unitats en l'ordre de la taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
 - La u7, la u8 i la u9 tenen tres variants per tema: se'n poden muntar tres exàmens de cada
@@ -850,12 +888,13 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 12. Parteix del de la sessió 11, que ja és al repositori.
+És el lliurament de la sessió 13. Parteix del de la sessió 12, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `u9/*/q003` | **Noves**: la tercera variant dels quatre temes |
-| `README.md`, `handout.md` | Estat, inventari de la u9 i sessió 12 |
+| `temes.json` | Els cinc temes de la u10 |
+| `u10/*/q001` | **Noves**: cinc preguntes, una per tema |
+| `README.md`, `handout.md` | Estat, inventari de la u10 i sessió 13 |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
 cal fer **Run workflow**.

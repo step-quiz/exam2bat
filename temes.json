@@ -147,6 +147,36 @@
       "descripcio": "Problemes de màxim i mínim: plantejar la funció, derivar-la i justificar l'extrem."
     },
     {
+      "slug": "domini-talls",
+      "unitat": "u10",
+      "nom": "Domini i punts de tall",
+      "descripcio": "Domini de funcions racionals, amb radicals, logarítmiques i exponencials, i talls amb els eixos."
+    },
+    {
+      "slug": "asimptotes",
+      "unitat": "u10",
+      "nom": "Asímptotes i branques infinites",
+      "descripcio": "Asímptotes verticals, horitzontals i obliqües, i gràfiques a partir d'unes asímptotes donades."
+    },
+    {
+      "slug": "estudi-racional",
+      "unitat": "u10",
+      "nom": "Estudi i gràfica d'una funció racional",
+      "descripcio": "Domini, talls, asímptotes, monotonia, curvatura i representació d'una funció racional."
+    },
+    {
+      "slug": "estudi-polinomica",
+      "unitat": "u10",
+      "nom": "Estudi i gràfica d'una funció polinòmica",
+      "descripcio": "Talls, monotonia, extrems, curvatura i representació d'una funció polinòmica."
+    },
+    {
+      "slug": "estudi-trossos",
+      "unitat": "u10",
+      "nom": "Estudi i gràfica d'una funció a trossos",
+      "descripcio": "Continuïtat, asímptotes, monotonia i representació d'una funció definida a trossos."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",
