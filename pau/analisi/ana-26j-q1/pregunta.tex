@@ -37,17 +37,17 @@ per aquesta gràfica, l'eix $OX$ i les rectes $x=-1$ i $x=3$.
 \begin{solucio}
 \begin{center}
 \begin{tikzpicture}[x=0.9cm,y=0.55cm]
-  \fill[blue!12,domain=-1:0,samples=40] (-1,0) -- plot (\x,{5*exp(2*\x)}) -- (0,0) -- cycle;
-  \fill[blue!12,domain=0:2,samples=40] (0,0) -- plot (\x,{(\x-2)^2+1}) -- (2,0) -- cycle;
-  \fill[blue!12] (2,0) rectangle (3,1);
+  \fill[\colorgrafica!12,domain=-1:0,samples=40] (-1,0) -- plot (\x,{5*exp(2*\x)}) -- (0,0) -- cycle;
+  \fill[\colorgrafica!12,domain=0:2,samples=40] (0,0) -- plot (\x,{(\x-2)^2+1}) -- (2,0) -- cycle;
+  \fill[\colorgrafica!12] (2,0) rectangle (3,1);
   \draw[gray!55,very thin,step=1] (-3,0) grid (4,5);
   \draw[->] (-3.3,0) -- (4.5,0) node[below right] {$x$};
   \draw[->] (0,-0.3) -- (0,5.7) node[above left] {$y$};
   \foreach \i in {-3,-2,-1,1,2,3,4} \draw (\i,0.1) -- (\i,-0.1) node[below,font=\scriptsize] {$\i$};
   \foreach \j in {1,2,3,4,5} \draw (0.08,\j) -- (-0.08,\j) node[left,font=\scriptsize] {$\j$};
-  \draw[blue!70!black,thick,domain=-3:0,samples=80,smooth] plot (\x,{5*exp(2*\x)});
-  \draw[blue!70!black,thick,domain=0:2,samples=40,smooth] plot (\x,{(\x-2)^2+1});
-  \draw[blue!70!black,thick] (2,1) -- (4,1);
+  \draw[\colorgrafica!70!black,thick,domain=-3:0,samples=80,smooth] plot (\x,{5*exp(2*\x)});
+  \draw[\colorgrafica!70!black,thick,domain=0:2,samples=40,smooth] plot (\x,{(\x-2)^2+1});
+  \draw[\colorgrafica!70!black,thick] (2,1) -- (4,1);
 \end{tikzpicture}
 \end{center}
 Per representar la funció quadràtica es pot calcular el vèrtex amb la fórmula

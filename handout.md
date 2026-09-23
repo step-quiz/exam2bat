@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 31 preguntes (17 de la unitat 7, 9 de la unitat
-8 i 5 de la PAU) · 576 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+**Data:** 22 de setembre de 2026 · **Estat:** 38 preguntes (24 de la unitat 7, 9 de la unitat
+8 i 5 de la PAU) · 704 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -22,8 +22,8 @@ prioritats i va afegir els exàmens amb opcions (1, 2, 3, 4a i 4b). La sisena va
 format, va crear les dues modalitats d'examen, d'1 h 30 i de 50 min, i va reescriure a mida PAU
 totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va fer la u8
 sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
-lloc dona el cos de la prova per a la carpeta del professorat. La màquina funciona de punta a
-punta. El que queda és
+lloc dona el cos de la prova per a la carpeta del professorat. La novena va completar la u7
+amb una tercera variant de cada tema. La màquina funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
 resta d'unitats.
 
@@ -230,6 +230,35 @@ lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi h
   targetes del lloc continuen dient «Pregunta 4a».
 - Es manté el fitxer «tot en un», ara amb el nom `examen-sencer.tex`.
 
+### 2.9 Sessió 9 · Tercera variant de tots els temes de la u7
+
+Set preguntes noves, una per a cada tema que només en tenia dues: `limits-grafica/q003`,
+`limits-punt/q003`, `limits-trossos/q003`, `continuitat-trossos/q003`, `parametres-ab/q003`,
+`domini-discontinuitats/q003` i `bolzano-biseccio/q003`. Amb les tres que ja hi havia a
+`limits-infinit`, la unitat queda amb **tres variants per tema**: se'n poden muntar tres
+exàmens diferents sense repetir cap pregunta.
+
+- Cada variant fa les mateixes tasques que les germanes, amb funcions i números diferents, i
+  cap no repeteix un exercici del llibre.
+- La gràfica de `limits-grafica/q003` és nova: asímptota horitzontal $y=0$ a l'esquerra, salt
+  finit en $x=0$, discontinuïtat evitable en $x=2$, asímptota vertical en $x=4$ i una segona
+  asímptota horitzontal $y=2$ a la dreta.
+- Totes porten la versió de 50 min i compilen en una pàgina.
+- Dues comprovacions de la prova de paritat suposaven que `limits-punt` tenia dues variants;
+  ara en compten tres.
+
+A més, el professor va enviar la seva carpeta d'exàmens amb dos retocs fets a mà, i el banc
+els ha adoptat perquè no es perdin a la descàrrega següent:
+
+- **`\colorgrafica`**: el color de les gràfiques passa a ser una macro de `defs.tex`, blava per
+  defecte. Les tres preguntes amb gràfica i la figura de la PAU ja no escriuen cap color, i una
+  comprovació de la prova de paritat vigila que cap pregunta nova no en torni a escriure. Es pot
+  canviar des de la carpeta, amb `\renewcommand{\colorgrafica}{...}` al `capsalera.tex`.
+- **`main.tex`** porta les dues línies de l'interruptor de solucions, una comentada, per
+  commutar-les sense escriure res.
+
+El seu `capsalera.tex` no es toca: és seu, i no és al repositori.
+
 ---
 
 ## 3. Decisions preses
@@ -273,6 +302,7 @@ lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi h
 | El format del banc es parteix en `headers.tex` i `defs.tex` | Proposta acceptada | És la partició que ja feia servir el professor, i continua sent font única |
 | El `defs.tex` publicat porta un segell de versió | Disseny | Un `defs.tex` desfasat avisava en silenci, o fallava de qualsevol manera |
 | Cap dada del centre al banc: logo, segell, departament i casella de nota viuen a `capsalera.tex`, fora del repositori | Professor | El lloc és accessible i no ha de mostrar res de l'institut |
+| El color de les gràfiques és `\colorgrafica`, blau, i cap pregunta no n'escriu cap | Professor | Es canvia en un sol lloc, i des de la carpeta d'exàmens |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
 
 ---
@@ -328,6 +358,9 @@ lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi h
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 9: les 38 preguntes compilen amb el preàmbul oficial en les dues modalitats (142 PDF,
+  tots d'una pàgina). Els resultats de les set variants noves, comprovats amb SymPy a més del
+  càlcul de la solució, i la gràfica nova, revisada sobre el PDF compilat.
 - Sessió 8: la carpeta d'exàmens sencera, muntada amb els fitxers que dona el lloc i el logo
   del professor: compila en 3 pàgines sense solucions i en 4 amb solucions, sense cap
   *Overfull*. Amb un `defs.tex` d'una altra versió, LaTeX escriu l'avís al registre. Sense
@@ -358,30 +391,38 @@ lliurament anterior: anava quedant enrere a cada canvi de macros. El banc s'hi h
 
 ## 6. Inventari
 
-### 6.1 Unitat 7 · Límits i continuïtat (17 preguntes)
+### 6.1 Unitat 7 · Límits i continuïtat (24 preguntes)
 
-Totes a mida PAU, amb la versió de 50 min. Els minuts són estimacions (1 h 30 · 50 min) i
-s'han de calibrar amb dades reals (vegeu 7.4).
+Tres variants per tema: se'n poden muntar tres exàmens diferents. Totes a mida PAU, amb la
+versió de 50 min. Els minuts són estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades
+reals (vegeu 7.4).
 
 | Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
 |---|---|---|---|---|---|---|---|
 | Bolzano i bisecció | `q001` | Teorema de Bolzano, bisecció i punt de tall de dues corbes | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 112, 113, 114, 120 |
 | Bolzano i bisecció | `q002` | Bolzano per assolir un valor, arrel amb error menor que una dècima i punt de tall | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 10 | ●●○ | 43, 113, 114, 120 |
+| Bolzano i bisecció | `q003` | Bolzano i bisecció en una cúbica, i tall entre un logaritme i una recta | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 112, 113, 114, 120 |
 | Continuïtat de funcions a trossos | `q001` | Continuïtat d'una funció a trossos amb exponencial i racional, punt per punt | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 11 | ●●○ | 103 |
 | Continuïtat de funcions a trossos | `q002` | Continuïtat d'una funció a trossos amb logaritme i d'una funció amb valor absolut | 1,25 + 1,25 | 2,50 | 20 · 11 | ●●● | 93, 102 |
+| Continuïtat de funcions a trossos | `q003` | Continuïtat d'una funció a trossos amb exponencial i racional: tres punts | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 11 | ●●○ | 103 |
 | Domini i discontinuïtats | `q001` | Domini, classificació de discontinuïtats i construcció d'una racional | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 47, 93, 94 |
 | Domini i discontinuïtats | `q002` | Dominis amb radical i logaritme, discontinuïtats d'una racional amb Ruffini i funció inventada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 47, 93, 94 |
+| Domini i discontinuïtats | `q003` | Domini i continuïtat d'arrels i logaritmes, i discontinuïtats d'una funció racional | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 47, 93, 94 |
 | Límits a partir d'una gràfica | `q001` | Límits i continuïtat llegits sobre una gràfica | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 16 · 10 | ●○○ | 44, 66, 68, 92 |
 | Límits a partir d'una gràfica | `q002` | Límits i continuïtat sobre una gràfica amb un angle, un forat i una asímptota | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 44, 66, 68, 92 |
+| Límits a partir d'una gràfica | `q003` | Límits i continuïtat a partir d'una gràfica amb dues asímptotes horitzontals | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 44, 66, 68, 92 |
 | Límits de funcions a trossos | `q001` | Límits d'una funció a trossos amb paràmetre i indeterminació 0/0 | 0,75 + 1,25 + 0,50 | 1,00 + 1,50 | 18 · 12 | ●●○ | 76, 88, 90 |
 | Límits de funcions a trossos | `q002` | Límits d'una funció a trossos amb un paràmetre: 0/0, laterals i infinit | 0,75 + 1,25 + 0,50 | 1,00 + 1,50 | 18 · 12 | ●●○ | 76, 88, 90 |
+| Límits de funcions a trossos | `q003` | Límits d'una funció a trossos amb paràmetre: 0/0, laterals en el tall i infinit | 0,75 + 1,25 + 0,50 | 1,00 + 1,50 | 18 · 12 | ●●○ | 76, 88, 90 |
 | Límits en l'infinit | `q001` | Límits en l'infinit: racionals, exponencials i un paràmetre | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 45, 46, 48 |
 | Límits en l'infinit | `q002` | Límits en l'infinit de funcions racionals i un paràmetre | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 46, 48 |
 | Límits en l'infinit | `q003` | Límits en l'infinit: mateix grau, radicals i dos paràmetres | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 16 · 10 | ●●○ | 45, 46, 48 |
 | Límits en un punt | `q001` | Límits en un punt: indeterminació 0/0, límits laterals i funció a trossos | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 20 · 11 | ●●○ | 76, 88, 90 |
 | Límits en un punt | `q002` | Límits en un punt: 0/0 amb Ruffini i límits infinits amb laterals | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 70, 76 |
+| Límits en un punt | `q003` | Límits en un punt: 0/0 amb Ruffini i una funció a trossos | 0,75 + 0,75 + 1,00 | 1,25 + 1,25 | 18 · 11 | ●●○ | 70, 76, 88 |
 | Paràmetres per a la continuïtat | `q001` | Paràmetres de continuïtat amb exponencial i logaritme, i un paràmetre amb dues solucions | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 40, 102, 106 |
 | Paràmetres per a la continuïtat | `q002` | Paràmetres de continuïtat en una funció a tres trossos i en una de dos | 1,50 + 1,00 | 2,50 | 18 · 11 | ●●○ | 40, 106 |
+| Paràmetres per a la continuïtat | `q003` | Paràmetres de continuïtat: un sistema de dues equacions i un cas amb dues solucions | 1,50 + 1,00 | 2,50 | 20 · 12 | ●●○ | 40, 102, 106 |
 
 ### 6.2 Unitat 8 · Derivades (9 preguntes)
 
@@ -582,7 +623,8 @@ l'ordre numèric.
   taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
-- Segones variants per als sis temes de la u8, que ara en tenen una o dues.
+- Segones i terceres variants per als sis temes de la u8, que ara en tenen una o dues. La u7
+  ja en té tres per tema.
 - **Material reservat** de la reescriptura, per si cal:
   - $\lim_{x\to+\infty}\frac{x^3+2x}{3^x}$ (jerarquia d'infinits), de l'antiga `limits-punt/q001`.
     No és a cap exercici assignat.
@@ -712,6 +754,7 @@ del primer exercici.
 | Provar el build sense TeX | Un `pdflatex` fals al PATH, com fa `prova_sortida.py` |
 | Moure o treure una pregunta podria desfer la 4a i la 4b | L'estructura és de les places: només es mouen les preguntes |
 | El preàmbul cita `\begin{document}` en un comentari | Per trobar el cos del `.tex`, cal buscar la línia exacta, no el text |
+| Un retoc fet a mà en un fitxer baixat es perd a la descàrrega següent | Si val la pena, ha de pujar al banc: `\colorgrafica` en va sortir |
 | Una fórmula destacada després d'una línia curta queda enganxada (TeX hi posa l'espai «curt») | El preàmbul iguala `\abovedisplayshortskip` a l'espai normal |
 | En un Chromium sense pantalla, obrir un PDF el descarrega | Una prova que baixa el `.tex` no ha d'obrir cap visor abans |
 
@@ -719,22 +762,16 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 8. Parteix del de la sessió 7, que ja és al repositori.
+És el lliurament de la sessió 9. Parteix del de la sessió 8, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `build/headers.tex` | **Nou**: paquets i format de pàgina (amb `microtype` i `fancyhdr`) |
-| `build/defs.tex` | **Nou**: macros del banc i segell de versió; la capçalera d'examen hi és buida |
-| `build/main.tex` | **Nou**: plantilla de la carpeta d'exàmens; incorpora `capsalera.tex` si hi és |
-| `build/build.py` | Llegeix els dos fitxers de format, calcula el segell i els desa al catàleg; `--preambul` passa a ser `--headers` |
-| `build/prova_paritat.py` | 62 comprovacions: etiquetes `Q`, peces de l'examen, fitxer `prova-N.tex` i cap dada del centre |
-| `build/prova_sortida.py` | 10 comprovacions: `--headers` i el segell |
-| `assets/app.js` | `prova-N.tex`, secció Entorn, etiquetes `Q` i número de prova |
-| `assets/style.css`, `index.html` | Camp del número de prova i botons de l'entorn |
-| `README.md`, `handout.md` | La carpeta d'exàmens |
-
-**Cal esborrar `build/preambul.tex` a mà**, des de la web de GitHub: un ZIP no pot esborrar
-fitxers, i aquell ja no el llegeix ningú. Obre'l, fes clic a la paperera i confirma el commit.
+| `u7/*/q003/` | **Noves**: les set variants que faltaven, una per tema |
+| `build/defs.tex` | `\colorgrafica`: el color de les gràfiques, blau per defecte |
+| `build/main.tex` | Les dues línies de l'interruptor de solucions |
+| `u7/limits-grafica/q001,q002` i `pau/analisi/ana-26j-q1` | Dibuixen amb `\colorgrafica` |
+| `build/prova_paritat.py` | Dues comprovacions ajustades i dues de noves: cap pregunta no escriu colors |
+| `README.md`, `handout.md` | Estat, inventari de la u7 i sessió 9 |
 
 No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
 cal fer **Run workflow**.

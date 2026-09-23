@@ -13,6 +13,7 @@
 # ═══════════════════════════════════════════════════════════════════════
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -175,12 +176,12 @@ def main() -> int:
     comprova("✕ a la 4a: la 4b passa a ser la 4 i surten 10,00 punts",
              r["ids"] == [ana1, alg2, pro3, geo4b] and r["etiquetes"] == ["1", "2", "3", "4"]
              and "se'n responen" not in r["recompte"] and "10,00 punts" in r["recompte"], r["recompte"])
-    r = web("", "afegeix('limits-punt'); afegeix('limits-punt'); afegeix('limits-punt')")
+    r = web("", "afegeix('limits-punt'); " * 4)
     comprova("cada clic a un tema n'afegeix una pregunta diferent, fins que s'esgoten",
-             r["ids"] == ["u7/limits-punt/q001", "u7/limits-punt/q002"], r["ids"])
-    r = web("limits-punt:q001,limits-punt:q002", "rota(0, 1)")
+             r["ids"] == [f"u7/limits-punt/q00{n}" for n in (1, 2, 3)], r["ids"])
+    r = web("limits-punt:q001,limits-punt:q002,limits-punt:q003", "rota(0, 1)")
     comprova("◀ ▶ no hi posa una pregunta que ja és a l'examen",
-             r["ids"] == ["u7/limits-punt/q001", "u7/limits-punt/q002"], r["ids"])
+             r["ids"] == [f"u7/limits-punt/q00{n}" for n in (1, 2, 3)], r["ids"])
     r = web("limits-punt:q001", "rota(0, 1)")
     comprova("◀ ▶ passa a la variant següent si és lliure", r["ids"] == ["u7/limits-punt/q002"], r["ids"])
 
@@ -274,6 +275,13 @@ def main() -> int:
     comprova("la capçalera d'examen és buida al banc i es pot redefinir a la carpeta",
              "\\providecommand{\\capsaleraexamen}{}" in banc["defs"]
              and "capsalera.tex" in banc["main"], "")
+
+    # 1j. El color de les gràfiques viu a defs.tex, no a les preguntes
+    colors = re.compile(r"\\[(?:red|blue|green|orange|violet)[,!\\]]")
+    amb_color = [q["id"] for q in banc["preguntes"] if colors.search(q["tex"])]
+    comprova("cap pregunta no escriu un color a mà: fan servir \\colorgrafica",
+             not amb_color, str(amb_color))
+    comprova("i defs.tex el defineix", "\\newcommand{\\colorgrafica}" in banc["defs"])
 
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")

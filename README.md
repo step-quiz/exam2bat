@@ -8,9 +8,9 @@ veus l'enunciat i la solució en PDF, i en baixes el codi `.tex`, sol o muntat e
 complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva procedència
 («PAU juny 2026, sèrie 1»).
 
-> **Estat a 22 de setembre de 2026:** 31 preguntes. N'hi ha 17 de la unitat 7 (Límits i
-> continuïtat) en 8 temes, 9 de la unitat 8 (Derivades) en 6 temes, i 5 de la PAU (l'examen
-> sencer de juny de 2026). El detall de la feina feta i pendent és a
+> **Estat a 22 de setembre de 2026:** 38 preguntes. N'hi ha 24 de la unitat 7 (Límits i
+> continuïtat) en 8 temes, amb tres variants de cadascun; 9 de la unitat 8 (Derivades) en 6
+> temes, i 5 de la PAU (l'examen sencer de juny de 2026). El detall de la feina feta i pendent és a
 > [`handout.md`](handout.md).
 
 ---
@@ -198,6 +198,7 @@ El procediment complet per importar una convocatòria és a `handout.md`.
 | 3 | La puntuació s'escriu **només** a `\apartat{...}`. Enlloc més. L'opcional és la de 50 min: `\apartat[1,25]{0,75}`. Les dues puntuacions sumen 2,50. | `build.py` la llegeix del `.tex` |
 | 4 | Una pregunta és **només el cos**: sense `\documentclass`, `\usepackage` ni `\begin{document}`. | `build.py` |
 | 5 | Hi ha **un sol format**: `build/headers.tex` i `build/defs.tex`. Un paquet nou s'afegeix allà i es recompila tot. | `build.py` |
+| 5b | Cap pregunta no escriu un **color**: les gràfiques dibuixen amb `\colorgrafica`, que es defineix a `defs.tex` i es pot canviar des de la carpeta d'exàmens. | `prova_paritat.py` |
 | 6 | Els codis `q001`, `q002`… són **permanents**: mai es renumeren ni es reaprofiten. | tu |
 | 7 | `\end{solucio}`, `\begin{nomesllarg}` i `\end{nomesllarg}` van **sols a la seva línia**. | `build.py` |
 | 8 | Tota graella de TikZ declara el pas: `grid` sempre amb `step=1` (o el que calgui). Sense, TikZ fa passos d'1 cm i la graella queda desquadrada respecte dels enters. | `build.py` |
