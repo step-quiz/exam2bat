@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-23 05:02 UTC",
+ "generat": "2026-09-23 05:42 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -123,6 +123,30 @@ const BANC = {
    "unitat": "u8",
    "nom": "Tangents amb condicions",
    "descripcio": "Tangents paral·leles a una recta, tangents horitzontals i triangles amb els eixos."
+  },
+  {
+   "slug": "monotonia-extrems",
+   "unitat": "u9",
+   "nom": "Monotonia i extrems relatius",
+   "descripcio": "Creixement i decreixement, màxims i mínims relatius, amb la primera i la segona derivada."
+  },
+  {
+   "slug": "extrems-parametres",
+   "unitat": "u9",
+   "nom": "Extrems amb paràmetres i gràfiques",
+   "descripcio": "Paràmetres a partir d'un extrem, extrems llegits a la gràfica de la derivada i nombre màxim d'extrems."
+  },
+  {
+   "slug": "curvatura-inflexio",
+   "unitat": "u9",
+   "nom": "Curvatura i punts d'inflexió",
+   "descripcio": "Concavitat, convexitat, punts d'inflexió i coeficients a partir de condicions."
+  },
+  {
+   "slug": "optimitzacio",
+   "unitat": "u9",
+   "nom": "Optimització",
+   "descripcio": "Problemes de màxim i mínim: plantejar la funció, derivar-la i justificar l'extrem."
   },
   {
    "slug": "algebra",
@@ -1996,6 +2020,316 @@ const BANC = {
    "pdf_solucio": "u8/tvm-derivada-punt/q003/out/solucio.pdf",
    "pdf_curt": "u8/tvm-derivada-punt/q003/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u8/tvm-derivada-punt/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/curvatura-inflexio/q001",
+   "unitat": "u9",
+   "tema": "curvatura-inflexio",
+   "codi": "q001",
+   "titol": "Curvatura i punts d'inflexió d'un polinomi de grau 4 i d'una exponencial",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    66,
+    67
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "curvatura",
+    "punts d'inflexió",
+    "derivada segona"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nEstudia la curvatura i troba els punts d'inflexió de la funció\n\\[\nf(x)=x^4-6x^2+5 .\n\\]\n\n\\begin{solucio}\n$f'(x)=4x^3-12x$ i $f''(x)=12x^2-12=12\\left(x^2-1\\right)$, que s'anul·la en $x=\\pm1$.\\\\\n$f''>0$ a $(-\\infty,-1)$ i a $(1,+\\infty)$: la funció és \\textbf{convexa} (còncava cap amunt).\\\\\n$f''<0$ a $(-1,1)$: hi és \\textbf{còncava} (cap avall).\\\\\nLa curvatura canvia en tots dos punts, i $f(1)=f(-1)=0$: els punts d'inflexió són\n$\\boxed{(-1,0)}$ i $\\boxed{(1,0)}$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia la curvatura de la funció $g(x)=x\\,e^{x}$ i troba'n els punts d'inflexió.\n\n\\begin{solucio}\n$g'(x)=e^{x}+x e^{x}=(x+1)e^{x}$ i $g''(x)=e^{x}+(x+1)e^{x}=(x+2)e^{x}$.\\\\\nCom que $e^{x}>0$ sempre, el signe és el de $x+2$: \\textbf{còncava} a $(-\\infty,-2)$ i\n\\textbf{convexa} a $(-2,+\\infty)$.\\\\\nPunt d'inflexió: $\\left(-2,-2e^{-2}\\right)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nQuants punts d'inflexió pot tenir, com a màxim, una funció polinòmica de grau $4$? Raona-ho.\n\n\\begin{solucio}\nEls punts d'inflexió surten dels punts on s'anul·la la derivada segona i hi canvia de signe.\nSi $f$ té grau $4$, aleshores $f''$ té grau $2$ i, com a màxim, dues arrels reals.\\\\\nPer tant, \\textbf{com a màxim dos}, com passa a l'apartat a). La funció $f(x)=x^4$ no en té\ncap: $f''(x)=12x^2$ s'anul·la en $x=0$, però no hi canvia de signe.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/curvatura-inflexio/q001/out/enunciat.pdf",
+   "pdf_solucio": "u9/curvatura-inflexio/q001/out/solucio.pdf",
+   "pdf_curt": "u9/curvatura-inflexio/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/curvatura-inflexio/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/curvatura-inflexio/q002",
+   "unitat": "u9",
+   "tema": "curvatura-inflexio",
+   "codi": "q002",
+   "titol": "Coeficients d'una cúbica a partir d'un punt, una inflexió i un extrem",
+   "punts": 2.5,
+   "apartats": [
+    1.5,
+    1.0
+   ],
+   "apartats_curt": [
+    2.5
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    70
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "paràmetres",
+    "punts d'inflexió",
+    "extrems"
+   ],
+   "temes_secundaris": [
+    "extrems-parametres"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[2,5]{1,5}\nDetermina $a$, $b$ i $c$ perquè la funció\n\\[\nf(x)=x^3+ax^2+bx+c\n\\]\npassi pel punt $(0,2)$, tingui un punt d'inflexió en $x=1$ i un extrem relatiu en $x=3$.\n\n\\begin{solucio}\nDerivades: $f'(x)=3x^2+2ax+b$ i $f''(x)=6x+2a$.\\\\\n\\textbf{Passa per $(0,2)$}: $f(0)=c=2$, d'on $\\boxed{c=2}$.\\\\\n\\textbf{Inflexió en $x=1$}: $f''(1)=6+2a=0$, d'on $\\boxed{a=-3}$.\\\\\n\\textbf{Extrem en $x=3$}: $f'(3)=27+2(-3)(3)+b=27-18+b=0$, d'on $\\boxed{b=-9}$.\\\\\nLa funció és $f(x)=x^3-3x^2-9x+2$. Comprovació: $f''(1)=0$ i $f'(3)=27-18-9=0$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{1}\nAmb aquests valors, digues si l'extrem de $x=3$ és un màxim o un mínim, i estudia la curvatura\nde $f$.\n\n\\begin{solucio}\n$f''(x)=6x-6$, i $f''(3)=12>0$: en $x=3$ hi ha un \\textbf{mínim relatiu}.\\\\\n$f''<0$ a $(-\\infty,1)$: \\textbf{còncava}. \\quad $f''>0$ a $(1,+\\infty)$: \\textbf{convexa}.\\\\\nLa curvatura canvia en $x=1$, que és el punt d'inflexió demanat.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u9/curvatura-inflexio/q002/out/enunciat.pdf",
+   "pdf_solucio": "u9/curvatura-inflexio/q002/out/solucio.pdf",
+   "pdf_curt": "u9/curvatura-inflexio/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/curvatura-inflexio/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/extrems-parametres/q001",
+   "unitat": "u9",
+   "tema": "extrems-parametres",
+   "codi": "q001",
+   "titol": "Paràmetre a partir d'un extrem, una funció inventada i el nombre màxim d'extrems",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    39,
+    44,
+    58
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "paràmetre",
+    "extrems",
+    "inventa"
+   ],
+   "temes_secundaris": [
+    "monotonia-extrems"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{1}\nLa funció\n\\[\nf(x)=x^3+ax^2+3\n\\]\nté un extrem relatiu en $x=2$. Troba $a$, digues de quin tipus d'extrem es tracta i estudia la\nmonotonia de $f$.\n\n\\begin{solucio}\n$f'(x)=3x^2+2ax$. Si hi ha extrem en $x=2$, aleshores $f'(2)=12+4a=0$, d'on $\\boxed{a=-3}$.\\\\\nAmb $a=-3$: $f'(x)=3x^2-6x=3x(x-2)$, que s'anul·la en $x=0$ i $x=2$.\\\\\n$f$ creix a $(-\\infty,0)$, decreix a $(0,2)$ i creix a $(2,+\\infty)$: en $x=0$ hi ha un\n\\textbf{màxim relatiu} i en $x=2$, un \\textbf{mínim relatiu}.\\\\\nComprovació: $f''(x)=6x-6$ i $f''(2)=6>0$, que confirma el mínim.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\n\\textbf{Inventa.} Escriu una funció que tingui un màxim relatiu en $x=-1$ i cap altre extrem.\nJustifica-ho.\n\n\\begin{solucio}\nPer exemple, $g(x)=-(x+1)^2$.\\\\\n$g'(x)=-2(x+1)$, que només s'anul·la en $x=-1$, i hi canvia de positiva a negativa: hi ha un\nmàxim i no n'hi pot haver cap més, perquè la derivada no s'anul·la enlloc més.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nQuants extrems relatius pot tenir, com a màxim, una funció polinòmica de grau $4$? Raona-ho.\n\n\\begin{solucio}\nEls extrems relatius surten dels punts on s'anul·la la derivada. Si $f$ té grau $4$, aleshores\n$f'$ té grau $3$ i, com a màxim, tres arrels reals.\\\\\nPer tant, com a màxim hi pot haver \\textbf{tres extrems relatius}. Per exemple,\n$f(x)=x^4-2x^2$ en té tres, i $f(x)=x^4$ només un.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/extrems-parametres/q001/out/enunciat.pdf",
+   "pdf_solucio": "u9/extrems-parametres/q001/out/solucio.pdf",
+   "pdf_curt": "u9/extrems-parametres/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/extrems-parametres/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/extrems-parametres/q002",
+   "unitat": "u9",
+   "tema": "extrems-parametres",
+   "codi": "q002",
+   "titol": "Extrems llegits a la gràfica de la derivada",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    39,
+    41
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "gràfica",
+    "derivada",
+    "extrems"
+   ],
+   "temes_secundaris": [
+    "monotonia-extrems"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "La figura mostra la gràfica de la \\textbf{funció derivada} $f'$ d'una funció $f$ definida a\ntot $\\mathbb{R}$.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.95cm,y=0.62cm]\n  \\draw[gray!55,very thin,step=1] (-4,-3) grid (3,5);\n  \\draw[->] (-4.4,0) -- (3.6,0) node[below right] {$x$};\n  \\draw[->] (0,-3.4) -- (0,5.6) node[above left] {$y$};\n  \\foreach \\i in {-3,-2,-1,1,2,3} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {-2,2,4} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\begin{scope}\n    \\clip (-4,-3) rectangle (3,5);\n    \\draw[\\colorgrafica,very thick,domain=-3.6:2.6,samples=90,smooth] plot (\\x,{(\\x+2)*(\\x-1)});\n  \\end{scope}\n  \\node[\\colorgrafica,font=\\small] at (-2.6,-2.2) {$y=f'(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nA partir de la gràfica, digues on creix i on decreix $f$, i on té extrems relatius i de quin\ntipus.\n\n\\begin{solucio}\n$f'$ s'anul·la en $x=-2$ i en $x=1$, és positiva fora de $[-2,1]$ i negativa a dins.\\\\\nPer tant, $f$ \\textbf{creix} a $(-\\infty,-2)$, \\textbf{decreix} a $(-2,1)$ i \\textbf{creix} a\n$(1,+\\infty)$.\\\\\nEn $x=-2$, $f'$ passa de positiva a negativa: \\textbf{màxim relatiu}.\\\\\nEn $x=1$, de negativa a positiva: \\textbf{mínim relatiu}.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nComprova que la funció\n\\[\nf(x)=\\frac{x^3}{3}+\\frac{x^2}{2}-2x+1\n\\]\nté aquesta derivada, i calcula el valor dels seus extrems relatius.\n\n\\begin{solucio}\n$f'(x)=x^2+x-2=(x+2)(x-1)$: és la paràbola de la figura.\\\\\n$f(-2)=-\\dfrac83+2+4+1=\\dfrac{13}{3}$ i $f(1)=\\dfrac13+\\dfrac12-2+1=-\\dfrac16$.\\\\\nMàxim relatiu $\\left(-2,\\tfrac{13}{3}\\right)$ i mínim relatiu $\\left(1,-\\tfrac16\\right)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nQuants punts amb recta tangent horitzontal pot tenir, com a màxim, una funció polinòmica de\ngrau $3$? Raona-ho.\n\n\\begin{solucio}\nLa tangent és horitzontal on $f'(x)=0$. Si $f$ té grau $3$, aleshores $f'$ té grau $2$ i, com\na màxim, dues arrels reals: per tant, \\textbf{com a màxim dos punts}.\\\\\nPoden ser dos (com a la figura), un de sol (arrel doble) o cap.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/extrems-parametres/q002/out/enunciat.pdf",
+   "pdf_solucio": "u9/extrems-parametres/q002/out/solucio.pdf",
+   "pdf_curt": "u9/extrems-parametres/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/extrems-parametres/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/monotonia-extrems/q001",
+   "unitat": "u9",
+   "tema": "monotonia-extrems",
+   "codi": "q001",
+   "titol": "Monotonia i extrems d'una cúbica, amb la derivada segona",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    42,
+    50,
+    51
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "monotonia",
+    "extrems",
+    "derivada segona"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^3-3x^2-9x+5 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nEstudia la monotonia de $f$ i troba'n els extrems relatius.\n\n\\begin{solucio}\n$f'(x)=3x^2-6x-9=3(x-3)(x+1)$, que s'anul·la en $x=-1$ i $x=3$.\\\\\nSigne de $f'$: positiu a $(-\\infty,-1)$, negatiu a $(-1,3)$ i positiu a $(3,+\\infty)$.\\\\\nPer tant, $f$ \\textbf{creix} a $(-\\infty,-1)\\cup(3,+\\infty)$ i \\textbf{decreix} a $(-1,3)$.\\\\\nEn $x=-1$ passa de créixer a decréixer: \\textbf{màxim relatiu} $(-1,10)$.\\\\\nEn $x=3$ passa de decréixer a créixer: \\textbf{mínim relatiu} $(3,-22)$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nComprova el tipus de cada extrem amb la derivada segona.\n\n\\begin{solucio}\n$f''(x)=6x-6$.\\\\\n$f''(-1)=-12<0$: en $x=-1$ la funció és còncava, i per tant hi ha un \\textbf{màxim}.\\\\\n$f''(3)=12>0$: en $x=3$ és convexa, i per tant hi ha un \\textbf{mínim}. Coincideix amb\nl'estudi del signe de $f'$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nDemostra que la funció $g(x)=x^3+2x+7$ és creixent a tot $\\mathbb{R}$.\n\n\\begin{solucio}\n$g'(x)=3x^2+2$. Com que $3x^2\\ge0$, es compleix $g'(x)\\ge2>0$ per a tot $x$.\\\\\nLa derivada és sempre positiva, i per tant $g$ \\textbf{creix a tot $\\mathbb{R}$} i no té cap\nextrem relatiu.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/monotonia-extrems/q001/out/enunciat.pdf",
+   "pdf_solucio": "u9/monotonia-extrems/q001/out/solucio.pdf",
+   "pdf_curt": "u9/monotonia-extrems/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/monotonia-extrems/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/monotonia-extrems/q002",
+   "unitat": "u9",
+   "tema": "monotonia-extrems",
+   "codi": "q002",
+   "titol": "Monotonia i extrems d'una funció racional, i extrems en un interval tancat",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    42,
+    50,
+    51
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "monotonia",
+    "extrems",
+    "racionals"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=\\frac{x}{x^2+1} .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nEstudia la monotonia de $f$ i troba'n els extrems relatius.\n\n\\begin{solucio}\n$f'(x)=\\dfrac{\\left(x^2+1\\right)-x\\cdot2x}{\\left(x^2+1\\right)^2}=\\dfrac{1-x^2}{\\left(x^2+1\\right)^2}$.\\\\\nEl denominador és sempre positiu, així que el signe és el de $1-x^2$, que s'anul·la en\n$x=\\pm1$.\\\\\n$f$ \\textbf{decreix} a $(-\\infty,-1)$, \\textbf{creix} a $(-1,1)$ i \\textbf{decreix} a\n$(1,+\\infty)$.\\\\\n\\textbf{Mínim relatiu} $\\left(-1,-\\tfrac12\\right)$ i \\textbf{màxim relatiu}\n$\\left(1,\\tfrac12\\right)$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nQuins són els valors màxim i mínim de $f$ a l'interval $[-3,3]$?\n\n\\begin{solucio}\nCal comparar els extrems relatius de dins amb els valors dels extrems de l'interval:\n$f(-3)=-\\dfrac{3}{10}$, $f(-1)=-\\dfrac12$, $f(1)=\\dfrac12$ i $f(3)=\\dfrac{3}{10}$.\\\\\nEl valor \\textbf{màxim} és $\\dfrac12$, en $x=1$, i el \\textbf{mínim} és $-\\dfrac12$, en\n$x=-1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{0,75}\nDemostra que la funció $h(x)=-x^3-x+4$ és decreixent a tot $\\mathbb{R}$.\n\n\\begin{solucio}\n$h'(x)=-3x^2-1$. Com que $-3x^2\\le0$, es compleix $h'(x)\\le-1<0$ per a tot $x$.\\\\\nLa derivada és sempre negativa, i per tant $h$ \\textbf{decreix a tot $\\mathbb{R}$}.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u9/monotonia-extrems/q002/out/enunciat.pdf",
+   "pdf_solucio": "u9/monotonia-extrems/q002/out/solucio.pdf",
+   "pdf_curt": "u9/monotonia-extrems/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/monotonia-extrems/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/optimitzacio/q001",
+   "unitat": "u9",
+   "tema": "optimitzacio",
+   "codi": "q001",
+   "titol": "Optimització: rectangle inscrit sota una paràbola",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    86,
+    87
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "optimització",
+    "àrea",
+    "derivada segona"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Un rectangle té dos vèrtexs sobre l'eix d'abscisses i els altres dos sobre la paràbola\n$y=12-x^2$, tal com es pot veure a la figura. Anomenem $x$ la meitat de la base.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.55cm,y=0.28cm]\n  \\draw[->] (-4.4,0) -- (4.4,0) node[below right] {$x$};\n  \\draw[->] (0,-1) -- (0,14.5) node[above left] {$y$};\n  \\draw[\\colorgrafica,very thick,domain=-3.6:3.6,samples=80,smooth] plot (\\x,{12-\\x*\\x});\n  \\draw[fill=gray!15] (-2,0) rectangle (2,8);\n  \\node[font=\\scriptsize] at (2,-1.2) {$x$};\n  \\node[font=\\scriptsize] at (-2,-1.2) {$-x$};\n  \\node[\\colorgrafica,font=\\small] at (3.3,10.5) {$y=12-x^2$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nComprova que l'àrea del rectangle és $A(x)=24x-2x^3$ i digues entre quins valors pot variar\n$x$.\n\n\\begin{solucio}\nLa base fa $2x$ i l'altura és l'ordenada de la paràbola, $12-x^2$. Per tant,\n\\[\nA(x)=2x\\left(12-x^2\\right)=24x-2x^3 .\n\\]\nPerquè el rectangle existeixi cal $x>0$ i $12-x^2>0$: $x\\in\\left(0,\\sqrt{12}\\right)$.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nTroba el valor de $x$ que fa màxima l'àrea i calcula aquesta àrea.\n\n\\begin{solucio}\n$A'(x)=24-6x^2=0\\iff x^2=4\\iff x=2$ (l'altra solució, $x=-2$, no és al domini).\\\\\n$A(2)=48-16=32$: el rectangle fa $4$ de base i $8$ d'altura, i l'àrea màxima és\n$\\boxed{32}$ unitats quadrades.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nJustifica, amb la derivada segona, que el valor trobat dona un màxim.\n\n\\begin{solucio}\n$A''(x)=-12x$, i $A''(2)=-24<0$: la funció és còncava en $x=2$, i per tant hi ha un\n\\textbf{màxim}.\\\\\nTambé es veu pel signe de $A'$: positiva a $(0,2)$ i negativa a $\\left(2,\\sqrt{12}\\right)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u9/optimitzacio/q001/out/enunciat.pdf",
+   "pdf_solucio": "u9/optimitzacio/q001/out/solucio.pdf",
+   "pdf_curt": "u9/optimitzacio/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/optimitzacio/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u9/optimitzacio/q002",
+   "unitat": "u9",
+   "tema": "optimitzacio",
+   "codi": "q002",
+   "titol": "Optimització: capsa sense tapa a partir d'un cartró quadrat",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    77,
+    79
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "optimització",
+    "volum",
+    "context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "D'un cartró quadrat de $12$ cm de costat es retallen quatre quadrats iguals, de costat $x$, a\nles cantonades. Després es dobleguen les vores cap amunt per fer una capsa sense tapa.\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nComprova que el volum de la capsa és $V(x)=x(12-2x)^2$ i digues entre quins valors pot variar\n$x$.\n\n\\begin{solucio}\nLa base de la capsa és un quadrat de costat $12-2x$ i l'alçada és $x$. Per tant,\n\\[\nV(x)=x(12-2x)^2 .\n\\]\nCal que el costat retallat sigui positiu i que en quedi base: $x>0$ i $12-2x>0$, és a dir\n$x\\in(0,6)$.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nTroba el valor de $x$ que fa màxim el volum i calcula aquest volum.\n\n\\begin{solucio}\n$V(x)=4x(6-x)^2$, i derivant el producte:\n\\[\nV'(x)=4(6-x)^2+4x\\cdot2(6-x)(-1)=4(6-x)\\left[(6-x)-2x\\right]=4(6-x)(6-3x).\n\\]\nS'anul·la en $x=6$ (fora del domini) i en $x=2$.\\\\\n$V(2)=2\\cdot8^2=128$: cal retallar quadrats de $\\boxed{2}$ cm i el volum màxim és\n$\\boxed{128}$ cm$^3$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nJustifica que el valor trobat dona un màxim.\n\n\\begin{solucio}\nA $(0,2)$, $V'>0$ (els dos factors són positius) i a $(2,6)$, $V'<0$ (perquè $6-3x<0$): la\nfunció creix i després decreix, i per tant en $x=2$ hi ha un \\textbf{màxim}.\\\\\nTambé es pot comprovar amb la derivada segona: $V''(x)=24x-96$ i $V''(2)=-48<0$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u9/optimitzacio/q002/out/enunciat.pdf",
+   "pdf_solucio": "u9/optimitzacio/q002/out/solucio.pdf",
+   "pdf_curt": "u9/optimitzacio/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u9/optimitzacio/q002/out/solucio-curt.pdf"
   }
  ]
 };
