@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-22 19:54 UTC",
+ "generat": "2026-09-23 04:53 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -150,11 +150,11 @@ const BANC = {
   }
  ],
  "plantilla": "\\documentclass[11pt,a4paper]{article}\n\\newif\\ifsolucions\n%%SOLUCIONS%%\n%%PREAMBUL%%\n\\begin{document}\n%%COS%%\n\\end{document}\n",
- "preambul": "% =====================================================================\n%  headers.tex — Paquets i format de pàgina\n%  Matemàtiques II · 2n de Batxillerat\n%  ─────────────────────────────────────────────────────────────────────\n%  Aquest fitxer i defs.tex són la FONT ÚNICA del format del banc: els\n%  fan servir el build (per als PDF de cada pregunta), el lloc web (per\n%  als .tex que es baixen) i la carpeta d'exàmens del professorat.\n%  Un paquet nou s'afegeix AQUÍ, mai dins d'una pregunta, i es recompila\n%  tot el banc.\n% =====================================================================\n\n% ── Tipografia i idioma ──────────────────────────────────────────────\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage[catalan]{babel}\n\\usepackage{microtype}\n\n% ── Matemàtiques ─────────────────────────────────────────────────────\n\\usepackage{amsmath,amssymb}\n\n% ── Pàgina ───────────────────────────────────────────────────────────\n\\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2cm,right=2cm]{geometry}\n\\usepackage{fancyhdr}\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot[C]{\\small\\thepage}\n\\renewcommand{\\headrulewidth}{0pt}\n\n% ── Taules, llistes, figures ─────────────────────────────────────────\n\\usepackage{array}             % >{\\displaystyle} a graella, m{} a la capçalera\n\\usepackage{tabularx}          % taules d'amplada fixa\n\\usepackage[table]{xcolor}     % colors i \\cellcolor\n\\usepackage{graphicx}          % imatges (les fa servir la capçalera de la carpeta)\n\\usepackage{tikz}              % gràfiques\n\\usepackage{enumitem}          % entorn apartats\n\\usepackage{needspace}         % \\Needspace a \\encapcalament\n\\usepackage{comment}           % entorn solucio\n\n% =====================================================================\n%  defs.tex — Macros del banc de preguntes\n%  ─────────────────────────────────────────────────────────────────────\n%  Va sempre després de headers.tex i abans de \\begin{document}, amb\n%  \\newif\\ifsolucions ja declarat. Vegeu headers.tex.\n% =====================================================================\n\n% ── 0. Segell de versió ──────────────────────────────────────────────\n% build.py hi afegeix, al final, \\def\\bancversio{...}. Cada examen que\n% baixa el lloc comença amb \\bancrequereix{...}: si el defs.tex és d'una\n% altra versió, LaTeX avisa i cal tornar a baixar l'entorn.\n\\makeatletter\n\\newcommand{\\bancrequereix}[1]{%\n  \\def\\bp@v{#1}%\n  \\ifx\\bp@v\\bancversio\\else\n    \\GenericWarning{}{Banc de preguntes: aquest defs.tex (\\bancversio) no és el\n      que va generar l'examen (#1). Torna a baixar headers.tex i defs.tex}%\n  \\fi}\n\\makeatother\n\n% ── 0b. Capçalera d'examen: buida al banc ────────────────────────────\n% El banc no porta cap dada de cap centre: ni logo, ni segell, ni curs, ni\n% departament. Això viu NOMÉS a la carpeta d'exàmens del professorat, en un\n% capsalera.tex que main.tex incorpora si hi és. Aquí, la macro no escriu\n% res, i per això els PDF del banc i el lloc web no ensenyen cap capçalera.\n\\providecommand{\\capsaleraexamen}{}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 1b. Ela geminada (l·l) ───────────────────────────────────────────\n% El punt volat es compon com un símbol solt i queda massa separat de les\n% eles: «paral · lela». Amb una mica de kerning, «paral·lela».\n\\DeclareUnicodeCharacter{00B7}{\\kern-0.1em\\textperiodcentered\\kern-0.1em}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n\n\\def\\bancversio{125cde18}\n",
+ "preambul": "% =====================================================================\n%  headers.tex — Paquets i format de pàgina\n%  Matemàtiques II · 2n de Batxillerat\n%  ─────────────────────────────────────────────────────────────────────\n%  Aquest fitxer i defs.tex són la FONT ÚNICA del format del banc: els\n%  fan servir el build (per als PDF de cada pregunta), el lloc web (per\n%  als .tex que es baixen) i la carpeta d'exàmens del professorat.\n%  Un paquet nou s'afegeix AQUÍ, mai dins d'una pregunta, i es recompila\n%  tot el banc.\n% =====================================================================\n\n% ── Tipografia i idioma ──────────────────────────────────────────────\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage[catalan]{babel}\n\\usepackage{microtype}\n\n% ── Matemàtiques ─────────────────────────────────────────────────────\n\\usepackage{amsmath,amssymb}\n\n% ── Pàgina ───────────────────────────────────────────────────────────\n\\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2cm,right=2cm]{geometry}\n\\usepackage{fancyhdr}\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot[C]{\\small\\thepage}\n\\renewcommand{\\headrulewidth}{0pt}\n\n% ── Taules, llistes, figures ─────────────────────────────────────────\n\\usepackage{array}             % >{\\displaystyle} a graella, m{} a la capçalera\n\\usepackage{tabularx}          % taules d'amplada fixa\n\\usepackage[table]{xcolor}     % colors i \\cellcolor\n\\usepackage{graphicx}          % imatges (les fa servir la capçalera de la carpeta)\n\\usepackage{tikz}              % gràfiques\n\\usepackage{enumitem}          % entorn apartats\n\\usepackage{needspace}         % \\Needspace a \\encapcalament\n\\usepackage{comment}           % entorn solucio\n\n% =====================================================================\n%  defs.tex — Macros del banc de preguntes\n%  ─────────────────────────────────────────────────────────────────────\n%  Va sempre després de headers.tex i abans de \\begin{document}, amb\n%  \\newif\\ifsolucions ja declarat. Vegeu headers.tex.\n% =====================================================================\n\n% ── 0. Segell de versió ──────────────────────────────────────────────\n% build.py hi afegeix, al final, \\def\\bancversio{...}. Cada examen que\n% baixa el lloc comença amb \\bancrequereix{...}: si el defs.tex és d'una\n% altra versió, LaTeX avisa i cal tornar a baixar l'entorn.\n\\makeatletter\n\\newcommand{\\bancrequereix}[1]{%\n  \\def\\bp@v{#1}%\n  \\ifx\\bp@v\\bancversio\\else\n    \\GenericWarning{}{Banc de preguntes: aquest defs.tex (\\bancversio) no és el\n      que va generar l'examen (#1). Torna a baixar headers.tex i defs.tex}%\n  \\fi}\n\\makeatother\n\n% ── 0b. Capçalera d'examen: buida al banc ────────────────────────────\n% El banc no porta cap dada de cap centre: ni logo, ni segell, ni curs, ni\n% departament. Això viu NOMÉS a la carpeta d'exàmens del professorat, en un\n% capsalera.tex que main.tex incorpora si hi és. Aquí, la macro no escriu\n% res, i per això els PDF del banc i el lloc web no ensenyen cap capçalera.\n\\providecommand{\\capsaleraexamen}{}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 1b. Ela geminada (l·l) ───────────────────────────────────────────\n% El punt volat es compon com un símbol solt i queda massa separat de les\n% eles: «paral · lela». Amb una mica de kerning, «paral·lela».\n\\DeclareUnicodeCharacter{00B7}{\\kern-0.1em\\textperiodcentered\\kern-0.1em}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 3c. Color de les gràfiques ───────────────────────────────────────\n% Totes les gràfiques del banc dibuixen les funcions amb aquest color, i\n% cap pregunta no n'escriu cap directament. Es pot canviar des de la\n% carpeta d'exàmens: \\renewcommand{\\colorgrafica}{red} al capsalera.tex.\n\\newcommand{\\colorgrafica}{blue}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n\n\\def\\bancversio{920aa212}\n",
  "headers": "% =====================================================================\n%  headers.tex — Paquets i format de pàgina\n%  Matemàtiques II · 2n de Batxillerat\n%  ─────────────────────────────────────────────────────────────────────\n%  Aquest fitxer i defs.tex són la FONT ÚNICA del format del banc: els\n%  fan servir el build (per als PDF de cada pregunta), el lloc web (per\n%  als .tex que es baixen) i la carpeta d'exàmens del professorat.\n%  Un paquet nou s'afegeix AQUÍ, mai dins d'una pregunta, i es recompila\n%  tot el banc.\n% =====================================================================\n\n% ── Tipografia i idioma ──────────────────────────────────────────────\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage[catalan]{babel}\n\\usepackage{microtype}\n\n% ── Matemàtiques ─────────────────────────────────────────────────────\n\\usepackage{amsmath,amssymb}\n\n% ── Pàgina ───────────────────────────────────────────────────────────\n\\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2cm,right=2cm]{geometry}\n\\usepackage{fancyhdr}\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot[C]{\\small\\thepage}\n\\renewcommand{\\headrulewidth}{0pt}\n\n% ── Taules, llistes, figures ─────────────────────────────────────────\n\\usepackage{array}             % >{\\displaystyle} a graella, m{} a la capçalera\n\\usepackage{tabularx}          % taules d'amplada fixa\n\\usepackage[table]{xcolor}     % colors i \\cellcolor\n\\usepackage{graphicx}          % imatges (les fa servir la capçalera de la carpeta)\n\\usepackage{tikz}              % gràfiques\n\\usepackage{enumitem}          % entorn apartats\n\\usepackage{needspace}         % \\Needspace a \\encapcalament\n\\usepackage{comment}           % entorn solucio\n",
- "defs": "% =====================================================================\n%  defs.tex — Macros del banc de preguntes\n%  ─────────────────────────────────────────────────────────────────────\n%  Va sempre després de headers.tex i abans de \\begin{document}, amb\n%  \\newif\\ifsolucions ja declarat. Vegeu headers.tex.\n% =====================================================================\n\n% ── 0. Segell de versió ──────────────────────────────────────────────\n% build.py hi afegeix, al final, \\def\\bancversio{...}. Cada examen que\n% baixa el lloc comença amb \\bancrequereix{...}: si el defs.tex és d'una\n% altra versió, LaTeX avisa i cal tornar a baixar l'entorn.\n\\makeatletter\n\\newcommand{\\bancrequereix}[1]{%\n  \\def\\bp@v{#1}%\n  \\ifx\\bp@v\\bancversio\\else\n    \\GenericWarning{}{Banc de preguntes: aquest defs.tex (\\bancversio) no és el\n      que va generar l'examen (#1). Torna a baixar headers.tex i defs.tex}%\n  \\fi}\n\\makeatother\n\n% ── 0b. Capçalera d'examen: buida al banc ────────────────────────────\n% El banc no porta cap dada de cap centre: ni logo, ni segell, ni curs, ni\n% departament. Això viu NOMÉS a la carpeta d'exàmens del professorat, en un\n% capsalera.tex que main.tex incorpora si hi és. Aquí, la macro no escriu\n% res, i per això els PDF del banc i el lloc web no ensenyen cap capçalera.\n\\providecommand{\\capsaleraexamen}{}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 1b. Ela geminada (l·l) ───────────────────────────────────────────\n% El punt volat es compon com un símbol solt i queda massa separat de les\n% eles: «paral · lela». Amb una mica de kerning, «paral·lela».\n\\DeclareUnicodeCharacter{00B7}{\\kern-0.1em\\textperiodcentered\\kern-0.1em}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n\n\\def\\bancversio{125cde18}\n",
- "main": "% =====================================================================\n%  main.tex — Carpeta d'exàmens\n%  Compila amb:  pdflatex main.tex\n% =====================================================================\n\n\\documentclass[11pt,a4paper]{article}\n\n% Interruptor: \\solucionstrue → surten les solucions (full del professorat)\n\\newif\\ifsolucions \\solucionsfalse\n\n\\input{headers.tex}\n\\input{defs.tex}\n\n% La capçalera del centre (logo, curs, departament, casella de nota) NO és al\n% banc: viu aquí, a la teva carpeta. Si hi tens un capsalera.tex, s'incorpora;\n% si no, els exàmens surten sense capçalera.\n\\IfFileExists{capsalera.tex}{\\input{capsalera.tex}}{}\n\n\\begin{document}\n\\input{prova-1.tex}\n%\\input{prova-2.tex}\n\\end{document}\n",
- "versio": "125cde18",
+ "defs": "% =====================================================================\n%  defs.tex — Macros del banc de preguntes\n%  ─────────────────────────────────────────────────────────────────────\n%  Va sempre després de headers.tex i abans de \\begin{document}, amb\n%  \\newif\\ifsolucions ja declarat. Vegeu headers.tex.\n% =====================================================================\n\n% ── 0. Segell de versió ──────────────────────────────────────────────\n% build.py hi afegeix, al final, \\def\\bancversio{...}. Cada examen que\n% baixa el lloc comença amb \\bancrequereix{...}: si el defs.tex és d'una\n% altra versió, LaTeX avisa i cal tornar a baixar l'entorn.\n\\makeatletter\n\\newcommand{\\bancrequereix}[1]{%\n  \\def\\bp@v{#1}%\n  \\ifx\\bp@v\\bancversio\\else\n    \\GenericWarning{}{Banc de preguntes: aquest defs.tex (\\bancversio) no és el\n      que va generar l'examen (#1). Torna a baixar headers.tex i defs.tex}%\n  \\fi}\n\\makeatother\n\n% ── 0b. Capçalera d'examen: buida al banc ────────────────────────────\n% El banc no porta cap dada de cap centre: ni logo, ni segell, ni curs, ni\n% departament. Això viu NOMÉS a la carpeta d'exàmens del professorat, en un\n% capsalera.tex que main.tex incorpora si hi és. Aquí, la macro no escriu\n% res, i per això els PDF del banc i el lloc web no ensenyen cap capçalera.\n\\providecommand{\\capsaleraexamen}{}\n\n% ── 1. Capçalera de pregunta ──────────────────────────────────────────\n% El filet va A SOBRE de cada pregunta i el \\Needspace el manté enganxat\n% al seu text: així el filet mai queda orfe al capdamunt d'una pàgina.\n\\newcommand{\\encapcalament}[1]{%\n  \\par\\Needspace{8\\baselineskip}%\n  \\bigskip\\hrule\\medskip\n  \\noindent\\textbf{#1}\\par\\smallskip}\n\n% ── 1b. Ela geminada (l·l) ───────────────────────────────────────────\n% El punt volat es compon com un símbol solt i queda massa separat de les\n% eles: «paral · lela». Amb una mica de kerning, «paral·lela».\n\\DeclareUnicodeCharacter{00B7}{\\kern-0.1em\\textperiodcentered\\kern-0.1em}\n\n% ── 2. Apartats a) b) c) amb la seva puntuació ────────────────────────\n% \\apartat{0,75} escriu \"(0,75 punts)\".  build.py llegeix aquests valors\n% del .tex: la puntuació viu AQUÍ i enlloc més. A les fonts, \\apartat[1,25]{0,75}\n% porta també la puntuació de 50 min, però materialitza() el deixa com a\n% \\apartat{0,75} o \\apartat{1,25} abans d'arribar aquí.\n\\makeatletter\n\\newcommand{\\bp@ptsmot}[1]{\\def\\bp@a{#1}\\def\\bp@u{1}%\n  \\ifx\\bp@a\\bp@u 1~punt\\else #1~punts\\fi}\n\\newcommand{\\apartat}[1]{\\item \\textit{(\\bp@ptsmot{#1})}\\enspace\\ignorespaces}\n\\makeatother\n\\newenvironment{apartats}\n  {\\begin{enumerate}[label=\\textbf{\\alph*)},leftmargin=*,itemsep=\\bigskipamount,\n                     topsep=\\medskipamount,parsep=\\smallskipamount]}\n  {\\end{enumerate}}\n\n% ── 3. Graella de subapartats i) ii) iii) en mode display ─────────────\n% \\begin{graella}{4} \\sa ... & \\sa ... \\\\ \\sa ... \\end{graella}\n% La columna força \\displaystyle: els \\lim hi surten amb el subíndex A\n% SOTA, igual que en una fórmula destacada. Mai fem servir array pelat.\n\\newcounter{bpsa}\n\\newcommand{\\sa}{\\stepcounter{bpsa}\\textup{\\roman{bpsa})}~}\n\\newenvironment{graella}[1]\n  {\\setcounter{bpsa}{0}\\setlength{\\arraycolsep}{1.2em}%\n   \\[\\begin{array}{*{#1}{>{\\displaystyle}l}}}\n  {\\end{array}\\]}\n\n% ── 3b. Fórmules destacades: sempre el mateix aire ───────────────────\n% Si la línia d'abans és curta («determina:»), TeX fa servir un espai\n% «curt», gairebé zero, i la fórmula queda enganxada al text. L'igualem\n% a l'espai normal.\n\\makeatletter\n\\g@addto@macro\\normalsize{%\n  \\setlength\\abovedisplayshortskip{\\abovedisplayskip}%\n  \\setlength\\belowdisplayshortskip{\\belowdisplayskip}}\n\\makeatother\n\\AtBeginDocument{\\normalsize}\n\n% ── 3c. Color de les gràfiques ───────────────────────────────────────\n% Totes les gràfiques del banc dibuixen les funcions amb aquest color, i\n% cap pregunta no n'escriu cap directament. Es pot canviar des de la\n% carpeta d'exàmens: \\renewcommand{\\colorgrafica}{red} al capsalera.tex.\n\\newcommand{\\colorgrafica}{blue}\n\n% ── 4. Condicions dins de \\begin{cases} ───────────────────────────────\n% \\si{-1\\le x\\le 2}  →  el signe menys surt unari i ben espaiat.\n% Escriure \\text{si } -1\\le x\\le 2 a pèl produeix \"si − 1 ≤ x ≤ 2\". Bug.\n\\newcommand{\\si}[1]{\\text{si }{#1}}\n\n% ── 5. Solucions ──────────────────────────────────────────────────────\n% REGLA: \\end{solucio} ha d'anar SOL a la seva línia (ho exigeix el\n% paquet comment quan la solució s'exclou). build.py ho comprova.\n\\ifsolucions\n  \\newenvironment{solucio}\n    {\\par\\nopagebreak\\medskip\\begingroup\\color{blue!55!black}\\small\n     \\textbf{Solució.}\\enspace\\ignorespaces}\n    {\\par\\endgroup\\smallskip}\n\\else\n  \\excludecomment{solucio}\n\\fi\n\n% ── 6. Procedència de les preguntes PAU ───────────────────────────────\n% La línia «PAU juny 2026, sèrie 1» la injecta el build (i el lloc) just\n% després de la capçalera, a partir del codi de la pregunta i de\n% pau/convocatories.json. No s'escriu mai a mà: build.py ho rebutja.\n\\newcommand{\\procedencia}[1]{\\noindent{\\small\\itshape #1}\\par\\vspace{3pt}}\n\n\\def\\bancversio{920aa212}\n",
+ "main": "% =====================================================================\n%  main.tex — Carpeta d'exàmens\n%  Compila amb:  pdflatex main.tex\n% =====================================================================\n\n\\documentclass[11pt,a4paper]{article}\n\n% Interruptor: comenta una línia i descomenta l'altra.\n%   \\solucionsfalse → examen de l'alumnat\n%   \\solucionstrue  → full del professorat, amb les solucions\n\\newif\\ifsolucions \\solucionsfalse\n%\\newif\\ifsolucions \\solucionstrue\n\n\\input{headers.tex}\n\\input{defs.tex}\n\n% La capçalera del centre (logo, curs, departament, casella de nota) NO és al\n% banc: viu aquí, a la teva carpeta. Si hi tens un capsalera.tex, s'incorpora;\n% si no, els exàmens surten sense capçalera.\n\\IfFileExists{capsalera.tex}{\\input{capsalera.tex}}{}\n\n\\begin{document}\n\\input{prova-1.tex}\n%\\input{prova-2.tex}\n\\end{document}\n",
+ "versio": "920aa212",
  "preguntes": [
   {
    "id": "pau/algebra/alg-26j-q2",
@@ -226,7 +226,7 @@ const BANC = {
     "u8",
     "u12"
    ],
-   "tex": "Considereu la funció definida a trossos següent:\n\\[\nf(x)=\\begin{cases}\n  5e^{2x} & \\si{x\\le 0},\\\\[3pt]\n  (x+m)^2+1 & \\si{0<x<2},\\\\[3pt]\n  1 & \\si{2\\le x},\n\\end{cases}\n\\]\non $m$ és un paràmetre real.\n\n\\begin{apartats}\n\n\\apartat{1}\nDetermineu els valors de $m$ que fan que la funció $f(x)$ sigui contínua en tot el seu\ndomini. Justifiqueu la resposta.\n\n\\begin{solucio}\nCom que les tres funcions que defineixen $f$ són contínues en els seus respectius\nintervals de definició, només cal imposar que $f$ sigui contínua als punts de contacte,\n$x=0$ i $x=2$.\\\\\nEn $x=0$: $\\lim_{x\\to0^-}f(x)=\\lim_{x\\to0^-}5e^{2x}=5$, \\ $f(0)=5e^0=5$ \\ i\n$\\lim_{x\\to0^+}f(x)=\\lim_{x\\to0^+}\\big((x+m)^2+1\\big)=m^2+1$. Per tant, $f$ és contínua en\n$x=0$ si i només si $m^2+1=5$, cosa que passa si i només si $m=\\pm2$.\\\\\nEn $x=2$: $\\lim_{x\\to2^-}f(x)=(2+m)^2+1$, \\ $f(2)=1$ \\ i $\\lim_{x\\to2^+}f(x)=1$, i la funció\nés contínua en $x=2$ si i només si $(2+m)^2+1=1$, cosa que passa si i només si $m=-2$.\\\\\nPer tant, la funció és contínua en tots els punts \\textbf{només quan $m=-2$}.\n\n\\textit{Pauta oficial:} 0,25 per justificar que ja és contínua fora dels punts de\ncontacte; 0,25 per estudiar cadascun dels dos contactes, i 0,25 per combinar-ho i donar\nla resposta final correcta.\n\\end{solucio}\n\n\\apartat{1}\nFeu un esbós de la gràfica de $y=f(x)$ per al cas $m=-2$, i calculeu l'àrea delimitada\nper aquesta gràfica, l'eix $OX$ i les rectes $x=-1$ i $x=3$.\n\n\\begin{solucio}\n\\begin{center}\n\\begin{tikzpicture}[x=0.9cm,y=0.55cm]\n  \\fill[blue!12,domain=-1:0,samples=40] (-1,0) -- plot (\\x,{5*exp(2*\\x)}) -- (0,0) -- cycle;\n  \\fill[blue!12,domain=0:2,samples=40] (0,0) -- plot (\\x,{(\\x-2)^2+1}) -- (2,0) -- cycle;\n  \\fill[blue!12] (2,0) rectangle (3,1);\n  \\draw[gray!55,very thin,step=1] (-3,0) grid (4,5);\n  \\draw[->] (-3.3,0) -- (4.5,0) node[below right] {$x$};\n  \\draw[->] (0,-0.3) -- (0,5.7) node[above left] {$y$};\n  \\foreach \\i in {-3,-2,-1,1,2,3,4} \\draw (\\i,0.1) -- (\\i,-0.1) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {1,2,3,4,5} \\draw (0.08,\\j) -- (-0.08,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[blue!70!black,thick,domain=-3:0,samples=80,smooth] plot (\\x,{5*exp(2*\\x)});\n  \\draw[blue!70!black,thick,domain=0:2,samples=40,smooth] plot (\\x,{(\\x-2)^2+1});\n  \\draw[blue!70!black,thick] (2,1) -- (4,1);\n\\end{tikzpicture}\n\\end{center}\nPer representar la funció quadràtica es pot calcular el vèrtex amb la fórmula\n$x=\\frac{-b}{2a}=2$, o bé observar que és una translació 2 unitats a la dreta i una unitat\namunt de la paràbola $y=x^2$.\\\\\nÉs clar, fins i tot sense la gràfica, que la funció és positiva en tot el seu domini. Per\ntant, per calcular l'àrea demanada cal calcular la integral definida\n\\begin{align*}\nA&=\\int_{-1}^{3}f(x)\\,dx=\\int_{-1}^{0}5e^{2x}\\,dx+\\int_{0}^{2}\\big((x-2)^2+1\\big)\\,dx+\\int_{2}^{3}1\\,dx\\\\\n &=\\Big[\\tfrac52\\,e^{2x}\\Big]_{-1}^{0}+\\Big[\\tfrac{(x-2)^3}{3}+x\\Big]_{0}^{2}+\\Big[x\\Big]_{2}^{3}\n  =\\frac52-\\frac{5}{2e^2}+2+\\frac83+3-2\\simeq7{,}83\\ \\text{u}^2.\n\\end{align*}\n\\textit{Pauta oficial:} 0,25 per l'esbós de la gràfica; 0,25 pel plantejament correcte de\nl'àrea com a suma d'integrals; 0,25 pel càlcul de la integral de la part exponencial, i\n0,25 per la integral de la part parabòlica.\n\\end{solucio}\n\n\\apartat{0,5}\nPer a $m=-2$, trobeu un punt on la recta tangent a $y=f(x)$ sigui paral·lela a $y=-2x$.\nCalculeu l'equació d'aquesta recta tangent.\n\n\\begin{solucio}\nCom que el primer tram de la gràfica és creixent, i el tercer és pla, només pot haver-hi\npunts amb pendent negativa al tram del mig. Volem un punt on el pendent sigui $-2$; per\ntant, derivem el tram parabòlic i igualem la derivada a $-2$:\n$2(x-2)=-2\\ \\Rightarrow\\ x=1$.\\\\\nLa recta tangent al punt $\\big(1,f(1)\\big)=(1,2)$ és $y-2=-2(x-1)$, és a dir, $y=-2x+4$.\n\n\\textit{Pauta oficial:} 0,25 per trobar el punt i 0,25 pel càlcul de l'equació de la recta\ntangent.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "tex": "Considereu la funció definida a trossos següent:\n\\[\nf(x)=\\begin{cases}\n  5e^{2x} & \\si{x\\le 0},\\\\[3pt]\n  (x+m)^2+1 & \\si{0<x<2},\\\\[3pt]\n  1 & \\si{2\\le x},\n\\end{cases}\n\\]\non $m$ és un paràmetre real.\n\n\\begin{apartats}\n\n\\apartat{1}\nDetermineu els valors de $m$ que fan que la funció $f(x)$ sigui contínua en tot el seu\ndomini. Justifiqueu la resposta.\n\n\\begin{solucio}\nCom que les tres funcions que defineixen $f$ són contínues en els seus respectius\nintervals de definició, només cal imposar que $f$ sigui contínua als punts de contacte,\n$x=0$ i $x=2$.\\\\\nEn $x=0$: $\\lim_{x\\to0^-}f(x)=\\lim_{x\\to0^-}5e^{2x}=5$, \\ $f(0)=5e^0=5$ \\ i\n$\\lim_{x\\to0^+}f(x)=\\lim_{x\\to0^+}\\big((x+m)^2+1\\big)=m^2+1$. Per tant, $f$ és contínua en\n$x=0$ si i només si $m^2+1=5$, cosa que passa si i només si $m=\\pm2$.\\\\\nEn $x=2$: $\\lim_{x\\to2^-}f(x)=(2+m)^2+1$, \\ $f(2)=1$ \\ i $\\lim_{x\\to2^+}f(x)=1$, i la funció\nés contínua en $x=2$ si i només si $(2+m)^2+1=1$, cosa que passa si i només si $m=-2$.\\\\\nPer tant, la funció és contínua en tots els punts \\textbf{només quan $m=-2$}.\n\n\\textit{Pauta oficial:} 0,25 per justificar que ja és contínua fora dels punts de\ncontacte; 0,25 per estudiar cadascun dels dos contactes, i 0,25 per combinar-ho i donar\nla resposta final correcta.\n\\end{solucio}\n\n\\apartat{1}\nFeu un esbós de la gràfica de $y=f(x)$ per al cas $m=-2$, i calculeu l'àrea delimitada\nper aquesta gràfica, l'eix $OX$ i les rectes $x=-1$ i $x=3$.\n\n\\begin{solucio}\n\\begin{center}\n\\begin{tikzpicture}[x=0.9cm,y=0.55cm]\n  \\fill[\\colorgrafica!12,domain=-1:0,samples=40] (-1,0) -- plot (\\x,{5*exp(2*\\x)}) -- (0,0) -- cycle;\n  \\fill[\\colorgrafica!12,domain=0:2,samples=40] (0,0) -- plot (\\x,{(\\x-2)^2+1}) -- (2,0) -- cycle;\n  \\fill[\\colorgrafica!12] (2,0) rectangle (3,1);\n  \\draw[gray!55,very thin,step=1] (-3,0) grid (4,5);\n  \\draw[->] (-3.3,0) -- (4.5,0) node[below right] {$x$};\n  \\draw[->] (0,-0.3) -- (0,5.7) node[above left] {$y$};\n  \\foreach \\i in {-3,-2,-1,1,2,3,4} \\draw (\\i,0.1) -- (\\i,-0.1) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {1,2,3,4,5} \\draw (0.08,\\j) -- (-0.08,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[\\colorgrafica!70!black,thick,domain=-3:0,samples=80,smooth] plot (\\x,{5*exp(2*\\x)});\n  \\draw[\\colorgrafica!70!black,thick,domain=0:2,samples=40,smooth] plot (\\x,{(\\x-2)^2+1});\n  \\draw[\\colorgrafica!70!black,thick] (2,1) -- (4,1);\n\\end{tikzpicture}\n\\end{center}\nPer representar la funció quadràtica es pot calcular el vèrtex amb la fórmula\n$x=\\frac{-b}{2a}=2$, o bé observar que és una translació 2 unitats a la dreta i una unitat\namunt de la paràbola $y=x^2$.\\\\\nÉs clar, fins i tot sense la gràfica, que la funció és positiva en tot el seu domini. Per\ntant, per calcular l'àrea demanada cal calcular la integral definida\n\\begin{align*}\nA&=\\int_{-1}^{3}f(x)\\,dx=\\int_{-1}^{0}5e^{2x}\\,dx+\\int_{0}^{2}\\big((x-2)^2+1\\big)\\,dx+\\int_{2}^{3}1\\,dx\\\\\n &=\\Big[\\tfrac52\\,e^{2x}\\Big]_{-1}^{0}+\\Big[\\tfrac{(x-2)^3}{3}+x\\Big]_{0}^{2}+\\Big[x\\Big]_{2}^{3}\n  =\\frac52-\\frac{5}{2e^2}+2+\\frac83+3-2\\simeq7{,}83\\ \\text{u}^2.\n\\end{align*}\n\\textit{Pauta oficial:} 0,25 per l'esbós de la gràfica; 0,25 pel plantejament correcte de\nl'àrea com a suma d'integrals; 0,25 pel càlcul de la integral de la part exponencial, i\n0,25 per la integral de la part parabòlica.\n\\end{solucio}\n\n\\apartat{0,5}\nPer a $m=-2$, trobeu un punt on la recta tangent a $y=f(x)$ sigui paral·lela a $y=-2x$.\nCalculeu l'equació d'aquesta recta tangent.\n\n\\begin{solucio}\nCom que el primer tram de la gràfica és creixent, i el tercer és pla, només pot haver-hi\npunts amb pendent negativa al tram del mig. Volem un punt on el pendent sigui $-2$; per\ntant, derivem el tram parabòlic i igualem la derivada a $-2$:\n$2(x-2)=-2\\ \\Rightarrow\\ x=1$.\\\\\nLa recta tangent al punt $\\big(1,f(1)\\big)=(1,2)$ és $y-2=-2(x-1)$, és a dir, $y=-2x+4$.\n\n\\textit{Pauta oficial:} 0,25 per trobar el punt i 0,25 pel càlcul de l'equació de la recta\ntangent.\n\\end{solucio}\n\n\\end{apartats}\n",
    "pdf": "pau/analisi/ana-26j-q1/out/enunciat.pdf",
    "pdf_solucio": "pau/analisi/ana-26j-q1/out/solucio.pdf",
    "pdf_curt": "pau/analisi/ana-26j-q1/out/enunciat.pdf",
@@ -422,6 +422,46 @@ const BANC = {
    "pdf_solucio_curt": "u7/bolzano-biseccio/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u7/bolzano-biseccio/q003",
+   "unitat": "u7",
+   "tema": "bolzano-biseccio",
+   "codi": "q003",
+   "titol": "Bolzano i bisecció en una cúbica, i tall entre un logaritme i una recta",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    112,
+    113,
+    114,
+    120
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "Bolzano",
+    "bisecció",
+    "punt de tall"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nf(x)=x^3+2x^2-1 .\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nEnuncia el teorema de Bolzano i demostra que l'equació $f(x)=0$ té almenys una solució a\nl'interval $[0,1]$.\n\n\\begin{solucio}\n\\textbf{Teorema de Bolzano.} Si $f$ és contínua a $[a,b]$ i $f(a)$ i $f(b)$ tenen signes\ndiferents, aleshores existeix almenys un $c\\in(a,b)$ amb $f(c)=0$.\\\\\n$f$ és polinòmica i, per tant, contínua a $[0,1]$. A més, $f(0)=-1<0$ i $f(1)=1+2-1=2>0$.\nCom que canvia de signe, hi ha almenys una solució a $(0,1)$.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nAplicant el mètode de la bisecció, troba un interval de longitud $0{,}25$ que contingui una\nsolució de l'equació. Justifica cada pas.\n\n\\begin{solucio}\n$f(0{,}5)=0{,}125+0{,}5-1=-0{,}375<0$: com que $f(1)>0$, l'arrel és a\n$\\left(0{,}5;\\,1\\right)$.\\\\\n$f(0{,}75)=0{,}421875+1{,}125-1=0{,}546875>0$: com que $f(0{,}5)<0$, l'arrel és a\n$\\left(0{,}5;\\,0{,}75\\right)$, de longitud $0{,}25$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDemostra que les gràfiques de les funcions $y=\\ln x$ i $y=2-x$ es tallen en algun punt\nd'abscissa $x\\in(1,2)$.\n\n\\begin{solucio}\nEs tallen on $\\ln x=2-x$, és a dir on s'anul·la $k(x)=\\ln x+x-2$, que és contínua a $(0,+\\infty)$\ni, per tant, a $[1,2]$.\\\\\n$k(1)=0+1-2=-1<0$ i $k(2)=\\ln2+0\\approx0{,}69>0$. Per Bolzano, hi ha un punt de tall a $(1,2)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u7/bolzano-biseccio/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/bolzano-biseccio/q003/out/solucio.pdf",
+   "pdf_curt": "u7/bolzano-biseccio/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/bolzano-biseccio/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u7/continuitat-trossos/q001",
    "unitat": "u7",
    "tema": "continuitat-trossos",
@@ -496,6 +536,44 @@ const BANC = {
    "pdf_solucio": "u7/continuitat-trossos/q002/out/solucio.pdf",
    "pdf_curt": "u7/continuitat-trossos/q002/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u7/continuitat-trossos/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u7/continuitat-trossos/q003",
+   "unitat": "u7",
+   "tema": "continuitat-trossos",
+   "codi": "q003",
+   "titol": "Continuïtat d'una funció a trossos amb exponencial i racional: tres punts",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    103
+   ],
+   "minuts": 16,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "a trossos",
+    "exponencial",
+    "salt finit",
+    "salt infinit"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\nh(x)=\\begin{cases}\n  \\dfrac{x^2-1}{x-1} & \\si{x<1},\\\\[8pt]\n  2^{x} & \\si{1\\le x\\le 3},\\\\[4pt]\n  \\dfrac{x-3}{x^2-8x+15} & \\si{x>3}.\n\\end{cases}\n\\]\n\n\\begin{apartats}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia la continuïtat de $h$ en $x=1$.\n\n\\begin{solucio}\nPer a $x<1$, $\\dfrac{(x-1)(x+1)}{x-1}=x+1$, i per tant $\\lim_{x\\to1^-}h(x)=2$.\\\\\nA més, $h(1)=2^1=2$ i $\\lim_{x\\to1^+}h(x)=2$. \\textbf{És contínua} en $x=1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{1}\nEstudia la continuïtat de $h$ en $x=3$ i classifica la discontinuïtat, si n'hi ha.\n\n\\begin{solucio}\nPer a $x>3$, $\\dfrac{x-3}{(x-3)(x-5)}=\\dfrac{1}{x-5}$.\\\\\n$h(3)=2^3=8$ i $\\lim_{x\\to3^-}h(x)=8$, però $\\lim_{x\\to3^+}h(x)=\\dfrac{1}{3-5}=-\\dfrac12$.\nLaterals finits i diferents: \\textbf{salt finit}.\n\\end{solucio}\n\n\\apartat[1,25]{0,75}\nEstudia la continuïtat de $h$ en $x=5$ i classifica la discontinuïtat, si n'hi ha.\n\n\\begin{solucio}\n$h(5)$ no existeix. Com que per a $x>3$ és $h(x)=\\dfrac{1}{x-5}$, els laterals valen\n$-\\infty$ (per l'esquerra) i $+\\infty$ (per la dreta): \\textbf{salt infinit} (asímptota\nvertical $x=5$).\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u7/continuitat-trossos/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/continuitat-trossos/q003/out/solucio.pdf",
+   "pdf_curt": "u7/continuitat-trossos/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/continuitat-trossos/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u7/domini-discontinuitats/q001",
@@ -581,6 +659,46 @@ const BANC = {
    "pdf_solucio_curt": "u7/domini-discontinuitats/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u7/domini-discontinuitats/q003",
+   "unitat": "u7",
+   "tema": "domini-discontinuitats",
+   "codi": "q003",
+   "titol": "Domini i continuïtat d'arrels i logaritmes, i discontinuïtats d'una funció racional",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    47,
+    93,
+    94
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "domini",
+    "evitable",
+    "salt infinit",
+    "inventa"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDetermina el domini i estudia la continuïtat de les funcions següents:\n\\begin{graella}{2}\n  \\sa y=\\sqrt{4-x^2} & \\sa y=\\ln\\left(x^2-1\\right)\n\\end{graella}\n\n\\begin{solucio}\ni) Cal $4-x^2\\ge0$, és a dir $x^2\\le4$: el domini és $[-2,2]$. Hi és contínua, perquè ho són\nl'arrel i el polinomi de dins.\\\\\nii) Cal $x^2-1>0$: el domini és $(-\\infty,-1)\\cup(1,+\\infty)$. Hi és contínua, perquè ho són\nel logaritme i el polinomi de dins.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nTroba els punts en què la funció\n\\[\nf(x)=\\frac{x^2-4}{x^2+x-6}\n\\]\nés discontínua i classifica'n la discontinuïtat.\n\n\\begin{solucio}\n$f(x)=\\dfrac{(x-2)(x+2)}{(x-2)(x+3)}$: el denominador s'anul·la en $x=2$ i en $x=-3$.\\\\\nEn $x=2$ el factor $(x-2)$ es cancel·la i queda $\\dfrac{x+2}{x+3}\\to\\dfrac45$: el límit\nexisteix i la funció no hi està definida, per tant la \\textbf{discontinuïtat és evitable}.\\\\\nEn $x=-3$ el denominador s'anul·la i el numerador no ($f$ tendeix a $\\pm\\infty$ segons el\ncostat): \\textbf{salt infinit}, amb asímptota vertical $x=-3$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\n\\textbf{Inventa.} Escriu una funció racional $g$ tal que\n\\[\n\\lim_{x\\to+\\infty}g(x)=-2\n\\]\ni que tingui una discontinuïtat evitable en $x=1$ i una discontinuïtat de salt infinit en\n$x=-4$.\n\n\\begin{solucio}\nEl límit a l'infinit demana que numerador i denominador tinguin el mateix grau i que el\nquocient dels coeficients principals sigui $-2$. L'evitable en $x=1$ demana el factor $(x-1)$\na tots dos; el salt infinit en $x=-4$, el factor $(x+4)$ només al denominador. Per exemple:\n\\[\ng(x)=\\frac{-2(x-1)(x-5)}{(x-1)(x+4)} .\n\\]\nQualsevol altra amb aquests factors també val.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u7/domini-discontinuitats/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/domini-discontinuitats/q003/out/solucio.pdf",
+   "pdf_curt": "u7/domini-discontinuitats/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/domini-discontinuitats/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u7/limits-grafica/q001",
    "unitat": "u7",
    "tema": "limits-grafica",
@@ -617,7 +735,7 @@ const BANC = {
    ],
    "procedencia": null,
    "unitats": [],
-   "tex": "La figura mostra la gràfica d'una funció $f$. La recta discontínua és una asímptota\nvertical; els cercles buits indiquen punts que no pertanyen a la gràfica i els cercles\nplens, punts que sí que hi pertanyen.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.95cm,y=0.78cm]\n  % Branques:  2-e^x  |  recta (0,3)-(2,1)  |  2/(4-x)  |  1-1/(x-4)^2\n  \\draw[gray!55,very thin,step=1] (-5,-3) grid (8,4);\n  \\draw[->] (-5.4,0) -- (8.6,0) node[below right] {$x$};\n  \\draw[->] (0,-3.4) -- (0,4.6) node[above left] {$y$};\n  \\foreach \\i in {-4,-2,2,6,8} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\draw (4,0.12) -- (4,-0.12) node[below,xshift=5pt,font=\\scriptsize] {$4$};\n  \\foreach \\j in {-2,-1,1,2,3} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[dashed,thick] (4,-3) -- (4,4);\n  \\begin{scope}\n    \\clip (-5,-3) rectangle (8,4);\n    \\draw[red,very thick,domain=-5:0,samples=80,smooth] plot (\\x,{2-exp(\\x)});\n    \\draw[red,very thick] (0,3) -- (2,1);\n    \\draw[red,very thick,domain=2:3.6,samples=80,smooth] plot (\\x,{2/(4-\\x)});\n    \\draw[red,very thick,domain=4.4:8,samples=100,smooth] plot (\\x,{1-1/((\\x-4)^2)});\n  \\end{scope}\n  \\draw[fill=white,thick] (0,1) circle (2.4pt);\n  \\fill (0,3) circle (2.4pt);\n  \\draw[fill=white,thick] (2,1) circle (2.4pt);\n  \\fill (2,-1) circle (2.4pt);\n  \\node[red,font=\\small] at (-3.2,3.1) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nA partir de la gràfica, determina el valor dels límits següents:\n\\begin{graella}{4}\n  \\sa \\lim_{x\\to-\\infty}f(x) & \\sa \\lim_{x\\to0^-}f(x) & \\sa \\lim_{x\\to0^+}f(x) & \\sa \\lim_{x\\to2}f(x)\n\\end{graella}\n\n\\begin{solucio}\ni) $2$ \\quad ii) $1$ \\quad iii) $3$ \\quad iv) $1$ (els dos laterals valen $1$).\n\\end{solucio}\n\n\\apartat[1,25]{1}\nEstudia la continuïtat de $f$ en $x=0$ i en $x=2$. Si no és contínua, classifica'n la\ndiscontinuïtat i justifica-ho amb el valor de la funció i els límits.\n\n\\begin{solucio}\n$x=0$: $f(0)=3$, però els laterals valen $1$ i $3$. Com que són finits i diferents,\nhi ha una \\textbf{discontinuïtat de salt finit} (de salt $2$).\\\\\n$x=2$: els dos laterals valen $1$, així que $\\lim_{x\\to2}f(x)=1$, però $f(2)=-1$.\nCom que el límit existeix i no coincideix amb la imatge, la \\textbf{discontinuïtat és evitable}.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nQuè passa en $x=4$? Justifica-ho amb els límits laterals i classifica la discontinuïtat.\n\n\\begin{solucio}\n$f(4)$ no existeix, i els laterals valen $\\lim_{x\\to4^-}f(x)=+\\infty$ i\n$\\lim_{x\\to4^+}f(x)=-\\infty$. \\textbf{Discontinuïtat de salt infinit} (asímptota\nvertical $x=4$).\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "tex": "La figura mostra la gràfica d'una funció $f$. La recta discontínua és una asímptota\nvertical; els cercles buits indiquen punts que no pertanyen a la gràfica i els cercles\nplens, punts que sí que hi pertanyen.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.95cm,y=0.78cm]\n  % Branques:  2-e^x  |  recta (0,3)-(2,1)  |  2/(4-x)  |  1-1/(x-4)^2\n  \\draw[gray!55,very thin,step=1] (-5,-3) grid (8,4);\n  \\draw[->] (-5.4,0) -- (8.6,0) node[below right] {$x$};\n  \\draw[->] (0,-3.4) -- (0,4.6) node[above left] {$y$};\n  \\foreach \\i in {-4,-2,2,6,8} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\draw (4,0.12) -- (4,-0.12) node[below,xshift=5pt,font=\\scriptsize] {$4$};\n  \\foreach \\j in {-2,-1,1,2,3} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[dashed,thick] (4,-3) -- (4,4);\n  \\begin{scope}\n    \\clip (-5,-3) rectangle (8,4);\n    \\draw[\\colorgrafica,very thick,domain=-5:0,samples=80,smooth] plot (\\x,{2-exp(\\x)});\n    \\draw[\\colorgrafica,very thick] (0,3) -- (2,1);\n    \\draw[\\colorgrafica,very thick,domain=2:3.6,samples=80,smooth] plot (\\x,{2/(4-\\x)});\n    \\draw[\\colorgrafica,very thick,domain=4.4:8,samples=100,smooth] plot (\\x,{1-1/((\\x-4)^2)});\n  \\end{scope}\n  \\draw[fill=white,thick] (0,1) circle (2.4pt);\n  \\fill (0,3) circle (2.4pt);\n  \\draw[fill=white,thick] (2,1) circle (2.4pt);\n  \\fill (2,-1) circle (2.4pt);\n  \\node[\\colorgrafica,font=\\small] at (-3.2,3.1) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nA partir de la gràfica, determina el valor dels límits següents:\n\\begin{graella}{4}\n  \\sa \\lim_{x\\to-\\infty}f(x) & \\sa \\lim_{x\\to0^-}f(x) & \\sa \\lim_{x\\to0^+}f(x) & \\sa \\lim_{x\\to2}f(x)\n\\end{graella}\n\n\\begin{solucio}\ni) $2$ \\quad ii) $1$ \\quad iii) $3$ \\quad iv) $1$ (els dos laterals valen $1$).\n\\end{solucio}\n\n\\apartat[1,25]{1}\nEstudia la continuïtat de $f$ en $x=0$ i en $x=2$. Si no és contínua, classifica'n la\ndiscontinuïtat i justifica-ho amb el valor de la funció i els límits.\n\n\\begin{solucio}\n$x=0$: $f(0)=3$, però els laterals valen $1$ i $3$. Com que són finits i diferents,\nhi ha una \\textbf{discontinuïtat de salt finit} (de salt $2$).\\\\\n$x=2$: els dos laterals valen $1$, així que $\\lim_{x\\to2}f(x)=1$, però $f(2)=-1$.\nCom que el límit existeix i no coincideix amb la imatge, la \\textbf{discontinuïtat és evitable}.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nQuè passa en $x=4$? Justifica-ho amb els límits laterals i classifica la discontinuïtat.\n\n\\begin{solucio}\n$f(4)$ no existeix, i els laterals valen $\\lim_{x\\to4^-}f(x)=+\\infty$ i\n$\\lim_{x\\to4^+}f(x)=-\\infty$. \\textbf{Discontinuïtat de salt infinit} (asímptota\nvertical $x=4$).\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
    "pdf": "u7/limits-grafica/q001/out/enunciat.pdf",
    "pdf_solucio": "u7/limits-grafica/q001/out/solucio.pdf",
    "pdf_curt": "u7/limits-grafica/q001/out/enunciat-curt.pdf",
@@ -661,11 +779,52 @@ const BANC = {
    ],
    "procedencia": null,
    "unitats": [],
-   "tex": "La figura mostra la gràfica d'una funció $f$. La recta discontínua és una asímptota\nvertical; els cercles buits indiquen punts que no pertanyen a la gràfica i els cercles\nplens, punts que sí que hi pertanyen.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.95cm,y=0.7cm]\n  % Branques:  2x+5 (x<=-1) | |x|+1 (-1<x<2) | 2+2/(4-x) (2<x<4) | 1+1/(x-4)^2 (x>4)\n  \\draw[gray!55,very thin,step=1] (-5,-3) grid (8,5);\n  \\draw[->] (-5.4,0) -- (8.6,0) node[below right] {$x$};\n  \\draw[->] (0,-3.4) -- (0,5.6) node[above left] {$y$};\n  \\foreach \\i in {-4,-2,2,6,8} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\draw (4,0.12) -- (4,-0.12) node[below,xshift=5pt,font=\\scriptsize] {$4$};\n  \\foreach \\j in {-2,-1,2,3,4} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw (0.12,1) -- (-0.12,1) node[right,xshift=6pt,font=\\scriptsize] {$1$};\n  \\draw[dashed,thick] (4,-3) -- (4,5);\n  \\begin{scope}\n    \\clip (-5,-3) rectangle (8,5);\n    \\draw[red,very thick] (-5,-5) -- (-1,3);\n    \\draw[red,very thick] (-1,2) -- (0,1) -- (2,3);\n    \\draw[red,very thick,domain=2:3.6,samples=80,smooth] plot (\\x,{2+2/(4-\\x)});\n    \\draw[red,very thick,domain=4.35:8,samples=100,smooth] plot (\\x,{1+1/((\\x-4)^2)});\n  \\end{scope}\n  \\fill (-1,3) circle (2.4pt);\n  \\draw[fill=white,thick] (-1,2) circle (2.4pt);\n  \\draw[fill=white,thick] (2,3) circle (2.4pt);\n  \\node[red,font=\\small] at (-3.4,4.2) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nA partir de la gràfica, determina el valor dels límits següents. Si algun no existeix,\njustifica-ho amb els límits laterals.\n\\begin{graella}{4}\n  \\sa \\lim_{x\\to-1^-}f(x) & \\sa \\lim_{x\\to-1^+}f(x) & \\sa \\lim_{x\\to-1}f(x) & \\sa \\lim_{x\\to2}f(x)\n\\end{graella}\n\n\\begin{solucio}\ni) $3$ \\quad ii) $2$ \\quad iii) no existeix, perquè els laterals valen $3$ i $2$\n\\quad iv) $3$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nEstudia la continuïtat de $f$ en $x=-1$ i en $x=0$. Si no és contínua, classifica'n la\ndiscontinuïtat.\n\n\\begin{solucio}\n$x=-1$: $f(-1)=3$ coincideix amb el lateral esquerre, però el dret val $2$. Laterals\nfinits i diferents: \\textbf{salt finit}.\\\\\n$x=0$: $\\lim_{x\\to0}f(x)=1=f(0)$. \\textbf{És contínua}: la gràfica hi fa un angle, però no\ns'hi trenca. Continuïtat no vol dir suavitat.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia la continuïtat de $f$ en $x=2$ i en $x=4$, i classifica'n les discontinuïtats.\n\n\\begin{solucio}\n$x=2$: $\\lim_{x\\to2}f(x)=3$, però $f(2)$ no existeix: \\textbf{evitable}.\\\\\n$x=4$: $f(4)$ no existeix i els dos laterals valen $+\\infty$: \\textbf{salt infinit}\n(asímptota vertical $x=4$).\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "tex": "La figura mostra la gràfica d'una funció $f$. La recta discontínua és una asímptota\nvertical; els cercles buits indiquen punts que no pertanyen a la gràfica i els cercles\nplens, punts que sí que hi pertanyen.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.95cm,y=0.7cm]\n  % Branques:  2x+5 (x<=-1) | |x|+1 (-1<x<2) | 2+2/(4-x) (2<x<4) | 1+1/(x-4)^2 (x>4)\n  \\draw[gray!55,very thin,step=1] (-5,-3) grid (8,5);\n  \\draw[->] (-5.4,0) -- (8.6,0) node[below right] {$x$};\n  \\draw[->] (0,-3.4) -- (0,5.6) node[above left] {$y$};\n  \\foreach \\i in {-4,-2,2,6,8} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\draw (4,0.12) -- (4,-0.12) node[below,xshift=5pt,font=\\scriptsize] {$4$};\n  \\foreach \\j in {-2,-1,2,3,4} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw (0.12,1) -- (-0.12,1) node[right,xshift=6pt,font=\\scriptsize] {$1$};\n  \\draw[dashed,thick] (4,-3) -- (4,5);\n  \\begin{scope}\n    \\clip (-5,-3) rectangle (8,5);\n    \\draw[\\colorgrafica,very thick] (-5,-5) -- (-1,3);\n    \\draw[\\colorgrafica,very thick] (-1,2) -- (0,1) -- (2,3);\n    \\draw[\\colorgrafica,very thick,domain=2:3.6,samples=80,smooth] plot (\\x,{2+2/(4-\\x)});\n    \\draw[\\colorgrafica,very thick,domain=4.35:8,samples=100,smooth] plot (\\x,{1+1/((\\x-4)^2)});\n  \\end{scope}\n  \\fill (-1,3) circle (2.4pt);\n  \\draw[fill=white,thick] (-1,2) circle (2.4pt);\n  \\draw[fill=white,thick] (2,3) circle (2.4pt);\n  \\node[\\colorgrafica,font=\\small] at (-3.4,4.2) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nA partir de la gràfica, determina el valor dels límits següents. Si algun no existeix,\njustifica-ho amb els límits laterals.\n\\begin{graella}{4}\n  \\sa \\lim_{x\\to-1^-}f(x) & \\sa \\lim_{x\\to-1^+}f(x) & \\sa \\lim_{x\\to-1}f(x) & \\sa \\lim_{x\\to2}f(x)\n\\end{graella}\n\n\\begin{solucio}\ni) $3$ \\quad ii) $2$ \\quad iii) no existeix, perquè els laterals valen $3$ i $2$\n\\quad iv) $3$.\n\\end{solucio}\n\n\\apartat[1,25]{1}\nEstudia la continuïtat de $f$ en $x=-1$ i en $x=0$. Si no és contínua, classifica'n la\ndiscontinuïtat.\n\n\\begin{solucio}\n$x=-1$: $f(-1)=3$ coincideix amb el lateral esquerre, però el dret val $2$. Laterals\nfinits i diferents: \\textbf{salt finit}.\\\\\n$x=0$: $\\lim_{x\\to0}f(x)=1=f(0)$. \\textbf{És contínua}: la gràfica hi fa un angle, però no\ns'hi trenca. Continuïtat no vol dir suavitat.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia la continuïtat de $f$ en $x=2$ i en $x=4$, i classifica'n les discontinuïtats.\n\n\\begin{solucio}\n$x=2$: $\\lim_{x\\to2}f(x)=3$, però $f(2)$ no existeix: \\textbf{evitable}.\\\\\n$x=4$: $f(4)$ no existeix i els dos laterals valen $+\\infty$: \\textbf{salt infinit}\n(asímptota vertical $x=4$).\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
    "pdf": "u7/limits-grafica/q002/out/enunciat.pdf",
    "pdf_solucio": "u7/limits-grafica/q002/out/solucio.pdf",
    "pdf_curt": "u7/limits-grafica/q002/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u7/limits-grafica/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u7/limits-grafica/q003",
+   "unitat": "u7",
+   "tema": "limits-grafica",
+   "codi": "q003",
+   "titol": "Límits i continuïtat a partir d'una gràfica amb dues asímptotes horitzontals",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    44,
+    66,
+    68,
+    92
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "gràfica",
+    "límits laterals",
+    "salt finit",
+    "evitable"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "La figura mostra la gràfica d'una funció $f$. La recta discontínua és una asímptota\nvertical; els cercles buits indiquen punts que no pertanyen a la gràfica i els cercles\nplens, punts que sí que hi pertanyen.\n\n\\begin{center}\n\\begin{tikzpicture}[x=0.95cm,y=0.78cm]\n  % Branques:  2^x  |  recta (0,3)-(2,1)  |  1-(x-2)/(4-x)  |  2+1/(x-4)^2\n  \\draw[gray!55,very thin,step=1] (-5,-3) grid (8,4);\n  \\draw[->] (-5.4,0) -- (8.6,0) node[below right] {$x$};\n  \\draw[->] (0,-3.4) -- (0,4.6) node[above left] {$y$};\n  \\foreach \\i in {-4,-2,2,6,8} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\draw (4,0.12) -- (4,-0.12) node[below,xshift=5pt,font=\\scriptsize] {$4$};\n  \\foreach \\j in {-2,-1,1,2,3} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[dashed,thick] (4,-3) -- (4,4);\n  \\begin{scope}\n    \\clip (-5,-3) rectangle (8,4);\n    \\draw[\\colorgrafica,very thick,domain=-5:0,samples=80,smooth] plot (\\x,{exp(\\x*ln(2))});\n    \\draw[\\colorgrafica,very thick] (0,3) -- (2,1);\n    \\draw[\\colorgrafica,very thick,domain=2:3.7,samples=90,smooth] plot (\\x,{1-(\\x-2)/(4-\\x)});\n    \\draw[\\colorgrafica,very thick,domain=4.35:8,samples=100,smooth] plot (\\x,{2+1/((\\x-4)^2)});\n  \\end{scope}\n  \\draw[fill=white,thick] (0,1) circle (2.4pt);\n  \\fill (0,3) circle (2.4pt);\n  \\draw[fill=white,thick] (2,1) circle (2.4pt);\n  \\fill (2,-1) circle (2.4pt);\n  \\node[\\colorgrafica,font=\\small] at (-3.4,3.1) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nA partir de la gràfica, determina el valor dels límits següents:\n\\begin{graella}{4}\n  \\sa \\lim_{x\\to-\\infty}f(x) & \\sa \\lim_{x\\to0^-}f(x) & \\sa \\lim_{x\\to0^+}f(x) & \\sa \\lim_{x\\to2}f(x)\n\\end{graella}\n\n\\begin{solucio}\ni) $0$ \\quad ii) $1$ \\quad iii) $3$ \\quad iv) $1$ (els dos laterals valen $1$).\n\\end{solucio}\n\n\\apartat[1,25]{1}\nEstudia la continuïtat de $f$ en $x=0$ i en $x=2$. Si no és contínua, classifica'n la\ndiscontinuïtat i justifica-ho amb el valor de la funció i els límits.\n\n\\begin{solucio}\n$x=0$: $f(0)=3$ i el lateral dret també val $3$, però l'esquerre val $1$. Laterals finits i\ndiferents: \\textbf{discontinuïtat de salt finit} (de salt $2$).\\\\\n$x=2$: els dos laterals valen $1$, així que $\\lim_{x\\to2}f(x)=1$, però $f(2)=-1$. El límit\nexisteix i no coincideix amb la imatge: \\textbf{discontinuïtat evitable}.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia què passa en $x=4$ i digues quines asímptotes horitzontals té la gràfica.\n\n\\begin{solucio}\nEn $x=4$, $f(4)$ no existeix i els laterals valen $\\lim_{x\\to4^-}f(x)=-\\infty$ i\n$\\lim_{x\\to4^+}f(x)=+\\infty$: \\textbf{salt infinit}, amb asímptota vertical $x=4$.\\\\\nCom que $\\lim_{x\\to-\\infty}f(x)=0$ i $\\lim_{x\\to+\\infty}f(x)=2$, hi ha \\textbf{dues asímptotes\nhoritzontals}: $y=0$ per l'esquerra i $y=2$ per la dreta.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u7/limits-grafica/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/limits-grafica/q003/out/solucio.pdf",
+   "pdf_curt": "u7/limits-grafica/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/limits-grafica/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u7/limits-infinit/q001",
@@ -864,6 +1023,48 @@ const BANC = {
    "pdf_solucio_curt": "u7/limits-punt/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u7/limits-punt/q003",
+   "unitat": "u7",
+   "tema": "limits-punt",
+   "codi": "q003",
+   "titol": "Límits en un punt: 0/0 amb Ruffini i una funció a trossos",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    70,
+    76,
+    88
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "racionals",
+    "0/0",
+    "Ruffini",
+    "a trossos"
+   ],
+   "temes_secundaris": [
+    "limits-trossos"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula el límit següent:\n\\[\n\\lim_{x\\to4}\\frac{x^2-16}{x^2-6x+8}\n\\]\n\n\\begin{solucio}\nÉs una indeterminació $0/0$. Factoritzem i simplifiquem:\n\\[\n\\frac{(x-4)(x+4)}{(x-4)(x-2)}=\\frac{x+4}{x-2}\\;\\xrightarrow[x\\to4]{}\\;\\frac{8}{2}=4 .\n\\]\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula el límit següent:\n\\[\n\\lim_{x\\to-2}\\frac{x^3+8}{x+2}\n\\]\n\n\\begin{solucio}\nTambé és $0/0$. Per Ruffini, $x^3+8=(x+2)\\left(x^2-2x+4\\right)$, i per tant\n\\[\n\\frac{(x+2)\\left(x^2-2x+4\\right)}{x+2}=x^2-2x+4\\;\\xrightarrow[x\\to-2]{}\\;4+4+4=12 .\n\\]\n\\end{solucio}\n\\end{nomesllarg}\n\n\\apartat[1,25]{1}\nDonada la funció\n\\[\nh(x)=\\begin{cases} 2x+1 & \\si{x<1},\\\\[4pt] 3-x^2 & \\si{x\\ge 1},\\end{cases}\n\\]\ncalcula, si existeixen, els límits següents:\n\\begin{graella}{2}\n  \\sa \\lim_{x\\to-1}h(x) & \\sa \\lim_{x\\to1}h(x)\n\\end{graella}\n\n\\begin{solucio}\ni) Com que $-1<1$, hi actua la branca $2x+1$: el límit val $-1$.\\\\\nii) Per l'esquerra, $2x+1\\to3$; per la dreta, $3-x^2\\to2$. Els laterals són diferents, i per\ntant el límit \\textbf{no existeix}.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "u7/limits-punt/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/limits-punt/q003/out/solucio.pdf",
+   "pdf_curt": "u7/limits-punt/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/limits-punt/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u7/limits-trossos/q001",
    "unitat": "u7",
    "tema": "limits-trossos",
@@ -948,6 +1149,48 @@ const BANC = {
    "pdf_solucio_curt": "u7/limits-trossos/q002/out/solucio-curt.pdf"
   },
   {
+   "id": "u7/limits-trossos/q003",
+   "unitat": "u7",
+   "tema": "limits-trossos",
+   "codi": "q003",
+   "titol": "Límits d'una funció a trossos amb paràmetre: 0/0, laterals en el tall i infinit",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.25,
+    0.5
+   ],
+   "apartats_curt": [
+    1.0,
+    1.5
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    76,
+    88,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "a trossos",
+    "paràmetre",
+    "0/0",
+    "límits laterals"
+   ],
+   "temes_secundaris": [
+    "limits-punt"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "Considera la funció\n\\[\ng(x)=\\begin{cases}\n  \\dfrac{x^2-4}{x-2} & \\si{x<3},\\\\[8pt]\n  kx-1 & \\si{x\\ge 3},\n\\end{cases}\n\\]\non $k$ és un nombre real.\n\n\\begin{apartats}\n\n\\apartat[1]{0,75}\nCalcula els límits següents:\n\\begin{graella}{2}\n  \\sa \\lim_{x\\to2}g(x) & \\sa \\lim_{x\\to0}g(x)\n\\end{graella}\n\n\\begin{solucio}\nTots dos punts són a la branca $x<3$.\\\\\nEn $x=2$ hi ha una indeterminació $0/0$:\n$\\dfrac{(x-2)(x+2)}{x-2}=x+2\\to4$. El límit val $4$, tot i que $g(2)$ no existeix.\\\\\nEn $x=0$ se substitueix directament: $\\dfrac{-4}{-2}=2$.\n\\end{solucio}\n\n\\apartat[1,5]{1,25}\nCalcula, en funció de $k$, els límits laterals de $g$ en $x=3$. Per a quin valor de $k$\nexisteix $\\lim_{x\\to3}g(x)$? Quant val aquest límit?\n\n\\begin{solucio}\n$\\lim_{x\\to3^-}g(x)=\\dfrac{9-4}{3-2}=5$ \\quad i \\quad $\\lim_{x\\to3^+}g(x)=3k-1$.\\\\\nEl límit existeix si i només si els dos laterals coincideixen: $3k-1=5$, és a dir\n$\\boxed{k=2}$. Aleshores $\\lim_{x\\to3}g(x)=5$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,5}\nPer a $k=2$, calcula els límits següents:\n\\begin{graella}{2}\n  \\sa \\lim_{x\\to-\\infty}g(x) & \\sa \\lim_{x\\to+\\infty}g(x)\n\\end{graella}\n\n\\begin{solucio}\nQuan $x\\to-\\infty$ actua la primera branca, que per a $x\\ne2$ és $x+2\\to-\\infty$.\\\\\nQuan $x\\to+\\infty$ actua la segona: $2x-1\\to+\\infty$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u7/limits-trossos/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/limits-trossos/q003/out/solucio.pdf",
+   "pdf_curt": "u7/limits-trossos/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/limits-trossos/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u7/parametres-ab/q001",
    "unitat": "u7",
    "tema": "parametres-ab",
@@ -1024,6 +1267,45 @@ const BANC = {
    "pdf_solucio": "u7/parametres-ab/q002/out/solucio.pdf",
    "pdf_curt": "u7/parametres-ab/q002/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u7/parametres-ab/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u7/parametres-ab/q003",
+   "unitat": "u7",
+   "tema": "parametres-ab",
+   "codi": "q003",
+   "titol": "Paràmetres de continuïtat: un sistema de dues equacions i un cas amb dues solucions",
+   "punts": 2.5,
+   "apartats": [
+    1.5,
+    1.0
+   ],
+   "apartats_curt": [
+    2.5
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    40,
+    102,
+    106
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "paràmetres",
+    "a trossos",
+    "sistema"
+   ],
+   "temes_secundaris": [
+    "continuitat-trossos"
+   ],
+   "procedencia": null,
+   "unitats": [],
+   "tex": "\\begin{apartats}\n\n\\apartat[2,5]{1,5}\nDetermina els valors de $a$ i $b$ perquè la funció següent sigui contínua a tot $\\mathbb{R}$.\n\\[\nf(x)=\\begin{cases}\n  ax+1 & \\si{x<0},\\\\[3pt]\n  x^2+b & \\si{0\\le x\\le 2},\\\\[3pt]\n  bx-a & \\si{x>2}.\n\\end{cases}\n\\]\n\n\\begin{solucio}\nCada branca és contínua al seu tros: només cal mirar $x=0$ i $x=2$.\\\\\nEn $x=0$: $\\lim_{x\\to0^-}f(x)=1$ i $f(0)=b$, d'on $\\boxed{b=1}$.\\\\\nEn $x=2$: $f(2)=4+b=5$ i $\\lim_{x\\to2^+}f(x)=2b-a=2-a$. Cal $2-a=5$, és a dir\n$\\boxed{a=-3}$.\\\\\nComprovació: amb $a=-3$ i $b=1$, en $x=0$ totes dues branques valen $1$, i en $x=2$ valen $5$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{1}\nTroba \\textbf{tots} els valors de $m$ per als quals la funció següent és contínua a tot\n$\\mathbb{R}$.\n\\[\ng(x)=\\begin{cases}\n  x+m^2 & \\si{x\\le 2},\\\\[3pt]\n  5m-x  & \\si{x>2}.\n\\end{cases}\n\\]\n\n\\begin{solucio}\nLes dues branques són contínues: només cal estudiar $x=2$.\\\\\n$g(2)=2+m^2$ i $\\lim_{x\\to2^+}g(x)=5m-2$. Cal $2+m^2=5m-2$, és a dir $m^2-5m+4=0$, que dona\n$\\boxed{m=1}$ i $\\boxed{m=4}$.\\\\\nComprovació: amb $m=1$, totes dues branques valen $3$ en $x=2$; amb $m=4$, valen $18$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u7/parametres-ab/q003/out/enunciat.pdf",
+   "pdf_solucio": "u7/parametres-ab/q003/out/solucio.pdf",
+   "pdf_curt": "u7/parametres-ab/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u7/parametres-ab/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u8/derivada-definicio/q001",
