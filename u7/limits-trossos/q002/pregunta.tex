@@ -9,7 +9,8 @@ on $k$ és un nombre real.
 
 \begin{apartats}
 
-\apartat[1]{0,75}
+\begin{tria}{trossos-punts}
+\itemtria{original}{0,75}{1}
 Calcula els límits següents:
 \begin{graella}{2}
   \sa \lim_{x\to-1}g(x) & \sa \lim_{x\to0}g(x)
@@ -22,6 +23,21 @@ $\dfrac{x^2-1}{x+1}=\dfrac{(x+1)(x-1)}{x+1}=x-1\to-2$.
 El límit val $-2$, tot i que $g(-1)$ no existeix.\\
 En $x=0$ se substitueix directament: $\dfrac{-1}{1}=-1$.
 \end{solucio}
+
+\itemtria{altra-branca}{0,75}{1}
+Calcula els límits següents:
+\begin{graella}{2}
+  \sa \lim_{x\to-1}g(x) & \sa \lim_{x\to3}g(x)
+\end{graella}
+
+\begin{solucio}
+En $x=-1$ actua la branca $x<2$, i hi ha una indeterminació $0/0$:
+$\dfrac{x^2-1}{x+1}=\dfrac{(x+1)(x-1)}{x+1}=x-1\to-2$.
+El límit val $-2$, tot i que $g(-1)$ no existeix.\\
+En canvi, $x=3$ és a la branca $x\ge2$: $\lim_{x\to3}g(x)=9+k$. La fórmula de la primera
+branca hi donaria $2$, però per a $x\ge2$ no és la que actua.
+\end{solucio}
+\end{tria}
 
 \apartat[1,5]{1,25}
 Calcula, en funció de $k$, els límits laterals de $g$ en $x=2$. Per a quin valor de $k$

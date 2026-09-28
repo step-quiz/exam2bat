@@ -9,7 +9,8 @@ on $k$ és un nombre real.
 
 \begin{apartats}
 
-\apartat[1]{0,75}
+\begin{tria}{trossos-punts}
+\itemtria{original}{0,75}{1}
 Calcula els límits següents:
 \begin{graella}{2}
   \sa \lim_{x\to2}g(x) & \sa \lim_{x\to0}g(x)
@@ -21,6 +22,21 @@ En $x=2$ hi ha una indeterminació $0/0$:
 $\dfrac{(x-2)(x+2)}{x-2}=x+2\to4$. El límit val $4$, tot i que $g(2)$ no existeix.\\
 En $x=0$ se substitueix directament: $\dfrac{-4}{-2}=2$.
 \end{solucio}
+
+\itemtria{altra-branca}{0,75}{1}
+Calcula els límits següents:
+\begin{graella}{2}
+  \sa \lim_{x\to2}g(x) & \sa \lim_{x\to4}g(x)
+\end{graella}
+
+\begin{solucio}
+En $x=2$ actua la branca $x<3$, i hi ha una indeterminació $0/0$:
+$\dfrac{(x-2)(x+2)}{x-2}=x+2\to4$.
+El límit val $4$, tot i que $g(2)$ no existeix.\\
+En canvi, $x=4$ és a la branca $x\ge3$: $\lim_{x\to4}g(x)=4k-1$. La fórmula de la primera
+branca hi donaria $6$, però per a $x\ge3$ no és la que actua.
+\end{solucio}
+\end{tria}
 
 \apartat[1,5]{1,25}
 Calcula, en funció de $k$, els límits laterals de $g$ en $x=3$. Per a quin valor de $k$
