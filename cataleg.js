@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-28 19:31 UTC",
+ "generat": "2026-09-28 20:05 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -247,6 +247,80 @@ const BANC = {
  "versio": "920aa212",
  "preguntes": [
   {
+   "id": "pau/algebra/alg-25i-q2",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-25i-q2",
+   "titol": "Sistema amb paràmetre a i la posició relativa de tres plans",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "Rouché-Frobenius",
+    "posició relativa de plans",
+    "recta intersecció"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2025, sèrie 4",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu el sistema d'equacions\n\\[\n\\left.\\begin{aligned}\nx+3y+az&=1\\\\\n-2x-6y+2z&=2a\\\\\nax+3y+z&=3\n\\end{aligned}\\right\\},\n\\]\non $a$ és un paràmetre real, i siguin $\\pi_1$ el pla determinat per la primera equació, $\\pi_2$ el determinat\nper la segona, i $\\pi_3$ el determinat per la tercera.\n\n\\begin{apartats}\n\n\\apartat{1}\nDiscutiu el sistema en funció del valor de $a$.\n\n\\begin{solucio}\nComencem calculant el determinant de la matriu de coeficients del sistema:\n\\[\n\\begin{vmatrix}1&3&a\\\\-2&-6&2\\\\a&3&1\\end{vmatrix}=-6+6a-6a-\\left(-6a^2+6-6\\right)=6a^2-6=6\\left(a^2-1\\right).\n\\]\nClarament, s'anul·la només quan $a=\\pm1$. Per tant, si $a\\neq1$ i $a\\neq-1$, el rang de la matriu de coeficients\nés 3, el rang de la matriu ampliada també i, com que tenim tres incògnites, és un sistema compatible\ndeterminat.\\\\\nPer al cas $a=1$, fem Gauss: a la fila 2 li sumem dues vegades la fila 1, i a la fila 3 li restem la fila 1:\n\\[\n\\left(\\begin{array}{ccc|c}1&3&1&1\\\\-2&-6&2&2\\\\1&3&1&3\\end{array}\\right)\\sim\n\\left(\\begin{array}{ccc|c}1&3&1&1\\\\0&0&4&4\\\\0&0&0&2\\end{array}\\right).\n\\]\nClarament, veient la tercera equació, es tracta d'un sistema incompatible.\\\\\nFinalment, per al cas $a=-1$, tornem a fer Gauss: a la fila 2 li sumem dues vegades la fila 1, i a la fila 3\nli sumem la fila 1:\n\\[\n\\left(\\begin{array}{ccc|c}1&3&-1&1\\\\-2&-6&2&-2\\\\-1&3&1&3\\end{array}\\right)\\sim\n\\left(\\begin{array}{ccc|c}1&3&-1&1\\\\0&0&0&0\\\\0&6&0&4\\end{array}\\right).\n\\]\nAra està clar que els rangs de les matrius de coeficients i ampliada són tots dos 2 i, com que hi ha tres\nincògnites, el sistema és compatible indeterminat amb un grau de llibertat.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul del determinant, i 0,25 per la discussió de cadascun dels tres casos.\n\\end{solucio}\n\n\\apartat{0,75}\nDescriviu la posició relativa dels tres plans $\\pi_1$, $\\pi_2$ i $\\pi_3$ en funció del valor de $a$.\n\n\\begin{solucio}\nPer al cas $a\\neq1$ i $a\\neq-1$, el sistema ens ha donat compatible determinat, la qual cosa significa que els\ntres plans $\\pi_1$, $\\pi_2$ i $\\pi_3$ es tallen en un sol punt comú.\\\\\nPer al cas $a=1$, el sistema és incompatible i, per tant, els tres plans alhora no s'intersequen. Clarament,\n$\\pi_1$ i $\\pi_3$ són plans paral·lels (perquè els vectors $(1,3,1)$ i $(1,3,1)$ són proporcionals), i $\\pi_2$\nés un pla secant als dos anteriors.\\\\\nFinalment, per al cas $a=-1$, tenim que $\\pi_1=\\pi_2$ (les equacions són proporcionals) i $\\pi_3$ és un pla\nsecant a l'anterior; per tant, la intersecció dels tres és una recta.\n\n\\textit{Pauta oficial:} 0,25 per interpretar la posició relativa en cadascun dels tres casos.\n\\end{solucio}\n\n\\apartat{0,75}\nEn algun cas la intersecció dels tres plans és una recta? En cas afirmatiu, digueu per a quin valor del\nparàmetre, i doneu un vector director i un punt d'aquesta recta.\n\n\\begin{solucio}\nPel que hem vist a l'apartat anterior, l'únic cas en què la intersecció dels tres plans és una recta és per a\n$a=-1$. Resolem el sistema aprofitant els càlculs de l'apartat a). Tenim $y=\\frac46=\\frac23$ i\n$x+3\\cdot\\frac23-z=1$; per tant, $x=z-1$. Les solucions, i per tant els punts de la recta en qüestió, són de\nla forma\n\\[\n(x,y,z)=\\left(z-1,\\tfrac23,z\\right)=\\left(-1,\\tfrac23,0\\right)+z(1,0,1).\n\\]\nD'aquí veiem que $\\left(-1,\\frac23,0\\right)$ és un punt d'aquesta recta i $(1,0,1)$ n'és un vector director.\n\n\\textit{Pauta oficial:} 0,25 per agafar el valor adequat del paràmetre, 0,25 per resoldre el sistema, i 0,25\nper deduir un punt i un vector director.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-25i-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-25i-q2/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-25i-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-25i-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/algebra/alg-25i-q4b",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-25i-q4b",
+   "titol": "Matrius que commuten, invertibilitat i A⁻¹ = A",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "producte de matrius",
+    "matriu inversa",
+    "determinant"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2025, sèrie 4",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu les matrius $A=\\begin{pmatrix}a&0\\\\1&a^2\\end{pmatrix}$, on $a$ és un paràmetre real, i\n$B=\\begin{pmatrix}2&0\\\\1&4\\end{pmatrix}$.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nTrobeu els valors de $a$ que fan que les matrius $A$ i $B$ commutin. (Dues matrius $A$ i $B$ commuten si\n$AB=BA$.)\n\n\\begin{solucio}\nTenim\n\\[\nAB=\\begin{pmatrix}a&0\\\\1&a^2\\end{pmatrix}\\begin{pmatrix}2&0\\\\1&4\\end{pmatrix}=\\begin{pmatrix}2a&0\\\\2+a^2&4a^2\\end{pmatrix},\n\\qquad\nBA=\\begin{pmatrix}2&0\\\\1&4\\end{pmatrix}\\begin{pmatrix}a&0\\\\1&a^2\\end{pmatrix}=\\begin{pmatrix}2a&0\\\\a+4&4a^2\\end{pmatrix}.\n\\]\nPer tant, les matrius $A$ i $B$ commuten si i només si $2+a^2=a+4$, és a dir, si i només si $a^2-a-2=0$. Les\nsolucions d'aquesta equació són $a=\\frac{1\\pm\\sqrt{1-4(-2)}}{2}=\\frac{1\\pm3}{2}=2,\\,-1$. Per a $a=2$ la matriu $A$\ncoincideix amb $B$, i per a $a=-1$ obtenim $A=\\begin{pmatrix}-1&0\\\\1&1\\end{pmatrix}$.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de $AB$, 0,25 pel càlcul de $BA$, i 0,25 per resoldre l'equació i\ndonar la resposta.\n\\end{solucio}\n\n\\apartat{0,75}\nTrobeu els valors de $a$ per als quals la matriu $A$ és invertible.\n\n\\begin{solucio}\nLa matriu $A$ és invertible si i només si $\\det(A)\\neq0$. Tenim\n$\\det(A)=\\begin{vmatrix}a&0\\\\1&a^2\\end{vmatrix}=a^3$. Per tant, la matriu $A$ és invertible si i només si $a\\neq0$.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul del determinant i 0,5 per la resposta justificada.\n\\end{solucio}\n\n\\apartat{1}\nTrobeu els valors de $a$ per als quals $A^{-1}=A$.\n\n\\begin{solucio}\nQue $A=A^{-1}$ és el mateix que dir $AA=I$. Imposant aquesta igualtat,\n\\[\nAA=\\begin{pmatrix}a&0\\\\1&a^2\\end{pmatrix}\\begin{pmatrix}a&0\\\\1&a^2\\end{pmatrix}=\\begin{pmatrix}a^2&0\\\\a^2+a&a^4\\end{pmatrix}\n=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix},\n\\]\nobtenim les equacions $a^2=a^4=1$ i $a^2+a=0$. Les dues primeres equacions es compleixen per a $a=1$ i per a\n$a=-1$, i la tercera, per a $a=-1$ i per a $a=0$. Per tant, $A^{-1}=A$ si i només si $a=-1$.\\\\\nAlternativament, es pot calcular la matriu inversa,\n\\[\nA^{-1}=\\frac{1}{\\det(A)}\\left(\\operatorname{Adj}A\\right)^t=\\frac{1}{a^3}\\begin{pmatrix}a^2&0\\\\-1&a\\end{pmatrix}\n=\\begin{pmatrix}\\frac1a&0\\\\-\\frac1{a^3}&\\frac1{a^2}\\end{pmatrix},\n\\]\ni, imposant que coincideixi amb la matriu $A$, obtenim les equacions $a^2=1$, $a^3=-1$ i $a^4=1$, que tenen per\nsolució $a=-1$.\n\n\\textit{Pauta oficial:} 0,5 pel càlcul de $AA$ (o de $A^{-1}$), 0,25 per plantejar les equacions a resoldre, i\n0,25 per la resposta. Si donen com a respostes vàlides totes les solucions parcials, $a=1,\\,-1,\\,0$, compteu\nnomés els 0,5 punts del càlcul de $A^2$ (o de $A^{-1}$).\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-25i-q4b/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-25i-q4b/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-25i-q4b/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-25i-q4b/out/solucio.pdf"
+  },
+  {
    "id": "pau/algebra/alg-25j-q2",
    "unitat": "pau",
    "tema": "algebra",
@@ -393,6 +467,84 @@ const BANC = {
    "pdf_solucio": "pau/algebra/alg-26j2-q2/out/solucio.pdf",
    "pdf_curt": "pau/algebra/alg-26j2-q2/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/algebra/alg-26j2-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-25i-q1",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-25i-q1",
+   "titol": "f(x) = √(1+x³): domini, talls, monotonia i una recta tangent",
+   "punts": 2.5,
+   "apartats": [
+    0.5,
+    1.0,
+    1.0
+   ],
+   "apartats_curt": [
+    0.5,
+    1.0,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "domini",
+    "monotonia",
+    "recta tangent"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2025, sèrie 4",
+   "unitats": [
+    "u8",
+    "u9",
+    "u10"
+   ],
+   "tries": [],
+   "tex": "Considereu la funció $f(x)=+\\sqrt{1+x^3}$.\n\n\\begin{apartats}\n\n\\apartat{0,5}\nIndiqueu el domini d'aquesta funció i els talls de la corba $y=f(x)$ amb els eixos de coordenades.\n\n\\begin{solucio}\nEl domini d'aquesta funció és\n\\[\n\\operatorname{Dom}(f)=\\left\\{x\\in\\mathbb{R}\\mid1+x^3\\ge0\\right\\}=\\left\\{x\\in\\mathbb{R}\\mid x^3\\ge-1\\right\\}\n=\\left\\{x\\in\\mathbb{R}\\mid x\\ge-1\\right\\}=[-1,+\\infty).\n\\]\nCom que $f(0)=\\sqrt{1+0^3}=1$, el tall d'aquesta funció amb l'eix d'ordenades és al punt $(0,1)$. Els talls\namb l'eix d'abscisses corresponen a les solucions de l'equació $f(x)=0$, que són\n$\\sqrt{1+x^3}=0\\rightarrow1+x^3=0\\rightarrow x^3=-1\\rightarrow x=-1$. Per tant, es tracta només del punt\n$(-1,0)$.\n\n\\textit{Pauta oficial:} 0,25 per la determinació del domini de la funció, i 0,25 pel càlcul dels punts de\ntall.\n\\end{solucio}\n\n\\apartat{1}\nResoleu l'equació $f'(x)=0$ i estudieu les zones de creixement i decreixement de la funció $f(x)$, així com\nels seus màxims i mínims locals.\n\n\\begin{solucio}\nLa derivada de $f(x)$ és $f'(x)=\\dfrac{3x^2}{2\\sqrt{1+x^3}}$, i l'equació de l'enunciat és\n$\\dfrac{3x^2}{2\\sqrt{1+x^3}}=0$. Aïllant, ens queda $3x^2=0$ i, per tant, $x=0$. L'únic candidat a extrem dins\nl'interior del domini és, doncs, el punt $x=0$. Ara bé, la funció derivada és positiva, $f'(x)\\ge0$,\nperquè es tracta d'una fracció entre nombres sempre positius. Això vol dir que $f$ és una funció creixent en\ntot el seu domini, $[-1,\\infty)$. Per tant, aquesta funció no té cap màxim ni mínim locals.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,25 pels punts crítics, 0,25 per determinar que no\nhi ha màxims ni mínims locals, i 0,25 per reconèixer que es tracta d'una funció creixent.\n\n\\textit{Nota del banc:} a l'extrem del domini, $x=-1$, la funció val $f(-1)=0$, que és el valor més petit\nque pren: és el seu mínim absolut. El criteri oficial parla dels extrems relatius a l'interior del domini,\non no n'hi ha cap.\n\\end{solucio}\n\n\\apartat{1}\nTrobeu quin ha de ser el valor de $a$ per tal que el punt $(a,3)$ pertanyi a la gràfica de la funció, i\ncalculeu l'equació de la recta tangent a la corba $y=f(x)$ en aquest punt.\n\n\\begin{solucio}\nEl punt de tangència $(a,3)$ està sobre la gràfica de la funció i, per tant, compleix\n\\[\nf(a)=\\sqrt{1+a^3}=3\\;\\rightarrow\\;1+a^3=9\\;\\rightarrow\\;a^3=8\\;\\rightarrow\\;a=\\sqrt[3]{8}=2 .\n\\]\nAquesta recta tangent tindrà pendent $m=f'(2)=\\dfrac{3\\cdot2^2}{2\\sqrt{1+2^3}}=\\dfrac{12}{6}=2$. Per tant,\nes tracta de $y-3=2(x-2)\\rightarrow y=2x-1$.\n\n\\textit{Pauta oficial:} 0,5 per determinar l'abscissa del punt de tangència i 0,5 pel càlcul de la recta\ntangent.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-25i-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-25i-q1/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-25i-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-25i-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-25i-q4a",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-25i-q4a",
+   "titol": "Optimització: ampolla de perfum de superfície mínima, un cilindre amb mitja esfera",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    1.5
+   ],
+   "apartats_curt": [
+    1.0,
+    1.5
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "superfície mínima",
+    "cilindre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2025, sèrie 4",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "El dissenyador d'una casa de perfums ha decidit que l'ampolla del proper perfum que l'empresa traurà al mercat\nserà de vidre i tindrà la forma d'un cilindre amb una mitja esfera a la part superior, tal com es pot veure a\nla figura següent:\n\\begin{center}\n\\begin{tikzpicture}[scale=0.62]\n  \\fill[gray!18] (-2,0) -- (-2,-2.8) arc[start angle=180,end angle=360,x radius=2,y radius=0.5] -- (2,0) -- cycle;\n  \\fill[gray!38] (2,0) arc[start angle=0,end angle=180,radius=2]\n    arc[start angle=180,end angle=360,x radius=2,y radius=0.5];\n  \\draw (-2,0) arc[start angle=180,end angle=0,radius=2];\n  \\draw (0,0) ellipse [x radius=2,y radius=0.5];\n  \\draw (-2,0) -- (-2,-2.8);\n  \\draw (2,0) -- (2,-2.8);\n  \\draw (-2,-2.8) arc[start angle=180,end angle=360,x radius=2,y radius=0.5];\n  \\draw (0,0) -- (2,0);\n  \\node[above,font=\\small] at (1,0) {$r$};\n  \\node[right,font=\\small] at (2.05,-1.4) {$h$};\n\\end{tikzpicture}\n\\end{center}\nEl perfum estarà contingut a la part cilíndrica, la qual té una capacitat de $100\\ \\text{cm}^3$. L'enginyer a\ncàrrec del procés de producció es proposa minimitzar el cost total del vidre usat i, per tant, vol que la\nsuperfície total de l'ampolla sigui mínima.\n\n\\emph{Nota:} Recordeu que la superfície d'una esfera ve donada per la fórmula $4\\pi r^2$, on\n$r$ és el radi.\n\n\\begin{apartats}\n\n\\apartat{1}\nComproveu que la superfície total de l'ampolla de perfum ve donada per la fórmula $S(r)=3\\pi r^2+\\dfrac{200}{r}$.\n\n\\begin{solucio}\nCom que el volum de la part cilíndrica ha de ser de $100\\ \\text{cm}^3$, tenim que $\\pi r^2h=100$ i, per tant,\n$h=\\frac{100}{\\pi r^2}$. La superfície total de l'ampolla s'obté sumant la superfície de la base, $\\pi r^2$, la\nsuperfície lateral del cilindre, $2\\pi rh$, i la superfície de la mitja esfera superior,\n$\\frac12\\,4\\pi r^2=2\\pi r^2$; per tant, és\n\\[\nS=\\pi r^2+2\\pi rh+2\\pi r^2=3\\pi r^2+2\\pi rh .\n\\]\nSi substituïm $h$ per l'expressió que tenim en funció de $r$, obtenim la funció\n\\[\nS(r)=3\\pi r^2+2\\pi r\\cdot\\frac{100}{\\pi r^2}=3\\pi r^2+\\frac{200}{r}.\n\\]\n\n\\textit{Pauta oficial:} 0,5 per la lligadura donada pel volum i 0,5 pel càlcul correcte de la fórmula de\nl'àrea total.\n\\end{solucio}\n\n\\apartat{1,5}\nQuines dimensions ha de tenir l'ampolla de perfum perquè la superfície total sigui mínima? Quina és la\nsuperfície total de l'ampolla en aquest cas?\n\n\\begin{solucio}\nBusquem ara el mínim d'aquesta funció calculant-ne la derivada: $S'(r)=6\\pi r-\\dfrac{200}{r^2}$. Igualant-la a\nzero, $S'(r)=0$, obtenim\n\\[\n6\\pi r-\\frac{200}{r^2}=0\\;\\rightarrow\\;6\\pi r=\\frac{200}{r^2}\\;\\rightarrow\\;r^3=\\frac{100}{3\\pi}\\;\\rightarrow\\;\nr=\\sqrt[3]{\\frac{100}{3\\pi}}\\simeq2{,}2\\ \\text{cm}.\n\\]\nPer verificar que es tracta d'un mínim, podem utilitzar la segona derivada, $S''(r)=6\\pi+\\dfrac{400}{r^3}$, que\nés clarament positiva per a qualsevol $r$ positiu. Per tant, per a $r=2{,}2$ cm l'ampolla té superfície total\nmínima. En aquest cas tenim $h=\\frac{100}{\\pi\\cdot2{,}2^2}=6{,}6$ cm, i la superfície total mínima és de\n$S(2{,}2)=3\\pi\\cdot2{,}2^2+2\\pi\\cdot2{,}2\\cdot6{,}6\\simeq136{,}8\\ \\text{cm}^2$.\n\n\\textit{Pauta oficial:} 0,5 pel càlcul de la derivada, 0,25 per trobar el valor de $r$, 0,25 per comprovar que\nes tracta d'un mínim, i 0,5 per donar la resposta completa (dimensions i àrea total).\n\n\\textit{Nota del banc:} el criteri calcula la superfície amb $r$ i $h$ ja arrodonits. Amb els valors exactes,\na l'òptim és $h=3r$ (perquè $\\pi r^2h=100=3\\pi r^3$), i la superfície mínima és\n$S=9\\pi r^2\\approx136{,}5\\ \\text{cm}^2$. Una resposta amb aquest valor també és correcta.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-25i-q4a/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-25i-q4a/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-25i-q4a/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-25i-q4a/out/solucio.pdf"
   },
   {
    "id": "pau/analisi/ana-25j-q1",
@@ -843,6 +995,46 @@ const BANC = {
    "pdf_solucio": "pau/geometria/geo-26j2-q4b/out/solucio.pdf",
    "pdf_curt": "pau/geometria/geo-26j2-q4b/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/geometria/geo-26j2-q4b/out/solucio.pdf"
+  },
+  {
+   "id": "pau/probabilitat/pro-25i-q3",
+   "unitat": "pau",
+   "tema": "probabilitat",
+   "codi": "pro-25i-q3",
+   "titol": "Filtre de correu brossa: probabilitat total, Bayes i una integral amb paràmetre",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "probabilitat total",
+    "Bayes",
+    "integral definida"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2025, sèrie 4",
+   "unitats": [
+    "u12",
+    "u13"
+   ],
+   "tries": [],
+   "tex": "Un usuari d'Internet ha estimat que el 25\\,\\% dels correus electrònics que rep són correu brossa, mentre que la\nresta no ho són. Per a facilitar la classificació del correu, s'ha instal·lat un filtre que envia a la carpeta\nde correu brossa el 95\\,\\% dels missatges que efectivament ho són. Malauradament, aquest filtre deixa a la\nsafata d'entrada només el 90\\,\\% dels missatges bons (i la resta els envia a la carpeta de correu brossa).\n\n\\begin{apartats}\n\n\\apartat{0,75}\nQuina és la probabilitat que un missatge sigui enviat pel filtre a la carpeta de correu brossa?\n\n\\begin{solucio}\nConsiderem els esdeveniments aleatoris $B$ = «rebre un correu brossa» i $CB$ = «rebre un correu a la carpeta\nde correu brossa». Segons les dades de l'enunciat, tenim que $P(B)=0{,}25$,\n$P\\bigl(\\overline{B}\\bigr)=1-0{,}25=0{,}75$, $P(CB\\mid B)=0{,}95$ i $P\\bigl(\\overline{CB}\\mid\\overline{B}\\bigr)=0{,}9$.\nPer la llei de la probabilitat total,\n\\[\nP(CB)=P(CB\\mid B)\\,P(B)+P\\bigl(CB\\mid\\overline{B}\\bigr)\\,P\\bigl(\\overline{B}\\bigr)=0{,}95\\cdot0{,}25+(1-0{,}9)\\cdot0{,}75\n=0{,}3125 .\n\\]\n\n\\textit{Pauta oficial:} 0,25 per plantejar la llei de la probabilitat total, 0,25 per identificar les dades\ndel problema, i 0,25 pel càlcul.\n\\end{solucio}\n\n\\apartat{0,75}\nUn dia, aquest usuari obre la carpeta de correu brossa. Quin percentatge de missatges que no són correu\nbrossa hi trobarà?\n\n\\begin{solucio}\nCal calcular $P\\bigl(\\overline{B}\\mid CB\\bigr)$. Per la fórmula de Bayes,\n\\[\nP\\bigl(\\overline{B}\\mid CB\\bigr)=\\frac{P\\bigl(\\overline{B}\\cap CB\\bigr)}{P(CB)}\n=\\frac{P\\bigl(CB\\mid\\overline{B}\\bigr)\\cdot P\\bigl(\\overline{B}\\bigr)}{0{,}3125}=\\frac{0{,}1\\cdot0{,}75}{0{,}3125}=0{,}24 .\n\\]\nS'hi trobarà un 24\\,\\% de correus que no són brossa.\n\n\\textit{Pauta oficial:} 0,25 per plantejar la fórmula de Bayes (o la fórmula de la probabilitat\ncondicionada) i 0,5 pel càlcul.\n\\end{solucio}\n\n\\apartat{1}\nEn un servidor de correu electrònic determinat, la probabilitat de rebre com a mínim dos correus en menys de\n$t$ minuts ve donada per la funció $F(t)=\\int_0^tAe^{-0{,}5x}\\,dx$, on $A$ és una constant real.\n\nSabent que la probabilitat de rebre com a mínim dos correus en menys de dos minuts és $1-e^{-1}$, trobeu el\nvalor de $A$.\n\n\\begin{solucio}\nCalculant la funció de l'enunciat, la probabilitat de rebre almenys dos correus en menys de $t$ minuts és\n\\[\nF(t)=\\int_0^tAe^{-0{,}5x}\\,dx=\\left[\\frac{A}{-0{,}5}\\,e^{-0{,}5x}\\right]_0^t=\\frac{A}{-0{,}5}\\left(e^{-0{,}5t}-1\\right)\n=2A\\left(1-e^{-0{,}5t}\\right).\n\\]\nImposant el valor de $F(2)$ que ens donen, trobem $2A\\left(1-e^{-1}\\right)=1-e^{-1}$, d'on resulta $A=0{,}5$.\n\n\\textit{Pauta oficial:} 0,5 pel càlcul explícit de $F(t)$, 0,25 per imposar $F(2)$, i 0,25 pel càlcul final.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/probabilitat/pro-25i-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/probabilitat/pro-25i-q3/out/solucio.pdf",
+   "pdf_curt": "pau/probabilitat/pro-25i-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/probabilitat/pro-25i-q3/out/solucio.pdf"
   },
   {
    "id": "pau/probabilitat/pro-25j-q3",
