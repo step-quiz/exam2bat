@@ -5,7 +5,8 @@ f(x)=x^3+2x^2-1 .
 
 \begin{apartats}
 
-\apartat[1,25]{1}
+\begin{tria}{bolzano-existencia}
+\itemtria{original}{1}{1,25}
 Enuncia el teorema de Bolzano i demostra que l'equació $f(x)=0$ té almenys una solució a
 l'interval $[0,1]$.
 
@@ -15,6 +16,26 @@ diferents, aleshores existeix almenys un $c\in(a,b)$ amb $f(c)=0$.\\
 $f$ és polinòmica i, per tant, contínua a $[0,1]$. A més, $f(0)=-1<0$ i $f(1)=1+2-1=2>0$.
 Com que canvia de signe, hi ha almenys una solució a $(0,1)$.
 \end{solucio}
+
+\itemtria{hipotesis}{1}{1,25}
+Enuncia el teorema de Bolzano. Es pot aplicar a la funció $f$ a l'interval $[0,1]$? I a la
+funció
+\[
+g(x)=\frac{1}{x-1}
+\]
+a l'interval $[0,2]$? Justifica les dues respostes i digues què en pots concloure.
+
+\begin{solucio}
+\textbf{Teorema de Bolzano.} Si $f$ és contínua a $[a,b]$ i $f(a)$ i $f(b)$ tenen signes
+diferents, aleshores existeix almenys un $c\in(a,b)$ amb $f(c)=0$.\\
+$f$: és polinòmica, i per tant contínua a $[0,1]$, i $f(0)=-1<0$, $f(1)=2>0$. \textbf{Sí}
+que s'hi pot aplicar: l'equació $f(x)=0$ té almenys una solució a $(0,1)$.\\
+$g$: $g(0)=-1$ i $g(2)=1$ tenen signes diferents, però $g$ no està definida en $x=1\in[0,2]$,
+i per tant no hi és contínua. \textbf{No} s'hi pot aplicar: el teorema no hi garanteix res.
+De fet, $g$ no s'anul·la mai (el numerador és $1$), i això no contradiu el teorema, perquè
+una de les hipòtesis no es compleix.
+\end{solucio}
+\end{tria}
 
 \apartat[1,25]{0,75}
 Aplicant el mètode de la bisecció, troba un interval de longitud $0{,}25$ que contingui una

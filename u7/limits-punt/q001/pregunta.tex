@@ -1,6 +1,7 @@
 \begin{apartats}
 
-\apartat[1,25]{0,75}
+\begin{tria}{limits-tipus}
+\itemtria{un-limit}{0,75}{1,25}
 Calcula el límit següent:
 \[
 \lim_{x\to-2}\frac{x^2+x-2}{x^2+3x+2}
@@ -12,6 +13,19 @@ Calcula el límit següent:
 \frac{(x+2)(x-1)}{(x+1)(x+2)}=\frac{x-1}{x+1}\;\xrightarrow[x\to-2]{}\;\frac{-3}{-1}=3.
 \]
 \end{solucio}
+
+\itemtria{quocient-k-zero}{0,75}{1,25}
+Calcula el límit següent:
+\[
+\lim_{x\to2}\frac{x+1}{x^2-4x+4}
+\]
+
+\begin{solucio}
+En substituir, el numerador tendeix a $3$ i el denominador a $0$: \textbf{no} és una
+indeterminació, i no hi ha res a simplificar. Com que $x^2-4x+4=(x-2)^2$ és positiu als dos
+costats de $2$, tots dos laterals valen $+\infty$, i per tant el límit és $+\infty$.
+\end{solucio}
+\end{tria}
 
 \begin{nomesllarg}
 \apartat{0,75}

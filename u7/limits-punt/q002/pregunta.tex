@@ -1,6 +1,7 @@
 \begin{apartats}
 
-\apartat[1,25]{1}
+\begin{tria}{limits-parell}
+\itemtria{original}{1}{1,25}
 Calcula els límits següents:
 \begin{graella}{2}
   \sa \lim_{x\to3}\frac{x^2-9}{x^2-5x+6} &
@@ -13,6 +14,22 @@ i) $\dfrac{(x-3)(x+3)}{(x-3)(x-2)}=\dfrac{x+3}{x-2}\to\dfrac{6}{1}=6$.\\
 ii) Per Ruffini, $x^3+1=(x+1)(x^2-x+1)$:
 $\dfrac{(x+1)(x^2-x+1)}{(x+1)(x-1)}=\dfrac{x^2-x+1}{x-1}\to\dfrac{3}{-2}=-\dfrac32$.
 \end{solucio}
+
+\itemtria{valor-absolut}{1}{1,25}
+Calcula, si existeixen, els límits següents:
+\begin{graella}{2}
+  \sa \lim_{x\to1}\frac{|x-1|}{x-1} &
+  \sa \lim_{x\to1}\frac{(x-1)^2}{|x-1|}
+\end{graella}
+
+\begin{solucio}
+En tots dos cal separar els dos costats de $1$: $|x-1|=-(x-1)$ si $x<1$, i $|x-1|=x-1$ si $x>1$.\\
+i) Per l'esquerra, $\dfrac{-(x-1)}{x-1}=-1$; per la dreta, $\dfrac{x-1}{x-1}=1$. Els laterals
+són finits i diferents: el límit \textbf{no existeix}.\\
+ii) $\dfrac{(x-1)^2}{|x-1|}=\dfrac{|x-1|^2}{|x-1|}=|x-1|$, que tendeix a $0$ pels dos costats:
+el límit val $0$.
+\end{solucio}
+\end{tria}
 
 \begin{nomesllarg}
 \apartat{0,75}

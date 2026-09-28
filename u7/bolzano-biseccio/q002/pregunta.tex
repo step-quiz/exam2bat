@@ -1,6 +1,7 @@
 \begin{apartats}
 
-\apartat[1,25]{0,75}
+\begin{tria}{bolzano-existencia}
+\itemtria{original}{0,75}{1,25}
 Demostra que la funció
 \[
 f(x)=3^{x-1}+x
@@ -14,6 +15,25 @@ $g$ és contínua a $\mathbb{R}$ (suma d'una exponencial i un polinomi), en part
 $[1,2]$, i $g(1)=1+1-4=-2<0$, $g(2)=3+2-4=1>0$.\\
 Pel teorema de Bolzano, existeix $c\in(1,2)$ amb $g(c)=0$, és a dir, $f(c)=4$.
 \end{solucio}
+
+\itemtria{tres-arrels}{0,75}{1,25}
+Demostra que l'equació
+\[
+x^3-3x+1=0
+\]
+té almenys tres solucions reals. Quantes en té exactament? Justifica-ho.
+
+\begin{solucio}
+$p(x)=x^3-3x+1$ és polinòmica i, per tant, contínua a $\mathbb{R}$. Se n'avalua el signe en
+alguns enters:
+\[
+p(-2)=-1,\qquad p(-1)=3,\qquad p(0)=1,\qquad p(1)=-1,\qquad p(2)=3 .
+\]
+$p$ canvia de signe a $(-2,-1)$, a $(0,1)$ i a $(1,2)$. Per Bolzano hi ha almenys una solució
+a cadascun d'aquests intervals, i com que no se solapen, en són almenys tres de diferents.\\
+Un polinomi de grau $3$ té com a màxim tres arrels reals: en té \textbf{exactament tres}.
+\end{solucio}
+\end{tria}
 
 \begin{nomesllarg}
 \apartat{1}

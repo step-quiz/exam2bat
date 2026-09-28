@@ -1,6 +1,7 @@
 \begin{apartats}
 
-\apartat[1,25]{0,75}
+\begin{tria}{limits-tipus}
+\itemtria{un-limit}{0,75}{1,25}
 Calcula el límit següent:
 \[
 \lim_{x\to4}\frac{x^2-16}{x^2-6x+8}
@@ -12,6 +13,22 @@ Calcula el límit següent:
 \frac{(x-4)(x+4)}{(x-4)(x-2)}=\frac{x+4}{x-2}\;\xrightarrow[x\to4]{}\;\frac{8}{2}=4 .
 \]
 \end{solucio}
+
+\itemtria{conjugat}{0,75}{1,25}
+Calcula el límit següent:
+\[
+\lim_{x\to4}\frac{\sqrt{x}-2}{x-4}
+\]
+
+\begin{solucio}
+És una indeterminació $0/0$, però no hi ha cap polinomi per factoritzar: es multiplica i es
+divideix pel conjugat del numerador, $\sqrt{x}+2$:
+\[
+\frac{\left(\sqrt{x}-2\right)\left(\sqrt{x}+2\right)}{(x-4)\left(\sqrt{x}+2\right)}
+=\frac{x-4}{(x-4)\left(\sqrt{x}+2\right)}=\frac{1}{\sqrt{x}+2}\;\xrightarrow[x\to4]{}\;\frac14 .
+\]
+\end{solucio}
+\end{tria}
 
 \begin{nomesllarg}
 \apartat{0,75}
