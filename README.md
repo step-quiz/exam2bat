@@ -8,12 +8,15 @@ veus l'enunciat i la solució en PDF, i en baixes el codi `.tex`, sol o muntat e
 complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva procedència
 («PAU juny 2026, sèrie 1»).
 
-> **Estat a 22 de setembre de 2026:** 64 preguntes. N'hi ha 24 de la unitat 7 (Límits i
+> **Estat a 28 de setembre de 2026:** 107 preguntes. N'hi ha 24 de la unitat 7 (Límits i
 > continuïtat) en 8 temes i 18 de la unitat 8 (Derivades) en 6 temes, totes amb tres variants
 > per tema; 12 de la unitat 9 (Aplicacions de les derivades) en 4 temes, també amb tres
-> variants; 5 de la unitat 10 (Representació de funcions) en 5 temes, i 5 de la PAU (l'examen
-> sencer de juny de 2026). El detall de la feina feta i pendent és a
-> [`handout.md`](handout.md).
+> variants; 15 de la unitat 10 (Representació de funcions) en 5 temes, també amb tres variants; 12 de la unitat 13 (Probabilitat) en 4 temes, també amb tres
+> variants; 6 de la unitat 14 (la distribució binomial) en 2 temes, també amb tres variants; i 20 de la PAU (les dues
+> sèries de juny de 2026, la sèrie 1 de juny de 2025 i setembre de 2025). **Les 87 preguntes de les unitats 7 a 10, 13 i 14 ofereixen una tria** en algun
+> apartat: un altre cas, una altra tècnica o una tasca diferent de la del defecte, amb el seu
+> propi Enunciat i Solució, triable des de la mateixa carta. El detall
+> de la feina feta i pendent és a [`handout.md`](handout.md).
 
 ---
 
@@ -21,13 +24,24 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
 
 1. Obre `index.html` amb doble clic. No cal servidor ni connexió.
 2. A l'esquerra hi ha els temes, agrupats per unitat. La PAU hi té el seu grup propi, amb
-   quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat.
+   quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat. Cada unitat es plega i es desplega
+   clicant-ne el títol. Plegada, diu quantes preguntes seves hi ha a l'examen, i el navegador
+   recorda quines has plegat.
 3. **Cada clic a un tema hi afegeix una pregunta** d'aquell tema. Un segon clic n'afegeix una
    altra, si n'hi ha. El quadret diu quantes n'hi ha a l'examen, i el número de la dreta,
    quantes en té el tema.
 4. Cada pregunta és una targeta. Amb ◀ ▶ passes d'una variant a l'altra del mateix tema, amb
    ▲ ▼ la mous i amb ✕ la treus. Una mateixa pregunta no hi pot sortir dues vegades.
-5. **Per defecte, l'examen té l'estructura de la PAU.** Les cinc primeres preguntes queden
+5. **Si un apartat ofereix una tria**, la targeta hi mostra un selector amb cada alternativa i
+   els seus punts a la durada triada: quants ítems calculadors dur (un límit o quatre), o una
+   alternativa sencera per al mateix apartat (classificar una discontinuïtat o llegir imatges
+   d'una gràfica). Sense tocar-hi res, l'examen surt exactament igual que si la tria no
+   existís. Canviar-la pot fer que la pregunta ja no sumi 2,50: el comptador de la targeta i el
+   de baix de tot ho avisen en viu. Cada tria té el seu propi **Enunciat** i **Solució**, de
+   només l'alternativa triada: mai cal triar a cegues. Si els tens oberts i canvies l'ítem,
+   s'actualitzen sols. L'Enunciat i la Solució de la pregunta sencera, més avall, mostren
+   sempre el defecte; el `.tex` que en baixis, en canvi, ja reflecteix la tria feta.
+6. **Per defecte, l'examen té l'estructura de la PAU.** Les cinc primeres preguntes queden
    numerades com a 1, 2, 3, 4a i 4b: l'alumne fa la 1, la 2 i la 3, i tria entre la 4a i la 4b.
    Val igual per a preguntes dels temes, de la PAU o barrejades en qualsevol ordre.
    L'estructura és de les places, no de les preguntes: si en treus o en mous una, la 4a i la
@@ -35,19 +49,19 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
    la separa (1, 2, 3, 4, 5); a qualsevol altra, la converteix en una alternativa de
    l'anterior. Una opció compta una sola vegada als punts, i als minuts es compta la més
    llarga.
-6. **Durada.** A dalt de l'examen tries **1 h 30** o **50 min**. A 50 min, cada pregunta fa
+7. **Durada.** A dalt de l'examen tries **1 h 30** o **50 min**. A 50 min, cada pregunta fa
    servir la seva versió de 50 min: menys apartats i els punts repartits de nou. Si no en té,
    hi va sencera i la targeta ho diu amb l'etiqueta «sencera». El comptador compara els
    minuts amb la durada triada. El `.tex` que baixes ja surt net per a aquesta durada: no hi
    ha els apartats que es treuen, i els punts hi són escrits tal com surten. El que diu el
    `.tex` és exactament el que surt al PDF.
-7. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
-   sola. Tot segueix la durada triada.
-8. A baix: **prova-N.tex** baixa el cos de l'examen per a la carpeta d'exàmens (vegeu més
+8. A cada targeta: **Enunciat** i **Solució** obren el PDF, i **.tex** baixa aquella pregunta
+   sola. Tot segueix la durada triada (i, si n'hi ha, la tria feta).
+9. A baix: **prova-N.tex** baixa el cos de l'examen per a la carpeta d'exàmens (vegeu més
    avall). Cada pregunta hi porta la seva etiqueta: `\encapcalament{Q4a}`. Les solucions hi
    van a dins, i les fa sortir l'interruptor `\solucionstrue` del teu `main.tex`. **Tot en
-   un** i **amb solucions** baixen l'examen en un sol fitxer, preàmbul inclòs, per si no vols
-   carpeta. El comptador es posa verd quan l'examen fa 10 punts.
+   un** baixa l'examen en un sol fitxer, preàmbul inclòs, per si no vols carpeta —sempre sense
+   solucions—. El comptador es posa verd quan l'examen fa 10 punts.
 
 ### La carpeta d'exàmens
 
@@ -161,6 +175,11 @@ handout.md                 feina feta i feina pendent
 
 Un tema nou s'afegeix primer a `temes.json` i després se'n crea la carpeta.
 
+Per oferir-hi una tria en lloc d'un apartat fix, substitueix l'`\apartat{…}` i el seu cos per
+un `\begin{tria}{id}…\end{tria}` amb els `\itemtria{id}{punts}` que calguin (vegeu «Tries:
+quan un apartat ofereix més d'un ítem», més amunt). El primer ítem declarat és el defecte:
+si només n'hi ha un, la tria es comporta com un apartat normal.
+
 ## Afegir una pregunta PAU
 
 Les preguntes PAU viuen a `pau/<bloc>/<codi>/`, on el bloc és `algebra`, `geometria`,
@@ -169,6 +188,10 @@ Les preguntes PAU viuen a `pau/<bloc>/<codi>/`, on el bloc és `algebra`, `geome
 ```
 pau/analisi/ana-26j-q1/     →  bloc ana · convocatòria 26j · exercici q1
 ```
+
+Hi ha una sola excepció: `pro-25s-q3`. El repositori `pau` té l'exercici 3 de setembre de 2025
+partit en dues entrades, `pro-25s-q3ab` i `ana-25s-q3c`; al banc és una sola pregunta, sencera,
+amb els tres apartats.
 
 Del codi, el build en treu la convocatòria (`26j`). A `pau/convocatories.json` hi busca la
 sèrie, i escriu la procedència just sota la capçalera de la pregunta:
@@ -195,7 +218,7 @@ El procediment complet per importar una convocatòria és a `handout.md`.
 
 | # | Regla | Qui la fa complir |
 |---|---|---|
-| 1 | Les fonts són `pregunta.tex` i `meta.json`. `out/` i `cataleg.js` són **generats**: no s'editen mai. | l'Action els sobreescriu |
+| 1 | Les fonts són `pregunta.tex` i `meta.json`. `out/` i `cataleg.js` són **generats**: no s'editen mai. Un build complet n'esborra els PDF que ja no genera cap font. | l'Action els sobreescriu |
 | 2 | Tota pregunta val **2,50 punts**. Cada apartat és múltiple de **0,25**. | `build.py` |
 | 3 | La puntuació s'escriu **només** a `\apartat{...}`. Enlloc més. L'opcional és la de 50 min: `\apartat[1,25]{0,75}`. Les dues puntuacions sumen 2,50. | `build.py` la llegeix del `.tex` |
 | 4 | Una pregunta és **només el cos**: sense `\documentclass`, `\usepackage` ni `\begin{document}`. | `build.py` |
@@ -207,6 +230,11 @@ El procediment complet per importar una convocatòria és a `handout.md`.
 | 9 | La línia «PAU juny 2026, sèrie 1» **no s'escriu mai a mà**: la posa el build a partir del codi de la pregunta i de `pau/convocatories.json`. | `build.py` |
 | 10 | Una sèrie entra al registre **només amb font**. Una dada sense font no s'imprimeix en un examen. | `build.py` |
 | 11 | La versió de 50 min la decideix **qui escriu la pregunta**: quins apartats es treuen (`nomesllarg`) i com es reparteixen els punts. Amb versió de 50 min, `meta.json` porta `minuts_curt`; sense, no el porta. | `build.py` |
+| 12 | Un `\begin{tria}{id}…\end{tria}` substitueix l'apartat sencer i n'ofereix diversos `\itemtria{id}{punts}` —cossos complets, amb la seva pròpia solució—, dels quals se'n materialitza sempre **exactament un**. | `build.py` |
+| 13 | Els identificadors d'una tria i dels seus ítems són **permanents**, com `q001`: mai es renumeren ni es reaprofiten. | tu |
+| 14 | Sense selecció, es materialitza el **primer ítem declarat** (o el de `[defecte-curt=id]` a 50 min, si n'hi ha). Aquest defecte és l'únic que `build.py` garanteix que sumi 2,50 a cada modalitat; una combinació que el professor triï lliurement al lloc es valida allà, en viu, no en temps de build. | `build.py` i `app.js` |
+| 15 | Una tria no pot ser dins d'un `nomesllarg`. | `build.py` |
+| 16 | Una alternativa ha de canviar el que l'alumne decideix (un altre cas, una altra tècnica o el raonament a la inversa), no només els nombres de l'enunciat. Canviar un nombre val si canvia el cas: un 0/0 que passa a ser 3/0. | tu |
 
 A més, el build comprova: que els slugs de `temes.json` siguin únics; que cada tema sigui a
 la carpeta de la seva unitat; que el format dels codis sigui correcte (`q001` al banc,
@@ -221,16 +249,45 @@ convocatòria existeixi al registre.
 | `\apartat{0,75}` | **a)** *(0,75 punts)* |
 | `\apartat[1,25]{0,75}` | 0,75 punts a l'examen d'1 h 30 i 1,25 al de 50 min |
 | `\begin{nomesllarg} … \end{nomesllarg}` | un apartat sencer, amb la seva solució, que només surt a l'examen d'1 h 30; els de després es tornen a lletrejar sols |
-
-Aquestes dues marques només són a les fonts. Abans de compilar o de baixar un `.tex`,
-`materialitza()` (a `build.py` i a `app.js`, idèntiques) deixa la pregunta neta per a la
-durada triada, i `defs.tex` no en veu mai cap.
 | `\begin{graella}{3} \sa … & \sa … \end{graella}` | i) ii) iii) en columnes, amb els `\lim` en mode display |
 | `\si{-1\le x\le 2}` dins de `cases` | «si −1 ≤ x ≤ 2», amb el signe ben espaiat |
 | `\begin{solucio} … \end{solucio}` | només apareix a la versió amb solucions, en blau |
 | `\procedencia{…}` | la línia PAU; **només la fa servir el build** |
 
 Tota la resta és LaTeX normal.
+
+### Tries: quan un apartat ofereix més d'un ítem
+
+`\apartat[x]{y}` i `nomesllarg` trien entre **dues** coses (la durada). Quan calen **més de
+dues** —quants ítems i quins, o una alternativa sencera per al mateix apartat—, s'usa una
+tria, que substitueix l'apartat de cap a peus:
+
+```latex
+\begin{tria}{determina-a}
+\itemtria{amb-reflexio}{1}{1,25}
+Considera la funció …
+\begin{solucio} … \end{solucio}
+
+\itemtria{sense-reflexio}{0,5}
+Considera la funció, una mica més curta …
+\begin{solucio} … \end{solucio}
+\end{tria}
+```
+
+`\begin{tria}{id}` porta un identificador de tria (com un slug de tema) i, opcionalment,
+`[defecte-curt=id-item]` si el defecte de 50 min no ha de ser el primer ítem. Cada
+`\itemtria{id}{punts}` (o `\itemtria{id}{punts-1h30}{punts-50min}`, com `\apartat[x]{y}`) és
+un cos complet, amb la seva pròpia solució. Sense tocar res, es materialitza sempre el
+primer ítem declarat —el `.tex` és idèntic al d'abans que existissin les tries—, i cada
+plaça de l'examen pot triar-ne un altre des de la seva carta. Com `nomesllarg`, `tria` i
+`itemtria` només són a les fonts: `materialitza()` els resol abans que `defs.tex` en vegi
+cap, i el `.tex` que es baixa ja porta un `\apartat{…}` normal amb el cos triat.
+
+El build compila, a més, l'enunciat i la solució de **cada ítem, tot sol**, a
+`out/tries/<id-tria>/<id-item>/`: al lloc, cada tria té el seu propi Enunciat i Solució, de
+només l'alternativa triada, perquè no cal triar-la a cegues.
+
+
 
 ## `meta.json`
 
@@ -285,6 +342,11 @@ Opcions de `build.py`:
 - `--headers FITXER` compila amb uns altres paquets, per exemple si a l'entorn en falten.
   Aquests PDF no són definitius i el build ho avisa. El catàleg porta sempre
   `build/headers.tex` i `build/defs.tex`, que són els que el lloc posa als `.tex`.
+- `--tot` recompila tots els PDF. Sense aquesta opció, el build només recompila els PDF el
+  document dels quals ha canviat: cada PDF porta a les metadades l'empremta del document que
+  l'ha produït i de la versió de `pdflatex`, i si coincideix, el reutilitza. Canviar
+  `headers.tex` o `defs.tex` ho recompila tot. Els PDF són reproduïbles (data i identificador
+  fixos): la mateixa font dona el mateix fitxer, byte a byte.
 
 ## GitHub i compilació
 

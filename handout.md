@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 22 de setembre de 2026 · **Estat:** 64 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 5 de la unitat 10 i 5 de la PAU) · 1.200 minuts d'examen al banc · 29 comprovacions del validador, 10 de sortida del build i 59 de
+**Data:** 28 de setembre de 2026 · **Estat:** 107 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 20 de la PAU), 87 amb tries · 2.066 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -13,7 +13,7 @@ arribat i cap on ha d'anar.
 
 ## 1. Resum
 
-El projecte ha passat per cinc sessions. La primera va avaluar un `main.tex` fet per una
+El projecte ha passat per catorze sessions. La primera va avaluar un `main.tex` fet per una
 altra IA i en va treure les lliçons. La segona va construir l'arquitectura: el build, el lloc
 web, l'Action de GitHub i les proves. La tercera va completar la unitat 7, amb 13 preguntes
 verificades. La quarta va obrir la secció PAU i hi va importar l'examen sencer de juny de
@@ -24,10 +24,33 @@ totes les preguntes de la u7, amb dues de noves. La setena va tancar la u7 i va 
 sencera: sis temes i nou preguntes. La vuitena va canviar la manera de lliurar els exàmens: el
 lloc dona el cos de la prova per a la carpeta del professorat. La novena va completar la u7
 amb una tercera variant de cada tema, i la desena va fer el mateix amb la u8. L'onzena i la dotzena van fer la u9,
-amb quatre temes i tres variants de cadascun, i la tretzena va obrir la u10. La màquina
+amb quatre temes i tres variants de cadascun, i la tretzena va obrir la u10. La catorzena, a
+partir d'un exemple concret d'edició a mà en un projecte Overleaf, va introduir les **tries**:
+un apartat pot oferir més d'una alternativa, triable des de la carta, sense deixar de ser el
+mateix apartat de sempre quan no se'n toca res. La quinzena, arran d'una captura de pantalla
+del professor, va tancar el forat més gros que havien deixat les tries: es triava una
+alternativa sense poder-la llegir. Ara cada ítem té el seu propi Enunciat i Solució
+compilats, com qualsevol pregunta. La setzena hi va afegir contingut nou i verificat a **totes
+les 24 preguntes de la u7**, a més de treure dues coses que el professor ja no necessitava (la
+nota de la tria i el botó «amb solucions»). La dissetena, arran d'una crítica del professor
+(setze d'aquelles alternatives només canviaven els nombres) i dels enunciats PAU de 2023 a 2026,
+les va substituir per alternatives que canvien el cas, la tècnica o el sentit del raonament. La divuitena
+va fer que el build esborri els PDF que ja no genera cap font, perquè els 60 orfes que havia deixat
+la dissetena feien fallar l'Action, i va posar tries a les 18 preguntes de la u8, amb el mateix
+criteri. La dinovena va fer el mateix amb les 12 de la u9, i va fer plegables les unitats de la
+llista de temes. La vintena va començar a completar la u10, a partir del solucionari del llibre i
+del full de feina de Classroom, amb els exercicis que els alumnes hauran practicat de debò. La vint-i-unena hi va afegir les asímptotes, i va deixar congelat el tema de
+funcions a trossos fins que s'hagi fet la setmana 17. La vint-i-dosena va acabar els estudis complets de funcions
+racionals i polinòmiques: la u10 és completa, llevat del tema congelat. La vint-i-tresena va fer que el Run workflow deixés de
+trigar cada vegada més: els PDF són reproduïbles i el build només recompila els que han canviat. La vint-i-quatrena, a petició del professor, va completar el
+tema de funcions a trossos, i amb ell la u10. La vint-i-cinquena va fer la u13, Probabilitat: quatre
+temes, amb tres variants cadascun i una tria a cada pregunta. La vint-i-sisena va fer la
+u14, de la qual els alumnes practiquen la distribució binomial. La vint-i-setena va afegir a la u10 els
+exercicis de la setmana 17 i va importar la sèrie 5 de la PAU de juny de 2026. La vint-i-vuitena va importar la sèrie 1 de
+juny de 2025, i la vint-i-novena, setembre de 2025, amb l'exercici 3 sencer com a `pro-25s-q3`. La màquina
 funciona de punta a punta. El que queda és
-sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents i la
-resta d'unitats.
+sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents, la
+resta d'unitats, i estendre les tries a la u10.
 
 ---
 
@@ -321,6 +344,683 @@ assignat, i per tant el banc no hi té tema.
 - `estudi-racional/q001` és la més difícil del banc fins ara (●●●): asímptota obliqua, dues
   branques i un extrem a cada costat.
 
+### 2.14 Sessió 14 · Les tries: preguntes més granulars i configurables
+
+El professor va portar un exemple concret, no una petició abstracta: un projecte Overleaf amb
+`prova-1.tex` (baixat del lloc, sense tocar) i `examen-sencer.tex` (editat a mà). La comparació,
+un cop resseguida fins a les fonts, deia tres coses:
+
+- **Q1** (`limits-infinit/q002`), apartat a): d'1 límit (0,75 punts a 1 h 30) a 4 límits
+  (2 punts), cobrint la tipologia sencera (grau del numerador més gran, igual i més petit, als
+  dos infinits).
+- **Q1**, apartat b): «determina $a$» sense la reflexió sobre $a=0$, amb un objectiu diferent
+  (0,5 punts en lloc d'1,25).
+- **Q3** (`limits-grafica/q001`), apartat b): «classifica la discontinuïtat» substituïda per
+  «calcula quatre imatges», **amb el mateix cost** (1,25 punts) — el canvi més net dels tres,
+  perquè no barreja cap redistribució de punts.
+
+El lloc només oferia dues palanques —quin tema, quina variant— i, dins d'una pregunta, la
+duplicitat 1 h 30 / 50 min via `nomesllarg` i `\apartat[x]{y}`. Cap de les dues permetia triar
+quants ítems calculadors dur un apartat, ni bescanviar-ne el contingut sencer per un altre amb
+un cost diferent. El professor ho havia hagut de resoldre a mà, a Overleaf.
+
+**Disseny.** Mirant els tres canvis junts, els dos primers («quants ítems» i «amb subtasca o
+sense») i el tercer («una alternativa sencera, mateix cost») van resultar ser **el mateix
+mecanisme**: triar exactament un cos complet, amb la seva pròpia solució i el seu propi cost,
+d'entre uns quants de declarats. Un `\begin{tria}{id}…\end{tria}` en substitueix l'apartat
+sencer; cada `\itemtria{id}{punts}` és un ítem permanent, com `q001`. La primera versió del
+disseny preveia també triar-ne uns quants d'una llista compartida (com una `graella` amb
+comptador), amb els seus propis punts per ítem i un repartiment automàtic; revisant-ho a
+l'hora d'implementar-ho, cap dels tres exemples el necessitava —tots tres es descriuen com
+«un cos sencer en lloc d'un altre»— i la versió simple, sense combinatòria, ho cobreix tot amb
+molta menys superfície de disseny. Es guarda com a ampliació natural, no com a feina feta.
+
+Per triar-ne l'abast: la tria és **només per a preguntes del banc**, mai per a PAU (l'enunciat
+hi ha de ser literal, com ja diu el README). I els ítems es preparen i es verifiquen **sempre
+com fins ara**, pel mateix `build.py`; el lloc només ofereix triar entre els que ja hi ha, no
+escriure'n cap al vol sense passar-hi. Ho va confirmar el professor explícitament.
+
+**Implementació.** `\begin{tria}`/`\itemtria` són marques només de les fonts, com `nomesllarg`:
+`defs.tex` no en veu mai cap. `materialitza()` (build.py i app.js, ara amb un tercer paràmetre
+`seleccio`) les resol abans que res més hi toqui, triant sempre exactament un ítem —el primer
+declarat per defecte, o el de `[defecte-curt=id]` a 50 min— i deixant, en el seu lloc, un
+`\apartat{…}` normal amb el cos triat. Sense cap `seleccio`, el resultat és **idèntic byte a
+byte** al d'abans que existissin les tries: comprovat amb les dues preguntes pilot abans i
+després de la migració, a totes dues modalitats. `app.js` hi afegeix, per plaça de l'examen, un
+`seleccio` (buit per defecte) i un selector per tria a la carta, amb els punts de cada
+alternativa a la durada triada; l'adreça en desa la selecció amb un sufix nou
+(`~id-tria=id-ítem`, separat per `;`) que no toca les adreces d'abans, sense cap tria.
+
+**Migració pilot.** `u7/limits-infinit/q002` i `u7/limits-grafica/q001` —les preguntes de
+l'exemple— reescrites amb tries, amb els mateixos defectes d'abans i el contingut exacte que el
+professor havia escrit a mà com a alternatives (`quatre-tipus`, `sense-reflexio`,
+`avalua-imatges`), més un tercer ítem intermedi (`dos-tipus`) a `limits-infinit-tipus` per no
+deixar-ho en una simple opció binària. La resta del banc no es toca: la migració és **opcional
+i incremental**, com la resta d'apartats de 50 min a la sessió 6.
+
+**Verificació.** Paritat de la `materialitza()` amb tries, Python contra JavaScript executat de
+debò amb Node, en 14 combinacions. Una prova d'integració amb jsdom (clics reals sobre el DOM),
+8 casos: hi va sortir un error de càlcul **de la pròpia prova** —l'apartat `nomesllarg` de
+`limits-infinit/q002` segueix comptant a 1 h 30 encara que es triï `quatre-tipus`, cosa que a
+50 min no passa perquè aquell apartat hi desapareix— i, corregit, tots vuit hi passen. Nou casos
+nous a `prova_validacio.py` (38 en total) i disset comprovacions noves a `prova_paritat.py` (77
+en total), incloent-hi `triaCanvia` com una acció més. Compilació real amb `pdflatex` (amb un
+preàmbul reduït, perquè aquest entorn no té `lmodern` ni `babel`-català): les dues preguntes
+migrades i quatre combinacions més, totes a una pàgina i sense errors; tot el banc (246 PDF)
+recompilat sense cap regressió.
+
+En el procés es van trobar i corregir tres errors propis, cap d'ells detectat fins que es va
+provar de debò (vegeu la secció 4): un `defecte-curt` que apuntés a un ítem inexistent feia
+petar `punts_del_tex` amb un `KeyError` en lloc de donar un error net; un `\itemtria` amb
+l'identificador mal format desapareixia en silenci en lloc de fer fallar el build; i una tria
+sense cap ítem feia petar la construcció del catàleg amb un `IndexError`, també abans d'arribar
+al missatge d'error que ja s'havia registrat correctament.
+
+### 2.15 Sessió 15 · Cap tria a cegues: una previsualització per ítem
+
+El professor va provar les tries al lloc real (amb els PDF de la sessió 14, ja amb els
+paquets oficials) i va enviar una captura: la carta de `limits-grafica/q001` amb «avalua
+imatges» triat, i cap manera de veure'n l'enunciat ni la solució —l'Enunciat i la Solució de
+la carta seguien mostrant sempre el defecte, tal com deia la nota de sota del selector. Amb
+paraules seves, triar així «és horrible»: en un examen real, triar una alternativa que no es
+pot llegir ni verificar no és acceptable.
+
+**Per què no s'havia resolt a la sessió 14.** Es va deixar apuntat com a limitació coneguda
+(secció 5, «No verificat») en lloc de resoldre's, perquè la solució que s'hi va descartar
+—compilar LaTeX en directe al navegador— hauria trencat el principi 4 del projecte («lloc
+sense dependències… funciona obert com a fitxer local»): calia un motor LaTeX en JavaScript,
+una dependència nova i grossa, o un servidor que compilés a petició, que el lloc no ha tingut
+mai. Cap de les dues coses és necessària: cada ítem d'una tria és, com qualsevol pregunta, un
+cos que **build.py ja sap compilar sol**.
+
+**Disseny i implementació.** `cos_dun_item()` (build.py) n'aïlla el cos i els punts, amb el
+mateix mètode de retall per posicions que ja feia servir `materialitza()` per triar-lo.
+`construeix()` el compila com una miniatura d'una sola pregunta —`\begin{apartats}
+\apartat{punts} …cos… \end{apartats}`, amb la capçalera «Alternativa»— a
+`out/tries/<id-tria>/<id-item>/`, i el catàleg hi porta les rutes de cada ítem (`pdf`,
+`pdf_solucio`, i les de 50 min, deduplicades quan el cos no hi difereix, exactament com ja fa
+`pdf_curt` a la pregunta sencera). Al lloc, cada tria té ara els seus propis botons
+**Enunciat**/**Solució** —reaprofitant `mostra()` amb una clau composta
+`pregunta:tria`, sense cap funció nova—, que mostren l'ítem **triat**, no el defecte; si el
+visor ja és obert i es canvia l'ítem, s'actualitza sol, sense haver de tornar a clicar.
+
+**Verificació.** Compilades i revisades visualment totes dues previsualitzacions de
+`limits-grafica/q001` amb el preàmbul reduït d'aquest entorn —«avalua imatges» hi surt
+exactament com la captura del professor l'hauria de tenir, amb l'enunciat i la solució
+completa, en blau—. Quatre casos nous a la prova d'integració amb jsdom, incloent-hi que
+canviar d'ítem amb el visor obert l'actualitza sol i que la tria que no s'ha tocat no obre res.
+Tot el banc (268 PDF, catorze més que abans per a les dues preguntes migrades) recompilat
+sense cap regressió.
+
+En revisar els efectes secundaris, es va trobar que `prova_sortida.py` comptava «246 PDF» amb
+un patró (`*/*/*/out/*.pdf`) que no arribava mai a `out/tries/…`: no fallava —perquè no
+comprovava res d'allò que no veia—, però deixava de provar una part real del que ara escriu el
+build. Corregit als dos llocs on hi apareixia el patró, i afegit un cas nou, paral·lel al de
+`--pregunta` que ja hi havia, que demostra que també escriu les previsualitzacions de cada
+ítem.
+
+### 2.16 Sessió 16 · Tries a tota la unitat 7, i dues supressions
+
+El professor va confirmar que la sessió 15 funcionava «perfecte» i va demanar estendre les
+tries a tota la u7 —no unes quantes preguntes més, totes—, més dues supressions: la frase de
+la nota de sota del selector («ja mostren la selecció feta…»), que li semblava soroll, i el
+botó «amb solucions» del peu de pàgina, que no feia servir.
+
+**Les supressions**, primer perquè eren ràpides i no interferien amb la resta: la nota es
+treu sencera d'`app.js` (i la variable `personalitzada`, que només servia per decidir-la, ja
+no cal); el botó, d'`index.html` i de les tres línies d'`app.js` que hi feien referència (el
+`disabled` en pintar i els dos `onclick`). Cap altre lloc en depenia.
+
+**Contingut nou a les 22 preguntes que encara no en tenien** (`bolzano-biseccio`,
+`continuitat-trossos`, `domini-discontinuitats`, `limits-grafica/q002-q003`,
+`limits-infinit/q001,q003`, `limits-punt`, `limits-trossos` i `parametres-ab`; les altres
+dues ja en tenien des de la 14). Cada tria hi és nova —no és el mateix mecanisme repetit amb
+un altre nom—: quantes tasques de límits o continuïtat calculadores dur, quin punt de
+substitució directa preguntar dins la mateixa branca d'una funció a trossos, quina funció
+(polinòmica, exponencial, logarítmica) fer servir per a la mateixa demostració de Bolzano o
+el mateix estudi de continuïtat amb paràmetres, o quina lectura fer sobre la mateixa gràfica.
+Cada funció, límit i solució nova es va verificar numèricament amb Python (i amb SymPy els
+casos amb factoritzacions) **abans** d'escriure-la al `.tex`, mai després.
+
+**Mètode.** Amb 22 preguntes per davant, calia una disciplina que aguantés l'escala: per a
+cada pregunta, es desa l'original, s'escriu la migració, i es passa **immediatament** per
+`materialitza()` a totes dues modalitats (comparació byte a byte amb l'original) i per
+`punts_del_tex()`, abans de tocar la següent. Aquesta disciplina —no la vista, ni la
+intuïció— és la que va detectar els dos errors propis d'aquesta sessió, tots dos en el primer
+tema (`bolzano-biseccio` i `continuitat-trossos`) i cap als dos temes següents: primer, una
+edició mal feta a `continuitat-trossos/q001` que va barrejar l'enunciat d'un apartat amb la
+solució d'un altre (es va refer el fitxer sencer, no pedaçar-lo); després, l'ordre dels
+arguments de `\itemtria{id}{1h30}{50min}` invertit a `continuitat-trossos/q002` (havia
+transcrit l'ordre literal del claudàtor `[50min]{1h30}` sense capgirar-lo). Els 22 fitxers
+migrats després ja no en van tenir cap.
+
+En acabar-ho tot, dues bateries pròpies van necessitar-se al dia, no perquè fallessin sinó
+perquè dues de les seves fixtures assumien un contingut que ja no hi era: `prova_sortida.py`
+trencava la puntuació d'una pregunta injectant-hi `\apartat[2,5]{1,5}`, que ja no existeix a
+`parametres-ab/q001` (ara hi ha `\itemtria{original}{1,5}{2,5}`), i el cas de `--pregunta`
+esperava exactament 4 PDF de `limits-punt/q001`, que ara en té 10 perquè ja té una tria; s'ha
+mogut aquest segon cas a una pregunta de la u8 encara sense tries (`derivada-definicio/q001`),
+per no barrejar-lo amb el cas ja existent que prova `--pregunta` amb tries. La prova
+d'integració amb jsdom (no formal al repositori) tenia el mateix problema en dos llocs
+(assumia que `limits-infinit/q003` i el tema «Límits en un punt» no tenien tries), corregits
+de la mateixa manera.
+
+**Verificació.** Les 24 preguntes, validades i compilades de debò amb el preàmbul reduït
+d'aquest entorn: 436 PDF (abans, 268), cap error, cap *Overfull*, totes a una pàgina, els
+mateixos punts per defecte d'abans de tocar-les. Les tres bateries formals (38/11/77) i la
+integració amb jsdom, totes en verd després de posar-les al dia.
+
+### 2.17 Sessió 17 · Alternatives que canvien el cas, no els nombres
+
+El professor va revisar les tries de la sessió 16 i en va fer una crítica precisa: algunes li
+agradaven molt, però en altres «l'única cosa que fas és canviar els nombres de l'enunciat, però
+en el fons estàs preguntant el mateix». I hi va afegir l'excepció que ho aclareix tot: canviar
+un nombre sí que és pertinent quan canvia el cas, com un límit que passa de ser una
+indeterminació 0/0 a ser directament 3/0. Comptades una per una, 8 de les 24 preguntes tenien
+una alternativa que canviava la tasca, i 16 eren la mateixa pregunta amb altres nombres (tot
+`bolzano-biseccio`, `domini-discontinuitats`, `limits-punt`, `limits-trossos` i
+`parametres-ab`, més `continuitat-trossos/q002`).
+
+**La PAU com a referència.** El professor va passar el recull d'enunciats PAU de 2023 a 2026:
+62 enunciats dels quatre blocs. La u7 només surt als d'anàlisi, sempre com un apartat d'un
+exercici mixt, de 0,5 a 1,25 punts. Hi surt Bolzano per a un valor i no per a una arrel
+(23s-q4), localitzar una arrel amb una precisió donada i dir quantes n'hi ha exactament (24i-q1,
+24s-q1), límits a la frontera del domini de funcions no racionals per fer-ne l'esbós (24i-q1,
+24j-q1), el domini de $\sqrt{1+x^3}$ (25i-q1) i la continuïtat amb un sol paràmetre que hi entra
+al quadrat, amb un valor que un enganxament dona i l'altre descarta (26j-q1). Cap no demana un
+límit 0/0 per factoritzar, i els sistemes en $a$ i $b$ que hi surten són de derivades, no de
+continuïtat.
+
+**El criteri**, que ara és la regla 16 del README: una alternativa ha de canviar el que l'alumne
+decideix (un altre cas, una altra tècnica o el raonament a la inversa), no només les xifres.
+
+**Les 16 alternatives noves** porten identificadors nous. La regla 13 no deixa reaprofitar
+`alternativa` ni `dos-limits` per a un contingut diferent, i una adreça desada que en porti un
+cau al defecte.
+
+| Tema | Què demana ara l'alternativa |
+|---|---|
+| `limits-punt` | q001, un k/0 amb tots dos laterals $+\infty$ (`quocient-k-zero`); q002, valor absolut, amb un límit de laterals finits i diferents i un altre que sí que existeix (`valor-absolut`); q003, el conjugat (`conjugat`) |
+| `limits-trossos` | Un segon límit en un punt de l'**altra** branca, on la fórmula de la primera donaria un valor trampa (`altra-branca`) |
+| `bolzano-biseccio` | q001, trobar l'interval en lloc de verificar-lo (`troba-interval`); q002, comptar arrels, exactament tres (`tres-arrels`); q003, les hipòtesis, amb $\frac1{x-1}$ a $[0,2]$ (`hipotesis`) |
+| `domini-discontinuitats` | Un factor comú que **no** fa evitable la discontinuïtat (`factor-doble`), i una segona tria a l'apartat de domini, amb taules de signes i condicions combinades (`domini-funcions`, ítem `signes-i-condicions`) |
+| `continuitat-trossos/q002` | Una discontinuïtat dins d'una branca, que no és cap enganxament (`branca-interna`) |
+| `parametres-ab` | q001, un paràmetre al quadrat amb un valor descartat (`un-parametre`); q002, condicions incompatibles, «cap valor» (`incompatible`); q003, una discussió segons $k$ (`discussio-k`) |
+
+**Tres adaptacions de la proposta**, fetes en llegir les preguntes senceres abans d'escriure-hi.
+(1) A `limits-trossos`, el `nomesllarg` de totes tres preguntes ja demanava els límits a
+$\pm\infty$, i l'alternativa proposada, un límit a $-\infty$, s'hi hauria repetit a 1 h 30. Es va
+canviar per un punt de l'altra branca, que conserva la idea: decidir quina branca mana.
+(2) A `limits-punt/q001`, el `nomesllarg` ja tenia un 2/0 amb laterals oposats, i per això
+l'alternativa és el cas k/0 en què tots dos laterals coincideixen. (3) A `parametres-ab`, el
+`nomesllarg` de q001 i q003 ja demanava «tots els valors de $m$» d'una equació de segon grau, i
+l'alternativa de q001 es va dissenyar perquè hi aportés una cosa nova: creuar dues condicions i
+descartar-ne un valor.
+
+**Verificació.** Totes les funcions, límits, dominis i valors de paràmetres es van comprovar amb
+SymPy abans d'escriure'ls. Cada fitxer es va verificar just després d'escriure'l: el defecte és
+idèntic byte a byte a totes dues durades, no hi ha cap error, i la pregunta suma 2,50 punts amb
+cada ítem triat. Tot el banc es va compilar amb el preàmbul reduït: 464 PDF, cap error ni
+*Overfull*. Les tres bateries (38/11/77) i la integració amb jsdom passen sense haver-les de tocar.
+
+**PDF orfes.** Aquesta és la primera sessió que retira ítems d'una tria. El build copia els PDF
+a `out/`, però no n'esborra mai cap, i l'Action només fa `git add` dels que existeixen. Per tant,
+les previsualitzacions dels 16 ítems retirats es quedarien al repositori. Es van donar per
+inofensius, perquè el catàleg no hi apunta, i la neteja es va proposar com a opcional. No ho eren:
+van fer fallar l'Action (secció 2.18).
+
+### 2.18 Sessió 18 · El build ja no deixa PDF orfes, i tries a tota la unitat 8
+
+**La fallada.** El primer Run workflow després de la sessió 17 es va aturar al pas «Un build que
+falla no escriu res», amb el missatge «un build correcte escriu els 524 PDF: 464 de 524 escrits».
+La prova fa un build complet sobre una còpia del repositori i comprova que s'han reescrit tots
+els PDF de `out/`. Al repositori hi havia els 60 PDF de previsualització dels 16 ítems retirats a
+la sessió 17 (2 o 4 per ítem), que ja no genera cap font: $524-464=60$. Es va reproduir aquí
+afegint-hi aquests 60 fitxers, i va sortir el mateix missatge. La sessió 17 els havia donat per
+inofensius, i n'havia proposat la neteja com a opcional i per després del Run workflow. A la
+màquina de treball la prova passava perquè no hi havia els PDF de la sessió 16. En aquell moment,
+la neteja manual amb `git rm` ho va resoldre.
+
+**L'arranjament permanent.** Un build complet, i només si no hi ha hagut cap error, esborra de
+`out/` els PDF que no surten al catàleg que acaba de generar, i també les carpetes que hi queden
+buides. Amb `--pregunta` o `--nomes-cataleg` no n'esborra cap, perquè aquell build no ha mirat
+totes les fonts. `prova_sortida.py` en té tres comprovacions noves (14 en total): un build fallit
+no esborra cap orfe, un build complet sí (i també les carpetes buides), i `--pregunta` no. Es van
+fer dos controls: amb els 60 orfes reals, la prova passa; i amb l'esborrat desactivat, la
+comprovació nova falla.
+
+Queda una limitació. El pas «Desa» de l'Action només fa `git add` dels fitxers que existeixen, de
+manera que un esborrat fet a la màquina de l'Action no arriba al repositori. L'Action ja no falla,
+però els orfes s'hi quedarien. Es resol amb una línia de `compila.yml` (secció 11), que cal
+canviar a mà perquè el bot no pot escriure a `.github/workflows/`. La línia nova es va provar en
+un repositori simulat: registra els canvis, els PDF nous i els esborrats, i deixa fora les fonts.
+
+**Tries a la u8.** Les 18 preguntes, amb el criteri de la regla 16 des del principi: cap
+alternativa no és un canvi de nombres.
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `derivada-definicio` | q001, reconèixer un límit com la derivada d'una funció en un punt (`reconeix-limit`); q002, una funció contínua i no derivable, $\lvert x-3\rvert$ (`no-derivable`); q003, la derivabilitat d'una funció a trossos per la definició, que aquesta vegada sí que ho és (`trossos-derivable`) |
+| `tvm-derivada-punt` | q001, $f'(a)$ en un punt qualsevol per la definició, i on la tangent és horitzontal (`derivada-general`); q002, la TVM a la inversa, trobant l'interval (`tvm-inversa`); q003, velocitats mitjanes en intervals cada vegada més petits, com a aproximació de la instantània (`aproximacio-numerica`) |
+| `regles-derivacio` | q001, les regles amb valors, sense fórmules (`regles-amb-valors`); q002, reescriure com a suma de potències per no fer servir el quocient (`simplifica-abans`); q003, trobar l'error d'un alumne (`troba-error`) |
+| `regla-cadena` | q001, la cadena amb valors (`composicio-amb-valors`); q002, les propietats dels logaritmes abans de derivar (`log-propietats`); q003, descompondre una composició de tres funcions (`composicio-triple`) |
+| `recta-tangent` | q001, les tangents en $x=a$ i $x=-a$ són paral·leles, i per què (`tangents-simetriques`); q002, el punt on la tangent passa per un punt donat (`tangent-per-punt`); q003, les dues tangents des d'un punt exterior (`punt-exterior`) |
+| `tangent-condicions` | q001, quins pendents són possibles (`pendents-possibles`); q002, cap tangent de pendent positiu (`pendent-negatiu`); q003, les tangents que passen per l'origen (`tangents-per-origen`) |
+
+Les de `recta-tangent` i `tangent-condicions` segueixen patrons de la PAU: la tangent en un punt
+genèric (23s-q2), la que passa per un punt donat (24i-q3) i el punt on té un pendent donat
+(25j-q1, 26j-q1). Abans d'escriure-les, es va llegir cada pregunta sencera, per no repetir cap
+altre apartat i per no fer servir un nom de funció que ja designés una altra funció a la mateixa
+pregunta. Per això `regles-derivacio/q001` i `regla-cadena/q001` parlen de $u$ i $v$, i
+`derivada-definicio/q002` de $g$.
+
+**Verificació.** Totes les matemàtiques es van comprovar amb SymPy abans d'escriure-les. Cada
+fitxer té el defecte idèntic byte a byte i suma 2,50 punts amb cada ítem, a totes dues durades.
+Tot el banc es va compilar amb el preàmbul reduït: 608 PDF (144 de nous), cap error ni
+*Overfull*, i cinc previsualitzacions de la u8 revisades a ull. Les bateries (38/14/77) i la
+integració amb jsdom passen. Dues proves depenien d'una pregunta de la u8 sense tria (el cas 4 de
+`prova_sortida.py` i el cas 7 de la prova amb jsdom), i ara fan servir `u9/monotonia-extrems/q001`.
+
+### 2.19 Sessió 19 · Tries a la unitat 9, i unitats plegables
+
+**Unitats plegables.** El professor va demanar que la llista de temes es pogués plegar i
+desplegar per unitats. El títol de cada unitat és ara un botó que plega o desplega els seus temes
+(amb `aria-expanded`). Plegada, la unitat diu quantes preguntes seves hi ha a l'examen, perquè no
+es perdin de vista. L'estat es desa a la memòria del navegador (`localStorage`), i no a l'adreça,
+perquè és una preferència de qui fa els exàmens, no part de l'examen. Si el navegador no la deixa
+fer servir, com fan alguns amb un fitxer local, tot surt desplegat com abans, i una memòria mal
+formada tampoc no trenca res. En tornar a pintar la llista, el focus torna al títol clicat, per a
+qui navega amb el teclat. La prova amb jsdom en té dotze comprovacions noves.
+
+**La u9 a la PAU.** De 2023 a 2026, la u9 és el bloc que més hi surt. Hi ha optimització en nou
+exercicis, sovint amb el model donat («comproveu que el cost ve donat per…»); paràmetres a partir
+de condicions (23j-q1, 23j2-q6, 25s-q3c); monotonia i extrems d'una funció donada (24j-q1,
+25i-q1), o raonats sense calcular els punts crítics (24i-q1); i els punts crítics d'una funció
+llegits a la gràfica de la seva derivada (26j2-q4a).
+
+**Tries a la u9**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `curvatura-inflexio` | q001, una $f''$ que s'anul·la sense canviar de signe: cap inflexió (`falsa-inflexio`); q002, els coeficients a partir de la recta tangent en el punt d'inflexió, com a la 23j-q1 (`tangent-inflexio`); q003, creuar les taules de $f'$ i $f''$: on és alhora creixent i còncava (`creix-i-corba`) |
+| `extrems-parametres` | q001, per a quins valors del paràmetre no hi ha cap extrem (`sense-extrems`); q002, la curvatura de $f$ llegida a la gràfica de $f'$ (`curvatura-de-fprima`); q003, els paràmetres a partir d'un context de beneficis, amb un màxim i una inflexió, com a la 25s-q3c (`beneficis-context`) |
+| `monotonia-extrems` | q001, exactament una solució: Bolzano per a l'existència i monotonia per a la unicitat, com a la 24s-q1 (`una-sola-arrel`); q002, monotonia sense derivar, i per què l'argument no sempre serveix, com a la 24i-q1 (`sense-derivar`); q003, un quocient amb logaritme, com a la 24j-q1 (`quocient-logaritme`) |
+| `optimitzacio` | q001, un altre objectiu, el perímetre en lloc de l'àrea (`perimetre-maxim`); q002, quins volums són possibles, i de quantes maneres (`volums-possibles`); q003, un costat de tanca més car, que fa que el prat òptim sigui quadrat (`tanca-mes-cara`) |
+
+**El parany de l'optimització.** Els apartats hi van encadenats: el model, l'optimització i, al
+`nomesllarg`, «justifica que el valor trobat és un màxim». Una alternativa que canviés el model
+trencaria la cadena. Per això la tria va al pas d'optimitzar, i a totes tres el valor que es troba
+continua sent un màxim en un punt on s'anul·la la derivada, perquè el `nomesllarg` hi continuï
+tenint sentit. Es va descartar, per exemple, un màxim a la frontera del domini, que hauria deixat
+sense sentit la justificació amb la derivada segona. Pel mateix motiu, l'alternativa de
+`curvatura-inflexio/q002` dona una funció que també té un extrem en $x=3$, que és el que demana
+el seu `nomesllarg`.
+
+**Una prova que ja no depèn de les tries.** El cas 4 de `prova_sortida.py` esperava exactament 4
+PDF d'una pregunta concreta, i cada vegada que aquella pregunta rebia una tria calia moure'l a una
+altra (de la u7 a la u8, i de la u8 a la u9). Ara comprova que `--pregunta` només escriu PDF
+d'aquella pregunta i que hi són els quatre de base, tant si té tries com si no.
+
+**Verificació.** Totes les matemàtiques es van comprovar amb SymPy abans d'escriure-les, i cada
+fitxer té el defecte idèntic byte a byte i 2,50 punts amb cada ítem, a totes dues durades. Les 12
+preguntes de la u9 es van compilar de debò, una per una, amb el preàmbul reduït: 144 PDF (96 de
+nous), cap error ni *Overfull*. El build complet ja no cap en el límit de cinc minuts per ordre de
+l'entorn de treball, però la u7 i la u8 no han canviat des de la compilació completa de la sessió
+18, i el build complet de `prova_sortida.py`, amb el `pdflatex` fals, confirma que el banc escriu
+704 PDF. Les bateries (38/14/77) i la integració amb jsdom passen, i el cas 4 reescrit té la seva
+prova de control: si `--pregunta` escrivís PDF d'altres preguntes, fallaria.
+
+### 2.20 Sessió 20 · La u10 amb els exercicis practicats de debò, i domini i punts de tall
+
+**El material.** El professor va passar dos recursos. El primer és el solucionari de Santillana de
+la unitat 10 sencera: pàgines 377–460 del llibre, exercicis 1 a 124, amb enunciats, solucions i
+gràfiques. El segon és el full de feina de Classroom, on les caselles D12 i D13 diuen quins
+exercicis hauran practicat els alumnes abans de l'examen. Es va mantenir la regla de sempre (el
+banc no surt dels exercicis practicats), i el solucionari s'usa com a font de tipus d'exercici i de
+funcions, no per copiar-ne els enunciats.
+
+**Els exercicis practicats, corregits.** La sessió 13 comptava 16 exercicis assignats, de les
+setmanes 11, 12 i 17. El full diu que la setmana 17 (84, 108, 123 i 124) cau al gener, després de
+l'examen, i que els practicats abans són **12**: el 37, el 38, el 43, el 45, el 62 i el 63 (setmana
+11), i el 41, el 75, el 78, el 88, el 91 i el 100 (setmana 12). Llegits al solucionari:
+
+| Tema | Exercicis practicats |
+|---|---|
+| `domini-talls` | 43 (dominis de totes les famílies), 45 (domini i talls), 100 (funcions amb radicals) |
+| `asimptotes` | 62 (branques infinites de polinomis), 63 (asímptotes verticals, horitzontals i obliqües), 38 (dibuixar una funció a partir de propietats) |
+| `estudi-racional` | 41 i 91 (estudis complets), 63, 75, 78 |
+| `estudi-polinomica` | 75, 78, 88 (coeficients a partir d'un extrem, una inflexió i un punt), 62 |
+| `estudi-trossos` | **cap** |
+
+Tres conseqüències. `estudi-polinomica/q001` citava el 84 i ara cita el 75, el 78 i el 88. El tema
+`estudi-trossos` no té cap exercici practicat al darrere: la seva q001 cita el 108 (setmana 17) i
+el 37, però el 37 no és de funcions a trossos, sinó que demana llegir les característiques de $f$ a
+la gràfica de $f'$. Queda pendent de decidir què se'n fa (7.4). La proposta de la sessió anterior
+d'aprofitar el 123 i el 124 com a models de context queda retirada, perquè són de la setmana 17.
+
+**El solucionari té errors.** Al 41 diu que $f'(x)<0$ fa la funció creixent; al 75a, $y'>0$ on ha
+de dir $y'<0$; al 75d li falta el punt crític $x=18$; i al 78b dona $\mathrm{Dom}=\mathbb{R}$ per a
+$\frac{x-2}{x+2}$. Serveix de referència, però tot es continua verificant amb SymPy.
+
+**Domini i punts de tall, complet.** Dues variants noves, q002 i q003, amb l'estructura de la
+q001 i funcions dels tipus del 43, el 45 i el 100: un denominador sense zeros, un logaritme d'un
+polinomi de segon grau, una exponencial amb exponent fraccionari i els talls d'una funció amb
+radical. Hi ha una tria a cadascuna de les tres preguntes: un zero del numerador que **no** és un
+tall, perquè no és del domini (q001, `tall-fals`); jutjar l'error d'un alumne que simplifica abans
+de trobar el domini (q002, `error-simplificar`); i el domini segons un paràmetre, amb la diferència
+entre $<$ i $\le$ per a una arrel (q003, `domini-parametre`).
+
+**Verificació.** Totes les matemàtiques es van comprovar amb SymPy. Les tres preguntes tenen el
+defecte idèntic, 2,50 punts amb cada ítem, i compilen de debò a una pàgina, sense errors. Les
+bateries (38/14/77) i la integració amb jsdom passen, i el banc complet escriu 736 PDF.
+
+### 2.21 Sessió 21 · Asímptotes, i el tema de funcions a trossos, congelat
+
+**La decisió sobre les funcions a trossos.** El professor va decidir deixar
+`estudi-trossos/q001` tal com és (sense tria i amb el seu `origen`) i no ampliar el tema fins que
+s'hagi fet la setmana 17. La pregunta es pot continuar fent servir, però cap exercici practicat abans
+de l'examen no la sosté (2.20).
+
+**Asímptotes, complet.** Dues variants noves, q002 i q003, amb l'estructura de la q001 i funcions
+dels tipus del 62, el 63 i el 38: dues asímptotes verticals i una d'horitzontal (una de les dues
+variants amb $y=0$), una obliqua trobada dividint, i dibuixar una funció a partir de propietats
+donades. En una de les funcions els dos laterals de l'asímptota vertical valen $+\infty$; l'altra té
+una asímptota obliqua. Les dues gràfiques noves es van revisar a ull: els extrems, $(-2,-3)$ i
+$(0,1)$, i les branques que s'acosten a les asímptotes hi són on toca.
+
+Hi ha una tria a cadascuna de les tres preguntes. A la q001 (`forat-no-asimptota`), un zero del
+denominador que **no** és una asímptota, perquè el factor es cancel·la i el límit és finit. A la q002
+(`talla-asimptota`), una gràfica que talla la seva asímptota horitzontal, i per què una vertical no es
+pot tallar. A la q003 (`branques-polinomi`), les branques infinites d'un polinomi, i per què cap
+polinomi de grau 2 o més no té asímptotes, com a l'exercici 62.
+
+**Verificació.** Totes les matemàtiques es van comprovar amb SymPy, inclosos els punts on les
+gràfiques surten del marc. Les tres preguntes tenen el defecte idèntic i 2,50 punts amb cada ítem, i
+compilen de debò a una pàgina, també les solucions amb gràfica. Les bateries (38/14/77) i la
+integració amb jsdom passen, i el banc complet escriu 768 PDF.
+
+### 2.22 Sessió 22 · Els estudis complets de funcions racionals i polinòmiques
+
+Dues variants noves de cada estudi, amb l'estructura de la q001 (l'apartat inicial, la curvatura al
+`nomesllarg` i un apartat final que inclou la gràfica) i funcions dels tipus dels exercicis
+practicats. Racionals (41, 63, 75 i 91): $\frac{x^2}{x^2-4}$, que és parella, amb dues asímptotes
+verticals, una d'horitzontal, un màxim i cap inflexió, i $\frac{x^2+4}{x}$, que és senar, sense talls,
+amb l'eix $OY$ d'asímptota vertical, l'obliqua $y=x$, un màxim per sota del mínim i cap inflexió.
+Polinòmiques (75, 78 i 88): $x^2(x-2)^2$, una W amb dos mínims sobre l'eix, un màxim i dues inflexions
+en $x=1\pm\frac{\sqrt3}{3}$, i $-x^3+6x^2-9x+4$, amb una arrel doble, extrems en $(1,0)$ i $(3,4)$, i la
+inflexió en $(2,2)$. Cap no repeteix la funció d'un exercici del llibre ni d'una altra pregunta del banc.
+
+**On va la tria.** L'apartat final depèn de l'inicial, perquè per dibuixar cal saber les asímptotes o
+els extrems. Per això les sis tries van a l'apartat final, i les alternatives aprofiten l'estudi fet i
+canvien la tasca. Racionals: el recorregut i per a quins $k$ l'equació $f(x)=k$ no té solució (q001,
+`recorregut-i-equacions`); la posició de la corba respecte de l'asímptota horitzontal, que no talla
+mai (q002, `posicio-asimptota`); i per què cap tangent no és paral·lela a l'asímptota obliqua (q003,
+`tangent-i-obliqua`). Polinòmiques: quantes solucions té $f(x)=k$ segons $k$, a partir dels extrems
+(q001, `solucions-f-igual-k`); els extrems absoluts en un interval tancat i el recorregut (q002,
+`extrems-absoluts`); i la tangent en el punt d'inflexió, que la corba travessa (q003,
+`tangent-inflexio`).
+
+**Verificació.** Els sis estudis i les sis alternatives es van comprovar amb SymPy: els extrems, les
+inflexions, els límits als extrems del dibuix i el nombre de solucions de $f(x)=k$ per a diversos
+valors de $k$. Les sis preguntes tenen el defecte idèntic i 2,50 punts amb cada ítem, i compilen de
+debò; cada solució, amb la gràfica, cap en una pàgina. Les quatre gràfiques noves es van revisar a
+ull. Les bateries (38/14/77) i la integració amb jsdom passen, i el banc complet escriu 832 PDF.
+
+### 2.23 Sessió 23 · Un Run workflow que ja no creix a cada execució
+
+**La pregunta del professor.** Per què el Run workflow triga cada vegada més? Havia passat de 3 minuts
+i mig (sessió 14) a més de 7. Es van trobar tres causes. (1) El build recompilava **tots** els PDF a
+cada execució, un rere l'altre, i en quatre sessions n'havien passat de 246 a 832, perquè cada
+alternativa d'una tria n'afegeix entre 2 i 4. A uns 0,4 segons per PDF, només aquell pas ja
+trigava 5 o 6 minuts. (2) `prova_sortida.py` copia el banc sencer diverses vegades. (3) I la més
+seriosa: **dos PDF de la mateixa font no eren idèntics**, perquè cada un porta la data de
+compilació i un identificador aleatori. Git els veia tots canviats, i cada Run workflow tornava a
+desar els ~830 PDF, uns 70 MB (83 KB de mitjana). El repositori creixia uns 70 MB a cada execució.
+El workflow, a més, té un límit de 20 minuts.
+
+**La solució**, tota a `build.py`, sense tocar el workflow:
+
+1. **PDF reproduïbles.** Els PDF es compilen amb `SOURCE_DATE_EPOCH` fixat (l'1 de gener de 2026) i
+   amb `\pdftrailerid{}`. La mateixa font dona el mateix PDF, byte a byte, i Git només desa els que
+   canvien de debò.
+2. **Memòria.** Cada PDF porta a les metadades (`/Keywords`) l'empremta SHA-256 del document LaTeX
+   exacte que l'ha produït, de la versió de `pdflatex` i d'un número de versió de la memòria.
+   També hi porta, a `/Subject`, les pàgines. Si el PDF publicat ja porta l'empremta del document que
+   es compilaria, el build el reutilitza. Davant de qualsevol dubte (el PDF no hi és, no porta
+   empremta o en porta una altra), recompila: el pitjor cas és el d'abans. Com que el document
+   inclou `headers.tex` i `defs.tex`, canviar el format ho recompila tot sol. `--tot` ho força.
+   L'empremta viu dins del PDF, i per això no calen fitxers nous ni cap canvi al pas «Desa».
+3. **En paral·lel.** Els PDF d'una mateixa pregunta es compilen alhora, un per nucli. Se n'espera
+   el final abans d'escriure'n la línia d'estat, de manera que la sortida, l'ordre i l'atribució
+   dels errors són els d'abans.
+
+**Verificació.** Amb `pdflatex` real, una pregunta compilada dues vegades: la primera en compila
+12, i la segona els reutilitza tots sense compilar-ne cap. Les metadades hi són llegibles, i amb
+`--tot` els 12 PDF surten idèntics byte a byte. `prova_sortida.py` en té cinc comprovacions noves
+(19 en total): un segon build sense canvis no en recompila cap; si canvia una pregunta, només es
+recompilen els seus; un PDF sense empremta o que no hi és es recompila, i només ell; canviar
+`defs.tex` ho recompila tot; i `--tot` també. El `pdflatex` fals de les proves deixa ara una marca
+única a cada compilació, perquè es pugui distingir un PDF recompilat d'un de reutilitzat. Dos
+controls: si l'empremta no tingués en compte el document (l'error perillós, reutilitzar un PDF
+antic), dues d'aquestes proves fallarien; i un build complet amb 4 fils dona els mateixos 832 PDF i
+les mateixes línies d'estat que amb 1. Les altres bateries (38/77) i jsdom passen.
+
+**Què esperar.** El primer Run workflow després d'aquest canvi ho recompila tot una última vegada,
+perquè cap PDF del repositori no porta encara l'empremta, i els desa tots una última vegada. A
+partir d'aleshores, un lliurament normal compila només els PDF de les preguntes tocades, i Git només
+en desa aquests. Els megues que ja s'han acumulat a l'historial s'hi queden: treure'ls obligaria a
+reescriure l'historial de Git, i no val la pena.
+
+### 2.24 Sessió 24 · Funcions a trossos: d’una variant a tres
+
+**La decisió.** A la sessió 21, el professor havia decidit no ampliar aquest tema fins que s'hagués
+fet la setmana 17, perquè el seu únic exercici, el 108, és d'aquella setmana, posterior a l'examen de
+la u10. Ara va demanar completar-lo. Les preguntes queden al banc, i és qui fa l'examen qui decideix
+quan les fa servir: si és abans de la setmana 17, els alumnes no hauran practicat encara aquest
+tipus d'exercici.
+
+**El tipus d'exercici.** El 108 demana estudiar les característiques de quatre funcions a trossos i
+representar-les: continuïtat, talls, asímptotes o branques, monotonia tros a tros, curvatura i
+gràfica. Les branques combinen polinomis, arrels, racionals, exponencials i trigonomètriques.
+
+**Dues variants noves**, amb l'estructura de la q001 (continuïtat i asímptotes, la monotonia al
+`nomesllarg`, i la gràfica):
+
+- **q002:** $(x+1)^2$ i $\frac{1}{x-1}$. Té un salt finit a l'enganxament, una asímptota vertical *dins*
+  d'una branca, una asímptota horitzontal per la dreta i una branca parabòlica per l'esquerra. En
+  $x=0$ hi ha un màxim relatiu, tot i que la funció no hi és contínua.
+- **q003:** $e^{x+1}+1$, $x^2+1$ i $\frac{4}{x+1}$. Té tres trossos, és contínua a tot arreu, té dues
+  asímptotes horitzontals diferents ($y=1$ per l'esquerra i $y=0$ per la dreta) i dos màxims en
+  angle, on no és derivable.
+
+**Tries**, a l'apartat de la gràfica com a la resta d'estudis: la derivabilitat a l'enganxament, que
+no ho és perquè fa angle (q001, `derivable-enganxament`); el recorregut i per a quins $k$ l'equació
+$f(x)=k$ no té solució, amb el detall que $-1$ no s'assoleix perquè l'única $x$ que el donaria és de
+l'altra branca (q002, `recorregut`); i els extrems absoluts, amb un màxim assolit dues vegades i cap
+mínim, perquè la funció s'acosta a $0$ sense arribar-hi (q003, `extrems-absoluts`).
+
+**Verificació.** Totes les matemàtiques es van comprovar amb SymPy. Les tres preguntes tenen el
+defecte idèntic i 2,50 punts amb cada ítem, i compilen de debò; les solucions, amb la gràfica,
+caben en una pàgina. Les dues gràfiques noves es van revisar a ull. Les bateries (38/19/77) i la
+integració amb jsdom passen, i el banc complet escriu 864 PDF.
+
+### 2.25 Sessió 25 · La unitat 13, Probabilitat
+
+**El material.** El professor va passar el solucionari de la unitat 13 (pàgines 547–570) i la llista
+dels 16 exercicis que els alumnes hauran practicat, de les setmanes 13 i 14: el 28, el 29, el 32, el
+33, el 35, el 36, el 40, el 60, el 62, el 96 i del 103 al 108. El llibre hi fa parelles del mateix
+càlcul, un en abstracte i un en context («problemes aparentment diferents»): el 103 amb el 104, el
+105 amb el 106, i el 107 amb el 108.
+
+**La PAU.** De 2024 a 2026 hi ha vuit exercicis de probabilitat. Set són de probabilitat total i
+Bayes, sovint amb una prova que dona falsos positius (el Holter de la 24s, el filtre de correu brossa
+de la 25i). També hi surten «almenys un» amb repeticions independents (24i, 24s) i extraccions sense
+reemplaçament (24j).
+
+**Quatre temes**, un per a cada grup d'exercicis practicats:
+
+| Tema | Exercicis |
+|---|---|
+| `espai-mostral` · Espai mostral i comptatge | 28, 29, 40 |
+| `operacions-esdeveniments` · Unió, intersecció i contrari | 60, 62, 103, 104, 105, 106 |
+| `taules-contingencia` · Taules de contingència i probabilitat condicionada | 33, 96, 32, 60 |
+| `probabilitat-total-bayes` · Probabilitat total i teorema de Bayes | 35, 36, 107, 108 |
+
+Cada tema té tres variants, amb contextos i dades propis, i cap no reprodueix un enunciat del llibre.
+Totes tenen la mateixa estructura: dos apartats de 0,75 i 1 punt, i un tercer de 0,75 al
+`nomesllarg`. N'hi ha que amaguen detalls que cal saber veure. A la taula de l'escola de música,
+«tocar el violí» i «ser de nivell elemental» són independents, però «tocar el piano» i «ser de nivell
+elemental» no ho són. A la q002 d'unió i intersecció, $A$ i $B$ són independents sense ser
+incompatibles. A la q002 d'espai mostral, el resultat $NN$ no és possible.
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `espai-mostral` | q001, el principi de multiplicació, sense escriure l'espai mostral (`principi-multiplicacio`); q002, l'error de comptar amb ordre una tria sense ordre (`troba-error`); q003, un espai mostral que no és un producte, perquè l'experiment s'atura (`espai-no-producte`) |
+| `operacions-esdeveniments` | q001, la fórmula de la unió a la inversa, a partir de «cap de les dues» (`a-la-inversa`); q002, per què dos esdeveniments no poden ser incompatibles i el mínim de la intersecció (`fites`); q003, unes dades que són impossibles (`dades-impossibles`) |
+| `taules-contingencia` | q001, dues extraccions sense reemplaçament a partir de la taula (`dos-alumnes`); q002, dos titulars de diari que diuen coses diferents i que tenen raó tots dos, perquè $P(T\mid C)\neq P(C\mid T)$ (`dos-titulars`); q003, el teorema de Bayes, comparat amb la lectura directa de la taula (`taula-i-bayes`) |
+| `probabilitat-total-bayes` | q001, un control de qualitat amb falsos positius, com a la PAU (`control-qualitat`); q002, trobar la composició d'una urna a partir d'una probabilitat (`composicio-urna`); q003, l'arbre en l'ordre invers (`arbre-invers`) |
+
+**El solucionari també té errors aquí.** Al 40a compta $5^6=15\,625$ nombres de sis xifres amb dígits
+parells, però un nombre de sis xifres no pot començar per 0, i en són $4\cdot5^5=12\,500$. Al 60a escriu
+$P(A\cap B)=1-P\left(\overline{A}\cap\overline{B}\right)$ on hauria de dir $P(A\cup B)$.
+
+**Verificació.** Totes les dades es van comprovar amb fraccions exactes abans d'escriure-les, incloses
+les de les alternatives. Les dotze preguntes tenen el defecte idèntic i 2,50 punts amb cada ítem, i
+compilen de debò a una pàgina. Les taules es van revisar a ull. Les bateries (38/19/77) i la
+integració amb jsdom passen, i el banc complet escriu 1.008 PDF.
+
+### 2.26 Sessió 26 · La unitat 14: la distribució binomial
+
+**El material.** El professor va passar el solucionari de la unitat 14 (pàgines 571–603), que la
+cobreix sencera: variables aleatòries discretes, la binomial, variables contínues, la normal i
+l'aproximació de la binomial per la normal. Però els 8 exercicis que els alumnes practiquen (el 43, el
+44, el 46 i el 50; el 21, el 53, el 100 i el 101) són tots de la binomial. Com que el banc no surt dels
+exercicis practicats, la u14 del banc és, de moment, la distribució binomial; la normal en queda fora.
+
+**La PAU.** Hi surt sempre combinada: amb una $p$ que surt d'una probabilitat total («almenys 4 de 5»,
+24i), amb extraccions amb reemplaçament (24j), amb «almenys una» (24s) o com a funció de $p$ que s'ha
+d'optimitzar (25j).
+
+**Dos temes**, amb tres variants cadascun:
+
+| Tema | Exercicis |
+|---|---|
+| `binomial-identificar` · Identificar una binomial: paràmetres, mitjana i moda | 43, 46, 44, 21 |
+| `binomial-probabilitats` · Probabilitats amb la binomial | 21, 50, 53, 100, 101 |
+
+Les variants d'identificar demanen dir quines variables són binomials (una extracció sense
+reemplaçament no ho és, i en un institut molt gran, triar alumnes gairebé sí), el valor més probable
+(a les bombetes és 0, tot i que la mitjana és 0,8) i una taula simètrica amb dos valors més probables.
+Les de probabilitats treballen el contrari («més de dues», «com a mínim»), la negació i una
+$B(6;\,0{,}8)$ en abstracte, com la del 100. La q002 de probabilitats hi posa a propòsit la trampa de la
+negació: que 2 persones **no** responguin «No ho sé» és $P(X=6)$, no $P(X=2)$.
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `binomial-identificar` | q001, la probabilitat de la variable que no és binomial, comparada amb la que donaria amb reemplaçament (`sense-reemplacament`); q002, $n$ i $p$ a partir de la mitjana i la variància (`parametres-inversos`); q003, comparar dos esdeveniments compostos, «tots del mateix sexe» i «tres i dues» (`comparar-esdeveniments`) |
+| `binomial-probabilitats` | q001, la $p$ màxima perquè el 90\,\% dels paquets no tinguin cap pila descarregada (`p-maxima`); q002, la $p$ surt d'una probabilitat total i després es fa servir en una binomial, com a la PAU 24i (`binomial-i-arbre`); q003, inventar una situació real que segueixi la binomial donada (`inventa-context`) |
+
+**El solucionari s'equivoca al 53b.** Es demana la probabilitat que exactament 3 enquestats **no**
+responguin «NS/NC», que és $P(X=12)\approx7\cdot10^{-9}$, i el llibre calcula $P(X=3)=0{,}188$.
+
+**Verificació.** Totes les probabilitats es van calcular de manera exacta abans d'escriure-les. Les sis
+preguntes tenen el defecte idèntic i 2,50 punts amb cada ítem, i compilen de debò a una pàgina. La llista
+de variables i la taula de probabilitats es van revisar a ull. Les bateries (38/19/77) i la integració
+amb jsdom passen, i el banc complet escriu 1.080 PDF.
+
+### 2.27 Sessió 27 · La setmana 17 a la u10, i la sèrie 5 de juny de 2026
+
+**La setmana 17.** El professor va recordar que l'alumnat també fa els exercicis 84, 108, 123 i 124 de
+la u10. El 84 és «Estudia i representa» set polinomis, l'exercici central de les polinòmiques. El 108
+és el de funcions a trossos. El 123 i el 124 són la mateixa funció racional,
+$f(x)=20+\frac{5x-15}{x^2-6x+10}$: el 123 l'estudia (talls, signe, creixement, extrems i recorregut) i
+el 124 la interpreta com la temperatura d'una peça, que comença a 18,5 °C, canvia de tendència als 2 i
+als 4 segons, i s'estabilitza a 20 °C, l'asímptota. Quatre canvis, sense tocar cap variant ni cap
+alternativa existent:
+
+1. El 84 torna a l'`origen` de les tres preguntes de polinòmiques.
+2. El 123 entra a l'`origen` de les tres de racionals. Reforça, a més, dues alternatives que ja hi eren:
+   la del recorregut (`estudi-racional/q001`) i la de la gràfica que talla la seva asímptota
+   horitzontal (`asimptotes/q002`), perquè la funció del 123 talla $y=20$ en $x=3$.
+3. Les funcions a trossos deixen de ser una excepció: el 108 és a la llista.
+4. Dues tries tenen una tercera opció **en context**, com el 124, amb la mateixa funció de la pregunta:
+   `estudi-racional/q003` (`context-cost`), $C(x)=\frac{x^2+4}{x}$ com a cost mitjà per unitat, amb el
+   mínim, els costos fixos i l'asímptota obliqua; i `estudi-polinomica/q003` (`context-embassament`),
+   el nivell d'un embassament, amb els canvis de tendència i el moment en què puja més de pressa, la
+   inflexió. El 124 també entra a l'`origen` de totes dues.
+
+**La sèrie 5 de juny de 2026 (`26j2`)**, importada amb el procediment de la secció 9: originals llegits
+com a imatge, enunciats literals, criteris oficials com a solucions, tots els resultats verificats amb
+SymPy, compilació d'una pàgina per enunciat sense cap *Overfull*, i un PDF de revisió del lot
+(`revisio-pau-juny2026-serie5.pdf`) per contrastar amb els originals. Les unitats de cada pregunta:
+`ana-26j2-q1` u12; `alg-26j2-q2` cap (àlgebra); `pro-26j2-q3` u9 i u13; `ana-26j2-q4a` u8, u9 i u12;
+`geo-26j2-q4b` cap (geometria). Hi ha dues figures refetes en TikZ: la gràfica de $f'(x)$ de l'enunciat
+del 4A i l'arbre de la solució del 3.
+
+**Una inconsistència de l'examen oficial.** La corba de $f'(x)$ del 4A coincideix exactament amb
+$f'(x)=-x^2(x+2)(x-1)$: els zeros, $f'(-1)=2$, el màxim de 2,83 en $x\approx-1{,}44$ i el bony de 0,40 en
+$x\approx0{,}69$. Amb aquesta corba, $\int_{-1}^{0}f'(x)\,dx=\frac{43}{60}\approx0{,}72$, però l'enunciat dona
+$f(0)=-0{,}2$ i $f(-1)=-1$, que per Barrow donen 0,8. Es manté la resposta oficial, que és la que
+l'exercici espera, i s'hi afegeix una *Nota del banc*.
+
+**Verificació.** Les dues alternatives noves, amb SymPy; defecte idèntic i 2,50 punts amb cada ítem; les
+dues preguntes compilen de debò. Les bateries (38/19/77) i la integració amb jsdom passen, i el banc
+complet escriu 1.098 PDF.
+
+### 2.28 Sessió 28 · La sèrie 1 de juny de 2025
+
+**Importació** amb el procediment de la secció 9. Les cinc preguntes: `ana-25j-q1` (asímptotes,
+tangents paral·leles i pendent 1; u8 i u10), `alg-25j-q2` (sistema amb paràmetre i solucions amb
+$xy=10$), `pro-25j-q3` (probabilitat total, binomial i màxim de $f(p)$; u9, u13 i u14), `ana-25j-q4a`
+(la vela semiparabòlica, un sol apartat de 2,5; u12) i `geo-25j-q4b` (pla perpendicular i recta dels
+punts equidistants). Tots els resultats oficials es van verificar amb SymPy, i són correctes. Hi ha un
+PDF de revisió del lot (`revisio-pau-juny2025-serie1.pdf`).
+
+**Detalls de la importació.** Els criteris de correcció del 4A no són al PDF del 4A, sinó a dalt del
+full del 4B. La figura de la vela es va refer en TikZ; el ratllat de les dues regions es fa a mà, amb
+línies retallades, perquè el banc no carrega cap biblioteca de TikZ i afegir-n'hi una a `headers.tex`
+obligaria a recompilar tots els PDF. El símbol € funciona amb el preàmbul del banc. La primera
+compilació va donar dos *Overfull*, un menor $3\times3$ escrit en línia i una igualtat massa llarga,
+que es van passar a mode destacat.
+
+**Una prova que depenia de les dades.** `prova_paritat.py` tenia escrits a mà els codis de 2026 com a
+pregunta que afegeix el primer clic a cada bloc PAU. L'app ordena les preguntes de cada bloc pel codi,
+i `25j` va abans que `26j`: amb la convocatòria nova, el primer clic afegeix la de 2025, i tres
+comprovacions fallaven sense que hi hagués cap error. Ara la prova calcula aquestes preguntes a partir
+del catàleg, amb el mateix criteri que l'app, i passa amb les preguntes de 2025 i sense. L'ordre en si
+queda com a decisió oberta (7.6).
+
+**Verificació.** Les bateries (38/19/77) i la integració amb jsdom passen, i el banc complet escriu
+1.108 PDF.
+
+### 2.29 Sessió 29 · Setembre de 2025, i l'exercici 3 sencer
+
+**L'exercici 3.** A l'examen real és un sol exercici de 2,5 punts: a) i b) de probabilitat (la
+sesamoïditis, amb probabilitat total i Bayes) i c) d'anàlisi (una cúbica de beneficis determinada per un
+màxim i una inflexió). El repositori `pau` el té partit en dues entrades, `pro-25s-q3ab` i
+`ana-25s-q3c`, però els PDF de totes dues contenen l'enunciat sencer i el criteri sencer. El professor
+va triar importar-lo **una sola vegada, sencer, amb el codi `pro-25s-q3`**, al bloc de probabilitat i
+amb les unitats u9 i u13. És l'única excepció a la regla que el codi és el del repositori `pau`, i el
+README ho diu.
+
+**La resta de la convocatòria.** `ana-25s-q1`, un terreny triangular d'àrea mínima (u9); `alg-25s-q2`,
+un sistema amb paràmetre; `ana-25s-q4a`, el vitrall de la Sagrada Família, amb sinus, cosinus i àrea
+(u12); i `geo-25s-q4b`, plans paral·lels i punt simètric. Dues figures refetes en TikZ: el terreny, amb
+el triangle ratllat a mà, i el vitrall. Tot va compilar a la primera, sense cap *Overfull*. Hi ha un PDF
+de revisió del lot (`revisio-pau-setembre2025-serie3.pdf`).
+
+**Una errada del criteri oficial.** Al 4A escriu $4{,}97\cdot750=3\,725{,}5$ €, però
+$4{,}97\cdot750=3\,727{,}5$, i el valor exacte és $9\,000\left(\sqrt2-1\right)\approx3\,727{,}92$ €. Es
+corregeix a $3\,727{,}5$ € i s'hi afegeix una *Nota del banc*. La resta de resultats oficials es van
+verificar amb SymPy, i són correctes.
+
+**Verificació.** La prova de paritat corregida a la sessió 28 s'hi va adaptar sola. Les bateries
+(38/19/77) i la integració amb jsdom passen, i el banc complet escriu 1.118 PDF.
+
 ---
 
 ## 3. Decisions preses
@@ -368,6 +1068,29 @@ assignat, i per tant el banc no hi té tema.
 | Cap dada del centre al banc: logo, segell, departament i casella de nota viuen a `capsalera.tex`, fora del repositori | Professor | El lloc és accessible i no ha de mostrar res de l'institut |
 | El color de les gràfiques és `\colorgrafica`, blau, i cap pregunta no n'escriu cap | Professor | Es canvia en un sol lloc, i des de la carpeta d'exàmens |
 | Les opcions compten una vegada als punts; dels minuts, la més llarga | Disseny | L'alumne en respon una |
+| Una tria substitueix l'apartat sencer: `\begin{tria}` amb `\itemtria` complets, mai una llista d'ítems parcials | Disseny, a partir d'un exemple del professor | Els tres canvis de l'exemple («quants ítems», «amb subtasca o sense» i «una alternativa sencera») són el mateix cas: un cos complet en lloc d'un altre |
+| Sense selecció, es materialitza sempre el primer ítem declarat | Disseny | El `.tex` de les preguntes que ja hi eren no canvia ni un byte |
+| Les tries són només per a preguntes del banc, mai per a PAU | Professor, seguint una regla ja existent | L'enunciat PAU ha de ser literal |
+| Els ítems d'una tria es preparen i es verifiquen sempre pel build, com qualsevol pregunta | Professor | El lloc només ofereix triar-los, no escriure'n cap al vol sense passar-hi |
+| Una tria no pot ser dins d'un `nomesllarg` | Disseny | Encara no es controla bé com afecta el recompte de punts d'`app.js`; es fa fallar el build en lloc de deixar-ho a mig fer |
+| Cada ítem d'una tria té la seva previsualització compilada pel build, no compilada en directe al navegador | Disseny | Compilar LaTeX al navegador exigiria un motor nou (una dependència grossa) o un servidor; el build ja sap compilar-ne el cos |
+| Una alternativa ha de canviar el cas, la tècnica o el sentit del raonament, no només els nombres (regla 16) | Professor | Una tria amb la mateixa pregunta i altres xifres no aporta res a l'examen |
+| Les alternatives noves porten identificadors nous; els retirats no es reaprofiten | Regla 13 | Una adreça desada que en porti un de vell cau al defecte, i no a un contingut diferent |
+| Els PDF són reproduïbles (data i identificador fixos) | Disseny, arran d'una pregunta del professor (2.23) | Si no, Git desava tots els PDF a cada execució, i el repositori creixia uns 70 MB cada vegada |
+| El build només recompila un PDF si l'empremta del seu document ha canviat; l'empremta viu a les metadades del PDF | Disseny (2.23) | Un lliurament normal compila només les preguntes tocades, sense fitxers nous ni cap canvi al workflow |
+| L'exercici 3 de setembre de 2025 s'importa una sola vegada, sencer, com a `pro-25s-q3` | Professor (el codi) | Les dues entrades del repositori `pau` són el mateix exercici; un examen no el pot portar dues vegades |
+| Els exercicis de la setmana 17 de la u10 (84, 108, 123 i 124) són practicats: poden sostenir preguntes i alternatives | Professor | L'alumnat també els fa |
+| Si una dada d'un enunciat PAU no quadra amb el dibuix, es manté la resposta oficial i s'hi afegeix una *Nota del banc* | Disseny (2.27) | L'enunciat és literal, i l'examen esperava aquella resposta |
+| La u14 del banc és la distribució binomial: dos temes, perquè els 8 exercicis practicats en són tots; la normal en queda fora | Professor (la llista) i disseny (els temes) | El banc no surt dels exercicis practicats |
+| La u13 té quatre temes, un per a cada grup dels 16 exercicis practicats (setmanes 13 i 14) | Professor (la llista) i disseny (els temes) | El banc no surt dels exercicis practicats |
+| El professor aixeca la congelació d'`estudi-trossos` i el tema passa a tenir tres variants (sessió 24) | Professor | Les preguntes queden al banc; qui fa l'examen decideix quan les fa servir |
+| `estudi-trossos` es queda com està (la q001, sense tria) i no s'amplia fins que s'hagi fet la setmana 17 | Professor | Cap exercici practicat abans de l'examen no el sosté |
+| Per a la u10, els exercicis practicats són els de les setmanes 11 i 12 del full de Classroom; la setmana 17 és posterior a l'examen | Professor | El banc no surt dels exercicis que els alumnes hauran practicat |
+| El solucionari del llibre és una referència, no la veritat: tot es verifica amb SymPy | Disseny | S'hi han trobat quatre errors (2.20) |
+| Les unitats de la llista de temes es pleguen des del seu títol, i l'estat es desa al navegador, no a l'adreça | Professor (el plegat) i disseny (on es desa) | És una preferència de qui fa els exàmens, no part de l'examen |
+| A optimització, la tria va al pas d'optimitzar i no al model, i el valor trobat continua sent un màxim en un punt crític | Disseny | Els apartats hi van encadenats, i el `nomesllarg` justifica el màxim amb la derivada |
+| El cas 4 de `prova_sortida.py` no depèn de si la pregunta té tries | Disseny | Si no, calia moure'l cada vegada que una unitat rebia tries |
+| Un build complet esborra de `out/` els PDF que ja no genera cap font; un build amb `--pregunta`, no | Disseny, arran d'una fallada (2.18) | `out/` és generat i ha de reflectir les fonts; un build parcial no les ha mirades totes |
 
 ---
 
@@ -394,6 +1117,13 @@ assignat, i per tant el banc no hi té tema.
 | Una adreça amb un `%` solt, o amb `#__proto__` o `#constructor`, deixava la pàgina en blanc | `app.js` | Descodificació tolerant i `PER_TEMA` sense prototip |
 | El push del bot era rebutjat si la branca avançava durant el build | `compila.yml` | `git pull --rebase` i fins a tres intents |
 | La prova «una pregunta del banc no porta cap línia de procedència» no comprovava res: tallava el `.tex` per un comentari del preàmbul que cita `\begin{document}` | `prova_paritat.py` | Es talla per la línia exacta `\begin{document}` |
+| Un `defecte-curt` que apuntés a un ítem inexistent ja registrava l'error, però després petava amb un `KeyError` en lloc de continuar net | `build.py` | Es descarta i cau al primer ítem, un cop registrat l'error |
+| Un `\itemtria` amb l'identificador mal format no feia `match` i el seu contingut desapareixia en silenci, en lloc de fer fallar el build | `build.py` | Comptatge laxa (`\itemtria\b`) contra el comptatge estricte: si no coincideixen, error |
+| Una tria sense cap `\itemtria` ja registrava l'error, però petava amb un `IndexError` en construir el catàleg (`t.ordre[0]` d'una llista buida) | `build.py` | Es descarten del catàleg les tries sense ítems; l'error ja enviat atura el build igualment |
+| `prova_sortida.py` comptava els PDF amb un patró de quatre nivells fixos (`*/*/*/out/*.pdf`): no veia mai els de `out/tries/…`, i per tant no en provava res | `prova_sortida.py` | Patró recursiu (`*/*/*/out/**/*.pdf`) als dos llocs on apareixia |
+| Els PDF orfes dels ítems retirats es van donar per inofensius, i en feien fallar `prova_sortida.py` (464 de 524) | `build.py` | Un build complet esborra els PDF que ja no genera cap font (2.18) |
+
+| La u10 comptava com a practicats els exercicis de la setmana 17 (84, 108, 123 i 124), posterior a l'examen, i `estudi-polinomica/q001` citava el 84 | `meta.json`, handout | Corregit amb el full de Classroom; `estudi-trossos` queda pendent (7.4) |
 
 ---
 
@@ -404,17 +1134,19 @@ assignat, i per tant el banc no hi té tema.
 - Les respostes de les 13 preguntes de la u7, amb càlcul simbòlic i un segon mètode per a
   tots els límits a l'infinit.
 - 32 resultats dels criteris oficials de juny de 2026, per un mètode independent.
-- `prova_validacio.py`: 29 avaries provocades, cadascuna rebutjada pel build. Les 8 de la
-  sessió 6 són de les modalitats.
-- `prova_sortida.py`: 9 comprovacions, sense TeX (un `pdflatex` fals al PATH). Un build que
-  falla, per validació o per compilació, no toca cap fitxer. Un de correcte els escriu tots,
-  `--pregunta` només escriu els de la pregunta indicada i `--preambul` no arriba al catàleg.
-  També s'ha confirmat amb el `pdflatex` real.
-- `prova_paritat.py`: 53 comprovacions. El lloc (executant l'`app.js` real) i el build
+- `prova_validacio.py`: 38 avaries provocades, cadascuna rebutjada pel build. Les 8 de la
+  sessió 6 són de les modalitats, i les 9 de la sessió 14 són de les tries.
+- `prova_sortida.py`: 19 comprovacions (cinc de la memòria del build, sessió 23), sense TeX (un `pdflatex` fals al PATH). Un build que
+  falla, per validació o per compilació, no toca cap fitxer. Un de correcte els escriu tots, i esborra els
+  que ja no genera cap font (608, comptats amb un patró recursiu que ara arriba a `out/tries/…`),
+  `--pregunta` només escriu els de la pregunta indicada —també les previsualitzacions de tria,
+  quan n'hi ha— i `--preambul` no arriba al catàleg. També s'ha confirmat amb el `pdflatex` real.
+- `prova_paritat.py`: 77 comprovacions. El lloc (executant l'`app.js` real) i el build
   munten el mateix `.tex`, byte a byte, també amb preguntes PAU, amb la procedència al lloc
-  exacte i amb opcions (1, 2, 3, 4a, 4b). Tres adreces mal formades s'ignoren sense que la
+  exacte, amb opcions (1, 2, 3, 4a, 4b) i amb tries triades amb `triaCanvia`. Tres adreces mal
+  formades s'ignoren sense que la
   pàgina peti. Les accions de les targetes (afegir, moure, treure, marcar opció, canviar de
-  variant) donen les etiquetes, els punts i l'adreça esperats. Cinc clics donen per defecte
+  variant, triar un ítem) donen les etiquetes, els punts i l'adreça esperats. Cinc clics donen per defecte
   1, 2, 3, 4a i 4b, també en un examen que combina temes i PAU. A 50 min, el lloc i el build
   munten el mateix `.tex`, i els minuts i l'adreça segueixen la modalitat.
 - En un Chromium real: selecció, variants, adreça, recàrrega, descàrregues, secció PAU,
@@ -422,6 +1154,43 @@ assignat, i per tant el banc no hi té tema.
   a 390 px d'amplada. El seu `main.tex` compila en 2 pàgines, i el de solucions en 5, sense cap
   *Overfull*. També un examen combinat (Límits en un punt, Anàlisi, Bolzano, Probabilitat i
   Geometria), amb ✕ i ▲ entremig: 2 pàgines i 4 amb solucions, sense cap *Overfull*.
+- Sessió 19: les 12 tries de la u9, comprovades amb SymPy abans d'escriure-les, amb el defecte
+  idèntic byte a byte i 2,50 punts amb cada ítem. Les 12 preguntes de la u9 compilades de debò
+  (144 PDF, cap error ni *Overfull*), i el banc sencer amb el `pdflatex` fals (704 PDF). Les
+  unitats plegables, amb dotze comprovacions noves a jsdom.
+- Sessió 18: les 18 tries de la u8, comprovades amb SymPy abans d'escriure-les, amb el defecte
+  idèntic byte a byte i 2,50 punts amb cada ítem. Tot el banc compilat (608 PDF, cap error ni
+  *Overfull*). L'esborrat dels orfes, amb el cas real (60 orfes) i un control negatiu.
+- Sessió 17: les 16 alternatives noves, comprovades amb SymPy abans d'escriure-les. Un cop
+  escrites, cadascuna té el defecte idèntic byte a byte i suma 2,50 punts amb cada ítem triat,
+  a totes dues durades. Tot el banc compilat amb el preàmbul reduït (464 PDF, cap error ni
+  *Overfull*), i quatre previsualitzacions revisades a ull. Les bateries (38/11/77) i la
+  integració amb jsdom passen sense canvis.
+- Sessió 16: les 24 preguntes de la u7 amb tries, compilades amb el preàmbul reduït (436 PDF,
+  168 de nous respecte de la sessió 15): cap error, cap *Overfull*, totes a una pàgina, els
+  mateixos punts de defecte d'abans de migrar-les. Cada funció, límit i solució nous, verificats
+  numèricament amb Python (i SymPy per a les factoritzacions) abans d'escriure'ls. Dues
+  fixtures pròpies (`prova_sortida.py`) i dos supòsits de la prova d'integració amb jsdom
+  necessitaven posar-se al dia perquè dues preguntes que fins ara servien de referència
+  (`parametres-ab/q001`, `limits-punt/q001`) havien canviat de forma; corregits sense canviar
+  què comprovaven.
+- Sessió 15: les previsualitzacions de `limits-grafica/q001` i `limits-infinit/q002`
+  compilades amb el preàmbul reduït i revisades visualment («avalua imatges» hi surt amb
+  l'enunciat i la solució senceres, en blau). Quatre casos nous a la prova d'integració amb
+  jsdom (12 en total): els botons Enunciat/Solució de cada tria mostren l'ítem triat, no el
+  defecte; canviar d'ítem amb el visor obert l'actualitza sol; l'altra tria de la mateixa
+  pregunta no s'hi veu afectada. Tot el banc (268 PDF, 22 de nous) recompilat sense cap
+  regressió.
+- Sessió 14: les dues preguntes migrades (`limits-infinit/q002`, `limits-grafica/q001`)
+  compilen amb un preàmbul reduït (aquest entorn no té `lmodern` ni `babel`-català) amb el
+  defecte de cada modalitat i amb quatre combinacions més, cadascuna a una pàgina i sense cap
+  error — inclosa exactament la selecció que el professor havia fet a mà. Comprovat, també amb
+  aquest preàmbul reduït, que les 64 preguntes recompilen sense cap regressió (246 PDF, abans
+  de la sessió 15). Una
+  prova d'integració amb jsdom (clics reals sobre el DOM, no formal al repositori), 8 casos, hi
+  va detectar un error de càlcul de la pròpia prova (l'apartat `nomesllarg` de
+  `limits-infinit/q002` segueix comptant a 1 h 30 en triar `quatre-tipus`); corregit, tots vuit
+  hi passen.
 - Sessió 13: les 64 preguntes compilen en les dues modalitats (246 PDF, tots d'una pàgina).
   Els estudis de la u10, verificats amb SymPy, i les tres gràfiques de les solucions,
   revisades sobre el PDF compilat: asímptotes, extrems i talls hi coincideixen amb l'estudi.
@@ -460,6 +1229,14 @@ assignat, i per tant el banc no hi té tema.
 
 - El visor de PDF incrustat, perquè el navegador sense pantalla no en té. Si un navegador no
   el mostra, cada targeta té un enllaç per obrir el PDF en una pestanya.
+- **Limitació de la sessió 14, resolta a la 15:** l'Enunciat i la Solució d'una carta amb
+  tries mostraven sempre el defecte, mai la selecció feta —es triava a cegues—. Des de la
+  sessió 15, cada tria té el seu propi Enunciat i Solució, de només l'ítem triat (2.15). El que
+  en queda: l'Enunciat i la Solució **de la pregunta sencera**, més avall a la mateixa carta,
+  continuen mostrant el defecte, perquè generar-ne un PDF a mida de cada combinació possible
+  d'una pregunta amb més d'una tria (com `limits-infinit/q002`) creixeria amb el producte
+  d'ítems de totes les seves tries, no només amb la suma. Amb els ítems previsualitzats un a
+  un, per ara no calia.
 
 ---
 
@@ -469,7 +1246,9 @@ assignat, i per tant el banc no hi té tema.
 
 Tres variants per tema: se'n poden muntar tres exàmens diferents. Totes a mida PAU, amb la
 versió de 50 min. Els minuts són estimacions (1 h 30 · 50 min) i s'han de calibrar amb dades
-reals (vegeu 7.4).
+reals (vegeu 7.4). Els punts de la taula són sempre els del defecte: **les 24 preguntes**
+ofereixen, a més, una tria en algun apartat (sessions 14 i 16, seccions 2.14 i 2.16), que no
+hi canvia res mentre no es toqui des de la carta.
 
 | Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
 |---|---|---|---|---|---|---|---|
@@ -500,6 +1279,9 @@ reals (vegeu 7.4).
 
 ### 6.2 Unitat 8 · Derivades (18 preguntes)
 
+Les 18 preguntes ofereixen una tria en algun apartat (sessió 18, secció 2.18). Els punts de la
+taula són els del defecte.
+
 Sis temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 5 a 7, amb
 tres variants cadascun. La secció de derivabilitat no en té cap d'assignat, i per això el banc
 no hi té tema.
@@ -527,6 +1309,9 @@ no hi té tema.
 
 ### 6.3 Unitat 9 · Aplicacions de les derivades (12 preguntes)
 
+Les 12 preguntes ofereixen una tria en algun apartat (sessió 19, secció 2.19). Els punts de la
+taula són els del defecte.
+
 Quatre temes, de les tres seccions del llibre amb exercicis assignats a les setmanes 8 a 10:
 creixement i extrems (39, 41, 42, 44, 50, 51, 58), concavitat (66, 67, 70) i optimització (77,
 79, 86, 87). Les seccions de teoremes i de la regla de l'Hôpital no en tenen cap d'assignat, i
@@ -547,21 +1332,31 @@ per això el banc no hi té tema. Tres variants per tema.
 | Optimització | `q002` | Optimització: capsa sense tapa a partir d'un cartró quadrat | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 77, 79 |
 | Optimització | `q003` | Optimització: prat rectangular amb un costat al riu | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 77, 86 |
 
-### 6.4 Unitat 10 · Representació de funcions (5 preguntes)
+### 6.4 Unitat 10 · Representació de funcions (15 preguntes)
 
-Cinc temes, de les cinc seccions del llibre amb exercicis assignats a les setmanes 11, 12 i 17:
-domini i recorregut (43, 45, 100), asímptotes (62, 63, 38), representació (41, 84, 88, 91),
-funcions a trossos (108, 37) i els problemes de context (123, 124). La secció de simetries i
-periodicitat no en té cap d'assignat, i per això el banc no hi té tema. Una variant per tema;
-en falten dues (vegeu 7.4).
+Cinc temes. Els exercicis practicats abans de l'examen són els de les setmanes 11 i 12 (2.20):
+domini (43, 45, 100), asímptotes (62, 63, 38), representació (41, 75, 78, 88, 91) i llegir $f$ a la
+gràfica de $f'$ (37). El tema de funcions a trossos no en té cap: el seu únic exercici, el 108, és de
+la setmana 17. Els cinc temes tenen tres variants, totes amb tria (sessions 20 a 24). Les de funcions a trossos
+es basen en el 108, de la setmana 17, que l'alumnat també fa (2.27).
 
 | Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
 |---|---|---|---|---|---|---|---|
 | Asímptotes i branques infinites | `q001` | Asímptotes de funcions racionals i gràfica a partir d'unes asímptotes donades | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 62, 63, 38 |
+| Asímptotes i branques infinites | `q002` | Dues asímptotes verticals, una obliqua i una gràfica amb els dos laterals a +∞ | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 62, 63, 38 |
+| Asímptotes i branques infinites | `q003` | Asímptota horitzontal y = 0, una obliqua i una gràfica a partir d'una asímptota obliqua | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 62, 63, 38 |
 | Domini i punts de tall | `q001` | Domini de racionals, radicals i logaritmes, i punts de tall | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 45, 100 |
+| Domini i punts de tall | `q002` | Domini de racionals, radicals i logaritmes, i talls d'una racional amb denominador sense zeros | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 45, 100 |
+| Domini i punts de tall | `q003` | Domini amb exponencials i radicals, i talls d'una funció amb radical | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 45, 100 |
 | Estudi i gràfica d'una funció a trossos | `q001` | Estudi i gràfica d'una funció a trossos amb asímptota horitzontal | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 108, 37 |
+| Estudi i gràfica d'una funció a trossos | `q002` | Estudi i gràfica d'una funció a trossos amb un salt i una asímptota vertical dins d'una branca | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 108 |
+| Estudi i gràfica d'una funció a trossos | `q003` | Estudi i gràfica d'una funció de tres trossos amb dues asímptotes horitzontals diferents | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●● | 108 |
 | Estudi i gràfica d'una funció polinòmica | `q001` | Estudi i gràfica de x³−3x²+4: talls amb arrel doble, extrems i inflexió | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 75, 78, 84, 88 |
-| Estudi i gràfica d'una funció racional | `q001` | Estudi i gràfica de x²/(x−1): asímptota obliqua, extrems i curvatura | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 22 · 13 | ●●● | 41, 63, 75, 91 |
+| Estudi i gràfica d'una funció polinòmica | `q002` | Estudi i gràfica de x⁴−4x³+4x²: dos mínims, un màxim i dues inflexions | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●● | 75, 78, 84, 88 |
+| Estudi i gràfica d'una funció polinòmica | `q003` | Estudi i gràfica de −x³+6x²−9x+4: arrel doble, extrems i inflexió | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 75, 78, 84, 88, 124 |
+| Estudi i gràfica d'una funció racional | `q001` | Estudi i gràfica de x²/(x−1): asímptota obliqua, extrems i curvatura | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 22 · 13 | ●●● | 41, 63, 75, 91, 123 |
+| Estudi i gràfica d'una funció racional | `q002` | Estudi i gràfica de x²/(x²−4): funció parella, dues asímptotes verticals i un màxim | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 22 · 13 | ●●○ | 41, 63, 75, 91, 123 |
+| Estudi i gràfica d'una funció racional | `q003` | Estudi i gràfica de (x²+4)/x: asímptota obliqua, un màxim i un mínim, sense talls | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 22 · 13 | ●●● | 41, 63, 75, 91, 123, 124 |
 
 ### 6.5 Registre de convocatòries PAU
 
@@ -585,27 +1380,27 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 
 | Codi | Convocatòria | Bloc | Títol (catàleg del repositori `pau`) | Estat |
 |---|---|---|---|---|
-| `ana-26j2-q1` | juny 2026 · s5 | Anàlisi | Paràbola i hipèrbola: punts de tall i àrea entre corbes | pendent |
-| `alg-26j2-q2` | juny 2026 · s5 | Àlgebra | Matrius M, N: invertibilitat de MN i NM | pendent |
-| `pro-26j2-q3` | juny 2026 · s5 | Probabilitat | Lectura i esport: prob. total, Bayes i extrems de f(x) | pendent |
-| `ana-26j2-q4a` | juny 2026 · s5 | Anàlisi | f(x) a partir de la gràfica de f'(x): tangent, extrems, àrea | pendent |
-| `geo-26j2-q4b` | juny 2026 · s5 | Geometria | Braç robòtic: distància, pla i punt de xoc | pendent |
+| `ana-26j2-q1` | juny 2026 · s5 | Anàlisi | Paràbola i hipèrbola: punts de tall i àrea entre corbes | ✅ importada (sessió 27) |
+| `alg-26j2-q2` | juny 2026 · s5 | Àlgebra | Matrius M, N: invertibilitat de MN i NM | ✅ importada (sessió 27) |
+| `pro-26j2-q3` | juny 2026 · s5 | Probabilitat | Lectura i esport: prob. total, Bayes i extrems de f(x) | ✅ importada (sessió 27) |
+| `ana-26j2-q4a` | juny 2026 · s5 | Anàlisi | f(x) a partir de la gràfica de f'(x): tangent, extrems, àrea | ✅ importada (sessió 27) |
+| `geo-26j2-q4b` | juny 2026 · s5 | Geometria | Braç robòtic: distància, pla i punt de xoc | ✅ importada (sessió 27) |
 | `ana-26j-q1` | juny 2026 · s1 | Anàlisi | Funció a trossos amb exponencial i paràbola: continuïtat i àrea | ✅ importada |
 | `alg-26j-q2` | juny 2026 · s1 | Àlgebra | Sistema de tres plans amb paràmetre m | ✅ importada |
 | `pro-26j-q3` | juny 2026 · s1 | Probabilitat | Entrades de concert: sorteig i web; Bolzano amb decibels | ✅ importada |
 | `ana-26j-q4a` | juny 2026 · s1 | Anàlisi | Optimització: barana circular i quadrada de 10 m | ✅ importada |
 | `geo-26j-q4b` | juny 2026 · s1 | Geometria | Pla PQR, àrea del triangle i tetraedre de volum 1 | ✅ importada |
-| `ana-25j-q1` | juny 2025 · s1 | Anàlisi | f(x)=(x²−2x)/(x−1): asímptotes, tangents, pendent | pendent |
-| `alg-25j-q2` | juny 2025 · s1 | Àlgebra | Sistema lineal amb paràmetre p | pendent |
-| `pro-25j-q3` | juny 2025 · s1 | Probabilitat | Peces ferro/acer: prob. total, binomial i màxim f(p) | pendent |
-| `ana-25j-q4a` | juny 2025 · s1 | Anàlisi | Vela semiparabòlica: cost del material | pendent |
-| `geo-25j-q4b` | juny 2025 · s1 | Geometria | Pla perpendicular a x+y=0 i recta mediadora | pendent |
-| `ana-25s-q1` | setembre 2025 · s3 | Anàlisi | Optimització: terreny triangular A(m) mínim | pendent |
-| `alg-25s-q2` | setembre 2025 · s3 | Àlgebra | Sistema lineal amb paràmetre m | pendent |
-| `pro-25s-q3ab` | setembre 2025 · s3 | Probabilitat | Sesamoïditis: probabilitat total i Bayes | pendent · **mateix exercici que `ana-25s-q3c`** (7.6) |
-| `ana-25s-q3c` | setembre 2025 · s3 | Anàlisi | Trobar a, b, c de f(x)=ax³+bx²+cx per condicions | pendent · **mateix exercici que `pro-25s-q3ab`** (7.6) |
-| `ana-25s-q4a` | setembre 2025 · s3 | Anàlisi | Vitrall Sagrada Família: sin(x/4) i cos(x/4) | pendent |
-| `geo-25s-q4b` | setembre 2025 · s3 | Geometria | Plans paral·lels a 2x−y+z=5 i distàncies | pendent |
+| `ana-25j-q1` | juny 2025 · s1 | Anàlisi | f(x)=(x²−2x)/(x−1): asímptotes, tangents, pendent | ✅ importada (sessió 28) |
+| `alg-25j-q2` | juny 2025 · s1 | Àlgebra | Sistema lineal amb paràmetre p | ✅ importada (sessió 28) |
+| `pro-25j-q3` | juny 2025 · s1 | Probabilitat | Peces ferro/acer: prob. total, binomial i màxim f(p) | ✅ importada (sessió 28) |
+| `ana-25j-q4a` | juny 2025 · s1 | Anàlisi | Vela semiparabòlica: cost del material | ✅ importada (sessió 28) |
+| `geo-25j-q4b` | juny 2025 · s1 | Geometria | Pla perpendicular a x+y=0 i recta mediadora | ✅ importada (sessió 28) |
+| `ana-25s-q1` | setembre 2025 · s3 | Anàlisi | Optimització: terreny triangular A(m) mínim | ✅ importada (sessió 29) |
+| `alg-25s-q2` | setembre 2025 · s3 | Àlgebra | Sistema lineal amb paràmetre m | ✅ importada (sessió 29) |
+| `pro-25s-q3ab` | setembre 2025 · s3 | Probabilitat | Sesamoïditis: probabilitat total i Bayes | ✅ importada, juntament amb `ana-25s-q3c`, com a `pro-25s-q3` (sessió 29) |
+| `ana-25s-q3c` | setembre 2025 · s3 | Anàlisi | Trobar a, b, c de f(x)=ax³+bx²+cx per condicions | ✅ importada, juntament amb `pro-25s-q3ab`, com a `pro-25s-q3` (sessió 29) |
+| `ana-25s-q4a` | setembre 2025 · s3 | Anàlisi | Vitrall Sagrada Família: sin(x/4) i cos(x/4) | ✅ importada (sessió 29) |
+| `geo-25s-q4b` | setembre 2025 · s3 | Geometria | Plans paral·lels a 2x−y+z=5 i distàncies | ✅ importada (sessió 29) |
 | `ana-25i-q1` | juny 2025 · s4 | Anàlisi | f(x)=√(1+x³): domini, derivada, tangent | pendent |
 | `alg-25i-q2` | juny 2025 · s4 | Àlgebra | Sistema amb plans π₁,π₂,π₃ (paràmetre a) | pendent |
 | `pro-25i-q3` | juny 2025 · s4 | Probabilitat | Filtre de correu brossa: prob. total, Bayes i integral | pendent |
@@ -649,6 +1444,42 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 | `geo-23j-q6` | juny 2023 · s1 | Geometria | Plans perpendiculars i punt més proper a una recta | pendent |
 
 ---
+
+
+### 6.7 Unitat 13 · Probabilitat (12 preguntes)
+
+Quatre temes, un per a cada grup dels 16 exercicis practicats a les setmanes 13 i 14 (2.25). Cada
+tema té tres variants, totes amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Espai mostral i comptatge | `q001` | Espai mostral d'un experiment compost, nombres de xifres diferents i equips | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 28, 29, 40 |
+| Espai mostral i comptatge | `q002` | Espai mostral sense reemplaçament, paraules amb unes lletres donades, i càrrecs o comissions | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 28, 29, 40 |
+| Espai mostral i comptatge | `q003` | Suma de dos daus, contrasenyes i persones en una fila | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 28, 29, 40 |
+| Unió, intersecció i contrari | `q001` | Unió, intersecció i contrari amb percentatges, i independència | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 60, 62, 103–106 |
+| Unió, intersecció i contrari | `q002` | Lleis de De Morgan, incompatibilitat i independència | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 60, 62, 103–106 |
+| Unió, intersecció i contrari | `q003` | Unió i intersecció a partir de «cap de les dues», i una probabilitat condicionada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 60, 62, 103–106 |
+| Taules de contingència i probabilitat condicionada | `q001` | Taula d'una escola de música: condicionades en les dues direccions i independència | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 33, 96, 32, 60 |
+| Taules de contingència i probabilitat condicionada | `q002` | Construir una taula de contingència a partir d'un text | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●○○ | 33, 96, 32, 60 |
+| Taules de contingència i probabilitat condicionada | `q003` | Taula de modalitats de batxillerat: unió, condicionades i independència | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 33, 96, 32, 60 |
+| Probabilitat total i teorema de Bayes | `q001` | Dues màquines: probabilitat total, Bayes i «almenys una» | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 35, 36, 107, 108 |
+| Probabilitat total i teorema de Bayes | `q002` | Un dau tria l'urna: probabilitat total, Bayes i dues extraccions | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 35, 36, 107, 108 |
+| Probabilitat total i teorema de Bayes | `q003` | Socis d'una botiga en línia: probabilitat total, Bayes i independència | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 35, 36, 107, 108 |
+
+
+### 6.8 Unitat 14 · La distribució binomial (6 preguntes)
+
+Dos temes, perquè els 8 exercicis practicats són tots de la binomial (2.26). La normal i les
+variables contínues en queden fora. Cada tema té tres variants, totes amb tria.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Identificar una binomial: paràmetres, mitjana i moda | `q001` | Quines variables són binomials, mitjana, desviació típica i valor més probable | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 44, 46, 21 |
+| Identificar una binomial: paràmetres, mitjana i moda | `q002` | Bombetes defectuoses: justificar la binomial, mitjana, variància i moda | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 44, 46, 21 |
+| Identificar una binomial: paràmetres, mitjana i moda | `q003` | Nombre de nenes en una família de cinc criatures: taula, simetria i paràmetres | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 44, 46, 21 |
+| Probabilitats amb la binomial | `q001` | Piles descarregades: exactament, més de dues i el contrari | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 21, 50, 53, 100, 101 |
+| Probabilitats amb la binomial | `q002` | Respostes «No ho sé»: la negació, «com a mínim» i «com a molt» | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 21, 50, 53, 100, 101 |
+| Probabilitats amb la binomial | `q003` | Una B(6; 0,8) en abstracte: probabilitats puntuals, acumulades i d'un interval | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 21, 50, 53, 100, 101 |
 
 ## 7. Feina pendent
 
@@ -696,15 +1527,15 @@ lliurament de la sessió és l'apartat 11.
 - Opcionalment, **confirmar amb els originals** les sèries de `23s` (2) i `24j` (1), que avui
   provenen d'una rèplica pública.
 
-### 7.3 Importació PAU: 56 exercicis en 10 convocatòries
+### 7.3 Importació PAU: 41 exercicis en 7 convocatòries
 
 Es fa després de la u8 (decisió de la sessió 5).
 
 | Convocatòria | Sèrie | Pendents |
 |---|---|---|
-| `26j2` juny 2026 | 5 | 5 |
-| `25j` juny 2025 | 1 | 5 |
-| `25s` setembre 2025 | 3 | 5 exercicis (6 entrades al repositori `pau`; vegeu 7.6) |
+| `26j2` juny 2026 | 5 | ✅ importada (sessió 27) |
+| `25j` juny 2025 | 1 | ✅ importada (sessió 28) |
+| `25s` setembre 2025 | 3 | ✅ importada (sessió 29): 5 exercicis, el 3 com a `pro-25s-q3` |
 | `25i` juny 2025 | 4 | 5 |
 | `24s` setembre 2024 | 3 | 6 |
 | `24j` juny 2024 | 1 | 6 |
@@ -731,9 +1562,9 @@ l'ordre numèric.
 | u7 Límits i continuïtat | 1–4 | 11 d'octubre de 2026 · **feta**, reescrita a la sessió 6 |
 | u8 Derivades | 5–7 | 1 de novembre de 2026 · **feta** |
 | u9 Aplicacions de les derivades | 8–10 | 22 de novembre de 2026 · **feta** |
-| u10 Representació de funcions | 11–12 i 17 | 6 de desembre de 2026 i 10 de gener de 2027 · **oberta**, una variant per tema |
-| u13 Probabilitat | 13–14 | 20 de desembre de 2026 |
-| u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 |
+| u10 Representació de funcions | 11–12 (i 17, després de l'examen) | 6 de desembre de 2026 · **completa**: tres variants per tema; també els exercicis de la setmana 17 (84, 108, 123 i 124), sessió 27 |
+| u13 Probabilitat | 13–14 | 20 de desembre de 2026 · **completa**: quatre temes amb tres variants, totes amb tria |
+| u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 · **binomial feta** (2.26); la normal, sense exercicis practicats |
 | u1 Matrius | 18–19 | 24 de gener de 2027 |
 | u2 Determinants | 20–22 | 14 de febrer de 2027 |
 | u3 Sistemes d'equacions | 23–25 | 7 de març de 2027 |
@@ -744,8 +1575,9 @@ l'ordre numèric.
 
 - **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
   estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
-- **Segona i tercera variant dels cinc temes de la u10**, que ara en tenen una.
-- **Temes i preguntes de la u13**, la següent per calendari (20 de desembre). Després, les
+- **Funcions a trossos (u10)**: fet a la sessió 24 (2.24).
+- **Temes i preguntes de la u13**: fet a la sessió 25 (2.25), amb els 16 exercicis practicats de les
+  setmanes 13 i 14. Després, les
   unitats en l'ordre de la taula.
 - **Versions de 50 min per a les preguntes PAU**, on tingui sentit: quin apartat es treu i com es
   reparteixen els punts.
@@ -768,13 +1600,33 @@ l'ordre numèric.
   cop existeixi, la u1 i les altres unitats noves s'hi afegeixen en l'ordre del curs.
 - **Conservar els visors PDF oberts.** Ara cada clic torna a pintar totes les targetes: els
   `iframe` es recreen i els PDF es tornen a carregar. Amb molts visors oberts es notarà.
-- Al mòbil, llista de temes plegable. Ara la llista queda sencera abans de l'examen.
+- Llista de temes plegable: **fet** a la sessió 19, per unitats (2.19). Al mòbil, encara es
+  podria plegar tota la llista d'un sol cop.
 - Els noms de les unitats apareixen en passar el ratolí per sobre, i això no funciona en
   pantalles tàctils. Cal mostrar-los d'una altra manera.
+- **Estendre les tries a la resta del banc.** Des de la sessió 16, les 24 preguntes de la u7
+  ja en tenen, i des de la 17 totes canvien el cas, la tècnica o el sentit del raonament
+  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, i des de la 26, la u14.
+  Per a les unitats que vinguin, el mateix mètode: llegir la
+  pregunta sencera, verificar l'alternativa abans d'escriure-la i verificar el fitxer just
+  després. A la u7 encara s'hi podrien afegir, com a ítems nous, els límits no racionals que surten
+  a la PAU ($\frac{\ln x}{x}$, o $(x-1)\ln x$ a $0^+$) o una gràfica a la inversa: «dibuixa una
+  funció compatible amb aquests límits».
+- **PDF de la pregunta sencera amb una combinació concreta.** Des de la sessió 15, cada ítem
+  ja té el seu propi PDF (2.15); el que encara falta és un PDF de tota la pregunta muntada amb
+  una combinació concreta de totes les seves tries alhora, útil per a preguntes amb més d'una
+  (com `limits-infinit/q002`). Creixeria amb el producte d'ítems de cada tria, no amb la suma:
+  cal decidir si val la pena abans d'implementar-ho, o si previsualitzar-les una a una ja és
+  suficient.
+- **Ampliar `tria` a «triar-ne uns quants d'una llista»**, no només «triar-ne exactament un».
+  Es va descartar a la sessió 14 (2.14) perquè cap exemple real ho demanava encara; si mai en
+  calgués un, val la pena revisar primer si «un cos sencer diferent» ho continua resolent abans
+  d'ampliar el mecanisme.
 
 ### 7.6 Decisions obertes
 
-- **Com s'importa l'exercici 3 de setembre de 2025.** El repositori `pau` el té dues vegades,
+- **Com s'importa l'exercici 3 de setembre de 2025.** ✅ Decidit a la sessió 29 (2.29): una sola
+  vegada, sencer, amb el codi `pro-25s-q3`. Text original: el repositori `pau` el té dues vegades,
   com a `pro-25s-q3ab` i com a `ana-25s-q3c`. És un sol exercici de 2,5 punts: a) i b) de
   probabilitat, i c) de derivades. Si s'importen totes dues entrades, un examen el podria
   portar dues vegades. Si només s'importen a) i b), sumen 1,5 punts i el build les rebutja.
@@ -784,7 +1636,12 @@ l'ordre numèric.
     els apartats a) i b);
   - `pro-25s-q3` descriu millor l'exercici, però trenca la regla que el codi és el del
     repositori `pau`.
-- **Fer els PDF reproduïbles.** pdfTeX hi escriu la data i un identificador. Per això cada
+- **L'ordre de les preguntes PAU d'un bloc.** L'app les ordena pel codi, de manera que el primer
+  clic a un bloc afegeix la pregunta de la convocatòria més antiga importada, i les altres s'hi
+  arriben amb ◀ ▶. Quan hi hagi les onze convocatòries, el primer clic donarà la de juny de 2023.
+  Es podria ordenar de la més recent a la més antiga (2.28).
+- **Fer els PDF reproduïbles.** ✅ Fet a la sessió 23 (2.23), sense tocar l'Action. Queda el camp
+  `generat` del catàleg. Text original: pdfTeX hi escriu la data i un identificador. Per això cada
   build reescriu tots els PDF encara que no canviïn, i el commit del bot els toca tots cada
   vegada. Amb `SOURCE_DATE_EPOCH` i `FORCE_SOURCE_DATE=1` fixos a l'Action, dos builds
   idèntics no canvien cap PDF (comprovat a la sessió 5). Caldria fer el mateix amb el camp
@@ -883,18 +1740,21 @@ del primer exercici.
 | Un retoc fet a mà en un fitxer baixat es perd a la descàrrega següent | Si val la pena, ha de pujar al banc: `\colorgrafica` en va sortir |
 | Una fórmula destacada després d'una línia curta queda enganxada (TeX hi posa l'espai «curt») | El preàmbul iguala `\abovedisplayshortskip` a l'espai normal |
 | En un Chromium sense pantalla, obrir un PDF el descarrega | Una prova que baixa el `.tex` no ha d'obrir cap visor abans |
+| Dos PDF de la mateixa font no eren idèntics (data i identificador aleatori), i Git els desava tots a cada execució | PDF reproduïbles i memòria (2.23) |
+| Un PDF que ja no genera cap font (el d'un ítem retirat) fa fallar `prova_sortida.py` | Un build complet l'esborra (2.18); perquè l'esborrat arribi al repositori, el pas «Desa» ha de fer `git add -A` (secció 11) |
 
 ---
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 13. Parteix del de la sessió 12, que ja és al repositori.
+És el lliurament de la sessió 29. Parteix del de la sessió 28, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els cinc temes de la u10 |
-| `u10/*/q001` | **Noves**: cinc preguntes, una per tema |
-| `README.md`, `handout.md` | Estat, inventari de la u10 i sessió 13 |
+| `pau/analisi/ana-25s-q1/`, `pau/algebra/alg-25s-q2/`, `pau/probabilitat/pro-25s-q3/`, `pau/analisi/ana-25s-q4a/`, `pau/geometria/geo-25s-q4b/` | **Noves**: setembre de 2025, `pregunta.tex` i `meta.json` |
+| `README.md` | Estat, i l'excepció de `pro-25s-q3` a «Afegir una pregunta PAU» |
+| `handout.md` | Secció 2.29, i les seccions 3, 6.6, 7.3, 7.6 i 11 |
 
-No porta cap PDF ni `cataleg.js`, i no toca cap workflow. Després de pujar-lo a `_uploads`,
-cal fer **Run workflow**.
+No porta cap PDF ni `cataleg.js`. Després de pujar-lo a `_uploads`, cal fer **Run workflow**. Amb la
+memòria, el resum hauria de dir «10 PDF desats · 1108 reutilitzats». El PDF de revisió del lot va a
+part: no s'ha de pujar al repositori.

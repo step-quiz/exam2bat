@@ -6,8 +6,10 @@
 #  Executa els fitxers reals cataleg.js + assets/app.js dins de Node amb
 #  un DOM mínim, simula una adreça amb quatre temes i compara el resultat
 #  amb munta() de build.py. També comprova el recompte de punts, que
-#  una adreça amb codis inexistents no trenca la pàgina, i els exàmens
-#  amb opcions (1, 2, 3, 4a, 4b): etiquetes, punts i accions.
+#  una adreça amb codis inexistents no trenca la pàgina, els exàmens
+#  amb opcions (1, 2, 3, 4a, 4b) i les tries (triaCanvia): quan el
+#  professor en canvia una des de la carta, el .tex la reflecteix i
+#  segueix sent idèntic, byte a byte, al que calcula build.py.
 #
 #  Ús:   python3 build/prova_paritat.py      (cal node i cataleg.js)
 # ═══════════════════════════════════════════════════════════════════════
@@ -189,8 +191,12 @@ def main() -> int:
     #     preguntes dels temes, i es poden combinar temes i PAU en un mateix examen.
     cinc_clics = ("afegeix('limits-punt'); afegeix('analisi'); afegeix('bolzano-biseccio'); "
                   "afegeix('probabilitat'); afegeix('geometria')")
-    combinat = ["u7/limits-punt/q001", "pau/analisi/ana-26j-q1", "u7/bolzano-biseccio/q001",
-                "pau/probabilitat/pro-26j-q3", "pau/geometria/geo-26j-q4b"]
+    # La pregunta que afegeix el primer clic a un bloc PAU és la primera del bloc en l'ordre de l'app
+    # (pel codi). Es calcula del catàleg perquè no depengui de quines convocatòries hi ha importades.
+    def primera(tema):
+        return min((p for p in banc["preguntes"] if p["tema"] == tema), key=lambda p: p["codi"])
+    ana_1, pro_1, geo_1 = primera("analisi"), primera("probabilitat"), primera("geometria")
+    combinat = ["u7/limits-punt/q001", ana_1["id"], "u7/bolzano-biseccio/q001", pro_1["id"], geo_1["id"]]
     pau5 = ["1", "2", "3", "4a", "4b"]
     r = web("", cinc_clics)
     comprova("per defecte, cinc clics donen 1, 2, 3, 4a i 4b", r["etiquetes"] == pau5, r["etiquetes"])
@@ -204,8 +210,8 @@ def main() -> int:
     comprova("només les tres preguntes PAU porten la línia de procedència",
              r["tex"].split(INICI_COS, 1)[1].count("\\procedencia{") == 3)
     comprova("l'adreça el desa amb la 4a i la 4b",
-             r["hash"] == "limits-punt:q001,analisi:ana-26j-q1,bolzano-biseccio:q001,"
-                          "probabilitat:pro-26j-q3|geometria:geo-26j-q4b", r["hash"])
+             r["hash"] == f"limits-punt:q001,analisi:{ana_1['codi']},bolzano-biseccio:q001,"
+                          f"probabilitat:{pro_1['codi']}|geometria:{geo_1['codi']}", r["hash"])
     r = web("", cinc_clics + "; treu(1); afegeix('continuitat-trossos')")
     comprova("l'estructura és de les places: ✕ a la 2 i un clic nou tornen a fer 1, 2, 3, 4a, 4b",
              r["etiquetes"] == pau5 and r["ids"][-1] == "u7/continuitat-trossos/q001", r["ids"])
@@ -282,6 +288,70 @@ def main() -> int:
     comprova("cap pregunta no escriu un color a mà: fan servir \\colorgrafica",
              not amb_color, str(amb_color))
     comprova("i defs.tex el defineix", "\\newcommand{\\colorgrafica}" in banc["defs"])
+
+    # 1k. Les tries: un apartat pot oferir més d'un ítem, i el professor en
+    #     pot triar un altre que el defecte des de la carta (triaCanvia).
+    #     limits-infinit/q002 és la pregunta pilot: dues tries.
+    r = web("", "afegeix('limits-infinit'); afegeix('limits-infinit')")
+    comprova("dos clics al mateix tema en donen dues variants: q001 i q002",
+             r["ids"] == ["u7/limits-infinit/q001", "u7/limits-infinit/q002"], r["ids"])
+    # q001 té la mateixa estructura (0,75+0,75+1, amb el seu propi «Existeix
+    # algun valor»): totes les comprovacions d'aquí s'aïllen al cos de Q2.
+    cos2 = r["tex"].split("\\encapcalament{Q2}", 1)[1]
+    comprova("sense tocar cap tria, el defecte d'1 h 30 és exactament el d'abans que n'hi hagués cap",
+             cos2.count("\\apartat{0,75}") == 2 and "\\apartat{1}" in cos2 and "tria" not in cos2, cos2)
+
+    tria_accions = ("afegeix('limits-infinit'); afegeix('limits-infinit'); "
+                    "triaCanvia(1, 'limits-infinit-tipus', 'quatre-tipus'); "
+                    "triaCanvia(1, 'determina-a', 'sense-reflexio')")
+    r = web("", tria_accions)
+    seleccio = {"limits-infinit-tipus": "quatre-tipus", "determina-a": "sense-reflexio"}
+    tex_q002 = per_id["u7/limits-infinit/q002"]["tex"]
+    for curt, clau, sol in ((False, "tex", False), (False, "sol", True)):
+        cossos_ = [cos_amb_capcalera(materialitza(per_id["u7/limits-infinit/q001"]["tex"], curt), "Q1"),
+                   cos_amb_capcalera(materialitza(tex_q002, curt, seleccio), "Q2")]
+        py = munta(banc["plantilla"], banc["preambul"], peces(cossos_), sol)
+        comprova(f"paritat JS = Python amb una tria triada a mà ({'amb' if sol else 'sense'} solucions)",
+                 py == r[clau])
+    cos2 = r["tex"].split("\\encapcalament{Q2}", 1)[1]
+    comprova("el .tex reflecteix la tria feta, no el defecte: hi ha els 4 límits i «a=12», no la reflexió",
+             "\\apartat{2}" in cos2 and "a=12" in cos2 and "Existeix algun valor" not in cos2, cos2)
+    comprova("a 1 h 30 l'apartat nomesllarg (el límit a -\u221e de grau 4) hi segueix sortint a part",
+             "1-x^4" in cos2 and "\\apartat{0,75}" in cos2, cos2)
+    comprova("l'adreça desa la selecció amb ~id=ítem, separats per ;",
+             "limits-infinit:q002~limits-infinit-tipus=quatre-tipus;determina-a=sense-reflexio" in r["hash"],
+             r["hash"])
+
+    # Un id de tria o d'ítem que ja no existeix (o que no s'ha triat) cau al
+    # defecte de la modalitat, exactament com fa Python: mai peta ni deixa
+    # l'apartat en blanc (regla 5).
+    r = web("limits-infinit:q002~no-existeix=x;determina-a=tampoc-existeix")
+    comprova("ids de tria inexistents a l'adreça: cap regla 5", r["ids"] == ["u7/limits-infinit/q002"], r["ids"])
+    cos = r["tex"].split(INICI_COS, 1)[1]
+    py_defecte = cos_amb_capcalera(materialitza(tex_q002, False), "Q1")
+    comprova("... i els punts són els del defecte, no cap ítem a mig triar",
+             py_defecte.strip() in cos, cos)
+
+    # La mateixa selecció, a 50 min: l'apartat nomesllarg desapareix i,
+    # aquesta vegada sí, la selecció de l'usuari torna a sumar 2,50.
+    r = web("50min/", tria_accions)
+    cossos_ = [cos_amb_capcalera(materialitza(per_id["u7/limits-infinit/q001"]["tex"], True), "Q1"),
+               cos_amb_capcalera(materialitza(tex_q002, True, seleccio), "Q2")]
+    py = munta(banc["plantilla"], banc["preambul"], peces(cossos_), False)
+    comprova("paritat JS = Python amb la mateixa tria a 50 min", py == r["tex"])
+    comprova("a 50 min, sense l'apartat nomesllarg, la selecció de l'usuari sí que fa 2,50 + el 2,50 de Q1: 5,00",
+             "5,00 punts" in r["recompte"], r["recompte"])
+
+    # ◀ ▶ canvia de pregunta: la selecció d'una variant no vol dir res per a
+    # una altra, i s'ha de reiniciar.
+    r = web("", tria_accions + "; rota(1, 1)")
+    cos2 = r["tex"].split("\\encapcalament{Q2}", 1)[1]
+    comprova("rotar de variant reinicia la tria: ja no hi ha «a=12» al cos de Q2", "a=12" not in cos2, cos2)
+
+    # Una pregunta sense cap tria (la immensa majoria) no en diu res al .tex
+    # ni a l'adreça, exactament com abans que existissin.
+    r = web("limits-punt:q001")
+    comprova("una pregunta sense tries no porta cap ~ a l'adreça", "~" not in r["hash"], r["hash"])
 
     # 2. Una adreça amb codis inexistents i brossa no ha de petar
     r = web("bolzano-biseccio:q999,no-existeix:q001,,limits-punt:q001,limits-punt:q001")

@@ -26,13 +26,17 @@
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
 import sys
 import tempfile
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import NamedTuple
 
 ARREL = Path(__file__).resolve().parent.parent
 PUNTS_PREGUNTA = 250          # centèsimes: tota pregunta val 2,50 punts
@@ -106,9 +110,49 @@ def cos_amb_capcalera(tex: str, etiqueta: str, procedencia: str | None = None) -
     return cap + tex.strip()
 
 
+def cos_dun_item(tex: str, id_tria: str, id_item: str, curt: bool) -> tuple[str, str] | None:
+    """El cos i la puntuació (bruta, tal com l'ha escrit l'autor) d'un ítem
+    concret d'una tria concreta, per a una modalitat: el mateix que en
+    materialitzaria escriu_tria() si es triés aquest ítem, però sense
+    dependre de cap selecció ni de la resta de la pregunta. None si la tria
+    o l'ítem no hi són (no hauria de passar amb un .tex ja validat)."""
+    for m in RE_TRIA.finditer(tex):
+        if m.group(1) != id_tria:
+            continue
+        cos = m.group(3)
+        posicions = list(RE_ITEMTRIA.finditer(cos))
+        for i, p in enumerate(posicions):
+            if p.group(1) != id_item:
+                continue
+            p_llarg, p_curt = p.group(2), p.group(3)
+            punts_brut = p_curt if (curt and p_curt is not None) else p_llarg
+            inici = p.end()
+            final = posicions[i + 1].start() if i + 1 < len(posicions) else len(cos)
+            return punts_brut.strip(), cos[inici:final].strip()
+        return None
+    return None
+
+
 # ── validació ──────────────────────────────────────────────────────────
 RE_APARTAT = re.compile(r"\\apartat(?:\[([^\]]*)\])?\{([^}]*)\}")
 RE_NOMESLLARG = re.compile(r"\\(begin|end)\{nomesllarg\}")
+
+# Una tria substitueix l'apartat sencer: en lloc d'un sol \apartat{punts} i un
+# sol cos, ofereix N \itemtria — cos complet, amb la seva pròpia solució—, dels
+# quals se'n materialitza sempre exactament un. materialitza() hi tria l'ítem
+# (el per defecte, o el que digui la selecció) i el converteix en un
+# \apartat{punts} normal abans que hi arribi res més: com nomesllarg i
+# \apartat[x]{y}, és una marca només de les fonts, i defs.tex no en veu mai
+# cap. ID_RE és el mateix patró per a l'identificador de la tria i el de cada
+# ítem: minúscules, xifres i guions, permanent com q001.
+ID_RE = r"[a-z][a-z0-9-]*"
+RE_TRIA = re.compile(
+    r"\\begin\{tria\}\{(" + ID_RE + r")\}"
+    r"(?:\[defecte-curt=(" + ID_RE + r")\])?"
+    r"(.*?)"
+    r"\\end\{tria\}", re.S)
+RE_ITEMTRIA = re.compile(
+    r"\\itemtria\{(" + ID_RE + r")\}\{([^{}]*)\}(?:\{([^{}]*)\})?")
 
 
 def centesimes(brut: str, on: str, com: str) -> int | None:
@@ -142,11 +186,79 @@ def trams_nomesllarg(tex: str, on: str) -> list[tuple[int, int]]:
     return trams
 
 
-def punts_del_tex(tex: str, on: str) -> tuple[list[int], list[int], bool]:
-    """Llegeix els \\apartat[50 min]{1 h 30}. La puntuació viu al .tex i enlloc
-    més. Torna els punts de l'examen d'1 h 30, els de l'examen de 50 min (sense
-    els apartats de nomesllarg) i si la versió de 50 min és diferent."""
+class ItemTria(NamedTuple):
+    id: str
+    llarg: int | None       # punts (centèsimes) a 1 h 30
+    curt: int | None        # punts (centèsimes) a 50 min; == llarg si no porta un 2n argument
+    te_curt_propi: bool     # \itemtria{id}{llarg}{curt}, amb els dos punts escrits?
+
+
+class Tria(NamedTuple):
+    id: str
+    defecte_curt: str | None    # None: el defecte de 50 min és el mateix ítem que el d'1 h 30
+    items: dict[str, ItemTria]
+    ordre: list[str]            # ordre d'aparició; el primer és el defecte d'1 h 30
+    inici: int                  # posició de \begin{tria} al tex, per saber si és dins d'un nomesllarg
+
+
+def analitza_tries(tex: str, on: str) -> list[Tria]:
+    """Troba cada \\begin{tria}…\\end{tria}, en valida els \\itemtria i en
+    retorna la llista, en ordre d'aparició. analitzaTries() d'app.js fa
+    EXACTAMENT el mateix."""
+    tries: list[Tria] = []
+    ids_tria: set[str] = set()
+    # RE_TRIA i RE_ITEMTRIA exigeixen un identificador ben format (com q001,
+    # en minúscules i guions): si no ho és, el \begin{tria} o el \itemtria
+    # simplement no fan match, i el seu contingut desapareixeria en silenci en
+    # lloc de fer fallar el build (regla 3: «validació que falla tancada»).
+    # Per això es compara amb un comptatge laxa que només busca el nom.
+    if len(re.findall(r"\\begin\{tria\}", tex)) != len(RE_TRIA.findall(tex)):
+        error(on, r"hi ha un \begin{tria} amb un identificador o un defecte-curt mal format "
+                  "(minúscules, xifres i guions, començant per una lletra)")
+    for m in RE_TRIA.finditer(tex):
+        id_tria, defecte_curt, cos = m.group(1), m.group(2), m.group(3)
+        if id_tria in ids_tria:
+            error(on, f"identificador de tria repetit: «{id_tria}»")
+        ids_tria.add(id_tria)
+        if len(re.findall(r"\\itemtria\b", cos)) != len(RE_ITEMTRIA.findall(cos)):
+            error(on, f"tria «{id_tria}»: hi ha un \\itemtria amb un identificador o uns punts mal formats")
+        items: dict[str, ItemTria] = {}
+        ordre: list[str] = []
+        for im in RE_ITEMTRIA.finditer(cos):
+            id_item, p_llarg, p_curt = im.group(1), im.group(2), im.group(3)
+            if id_item in items:
+                error(on, f"tria «{id_tria}»: identificador d'ítem repetit: «{id_item}»")
+                continue
+            llarg = centesimes(p_llarg, on, f"tria «{id_tria}», ítem «{id_item}»: \\itemtria{{}}{{{p_llarg}}}")
+            curt = (centesimes(p_curt, on, f"tria «{id_tria}», ítem «{id_item}»: \\itemtria[…]{{{p_curt}}}")
+                    if p_curt is not None else llarg)
+            items[id_item] = ItemTria(id_item, llarg, curt, p_curt is not None)
+            ordre.append(id_item)
+        if not ordre:
+            error(on, f"tria «{id_tria}» no té cap \\itemtria")
+        if defecte_curt is not None and defecte_curt not in items:
+            error(on, f"tria «{id_tria}»: defecte-curt «{defecte_curt}» no és cap dels seus ítems")
+            defecte_curt = None    # es descarta: la resta del càlcul cau al defecte d'1 h 30
+        tries.append(Tria(id_tria, defecte_curt, items, ordre, m.start()))
+    # \begin{tria} i \end{tria} desaparellats no casen amb RE_TRIA (que en
+    # necessita els dos) i passarien desapercebuts; per això es compten a part.
+    for etiqueta in ("tria",):
+        obre = len(re.findall(r"\\begin\{" + etiqueta + r"\}", tex))
+        tanca = len(re.findall(r"\\end\{" + etiqueta + r"\}", tex))
+        if obre != tanca:
+            error(on, f"{obre} \\begin{{{etiqueta}}} i {tanca} \\end{{{etiqueta}}}")
+    if re.search(r"\\itemtria\b", tex) and not tries:
+        error(on, r"\itemtria fora de cap \begin{tria}")
+    return tries
+
+
+def punts_del_tex(tex: str, on: str) -> tuple[list[int], list[int], bool, list[Tria]]:
+    """Llegeix els \\apartat[50 min]{1 h 30} i les tries. La puntuació viu al
+    .tex i enlloc més. Torna els punts de l'examen d'1 h 30, els de l'examen
+    de 50 min (sense els apartats de nomesllarg, i amb el defecte de cada
+    tria), si la versió de 50 min és diferent, i les tries que hi ha."""
     trams = trams_nomesllarg(tex, on)
+    tries = analitza_tries(tex, on)
     llarg: list[int] = []
     curt: list[int] = []
     diferent = bool(trams)
@@ -168,8 +280,26 @@ def punts_del_tex(tex: str, on: str) -> tuple[list[int], list[int], bool]:
             v = centesimes(opcional, on, f"\\apartat[{opcional}]")
             if v is not None:
                 curt.append(v)
+    for tria in tries:
+        if not tria.ordre:
+            continue
+        if any(a <= tria.inici < b for a, b in trams):
+            error(on, f"tria «{tria.id}»: no pot ser dins d'un nomesllarg "
+                      "(encara no s'admet la combinació; feu-ne dues tries, no una dins de l'altra)")
+            continue
+        item_llarg = tria.items[tria.ordre[0]]
+        item_curt = tria.items[tria.defecte_curt] if tria.defecte_curt is not None else item_llarg
+        if item_llarg.llarg is not None:
+            llarg.append(item_llarg.llarg)
+        # Igual que amb \apartat[x]{y}: la marca de «diferent» és tenir la
+        # sintaxi (defecte-curt propi, o algun ítem amb un 2n argument), no
+        # que els valors resultin diferents.
+        if tria.defecte_curt is not None or any(it.te_curt_propi for it in tria.items.values()):
+            diferent = True
+        if item_curt.curt is not None:
+            curt.append(item_curt.curt)
     if not llarg:
-        error(on, "no hi ha cap \\apartat{...}")
+        error(on, "no hi ha cap \\apartat{...} ni cap tria")
     elif sum(llarg) != PUNTS_PREGUNTA:
         error(on, f"els apartats sumen {sum(llarg)/100:.2f} i han de sumar 2,50")
     if diferent and llarg:
@@ -178,17 +308,46 @@ def punts_del_tex(tex: str, on: str) -> tuple[list[int], list[int], bool]:
         elif sum(curt) != PUNTS_PREGUNTA:
             error(on, f"a l'examen de 50 min, els apartats sumen {sum(curt)/100:.2f} "
                       "i han de sumar 2,50")
-    return llarg, curt, diferent
+    return llarg, curt, diferent, tries
 
 
 RE_APARTAT_OPCIONAL = re.compile(r"\\apartat\[([^\]]*)\]\{([^}]*)\}")
 
 
-def materialitza(tex: str, curt: bool) -> str:
-    """La versió d'una pregunta per a una modalitat, neta: sense cap marca de
-    l'altra. A 50 min, fora els blocs nomesllarg i \\apartat[x]{y} → \\apartat{x};
-    a 1 h 30, fora només les línies del bloc i \\apartat[x]{y} → \\apartat{y}.
-    materialitza() d'app.js fa EXACTAMENT el mateix."""
+def materialitza(tex: str, curt: bool, seleccio: dict[str, str] | None = None) -> str:
+    """La versió d'una pregunta per a una modalitat i una selecció de tries,
+    neta: sense cap marca de les altres. Primer, cada tria es converteix en un
+    \\apartat{punts} normal amb el cos de l'ítem triat —el de `seleccio` per al
+    seu identificador si n'hi ha i és un dels seus ítems, si no el defecte de
+    la modalitat. Després, exactament com abans: a 50 min, fora els blocs
+    nomesllarg i \\apartat[x]{y} → \\apartat{x}; a 1 h 30, fora només les
+    línies del bloc i \\apartat[x]{y} → \\apartat{y}. materialitza() d'app.js
+    fa EXACTAMENT el mateix, en aquest ordre."""
+    seleccio = seleccio or {}
+
+    def escriu_tria(m: re.Match) -> str:
+        id_tria, defecte_curt, cos = m.group(1), m.group(2), m.group(3)
+        # p_llarg i p_curt es guarden tal com els ha escrit l'autor (la cadena
+        # bruta, «0,5»): els punts d'una tria, com els de \apartat[x]{y}, no es
+        # recalculen mai, es reprodueixen.
+        posicions = list(RE_ITEMTRIA.finditer(cos))
+        ordre = [p.group(1) for p in posicions]
+        bruts = {p.group(1): (p.group(2), p.group(3)) for p in posicions}  # id → (llarg, curt|None)
+        if not ordre:
+            return ""
+        defecte = (defecte_curt if (curt and defecte_curt is not None and defecte_curt in bruts)
+                   else ordre[0])
+        triat = seleccio.get(id_tria)
+        if triat not in bruts:      # id desconegut o absent: es queda amb el defecte (regla 5 del lloc)
+            triat = defecte
+        p_llarg, p_curt = bruts[triat]
+        punts_brut = (p_curt if p_curt is not None else p_llarg) if curt else p_llarg
+        i = ordre.index(triat)
+        inici = posicions[i].end()
+        final = posicions[i + 1].start() if i + 1 < len(posicions) else len(cos)
+        return "\\apartat{" + punts_brut.strip() + "}" + cos[inici:final]
+
+    tex = RE_TRIA.sub(escriu_tria, tex)
     sortida: list[str] = []
     dins = False
     for linia in tex.split("\n"):
@@ -215,6 +374,9 @@ def valida_tex(tex: str, on: str) -> None:
     tanca = len(re.findall(r"\\end\{solucio\}", tex))
     if obre != tanca:
         error(on, f"{obre} \\begin{{solucio}} i {tanca} \\end{{solucio}}")
+    if r"\apartat{TRIA}" in tex or re.search(r"\\apartat\[[^\]]*\]\{TRIA\}", tex):
+        error(on, r"conté \apartat{TRIA}: la puntuació d'una tria no s'escriu a l'apartat, "
+                  r"el \begin{tria} en substitueix tot el cos (id, ítems i punts)")
     # El paquet comment exigeix que aquestes línies no portin res més.
     for ordre in (r"\end{solucio}", r"\begin{nomesllarg}", r"\end{nomesllarg}"):
         for linia in tex.splitlines():
@@ -258,16 +420,69 @@ def valida_meta(meta: dict, on: str, slugs: set[str], esquema: dict = CLAUS_META
 
 
 # ── compilació ─────────────────────────────────────────────────────────
+# ── compilació: reproduïble, amb memòria i en paral·lel ───────────────
+# Tres coses eviten que el Run workflow trigui cada vegada més:
+#  1. Reproduïble: la data i l'identificador del PDF són fixos. La mateixa font dona el mateix
+#     PDF, byte a byte, i Git no hi veu cap canvi si no n'hi ha.
+#  2. Memòria: cada PDF porta dins l'empremta del document exacte que l'ha produït, i la de la
+#     versió de pdflatex. Si el PDF publicat ja porta l'empremta d'aquest document, no es
+#     recompila. Davant de qualsevol dubte (el PDF no hi és, no porta empremta o en porta una
+#     altra) es recompila: el pitjor cas és el d'abans. Canviar headers.tex o defs.tex canvia el
+#     document de tots els PDF, i ho recompila tot. --tot ho força.
+#  3. En paral·lel: els PDF d'una mateixa pregunta es compilen alhora, un per nucli.
+VERSIO_MEMORIA = "1"        # canviar-la obliga a recompilar-ho tot
+DATA_FIXA = "1767225600"    # 1 de gener de 2026: la data que porten tots els PDF
+RE_EMPREMTA = re.compile(rb"banc-empremta:([0-9a-f]{64})")
+RE_PAGINES = re.compile(rb"banc-pagines:(\d+)")
+PROVISIONAL: Path | None = None             # la fixa construeix()
+TOT = False                                 # --tot; també el fixa construeix()
+POOL = ThreadPoolExecutor(max_workers=max(1, min(8, os.cpu_count() or 1)))
+comptador = {"compilats": 0, "reutilitzats": 0}
+_pany = threading.Lock()
+_entorn: list[str] = []
+
+
+def entorn_tex() -> str:
+    """La primera línia de `pdflatex --version`. Si canvia, canvien totes les empremtes."""
+    with _pany:
+        if not _entorn:
+            try:
+                with tempfile.TemporaryDirectory() as tmp:
+                    r = subprocess.run(["pdflatex", "--version"], cwd=tmp, capture_output=True, timeout=60)
+                primera = r.stdout.decode("utf-8", errors="replace").strip().splitlines()[:1]
+                _entorn.append(primera[0] if r.returncode == 0 and primera else "desconeguda")
+            except (OSError, subprocess.SubprocessError):
+                _entorn.append("desconeguda")
+        return _entorn[0]
+
+
 def compila(document: str, desti: Path, on: str) -> int | None:
-    """Compila un .tex complet i desa el PDF a `desti`. Retorna les pàgines."""
+    """Compila un .tex complet i desa el PDF a `desti`. Retorna les pàgines, si se saben. Si el PDF
+    publicat ja porta l'empremta d'aquest mateix document, el reutilitza: no compila ni escriu res."""
+    empremta = hashlib.sha256(f"{VERSIO_MEMORIA}\n{entorn_tex()}\n{document}".encode("utf-8")).hexdigest()
+    if not TOT and PROVISIONAL is not None:
+        publicat = ARREL / desti.relative_to(PROVISIONAL)
+        if publicat.is_file():
+            dades = publicat.read_bytes()
+            m = RE_EMPREMTA.search(dades)
+            if m and m.group(1).decode("ascii") == empremta:
+                with _pany:
+                    comptador["reutilitzats"] += 1
+                p = RE_PAGINES.search(dades)
+                return int(p.group(1)) if p else None
+    # L'empremta i les pàgines van a les metadades del PDF (/Keywords i /Subject). \pdftrailerid{}
+    # i SOURCE_DATE_EPOCH fan el PDF reproduïble.
+    marcat = ("\\pdftrailerid{}\\pdfinfo{/Keywords (banc-empremta:" + empremta + ")}"
+              "\\AtEndDocument{\\pdfinfo{/Subject (banc-pagines:\\arabic{page})}}\n" + document)
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
-        (tmp / "main.tex").write_text(document, encoding="utf-8")
+        (tmp / "main.tex").write_text(marcat, encoding="utf-8")
         # Sense text=True: pdflatex escriu els caràcters accentuats en la
         # codificació de la font (T1), no en UTF-8. Descodifiquem tolerant.
         r = subprocess.run(
             ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "main.tex"],
-            cwd=tmp, capture_output=True)
+            cwd=tmp, capture_output=True,
+            env={**os.environ, "SOURCE_DATE_EPOCH": DATA_FIXA, "FORCE_SOURCE_DATE": "1"})
         sortida = r.stdout.decode("utf-8", errors="replace")
         log = (tmp / "main.log").read_text(encoding="utf-8", errors="replace") \
             if (tmp / "main.log").exists() else sortida
@@ -280,19 +495,26 @@ def compila(document: str, desti: Path, on: str) -> int | None:
                 avis(on, l.strip()[:90])
         desti.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(tmp / "main.pdf", desti)
+        with _pany:
+            comptador["compilats"] += 1
         m = re.search(r"main\.pdf \((\d+) pages?", log)
         return int(m.group(1)) if m else None
 
 
 # ── programa ───────────────────────────────────────────────────────────
 def construeix(provisional: Path) -> int:
+    global PROVISIONAL, TOT
+    PROVISIONAL = provisional
     """Valida, compila els PDF dins de `provisional` i, només si no hi ha
     cap error, els copia a out/ i escriu el catàleg."""
     p = argparse.ArgumentParser()
     p.add_argument("--nomes-cataleg", action="store_true")
     p.add_argument("--headers", default=None, metavar="FITXER")
     p.add_argument("--pregunta", default=None, metavar="RUTA")
+    p.add_argument("--tot", action="store_true",
+                   help="recompila tots els PDF, encara que ja portin l'empremta del seu document")
     args = p.parse_args()
+    TOT = args.tot
 
     temes_doc = json.loads((ARREL / "temes.json").read_text(encoding="utf-8"))
     slugs = {t["slug"] for t in temes_doc["temes"]}
@@ -406,7 +628,7 @@ def construeix(provisional: Path) -> int:
         for m in MARCADORS:
             if m in tex:
                 error(on, f"conté el marcador reservat {m}")
-        apartats, apartats_curt, te_curt = punts_del_tex(tex, on)
+        apartats, apartats_curt, te_curt, tries = punts_del_tex(tex, on)
         if te_curt and "minuts_curt" not in meta:
             error(on, "té versió de 50 min: falta «minuts_curt» a meta.json")
         if not te_curt and "minuts_curt" in meta:
@@ -415,23 +637,76 @@ def construeix(provisional: Path) -> int:
                 and meta["minuts_curt"] > meta["minuts"]:
             error(on, "«minuts_curt» no pot ser més gran que «minuts»")
 
+        # Per a cada ítem de cada tria, si el seu cos difereix entre
+        # modalitats (només passa si porta el seu propi 2n argument de punts:
+        # cap ítem d'ara fa servir nomesllarg ni claudàtors a dins seu) cal un
+        # PDF de 50 min a part, com te_curt ho decideix per a tota la
+        # pregunta. Es calcula sempre, tant si es compila com si no, perquè
+        # el catàleg necessita les rutes igualment.
+        previews_curt: dict[tuple[str, str], bool] = {}
+        for t in tries:
+            for iid in t.ordre:
+                rl = cos_dun_item(tex, t.id, iid, False)
+                rc = cos_dun_item(tex, t.id, iid, True)
+                previews_curt[(t.id, iid)] = rc is not None and rc != rl
+
         compilar = not args.nomes_cataleg and (args.pregunta is None or args.pregunta in ident)
         if compilar:
             # Els PDF van a la carpeta provisional, amb la mateixa estructura que
             # el banc. Només es copien a out/ al final, si no hi ha cap error.
+            # Totes les compilacions d'aquesta pregunta es llancen alhora, i
+            # s'espera que acabin abans d'escriure'n la línia.
+            feina = []
+
+            def en_marxa(document, desti, on=on):
+                f = POOL.submit(compila, document, desti, on)
+                feina.append(f)
+                return f
+
             cos = cos_amb_capcalera(materialitza(tex, False), "Pregunta", procedencia)
-            pagines = compila(munta(plantilla, preambul_compila, [cos], False),
-                              provisional / ident / "out" / "enunciat.pdf", on)
-            compila(munta(plantilla, preambul_compila, [cos], True),
-                    provisional / ident / "out" / "solucio.pdf", on)
-            if pagines and pagines > 1:
-                avis(on, f"l'enunciat ocupa {pagines} pàgines")
+            f_enunciat = en_marxa(munta(plantilla, preambul_compila, [cos], False),
+                                  provisional / ident / "out" / "enunciat.pdf")
+            en_marxa(munta(plantilla, preambul_compila, [cos], True),
+                     provisional / ident / "out" / "solucio.pdf")
+            f_curt = None
             if te_curt:
                 cos_curt = cos_amb_capcalera(materialitza(tex, True), "Pregunta", procedencia)
-                pagines_curt = compila(munta(plantilla, preambul_compila, [cos_curt], False),
-                                       provisional / ident / "out" / "enunciat-curt.pdf", on)
-                compila(munta(plantilla, preambul_compila, [cos_curt], True),
-                        provisional / ident / "out" / "solucio-curt.pdf", on)
+                f_curt = en_marxa(munta(plantilla, preambul_compila, [cos_curt], False),
+                                  provisional / ident / "out" / "enunciat-curt.pdf")
+                en_marxa(munta(plantilla, preambul_compila, [cos_curt], True),
+                         provisional / ident / "out" / "solucio-curt.pdf")
+            # Una previsualització per ítem: el mateix cos que tindria la
+            # pregunta si es triés, tot sol, perquè el professor el pugui
+            # llegir abans de decidir-se, no només veure'n l'identificador i
+            # els punts.
+            for t in tries:
+                for iid in t.ordre:
+                    resultat = cos_dun_item(tex, t.id, iid, False)
+                    if resultat is None:
+                        continue      # ja hauria fallat la validació abans
+                    punts_ll, cos_ll = resultat
+                    cos_prev = cos_amb_capcalera(
+                        f"\\begin{{apartats}}\n\\apartat{{{punts_ll}}}\n{cos_ll}\n\\end{{apartats}}",
+                        "Alternativa")
+                    desti = provisional / ident / "out" / "tries" / t.id / iid
+                    en_marxa(munta(plantilla, preambul_compila, [cos_prev], False), desti / "enunciat.pdf")
+                    en_marxa(munta(plantilla, preambul_compila, [cos_prev], True), desti / "solucio.pdf")
+                    if previews_curt[(t.id, iid)]:
+                        punts_c, cos_c = cos_dun_item(tex, t.id, iid, True)
+                        cos_prev_curt = cos_amb_capcalera(
+                            f"\\begin{{apartats}}\n\\apartat{{{punts_c}}}\n{cos_c}\n\\end{{apartats}}",
+                            "Alternativa")
+                        en_marxa(munta(plantilla, preambul_compila, [cos_prev_curt], False),
+                                 desti / "enunciat-curt.pdf")
+                        en_marxa(munta(plantilla, preambul_compila, [cos_prev_curt], True),
+                                 desti / "solucio-curt.pdf")
+            for f in feina:
+                f.result()
+            pagines = f_enunciat.result()
+            if pagines and pagines > 1:
+                avis(on, f"l'enunciat ocupa {pagines} pàgines")
+            if f_curt is not None:
+                pagines_curt = f_curt.result()
                 if pagines_curt and pagines_curt > 1:
                     avis(on, f"l'enunciat de 50 min ocupa {pagines_curt} pàgines")
             estat = "✓" if not any(e.startswith(on + ":") for e in errors) else "✗"
@@ -454,6 +729,32 @@ def construeix(provisional: Path) -> int:
             "temes_secundaris": meta.get("temes_secundaris", []),
             "procedencia": procedencia,
             "unitats": meta.get("unitats", []),
+            # Una tria per apartat que en té: l'identificador, quin ítem és el
+            # defecte de cada modalitat, i cada ítem amb els seus punts a totes
+            # dues. El lloc hi construeix el selector de la carta; sense cap
+            # tria, la llista és buida i la carta es pinta exactament com ara.
+            # Una tria sense cap ítem ja ha registrat el seu error més amunt
+            # (analitza_tries): aquí només cal no petar-hi mentre s'acumulen
+            # els errors de tota la pregunta.
+            "tries": [{
+                "id": t.id,
+                "defecte_llarg": t.ordre[0],
+                "defecte_curt": t.defecte_curt or t.ordre[0],
+                "items": [{
+                    "id": iid,
+                    "llarg": (it.llarg / 100) if it.llarg is not None else None,
+                    "curt": (it.curt / 100) if it.curt is not None else None,
+                    "pdf": f"{ident}/out/tries/{t.id}/{iid}/enunciat.pdf",
+                    "pdf_solucio": f"{ident}/out/tries/{t.id}/{iid}/solucio.pdf",
+                    # Sense cos propi de 50 min, la previsualització de 50 min
+                    # és la mateixa que la d'1 h 30 (com pdf_curt a la pregunta
+                    # sencera quan no té versió de 50 min).
+                    "pdf_curt": f"{ident}/out/tries/{t.id}/{iid}/"
+                                f"{'enunciat-curt' if previews_curt[(t.id, iid)] else 'enunciat'}.pdf",
+                    "pdf_solucio_curt": f"{ident}/out/tries/{t.id}/{iid}/"
+                                        f"{'solucio-curt' if previews_curt[(t.id, iid)] else 'solucio'}.pdf",
+                } for iid, it in t.items.items()],
+            } for t in tries if t.ordre],
             "tex": tex,
             "pdf": f"{ident}/out/enunciat.pdf",
             "pdf_solucio": f"{ident}/out/solucio.pdf",
@@ -477,6 +778,25 @@ def construeix(provisional: Path) -> int:
         desti.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(pdf, desti)
 
+    # out/ és generat (regla 1) i ha de reflectir exactament les fonts. Un build
+    # complet, i només si no hi ha hagut cap error, esborra els PDF que ja no
+    # genera cap font: els d'un ítem de tria retirat, per exemple. Sense això,
+    # prova_sortida.py veu PDF que el build no ha escrit i falla. Amb --pregunta
+    # o --nomes-cataleg no se n'esborra cap: aquell build no les ha compilades totes.
+    orfes: list[Path] = []
+    if not args.nomes_cataleg and args.pregunta is None:
+        claus = ("pdf", "pdf_solucio", "pdf_curt", "pdf_solucio_curt")
+        vius = {q[c] for q in preguntes for c in claus}
+        vius |= {it[c] for q in preguntes for t in q.get("tries", []) for it in t["items"] for c in claus}
+        orfes = [f for f in sorted(ARREL.glob("*/*/*/out/**/*.pdf"))
+                 if f.relative_to(ARREL).as_posix() not in vius]
+        for f in orfes:
+            f.unlink()
+            carpeta = f.parent                  # i les carpetes que hagin quedat buides,
+            while carpeta.name != "out" and not any(carpeta.iterdir()):   # mai out/ mateixa
+                carpeta.rmdir()
+                carpeta = carpeta.parent
+
     banc = {
         "generat": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "unitats": temes_doc["unitats"],
@@ -496,7 +816,10 @@ def construeix(provisional: Path) -> int:
     minuts = sum(q["minuts"] for q in preguntes)
     n = len(preguntes)
     print(f"\n✓ {n} {'pregunta' if n == 1 else 'preguntes'} · {len(slugs)} temes · "
-          f"{minuts} min de banc · {len(pdfs)} PDF desats · cataleg.js {len(sortida)//1024} kB")
+          f"{minuts} min de banc · {len(pdfs)} PDF desats"
+          + (f" · {comptador['reutilitzats']} reutilitzats" if comptador["reutilitzats"] else "")
+          + (f" · {len(orfes)} PDF orfes esborrats" if orfes else "")
+          + f" · cataleg.js {len(sortida)//1024} kB")
     return 0
 
 

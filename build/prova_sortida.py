@@ -30,12 +30,16 @@ PROVA = "% PREAMBUL DE PROVA (prova_sortida.py)"
 # ordre desconeguda dins d'un \begin{solucio}: l'enunciat compilaria bé.
 PDFLATEX_FALS = r'''#!/usr/bin/env python3
 import sys
+import time
 from pathlib import Path
+if "--version" in sys.argv:
+    print("pdfTeX fals (prova_sortida.py)")
+    sys.exit(0)
 tex = Path("main.tex").read_text(encoding="utf-8")
 if r"\provocaerror" in tex and r"\solucionstrue" in tex:
     Path("main.log").write_text("! Undefined control sequence.\n", encoding="utf-8")
     sys.exit(1)
-Path("main.pdf").write_text("%PDF-fals\n" + tex, encoding="utf-8")
+Path("main.pdf").write_text("%PDF-fals\n" + tex + "\n%% compilat " + str(time.time_ns()) + "\n", encoding="utf-8")
 Path("main.log").write_text("Output written on main.pdf (1 page, 1 bytes).\n", encoding="utf-8")
 '''
 
@@ -52,9 +56,21 @@ def edita(fitxer: Path, vell: str, nou: str) -> None:
     fitxer.write_text(text.replace(vell, nou, 1), encoding="utf-8")
 
 
+ORFE = "u7/limits-punt/q001/out/tries/limits-tipus/retirat/enunciat.pdf"   # un ítem que ja no existeix
+
+
+def posa_orfe(banc: Path, ruta: str = ORFE) -> Path:
+    """Un PDF que cap font no genera: el que queda al repositori quan es retira un ítem."""
+    f = banc / ruta
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text("%PDF-vell\n", encoding="utf-8")
+    return f
+
+
 def empremta(banc: Path) -> dict[str, str]:
-    """Hash de cada fitxer que el build pot escriure: els PDF i el catàleg."""
-    fitxers = sorted(banc.glob("*/*/*/out/*.pdf")) + [banc / "cataleg.js"]
+    """Hash de cada fitxer que el build pot escriure: els PDF (també les
+    previsualitzacions de tria, dins de out/tries/) i el catàleg."""
+    fitxers = sorted(banc.glob("*/*/*/out/**/*.pdf")) + [banc / "cataleg.js"]
     return {f.relative_to(banc).as_posix(): hashlib.sha256(f.read_bytes()).hexdigest()
             for f in fitxers if f.exists()}
 
@@ -88,7 +104,9 @@ def main() -> int:
         #    s'han compilat bé quan el build descobreix l'error.
         with tempfile.TemporaryDirectory() as t1:
             banc = copia_banc(Path(t1))
-            edita(banc / "u7/parametres-ab/q001/pregunta.tex", r"\apartat[2,5]{1,5}", r"\apartat[2,5]{1,25}")
+            edita(banc / "u7/parametres-ab/q001/pregunta.tex",
+                  r"\itemtria{original}{1,5}{2,5}", r"\itemtria{original}{1,25}{2,5}")
+            orfe = posa_orfe(banc)
             abans = empremta(banc)
             r = build(banc, fals)
             tocats = sorted(k for k, v in empremta(banc).items() if abans.get(k) != v)
@@ -96,6 +114,7 @@ def main() -> int:
                      r.returncode == 1 and "han de sumar 2,50" in r.stderr, r.stderr[-300:])
             comprova("i el build fallit no toca cap PDF ni el catàleg",
                      not tocats, f"{len(tocats)} fitxers tocats, p. ex. {tocats[:3]}")
+            comprova("i tampoc no esborra cap PDF orfe", orfe.exists())
 
         # 2. Una pregunta l'enunciat de la qual compila però la solució no.
         with tempfile.TemporaryDirectory() as t2:
@@ -113,25 +132,61 @@ def main() -> int:
         # 3. Un build correcte escriu tots els PDF (control positiu).
         with tempfile.TemporaryDirectory() as t3:
             banc = copia_banc(Path(t3))
+            orfes = [posa_orfe(banc), posa_orfe(banc, "u9/monotonia-extrems/q001/out/vell.pdf")]
             r = build(banc, fals)
-            pdfs = sorted(banc.glob("*/*/*/out/*.pdf"))
+            pdfs = sorted(banc.glob("*/*/*/out/**/*.pdf"))
             escrits = [p for p in pdfs if p.read_text(encoding="utf-8", errors="replace").startswith("%PDF-fals")]
             comprova(f"un build correcte escriu els {len(pdfs)} PDF",
                      r.returncode == 0 and pdfs and len(escrits) == len(pdfs),
                      f"codi {r.returncode}; {len(escrits)} de {len(pdfs)} escrits\n{r.stderr[-300:]}")
+            retirat = banc / ORFE
+            comprova("i esborra els PDF que ja no genera cap font, amb les carpetes que queden buides",
+                     not any(f.exists() for f in orfes) and not retirat.parent.exists()
+                     and retirat.parent.parent.is_dir() and (banc / "u9/monotonia-extrems/q001/out").is_dir(),
+                     f"orfes que queden: {[str(f.relative_to(banc)) for f in orfes if f.exists()]}")
 
         # 4. --pregunta només escriu els PDF de la pregunta demanada.
         with tempfile.TemporaryDirectory() as t4:
             banc = copia_banc(Path(t4))
+            orfe = posa_orfe(banc)
             abans = empremta(banc)
-            r = build(banc, fals, "--pregunta", "u7/limits-punt/q001")
+            r = build(banc, fals, "--pregunta", "u9/monotonia-extrems/q001")
             tocats = sorted(k for k, v in empremta(banc).items()
                             if abans.get(k) != v and k.endswith(".pdf"))
-            # La pregunta té versió de 50 min: quatre PDF.
-            esperats = sorted(f"u7/limits-punt/q001/out/{nom}.pdf"
-                              for nom in ("enunciat", "enunciat-curt", "solucio", "solucio-curt"))
+            # Tots els PDF tocats són d'aquella pregunta, i hi ha els quatre de base (té versió de
+            # 50 min). Si la pregunta té tries, també hi ha els de cada ítem (el cas 4b els compta):
+            # així aquesta prova no depèn de si la pregunta en té o no.
+            base = [f"u9/monotonia-extrems/q001/out/{nom}.pdf"
+                    for nom in ("enunciat", "enunciat-curt", "solucio", "solucio-curt")]
+            aliens = [k for k in tocats if not k.startswith("u9/monotonia-extrems/q001/out/")]
             comprova("--pregunta només escriu els PDF d'aquella pregunta, també els de 50 min",
-                     r.returncode == 0 and tocats == esperats, f"codi {r.returncode}; tocats {tocats}")
+                     r.returncode == 0 and not aliens and all(b in tocats for b in base),
+                     f"codi {r.returncode}; d'altres preguntes: {aliens[:3]}; falten: {[b for b in base if b not in tocats]}")
+            comprova("i no esborra cap PDF orfe: no ha mirat totes les fonts", orfe.exists())
+
+        # 4b. --pregunta amb una pregunta amb tries escriu també la
+        #     previsualització de cada ítem, amb la versió de 50 min només on
+        #     el seu cos hi difereix (aquí, un-limit i amb-reflexio).
+        with tempfile.TemporaryDirectory() as t4b:
+            banc = copia_banc(Path(t4b))
+            abans = empremta(banc)
+            r = build(banc, fals, "--pregunta", "u7/limits-infinit/q002")
+            tocats = sorted(k for k, v in empremta(banc).items()
+                            if abans.get(k) != v and k.endswith(".pdf"))
+            base = "u7/limits-infinit/q002/out"
+            esperats = sorted([
+                *(f"{base}/{nom}.pdf" for nom in ("enunciat", "enunciat-curt", "solucio", "solucio-curt")),
+                *(f"{base}/tries/limits-infinit-tipus/un-limit/{nom}.pdf"
+                  for nom in ("enunciat", "enunciat-curt", "solucio", "solucio-curt")),
+                *(f"{base}/tries/limits-infinit-tipus/{iid}/{nom}.pdf"
+                  for iid in ("dos-tipus", "quatre-tipus") for nom in ("enunciat", "solucio")),
+                *(f"{base}/tries/determina-a/amb-reflexio/{nom}.pdf"
+                  for nom in ("enunciat", "enunciat-curt", "solucio", "solucio-curt")),
+                *(f"{base}/tries/determina-a/sense-reflexio/{nom}.pdf" for nom in ("enunciat", "solucio")),
+            ])
+            comprova("--pregunta amb tries escriu també la previsualització de cada ítem (18 PDF)",
+                     r.returncode == 0 and tocats == esperats,
+                     f"codi {r.returncode}; {len(tocats)} tocats, n'esperava {len(esperats)}")
 
         # 5. --headers: els PDF es compilen amb uns altres paquets; el catàleg
         #    porta sempre els oficials, amb el segell de versió del format.
@@ -154,6 +209,49 @@ def main() -> int:
                      "falta el segell al defs.tex del catàleg")
             comprova("i el build avisa que aquests PDF no són definitius",
                      "no són definitius" in r.stdout, r.stdout[-300:])
+
+        # 6. La memòria: el build només recompila els PDF el document dels quals ha canviat.
+        with tempfile.TemporaryDirectory() as t6:
+            banc = copia_banc(Path(t6))
+            pdfs = lambda: {k: v for k, v in empremta(banc).items() if k.endswith(".pdf")}
+            r = build(banc, fals)
+            e1 = pdfs()
+            r2 = build(banc, fals)
+            e2 = pdfs()
+            comprova("un segon build sense cap canvi no recompila cap PDF, i els reutilitza tots",
+                     r.returncode == 0 and r2.returncode == 0 and e1 == e2
+                     and " 0 PDF desats" in r2.stdout and f"{len(e1)} reutilitzats" in r2.stdout,
+                     f"codi {r2.returncode}; {r2.stdout[-160:]}")
+            q = "u10/domini-talls/q001"
+            edita(banc / q / "pregunta.tex", "Determina el domini", "Troba el domini")
+            r3 = build(banc, fals)
+            e3 = pdfs()
+            canviats = sorted(k for k in e3 if e3[k] != e2.get(k))
+            comprova("si canvia una pregunta, només es recompilen els PDF d'aquella pregunta",
+                     r3.returncode == 0 and canviats and all(k.startswith(q + "/out/") for k in canviats),
+                     f"codi {r3.returncode}; canviats: {len(canviats)}, p. ex. {[k for k in canviats if not k.startswith(q)][:3]}")
+            un = banc / "u7/limits-punt/q001/out/enunciat.pdf"
+            un.write_text("brossa sense empremta", encoding="utf-8")
+            (banc / "u8/regla-cadena/q001/out/solucio.pdf").unlink()
+            r4 = build(banc, fals)
+            e4 = pdfs()
+            refets = sorted(k for k in e4 if e4[k] != e3.get(k))
+            comprova("un PDF sense empremta, o que no hi és, es torna a compilar, i només ell",
+                     r4.returncode == 0 and refets == ["u7/limits-punt/q001/out/enunciat.pdf",
+                                                        "u8/regla-cadena/q001/out/solucio.pdf"],
+                     f"codi {r4.returncode}; refets: {refets[:4]}")
+            defs = banc / "build" / "defs.tex"
+            defs.write_text(defs.read_text(encoding="utf-8") + "\n% un canvi al format\n", encoding="utf-8")
+            r5 = build(banc, fals)
+            e5 = pdfs()
+            comprova("si canvia defs.tex, es recompilen tots els PDF",
+                     r5.returncode == 0 and all(e5[k] != e4.get(k) for k in e5),
+                     f"codi {r5.returncode}; sense recompilar: {sum(e5[k] == e4.get(k) for k in e5)}")
+            r6 = build(banc, fals, "--tot")
+            e6 = pdfs()
+            comprova("--tot els recompila tots, encara que no hagi canviat res",
+                     r6.returncode == 0 and all(e6[k] != e5.get(k) for k in e6),
+                     f"codi {r6.returncode}; sense recompilar: {sum(e6[k] == e5.get(k) for k in e6)}")
 
     print(f"\n{'✓ El build només escriu quan tot és correcte.' if not fallades else f'✗ {fallades} comprovació(ns) fallides.'}")
     return 1 if fallades else 0
