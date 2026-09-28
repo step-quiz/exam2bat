@@ -1,0 +1,14 @@
+{
+  "titol": "Filtre de correu brossa: probabilitat total, Bayes i una integral amb paràmetre",
+  "unitats": [
+    "u12",
+    "u13"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "probabilitat total",
+    "Bayes",
+    "integral definida"
+  ]
+}

@@ -1,0 +1,59 @@
+Considereu les matrius $A=\begin{pmatrix}a&0\\1&a^2\end{pmatrix}$, on $a$ és un paràmetre real, i
+$B=\begin{pmatrix}2&0\\1&4\end{pmatrix}$.
+
+\begin{apartats}
+
+\apartat{0,75}
+Trobeu els valors de $a$ que fan que les matrius $A$ i $B$ commutin. (Dues matrius $A$ i $B$ commuten si
+$AB=BA$.)
+
+\begin{solucio}
+Tenim
+\[
+AB=\begin{pmatrix}a&0\\1&a^2\end{pmatrix}\begin{pmatrix}2&0\\1&4\end{pmatrix}=\begin{pmatrix}2a&0\\2+a^2&4a^2\end{pmatrix},
+\qquad
+BA=\begin{pmatrix}2&0\\1&4\end{pmatrix}\begin{pmatrix}a&0\\1&a^2\end{pmatrix}=\begin{pmatrix}2a&0\\a+4&4a^2\end{pmatrix}.
+\]
+Per tant, les matrius $A$ i $B$ commuten si i només si $2+a^2=a+4$, és a dir, si i només si $a^2-a-2=0$. Les
+solucions d'aquesta equació són $a=\frac{1\pm\sqrt{1-4(-2)}}{2}=\frac{1\pm3}{2}=2,\,-1$. Per a $a=2$ la matriu $A$
+coincideix amb $B$, i per a $a=-1$ obtenim $A=\begin{pmatrix}-1&0\\1&1\end{pmatrix}$.
+
+\textit{Pauta oficial:} 0,25 pel càlcul de $AB$, 0,25 pel càlcul de $BA$, i 0,25 per resoldre l'equació i
+donar la resposta.
+\end{solucio}
+
+\apartat{0,75}
+Trobeu els valors de $a$ per als quals la matriu $A$ és invertible.
+
+\begin{solucio}
+La matriu $A$ és invertible si i només si $\det(A)\neq0$. Tenim
+$\det(A)=\begin{vmatrix}a&0\\1&a^2\end{vmatrix}=a^3$. Per tant, la matriu $A$ és invertible si i només si $a\neq0$.
+
+\textit{Pauta oficial:} 0,25 pel càlcul del determinant i 0,5 per la resposta justificada.
+\end{solucio}
+
+\apartat{1}
+Trobeu els valors de $a$ per als quals $A^{-1}=A$.
+
+\begin{solucio}
+Que $A=A^{-1}$ és el mateix que dir $AA=I$. Imposant aquesta igualtat,
+\[
+AA=\begin{pmatrix}a&0\\1&a^2\end{pmatrix}\begin{pmatrix}a&0\\1&a^2\end{pmatrix}=\begin{pmatrix}a^2&0\\a^2+a&a^4\end{pmatrix}
+=\begin{pmatrix}1&0\\0&1\end{pmatrix},
+\]
+obtenim les equacions $a^2=a^4=1$ i $a^2+a=0$. Les dues primeres equacions es compleixen per a $a=1$ i per a
+$a=-1$, i la tercera, per a $a=-1$ i per a $a=0$. Per tant, $A^{-1}=A$ si i només si $a=-1$.\\
+Alternativament, es pot calcular la matriu inversa,
+\[
+A^{-1}=\frac{1}{\det(A)}\left(\operatorname{Adj}A\right)^t=\frac{1}{a^3}\begin{pmatrix}a^2&0\\-1&a\end{pmatrix}
+=\begin{pmatrix}\frac1a&0\\-\frac1{a^3}&\frac1{a^2}\end{pmatrix},
+\]
+i, imposant que coincideixi amb la matriu $A$, obtenim les equacions $a^2=1$, $a^3=-1$ i $a^4=1$, que tenen per
+solució $a=-1$.
+
+\textit{Pauta oficial:} 0,5 pel càlcul de $AA$ (o de $A^{-1}$), 0,25 per plantejar les equacions a resoldre, i
+0,25 per la resposta. Si donen com a respostes vàlides totes les solucions parcials, $a=1,\,-1,\,0$, compteu
+només els 0,5 punts del càlcul de $A^2$ (o de $A^{-1}$).
+\end{solucio}
+
+\end{apartats}

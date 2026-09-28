@@ -1,0 +1,58 @@
+Considereu la funció $f(x)=+\sqrt{1+x^3}$.
+
+\begin{apartats}
+
+\apartat{0,5}
+Indiqueu el domini d'aquesta funció i els talls de la corba $y=f(x)$ amb els eixos de coordenades.
+
+\begin{solucio}
+El domini d'aquesta funció és
+\[
+\operatorname{Dom}(f)=\left\{x\in\mathbb{R}\mid1+x^3\ge0\right\}=\left\{x\in\mathbb{R}\mid x^3\ge-1\right\}
+=\left\{x\in\mathbb{R}\mid x\ge-1\right\}=[-1,+\infty).
+\]
+Com que $f(0)=\sqrt{1+0^3}=1$, el tall d'aquesta funció amb l'eix d'ordenades és al punt $(0,1)$. Els talls
+amb l'eix d'abscisses corresponen a les solucions de l'equació $f(x)=0$, que són
+$\sqrt{1+x^3}=0\rightarrow1+x^3=0\rightarrow x^3=-1\rightarrow x=-1$. Per tant, es tracta només del punt
+$(-1,0)$.
+
+\textit{Pauta oficial:} 0,25 per la determinació del domini de la funció, i 0,25 pel càlcul dels punts de
+tall.
+\end{solucio}
+
+\apartat{1}
+Resoleu l'equació $f'(x)=0$ i estudieu les zones de creixement i decreixement de la funció $f(x)$, així com
+els seus màxims i mínims locals.
+
+\begin{solucio}
+La derivada de $f(x)$ és $f'(x)=\dfrac{3x^2}{2\sqrt{1+x^3}}$, i l'equació de l'enunciat és
+$\dfrac{3x^2}{2\sqrt{1+x^3}}=0$. Aïllant, ens queda $3x^2=0$ i, per tant, $x=0$. L'únic candidat a extrem dins
+l'interior del domini és, doncs, el punt $x=0$. Ara bé, la funció derivada és positiva, $f'(x)\ge0$,
+perquè es tracta d'una fracció entre nombres sempre positius. Això vol dir que $f$ és una funció creixent en
+tot el seu domini, $[-1,\infty)$. Per tant, aquesta funció no té cap màxim ni mínim locals.
+
+\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,25 pels punts crítics, 0,25 per determinar que no
+hi ha màxims ni mínims locals, i 0,25 per reconèixer que es tracta d'una funció creixent.
+
+\textit{Nota del banc:} a l'extrem del domini, $x=-1$, la funció val $f(-1)=0$, que és el valor més petit
+que pren: és el seu mínim absolut. El criteri oficial parla dels extrems relatius a l'interior del domini,
+on no n'hi ha cap.
+\end{solucio}
+
+\apartat{1}
+Trobeu quin ha de ser el valor de $a$ per tal que el punt $(a,3)$ pertanyi a la gràfica de la funció, i
+calculeu l'equació de la recta tangent a la corba $y=f(x)$ en aquest punt.
+
+\begin{solucio}
+El punt de tangència $(a,3)$ està sobre la gràfica de la funció i, per tant, compleix
+\[
+f(a)=\sqrt{1+a^3}=3\;\rightarrow\;1+a^3=9\;\rightarrow\;a^3=8\;\rightarrow\;a=\sqrt[3]{8}=2 .
+\]
+Aquesta recta tangent tindrà pendent $m=f'(2)=\dfrac{3\cdot2^2}{2\sqrt{1+2^3}}=\dfrac{12}{6}=2$. Per tant,
+es tracta de $y-3=2(x-2)\rightarrow y=2x-1$.
+
+\textit{Pauta oficial:} 0,5 per determinar l'abscissa del punt de tangència i 0,5 pel càlcul de la recta
+tangent.
+\end{solucio}
+
+\end{apartats}

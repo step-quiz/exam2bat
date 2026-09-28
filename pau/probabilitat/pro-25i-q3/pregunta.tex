@@ -1,0 +1,59 @@
+Un usuari d'Internet ha estimat que el 25\,\% dels correus electrònics que rep són correu brossa, mentre que la
+resta no ho són. Per a facilitar la classificació del correu, s'ha instal·lat un filtre que envia a la carpeta
+de correu brossa el 95\,\% dels missatges que efectivament ho són. Malauradament, aquest filtre deixa a la
+safata d'entrada només el 90\,\% dels missatges bons (i la resta els envia a la carpeta de correu brossa).
+
+\begin{apartats}
+
+\apartat{0,75}
+Quina és la probabilitat que un missatge sigui enviat pel filtre a la carpeta de correu brossa?
+
+\begin{solucio}
+Considerem els esdeveniments aleatoris $B$ = «rebre un correu brossa» i $CB$ = «rebre un correu a la carpeta
+de correu brossa». Segons les dades de l'enunciat, tenim que $P(B)=0{,}25$,
+$P\bigl(\overline{B}\bigr)=1-0{,}25=0{,}75$, $P(CB\mid B)=0{,}95$ i $P\bigl(\overline{CB}\mid\overline{B}\bigr)=0{,}9$.
+Per la llei de la probabilitat total,
+\[
+P(CB)=P(CB\mid B)\,P(B)+P\bigl(CB\mid\overline{B}\bigr)\,P\bigl(\overline{B}\bigr)=0{,}95\cdot0{,}25+(1-0{,}9)\cdot0{,}75
+=0{,}3125 .
+\]
+
+\textit{Pauta oficial:} 0,25 per plantejar la llei de la probabilitat total, 0,25 per identificar les dades
+del problema, i 0,25 pel càlcul.
+\end{solucio}
+
+\apartat{0,75}
+Un dia, aquest usuari obre la carpeta de correu brossa. Quin percentatge de missatges que no són correu
+brossa hi trobarà?
+
+\begin{solucio}
+Cal calcular $P\bigl(\overline{B}\mid CB\bigr)$. Per la fórmula de Bayes,
+\[
+P\bigl(\overline{B}\mid CB\bigr)=\frac{P\bigl(\overline{B}\cap CB\bigr)}{P(CB)}
+=\frac{P\bigl(CB\mid\overline{B}\bigr)\cdot P\bigl(\overline{B}\bigr)}{0{,}3125}=\frac{0{,}1\cdot0{,}75}{0{,}3125}=0{,}24 .
+\]
+S'hi trobarà un 24\,\% de correus que no són brossa.
+
+\textit{Pauta oficial:} 0,25 per plantejar la fórmula de Bayes (o la fórmula de la probabilitat
+condicionada) i 0,5 pel càlcul.
+\end{solucio}
+
+\apartat{1}
+En un servidor de correu electrònic determinat, la probabilitat de rebre com a mínim dos correus en menys de
+$t$ minuts ve donada per la funció $F(t)=\int_0^tAe^{-0{,}5x}\,dx$, on $A$ és una constant real.
+
+Sabent que la probabilitat de rebre com a mínim dos correus en menys de dos minuts és $1-e^{-1}$, trobeu el
+valor de $A$.
+
+\begin{solucio}
+Calculant la funció de l'enunciat, la probabilitat de rebre almenys dos correus en menys de $t$ minuts és
+\[
+F(t)=\int_0^tAe^{-0{,}5x}\,dx=\left[\frac{A}{-0{,}5}\,e^{-0{,}5x}\right]_0^t=\frac{A}{-0{,}5}\left(e^{-0{,}5t}-1\right)
+=2A\left(1-e^{-0{,}5t}\right).
+\]
+Imposant el valor de $F(2)$ que ens donen, trobem $2A\left(1-e^{-1}\right)=1-e^{-1}$, d'on resulta $A=0{,}5$.
+
+\textit{Pauta oficial:} 0,5 pel càlcul explícit de $F(t)$, 0,25 per imposar $F(2)$, i 0,25 pel càlcul final.
+\end{solucio}
+
+\end{apartats}
