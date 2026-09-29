@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-28 20:05 UTC",
+ "generat": "2026-09-29 03:27 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -247,6 +247,43 @@ const BANC = {
  "versio": "920aa212",
  "preguntes": [
   {
+   "id": "pau/algebra/alg-24s-q2",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-24s-q2",
+   "titol": "Sistema lineal amb paràmetre m: discussió, Cramer i una solució amb x = 5y",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    0.5,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    0.5,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "Rouché-Frobenius",
+    "regla de Cramer",
+    "paràmetre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2024, sèrie 3",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu el sistema d'equacions següent, on $m$ és un paràmetre real:\n\\[\n\\left.\\begin{aligned}\nx-3y+mz&=-2\\\\\nx+my+2z&=3\\\\\nx+y+2z&=m\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{apartats}\n\n\\apartat{1,25}\nDiscutiu el sistema segons el valor del paràmetre $m$.\n\n\\begin{solucio}\nEl determinant de la matriu de coeficients del sistema és\n\\[\n\\begin{vmatrix}1&-3&m\\\\1&m&2\\\\1&1&2\\end{vmatrix}=2m+m-6-m^2-2+6=-m^2+3m-2,\n\\]\nque és 0 quan $m=\\dfrac{-3\\pm\\sqrt{9-4(-1)(-2)}}{-2}=1,\\,2$. Si $m$ no és ni 1 ni 2, el rang de la matriu de\ncoeficients és 3, per tant el de l'ampliada també, i es tracta d'un sistema compatible determinat.\\\\\nEn el cas $m=1$, el rang de la matriu de coeficients és 2 (ja que, per exemple, el menor superior esquerre és\nno nul), i el de l'ampliada és 3:\n\\[\n\\begin{vmatrix}1&-3&-2\\\\1&1&3\\\\1&1&1\\end{vmatrix}=1-2-9+2-3+3=-8\\neq0 .\n\\]\nPer tant, es tracta d'un sistema incompatible. (Alternativament, observem que les dues darreres equacions són\ncontradictòries en aquest cas: $x+y+2z=3$ i $x+y+2z=1$.)\\\\\nEn el cas $m=2$, el rang de la matriu de coeficients és 2, i el de l'ampliada també és 2:\n\\[\n\\left(\\begin{array}{ccc|c}1&-3&2&-2\\\\1&2&2&3\\\\1&1&2&2\\end{array}\\right)\\sim\n\\left(\\begin{array}{ccc|c}1&-3&2&-2\\\\0&5&0&5\\\\0&4&0&4\\end{array}\\right)\\sim\n\\left(\\begin{array}{ccc|c}1&-3&2&-2\\\\0&1&0&1\\\\0&0&0&0\\end{array}\\right);\n\\]\nper tant, es tracta d'un sistema compatible indeterminat amb un grau de llibertat.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul del determinant, 0,25 per trobar els valors crítics de $m$, i 0,25 per\nl'estudi de cadascun dels tres casos. El sistema es pot discutir i resoldre de maneres alternatives: compteu-ho\nbé en la mesura que el que facin sigui correcte i estigui convenientment justificat.\n\\end{solucio}\n\n\\apartat{0,5}\nTrobeu la solució del sistema per a $m=0$.\n\n\\begin{solucio}\nSi $m=0$, és un sistema compatible determinat, i té per solució\n\\[\nx=\\frac{\\begin{vmatrix}-2&-3&0\\\\3&0&2\\\\0&1&2\\end{vmatrix}}{\\begin{vmatrix}1&-3&0\\\\1&0&2\\\\1&1&2\\end{vmatrix}}\n=\\frac{0+0+0-0+4+18}{0+0-6-0-2+6}=\\frac{22}{-2}=-11,\n\\]\n\\[\ny=\\frac{\\begin{vmatrix}1&-2&0\\\\1&3&2\\\\1&0&2\\end{vmatrix}}{-2}=\\frac{6+0-4-0-0+4}{-2}=\\frac{6}{-2}=-3,\n\\]\n\\[\nz=\\frac{\\begin{vmatrix}1&-3&-2\\\\1&0&3\\\\1&1&0\\end{vmatrix}}{-2}=\\frac{0-2-9-0-3-0}{-2}=\\frac{-14}{-2}=7 .\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel càlcul de la solució.\n\\end{solucio}\n\n\\apartat{0,75}\nPer a $m=2$, doneu una solució $(x,y,z)$ del sistema que, a més a més, compleixi $x=5y$.\n\n\\begin{solucio}\nPer a $m=2$, sabem que el sistema és equivalent a les dues equacions $x-3y+2z=-2$ i $y=1$, i és compatible\nindeterminat. Imposant, a més a més, la condició extra $x=5y$, tenim $x=5$ i, de la primera equació,\n$2z=-2-x+3y=-2-5+3=-4$, és a dir, $z=-2$. Així, la solució demanada és $(x,y,z)=(5,1,-2)$.\n\n\\textit{Pauta oficial:} 0,25 per saber combinar el sistema amb la condició extra, i 0,5 pel càlcul de la\nsolució demanada.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-24s-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-24s-q2/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-24s-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-24s-q2/out/solucio.pdf"
+  },
+  {
    "id": "pau/algebra/alg-25i-q2",
    "unitat": "pau",
    "tema": "algebra",
@@ -467,6 +504,121 @@ const BANC = {
    "pdf_solucio": "pau/algebra/alg-26j2-q2/out/solucio.pdf",
    "pdf_curt": "pau/algebra/alg-26j2-q2/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/algebra/alg-26j2-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24s-q1",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24s-q1",
+   "titol": "f(x) = 3x¹³ + 5x³ + 2: Bolzano, un interval de 0,5 i una sola arrel",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "teorema de Bolzano",
+    "monotonia",
+    "nombre d'arrels"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2024, sèrie 3",
+   "unitats": [
+    "u7",
+    "u9"
+   ],
+   "tries": [],
+   "tex": "Considereu la funció polinòmica $f(x)=3x^{13}+5x^3+2$.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nJustifiqueu que la seva gràfica talla l'eix de les abscisses en un punt de l'interval $[-2,0]$. Doneu un\ninterval de longitud 0,5 on es trobi aquest punt de tall.\n\n\\begin{solucio}\nLa funció $f(x)$ és polinòmica i, per tant, contínua en tots els reals. Com que\n\\[\nf(-2)=3\\cdot(-2)^{13}+5\\cdot(-2)^3+2<0,\\qquad f(0)=3\\cdot(0)^{13}+5\\cdot(0)^3+2>0,\n\\]\npodem aplicar el teorema de Bolzano, i la funció $f(x)$ s'anul·la forçosament en algun punt de l'interval\n$[-2,0]$. Per trobar un interval de longitud 0,5, només cal temptejar uns quants intervals més petits. Com que\n$f(-1)=3\\cdot(-1)^{13}+5\\cdot(-1)^3+2=-6<0$, l'arrel pertany a l'interval $[-1,0]$. I, finalment, com que\n\\[\nf(-0{,}5)=3\\cdot(-0{,}5)^{13}+5\\cdot(-0{,}5)^3+2=1{,}374\\ldots>0,\n\\]\nl'arrel pertany a l'interval $[-1,-0{,}5]$.\n\n\\textit{Pauta oficial:} 0,25 per justificar que es pot aplicar el teorema de Bolzano, 0,5 per veure que hi ha\nuna arrel a l'interval $[-2,0]$ i 0,5 per afinar fins a un interval de cinc dècimes d'amplada.\n\\end{solucio}\n\n\\apartat{1,25}\nEstudieu les zones de creixement i de decreixement, i els màxims i els mínims de $y=f(x)$. Quants punts de\ntall té exactament la gràfica d'aquesta funció amb l'eix de les abscisses? Justifiqueu la resposta.\n\n\\begin{solucio}\nPer analitzar el creixement i decreixement de la funció $f(x)$, calculem la seva derivada,\n$f'(x)=39x^{12}+15x^2$: com que tots els exponents són parells, $f'(x)$ mai és negativa i, per tant, la funció\n$f$ mai decreix. En particular, no té cap màxim ni mínim. D'altra banda, la funció, que és polinòmica, no té\nasímptotes ni discontinuïtats. En definitiva, la seva gràfica només pot tenir un únic punt de tall amb l'eix\nd'abscisses, que es troba, com hem dit, a l'interval $[-1,-0{,}5]$.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,25 per deduir que es tracta d'una funció creixent,\n0,25 per dir que no té màxims ni mínims, i 0,5 per justificar que hi ha una única arrel.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24s-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24s-q1/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24s-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24s-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24s-q3",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24s-q3",
+   "titol": "El logotip: punts de tall, àrea entre una cúbica i una paràbola, i de quin color cal més pintura",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.25,
+    0.5
+   ],
+   "apartats_curt": [
+    0.75,
+    1.25,
+    0.5
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "àrea entre corbes",
+    "punts de tall",
+    "problema en context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2024, sèrie 3",
+   "unitats": [
+    "u12"
+   ],
+   "tries": [],
+   "tex": "La classe de l'Èlia ha dissenyat el logotip següent per a pintar-lo a la paret de l'institut:\n\\begin{center}\n\\begin{tikzpicture}[x=0.8cm,y=0.8cm]\n  \\begin{scope}\n    \\clip (0,0) -- plot[domain=0:3,samples=60,smooth] (\\x,{(\\x)^3-4*(\\x)^2+4*(\\x)})\n      -- plot[domain=3:5,samples=40,smooth] (\\x,{4-((\\x)-1)^2/4}) -- cycle;\n    \\foreach \\t in {-5,-4.8,...,5} \\draw[gray!70,very thin] (\\t,0) -- ++(4,4);\n  \\end{scope}\n  \\begin{scope}\n    \\clip plot[domain=0:3,samples=60,smooth] (\\x,{4-((\\x)-1)^2/4})\n      -- plot[domain=3:0,samples=60,smooth] (\\x,{(\\x)^3-4*(\\x)^2+4*(\\x)}) -- cycle;\n    \\foreach \\i in {0.1,0.3,...,3} \\foreach \\j in {0.1,0.3,...,4} \\fill (\\i,\\j) circle (0.35pt);\n  \\end{scope}\n  \\draw (-1.2,0) -- (6,0);\n  \\draw (0,-1.2) -- (0,4.8);\n  \\draw[\\colorgrafica,thick] plot[domain=0:3,samples=80,smooth] (\\x,{(\\x)^3-4*(\\x)^2+4*(\\x)});\n  \\draw[\\colorgrafica,thick] plot[domain=0:5,samples=80,smooth] (\\x,{4-((\\x)-1)^2/4});\n  \\foreach \\p in {(0,3.75),(3,3),(2,0),(5,0),(0,0)} \\draw[fill=white] \\p circle (2pt);\n  \\node[above left,font=\\scriptsize] at (0,3.75) {$B$};\n  \\node[above right,font=\\scriptsize] at (3,3) {$C=(3,3)$};\n  \\node[below,font=\\scriptsize] at (2,-0.05) {$A$};\n  \\node[above right,font=\\scriptsize] at (5,0) {$D$};\n\\end{tikzpicture}\n\\end{center}\nLa corba que passa pel punt $A$ és $y=f(x)$, amb $f(x)=x^3-4x^2+4x$, i la que passa pels punts $B$, $C=(3,3)$\ni $D$ és $y=g(x)$, amb $g(x)=-\\left(\\dfrac{x-1}{2}\\right)^2+4$.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nCalculeu les coordenades dels punts $A$, $B$ i $D$.\n\n\\begin{solucio}\nEl punt $A$ és un punt de tall de $y=f(x)$ amb l'eix $OX$: $x^3-4x^2+4x=0\\rightarrow x(x-2)^2=0\\rightarrow\nx=0,\\ x=2$. Per tant, el punt $A$ té per coordenades $A=(2,0)$. El punt $D$ és un punt de tall de $y=g(x)$ amb\nl'eix $OX$:\n\\[\n-\\left(\\frac{x-1}{2}\\right)^2+4=0\\;\\rightarrow\\;x^2-2x-15=0\\;\\rightarrow\\;x=\\frac{2\\pm\\sqrt{4-4(-15)}}{2}=-3,\\ 5 .\n\\]\nDescartem la solució negativa i podem afirmar, per tant, que el punt $D$ té coordenades $D=(5,0)$.\nFinalment, el punt $B$ és el punt de tall de $y=g(x)$ amb l'eix $OY$; com que\n$g(0)=-\\left(\\frac{0-1}{2}\\right)^2+4=\\frac{15}{4}$, es tracta del punt $B=\\left(0,\\frac{15}{4}\\right)$. Les\ncoordenades del punt $C$ ja ens les dona l'enunciat, $C=(3,f(3))=(3,g(3))=(3,3)$.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de cadascun dels tres punts demanats.\n\\end{solucio}\n\n\\apartat{1,25}\nCalculeu l'àrea de la zona puntejada.\n\n\\begin{solucio}\nLa zona puntejada és l'àrea compresa entre $g(x)$ i $f(x)$ des de $x=0$ fins a $x=3$:\n\\begin{align*}\nA_1&=\\int_0^3\\left(-\\left(\\frac{x-1}{2}\\right)^2+4-\\left(x^3-4x^2+4x\\right)\\right)dx\n=\\int_0^3\\frac{-4x^3+15x^2-14x+15}{4}\\,dx\\\\\n&=\\frac14\\left[-x^4+5x^3-7x^2+15x\\right]_0^3=9\\ \\text{u}^2 .\n\\end{align*}\n\n\\textit{Pauta oficial:} 0,5 pel plantejament de l'àrea de la zona puntejada (amb els límits d'integració\ncorrectament col·locats), 0,5 per la primitiva i 0,25 pel càlcul final.\n\\end{solucio}\n\n\\apartat{0,5}\nEls alumnes volen pintar la part puntejada de color blau i la part ratllada de color vermell. Sabent que l'àrea\ntotal del logotip és $\\dfrac{175}{12}\\ \\text{m}^2$, de quin color necessitaran més pintura?\n\n\\begin{solucio}\nSabent que l'àrea total del logotip és de $\\frac{175}{12}=14{,}583\\ldots\\ \\text{u}^2$, la zona ratllada tindrà\nuna àrea de $14{,}583\\ldots-9=5{,}583\\ldots\\ \\text{u}^2$. Per tant, per pintar el logotip de la manera que\nvolen, els caldrà més pintura blava que vermella.\n\n\\textit{Pauta oficial:} 0,5 per la resposta correcta.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24s-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24s-q3/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24s-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24s-q3/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24s-q5",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24s-q5",
+   "titol": "Rectangle sota y = e^(−2x): àrea màxima, i una recta tangent",
+   "punts": 2.5,
+   "apartats": [
+    1.5,
+    1.0
+   ],
+   "apartats_curt": [
+    1.5,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "exponencial",
+    "recta tangent"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2024, sèrie 3",
+   "unitats": [
+    "u8",
+    "u9"
+   ],
+   "tries": [],
+   "tex": "Per a cada punt $(x,y)$ de la corba $y=e^{-2x}$, amb $x>0$ i $y>0$, considereu el rectangle amb vèrtexs als\npunts $(0,0)$, $(x,0)$, $(0,y)$ i $(x,y)$.\n\n\\begin{apartats}\n\n\\apartat{1,5}\nComproveu que, d'entre tots aquests rectangles, el que té $x=\\dfrac12$ és el d'àrea màxima. Quin és el valor\nd'aquesta àrea?\n\n\\begin{solucio}\nLa gràfica de la funció $y=e^{-2x}$ està esbossada en el dibuix següent, juntament amb un dels rectangles\ndescrits a l'enunciat:\n\\begin{center}\n\\begin{tikzpicture}[x=1.1cm,y=1.5cm]\n  \\draw[->] (-0.6,0) -- (3.3,0) node[below right] {$x$};\n  \\draw[->] (0,-0.2) -- (0,1.95) node[above left] {$y$};\n  \\draw[\\colorgrafica,thick,domain=-0.3:3.1,samples=80,smooth] plot (\\x,{exp(-2*\\x)});\n  \\draw (0,0) rectangle (0.8,0.2019);\n  \\fill (0.8,0.2019) circle (1.2pt) node[above right,font=\\scriptsize] {$(x,y)$};\n\\end{tikzpicture}\n\\end{center}\nCom que un qualsevol d'aquests rectangles mesura $x$ de base i $e^{-2x}$ d'alçada, la seva àrea és\n$A(x)=xe^{-2x}$. Busquem els extrems relatius d'aquesta funció:\n\\[\nA'(x)=e^{-2x}+xe^{-2x}(-2)=e^{-2x}(1-2x)=0\\;\\rightarrow\\;x=\\frac12 .\n\\]\nA partir del signe de la funció derivada, es veu clarament que $A(x)$ és creixent per a $x<\\frac12$ i decreixent\nper a $x>\\frac12$. Per tant, el punt $x=\\frac12$ és un màxim absolut d'$A(x)$. Així, el rectangle d'àrea màxima\ncorrespon al de costats $x=\\frac12$ i $y=e^{-2\\cdot\\frac12}=\\frac1e$, i té àrea\n$A\\!\\left(\\frac12\\right)=\\frac{1}{2e}\\ \\text{u}^2$.\n\n\\textit{Pauta oficial:} 0,25 per escriure la funció àrea, 0,25 per derivar-la, 0,25 per trobar el punt crític,\n0,5 per justificar que es tracta d'un màxim, i 0,25 per calcular l'àrea màxima. La justificació del màxim es pot\nfer també amb la derivada segona: compteu bé qualsevol de les maneres de fer-ho, en la mesura que siguin\ncorrectes i estiguin ben explicades.\n\\end{solucio}\n\n\\apartat{1}\nCalculeu l'equació de la recta tangent a la funció $y=e^{-2x}$ en el punt d'abscissa $x=0$, i el seu punt de\ntall amb l'eix de les abscisses.\n\n\\begin{solucio}\nLa derivada d'aquesta funció és $y'=-2e^{-2x}$. El pendent de la recta tangent en el punt d'abscissa 0 és\n$y'(0)=-2e^0=-2$. Com que $y(0)=e^0=1$, la recta tangent serà la d'equació $y-1=-2(x-0)$, és a dir,\n$y=-2x+1$. El punt de tall d'aquesta recta amb l'eix d'abscisses és $x=\\frac12$, és a dir, el punt\n$\\left(\\frac12,0\\right)$.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,5 per l'equació de la recta tangent, i 0,25 pel punt\nde tall.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24s-q5/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24s-q5/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24s-q5/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24s-q5/out/solucio.pdf"
   },
   {
    "id": "pau/analisi/ana-25i-q1",
@@ -851,6 +1003,43 @@ const BANC = {
    "pdf_solucio_curt": "pau/analisi/ana-26j2-q4a/out/solucio.pdf"
   },
   {
+   "id": "pau/geometria/geo-24s-q6",
+   "unitat": "pau",
+   "tema": "geometria",
+   "codi": "geo-24s-q6",
+   "titol": "Recta perpendicular a un pla, distància punt-pla i un pla paral·lel a la mateixa distància",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.5,
+    1.0
+   ],
+   "apartats_curt": [
+    1.0,
+    0.5,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "recta perpendicular",
+    "distància punt-pla",
+    "plans paral·lels"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2024, sèrie 3",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu el punt $P=(1,3,0)$ i el pla $\\pi$ d'equació $x+2y-2z=-7$.\n\n\\begin{apartats}\n\n\\apartat{1}\nSigui $r$ la recta que és perpendicular a $\\pi$ i passa per $P$. Calculeu el punt d'intersecció de $\\pi$ amb $r$.\n\n\\begin{solucio}\nPer ser perpendicular a $\\pi$, la recta $r$ tindrà com a vector director $\\vec v=(1,2,-2)$. I, com que ha de\npassar per $P=(1,3,0)$, es tracta de la recta\n\\[\n(x,y,z)=(1,3,0)+\\lambda(1,2,-2)=(1+\\lambda,\\,3+2\\lambda,\\,-2\\lambda).\n\\]\nImposant l'equació del pla $\\pi$, obtenim $1+\\lambda+2(3+2\\lambda)-2(-2\\lambda)=-7$, és a dir, $9\\lambda+7=-7$,\ni $\\lambda=-\\frac{14}{9}$. Això correspon al punt\n\\[\nQ=\\left(1-\\frac{14}{9},\\,3-\\frac{28}{9},\\,\\frac{28}{9}\\right)=\\left(-\\frac59,\\,-\\frac19,\\,\\frac{28}{9}\\right).\n\\]\n\n\\textit{Pauta oficial:} 0,5 per la parametrització de la recta $r$, 0,25 per imposar l'equació del pla $\\pi$, i\n0,25 pel càlcul final. L'apartat es pot fer també trobant primer l'equació cartesiana de la recta $r$ i després\nfent el sistema d'equacions amb el pla $\\pi$: compteu-ho bé, en la mesura que el que facin sigui correcte i\nestigui ben explicat.\n\\end{solucio}\n\n\\apartat{0,5}\nCalculeu la distància $d$ del punt $P$ al pla $\\pi$.\n\n\\begin{solucio}\nCom que el punt $Q$ que hem calculat és la projecció ortogonal de $P$ sobre el pla $\\pi$, la distància\ndemanada és\n\\[\nd(P,\\pi)=d(P,Q)=\\sqrt{\\left(-\\frac59-1\\right)^2+\\left(-\\frac19-3\\right)^2+\\left(\\frac{28}{9}-0\\right)^2}\n=\\frac19\\sqrt{14^2+28^2+28^2}=\\frac{42}{9}=\\frac{14}{3}.\n\\]\nAlternativament, la podem calcular amb la fórmula de la distància punt-pla:\n\\[\nd(P,\\pi)=\\frac{|1+2\\cdot3-2\\cdot0+7|}{\\sqrt{1^2+2^2+(-2)^2}}=\\frac{14}{3}.\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel càlcul de la distància (per qualsevol dels dos mètodes).\n\\end{solucio}\n\n\\apartat{1}\nCalculeu l'equació d'un altre pla $\\pi'$ que sigui paral·lel a $\\pi$ i que també estigui a distància $d$ de $P$.\n\n\\begin{solucio}\nPer ser paral·lel, $\\pi'$ haurà de tenir una equació de la forma $x+2y-2z=D$. I, imposant que la distància a\n$P=(1,3,0)$ també sigui de $\\frac{14}{3}$, obtenim\n\\[\n\\frac{14}{3}=d(P,\\pi')=\\frac{|1+2\\cdot3-2\\cdot0-D|}{\\sqrt{1^2+2^2+(-2)^2}}=\\frac{|7-D|}{3},\n\\]\nés a dir, $|7-D|=14$, $7-D=\\pm14$ i $D=7\\mp14$, que dona $D=-7$ o $D=21$. El valor $D=-7$ correspon al pla\n$\\pi$, que ja coneixem, i l'altre pla $\\pi'$ demanat serà el d'equació $x+2y-2z=21$.\n\n\\textit{Pauta oficial:} 0,5 per imposar l'equació (amb el valor absolut tractat correctament), i 0,5 per aïllar\n$D$ i donar la resposta.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/geometria/geo-24s-q6/out/enunciat.pdf",
+   "pdf_solucio": "pau/geometria/geo-24s-q6/out/solucio.pdf",
+   "pdf_curt": "pau/geometria/geo-24s-q6/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/geometria/geo-24s-q6/out/solucio.pdf"
+  },
+  {
    "id": "pau/geometria/geo-25j-q4b",
    "unitat": "pau",
    "tema": "geometria",
@@ -995,6 +1184,46 @@ const BANC = {
    "pdf_solucio": "pau/geometria/geo-26j2-q4b/out/solucio.pdf",
    "pdf_curt": "pau/geometria/geo-26j2-q4b/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/geometria/geo-26j2-q4b/out/solucio.pdf"
+  },
+  {
+   "id": "pau/probabilitat/pro-24s-q4",
+   "unitat": "pau",
+   "tema": "probabilitat",
+   "codi": "pro-24s-q4",
+   "titol": "Arrítmia i monitor Holter: «almenys una», probabilitat total i Bayes",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "binomial",
+    "probabilitat total",
+    "Bayes"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2024, sèrie 3",
+   "unitats": [
+    "u13",
+    "u14"
+   ],
+   "tries": [],
+   "tex": "S'estima que el 20\\,\\% dels habitants d'una regió pateix algun tipus d'arrítmia. Per a diagnosticar-la, hi ha la\npossibilitat de col·locar al pacient un monitor Holter, que detecta l'arrítmia en un 95\\,\\% dels casos de\npersones que la pateixen, però que també dona falsos positius, per motius elèctrics, en persones que no\npateixen arrítmies en un 0,5\\,\\% dels casos.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nSi escollim 4 persones a l'atzar, quina és la probabilitat que almenys una d'elles pateixi arrítmies?\n\n\\begin{solucio}\nSigui $A$ l'esdeveniment «patir arrítmia». De l'enunciat sabem que $P(A)=0{,}2$. D'entre les 4 escollides, el\nnombre de persones $N$ que pateixen arrítmies segueix una distribució binomial amb paràmetres $n=4$ i\n$p=0{,}2$. Passant al complementari, obtenim\n\\[\nP(N\\ge1)=1-P(N=0)=1-(1-0{,}2)^4=0{,}5904 .\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel plantejament i 0,25 pel càlcul. També seria correcte el càlcul (més llarg) de\nla probabilitat que $N$ sigui 1, 2, 3 o 4, és a dir, $P(N=1)+P(N=2)+P(N=3)+P(N=4)$, amb la binomial: compteu\nla màxima puntuació si el fan així de manera correcta i argumentada.\n\\end{solucio}\n\n\\apartat{0,75}\nQuina és la probabilitat que una persona escollida a l'atzar obtingui un diagnòstic positiu d'arrítmia?\n\n\\begin{solucio}\nSigui $H$ l'esdeveniment «obtenir diagnòstic positiu d'arrítmia a la prova del Holter», i siguin\n$\\overline{A}$ i $\\overline{H}$ els esdeveniments complementaris d'$A$ i d'$H$, respectivament. Aleshores,\nde les dades de l'enunciat deduïm $P\\bigl(\\overline{A}\\bigr)=0{,}8$, $P(H\\mid A)=0{,}95$ i\n$P\\bigl(H\\mid\\overline{A}\\bigr)=0{,}005$. Podem aplicar la fórmula de la probabilitat total:\n\\[\nP(H)=P(H\\mid A)\\cdot P(A)+P\\bigl(H\\mid\\overline{A}\\bigr)\\cdot P\\bigl(\\overline{A}\\bigr)=0{,}95\\cdot0{,}2+0{,}005\\cdot0{,}8\n=0{,}194 .\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel plantejament amb la fórmula de les probabilitats totals (o un arbre de decisió)\ni 0,25 pel càlcul.\n\\end{solucio}\n\n\\apartat{1}\nSi una persona obté un diagnòstic negatiu a la prova del Holter, quina és la probabilitat que realment\npateixi arrítmies?\n\n\\begin{solucio}\nPer calcular la probabilitat condicionada que se'ns demana, farem servir la fórmula de Bayes:\n\\[\nP\\bigl(A\\mid\\overline{H}\\bigr)=\\frac{P\\bigl(A\\cap\\overline{H}\\bigr)}{P\\bigl(\\overline{H}\\bigr)}\n=\\frac{P(A)\\cdot P\\bigl(\\overline{H}\\mid A\\bigr)}{1-P(H)}=\\frac{0{,}2\\cdot(1-0{,}95)}{1-0{,}194}=0{,}012\\ldots\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel plantejament de la fórmula de Bayes (o de la probabilitat condicionada), i 0,5\npel càlcul.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/probabilitat/pro-24s-q4/out/enunciat.pdf",
+   "pdf_solucio": "pau/probabilitat/pro-24s-q4/out/solucio.pdf",
+   "pdf_curt": "pau/probabilitat/pro-24s-q4/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/probabilitat/pro-24s-q4/out/solucio.pdf"
   },
   {
    "id": "pau/probabilitat/pro-25i-q3",
