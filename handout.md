@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 28 de setembre de 2026 · **Estat:** 112 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 25 de la PAU), 87 amb tries · 2.176 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+**Data:** 28 de setembre de 2026 · **Estat:** 118 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 31 de la PAU), 87 amb tries · 2.308 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -48,7 +48,7 @@ temes, amb tres variants cadascun i una tria a cada pregunta. La vint-i-sisena v
 u14, de la qual els alumnes practiquen la distribució binomial. La vint-i-setena va afegir a la u10 els
 exercicis de la setmana 17 i va importar la sèrie 5 de la PAU de juny de 2026. La vint-i-vuitena va importar la sèrie 1 de
 juny de 2025, i la vint-i-novena, setembre de 2025, amb l'exercici 3 sencer com a `pro-25s-q3`, i la trentena, la sèrie 4 de juny de 2025: tota la PAU de 2025 és al
-banc. La màquina
+banc. La trenta-unena va importar setembre de 2024, la primera amb el format antic de sis exercicis. La màquina
 funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents, la
 resta d'unitats, i estendre les tries a la u10.
@@ -1045,6 +1045,31 @@ apartats, perquè ja la necessita l'apartat a); a l'original, és al final de l'
 primera, sense cap *Overfull*. Les bateries (38/19/77) i la integració amb jsdom passen, i el banc
 complet escriu 1.128 PDF.
 
+### 2.31 Sessió 31 · Setembre de 2024, la primera amb el format antic
+
+**El format antic.** Fins al 2024, l'examen tenia sis exercicis i l'alumne en triava quatre, tots de 2,5
+punts. Al banc, cada exercici és una pregunta independent, amb els codis `q1` a `q6`, i no hi ha cap parella
+d'opcions 4a i 4b. El professor va confirmar que ja li estava bé.
+
+**Importació** amb el procediment de la secció 9. Els sis exercicis: `ana-24s-q1` (Bolzano i monotonia
+d'una funció de grau 13; u7 i u9), `alg-24s-q2` (sistema amb paràmetre, Cramer i una solució amb $x=5y$),
+`ana-24s-q3` (l'àrea d'un logotip entre una cúbica i una paràbola; u12), `pro-24s-q4` (el monitor Holter,
+amb «almenys una», probabilitat total i Bayes; u13 i u14), `ana-24s-q5` (el rectangle d'àrea màxima sota
+$y=e^{-2x}$ i una tangent; u8 i u9) i `geo-24s-q6` (una recta perpendicular a un pla, una distància i un pla
+paral·lel). Tots els resultats oficials es van verificar amb SymPy, i són correctes. Hi ha un PDF de revisió
+del lot (`revisio-pau-setembre2024-serie3.pdf`).
+
+**Detalls.** Els criteris de 2024 escriuen els decimals amb punt, i es van passar a coma, com a la resta del
+banc. Els comentaris oficials («Compteu-ho bé si…») s'afegeixen a la línia de la pauta. La figura del logotip
+es va refer en TikZ, amb els punts i el ratllat fets a mà; el criteri no diu quina és exactament la zona
+ratllada, però l'àrea total de l'enunciat, $\frac{175}{12}$, ho confirma: és tota la regió entre l'eix i les
+dues corbes, sota $f$ de 0 a 3 i sota $g$ de 3 a 5. També es va refer l'esbós de $y=e^{-2x}$ que porta la
+solució del 5. La primera compilació va donar dos *Overfull* (les fraccions de Cramer, l'una al costat de
+l'altra, i una fórmula de distància en línia), que es van passar a línies pròpies.
+
+**Verificació.** Les bateries (38/19/77) i la integració amb jsdom passen, i el banc complet escriu 1.140
+PDF.
+
 ---
 
 ## 3. Decisions preses
@@ -1430,12 +1455,12 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 | `pro-25i-q3` | juny 2025 · s4 | Probabilitat | Filtre de correu brossa: prob. total, Bayes i integral | ✅ importada (sessió 30) |
 | `ana-25i-q4a` | juny 2025 · s4 | Anàlisi | Optimització: ampolla cilindre + mitja esfera | ✅ importada (sessió 30) |
 | `alg-25i-q4b` | juny 2025 · s4 | Àlgebra | Matrius que commuten; invertibilitat; A⁻¹=A | ✅ importada (sessió 30) |
-| `ana-24s-q1` | setembre 2024 · s3 | Anàlisi | f(x)=3x¹³+5x³+2: Bolzano i monotonia | pendent |
-| `alg-24s-q2` | setembre 2024 · s3 | Àlgebra | Sistema lineal amb paràmetre m | pendent |
-| `ana-24s-q3` | setembre 2024 · s3 | Anàlisi | Àrees del logotip: cúbica i paràbola | pendent |
-| `pro-24s-q4` | setembre 2024 · s3 | Probabilitat | Arrítmia i monitor Holter: prob. total i Bayes | pendent |
-| `ana-24s-q5` | setembre 2024 · s3 | Anàlisi | Rectangle inscrit en y=e^(−2x): àrea màxima i tangent | pendent |
-| `geo-24s-q6` | setembre 2024 · s3 | Geometria | Recta perpendicular a un pla i plans paral·lels | pendent |
+| `ana-24s-q1` | setembre 2024 · s3 | Anàlisi | f(x)=3x¹³+5x³+2: Bolzano i monotonia | ✅ importada (sessió 31) |
+| `alg-24s-q2` | setembre 2024 · s3 | Àlgebra | Sistema lineal amb paràmetre m | ✅ importada (sessió 31) |
+| `ana-24s-q3` | setembre 2024 · s3 | Anàlisi | Àrees del logotip: cúbica i paràbola | ✅ importada (sessió 31) |
+| `pro-24s-q4` | setembre 2024 · s3 | Probabilitat | Arrítmia i monitor Holter: prob. total i Bayes | ✅ importada (sessió 31) |
+| `ana-24s-q5` | setembre 2024 · s3 | Anàlisi | Rectangle inscrit en y=e^(−2x): àrea màxima i tangent | ✅ importada (sessió 31) |
+| `geo-24s-q6` | setembre 2024 · s3 | Geometria | Recta perpendicular a un pla i plans paral·lels | ✅ importada (sessió 31) |
 | `ana-24j-q1` | juny 2024 · s1 | Anàlisi | f(x)=2·ln(x)/x: extrems, asímptotes, tangent | pendent |
 | `alg-24j-q2` | juny 2024 · s1 | Àlgebra | Sistema lineal amb paràmetre k | pendent |
 | `ana-24j-q3` | juny 2024 · s1 | Anàlisi | Àrea d'un terreny: cúbica i recta PR | pendent |
@@ -1551,7 +1576,7 @@ lliurament de la sessió és l'apartat 11.
 - Opcionalment, **confirmar amb els originals** les sèries de `23s` (2) i `24j` (1), que avui
   provenen d'una rèplica pública.
 
-### 7.3 Importació PAU: 36 exercicis en 6 convocatòries
+### 7.3 Importació PAU: 30 exercicis en 5 convocatòries
 
 Es fa després de la u8 (decisió de la sessió 5).
 
@@ -1561,7 +1586,7 @@ Es fa després de la u8 (decisió de la sessió 5).
 | `25j` juny 2025 | 1 | ✅ importada (sessió 28) |
 | `25s` setembre 2025 | 3 | ✅ importada (sessió 29): 5 exercicis, el 3 com a `pro-25s-q3` |
 | `25i` juny 2025 | 4 | ✅ importada (sessió 30) |
-| `24s` setembre 2024 | 3 | 6 |
+| `24s` setembre 2024 | 3 | ✅ importada (sessió 31) |
 | `24j` juny 2024 | 1 | 6 |
 | `24i` juny 2024 | 5 | 6 |
 | `23s` setembre 2023 | 2 | 6 |
@@ -1771,14 +1796,14 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 30. Parteix del de la sessió 29, que ja és al repositori.
+És el lliurament de la sessió 31. Parteix del de la sessió 30, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `pau/analisi/ana-25i-q1/`, `pau/algebra/alg-25i-q2/`, `pau/probabilitat/pro-25i-q3/`, `pau/analisi/ana-25i-q4a/`, `pau/algebra/alg-25i-q4b/` | **Noves**: la sèrie 4 de juny de 2025, `pregunta.tex` i `meta.json` |
+| `pau/analisi/ana-24s-q1/`, `pau/algebra/alg-24s-q2/`, `pau/analisi/ana-24s-q3/`, `pau/probabilitat/pro-24s-q4/`, `pau/analisi/ana-24s-q5/`, `pau/geometria/geo-24s-q6/` | **Noves**: setembre de 2024, `pregunta.tex` i `meta.json` |
 | `README.md` | Estat |
-| `handout.md` | Secció 2.30, i les seccions 6.6, 7.3 i 11 |
+| `handout.md` | Secció 2.31, i les seccions 6.6, 7.3 i 11 |
 
 No porta cap PDF ni `cataleg.js`. Després de pujar-lo a `_uploads`, cal fer **Run workflow**. Amb la
-memòria, el resum hauria de dir «10 PDF desats · 1118 reutilitzats». El PDF de revisió del lot va a
+memòria, el resum hauria de dir «12 PDF desats · 1128 reutilitzats». El PDF de revisió del lot va a
 part: no s'ha de pujar al repositori.

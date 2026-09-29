@@ -1,0 +1,14 @@
+{
+  "titol": "Arrítmia i monitor Holter: «almenys una», probabilitat total i Bayes",
+  "unitats": [
+    "u13",
+    "u14"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "binomial",
+    "probabilitat total",
+    "Bayes"
+  ]
+}

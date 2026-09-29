@@ -1,0 +1,11 @@
+{
+  "titol": "Sistema lineal amb paràmetre m: discussió, Cramer i una solució amb x = 5y",
+  "unitats": [],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "Rouché-Frobenius",
+    "regla de Cramer",
+    "paràmetre"
+  ]
+}

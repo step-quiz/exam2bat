@@ -1,0 +1,52 @@
+Per a cada punt $(x,y)$ de la corba $y=e^{-2x}$, amb $x>0$ i $y>0$, considereu el rectangle amb vèrtexs als
+punts $(0,0)$, $(x,0)$, $(0,y)$ i $(x,y)$.
+
+\begin{apartats}
+
+\apartat{1,5}
+Comproveu que, d'entre tots aquests rectangles, el que té $x=\dfrac12$ és el d'àrea màxima. Quin és el valor
+d'aquesta àrea?
+
+\begin{solucio}
+La gràfica de la funció $y=e^{-2x}$ està esbossada en el dibuix següent, juntament amb un dels rectangles
+descrits a l'enunciat:
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=1.5cm]
+  \draw[->] (-0.6,0) -- (3.3,0) node[below right] {$x$};
+  \draw[->] (0,-0.2) -- (0,1.95) node[above left] {$y$};
+  \draw[\colorgrafica,thick,domain=-0.3:3.1,samples=80,smooth] plot (\x,{exp(-2*\x)});
+  \draw (0,0) rectangle (0.8,0.2019);
+  \fill (0.8,0.2019) circle (1.2pt) node[above right,font=\scriptsize] {$(x,y)$};
+\end{tikzpicture}
+\end{center}
+Com que un qualsevol d'aquests rectangles mesura $x$ de base i $e^{-2x}$ d'alçada, la seva àrea és
+$A(x)=xe^{-2x}$. Busquem els extrems relatius d'aquesta funció:
+\[
+A'(x)=e^{-2x}+xe^{-2x}(-2)=e^{-2x}(1-2x)=0\;\rightarrow\;x=\frac12 .
+\]
+A partir del signe de la funció derivada, es veu clarament que $A(x)$ és creixent per a $x<\frac12$ i decreixent
+per a $x>\frac12$. Per tant, el punt $x=\frac12$ és un màxim absolut d'$A(x)$. Així, el rectangle d'àrea màxima
+correspon al de costats $x=\frac12$ i $y=e^{-2\cdot\frac12}=\frac1e$, i té àrea
+$A\!\left(\frac12\right)=\frac{1}{2e}\ \text{u}^2$.
+
+\textit{Pauta oficial:} 0,25 per escriure la funció àrea, 0,25 per derivar-la, 0,25 per trobar el punt crític,
+0,5 per justificar que es tracta d'un màxim, i 0,25 per calcular l'àrea màxima. La justificació del màxim es pot
+fer també amb la derivada segona: compteu bé qualsevol de les maneres de fer-ho, en la mesura que siguin
+correctes i estiguin ben explicades.
+\end{solucio}
+
+\apartat{1}
+Calculeu l'equació de la recta tangent a la funció $y=e^{-2x}$ en el punt d'abscissa $x=0$, i el seu punt de
+tall amb l'eix de les abscisses.
+
+\begin{solucio}
+La derivada d'aquesta funció és $y'=-2e^{-2x}$. El pendent de la recta tangent en el punt d'abscissa 0 és
+$y'(0)=-2e^0=-2$. Com que $y(0)=e^0=1$, la recta tangent serà la d'equació $y-1=-2(x-0)$, és a dir,
+$y=-2x+1$. El punt de tall d'aquesta recta amb l'eix d'abscisses és $x=\frac12$, és a dir, el punt
+$\left(\frac12,0\right)$.
+
+\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,5 per l'equació de la recta tangent, i 0,25 pel punt
+de tall.
+\end{solucio}
+
+\end{apartats}

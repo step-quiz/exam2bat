@@ -1,0 +1,60 @@
+Considereu el punt $P=(1,3,0)$ i el pla $\pi$ d'equació $x+2y-2z=-7$.
+
+\begin{apartats}
+
+\apartat{1}
+Sigui $r$ la recta que és perpendicular a $\pi$ i passa per $P$. Calculeu el punt d'intersecció de $\pi$ amb $r$.
+
+\begin{solucio}
+Per ser perpendicular a $\pi$, la recta $r$ tindrà com a vector director $\vec v=(1,2,-2)$. I, com que ha de
+passar per $P=(1,3,0)$, es tracta de la recta
+\[
+(x,y,z)=(1,3,0)+\lambda(1,2,-2)=(1+\lambda,\,3+2\lambda,\,-2\lambda).
+\]
+Imposant l'equació del pla $\pi$, obtenim $1+\lambda+2(3+2\lambda)-2(-2\lambda)=-7$, és a dir, $9\lambda+7=-7$,
+i $\lambda=-\frac{14}{9}$. Això correspon al punt
+\[
+Q=\left(1-\frac{14}{9},\,3-\frac{28}{9},\,\frac{28}{9}\right)=\left(-\frac59,\,-\frac19,\,\frac{28}{9}\right).
+\]
+
+\textit{Pauta oficial:} 0,5 per la parametrització de la recta $r$, 0,25 per imposar l'equació del pla $\pi$, i
+0,25 pel càlcul final. L'apartat es pot fer també trobant primer l'equació cartesiana de la recta $r$ i després
+fent el sistema d'equacions amb el pla $\pi$: compteu-ho bé, en la mesura que el que facin sigui correcte i
+estigui ben explicat.
+\end{solucio}
+
+\apartat{0,5}
+Calculeu la distància $d$ del punt $P$ al pla $\pi$.
+
+\begin{solucio}
+Com que el punt $Q$ que hem calculat és la projecció ortogonal de $P$ sobre el pla $\pi$, la distància
+demanada és
+\[
+d(P,\pi)=d(P,Q)=\sqrt{\left(-\frac59-1\right)^2+\left(-\frac19-3\right)^2+\left(\frac{28}{9}-0\right)^2}
+=\frac19\sqrt{14^2+28^2+28^2}=\frac{42}{9}=\frac{14}{3}.
+\]
+Alternativament, la podem calcular amb la fórmula de la distància punt-pla:
+\[
+d(P,\pi)=\frac{|1+2\cdot3-2\cdot0+7|}{\sqrt{1^2+2^2+(-2)^2}}=\frac{14}{3}.
+\]
+
+\textit{Pauta oficial:} 0,5 pel càlcul de la distància (per qualsevol dels dos mètodes).
+\end{solucio}
+
+\apartat{1}
+Calculeu l'equació d'un altre pla $\pi'$ que sigui paral·lel a $\pi$ i que també estigui a distància $d$ de $P$.
+
+\begin{solucio}
+Per ser paral·lel, $\pi'$ haurà de tenir una equació de la forma $x+2y-2z=D$. I, imposant que la distància a
+$P=(1,3,0)$ també sigui de $\frac{14}{3}$, obtenim
+\[
+\frac{14}{3}=d(P,\pi')=\frac{|1+2\cdot3-2\cdot0-D|}{\sqrt{1^2+2^2+(-2)^2}}=\frac{|7-D|}{3},
+\]
+és a dir, $|7-D|=14$, $7-D=\pm14$ i $D=7\mp14$, que dona $D=-7$ o $D=21$. El valor $D=-7$ correspon al pla
+$\pi$, que ja coneixem, i l'altre pla $\pi'$ demanat serà el d'equació $x+2y-2z=21$.
+
+\textit{Pauta oficial:} 0,5 per imposar l'equació (amb el valor absolut tractat correctament), i 0,5 per aïllar
+$D$ i donar la resposta.
+\end{solucio}
+
+\end{apartats}

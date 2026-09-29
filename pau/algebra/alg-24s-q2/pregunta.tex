@@ -1,0 +1,73 @@
+Considereu el sistema d'equacions següent, on $m$ és un paràmetre real:
+\[
+\left.\begin{aligned}
+x-3y+mz&=-2\\
+x+my+2z&=3\\
+x+y+2z&=m
+\end{aligned}\right\}
+\]
+
+\begin{apartats}
+
+\apartat{1,25}
+Discutiu el sistema segons el valor del paràmetre $m$.
+
+\begin{solucio}
+El determinant de la matriu de coeficients del sistema és
+\[
+\begin{vmatrix}1&-3&m\\1&m&2\\1&1&2\end{vmatrix}=2m+m-6-m^2-2+6=-m^2+3m-2,
+\]
+que és 0 quan $m=\dfrac{-3\pm\sqrt{9-4(-1)(-2)}}{-2}=1,\,2$. Si $m$ no és ni 1 ni 2, el rang de la matriu de
+coeficients és 3, per tant el de l'ampliada també, i es tracta d'un sistema compatible determinat.\\
+En el cas $m=1$, el rang de la matriu de coeficients és 2 (ja que, per exemple, el menor superior esquerre és
+no nul), i el de l'ampliada és 3:
+\[
+\begin{vmatrix}1&-3&-2\\1&1&3\\1&1&1\end{vmatrix}=1-2-9+2-3+3=-8\neq0 .
+\]
+Per tant, es tracta d'un sistema incompatible. (Alternativament, observem que les dues darreres equacions són
+contradictòries en aquest cas: $x+y+2z=3$ i $x+y+2z=1$.)\\
+En el cas $m=2$, el rang de la matriu de coeficients és 2, i el de l'ampliada també és 2:
+\[
+\left(\begin{array}{ccc|c}1&-3&2&-2\\1&2&2&3\\1&1&2&2\end{array}\right)\sim
+\left(\begin{array}{ccc|c}1&-3&2&-2\\0&5&0&5\\0&4&0&4\end{array}\right)\sim
+\left(\begin{array}{ccc|c}1&-3&2&-2\\0&1&0&1\\0&0&0&0\end{array}\right);
+\]
+per tant, es tracta d'un sistema compatible indeterminat amb un grau de llibertat.
+
+\textit{Pauta oficial:} 0,25 pel càlcul del determinant, 0,25 per trobar els valors crítics de $m$, i 0,25 per
+l'estudi de cadascun dels tres casos. El sistema es pot discutir i resoldre de maneres alternatives: compteu-ho
+bé en la mesura que el que facin sigui correcte i estigui convenientment justificat.
+\end{solucio}
+
+\apartat{0,5}
+Trobeu la solució del sistema per a $m=0$.
+
+\begin{solucio}
+Si $m=0$, és un sistema compatible determinat, i té per solució
+\[
+x=\frac{\begin{vmatrix}-2&-3&0\\3&0&2\\0&1&2\end{vmatrix}}{\begin{vmatrix}1&-3&0\\1&0&2\\1&1&2\end{vmatrix}}
+=\frac{0+0+0-0+4+18}{0+0-6-0-2+6}=\frac{22}{-2}=-11,
+\]
+\[
+y=\frac{\begin{vmatrix}1&-2&0\\1&3&2\\1&0&2\end{vmatrix}}{-2}=\frac{6+0-4-0-0+4}{-2}=\frac{6}{-2}=-3,
+\]
+\[
+z=\frac{\begin{vmatrix}1&-3&-2\\1&0&3\\1&1&0\end{vmatrix}}{-2}=\frac{0-2-9-0-3-0}{-2}=\frac{-14}{-2}=7 .
+\]
+
+\textit{Pauta oficial:} 0,5 pel càlcul de la solució.
+\end{solucio}
+
+\apartat{0,75}
+Per a $m=2$, doneu una solució $(x,y,z)$ del sistema que, a més a més, compleixi $x=5y$.
+
+\begin{solucio}
+Per a $m=2$, sabem que el sistema és equivalent a les dues equacions $x-3y+2z=-2$ i $y=1$, i és compatible
+indeterminat. Imposant, a més a més, la condició extra $x=5y$, tenim $x=5$ i, de la primera equació,
+$2z=-2-x+3y=-2-5+3=-4$, és a dir, $z=-2$. Així, la solució demanada és $(x,y,z)=(5,1,-2)$.
+
+\textit{Pauta oficial:} 0,25 per saber combinar el sistema amb la condició extra, i 0,5 pel càlcul de la
+solució demanada.
+\end{solucio}
+
+\end{apartats}

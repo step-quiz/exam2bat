@@ -1,0 +1,14 @@
+{
+  "titol": "Rectangle sota y = e^(−2x): àrea màxima, i una recta tangent",
+  "unitats": [
+    "u8",
+    "u9"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "optimització",
+    "exponencial",
+    "recta tangent"
+  ]
+}

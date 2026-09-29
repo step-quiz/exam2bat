@@ -1,0 +1,14 @@
+{
+  "titol": "f(x) = 3x¹³ + 5x³ + 2: Bolzano, un interval de 0,5 i una sola arrel",
+  "unitats": [
+    "u7",
+    "u9"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "teorema de Bolzano",
+    "monotonia",
+    "nombre d'arrels"
+  ]
+}

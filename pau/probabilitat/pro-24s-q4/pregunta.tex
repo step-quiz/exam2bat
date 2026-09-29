@@ -1,0 +1,56 @@
+S'estima que el 20\,\% dels habitants d'una regió pateix algun tipus d'arrítmia. Per a diagnosticar-la, hi ha la
+possibilitat de col·locar al pacient un monitor Holter, que detecta l'arrítmia en un 95\,\% dels casos de
+persones que la pateixen, però que també dona falsos positius, per motius elèctrics, en persones que no
+pateixen arrítmies en un 0,5\,\% dels casos.
+
+\begin{apartats}
+
+\apartat{0,75}
+Si escollim 4 persones a l'atzar, quina és la probabilitat que almenys una d'elles pateixi arrítmies?
+
+\begin{solucio}
+Sigui $A$ l'esdeveniment «patir arrítmia». De l'enunciat sabem que $P(A)=0{,}2$. D'entre les 4 escollides, el
+nombre de persones $N$ que pateixen arrítmies segueix una distribució binomial amb paràmetres $n=4$ i
+$p=0{,}2$. Passant al complementari, obtenim
+\[
+P(N\ge1)=1-P(N=0)=1-(1-0{,}2)^4=0{,}5904 .
+\]
+
+\textit{Pauta oficial:} 0,5 pel plantejament i 0,25 pel càlcul. També seria correcte el càlcul (més llarg) de
+la probabilitat que $N$ sigui 1, 2, 3 o 4, és a dir, $P(N=1)+P(N=2)+P(N=3)+P(N=4)$, amb la binomial: compteu
+la màxima puntuació si el fan així de manera correcta i argumentada.
+\end{solucio}
+
+\apartat{0,75}
+Quina és la probabilitat que una persona escollida a l'atzar obtingui un diagnòstic positiu d'arrítmia?
+
+\begin{solucio}
+Sigui $H$ l'esdeveniment «obtenir diagnòstic positiu d'arrítmia a la prova del Holter», i siguin
+$\overline{A}$ i $\overline{H}$ els esdeveniments complementaris d'$A$ i d'$H$, respectivament. Aleshores,
+de les dades de l'enunciat deduïm $P\bigl(\overline{A}\bigr)=0{,}8$, $P(H\mid A)=0{,}95$ i
+$P\bigl(H\mid\overline{A}\bigr)=0{,}005$. Podem aplicar la fórmula de la probabilitat total:
+\[
+P(H)=P(H\mid A)\cdot P(A)+P\bigl(H\mid\overline{A}\bigr)\cdot P\bigl(\overline{A}\bigr)=0{,}95\cdot0{,}2+0{,}005\cdot0{,}8
+=0{,}194 .
+\]
+
+\textit{Pauta oficial:} 0,5 pel plantejament amb la fórmula de les probabilitats totals (o un arbre de decisió)
+i 0,25 pel càlcul.
+\end{solucio}
+
+\apartat{1}
+Si una persona obté un diagnòstic negatiu a la prova del Holter, quina és la probabilitat que realment
+pateixi arrítmies?
+
+\begin{solucio}
+Per calcular la probabilitat condicionada que se'ns demana, farem servir la fórmula de Bayes:
+\[
+P\bigl(A\mid\overline{H}\bigr)=\frac{P\bigl(A\cap\overline{H}\bigr)}{P\bigl(\overline{H}\bigr)}
+=\frac{P(A)\cdot P\bigl(\overline{H}\mid A\bigr)}{1-P(H)}=\frac{0{,}2\cdot(1-0{,}95)}{1-0{,}194}=0{,}012\ldots
+\]
+
+\textit{Pauta oficial:} 0,5 pel plantejament de la fórmula de Bayes (o de la probabilitat condicionada), i 0,5
+pel càlcul.
+\end{solucio}
+
+\end{apartats}
