@@ -1,0 +1,83 @@
+Considereu el sistema d'equacions següent:
+\[
+\left.\begin{aligned}
+4x+2y-z&=4\\
+x-y+kz&=3\\
+3x+3y&=1
+\end{aligned}\right\},
+\]
+on $k$ és un paràmetre real.
+
+\begin{apartats}
+
+\apartat{1}
+Discutiu el sistema per als diferents valors del paràmetre $k$, i resoleu-lo per a $k=0$.
+
+\begin{solucio}
+La matriu de coeficients i la matriu ampliada del sistema són
+\[
+M=\begin{pmatrix}4&2&-1\\1&-1&k\\3&3&0\end{pmatrix}\quad\text{i}\quad
+\overline{M}=\begin{pmatrix}4&2&-1&4\\1&-1&k&3\\3&3&0&1\end{pmatrix}.
+\]
+Calculant el determinant de coeficients i igualant-lo a zero, obtenim
+\[
+\begin{vmatrix}4&2&-1\\1&-1&k\\3&3&0\end{vmatrix}=-3+6k-3-12k=-6k-6=0,
+\]
+és a dir, $k=-1$. Per tant, si $k\neq-1$, tindrem $\operatorname{rang}(M)=\operatorname{rang}\bigl(\overline{M}\bigr)=3$,
+que coincideix amb el nombre d'incògnites, i, pel teorema de Rouché-Frobenius, el sistema és compatible
+determinat. En canvi, si $k=-1$, el sistema queda
+\[
+\left.\begin{aligned}4x+2y-z&=4\\x-y-z&=3\\3x+3y&=1\end{aligned}\right\};
+\]
+com que la tercera equació és la resta de la primera menys la segona, es tracta d'un sistema de dues equacions i
+tres incògnites, amb rang de coeficients 2, ja que $\begin{vmatrix}4&2\\1&-1\end{vmatrix}=-4-2=-6\neq0$. Per tant,
+el sistema és compatible indeterminat amb un grau de llibertat.\\
+La solució per a $k=0$ la podem calcular per la regla de Cramer:
+\[
+x=\frac{\begin{vmatrix}4&2&-1\\3&-1&0\\1&3&0\end{vmatrix}}{\begin{vmatrix}4&2&-1\\1&-1&0\\3&3&0\end{vmatrix}}
+=\frac{-10}{-6}=\frac53,\qquad
+y=\frac{\begin{vmatrix}4&4&-1\\1&3&0\\3&1&0\end{vmatrix}}{\begin{vmatrix}4&2&-1\\1&-1&0\\3&3&0\end{vmatrix}}
+=\frac{8}{-6}=-\frac43,
+\]
+\[
+z=\frac{\begin{vmatrix}4&2&4\\1&-1&3\\3&3&1\end{vmatrix}}{\begin{vmatrix}4&2&-1\\1&-1&0\\3&3&0\end{vmatrix}}
+=\frac{-4+18+12+12-36-2}{-6}=0 .
+\]
+
+\textit{Pauta oficial:} 0,25 pel determinant, 0,25 per la discussió i 0,5 per la solució del cas $k=0$. La
+discussió del sistema i el càlcul de les solucions (tant per a $k=0$ com per a $k=-1$) poden fer-se d'altres
+maneres: compteu-ho bé en la mesura que el que facin sigui correcte i estigui ben justificat.
+\end{solucio}
+
+\apartat{0,75}
+Resoleu el sistema per a $k=-1$.
+
+\begin{solucio}
+Per al cas $k=-1$, i eliminant la tercera equació per ser redundant, obtenim
+\[
+\left.\begin{aligned}4x+2y-z&=4\\x-y-z&=3\end{aligned}\right\}.
+\]
+Restant, obtenim $3x+3y=1$. Fent $x=\lambda$, tenim $y=\frac13-\lambda$, i llavors
+$z=x-y-3=\lambda-\frac13+\lambda-3=2\lambda-\frac{10}{3}$. Totes les solucions del sistema són, doncs, de la forma
+$(x,y,z)=\left(\lambda,\,\frac13-\lambda,\,2\lambda-\frac{10}{3}\right)$, amb $\lambda\in\mathbb{R}$.
+
+\textit{Pauta oficial:} 0,75 per l'expressió paramètrica de totes les solucions.
+\end{solucio}
+
+\apartat{0,75}
+Per a $k=-1$, modifiqueu la tercera equació de manera que el sistema esdevingui incompatible. Justifiqueu la
+resposta.
+
+\begin{solucio}
+Com hem notat, en el cas $k=-1$, la tercera equació és redundant perquè és la resta de la primera menys la
+segona. Si en modifiquem el terme independent posant, per exemple, $3x+3y=2$, tindrem la incongruència $1=2$, i
+el sistema serà incompatible. Dit d'una altra manera, és incompatible perquè la matriu de coeficients no ha
+canviat, i té rang 2, mentre que la matriu ampliada té rang 3, ja que
+\[
+\begin{vmatrix}2&-1&4\\-1&-1&3\\3&0&2\end{vmatrix}=-4-9+12-2=-3\neq0 .
+\]
+
+\textit{Pauta oficial:} 0,25 per la nova equació, i 0,5 per la justificació que ara és incompatible.
+\end{solucio}
+
+\end{apartats}

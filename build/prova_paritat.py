@@ -283,7 +283,7 @@ def main() -> int:
              and "capsalera.tex" in banc["main"], "")
 
     # 1j. El color de les gràfiques viu a defs.tex, no a les preguntes
-    colors = re.compile(r"\\[(?:red|blue|green|orange|violet)[,!\\]]")
+    colors = re.compile(r"\[(?:red|blue|green|orange|violet)[,!\]]")
     amb_color = [q["id"] for q in banc["preguntes"] if colors.search(q["tex"])]
     comprova("cap pregunta no escriu un color a mà: fan servir \\colorgrafica",
              not amb_color, str(amb_color))

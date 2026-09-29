@@ -1,0 +1,15 @@
+{
+  "titol": "f(x) = 2 ln x / x: màxim, monotonia, asímptotes, esbós i una tangent",
+  "unitats": [
+    "u8",
+    "u9",
+    "u10"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "extrems",
+    "asímptotes",
+    "recta tangent"
+  ]
+}

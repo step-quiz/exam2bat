@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 28 de setembre de 2026 · **Estat:** 118 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 31 de la PAU), 87 amb tries · 2.308 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+**Data:** 28 de setembre de 2026 · **Estat:** 124 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 37 de la PAU), 87 amb tries · 2.440 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -48,7 +48,7 @@ temes, amb tres variants cadascun i una tria a cada pregunta. La vint-i-sisena v
 u14, de la qual els alumnes practiquen la distribució binomial. La vint-i-setena va afegir a la u10 els
 exercicis de la setmana 17 i va importar la sèrie 5 de la PAU de juny de 2026. La vint-i-vuitena va importar la sèrie 1 de
 juny de 2025, i la vint-i-novena, setembre de 2025, amb l'exercici 3 sencer com a `pro-25s-q3`, i la trentena, la sèrie 4 de juny de 2025: tota la PAU de 2025 és al
-banc. La trenta-unena va importar setembre de 2024, la primera amb el format antic de sis exercicis. La màquina
+banc. La trenta-unena va importar setembre de 2024, la primera amb el format antic de sis exercicis, i la trenta-dosena, la sèrie 1 de juny de 2024. La màquina
 funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents, la
 resta d'unitats, i estendre les tries a la u10.
@@ -1070,6 +1070,34 @@ l'altra, i una fórmula de distància en línia), que es van passar a línies pr
 **Verificació.** Les bateries (38/19/77) i la integració amb jsdom passen, i el banc complet escriu 1.140
 PDF.
 
+### 2.32 Sessió 32 · La sèrie 1 de juny de 2024, i una prova que no havia funcionat mai
+
+**Importació** amb el procediment de la secció 9. Els sis exercicis: `ana-24j-q1` ($2\ln x/x$: màxim,
+asímptotes, esbós i tangent; u8, u9 i u10), `alg-24j-q2` (sistema amb paràmetre, Cramer i com fer-lo
+incompatible), `ana-24j-q3` (el terreny de l'avi, entre una cúbica i una recta; u12), `pro-24j-q4` (les
+boles BAYESFANS, sense reemplaçament i amb reemplaçament; u13 i u14), `ana-24j-q5` (el cobert adossat de
+cost mínim; u9) i `geo-24j-q6` (el pla mediador i un triangle isòsceles). Tots els resultats oficials es
+van verificar amb SymPy, i són correctes. Hi ha un PDF de revisió del lot
+(`revisio-pau-juny2024-serie1.pdf`).
+
+**Figures.** Quatre, refetes en TikZ: l'esbós de la solució del 1, les nou boles del 4, el cobert del 5 i
+el terreny del 3. La del 3 és, a l'original, un **esbós no a escala**: el màxim real de la cúbica és a
+$y\approx29{,}2$, i el dibuix el posa gairebé a l'altura del 5, amb les abscisses tampoc proporcionals.
+Es reprodueix igual, com a esbós qualitatiu amb els punts $P$, $Q$ i $R$, perquè l'enunciat mateix el
+presenta així. Els dos apartats del 4 tenen dues subpreguntes amb punts propis, i es mantenen així. La
+primera compilació va donar dos *Overfull*, dues igualtats encadenades massa llargues, que es van partir.
+
+**Una prova que no havia funcionat mai.** La comprovació 1j de `prova_paritat.py` («cap pregunta no escriu
+un color a mà») va assenyalar `pro-24j-q4`, que no porta cap color. El patró tenia una barra invertida de
+més dins d'una cadena `r"..."`: en lloc de buscar el text literal `[red,`, `[blue!` o `[green]`, buscava
+una barra invertida, una lletra i `]`. Coincidia amb el `[count=\i]` de la figura de les boles, i, en
+canvi, no detectava cap color escrit a mà: una contraprova amb `[red,thick]`, `[blue!30]` i `[green]` ho
+va confirmar. Amb el patró corregit, aquests tres es detecten, el fals positiu desapareix, i la prova passa:
+ara sí que queda comprovat que cap pregunta del banc no escriu colors a mà.
+
+**Verificació.** Les bateries (38/19/77) i la integració amb jsdom passen, i el banc complet escriu 1.152
+PDF.
+
 ---
 
 ## 3. Decisions preses
@@ -1127,6 +1155,7 @@ PDF.
 | Les alternatives noves porten identificadors nous; els retirats no es reaprofiten | Regla 13 | Una adreça desada que en porti un de vell cau al defecte, i no a un contingut diferent |
 | Els PDF són reproduïbles (data i identificador fixos) | Disseny, arran d'una pregunta del professor (2.23) | Si no, Git desava tots els PDF a cada execució, i el repositori creixia uns 70 MB cada vegada |
 | El build només recompila un PDF si l'empremta del seu document ha canviat; l'empremta viu a les metadades del PDF | Disseny (2.23) | Un lliurament normal compila només les preguntes tocades, sense fitxers nous ni cap canvi al workflow |
+| Una figura que l'original presenta com a esbós, no a escala, es reprodueix com a esbós | Disseny (2.32) | L'enunciat és literal, i la figura en forma part |
 | L'exercici 3 de setembre de 2025 s'importa una sola vegada, sencer, com a `pro-25s-q3` | Professor (el codi) | Les dues entrades del repositori `pau` són el mateix exercici; un examen no el pot portar dues vegades |
 | Els exercicis de la setmana 17 de la u10 (84, 108, 123 i 124) són practicats: poden sostenir preguntes i alternatives | Professor | L'alumnat també els fa |
 | Si una dada d'un enunciat PAU no quadra amb el dibuix, es manté la resposta oficial i s'hi afegeix una *Nota del banc* | Disseny (2.27) | L'enunciat és literal, i l'examen esperava aquella resposta |
@@ -1461,12 +1490,12 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 | `pro-24s-q4` | setembre 2024 · s3 | Probabilitat | Arrítmia i monitor Holter: prob. total i Bayes | ✅ importada (sessió 31) |
 | `ana-24s-q5` | setembre 2024 · s3 | Anàlisi | Rectangle inscrit en y=e^(−2x): àrea màxima i tangent | ✅ importada (sessió 31) |
 | `geo-24s-q6` | setembre 2024 · s3 | Geometria | Recta perpendicular a un pla i plans paral·lels | ✅ importada (sessió 31) |
-| `ana-24j-q1` | juny 2024 · s1 | Anàlisi | f(x)=2·ln(x)/x: extrems, asímptotes, tangent | pendent |
-| `alg-24j-q2` | juny 2024 · s1 | Àlgebra | Sistema lineal amb paràmetre k | pendent |
-| `ana-24j-q3` | juny 2024 · s1 | Anàlisi | Àrea d'un terreny: cúbica i recta PR | pendent |
-| `pro-24j-q4` | juny 2024 · s1 | Probabilitat | Boles B,A,Y,E,S,F,A,N,S: sense i amb reemplaçament | pendent |
-| `ana-24j-q5` | juny 2024 · s1 | Anàlisi | Optimització: cobert de fusta adossat a una paret | pendent |
-| `geo-24j-q6` | juny 2024 · s1 | Geometria | Pla mediador i triangle isòsceles | pendent |
+| `ana-24j-q1` | juny 2024 · s1 | Anàlisi | f(x)=2·ln(x)/x: extrems, asímptotes, tangent | ✅ importada (sessió 32) |
+| `alg-24j-q2` | juny 2024 · s1 | Àlgebra | Sistema lineal amb paràmetre k | ✅ importada (sessió 32) |
+| `ana-24j-q3` | juny 2024 · s1 | Anàlisi | Àrea d'un terreny: cúbica i recta PR | ✅ importada (sessió 32) |
+| `pro-24j-q4` | juny 2024 · s1 | Probabilitat | Boles B,A,Y,E,S,F,A,N,S: sense i amb reemplaçament | ✅ importada (sessió 32) |
+| `ana-24j-q5` | juny 2024 · s1 | Anàlisi | Optimització: cobert de fusta adossat a una paret | ✅ importada (sessió 32) |
+| `geo-24j-q6` | juny 2024 · s1 | Geometria | Pla mediador i triangle isòsceles | ✅ importada (sessió 32) |
 | `ana-24i-q1` | juny 2024 · s5 | Anàlisi | f(x)=−2+10(x−1)·ln(x): Bolzano, monotonia, límits | pendent |
 | `alg-24i-q2` | juny 2024 · s5 | Àlgebra | Matriu invertible i equació matricial PX+Q=2R | pendent |
 | `ana-24i-q3` | juny 2024 · s5 | Anàlisi | Paràboles f_a: tangent i àrea entre corbes | pendent |
@@ -1576,7 +1605,7 @@ lliurament de la sessió és l'apartat 11.
 - Opcionalment, **confirmar amb els originals** les sèries de `23s` (2) i `24j` (1), que avui
   provenen d'una rèplica pública.
 
-### 7.3 Importació PAU: 30 exercicis en 5 convocatòries
+### 7.3 Importació PAU: 24 exercicis en 4 convocatòries
 
 Es fa després de la u8 (decisió de la sessió 5).
 
@@ -1587,7 +1616,7 @@ Es fa després de la u8 (decisió de la sessió 5).
 | `25s` setembre 2025 | 3 | ✅ importada (sessió 29): 5 exercicis, el 3 com a `pro-25s-q3` |
 | `25i` juny 2025 | 4 | ✅ importada (sessió 30) |
 | `24s` setembre 2024 | 3 | ✅ importada (sessió 31) |
-| `24j` juny 2024 | 1 | 6 |
+| `24j` juny 2024 | 1 | ✅ importada (sessió 32) |
 | `24i` juny 2024 | 5 | 6 |
 | `23s` setembre 2023 | 2 | 6 |
 | `23j2` juny 2023 | 5 | 6 |
@@ -1789,6 +1818,7 @@ del primer exercici.
 | Un retoc fet a mà en un fitxer baixat es perd a la descàrrega següent | Si val la pena, ha de pujar al banc: `\colorgrafica` en va sortir |
 | Una fórmula destacada després d'una línia curta queda enganxada (TeX hi posa l'espai «curt») | El preàmbul iguala `\abovedisplayshortskip` a l'espai normal |
 | En un Chromium sense pantalla, obrir un PDF el descarrega | Una prova que baixa el `.tex` no ha d'obrir cap visor abans |
+| Un patró amb `\\[` dins d'una cadena `r"..."` no busca el claudàtor literal: la prova de colors no detectava res, i donava un fals positiu amb `[count=\i]` | Patró corregit i contraprova amb colors reals (2.32) |
 | Dos PDF de la mateixa font no eren idèntics (data i identificador aleatori), i Git els desava tots a cada execució | PDF reproduïbles i memòria (2.23) |
 | Un PDF que ja no genera cap font (el d'un ítem retirat) fa fallar `prova_sortida.py` | Un build complet l'esborra (2.18); perquè l'esborrat arribi al repositori, el pas «Desa» ha de fer `git add -A` (secció 11) |
 
@@ -1796,14 +1826,15 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 31. Parteix del de la sessió 30, que ja és al repositori.
+És el lliurament de la sessió 32. Parteix del de la sessió 31, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `pau/analisi/ana-24s-q1/`, `pau/algebra/alg-24s-q2/`, `pau/analisi/ana-24s-q3/`, `pau/probabilitat/pro-24s-q4/`, `pau/analisi/ana-24s-q5/`, `pau/geometria/geo-24s-q6/` | **Noves**: setembre de 2024, `pregunta.tex` i `meta.json` |
+| `pau/analisi/ana-24j-q1/`, `pau/algebra/alg-24j-q2/`, `pau/analisi/ana-24j-q3/`, `pau/probabilitat/pro-24j-q4/`, `pau/analisi/ana-24j-q5/`, `pau/geometria/geo-24j-q6/` | **Noves**: la sèrie 1 de juny de 2024, `pregunta.tex` i `meta.json` |
+| `build/prova_paritat.py` | El patró de la comprovació de colors (1j), corregit |
 | `README.md` | Estat |
-| `handout.md` | Secció 2.31, i les seccions 6.6, 7.3 i 11 |
+| `handout.md` | Secció 2.32, i les seccions 3, 6.6, 7.3, 10 i 11 |
 
 No porta cap PDF ni `cataleg.js`. Després de pujar-lo a `_uploads`, cal fer **Run workflow**. Amb la
-memòria, el resum hauria de dir «12 PDF desats · 1128 reutilitzats». El PDF de revisió del lot va a
+memòria, el resum hauria de dir «12 PDF desats · 1140 reutilitzats». El PDF de revisió del lot va a
 part: no s'ha de pujar al repositori.

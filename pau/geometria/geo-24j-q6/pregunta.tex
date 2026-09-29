@@ -1,0 +1,64 @@
+Considereu els punts $A=(1,2,3)$ i $B=(-3,-2,3)$.
+
+\begin{apartats}
+
+\apartat{1}
+Calculeu l'equació del pla $\pi$ que és perpendicular a la recta $AB$ i que passa pel punt mitjà entre $A$ i $B$.
+Justifiqueu que aquest pla està format, precisament, pels punts $P=(x,y,z)$ que estan a igual distància de $A$
+que de $B$, és a dir, $d(P,A)=d(P,B)$.
+
+\begin{solucio}
+El pla buscat ha de ser perpendicular al vector $\overrightarrow{AB}=(-3,-2,3)-(1,2,3)=(-4,-4,0)\sim(1,1,0)$; per
+tant, té una equació de la forma $x+y+0z+D=0$. A més, ha de passar pel punt mitjà $\frac12(A+B)=(-1,0,3)$; per
+tant, $-1+D=0$, i es tracta del pla d'equació $x+y+1=0$.\\
+Geomètricament, és clar que aquest pla $\pi$ està format precisament pels punts a igual distància de $A$ que de
+$B$. Efectivament, per a un punt arbitrari $P=(x,y,z)$, l'equació $d(P,A)=d(P,B)$ és equivalent a
+\begin{gather*}
+\sqrt{(x-1)^2+(y-2)^2+(z-3)^2}=\sqrt{(x+3)^2+(y+2)^2+(z-3)^2},\\
+x^2-2x+1+y^2-4y+4+z^2-6z+9=x^2+6x+9+y^2+4y+4+z^2-6z+9,\\
+-2x+1-4y=6x+9+4y,\qquad-8x-8y-8=0,
+\end{gather*}
+que, simplificant-la, és precisament l'equació del pla $\pi$, $x+y+1=0$.
+
+\textit{Pauta oficial:} 0,5 per calcular l'equació del pla $\pi$, i 0,5 per justificar que es tracta exactament
+dels punts equidistants d'$A$ i de $B$.
+\end{solucio}
+
+\apartat{0,75}
+Calculeu les distàncies de $A$ i de $B$ al pla $\pi$ i comproveu que són iguals. És casualitat? Raoneu la
+resposta.
+
+\begin{solucio}
+Usant la fórmula de la distància punt-pla, tenim
+\[
+d(A,\pi)=\frac{|1+2+1|}{\sqrt{1^2+1^2+0^2}}=\frac{4}{\sqrt2},\qquad
+d(B,\pi)=\frac{|-3-2+1|}{\sqrt{1^2+1^2+0^2}}=\frac{4}{\sqrt2}.
+\]
+No és casualitat que doni el mateix resultat: les projeccions ortogonals de $A$ i de $B$ sobre el pla $\pi$ són
+precisament el punt mitjà $\frac12(A+B)=(-1,0,3)$, per on hem fet passar el pla $\pi$, perpendicular al vector
+$\overrightarrow{AB}$.
+
+\textit{Pauta oficial:} 0,25 per calcular les dues distàncies, i 0,5 per reconèixer que no és casualitat i
+explicar el motiu pel qual són iguals.
+\end{solucio}
+
+\apartat{0,75}
+Sigui $C=(-7,6,3)$. El triangle $ABC$ és isòsceles? Calculeu la seva àrea.
+
+\begin{solucio}
+El punt $C=(-7,6,3)$ compleix $-7+6+1=0$ i, per tant, pertany al pla $\pi$ de l'apartat anterior. Això vol dir
+que $d(C,A)=d(C,B)$ i, per tant, el triangle $ABC$ té almenys dos costats iguals: és isòsceles.\\
+Per calcular-ne l'àrea, només necessitem la longitud de la base, $d(A,B)=2\cdot\frac{4}{\sqrt2}=4\sqrt2$, i
+l'alçada, que és la distància de $C$ al punt mitjà entre $A$ i $B$:
+$h=d\bigl((-7,6,3),(-1,0,3)\bigr)=\sqrt{6^2+6^2+0^2}=\sqrt{72}=6\sqrt2$. Per tant, el triangle $ABC$ té àrea
+\[
+\text{Àrea}=\frac{4\sqrt2\cdot6\sqrt2}{2}=24\ \text{u}^2 .
+\]
+
+\textit{Pauta oficial:} 0,25 per raonar que el triangle és isòsceles, 0,25 per calcular l'alçada, i 0,25 per
+calcular la longitud de la base i l'àrea final. També poden argumentar que el triangle és isòsceles calculant
+directament la longitud dels tres costats i veient que dues coincideixen: compteu-ho bé si ho fan així, en la
+mesura que el que facin sigui correcte i estigui ben argumentat.
+\end{solucio}
+
+\end{apartats}

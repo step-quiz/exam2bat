@@ -1,0 +1,68 @@
+Considereu la funció $f(x)=2\,\dfrac{\ln x}{x}$, definida per a $x>0$.
+
+\begin{apartats}
+
+\apartat{1}
+Estudieu-ne els màxims i els mínims, i les zones de creixement i de decreixement.
+
+\begin{solucio}
+Derivant i igualant a zero,
+\[
+f'(x)=2\,\frac{\frac1x\,x-\ln x}{x^2}=2\,\frac{1-\ln x}{x^2}=0,
+\]
+ens queda l'equació $\ln x=1$; per tant, $f$ té només un punt crític, $x=e$. Resulta que és un màxim, ja que la
+derivada segona hi és negativa:
+\[
+f''(x)=2\,\frac{-\frac1x\,x^2-(1-\ln x)\cdot2x}{x^4},\qquad f''(e)=2\,\frac{-e}{e^4}=-2e^{-3}<0 .
+\]
+Com que només té un màxim, la funció és creixent a l'interval $(0,e)$ i decreixent a $(e,+\infty)$, cosa que
+també podem veure directament mirant el signe de la derivada.
+
+\textit{Pauta oficial:} 0,5 pel càlcul de la derivada, 0,25 per determinar el màxim i 0,25 per les zones de
+creixement i decreixement.
+\end{solucio}
+
+\apartat{1}
+Aquesta funció té asímptotes? Feu un esbós de la seva gràfica.
+
+\begin{solucio}
+A zero, hi ha una asímptota vertical, ja que $\lim_{x\to0^+}2\,\frac{\ln(x)}{x}=\frac{-\infty}{0^+}=-\infty$. I a
+l'infinit, una asímptota horitzontal, cosa que es veu fent l'Hôpital,
+\[
+\lim_{x\to+\infty}\frac{2\ln x}{x}=\lim_{x\to+\infty}\frac{\frac2x}{1}=\lim_{x\to+\infty}\frac2x=0^+,
+\]
+o bé argumentant que, per a $x>e$, la funció és sempre decreixent, però no travessa mai l'eix d'abscisses, ja
+que $2\,\frac{\ln x}{x}=0$ només té la solució $x=1$. Aquest és un esbós de la gràfica d'aquesta funció:
+\begin{center}
+\begin{tikzpicture}[x=0.45cm,y=0.9cm]
+  \draw[->] (-0.5,0) -- (13,0) node[below right] {$x$};
+  \draw[->] (0,-3.2) -- (0,1.4) node[above left] {$y$};
+  \begin{scope}
+    \clip (-0.5,-3.2) rectangle (13,1.4);
+    \draw[\colorgrafica,thick,domain=0.42:12.5,samples=150,smooth] plot (\x,{2*ln(\x)/\x});
+  \end{scope}
+  \fill (2.71828,0.7358) circle (1.3pt);
+  \node[above,font=\scriptsize] at (2.71828,0.78) {$\left(e,\frac2e\right)$};
+  \fill (1,0) circle (1.3pt);
+  \node[below right,font=\scriptsize] at (1,0) {$1$};
+\end{tikzpicture}
+\end{center}
+
+\textit{Pauta oficial:} 0,25 per l'asímptota vertical, 0,5 per l'horitzontal i 0,25 per l'esbós de la gràfica.
+Si justifiquen l'existència de l'asímptota horitzontal sense calcular-ne el valor (per exemple, dient que en
+tendir a infinit la funció és decreixent sense tallar mai l'eix d'abscisses), o fins i tot si diuen que és 0
+sense justificar-ho, compteu la totalitat dels 0,5 punts corresponents (l'enunciat pregunta si $f(x)$ té
+asímptotes, no que les calculin).
+\end{solucio}
+
+\apartat{0,5}
+Calculeu l'equació de la recta tangent a la gràfica de $y=f(x)$ en el punt d'abscissa $x=1$.
+
+\begin{solucio}
+Com que $f(1)=2\,\frac{\ln1}{1}=0$ i $f'(1)=2\,\frac{1-\ln1}{1^2}=2$, es tracta de la recta que passa pel
+punt $(1,0)$ i té pendent 2: és la recta $y-0=2(x-1)\rightarrow y=2x-2$.
+
+\textit{Pauta oficial:} 0,5 pel càlcul correcte de la recta tangent.
+\end{solucio}
+
+\end{apartats}

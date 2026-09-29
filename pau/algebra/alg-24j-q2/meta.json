@@ -1,0 +1,11 @@
+{
+  "titol": "Sistema lineal amb paràmetre k: discussió, Cramer, el cas indeterminat i com fer-lo incompatible",
+  "unitats": [],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "Rouché-Frobenius",
+    "regla de Cramer",
+    "sistema incompatible"
+  ]
+}
