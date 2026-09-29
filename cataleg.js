@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-29 03:41 UTC",
+ "generat": "2026-09-29 08:08 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -246,6 +246,41 @@ const BANC = {
  "main": "% =====================================================================\n%  main.tex — Carpeta d'exàmens\n%  Compila amb:  pdflatex main.tex\n% =====================================================================\n\n\\documentclass[11pt,a4paper]{article}\n\n% Interruptor: comenta una línia i descomenta l'altra.\n%   \\solucionsfalse → examen de l'alumnat\n%   \\solucionstrue  → full del professorat, amb les solucions\n\\newif\\ifsolucions \\solucionsfalse\n%\\newif\\ifsolucions \\solucionstrue\n\n\\input{headers.tex}\n\\input{defs.tex}\n\n% La capçalera del centre (logo, curs, departament, casella de nota) NO és al\n% banc: viu aquí, a la teva carpeta. Si hi tens un capsalera.tex, s'incorpora;\n% si no, els exàmens surten sense capçalera.\n\\IfFileExists{capsalera.tex}{\\input{capsalera.tex}}{}\n\n\\begin{document}\n\\input{prova-1.tex}\n%\\input{prova-2.tex}\n\\end{document}\n",
  "versio": "920aa212",
  "preguntes": [
+  {
+   "id": "pau/algebra/alg-24i-q2",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-24i-q2",
+   "titol": "La inversa d'una matriu 3×3 i una equació matricial PX + Q = 2R",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "matriu inversa",
+    "equació matricial",
+    "determinant"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 5",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu les matrius\n\\[\nP=\\begin{pmatrix}2&1&-1\\\\2&1&0\\\\1&0&1\\end{pmatrix},\\qquad\nQ=\\begin{pmatrix}2&2&2\\\\2&2&2\\\\2&2&2\\end{pmatrix}\\quad\\text{i}\\quad\nR=\\begin{pmatrix}1&2&3\\\\1&1&1\\\\3&2&1\\end{pmatrix}.\n\\]\n\n\\begin{apartats}\n\n\\apartat{1,25}\nDecidiu si la matriu $P$ és invertible i, en cas de ser-ho, calculeu la seva inversa. Expliqueu detalladament\nel procediment seguit.\n\n\\begin{solucio}\nCalculem el determinant de $P$:\n\\[\n\\det(P)=\\begin{vmatrix}2&1&-1\\\\2&1&0\\\\1&0&1\\end{vmatrix}=2+0+0-(-1+0+2)=1 .\n\\]\nCom que és diferent de zero, la matriu $P$ és invertible, i la seva inversa és\n\\[\nP^{-1}=\\frac{1}{\\det(P)}\\left(\\operatorname{Adj}P\\right)^t=\\frac11\n\\begin{pmatrix}\n\\begin{vmatrix}1&0\\\\0&1\\end{vmatrix}&-\\begin{vmatrix}2&0\\\\1&1\\end{vmatrix}&\\begin{vmatrix}2&1\\\\1&0\\end{vmatrix}\\\\[8pt]\n-\\begin{vmatrix}1&-1\\\\0&1\\end{vmatrix}&\\begin{vmatrix}2&-1\\\\1&1\\end{vmatrix}&-\\begin{vmatrix}2&1\\\\1&0\\end{vmatrix}\\\\[8pt]\n\\begin{vmatrix}1&-1\\\\1&0\\end{vmatrix}&-\\begin{vmatrix}2&-1\\\\2&0\\end{vmatrix}&\\begin{vmatrix}2&1\\\\2&1\\end{vmatrix}\n\\end{pmatrix}^{\\!t}\n=\\begin{pmatrix}1&-1&1\\\\-2&3&-2\\\\-1&1&0\\end{pmatrix}.\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel determinant, 0,25 per deduir que $P$ és invertible, i 0,5 pel càlcul de la\ninversa. Si donen directament el resultat final sense explicar els passos seguits, compteu 0 punts encara que el\nresultat sigui correcte (la resposta es pot trobar amb la calculadora sense entendre res, i per això l'enunciat\ndemana explícitament detallar el procediment). La inversa també es pot calcular pel mètode de Gauss: compteu-ho\nbé, en la mesura que el que facin sigui correcte i estigui ben explicat.\n\\end{solucio}\n\n\\apartat{1,25}\nCalculeu una matriu $X$ de 3 files i 3 columnes que compleixi $PX+Q=2R$.\n\n\\begin{solucio}\nLa matriu $X$ la podem trobar aïllant-la de l'equació lineal:\n\\[\nPX+Q=2R\\;\\Rightarrow\\;PX=2R-Q\\;\\Rightarrow\\;P^{-1}PX=P^{-1}(2R-Q)\\;\\Rightarrow\\;X=P^{-1}(2R-Q).\n\\]\n\\begin{align*}\nX&=\\begin{pmatrix}1&-1&1\\\\-2&3&-2\\\\-1&1&0\\end{pmatrix}\n\\left(2\\begin{pmatrix}1&2&3\\\\1&1&1\\\\3&2&1\\end{pmatrix}-\\begin{pmatrix}2&2&2\\\\2&2&2\\\\2&2&2\\end{pmatrix}\\right)\\\\\n&=\\begin{pmatrix}1&-1&1\\\\-2&3&-2\\\\-1&1&0\\end{pmatrix}\\begin{pmatrix}0&2&4\\\\0&0&0\\\\4&2&0\\end{pmatrix}\n=\\begin{pmatrix}4&4&4\\\\-8&-8&-8\\\\0&-2&-4\\end{pmatrix}.\n\\end{align*}\n\n\\textit{Pauta oficial:} 0,5 per aïllar correctament la $X$ (compteu 0 si multipliquen per $P^{-1}$ pel costat\nequivocat), i 0,75 pels càlculs i el resultat final. Si donen directament el resultat sense explicar els passos,\ncompteu 0 punts. També es pot trobar la matriu $X$, de manera més llarga, plantejant-la amb nou incògnites i\nresolent l'equació casella per casella: compteu-ho bé si ho fan així, correctament i ben explicat.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-24i-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-24i-q2/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-24i-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-24i-q2/out/solucio.pdf"
+  },
   {
    "id": "pau/algebra/alg-24j-q2",
    "unitat": "pau",
@@ -541,6 +576,124 @@ const BANC = {
    "pdf_solucio": "pau/algebra/alg-26j2-q2/out/solucio.pdf",
    "pdf_curt": "pau/algebra/alg-26j2-q2/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/algebra/alg-26j2-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24i-q1",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24i-q1",
+   "titol": "f(x) = −2 + 10(x−1) ln x: Bolzano, monotonia sense punts crítics, límits i esbós",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "apartats_curt": [
+    0.75,
+    1.0,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "teorema de Bolzano",
+    "monotonia",
+    "límits"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 5",
+   "unitats": [
+    "u7",
+    "u9",
+    "u10"
+   ],
+   "tries": [],
+   "tex": "Considereu la funció $f(x)=-2+10\\,(x-1)\\ln x$, definida per a $x>0$.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nComproveu que $f(x)$ té una arrel a l'interval $[1,\\,1{,}5]$ i busqueu un interval d'una dècima de longitud que\ntambé contingui aquesta mateixa arrel.\n\n\\begin{solucio}\nCom que es tracta d'una funció contínua a l'interval $[1,\\,1{,}5]$, i $f(1)=-2<0$ i\n$f(1{,}5)=-2+5\\ln1{,}5=0{,}027\\ldots>0$, el teorema de Bolzano ens assegura que hi ha una arrel a l'interval\n$(1,\\,1{,}5)$. Temptejant altres punts d'aquest interval, veiem que $f(1{,}3)=-2+3\\ln1{,}3=-1{,}212\\ldots<0$;\nper tant, l'arrel és a l'interval $[1{,}3,\\,1{,}5]$. I també $f(1{,}4)=-2+4\\ln1{,}4=-0{,}654\\ldots<0$ i, per tant,\nl'arrel és a l'interval $[1{,}4,\\,1{,}5]$.\n\n\\textit{Pauta oficial:} 0,25 per justificar que té una arrel a l'interval $[1,\\,1{,}5]$ i 0,5 per afinar-lo a\nuna dècima (no importa si fan més o menys temptejos fins a arribar a la dècima, mentre siguin correctes).\n\\end{solucio}\n\n\\apartat{1}\nSense calcular els punts crítics, justifiqueu que $f(x)$ és decreixent a l'interval $(0,1)$ i creixent a\n$(1,+\\infty)$. Quins màxims i mínims té aquesta funció?\n\n\\begin{solucio}\nCalculem la derivada, $f'(x)=10\\left(\\ln x+\\dfrac{x-1}{x}\\right)$, i observem que, d'entrada, no sabem aïllar la\n$x$ de l'equació $f'(x)=0$. Però es veu clarament que a l'interval $(0,1)$ tenim $\\ln x<0$ i\n$\\frac{x-1}{x}<0$; per tant, $f'(x)<0$, i la funció serà decreixent. De la mateixa manera, a l'interval\n$(1,+\\infty)$ tenim $\\ln x>0$ i $\\frac{x-1}{x}>0$; per tant, $f'(x)>0$, i la funció serà creixent. En\nconseqüència, $f(x)$ té un únic punt crític, al punt $x=1$, que és un mínim, i no té cap màxim.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,5 per l'estudi del creixement i decreixement, i 0,25\npels màxims i mínims.\n\\end{solucio}\n\n\\apartat{0,75}\nCalculeu $\\lim_{x\\to0^+}f(x)$ i $\\lim_{x\\to+\\infty}f(x)$, i feu un esbós de la gràfica d'aquesta funció.\n\n\\begin{solucio}\nEls dos límits demanats són immediats:\n\\[\n\\lim_{x\\to0^+}\\bigl(-2+10(x-1)\\ln x\\bigr)=-2+10(-1)(-\\infty)=+\\infty,\n\\]\n\\[\n\\lim_{x\\to+\\infty}\\bigl(-2+10(x-1)\\ln x\\bigr)=-2+10\\cdot(+\\infty)\\cdot(+\\infty)=+\\infty .\n\\]\nTenint en compte totes aquestes dades, la gràfica d'aquesta funció és:\n\\begin{center}\n\\begin{tikzpicture}[x=1.8cm,y=0.5cm]\n  \\draw[->] (-0.2,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[->] (0,-2.8) -- (0,6.4) node[above left] {$y$};\n  \\begin{scope}\n    \\clip (-0.2,-2.8) rectangle (2.4,6.2);\n    \\draw[\\colorgrafica,thick,domain=0.04:2.2,samples=150,smooth] plot (\\x,{-2+10*((\\x)-1)*ln(\\x)});\n  \\end{scope}\n  \\fill (1,-2) circle (1.3pt);\n  \\node[below,font=\\scriptsize] at (1,-2) {$(1,-2)$};\n  \\draw (1,0.12) -- (1,-0.12);\n  \\node[above,font=\\scriptsize] at (1,0.1) {$1$};\n  \\draw (2,0.12) -- (2,-0.12);\n  \\node[below,font=\\scriptsize] at (2,-0.1) {$2$};\n\\end{tikzpicture}\n\\end{center}\n\n\\textit{Pauta oficial:} 0,25 per cada límit i 0,25 per l'esbós de la gràfica (no cal precisar els talls amb\nl'eix d'abscisses, perquè no s'han calculat, però sí que s'ha de notar que un d'ells és entre 1,4 i 1,5).\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24i-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24i-q1/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24i-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24i-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24i-q3",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24i-q3",
+   "titol": "Paràboles amb un paràmetre: una tangent per un punt, punts de tall i àrea entre dues paràboles",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.5,
+    1.0
+   ],
+   "apartats_curt": [
+    1.0,
+    0.5,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "recta tangent",
+    "paràmetre",
+    "àrea entre corbes"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 5",
+   "unitats": [
+    "u8",
+    "u12"
+   ],
+   "tries": [],
+   "tex": "Considereu les paràboles $y=f_a(x)$, amb $f_a(x)=ax^2+2x+5-a$, on $a$ és un paràmetre real.\n\n\\begin{apartats}\n\n\\apartat{1}\nDetermineu el valor del paràmetre $a$ per al qual la recta tangent a $y=f_a(x)$ en el punt d'abscissa $x=1$\npassa pel punt $(2,13)$.\n\n\\begin{solucio}\nLa derivada és $f_a'(x)=2ax+2$, i el pendent en el punt d'abscissa $x=1$ és $f_a'(1)=2a+2$. Com que el punt de\ntangència és $(1,f_a(1))=(1,7)$, l'equació de la recta tangent serà $y-7=(2a+2)(x-1)$. Perquè aquesta recta\npassi pel punt $(2,13)$, cal que $13-7=(2a+2)(2-1)$, és a dir, $6=2a+2$ i, per tant, $a=2$.\n\n\\textit{Pauta oficial:} 0,25 per la derivada, 0,25 per calcular l'equació de la recta tangent en funció del\nparàmetre, 0,25 per plantejar l'equació, i 0,25 pel valor final.\n\\end{solucio}\n\n\\apartat{0,5}\nCalculeu els punts de tall de les paràboles $y=f_1(x)$ i $y=f_3(x)$.\n\n\\begin{solucio}\nPer trobar els punts de tall d'aquestes dues paràboles, hem de resoldre l'equació de segon grau\n$f_1(x)=f_3(x)$:\n\\[\nx^2+2x+4=3x^2+2x+2\\;\\rightarrow\\;2x^2-2=0\\;\\rightarrow\\;x=\\pm1 .\n\\]\nEls punts de tall són $(1,f_1(1))=(1,7)$ i $(-1,f_1(-1))=(-1,3)$.\n\n\\textit{Pauta oficial:} 0,25 pel plantejament de l'equació correcta i 0,25 per donar els dos punts de tall.\n\\end{solucio}\n\n\\apartat{1}\nCalculeu l'àrea de la regió situada entre les dues paràboles $y=f_1(x)$ i $y=f_3(x)$.\n\n\\begin{solucio}\nL'àrea demanada és la integral\n\\begin{align*}\nA&=\\int_{-1}^1\\bigl(f_1(x)-f_3(x)\\bigr)\\,dx=\\int_{-1}^1\\Bigl(\\left(x^2+2x+4\\right)-\\left(3x^2+2x+2\\right)\\Bigr)\\,dx\\\\\n&=\\int_{-1}^1\\left(-2x^2+2\\right)dx=\\left[-\\frac{2x^3}{3}+2x\\right]_{-1}^1\n=\\left(-\\frac23+2\\right)-\\left(\\frac23-2\\right)=\\frac83\\ \\text{u}^2 .\n\\end{align*}\n\n\\textit{Pauta oficial:} 0,5 per plantejar la integral correcta, i 0,5 per calcular-la (si plantegen la integral\nde $f_3(x)-f_1(x)$ i els surt un resultat negatiu, cal que expliquin què passa i que prenguin el valor absolut\ncom a resultat; si donen per bo un resultat negatiu, penalitzeu amb 0,5 punts).\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24i-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24i-q3/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24i-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24i-q3/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24i-q5",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24i-q5",
+   "titol": "Optimització: el decorat de teatre d'àrea màxima, un rectangle amb dos semicercles",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    1.5
+   ],
+   "apartats_curt": [
+    1.0,
+    1.5
+   ],
+   "te_curt": false,
+   "dificultat": "●●●",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "perímetre fixat",
+    "àrea màxima"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 5",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "En Carles vol construir un decorat per a l'obra de teatre de final de curs en forma d'un rectangle i dos\nsemicercles, tal com es mostra a la figura següent:\n\\begin{center}\n\\begin{tikzpicture}[scale=0.9]\n  \\draw (0,0) -- (2.8,0);\n  \\draw (0,0) -- (0,2);\n  \\draw (0,2) arc[start angle=180,end angle=0,radius=1.4];\n  \\draw (2.8,0) arc[start angle=-90,end angle=90,radius=1];\n  \\draw[thin] (1.4,2) -- (2.8,2);\n  \\draw[thin] (2.8,1) -- (2.8,2);\n  \\fill (1.4,2) circle (0.8pt);\n  \\fill (2.8,1) circle (0.8pt);\n  \\node[below,font=\\small] at (2.1,2) {$x$};\n  \\node[left,font=\\small] at (2.8,1.5) {$y$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat{1}\nDetermineu el perímetre i l'àrea del decorat que s'ha de construir en funció de $x$ i de $y$.\n\n\\begin{solucio}\nTal com s'indica a la figura, el radi de la semicircumferència superior és $x$, i el de la lateral, $y$. Per tant,\nel perímetre de la figura serà\n\\[\nP(x,y)=2x+2y+\\frac{2\\pi x}{2}+\\frac{2\\pi y}{2}=(2+\\pi)(x+y),\n\\]\ni la seva àrea,\n\\[\nA(x,y)=\\frac{\\pi x^2}{2}+\\frac{\\pi y^2}{2}+4xy .\n\\]\n\n\\textit{Pauta oficial:} 0,5 per l'expressió del perímetre, i 0,5 per la de l'àrea (no importa si el resultat el\ndonen més o menys simplificat).\n\\end{solucio}\n\n\\apartat{1,5}\nPer a revestir el perímetre del decorat, en Carles té material per a cobrir fins a 10 m. Si el vol gastar tot,\nquines seran les mides del decorat d'àrea màxima que podrà construir? Quin és el valor d'aquesta àrea?\n\n\\begin{solucio}\nCom que volem $P(x,y)=(2+\\pi)(x+y)=10$, tenim $y=\\frac{10}{2+\\pi}-x$. Substituint-ho a l'expressió de l'àrea,\nobtenim\n\\[\nA(x)=\\frac{\\pi x^2}{2}+\\frac\\pi2\\left(\\frac{10}{2+\\pi}-x\\right)^2+4x\\left(\\frac{10}{2+\\pi}-x\\right)\n=\\frac{\\pi x^2}{2}+\\frac\\pi2\\left(\\frac{10}{2+\\pi}-x\\right)^2+\\frac{40x}{2+\\pi}-4x^2 .\n\\]\nDerivant i igualant a zero, obtenim\n\\[\nA'(x)=\\pi x-\\pi\\left(\\frac{10}{2+\\pi}-x\\right)+\\frac{40}{2+\\pi}-8x=0,\n\\]\n\\[\n(2\\pi-8)x=\\frac{10\\pi-40}{\\pi+2}\\;\\rightarrow\\;x=\\frac{10\\pi-40}{(\\pi+2)(2\\pi-8)}=0{,}972\\ldots\\ \\text{m}.\n\\]\nAra comprovem que és un màxim, veient que $A''=2\\pi-8<0$. Per tant, el decorat d'àrea màxima possible és un\nquadrat de dimensions $x=0{,}972\\ldots$ m i $y=\\frac{10}{2+\\pi}-x=0{,}972\\ldots$ m. Finalment, el valor d'aquesta\nàrea màxima és $A(0{,}972)=6{,}747\\ldots\\ \\text{m}^2$.\n\n\\textit{Pauta oficial:} 0,5 per l'expressió de la funció a derivar, 0,25 per la derivada, 0,25 per la solució,\n0,25 per comprovar que és un màxim, i 0,25 per la resposta final.\n\n\\textit{Nota del banc:} simplificant, $x=y=\\frac{5}{\\pi+2}\\approx0{,}9725$ m (el rectangle és un quadrat de\n$2x\\approx1{,}945$ m de costat), i l'àrea màxima exacta és\n$\\frac{25(\\pi+4)}{(\\pi+2)^2}\\approx6{,}754\\ \\text{m}^2$. El $6{,}747\\ldots$ del criteri surt de prendre $x$ i\n$y$ tots dos arrodonits a 0,972. Totes dues respostes són correctes.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24i-q5/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24i-q5/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24i-q5/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24i-q5/out/solucio.pdf"
   },
   {
    "id": "pau/analisi/ana-24j-q1",
@@ -1155,6 +1308,41 @@ const BANC = {
    "pdf_solucio_curt": "pau/analisi/ana-26j2-q4a/out/solucio.pdf"
   },
   {
+   "id": "pau/geometria/geo-24i-q6",
+   "unitat": "pau",
+   "tema": "geometria",
+   "codi": "geo-24i-q6",
+   "titol": "Dues rectes que es creuen: un pla paral·lel a totes dues i la perpendicular comuna",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●●",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "posició relativa de rectes",
+    "perpendicular comuna",
+    "pla paral·lel"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 5",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu les rectes\n\\[\nr\\colon\\frac{x-5}{4}=\\frac{y-4}{3}=\\frac{z-3}{-1}\\qquad\\text{i}\\qquad\ns\\colon\\left\\{\\begin{aligned}x&=4+2k\\\\y&=3+k\\\\z&=-1\\end{aligned}\\right.\n\\]\n\n\\begin{apartats}\n\n\\apartat{1,25}\nQuina és la seva posició relativa? Calculeu l'equació implícita d'un pla $\\pi$ que sigui paral·lel a les dues\nrectes i que passi per l'origen de coordenades.\n\n\\begin{solucio}\nLa recta $r$ té vector director $(4,3,-1)$, i la recta $s$, $(2,1,0)$. No són proporcionals; per tant, les rectes\nes creuen o es tallen. Com que aquest determinant és diferent de zero,\n\\[\n\\begin{vmatrix}5-4&4-3&3-(-1)\\\\4&3&-1\\\\2&1&0\\end{vmatrix}=0+16-2-24+1-0=-9\\neq0,\n\\]\nles rectes $r$ i $s$ es creuen.\\\\\nPer ser paral·lel a les dues rectes, el pla $\\pi$ té la direcció formada pels seus dos vectors directors; com\nque, a més, ha de passar pel punt $(0,0,0)$, la seva equació implícita serà\n\\[\n\\begin{vmatrix}x-0&y-0&z-0\\\\4&3&-1\\\\2&1&0\\end{vmatrix}=0+4z-2y-6z+x-0=x-2y-2z=0 .\n\\]\n\n\\textit{Pauta oficial:} 0,5 per la discussió de la posició relativa i 0,75 per l'equació del pla demanat.\n\\end{solucio}\n\n\\apartat{1,25}\nCalculeu l'equació de la recta $t$ que talla les dues rectes $r$ i $s$ perpendicularment.\n\n\\begin{solucio}\nSi partim del vector normal del pla $\\pi$ de l'apartat anterior, $\\vec v=(1,-2,-2)$, que és perpendicular a totes\ndues rectes, podem calcular l'equació del pla $\\pi_1$ que conté el vector $\\vec v$ i la recta $r$,\n\\begin{align*}\n\\begin{vmatrix}x-5&y-4&z-3\\\\4&3&-1\\\\1&-2&-2\\end{vmatrix}\n&=-6(x-5)-8(z-3)-(y-4)-3(z-3)-2(x-5)+8(y-4)\\\\\n&=-8x+7y-11z+45=0,\n\\end{align*}\ni l'equació del pla $\\pi_2$ que conté el vector $\\vec v$ i la recta $s$,\n\\[\n\\begin{vmatrix}x-4&y-3&z+1\\\\2&1&0\\\\1&-2&-2\\end{vmatrix}=-2(x-4)-4(z+1)+0-(z+1)-0+4(y-3)=-2x+4y-5z-9=0 .\n\\]\nLa recta $t$ que busquem és la que té per equació\n\\[\n\\left.\\begin{aligned}8x-7y+11z&=45\\\\2x-4y+5z&=-9\\end{aligned}\\right\\}.\n\\]\nAlternativament, podem prendre un punt genèric de la recta $r$, que és de la forma $R=(5,4,3)+\\lambda(4,3,-1)$, i\nun punt genèric de $s$, que és de la forma $S=(4,3,-1)+\\mu(2,1,0)$, i imposar que el vector\n\\[\n\\overrightarrow{RS}=(4+2\\mu,\\,3+\\mu,\\,-1)-(5+4\\lambda,\\,4+3\\lambda,\\,3-\\lambda)=(-4\\lambda+2\\mu-1,\\,-3\\lambda+\\mu-1,\\,\\lambda-4)\n\\]\nsigui perpendicular als vectors directors respectius, $(4,3,-1)$ i $(2,1,0)$, de les rectes $r$ i $s$. Obtenim el\nsistema d'equacions\n\\begin{align*}\n4(-4\\lambda+2\\mu-1)+3(-3\\lambda+\\mu-1)-(\\lambda-4)&=-26\\lambda+11\\mu-3=0,\\\\\n2(-4\\lambda+2\\mu-1)+1(-3\\lambda+\\mu-1)+0(\\lambda-4)&=-11\\lambda+5\\mu-3=0 .\n\\end{align*}\nResolent-lo, obtenim $\\lambda=2$ i $\\mu=5$, que ens donen els punts buscats, $R=(13,10,1)\\in r$ i\n$S=(14,8,-1)\\in s$. Efectivament, el vector $\\overrightarrow{RS}=(1,-2,-2)$ és perpendicular a $r$ i a $s$ (és el\nvector normal del pla de l'apartat anterior), i l'equació de la recta $t$ que passa per aquests dos punts és\n\\[\n\\frac{x-13}{1}=\\frac{y-10}{-2}=\\frac{z-1}{-2}.\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel plantejament i 0,75 per l'equació de la recta perpendicular (tant si ho fan\nd'una manera com de l'altra, o de qualsevol altra forma, mentre sigui correcta i estigui ben explicada).\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/geometria/geo-24i-q6/out/enunciat.pdf",
+   "pdf_solucio": "pau/geometria/geo-24i-q6/out/solucio.pdf",
+   "pdf_curt": "pau/geometria/geo-24i-q6/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/geometria/geo-24i-q6/out/solucio.pdf"
+  },
+  {
    "id": "pau/geometria/geo-24j-q6",
    "unitat": "pau",
    "tema": "geometria",
@@ -1373,6 +1561,46 @@ const BANC = {
    "pdf_solucio": "pau/geometria/geo-26j2-q4b/out/solucio.pdf",
    "pdf_curt": "pau/geometria/geo-26j2-q4b/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/geometria/geo-26j2-q4b/out/solucio.pdf"
+  },
+  {
+   "id": "pau/probabilitat/pro-24i-q4",
+   "unitat": "pau",
+   "tema": "probabilitat",
+   "codi": "pro-24i-q4",
+   "titol": "La Rut resol o copia: probabilitat total, Bayes i «almenys 4 de 5» amb la binomial",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "probabilitat total",
+    "Bayes",
+    "binomial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 5",
+   "unitats": [
+    "u13",
+    "u14"
+   ],
+   "tries": [],
+   "tex": "La Rut fa servir el mètode següent per a fer els problemes de matemàtiques: tira un dau equilibrat i, si el\nresultat és com a màxim 4, pensa i resol el problema ella mateixa; si el resultat és 5 o 6, busca la solució del\nproblema per Internet i la copia. Quan és ella qui ha pensat la solució, la resposta és correcta en el 75\\,\\% dels\ncasos; quan copia la solució d'Internet, la resposta és correcta només en el 40\\,\\% dels casos.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nQuina és la probabilitat que la solució d'un problema respost seguint aquest mètode sigui correcta?\n\n\\begin{solucio}\nDenotem per $C$ l'esdeveniment «la solució és correcta», per $R$ l'esdeveniment «l'ha resolt la Rut», i per $I$\nl'esdeveniment «l'ha copiat d'Internet». Segons l'enunciat, $P(R)=\\frac46=\\frac23$, $P(I)=\\frac26=\\frac13$,\n$P(C\\mid R)=0{,}75$ i $P(C\\mid I)=0{,}4$. Aleshores, per la llei de les probabilitats totals,\n\\[\nP(C)=P(C\\mid R)\\,P(R)+P(C\\mid I)\\,P(I)=0{,}75\\cdot\\frac23+0{,}4\\cdot\\frac13=0{,}633\\ldots\n\\]\n\n\\textit{Pauta oficial:} 0,5 per plantejar la llei de les probabilitats totals (o per fer l'arbre de decisió), i\n0,25 pel càlcul final.\n\\end{solucio}\n\n\\apartat{0,75}\nQuina és la probabilitat que un problema l'hagi resolt la Rut si sabem que la solució és correcta?\n\n\\begin{solucio}\nFent servir la fórmula de Bayes i els càlculs de l'apartat anterior, obtenim\n\\[\nP(R\\mid C)=\\frac{P(C\\mid R)\\,P(R)}{P(C)}=\\frac{0{,}75\\cdot\\frac23}{0{,}633}=0{,}789\\ldots\n\\]\n\n\\textit{Pauta oficial:} 0,5 per plantejar correctament la fórmula de Bayes (o usar la definició de probabilitat\ncondicionada), i 0,25 pel càlcul final.\n\\end{solucio}\n\n\\apartat{1}\nDemà la Rut ha d'entregar 5 problemes de matemàtiques. Quina és la probabilitat que n'hi hagi almenys 4 de\ncorrectes?\n\n\\begin{solucio}\nEl nombre d'exercicis correctes segueix una distribució binomial amb $p=P(C)=0{,}633$ i $n=5$:\n\\begin{align*}\nP(\\text{almenys 4 correctes})&=P(\\text{4 correctes})+P(\\text{5 correctes})\\\\\n&=\\binom54\\cdot0{,}633^4\\cdot(1-0{,}633)^1+\\binom55\\cdot0{,}633^5=0{,}396\\ldots\n\\end{align*}\n\n\\textit{Pauta oficial:} 0,5 pel plantejament i 0,5 pel càlcul final.\n\n\\textit{Nota del banc:} amb el valor exacte, $p=\\frac{19}{30}$, el resultat és $0{,}3969\\ldots$; el\n$0{,}396\\ldots$ del criteri surt de fer servir $p=0{,}633$. Totes dues respostes són correctes.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/probabilitat/pro-24i-q4/out/enunciat.pdf",
+   "pdf_solucio": "pau/probabilitat/pro-24i-q4/out/solucio.pdf",
+   "pdf_curt": "pau/probabilitat/pro-24i-q4/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/probabilitat/pro-24i-q4/out/solucio.pdf"
   },
   {
    "id": "pau/probabilitat/pro-24j-q4",
