@@ -1,0 +1,56 @@
+Siguin els plans $\pi_1$ i $\pi_2$, determinats respectivament per les equacions $\pi_1\colon x+y=3$ i $\pi_2\colon x-z=-2$.
+
+\begin{apartats}
+
+\apartat{0,75}
+Trobeu l'equació general ($Ax+By+Cz+D=0$) del pla $\pi_3$, que és perpendicular a $\pi_1$ i $\pi_2$, i que passa pel punt
+$P=(4,1,2)$.
+
+\begin{solucio}
+Com que el pla que busquem és perpendicular a $\pi_1$ i a $\pi_2$, els seus vectors directors seran els vectors normals
+de $\pi_1$ i $\pi_2$: $\vec v_1=(1,1,0)$ i $\vec v_2=(1,0,-1)$. Trobem l'equació general del pla que té vectors directors
+$\vec v_1$ i $\vec v_2$ i que passa pel punt $P=(4,1,2)$, amb $X(x,y,z)$ un punt genèric del pla:
+\[
+\begin{vmatrix}x-4&1&1\\y-1&1&0\\z-2&0&-1\end{vmatrix}=0\;\rightarrow\;\boxed{x-y+z-5=0}.
+\]
+
+\textit{Pauta oficial:} 0,25 pels vectors directors, 0,25 per indicar com trobar el pla i 0,25 pel càlcul de l'equació.
+\end{solucio}
+
+\apartat{0,75}
+Sigui $r$ la recta d'intersecció de $\pi_1$ i $\pi_2$. Calculeu l'equació vectorial de la recta $r$.
+
+\begin{solucio}
+Busquem la solució del sistema $\left\{\begin{aligned}x+y&=3\\x-z&=-2\end{aligned}\right.$. Aïllant, obtenim $y=3-x$ i
+$z=2+x$, i, si $x=\lambda$, tenim $x=\lambda$, $y=3-\lambda$ i $z=2+\lambda$. La recta buscada, en forma vectorial, és
+\[
+\boxed{r\colon(x,y,z)=(0,3,2)+\lambda\cdot(1,-1,1),\ \lambda\in\mathbb{R}}.
+\]
+
+\textit{Pauta oficial:} 0,25 per formular la resolució del sistema i 0,5 per trobar l'equació.
+\end{solucio}
+
+\apartat{1}
+Calculeu el punt $Q$ de la recta $r$ que és més a prop del punt $P$.
+
+\begin{solucio}
+Trobem l'equació del pla perpendicular a la recta $r$ que passa pel punt $P$. Aquest és el pla que ens han demanat a
+l'apartat a), $x-y+z-5=0$. (En cas que no ens adonem que ja el tenim, aquest pla tindrà com a vector normal el vector
+director de la recta, i serà de la forma $x-y+z+D=0$; imposant que $P$ hi sigui, $4-1+2+D=0\rightarrow D=-5$.) Ara hem
+de calcular el punt de tall de la recta $r$ i el pla: substituint $x=\lambda$, $y=3-\lambda$, $z=2+\lambda$ a
+$x-y+z=5$, obtenim $\lambda-(3-\lambda)+(2+\lambda)=5\rightarrow\lambda=2$, i, substituint $\lambda=2$ a les equacions
+paramètriques de la recta, obtenim el punt $\boxed{Q=(2,1,4)}$.\\
+De forma alternativa: el punt $Q$ és la projecció ortogonal del punt $P$ sobre la recta $r$, ja que és el punt que està a
+menor distància de $P$. Sigui $Q=(\lambda,\,3-\lambda,\,2+\lambda)$ un punt genèric de la recta $r$, i $\vec v=(1,-1,1)$
+el vector director de $r$. Per la condició d'ortogonalitat, tenim que $\overrightarrow{PQ}\cdot\vec v=0$:
+\[
+(-4+\lambda,\,2-\lambda,\,\lambda)\cdot(1,-1,1)=0\;\rightarrow\;-4+\lambda-2+\lambda+\lambda=0\;\rightarrow\;\lambda=2,
+\]
+i, substituint $\lambda=2$ a la recta $r$, obtenim que $Q=(2,1,4)$.
+
+\textit{Pauta oficial:} 0,25 per indicar que el punt buscat és la projecció ortogonal, 0,25 pel punt genèric (o per
+plantejar el sistema entre el pla i la recta), 0,25 pel producte escalar (o per resoldre el sistema) i 0,25 per trobar
+el punt.
+\end{solucio}
+
+\end{apartats}

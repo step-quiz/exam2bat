@@ -1,0 +1,44 @@
+Considereu les rectes a l'espai $r\colon x=-y=z+m$ i
+$s\colon\left\{\begin{aligned}x+y&=1\\x-z&=0\end{aligned}\right.$, en què $m$ és un paràmetre real.
+
+\begin{apartats}
+
+\apartat{1,25}
+Estudieu la posició relativa per als diferents valors del paràmetre $m$.
+
+\begin{solucio}
+Determinem el vector director i un punt de cada recta:
+\[
+r\colon x=-y=z+m\;\rightarrow\;\left\{\begin{aligned}&\vec v_r=(1,-1,1)\\&P(0,0,-m)\end{aligned}\right.,\qquad
+s\;\rightarrow\;\left\{\begin{aligned}&\vec v_s=(1,1,0)\times(1,0,-1)=(-1,1,-1)\\&x=1\Rightarrow Q(1,0,1)\end{aligned}\right..
+\]
+Com que $\vec v_r=-\vec v_s$, els vectors directors de $r$ i de $s$ són linealment dependents, i les rectes seran o
+bé coincidents o bé paral·leles. Si són coincidents, tenen tots els punts en comú, i en concret $Q\in s$ ho seria
+de $r$. Comprovem si $Q\in r$: caldria $1=-0=1+m$, que no se satisfà per a cap valor de $m$. Podem assegurar, per
+tant, que les rectes sempre seran paral·leles, independentment de $m$.
+
+\textit{Pauta oficial:} 0,75 per determinar que les rectes són coincidents o paral·leles, i 0,5 per justificar que
+són paral·leles per a tot $m$.
+\end{solucio}
+
+\apartat{1,25}
+Calculeu $m$ perquè la distància entre les rectes $r$ i $s$ sigui de $\sqrt2$ unitats.
+
+\begin{solucio}
+Calculem la distància entre les dues rectes:
+\[
+d(P,s)=\frac{\bigl|\vec v_s\times\overrightarrow{PQ}\bigr|}{\left|\vec v_s\right|}
+=\frac{\left|\begin{vmatrix}\vec\imath&\vec\jmath&\vec k\\-1&1&-1\\1&0&1+m\end{vmatrix}\right|}{\sqrt3}
+=\frac{\bigl|(1+m,\,m,\,-1)\bigr|}{\sqrt3}=\frac{\sqrt{(1+m)^2+m^2+1}}{\sqrt3}.
+\]
+Calculem el valor de $m$ perquè sigui $\sqrt2$:
+\[
+d(P,s)=\sqrt2\iff\sqrt{(1+m)^2+m^2+1}=\sqrt2\,\sqrt3\iff(1+m)^2+m^2+1=6\iff2m^2+2m-4=0,
+\]
+d'on s'obtenen les solucions $m=1$ i $m=-2$.
+
+\textit{Pauta oficial:} 0,75 per obtenir correctament la distància entre les dues rectes, i 0,5 per resoldre
+correctament l'equació i determinar els dos valors de $m$.
+\end{solucio}
+
+\end{apartats}

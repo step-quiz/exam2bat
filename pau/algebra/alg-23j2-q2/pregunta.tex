@@ -1,0 +1,53 @@
+Considereu el sistema d'equacions lineals
+\[
+\left.\begin{aligned}
+x-y+kz&=-1\\
+x+ky+z&=3\\
+2x+(k-1)y+2z&=2
+\end{aligned}\right\},
+\]
+en què $k$ és un paràmetre real.
+
+\begin{apartats}
+
+\apartat{1,5}
+Discutiu el sistema en funció del valor de $k$.
+
+\begin{solucio}
+Apliquem el mètode de Gauss. Substituïm la fila 2, $F_2$, per $F_2-F_1$, on $F_1$ denota la primera fila, i la fila
+3, $F_3$, per $F_3-2F_1$; i després substituïm $F_3$ per $F_3-F_2$:
+\[
+\left(\begin{array}{ccc|c}1&-1&k&-1\\1&k&1&3\\2&k-1&2&2\end{array}\right)
+\sim\left(\begin{array}{ccc|c}1&-1&k&-1\\0&k+1&1-k&4\\0&k+1&2-2k&4\end{array}\right)
+\sim\left(\begin{array}{ccc|c}1&-1&k&-1\\0&k+1&1-k&4\\0&0&1-k&0\end{array}\right).
+\]
+Distingim casos:\\
+Si $k\neq-1$ i $k\neq1$, tenim $\operatorname{rang}M=\operatorname{rang}M_A=$ nombre d'incògnites $=3$ i, per tant, és un
+sistema compatible determinat ($M$ denota la matriu del sistema, i $M_A$, la matriu ampliada).\\
+Si $k=1$, obtenim la matriu
+$\left(\begin{array}{ccc|c}1&-1&1&-1\\0&2&0&4\\0&0&0&0\end{array}\right)$: $\operatorname{rang}M=\operatorname{rang}M_A=2$ i, per
+tant, és un sistema compatible indeterminat amb un grau de llibertat.\\
+Si $k=-1$, obtenim la matriu
+$\left(\begin{array}{ccc|c}1&-1&-1&-1\\0&0&2&4\\0&0&2&0\end{array}\right)$. Fem un pas més canviant $F_3$ per $F_3-F_2$, i
+obtenim la matriu $\left(\begin{array}{ccc|c}1&-1&-1&-1\\0&0&2&4\\0&0&0&-4\end{array}\right)$, que correspon a un sistema
+incompatible, ja que $\operatorname{rang}M_A=3>\operatorname{rang}M=2$.
+
+\textit{Pauta oficial:} 0,25 per la forma matricial del sistema, 0,5 per determinar els diferents casos que cal
+estudiar, sigui pel mètode de Gauss o pel càlcul de rangs per determinants, i 0,75 pels tres casos (0,25 per cada
+cas).
+\end{solucio}
+
+\apartat{1}
+Resoleu el sistema per a $k=0$ i per a $k=1$.
+
+\begin{solucio}
+Recuperem els càlculs de l'apartat anterior. Per a $k=1$, obtenim $y=2$ i $x=1-z$; per tant, les solucions són de
+la forma $(x,y,z)=(1-z,\,2,\,z)$, o bé $(x,y,z)=(x,\,2,\,1-x)$.\\
+Per a $k=0$, obtenim la matriu
+$\left(\begin{array}{ccc|c}1&-1&0&-1\\1&0&1&3\\2&-1&2&2\end{array}\right)$ i, després de fer Gauss,
+$\left(\begin{array}{ccc|c}1&-1&0&-1\\0&1&1&4\\0&0&1&0\end{array}\right)$. Per tant, la solució és $z=0$, $y=4$ i $x=3$.
+
+\textit{Pauta oficial:} 0,5 per donar les solucions del cas $k=0$ i 0,5 per donar les solucions del cas $k=1$.
+\end{solucio}
+
+\end{apartats}

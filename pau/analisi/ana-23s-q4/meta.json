@@ -1,0 +1,14 @@
+{
+  "titol": "f(x) = −3x + e^(2x³−1): Bolzano, i l'àrea entre dues corbes que comparteixen l'exponencial",
+  "unitats": [
+    "u7",
+    "u12"
+  ],
+  "dificultat": "●○○",
+  "minuts": 22,
+  "etiquetes": [
+    "teorema de Bolzano",
+    "àrea entre corbes",
+    "exponencial"
+  ]
+}

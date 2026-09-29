@@ -1,0 +1,53 @@
+Siguin $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$, $B=\begin{pmatrix}2&-1\\-3&2\end{pmatrix}$ i la matriu identitat
+d'ordre dos $I=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+
+\begin{apartats}
+
+\apartat{0,5}
+Comproveu que $(A-2I)^2=3I$.
+
+\begin{solucio}
+\[
+(A-2I)^2=\left[\begin{pmatrix}2&1\\3&2\end{pmatrix}-\begin{pmatrix}2&0\\0&2\end{pmatrix}\right]^2
+=\begin{pmatrix}0&1\\3&0\end{pmatrix}^2=\begin{pmatrix}0&1\\3&0\end{pmatrix}\begin{pmatrix}0&1\\3&0\end{pmatrix}
+=\begin{pmatrix}3&0\\0&3\end{pmatrix}=3I .
+\]
+
+\textit{Pauta oficial:} 0,25 per plantejar correctament la comprovació i 0,25 per fer bé els càlculs.
+\end{solucio}
+
+\apartat{1,25}
+Utilitzant la igualtat de l'apartat anterior, trobeu la matriu inversa de la matriu $A$ en funció de les matrius
+$A$ i $I$, i comproveu que coincideix amb la matriu $B$.
+
+\begin{solucio}
+\[
+(A-2I)^2=3I\iff A^2-4A+4I=3I\iff A^2-4A=-I\iff4A-A^2=I,
+\]
+i, traient factor comú $A$, $(4I-A)\cdot A=I\iff\boxed{A^{-1}=4I-A}$. Aleshores,
+\[
+A^{-1}=4I-A=\begin{pmatrix}4&0\\0&4\end{pmatrix}-\begin{pmatrix}2&1\\3&2\end{pmatrix}=\begin{pmatrix}2&-1\\-3&2\end{pmatrix}=B .
+\]
+
+\textit{Pauta oficial:} 0,25 pel càlcul del quadrat, 0,25 per la factorització, 0,25 per les operacions
+matricials, 0,25 per l'expressió de la matriu inversa, i 0,25 pel càlcul de la matriu inversa i per veure que
+coincideix amb $B$.
+\end{solucio}
+
+\apartat{0,75}
+Calculeu la matriu $X$ que satisfà la igualtat $A\cdot X=B$.
+
+\begin{solucio}
+De $A\cdot X=B$, aïllant la matriu $X$ (multiplicant per la inversa d'$A$ per l'esquerra):
+$A^{-1}\cdot(AX)=A^{-1}\cdot B$ i, com que $A^{-1}=B$, $\left(A^{-1}A\right)X=B\cdot B\iff\boxed{X=B^2}$.
+\[
+X=\begin{pmatrix}2&-1\\-3&2\end{pmatrix}\begin{pmatrix}2&-1\\-3&2\end{pmatrix}=\boxed{\begin{pmatrix}7&-4\\-12&7\end{pmatrix}}.
+\]
+El càlcul de la matriu $X$ també es pot plantejar en termes d'un sistema d'equacions lineals; la puntuació serà
+la mateixa, repartida en els diferents passos de la resolució.
+
+\textit{Pauta oficial:} 0,5 per aïllar correctament i aplicar el resultat de l'apartat b), i 0,25 pel càlcul de la
+matriu $X$.
+\end{solucio}
+
+\end{apartats}

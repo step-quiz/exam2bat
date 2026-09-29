@@ -1,0 +1,14 @@
+{
+  "titol": "Una cúbica per condicions: un punt d'inflexió amb la seva tangent i un extrem",
+  "unitats": [
+    "u8",
+    "u9"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "coeficients per condicions",
+    "punt d'inflexió",
+    "extrems relatius"
+  ]
+}

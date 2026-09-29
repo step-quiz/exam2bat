@@ -1,0 +1,54 @@
+Sigui
+\[
+f'(x)=\begin{cases}x-1,&\text{si }x\le2\\[3pt]\dfrac{1}{x-1},&\text{si }x>2\end{cases}
+\]
+la funció derivada d'una funció derivable $f(x)$ que passa pel punt $A=(0,3)$.
+
+\begin{apartats}
+
+\apartat{1,5}
+Calculeu la funció $f(x)$.
+
+\begin{solucio}
+Integrant,
+\[
+f(x)=\begin{cases}\int(x-1)\,dx,&\text{si }x<2\\[3pt]\int\frac{1}{x-1}\,dx,&\text{si }x>2\end{cases}
+\;\rightarrow\;
+f(x)=\begin{cases}\frac12x^2-x+k,&\text{si }x<2\\[3pt]\ln|x-1|+k',&\text{si }x>2\end{cases}
+\]
+Trobem els valors de les constants $k$ i $k'$:
+\begin{itemize}
+\item $f(x)$ passa pel punt $A=(0,3)$; per tant, $\frac12\cdot0^2-0+k=3\rightarrow k=3$.
+\item Com que $f(x)$ és derivable, llavors és contínua, i ho és en el punt d'abscissa 2; per tant, els límits
+laterals de la funció $f(x)$ en 2 han de coincidir: $\frac12\,2^2-2+3=\ln|2-1|+k'\rightarrow k'=3$.
+\end{itemize}
+Per tant, la funció $f(x)$ serà
+\[
+\boxed{f(x)=\begin{cases}\frac12x^2-x+3,&\text{si }x\le2\\[3pt]\ln|x-1|+3,&\text{si }x>2\end{cases}}
+\]
+Es puntuarà per igual l'expressió $\ln|x-1|$ que l'expressió $\ln(x-1)$.
+
+\textit{Pauta oficial:} 0,5 pel càlcul de les primitives, 0,25 pel càlcul de la constant $k$, 0,5 per argumentar la
+continuïtat de la funció $f$ i 0,25 pel càlcul de la constant $k'$.
+\end{solucio}
+
+\apartat{1}
+Calculeu l'equació de la recta tangent a la funció $f'(x)$ en el punt d'abscissa $x=3$.
+
+\begin{solucio}
+Apliquem l'equació de la recta tangent a una funció $g(x)$ en el punt d'abscissa $a$: $y-g(a)=g'(a)\cdot(x-a)$. Ara la
+funció és $f'$, és a dir, $g(x)=\begin{cases}x-1,&\text{si }x\le2\\\frac{1}{x-1},&\text{si }x>2\end{cases}$, i $a=3$. Cal
+trobar $g'(x)$, $g'(3)$ i $g(3)$:
+\[
+g'(x)=f''(x)=\begin{cases}1,&\text{si }x<2\\[3pt]\dfrac{-1}{(x-1)^2},&\text{si }x>2\end{cases},\qquad
+g'(3)=-\frac14,\qquad g(3)=\frac12 .
+\]
+\[
+y-\frac12=-\frac14\cdot(x-3)\;\rightarrow\;\boxed{y=-\frac14\,x+\frac54}.
+\]
+
+\textit{Pauta oficial:} 0,25 per la fórmula de la recta tangent, 0,25 pel càlcul de $f''(x)=g'(x)$, 0,25 pel càlcul
+de $g(3)$ i de $g'(3)$, i 0,25 pel càlcul final de la recta tangent.
+\end{solucio}
+
+\end{apartats}

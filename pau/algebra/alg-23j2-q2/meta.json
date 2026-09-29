@@ -1,0 +1,11 @@
+{
+  "titol": "Sistema lineal amb paràmetre k: discussió per Gauss, i resolució per a k = 0 i k = 1",
+  "unitats": [],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "mètode de Gauss",
+    "Rouché-Frobenius",
+    "paràmetre"
+  ]
+}

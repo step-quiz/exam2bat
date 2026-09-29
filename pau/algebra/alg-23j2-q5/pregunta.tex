@@ -1,0 +1,39 @@
+Considereu la família $S$ de matrius de la forma $\begin{pmatrix}a&b\\b&a\end{pmatrix}$, en què $a,b\in\mathbb{R}$.
+
+\begin{apartats}
+
+\apartat{1,25}
+Calculeu $\begin{pmatrix}2&3\\3&2\end{pmatrix}\cdot\begin{pmatrix}2&1\\1&2\end{pmatrix}^{-1}$.
+
+\begin{solucio}
+\[
+\begin{pmatrix}2&3\\3&2\end{pmatrix}\cdot\begin{pmatrix}2&1\\1&2\end{pmatrix}^{-1}
+=\begin{pmatrix}2&3\\3&2\end{pmatrix}\cdot\frac13\begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+=\frac13\begin{pmatrix}1&4\\4&1\end{pmatrix}=\begin{pmatrix}\frac13&\frac43\\[3pt]\frac43&\frac13\end{pmatrix}.
+\]
+
+\textit{Pauta oficial:} 0,75 pel càlcul de la matriu inversa i 0,5 pel producte de matrius.
+\end{solucio}
+
+\apartat{1,25}
+Trobeu totes les matrius de la família $S$, és a dir, de la forma $A=\begin{pmatrix}a&b\\b&a\end{pmatrix}$, que verifiquin
+la igualtat $A^2=I$, en què $I$ és la matriu identitat d'ordre 2.
+
+\begin{solucio}
+Calculem el quadrat d'una matriu de la família $S$ i imposem que doni la matriu identitat:
+\[
+A^2=\begin{pmatrix}a&b\\b&a\end{pmatrix}\begin{pmatrix}a&b\\b&a\end{pmatrix}=\begin{pmatrix}a^2+b^2&2ab\\2ab&a^2+b^2\end{pmatrix}
+=\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+\]
+Veiem que cal $2ab=0$ i $a^2+b^2=1$, i que hi ha 4 solucions: $a=0$ i $b=\pm1$, i $a=\pm1$ i $b=0$. Per tant, les 4
+matrius possibles són
+\[
+\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\quad
+\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad\begin{pmatrix}0&-1\\-1&0\end{pmatrix}.
+\]
+
+\textit{Pauta oficial:} 0,5 pel càlcul d'$A^2$, 0,25 per donar les dues equacions per calcular $a$ i $b$, i 0,5 per
+les quatre matrius que són solució.
+\end{solucio}
+
+\end{apartats}

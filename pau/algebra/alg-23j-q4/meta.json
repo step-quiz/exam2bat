@@ -1,0 +1,11 @@
+{
+  "titol": "Sistema amb paràmetre λ: discussió amb un determinant cúbic, i els tres plans que es tallen en una recta",
+  "unitats": [],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "Rouché-Frobenius",
+    "regla de Cramer",
+    "interpretació geomètrica"
+  ]
+}

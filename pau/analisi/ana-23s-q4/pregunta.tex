@@ -1,0 +1,44 @@
+Sigui la funció $f(x)$ definida per $f(x)=-3x+e^{2x^3-1}$.
+
+\begin{apartats}
+
+\apartat{1,25}
+Justifiqueu que $f(x)=2$ té una solució en l'interval $(-1,0)$.
+
+\begin{solucio}
+Que l'equació $f(x)=2$ tingui alguna solució és equivalent a que la funció $g(x)=f(x)-2$ tingui algun zero. La
+funció $g(x)$ és contínua a l'interval $[-1,0]$, ja que és suma de dues funcions contínues (una funció
+polinòmica, exactament una funció lineal, i una funció exponencial). D'altra banda, podem comprovar que
+\[
+g(-1)\cdot g(0)=\left(3+e^{-3}-2\right)\left(0+e^{-1}-2\right)=\left(1+e^{-3}\right)\left(e^{-1}-2\right)<0;
+\]
+per tant, podem aplicar el teorema de Bolzano i afirmar que la funció té un zero a l'interval $(-1,0)$.
+
+\textit{Pauta oficial:} 0,5 per explicitar que la funció és contínua per poder aplicar el teorema de Bolzano, 0,5
+per comprovar que als extrems de l'interval la funció pren signes diferents, i 0,25 per aplicar el teorema de
+Bolzano i concloure l'existència d'una solució.
+\end{solucio}
+
+\apartat{1,25}
+Sigui la funció $h(x)=-3x^2+e^{2x^3-1}$. Calculeu l'àrea de la regió compresa entre les gràfiques de les funcions
+$f(x)$ i $h(x)$.
+
+\begin{solucio}
+Calculem els punts de tall entre les dues funcions:
+\[
+f(x)=h(x)\;\rightarrow\;-3x+e^{2x^3-1}=-3x^2+e^{2x^3-1}\;\rightarrow\;-3x=-3x^2\;\rightarrow\;-3x+3x^2=3x(x-1)=0 .
+\]
+Hi ha, per tant, dues solucions: $x=0$ i $x=1$.
+\begin{align*}
+A&=\left|\int_0^1\bigl(h(x)-f(x)\bigr)\,dx\right|
+=\left|\int_0^1\Bigl(\left(-3x^2+e^{2x^3-1}\right)-\left(-3x+e^{2x^3-1}\right)\Bigr)\,dx\right|\\
+&=\left|\int_0^1\left(-3x^2+3x\right)dx\right|=\left|\left[-x^3+\frac{3x^2}{2}\right]_0^1\right|=\boxed{\frac12\ \text{u}^2}.
+\end{align*}
+També es pot comprovar que la funció $h(x)$ està per sobre de la funció $f(x)$ a l'interval $(0,1)$, i calcular
+directament l'àrea amb $A=\int_0^1\bigl(h(x)-f(x)\bigr)\,dx$.
+
+\textit{Pauta oficial:} 0,25 per trobar els punts de tall entre les dues funcions, 0,25 pel plantejament de la
+integral, 0,25 pel càlcul de la primitiva, 0,25 per l'aplicació de la regla de Barrow i 0,25 pel càlcul final.
+\end{solucio}
+
+\end{apartats}

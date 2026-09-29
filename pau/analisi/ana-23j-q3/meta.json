@@ -1,0 +1,15 @@
+{
+  "titol": "Una funció a partir de la seva derivada a trossos, i la tangent a la derivada",
+  "unitats": [
+    "u7",
+    "u8",
+    "u11"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "primitives",
+    "funció a trossos",
+    "continuïtat"
+  ]
+}

@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 28 de setembre de 2026 · **Estat:** 130 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 43 de la PAU), 87 amb tries · 2.572 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+**Data:** 28 de setembre de 2026 · **Estat:** 148 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 61 de la PAU), 87 amb tries · 2.968 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -49,7 +49,8 @@ u14, de la qual els alumnes practiquen la distribució binomial. La vint-i-seten
 exercicis de la setmana 17 i va importar la sèrie 5 de la PAU de juny de 2026. La vint-i-vuitena va importar la sèrie 1 de
 juny de 2025, i la vint-i-novena, setembre de 2025, amb l'exercici 3 sencer com a `pro-25s-q3`, i la trentena, la sèrie 4 de juny de 2025: tota la PAU de 2025 és al
 banc. La trenta-unena va importar setembre de 2024, la primera amb el format antic de sis exercicis, i la trenta-dosena, la sèrie 1 de juny de 2024. La trenta-tresena va deixar la llista de temes plegada
-per defecte i va importar la sèrie 5 de juny de 2024. La màquina
+per defecte i va importar la sèrie 5 de juny de 2024. La trenta-quatrena va importar les tres convocatòries de 2023: la PAU del
+repositori `pau` és sencera al banc. La màquina
 funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents, la
 resta d'unitats, i estendre les tries a la u10.
@@ -1137,6 +1138,43 @@ primera compilació va donar dos *Overfull* (dos límits l'un al costat de l'alt
 de la derivada), que es van partir en línies pròpies. Les bateries (38/19/77) i la integració amb jsdom
 passen, i el banc complet escriu 1.164 PDF.
 
+### 2.34 Sessió 34 · Les tres convocatòries de 2023, seguides: la PAU completa
+
+**L'encàrrec.** El professor va demanar les tres convocatòries de 2023 seguides. Es van fer una darrere
+l'altra, cadascuna amb el seu PDF de revisió i, per seguretat, les dues primeres amb un ZIP propi
+(`lliurament-sessio34a` i `34b`); el lliurament final, `lliurament-sessio34.zip`, les conté totes tres, i
+els dos parcials ja no cal pujar-los. Amb aquestes 18 preguntes, **totes les convocatòries del repositori
+`pau` són al banc: 61 preguntes de 11 convocatòries**. El 2023 la PAU no tenia probabilitat, i per això
+no n'hi ha cap.
+
+**Els 18 exercicis.** Setembre (`23s`, sèrie 2): la inversa a partir de $(A-2I)^2=3I$; tangents a $y=\frac1x$
+i el triangle d'àrea constant (u8); un sistema per Gauss; Bolzano i l'àrea entre dues corbes amb la mateixa
+exponencial (u7 i u12); la perpendicular comuna a dues rectes; i el trapezi isòsceles d'àrea màxima (u9).
+Juny, sèrie 5 (`23j2`): l'àrea entre dues paràboles, amb la representació de les tres gràfiques (u8 i
+u12); un sistema per Gauss; dues rectes sempre paral·leles a distància $\sqrt2$; la torre de comunicacions de
+cablejat mínim (u9); matrius de la forma $\begin{pmatrix}a&b\\b&a\end{pmatrix}$; i una funció racional amb paràmetres
+(u9). Juny, sèrie 1 (`23j`): una cúbica per condicions (u8 i u9); matrius idempotents; una funció a partir
+de la seva derivada a trossos (u7, u8 i u11); un sistema amb $\lambda$ i la seva interpretació geomètrica; el
+tancat del gos (u9); i un pla perpendicular a dos plans i el punt més proper d'una recta. Tots els
+resultats oficials es van verificar amb SymPy, i són correctes.
+
+**Una omissió del criteri oficial.** Al `ana-23j2-q4` (la torre), l'enunciat demana el preu mínim i la
+pauta hi dona 0,25 punts, però la solució no el calcula mai. S'hi afegeix amb una *Nota del banc*:
+$P\!\left(3\sqrt3\right)=1500+1125\sqrt3\approx3\,448{,}56$ €, que és un mínim absolut perquè als extrems el preu
+és de 3.750 €. A més, a `alg-23s-q3` el criteri etiqueta «$f_3/3$» una operació que divideix la segona
+fila; s'hi escriu $f_2/3$. Els criteris de 2023 escriuen alguns decimals amb apòstrof (7'07), i es van
+passar a coma.
+
+**Una lliçó de lectura.** Per anar més de pressa, els primers exercicis es van llegir de dos en dos a 64
+ppp, i dues fórmules es van llegir malament: $e^{2x^3-1}$ semblava $e^{x-1}$, i un $3x$ semblava $-3x$. Les dues
+errades es van detectar perquè no quadraven amb els valors del criteri. Des d'aleshores, els enunciats es
+van llegir a 92 ppp o més (secció 10).
+
+**Figures i compilació.** Deu figures refetes en TikZ: la hipèrbola amb el triangle, els dos trapezis, les
+tres gràfiques, les dues de la torre i les dues del jardí (sense el dibuix del gos de l'original). Cinc
+*Overfull*, tots d'igualtats o resultats emmarcats en línia, es van passar a línies pròpies. Les bateries
+(38/19/77) i la integració amb jsdom passen, i el banc complet escriu 1.200 PDF.
+
 ---
 
 ## 3. Decisions preses
@@ -1480,9 +1518,9 @@ es basen en el 108, de la setmana 17, que l'alumnat també fa (2.27).
 
 | Codi | Convocatòria | Sèrie | Font |
 |---|---|---|---|
-| `23j` | juny 2023 | 1 | Confirmat pel professor: el juny de 2023 es van publicar les sèries 1 i 5, per aquest ordre. |
-| `23j2` | juny 2023 | 5 | Confirmat pel professor; coincideix amb el catàleg del repositori pau. |
-| `23s` | setembre 2023 | 2 | examenselectivitat.cat (Matemàtiques 2023, setembre, sèrie 2). El tall del criteri oficial no conserva la capçalera. |
+| `23j` juny 2023 | 1 | ✅ importada (sessió 34) |
+| `23j2` juny 2023 | 5 | ✅ importada (sessió 34) |
+| `23s` setembre 2023 | 2 | ✅ importada (sessió 34) |
 | `24i` | juny 2024 | 5 | Capçalera del criteri oficial: ana-24i-q1-s.pdf. |
 | `24j` | juny 2024 | 1 | examenselectivitat.cat: juny 2024 = sèries 1 i 5; la 5 és la 24i. El tall del criteri oficial no conserva la capçalera. |
 | `24s` | setembre 2024 | 3 | Capçalera del criteri oficial: ana-24s-q1-s.pdf. |
@@ -1542,24 +1580,24 @@ Ordenades de la més recent a la més antiga, que és l'ordre d'importació reco
 | `pro-24i-q4` | juny 2024 · s5 | Probabilitat | La Rut i els problemes: prob. total, Bayes, binomial | ✅ importada (sessió 33) |
 | `ana-24i-q5` | juny 2024 · s5 | Anàlisi | Optimització: decorat rectangle + semicercles | ✅ importada (sessió 33) |
 | `geo-24i-q6` | juny 2024 · s5 | Geometria | Posició relativa de rectes i perpendicular comuna | ✅ importada (sessió 33) |
-| `alg-23s-q1` | setembre 2023 · s2 | Àlgebra | Matriu inversa via (A−2I)²=3I | pendent |
-| `ana-23s-q2` | setembre 2023 · s2 | Anàlisi | f(x)=1/x: tangent i triangle d'àrea constant | pendent |
-| `alg-23s-q3` | setembre 2023 · s2 | Àlgebra | Sistema lineal amb paràmetre m | pendent |
-| `ana-23s-q4` | setembre 2023 · s2 | Anàlisi | Bolzano i àrea entre f(x) i h(x) | pendent |
-| `geo-23s-q5` | setembre 2023 · s2 | Geometria | Perpendicular comuna de dues rectes i distància | pendent |
-| `ana-23s-q6` | setembre 2023 · s2 | Anàlisi | Optimització: trapezi isòsceles d'àrea màxima | pendent |
-| `ana-23j2-q1` | juny 2023 · s5 | Anàlisi | Àrea de la regió delimitada per f(x)=−x²+x+6 i g(x)=−9x+3x² | pendent |
-| `alg-23j2-q2` | juny 2023 · s5 | Àlgebra | Sistema lineal amb paràmetre k | pendent |
-| `geo-23j2-q3` | juny 2023 · s5 | Geometria | Posició relativa de rectes a l'espai segons m i distància | pendent |
-| `ana-23j2-q4` | juny 2023 · s5 | Anàlisi | Optimització: torre de comunicacions i cost del cablejat | pendent |
-| `alg-23j2-q5` | juny 2023 · s5 | Àlgebra | Família de matrius 2×2 amb a, b ∈ ℝ | pendent |
-| `ana-23j2-q6` | juny 2023 · s5 | Anàlisi | Funció racional: paràmetres a, b per extrem relatiu | pendent |
-| `ana-23j-q1` | juny 2023 · s1 | Anàlisi | Polinomi cúbic determinat per condicions sobre f, f', f'' | pendent |
-| `alg-23j-q2` | juny 2023 · s1 | Àlgebra | Producte de matrius A·B i propietat idempotent | pendent |
-| `ana-23j-q3` | juny 2023 · s1 | Anàlisi | Funció f'(x) per trams i recta tangent a f' | pendent |
-| `alg-23j-q4` | juny 2023 · s1 | Àlgebra | Sistema lineal amb paràmetre λ | pendent |
-| `ana-23j-q5` | juny 2023 · s1 | Anàlisi | Optimització: jardí rectangular adossat a un mur | pendent |
-| `geo-23j-q6` | juny 2023 · s1 | Geometria | Plans perpendiculars i punt més proper a una recta | pendent |
+| `alg-23s-q1` | setembre 2023 · s2 | Àlgebra | Matriu inversa via (A−2I)²=3I | ✅ importada (sessió 34) |
+| `ana-23s-q2` | setembre 2023 · s2 | Anàlisi | f(x)=1/x: tangent i triangle d'àrea constant | ✅ importada (sessió 34) |
+| `alg-23s-q3` | setembre 2023 · s2 | Àlgebra | Sistema lineal amb paràmetre m | ✅ importada (sessió 34) |
+| `ana-23s-q4` | setembre 2023 · s2 | Anàlisi | Bolzano i àrea entre f(x) i h(x) | ✅ importada (sessió 34) |
+| `geo-23s-q5` | setembre 2023 · s2 | Geometria | Perpendicular comuna de dues rectes i distància | ✅ importada (sessió 34) |
+| `ana-23s-q6` | setembre 2023 · s2 | Anàlisi | Optimització: trapezi isòsceles d'àrea màxima | ✅ importada (sessió 34) |
+| `ana-23j2-q1` | juny 2023 · s5 | Anàlisi | Àrea de la regió delimitada per f(x)=−x²+x+6 i g(x)=−9x+3x² | ✅ importada (sessió 34) |
+| `alg-23j2-q2` | juny 2023 · s5 | Àlgebra | Sistema lineal amb paràmetre k | ✅ importada (sessió 34) |
+| `geo-23j2-q3` | juny 2023 · s5 | Geometria | Posició relativa de rectes a l'espai segons m i distància | ✅ importada (sessió 34) |
+| `ana-23j2-q4` | juny 2023 · s5 | Anàlisi | Optimització: torre de comunicacions i cost del cablejat | ✅ importada (sessió 34) |
+| `alg-23j2-q5` | juny 2023 · s5 | Àlgebra | Família de matrius 2×2 amb a, b ∈ ℝ | ✅ importada (sessió 34) |
+| `ana-23j2-q6` | juny 2023 · s5 | Anàlisi | Funció racional: paràmetres a, b per extrem relatiu | ✅ importada (sessió 34) |
+| `ana-23j-q1` | juny 2023 · s1 | Anàlisi | Polinomi cúbic determinat per condicions sobre f, f', f'' | ✅ importada (sessió 34) |
+| `alg-23j-q2` | juny 2023 · s1 | Àlgebra | Producte de matrius A·B i propietat idempotent | ✅ importada (sessió 34) |
+| `ana-23j-q3` | juny 2023 · s1 | Anàlisi | Funció f'(x) per trams i recta tangent a f' | ✅ importada (sessió 34) |
+| `alg-23j-q4` | juny 2023 · s1 | Àlgebra | Sistema lineal amb paràmetre λ | ✅ importada (sessió 34) |
+| `ana-23j-q5` | juny 2023 · s1 | Anàlisi | Optimització: jardí rectangular adossat a un mur | ✅ importada (sessió 34) |
+| `geo-23j-q6` | juny 2023 · s1 | Geometria | Plans perpendiculars i punt més proper a una recta | ✅ importada (sessió 34) |
 
 ---
 
@@ -1645,7 +1683,7 @@ lliurament de la sessió és l'apartat 11.
 - Opcionalment, **confirmar amb els originals** les sèries de `23s` (2) i `24j` (1), que avui
   provenen d'una rèplica pública.
 
-### 7.3 Importació PAU: 18 exercicis en 3 convocatòries
+### 7.3 Importació PAU: completa (sessió 34)
 
 Es fa després de la u8 (decisió de la sessió 5).
 
@@ -1858,6 +1896,7 @@ del primer exercici.
 | Un retoc fet a mà en un fitxer baixat es perd a la descàrrega següent | Si val la pena, ha de pujar al banc: `\colorgrafica` en va sortir |
 | Una fórmula destacada després d'una línia curta queda enganxada (TeX hi posa l'espai «curt») | El preàmbul iguala `\abovedisplayshortskip` a l'espai normal |
 | En un Chromium sense pantalla, obrir un PDF el descarrega | Una prova que baixa el `.tex` no ha d'obrir cap visor abans |
+| Llegir dos exercicis per imatge a 64 ppp confon exponents i signes: $e^{2x^3-1}$ semblava $e^{x-1}$ | Enunciats a 92 ppp o més; si un resultat no quadra amb el criteri, primer cal tornar a llegir l'enunciat (2.34) |
 | La prova d'integració amb jsdom llegeix el `cataleg.js` del disc: si és el del repositori, restaurat en empaquetar, hi falten les tries i els casos fallen sense cap error real | Regenerar el catàleg (`--nomes-cataleg`) abans de passar-la (2.33) |
 | Un patró amb `\\[` dins d'una cadena `r"..."` no busca el claudàtor literal: la prova de colors no detectava res, i donava un fals positiu amb `[count=\i]` | Patró corregit i contraprova amb colors reals (2.32) |
 | Dos PDF de la mateixa font no eren idèntics (data i identificador aleatori), i Git els desava tots a cada execució | PDF reproduïbles i memòria (2.23) |
@@ -1867,16 +1906,17 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 33. Parteix del de la sessió 32, que ja és al repositori.
+És el lliurament de la sessió 34. Parteix del de la sessió 33, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `assets/app.js` | Per defecte, totes les unitats plegades; el navegador recorda les desplegades (`banc-desplegades`) |
-| `pau/analisi/ana-24i-q1/`, `pau/algebra/alg-24i-q2/`, `pau/analisi/ana-24i-q3/`, `pau/probabilitat/pro-24i-q4/`, `pau/analisi/ana-24i-q5/`, `pau/geometria/geo-24i-q6/` | **Noves**: la sèrie 5 de juny de 2024, `pregunta.tex` i `meta.json` |
-| `README.md` | Estat, i com funciona el plegat |
-| `handout.md` | Secció 2.33, i les seccions 3, 6.6, 7.3, 10 i 11 |
+| `pau/*/*-23s-q*/` (6 carpetes) | **Noves**: setembre de 2023, sèrie 2, `pregunta.tex` i `meta.json` |
+| `pau/*/*-23j2-q*/` (6 carpetes) | **Noves**: juny de 2023, sèrie 5, `pregunta.tex` i `meta.json` |
+| `pau/*/*-23j-q*/` (6 carpetes) | **Noves**: juny de 2023, sèrie 1, `pregunta.tex` i `meta.json` |
+| `README.md` | Estat |
+| `handout.md` | Secció 2.34, i les seccions 6.6, 7.3, 10 i 11 |
 
-No porta cap PDF ni `cataleg.js`. Després de pujar-lo a `_uploads`, cal fer **Run workflow**. Amb la
-memòria, el resum hauria de dir «12 PDF desats · 1152 reutilitzats». El canvi d'`app.js` es veu en
-recarregar el lloc: la primera vegada, tot surt plegat. El PDF de revisió del lot va a part: no s'ha de
-pujar al repositori.
+No porta cap PDF ni `cataleg.js`. Conté també les preguntes dels dos ZIP parcials de la sessió
+(`lliurament-sessio34a` i `34b`), que ja no cal pujar. Després de pujar-lo a `_uploads`, cal fer **Run
+workflow**. Amb la memòria, el resum hauria de dir «36 PDF desats · 1164 reutilitzats». Els tres PDF de
+revisió van a part: no s'han de pujar al repositori.

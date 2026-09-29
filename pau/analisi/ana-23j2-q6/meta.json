@@ -1,0 +1,13 @@
+{
+  "titol": "f(x) = (ax² + x + b)/(x² + 1): paràmetres per condicions, i els extrems quan a = b",
+  "unitats": [
+    "u9"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "coeficients per condicions",
+    "extrems relatius",
+    "funció racional"
+  ]
+}

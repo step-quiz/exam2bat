@@ -1,0 +1,54 @@
+Siguin $r_1$ i $r_2$ les rectes definides per $r_1\colon x-1=y=-z$ i per $r_2\colon x=y=z$, respectivament.
+
+\begin{apartats}
+
+\apartat{1,75}
+Calculeu l'equació paramètrica de la recta que talla perpendicularment les rectes $r_1$ i $r_2$.
+
+\begin{solucio}
+A partir de les equacions contínues de l'enunciat, podem escriure les rectes $r_1$ i $r_2$ en forma vectorial i
+paramètrica:
+\[
+r_1\colon(x,y,z)=(1,0,0)+\lambda(1,1,-1)=(1+\lambda,\,\lambda,\,-\lambda),\qquad
+r_2\colon(x,y,z)=(0,0,0)+\mu(1,1,1)=(\mu,\,\mu,\,\mu).
+\]
+Un vector qualsevol $\overrightarrow{A_1A_2}$, format en prendre $A_1\in r_1$ i $A_2\in r_2$, s'expressa com a
+$\overrightarrow{A_1A_2}=(\mu-\lambda-1,\,\mu-\lambda,\,\mu+\lambda)$, amb $\mu,\lambda\in\mathbb{R}$. La recta que passi
+per $A_1$ i $A_2$ tallarà $r_1$ i $r_2$ perpendicularment si el vector $\overrightarrow{A_1A_2}$ és perpendicular als
+vectors directors de cada recta, és a dir, si es compleixen les condicions següents:
+\begin{align*}
+\overrightarrow{A_1A_2}\perp(1,1,-1)&\;\rightarrow\;(\mu-\lambda-1,\,\mu-\lambda,\,\mu+\lambda)\cdot(1,1,-1)=0,\\
+\overrightarrow{A_1A_2}\perp(1,1,1)&\;\rightarrow\;(\mu-\lambda-1,\,\mu-\lambda,\,\mu+\lambda)\cdot(1,1,1)=0 .
+\end{align*}
+Efectuant els dos productes escalars, les condicions anteriors es converteixen en el sistema d'equacions
+$\mu-3\lambda-1=0$, $3\mu-\lambda-1=0$. Si a la segona equació li restem tres vegades la primera, obtenim
+$8\lambda=-2$ i, per tant, $\lambda=-\frac14$; i, quan ho substituïm en la primera, obtenim
+$\mu=1+3\lambda=1-\frac34=\frac14$. Així, els punts respectius de cada recta són
+$A_1=\left(\frac34,-\frac14,\frac14\right)$ i $A_2=\left(\frac14,\frac14,\frac14\right)$.\\
+La recta que uneix aquests punts és la perpendicular que talla totes dues rectes, i tindrà vector director
+$\overrightarrow{A_1A_2}=\left(-\frac12,\frac12,0\right)\sim(-1,1,0)$ i equació vectorial
+$(x,y,z)=\left(\frac14,\frac14,\frac14\right)+\alpha(-1,1,0)$. Per tant, l'equació paramètrica serà
+\[
+\boxed{(x,y,z)=\left(\tfrac14-\alpha,\,\tfrac14+\alpha,\,\tfrac14\right),\ \text{amb }\alpha\in\mathbb{R}}.
+\]
+
+\textit{Pauta oficial:} 0,25 per les expressions de $r_1$ i $r_2$, 0,25 pel vector $\overrightarrow{A_1A_2}$, 0,5 per
+la condició de doble perpendicularitat, 0,5 pel càlcul d'$A_1$ i d'$A_2$, i 0,25 per l'equació de la recta final.
+\end{solucio}
+
+\apartat{0,75}
+Calculeu la distància entre $r_1$ i $r_2$.
+
+\begin{solucio}
+Aplicant l'apartat anterior, tenim que
+\[
+d(r_1,r_2)=d(A_1,A_2)=\bigl\|\overrightarrow{A_1A_2}\bigr\|=\sqrt{\left(-\frac12\right)^2+\left(\frac12\right)^2+0^2}
+=\frac{1}{\sqrt2}=\boxed{\frac{\sqrt2}{2}\ \text{u}}.
+\]
+Amb independència de l'apartat a), aquest apartat es pot resoldre aplicant la fórmula general de la distància
+entre dues rectes, o bé via la distància entre una recta i la seva projecció perpendicular sobre l'altra.
+
+\textit{Pauta oficial:} 0,25 pel plantejament de la distància entre les rectes i 0,5 pel càlcul de la distància.
+\end{solucio}
+
+\end{apartats}
