@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-29 03:27 UTC",
+ "generat": "2026-09-29 03:41 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -246,6 +246,43 @@ const BANC = {
  "main": "% =====================================================================\n%  main.tex — Carpeta d'exàmens\n%  Compila amb:  pdflatex main.tex\n% =====================================================================\n\n\\documentclass[11pt,a4paper]{article}\n\n% Interruptor: comenta una línia i descomenta l'altra.\n%   \\solucionsfalse → examen de l'alumnat\n%   \\solucionstrue  → full del professorat, amb les solucions\n\\newif\\ifsolucions \\solucionsfalse\n%\\newif\\ifsolucions \\solucionstrue\n\n\\input{headers.tex}\n\\input{defs.tex}\n\n% La capçalera del centre (logo, curs, departament, casella de nota) NO és al\n% banc: viu aquí, a la teva carpeta. Si hi tens un capsalera.tex, s'incorpora;\n% si no, els exàmens surten sense capçalera.\n\\IfFileExists{capsalera.tex}{\\input{capsalera.tex}}{}\n\n\\begin{document}\n\\input{prova-1.tex}\n%\\input{prova-2.tex}\n\\end{document}\n",
  "versio": "920aa212",
  "preguntes": [
+  {
+   "id": "pau/algebra/alg-24j-q2",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-24j-q2",
+   "titol": "Sistema lineal amb paràmetre k: discussió, Cramer, el cas indeterminat i com fer-lo incompatible",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "Rouché-Frobenius",
+    "regla de Cramer",
+    "sistema incompatible"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 1",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu el sistema d'equacions següent:\n\\[\n\\left.\\begin{aligned}\n4x+2y-z&=4\\\\\nx-y+kz&=3\\\\\n3x+3y&=1\n\\end{aligned}\\right\\},\n\\]\non $k$ és un paràmetre real.\n\n\\begin{apartats}\n\n\\apartat{1}\nDiscutiu el sistema per als diferents valors del paràmetre $k$, i resoleu-lo per a $k=0$.\n\n\\begin{solucio}\nLa matriu de coeficients i la matriu ampliada del sistema són\n\\[\nM=\\begin{pmatrix}4&2&-1\\\\1&-1&k\\\\3&3&0\\end{pmatrix}\\quad\\text{i}\\quad\n\\overline{M}=\\begin{pmatrix}4&2&-1&4\\\\1&-1&k&3\\\\3&3&0&1\\end{pmatrix}.\n\\]\nCalculant el determinant de coeficients i igualant-lo a zero, obtenim\n\\[\n\\begin{vmatrix}4&2&-1\\\\1&-1&k\\\\3&3&0\\end{vmatrix}=-3+6k-3-12k=-6k-6=0,\n\\]\nés a dir, $k=-1$. Per tant, si $k\\neq-1$, tindrem $\\operatorname{rang}(M)=\\operatorname{rang}\\bigl(\\overline{M}\\bigr)=3$,\nque coincideix amb el nombre d'incògnites, i, pel teorema de Rouché-Frobenius, el sistema és compatible\ndeterminat. En canvi, si $k=-1$, el sistema queda\n\\[\n\\left.\\begin{aligned}4x+2y-z&=4\\\\x-y-z&=3\\\\3x+3y&=1\\end{aligned}\\right\\};\n\\]\ncom que la tercera equació és la resta de la primera menys la segona, es tracta d'un sistema de dues equacions i\ntres incògnites, amb rang de coeficients 2, ja que $\\begin{vmatrix}4&2\\\\1&-1\\end{vmatrix}=-4-2=-6\\neq0$. Per tant,\nel sistema és compatible indeterminat amb un grau de llibertat.\\\\\nLa solució per a $k=0$ la podem calcular per la regla de Cramer:\n\\[\nx=\\frac{\\begin{vmatrix}4&2&-1\\\\3&-1&0\\\\1&3&0\\end{vmatrix}}{\\begin{vmatrix}4&2&-1\\\\1&-1&0\\\\3&3&0\\end{vmatrix}}\n=\\frac{-10}{-6}=\\frac53,\\qquad\ny=\\frac{\\begin{vmatrix}4&4&-1\\\\1&3&0\\\\3&1&0\\end{vmatrix}}{\\begin{vmatrix}4&2&-1\\\\1&-1&0\\\\3&3&0\\end{vmatrix}}\n=\\frac{8}{-6}=-\\frac43,\n\\]\n\\[\nz=\\frac{\\begin{vmatrix}4&2&4\\\\1&-1&3\\\\3&3&1\\end{vmatrix}}{\\begin{vmatrix}4&2&-1\\\\1&-1&0\\\\3&3&0\\end{vmatrix}}\n=\\frac{-4+18+12+12-36-2}{-6}=0 .\n\\]\n\n\\textit{Pauta oficial:} 0,25 pel determinant, 0,25 per la discussió i 0,5 per la solució del cas $k=0$. La\ndiscussió del sistema i el càlcul de les solucions (tant per a $k=0$ com per a $k=-1$) poden fer-se d'altres\nmaneres: compteu-ho bé en la mesura que el que facin sigui correcte i estigui ben justificat.\n\\end{solucio}\n\n\\apartat{0,75}\nResoleu el sistema per a $k=-1$.\n\n\\begin{solucio}\nPer al cas $k=-1$, i eliminant la tercera equació per ser redundant, obtenim\n\\[\n\\left.\\begin{aligned}4x+2y-z&=4\\\\x-y-z&=3\\end{aligned}\\right\\}.\n\\]\nRestant, obtenim $3x+3y=1$. Fent $x=\\lambda$, tenim $y=\\frac13-\\lambda$, i llavors\n$z=x-y-3=\\lambda-\\frac13+\\lambda-3=2\\lambda-\\frac{10}{3}$. Totes les solucions del sistema són, doncs, de la forma\n$(x,y,z)=\\left(\\lambda,\\,\\frac13-\\lambda,\\,2\\lambda-\\frac{10}{3}\\right)$, amb $\\lambda\\in\\mathbb{R}$.\n\n\\textit{Pauta oficial:} 0,75 per l'expressió paramètrica de totes les solucions.\n\\end{solucio}\n\n\\apartat{0,75}\nPer a $k=-1$, modifiqueu la tercera equació de manera que el sistema esdevingui incompatible. Justifiqueu la\nresposta.\n\n\\begin{solucio}\nCom hem notat, en el cas $k=-1$, la tercera equació és redundant perquè és la resta de la primera menys la\nsegona. Si en modifiquem el terme independent posant, per exemple, $3x+3y=2$, tindrem la incongruència $1=2$, i\nel sistema serà incompatible. Dit d'una altra manera, és incompatible perquè la matriu de coeficients no ha\ncanviat, i té rang 2, mentre que la matriu ampliada té rang 3, ja que\n\\[\n\\begin{vmatrix}2&-1&4\\\\-1&-1&3\\\\3&0&2\\end{vmatrix}=-4-9+12-2=-3\\neq0 .\n\\]\n\n\\textit{Pauta oficial:} 0,25 per la nova equació, i 0,5 per la justificació que ara és incompatible.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-24j-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-24j-q2/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-24j-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-24j-q2/out/solucio.pdf"
+  },
   {
    "id": "pau/algebra/alg-24s-q2",
    "unitat": "pau",
@@ -504,6 +541,121 @@ const BANC = {
    "pdf_solucio": "pau/algebra/alg-26j2-q2/out/solucio.pdf",
    "pdf_curt": "pau/algebra/alg-26j2-q2/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/algebra/alg-26j2-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24j-q1",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24j-q1",
+   "titol": "f(x) = 2 ln x / x: màxim, monotonia, asímptotes, esbós i una tangent",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "apartats_curt": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "extrems",
+    "asímptotes",
+    "recta tangent"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 1",
+   "unitats": [
+    "u8",
+    "u9",
+    "u10"
+   ],
+   "tries": [],
+   "tex": "Considereu la funció $f(x)=2\\,\\dfrac{\\ln x}{x}$, definida per a $x>0$.\n\n\\begin{apartats}\n\n\\apartat{1}\nEstudieu-ne els màxims i els mínims, i les zones de creixement i de decreixement.\n\n\\begin{solucio}\nDerivant i igualant a zero,\n\\[\nf'(x)=2\\,\\frac{\\frac1x\\,x-\\ln x}{x^2}=2\\,\\frac{1-\\ln x}{x^2}=0,\n\\]\nens queda l'equació $\\ln x=1$; per tant, $f$ té només un punt crític, $x=e$. Resulta que és un màxim, ja que la\nderivada segona hi és negativa:\n\\[\nf''(x)=2\\,\\frac{-\\frac1x\\,x^2-(1-\\ln x)\\cdot2x}{x^4},\\qquad f''(e)=2\\,\\frac{-e}{e^4}=-2e^{-3}<0 .\n\\]\nCom que només té un màxim, la funció és creixent a l'interval $(0,e)$ i decreixent a $(e,+\\infty)$, cosa que\ntambé podem veure directament mirant el signe de la derivada.\n\n\\textit{Pauta oficial:} 0,5 pel càlcul de la derivada, 0,25 per determinar el màxim i 0,25 per les zones de\ncreixement i decreixement.\n\\end{solucio}\n\n\\apartat{1}\nAquesta funció té asímptotes? Feu un esbós de la seva gràfica.\n\n\\begin{solucio}\nA zero, hi ha una asímptota vertical, ja que $\\lim_{x\\to0^+}2\\,\\frac{\\ln(x)}{x}=\\frac{-\\infty}{0^+}=-\\infty$. I a\nl'infinit, una asímptota horitzontal, cosa que es veu fent l'Hôpital,\n\\[\n\\lim_{x\\to+\\infty}\\frac{2\\ln x}{x}=\\lim_{x\\to+\\infty}\\frac{\\frac2x}{1}=\\lim_{x\\to+\\infty}\\frac2x=0^+,\n\\]\no bé argumentant que, per a $x>e$, la funció és sempre decreixent, però no travessa mai l'eix d'abscisses, ja\nque $2\\,\\frac{\\ln x}{x}=0$ només té la solució $x=1$. Aquest és un esbós de la gràfica d'aquesta funció:\n\\begin{center}\n\\begin{tikzpicture}[x=0.45cm,y=0.9cm]\n  \\draw[->] (-0.5,0) -- (13,0) node[below right] {$x$};\n  \\draw[->] (0,-3.2) -- (0,1.4) node[above left] {$y$};\n  \\begin{scope}\n    \\clip (-0.5,-3.2) rectangle (13,1.4);\n    \\draw[\\colorgrafica,thick,domain=0.42:12.5,samples=150,smooth] plot (\\x,{2*ln(\\x)/\\x});\n  \\end{scope}\n  \\fill (2.71828,0.7358) circle (1.3pt);\n  \\node[above,font=\\scriptsize] at (2.71828,0.78) {$\\left(e,\\frac2e\\right)$};\n  \\fill (1,0) circle (1.3pt);\n  \\node[below right,font=\\scriptsize] at (1,0) {$1$};\n\\end{tikzpicture}\n\\end{center}\n\n\\textit{Pauta oficial:} 0,25 per l'asímptota vertical, 0,5 per l'horitzontal i 0,25 per l'esbós de la gràfica.\nSi justifiquen l'existència de l'asímptota horitzontal sense calcular-ne el valor (per exemple, dient que en\ntendir a infinit la funció és decreixent sense tallar mai l'eix d'abscisses), o fins i tot si diuen que és 0\nsense justificar-ho, compteu la totalitat dels 0,5 punts corresponents (l'enunciat pregunta si $f(x)$ té\nasímptotes, no que les calculin).\n\\end{solucio}\n\n\\apartat{0,5}\nCalculeu l'equació de la recta tangent a la gràfica de $y=f(x)$ en el punt d'abscissa $x=1$.\n\n\\begin{solucio}\nCom que $f(1)=2\\,\\frac{\\ln1}{1}=0$ i $f'(1)=2\\,\\frac{1-\\ln1}{1^2}=2$, es tracta de la recta que passa pel\npunt $(1,0)$ i té pendent 2: és la recta $y-0=2(x-1)\\rightarrow y=2x-2$.\n\n\\textit{Pauta oficial:} 0,5 pel càlcul correcte de la recta tangent.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24j-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24j-q1/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24j-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24j-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24j-q3",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24j-q3",
+   "titol": "El terreny de l'avi: punts de tall d'una cúbica, una recta i l'àrea entre totes dues",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "àrea entre corbes",
+    "punts de tall",
+    "problema en context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 1",
+   "unitats": [
+    "u12"
+   ],
+   "tries": [],
+   "tex": "En Joan troba entre els papers del seu avi un esbós com el de la figura adjunta, on es descriu un terreny de\nregadiu que ha deixat en herència al seu pare.\n\\begin{center}\n\\begin{tikzpicture}[x=1.6cm,y=0.9cm]\n  \\fill[gray!45] (1.6,2.2) -- plot[domain=1.6:2.85,samples=60,smooth] (\\x,{2.2-1.176*(\\x)*((\\x)-1.6)*((\\x)-2.85)})\n    -- (2.85,0) -- cycle;\n  \\draw (-0.4,0) -- (3.6,0);\n  \\draw (0,-0.9) -- (0,4.6);\n  \\draw (-0.4,2.2) -- (3.6,2.2);\n  \\draw (1.6,2.2) -- (2.85,0);\n  \\draw (2.85,2.2) -- (2.85,0);\n  \\draw[\\colorgrafica,thick,domain=-0.3:3.3,samples=100,smooth] plot (\\x,{2.2-1.176*(\\x)*((\\x)-1.6)*((\\x)-2.85)});\n  \\node[left,font=\\scriptsize] at (0,2.2) {$5$};\n  \\fill (1.6,2.2) circle (1.3pt);  \\node[above left,font=\\scriptsize] at (1.6,2.2) {$P$};\n  \\fill (2.85,2.2) circle (1.3pt); \\node[above right,font=\\scriptsize] at (2.85,2.2) {$Q$};\n  \\fill (2.85,0) circle (1.3pt);   \\node[below right,font=\\scriptsize] at (2.85,0) {$R$};\n\\end{tikzpicture}\n\\end{center}\nLa corba de la gràfica és $y=f(x)$, amb $f(x)=-x^3+7x^2-6x+5$.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nA partir de l'expressió de $f(x)$, calculeu les coordenades dels punts $P$, $Q$ i $R$ indicats a la figura.\nCalculeu també l'equació de la recta $PR$.\n\n\\begin{solucio}\nTal com es veu al dibuix, les abscisses dels punts $(0,5)$, $P$ i $Q$ són les tres solucions de l'equació\n$f(x)=5$:\n\\[\n-x^3+7x^2-6x+5=5\\;\\rightarrow\\;x\\left(-x^2+7x-6\\right)=0\\;\\rightarrow\\;x=0,\\quad\nx=\\frac{-7\\pm\\sqrt{49-24}}{-2}=1,\\ 6 .\n\\]\nPer tant, les coordenades dels punts demanats són $P=(1,5)$, $Q=(6,5)$ i $R=(6,0)$. Ara, la recta $r$ que passa\npels punts $P=(1,5)$ i $R=(6,0)$ té pendent $m=\\frac{0-5}{6-1}=-1$; per tant, és $y=-x+n$ i, com que passa pel\npunt $R=(6,0)$, tenim que $n=6$: es tracta de la recta $y=-x+6$.\n\n\\textit{Pauta oficial:} 0,25 per plantejar bé l'equació, 0,25 per resoldre-la, 0,25 per donar les coordenades\ndels tres punts i 0,5 per l'equació de la recta.\n\\end{solucio}\n\n\\apartat{1,25}\nCalculeu la superfície del terreny.\n\n\\begin{solucio}\nLa superfície del terreny serà la integral definida entre els punts d'abscissa $x=1$ i $x=6$ de la funció\n$f(x)$ menys la recta:\n\\begin{align*}\nA&=\\int_1^6\\bigl(f(x)-r(x)\\bigr)\\,dx=\\int_1^6\\Bigl(\\left(-x^3+7x^2-6x+5\\right)-(-x+6)\\Bigr)\\,dx\n=\\int_1^6\\left(-x^3+7x^2-5x-1\\right)dx\\\\\n&=\\left[-\\frac{x^4}{4}+\\frac73x^3-\\frac52x^2-x\\right]_1^6\\\\\n&=\\left(-\\frac{6^4}{4}+\\frac73\\,6^3-\\frac52\\,6^2-6\\right)-\\left(-\\frac14+\\frac73-\\frac52-1\\right)\n=\\frac{1025}{12}=85{,}416\\ldots\\ \\text{u}^2 .\n\\end{align*}\nAlternativament, es pot integrar només $f(x)$ entre 1 i 6, i restar-hi el triangle inferior, que no és del\nterreny:\n\\begin{align*}\nA&=\\int_1^6f(x)\\,dx-\\frac{5\\cdot5}{2}=\\int_1^6\\left(-x^3+7x^2-6x+5\\right)dx-\\frac{25}{2}\n=\\left[-\\frac{x^4}{4}+\\frac73x^3-3x^2+5x\\right]_1^6-\\frac{25}{2}\\\\\n&=\\frac{1175}{12}-\\frac{25}{2}=85{,}416\\ldots\\ \\text{u}^2 .\n\\end{align*}\n\n\\textit{Pauta oficial:} 0,5 pel plantejament de la integral correcta i 0,75 per fer-ne el càlcul. Compteu bé\nqualsevol de les maneres de fer-ho, si són correctes i estan ben explicades.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24j-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24j-q3/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24j-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24j-q3/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-24j-q5",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-24j-q5",
+   "titol": "Optimització: el cobert adossat a la paret de cost mínim",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "cost mínim",
+    "problema en context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 1",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "Volem construir un petit cobert de fusta de $6\\ \\text{m}^3$ de volum, en forma de prisma rectangular, adossat a la\nparet lateral d'una casa, per a guardar-hi llenya. Només cal construir, per tant, el sostre i tres parets (la\nparet del fons del cobert és la de la casa a la qual està adossat). A més, volem que el cobert mesuri el triple\nd'amplària que de fondària. Cada metre quadrat de paret té un cost de construcció de 30 € i el sostre costa 50 €\nper metre quadrat. Un cop construït el cobert, afegir-hi una porta té un cost fix de 35 €.\n\\begin{center}\n\\begin{tikzpicture}[scale=0.8]\n  \\draw (0,0) -- (0,3.6) -- (5.4,3.6) -- (5.4,0);\n  \\fill[gray!45] (1.6,0) rectangle (3.6,1.5);\n  \\fill[gray!25] (1.6,1.5) -- (2.1,1.9) -- (4.1,1.9) -- (3.6,1.5) -- cycle;\n  \\fill[gray!65] (3.6,0) -- (4.1,0.4) -- (4.1,1.9) -- (3.6,1.5) -- cycle;\n  \\draw (1.6,0) rectangle (3.6,1.5);\n  \\draw (1.6,1.5) -- (2.1,1.9) -- (4.1,1.9) -- (3.6,1.5);\n  \\draw (3.6,0) -- (4.1,0.4) -- (4.1,1.9);\n  \\fill[white] (2.35,0) -- (2.35,0.7) arc[start angle=180,end angle=0,radius=0.25] -- (2.85,0) -- cycle;\n  \\draw (-0.3,0) -- (5.7,0);\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat{1,25}\nComproveu que el cost de construcció del cobert ve donat per la funció $C(x)=\\dfrac{300}{x}+150x^2+35$, on $x$ és\nla fondària del cobert en metres.\n\n\\begin{solucio}\nCom s'indica a l'enunciat, denotem per $x$ la fondària del cobert, i per $h$, l'alçada; l'amplada serà $3x$. El\nvolum del cobert ha de ser de $6\\ \\text{m}^3$, és a dir, $3x\\cdot x\\cdot h=6$ i, per tant, $h=\\frac{2}{x^2}$. El\ncost de construcció és donat per\n\\[\nC(x)=30\\cdot(3xh+xh+xh)+50\\cdot3x^2+35=150xh+150x^2+35=150x\\cdot\\frac{2}{x^2}+150x^2+35=\\frac{300}{x}+150x^2+35 .\n\\]\n\n\\textit{Pauta oficial:} 0,25 pel plantejament correcte de les variables (amplada, fondària i alçada), 0,5 per\nexpressar la lligadura que representa el volum fixat, i 0,5 per l'expressió final del cost. També poden plantejar\nque l'amplada és $x$ i la fondària $\\frac x3$: els càlculs seran diferents, però doneu els punts corresponents de\ncada part sempre que estigui ben feta i ben argumentada.\n\\end{solucio}\n\n\\apartat{1,25}\nCalculeu quines han de ser les dimensions del cobert per tal que el cost de construcció sigui mínim, i\njustifiqueu la resposta. Quin és aquest cost?\n\n\\begin{solucio}\nPer minimitzar la funció $C(x)$, calculem-ne la derivada: $C'(x)=-\\dfrac{300}{x^2}+300x$. Si resolem l'equació\n$C'(x)=0$, obtenim $\\frac{300}{x^2}=300x$ o, equivalentment, $x^3=1$, que té com a única solució real $x=1$.\nCom que $C''(x)=\\frac{600}{x^3}+300$ i $C''(1)>0$, comprovem fàcilment que es tracta d'un mínim de la funció.\nAixí doncs, les dimensions del cobert han de ser $x=1$ metre de fondària, $3x=3$ metres d'amplada i\n$h=\\frac{2}{1^2}=2$ metres d'alçada. Per a aquestes dimensions, el cost de construcció és de\n$C(1)=\\frac{300}{1}+150\\cdot1^2+35=485$ euros.\n\n\\textit{Pauta oficial:} 0,25 per la derivada, 0,25 per aïllar correctament, 0,25 per justificar que es tracta\nd'un mínim, 0,25 per les tres dimensions demanades i 0,25 pel càlcul del cost total. La justificació del mínim\ntambé es pot fer sense la derivada segona, analitzant el signe de la derivada primera: compteu-ho bé si ho fan\naixí, sempre que estigui ben argumentat.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-24j-q5/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-24j-q5/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-24j-q5/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-24j-q5/out/solucio.pdf"
   },
   {
    "id": "pau/analisi/ana-24s-q1",
@@ -1003,6 +1155,43 @@ const BANC = {
    "pdf_solucio_curt": "pau/analisi/ana-26j2-q4a/out/solucio.pdf"
   },
   {
+   "id": "pau/geometria/geo-24j-q6",
+   "unitat": "pau",
+   "tema": "geometria",
+   "codi": "geo-24j-q6",
+   "titol": "Pla mediador de dos punts, distàncies iguals i un triangle isòsceles",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "pla mediador",
+    "distància punt-pla",
+    "àrea d'un triangle"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 1",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu els punts $A=(1,2,3)$ i $B=(-3,-2,3)$.\n\n\\begin{apartats}\n\n\\apartat{1}\nCalculeu l'equació del pla $\\pi$ que és perpendicular a la recta $AB$ i que passa pel punt mitjà entre $A$ i $B$.\nJustifiqueu que aquest pla està format, precisament, pels punts $P=(x,y,z)$ que estan a igual distància de $A$\nque de $B$, és a dir, $d(P,A)=d(P,B)$.\n\n\\begin{solucio}\nEl pla buscat ha de ser perpendicular al vector $\\overrightarrow{AB}=(-3,-2,3)-(1,2,3)=(-4,-4,0)\\sim(1,1,0)$; per\ntant, té una equació de la forma $x+y+0z+D=0$. A més, ha de passar pel punt mitjà $\\frac12(A+B)=(-1,0,3)$; per\ntant, $-1+D=0$, i es tracta del pla d'equació $x+y+1=0$.\\\\\nGeomètricament, és clar que aquest pla $\\pi$ està format precisament pels punts a igual distància de $A$ que de\n$B$. Efectivament, per a un punt arbitrari $P=(x,y,z)$, l'equació $d(P,A)=d(P,B)$ és equivalent a\n\\begin{gather*}\n\\sqrt{(x-1)^2+(y-2)^2+(z-3)^2}=\\sqrt{(x+3)^2+(y+2)^2+(z-3)^2},\\\\\nx^2-2x+1+y^2-4y+4+z^2-6z+9=x^2+6x+9+y^2+4y+4+z^2-6z+9,\\\\\n-2x+1-4y=6x+9+4y,\\qquad-8x-8y-8=0,\n\\end{gather*}\nque, simplificant-la, és precisament l'equació del pla $\\pi$, $x+y+1=0$.\n\n\\textit{Pauta oficial:} 0,5 per calcular l'equació del pla $\\pi$, i 0,5 per justificar que es tracta exactament\ndels punts equidistants d'$A$ i de $B$.\n\\end{solucio}\n\n\\apartat{0,75}\nCalculeu les distàncies de $A$ i de $B$ al pla $\\pi$ i comproveu que són iguals. És casualitat? Raoneu la\nresposta.\n\n\\begin{solucio}\nUsant la fórmula de la distància punt-pla, tenim\n\\[\nd(A,\\pi)=\\frac{|1+2+1|}{\\sqrt{1^2+1^2+0^2}}=\\frac{4}{\\sqrt2},\\qquad\nd(B,\\pi)=\\frac{|-3-2+1|}{\\sqrt{1^2+1^2+0^2}}=\\frac{4}{\\sqrt2}.\n\\]\nNo és casualitat que doni el mateix resultat: les projeccions ortogonals de $A$ i de $B$ sobre el pla $\\pi$ són\nprecisament el punt mitjà $\\frac12(A+B)=(-1,0,3)$, per on hem fet passar el pla $\\pi$, perpendicular al vector\n$\\overrightarrow{AB}$.\n\n\\textit{Pauta oficial:} 0,25 per calcular les dues distàncies, i 0,5 per reconèixer que no és casualitat i\nexplicar el motiu pel qual són iguals.\n\\end{solucio}\n\n\\apartat{0,75}\nSigui $C=(-7,6,3)$. El triangle $ABC$ és isòsceles? Calculeu la seva àrea.\n\n\\begin{solucio}\nEl punt $C=(-7,6,3)$ compleix $-7+6+1=0$ i, per tant, pertany al pla $\\pi$ de l'apartat anterior. Això vol dir\nque $d(C,A)=d(C,B)$ i, per tant, el triangle $ABC$ té almenys dos costats iguals: és isòsceles.\\\\\nPer calcular-ne l'àrea, només necessitem la longitud de la base, $d(A,B)=2\\cdot\\frac{4}{\\sqrt2}=4\\sqrt2$, i\nl'alçada, que és la distància de $C$ al punt mitjà entre $A$ i $B$:\n$h=d\\bigl((-7,6,3),(-1,0,3)\\bigr)=\\sqrt{6^2+6^2+0^2}=\\sqrt{72}=6\\sqrt2$. Per tant, el triangle $ABC$ té àrea\n\\[\n\\text{Àrea}=\\frac{4\\sqrt2\\cdot6\\sqrt2}{2}=24\\ \\text{u}^2 .\n\\]\n\n\\textit{Pauta oficial:} 0,25 per raonar que el triangle és isòsceles, 0,25 per calcular l'alçada, i 0,25 per\ncalcular la longitud de la base i l'àrea final. També poden argumentar que el triangle és isòsceles calculant\ndirectament la longitud dels tres costats i veient que dues coincideixen: compteu-ho bé si ho fan així, en la\nmesura que el que facin sigui correcte i estigui ben argumentat.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/geometria/geo-24j-q6/out/enunciat.pdf",
+   "pdf_solucio": "pau/geometria/geo-24j-q6/out/solucio.pdf",
+   "pdf_curt": "pau/geometria/geo-24j-q6/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/geometria/geo-24j-q6/out/solucio.pdf"
+  },
+  {
    "id": "pau/geometria/geo-24s-q6",
    "unitat": "pau",
    "tema": "geometria",
@@ -1184,6 +1373,44 @@ const BANC = {
    "pdf_solucio": "pau/geometria/geo-26j2-q4b/out/solucio.pdf",
    "pdf_curt": "pau/geometria/geo-26j2-q4b/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/geometria/geo-26j2-q4b/out/solucio.pdf"
+  },
+  {
+   "id": "pau/probabilitat/pro-24j-q4",
+   "unitat": "pau",
+   "tema": "probabilitat",
+   "codi": "pro-24j-q4",
+   "titol": "Les boles BAYESFANS: extraccions sense reemplaçament i amb reemplaçament (binomial)",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "sense reemplaçament",
+    "binomial",
+    "complementari"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2024, sèrie 1",
+   "unitats": [
+    "u13",
+    "u14"
+   ],
+   "tries": [],
+   "tex": "L'Andreu posa les nou boles que es mostren a continuació dins d'una bossa.\n\\begin{center}\n\\begin{tikzpicture}\n  \\foreach \\l [count=\\i] in {B,A,Y,E,S,F,A,N,S}\n    \\node[draw,circle,minimum size=7.5mm,inner sep=0pt,font=\\sffamily\\large] at (0.95*\\i,0) {\\l};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat{1,25}\nA continuació, treu de la bossa dues boles a l'atzar, una darrere l'altra i sense reemplaçament (és a dir, no\nretorna a la bossa la primera bola abans de treure la segona).\n\\begin{itemize}\n\\item[---] Calculeu la probabilitat que la primera bola sigui una A o una E. \\emph{(0,5 punts)}\n\\item[---] Calculeu la probabilitat que les dues boles siguin diferents. \\emph{(0,75 punts)}\n\\end{itemize}\n\n\\begin{solucio}\nCom que hi ha dues A i una E, en la primera extracció tenim 3 casos favorables sobre 9 possibles; per tant,\nla probabilitat demanada és $\\frac39=\\frac13$.\\\\\nCalculem primer la probabilitat que les dues boles siguin iguals. Això només pot passar si són dues A o dues S:\n\\[\nP(\\text{dues A})=P(\\text{primera A i segona A})=\\frac29\\cdot\\frac18=\\frac1{36}=P(\\text{dues S}).\n\\]\nPer tant, $P(\\text{dues diferents})=1-P(\\text{dues iguals})=1-2\\cdot\\frac1{36}=\\frac{17}{18}=0{,}944\\ldots$\\\\\nAlternativament, podem argumentar directament de la manera següent: si la primera bola no és ni A ni S, segur\nque les dues seran diferents; si la primera bola és una A, hi ha 7 boles favorables per a la segona extracció\n(totes menys l'altra A); i, anàlogament, si la primera bola és una S, també hi ha 7 boles favorables per a la\nsegona extracció. Per tant,\n\\begin{align*}\nP(\\text{dues diferents})&=P(\\text{primera no és ni A ni S})+P(\\text{primera A i segona no A})\\\\\n&\\quad+P(\\text{primera S i segona no S})=\\frac59+\\frac29\\cdot\\frac78+\\frac29\\cdot\\frac78=\\frac{17}{18}.\n\\end{align*}\n\n\\textit{Pauta oficial:} la primera pregunta, 0,5; la segona, 0,5 pel plantejament i 0,25 pel càlcul.\n\\end{solucio}\n\n\\apartat{1,25}\nL'Andreu torna a posar totes les boles a la bossa i en treu cinc a l'atzar, una darrere l'altra, però ara amb\nreemplaçament (és a dir, ara sí que retorna a la bossa cada bola extreta abans d'agafar la següent).\n\\begin{itemize}\n\\item[---] Calculeu la probabilitat que no hagi tret cap A. \\emph{(0,5 punts)}\n\\item[---] Calculeu la probabilitat que hagi tret almenys dues A. \\emph{(0,75 punts)}\n\\end{itemize}\n\n\\begin{solucio}\nEl nombre de boles A extretes segueix una llei binomial amb $n=5$ i $p=\\frac29$.\\\\\n$P(\\text{cap A})=(1-p)^5=\\left(\\frac79\\right)^5=0{,}284\\ldots$\\\\\nPassant al complementari, tenim\n\\[\nP(\\text{almenys 2 A})=1-P(\\text{una A})-P(\\text{cap A})=1-\\binom51\\left(\\frac29\\right)\\left(\\frac79\\right)^4-\\left(\\frac79\\right)^5\n=0{,}308\\ldots\n\\]\n\n\\textit{Pauta oficial:} la primera pregunta, 0,5; la segona, 0,5 pel plantejament i 0,25 per fer-ne el càlcul.\nLa segona pregunta es pot respondre també, de manera més llarga, calculant amb la binomial\n$P(2\\,\\text{A})+P(3\\,\\text{A})+P(4\\,\\text{A})+P(5\\,\\text{A})$: doneu també aquestes respostes com a correctes en\nla mesura que estiguin ben fetes i ben argumentades.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/probabilitat/pro-24j-q4/out/enunciat.pdf",
+   "pdf_solucio": "pau/probabilitat/pro-24j-q4/out/solucio.pdf",
+   "pdf_curt": "pau/probabilitat/pro-24j-q4/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/probabilitat/pro-24j-q4/out/solucio.pdf"
   },
   {
    "id": "pau/probabilitat/pro-24s-q4",
