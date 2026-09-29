@@ -1,0 +1,53 @@
+La Rut fa servir el mètode següent per a fer els problemes de matemàtiques: tira un dau equilibrat i, si el
+resultat és com a màxim 4, pensa i resol el problema ella mateixa; si el resultat és 5 o 6, busca la solució del
+problema per Internet i la copia. Quan és ella qui ha pensat la solució, la resposta és correcta en el 75\,\% dels
+casos; quan copia la solució d'Internet, la resposta és correcta només en el 40\,\% dels casos.
+
+\begin{apartats}
+
+\apartat{0,75}
+Quina és la probabilitat que la solució d'un problema respost seguint aquest mètode sigui correcta?
+
+\begin{solucio}
+Denotem per $C$ l'esdeveniment «la solució és correcta», per $R$ l'esdeveniment «l'ha resolt la Rut», i per $I$
+l'esdeveniment «l'ha copiat d'Internet». Segons l'enunciat, $P(R)=\frac46=\frac23$, $P(I)=\frac26=\frac13$,
+$P(C\mid R)=0{,}75$ i $P(C\mid I)=0{,}4$. Aleshores, per la llei de les probabilitats totals,
+\[
+P(C)=P(C\mid R)\,P(R)+P(C\mid I)\,P(I)=0{,}75\cdot\frac23+0{,}4\cdot\frac13=0{,}633\ldots
+\]
+
+\textit{Pauta oficial:} 0,5 per plantejar la llei de les probabilitats totals (o per fer l'arbre de decisió), i
+0,25 pel càlcul final.
+\end{solucio}
+
+\apartat{0,75}
+Quina és la probabilitat que un problema l'hagi resolt la Rut si sabem que la solució és correcta?
+
+\begin{solucio}
+Fent servir la fórmula de Bayes i els càlculs de l'apartat anterior, obtenim
+\[
+P(R\mid C)=\frac{P(C\mid R)\,P(R)}{P(C)}=\frac{0{,}75\cdot\frac23}{0{,}633}=0{,}789\ldots
+\]
+
+\textit{Pauta oficial:} 0,5 per plantejar correctament la fórmula de Bayes (o usar la definició de probabilitat
+condicionada), i 0,25 pel càlcul final.
+\end{solucio}
+
+\apartat{1}
+Demà la Rut ha d'entregar 5 problemes de matemàtiques. Quina és la probabilitat que n'hi hagi almenys 4 de
+correctes?
+
+\begin{solucio}
+El nombre d'exercicis correctes segueix una distribució binomial amb $p=P(C)=0{,}633$ i $n=5$:
+\begin{align*}
+P(\text{almenys 4 correctes})&=P(\text{4 correctes})+P(\text{5 correctes})\\
+&=\binom54\cdot0{,}633^4\cdot(1-0{,}633)^1+\binom55\cdot0{,}633^5=0{,}396\ldots
+\end{align*}
+
+\textit{Pauta oficial:} 0,5 pel plantejament i 0,5 pel càlcul final.
+
+\textit{Nota del banc:} amb el valor exacte, $p=\frac{19}{30}$, el resultat és $0{,}3969\ldots$; el
+$0{,}396\ldots$ del criteri surt de fer servir $p=0{,}633$. Totes dues respostes són correctes.
+\end{solucio}
+
+\end{apartats}

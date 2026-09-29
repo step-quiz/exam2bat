@@ -1,0 +1,48 @@
+Considereu les paràboles $y=f_a(x)$, amb $f_a(x)=ax^2+2x+5-a$, on $a$ és un paràmetre real.
+
+\begin{apartats}
+
+\apartat{1}
+Determineu el valor del paràmetre $a$ per al qual la recta tangent a $y=f_a(x)$ en el punt d'abscissa $x=1$
+passa pel punt $(2,13)$.
+
+\begin{solucio}
+La derivada és $f_a'(x)=2ax+2$, i el pendent en el punt d'abscissa $x=1$ és $f_a'(1)=2a+2$. Com que el punt de
+tangència és $(1,f_a(1))=(1,7)$, l'equació de la recta tangent serà $y-7=(2a+2)(x-1)$. Perquè aquesta recta
+passi pel punt $(2,13)$, cal que $13-7=(2a+2)(2-1)$, és a dir, $6=2a+2$ i, per tant, $a=2$.
+
+\textit{Pauta oficial:} 0,25 per la derivada, 0,25 per calcular l'equació de la recta tangent en funció del
+paràmetre, 0,25 per plantejar l'equació, i 0,25 pel valor final.
+\end{solucio}
+
+\apartat{0,5}
+Calculeu els punts de tall de les paràboles $y=f_1(x)$ i $y=f_3(x)$.
+
+\begin{solucio}
+Per trobar els punts de tall d'aquestes dues paràboles, hem de resoldre l'equació de segon grau
+$f_1(x)=f_3(x)$:
+\[
+x^2+2x+4=3x^2+2x+2\;\rightarrow\;2x^2-2=0\;\rightarrow\;x=\pm1 .
+\]
+Els punts de tall són $(1,f_1(1))=(1,7)$ i $(-1,f_1(-1))=(-1,3)$.
+
+\textit{Pauta oficial:} 0,25 pel plantejament de l'equació correcta i 0,25 per donar els dos punts de tall.
+\end{solucio}
+
+\apartat{1}
+Calculeu l'àrea de la regió situada entre les dues paràboles $y=f_1(x)$ i $y=f_3(x)$.
+
+\begin{solucio}
+L'àrea demanada és la integral
+\begin{align*}
+A&=\int_{-1}^1\bigl(f_1(x)-f_3(x)\bigr)\,dx=\int_{-1}^1\Bigl(\left(x^2+2x+4\right)-\left(3x^2+2x+2\right)\Bigr)\,dx\\
+&=\int_{-1}^1\left(-2x^2+2\right)dx=\left[-\frac{2x^3}{3}+2x\right]_{-1}^1
+=\left(-\frac23+2\right)-\left(\frac23-2\right)=\frac83\ \text{u}^2 .
+\end{align*}
+
+\textit{Pauta oficial:} 0,5 per plantejar la integral correcta, i 0,5 per calcular-la (si plantegen la integral
+de $f_3(x)-f_1(x)$ i els surt un resultat negatiu, cal que expliquin què passa i que prenguin el valor absolut
+com a resultat; si donen per bo un resultat negatiu, penalitzeu amb 0,5 punts).
+\end{solucio}
+
+\end{apartats}

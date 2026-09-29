@@ -1,0 +1,14 @@
+{
+  "titol": "Paràboles amb un paràmetre: una tangent per un punt, punts de tall i àrea entre dues paràboles",
+  "unitats": [
+    "u8",
+    "u12"
+  ],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "recta tangent",
+    "paràmetre",
+    "àrea entre corbes"
+  ]
+}

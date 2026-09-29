@@ -8,12 +8,12 @@ veus l'enunciat i la solució en PDF, i en baixes el codi `.tex`, sol o muntat e
 complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva procedència
 («PAU juny 2026, sèrie 1»).
 
-> **Estat a 28 de setembre de 2026:** 124 preguntes. N'hi ha 24 de la unitat 7 (Límits i
+> **Estat a 28 de setembre de 2026:** 130 preguntes. N'hi ha 24 de la unitat 7 (Límits i
 > continuïtat) en 8 temes i 18 de la unitat 8 (Derivades) en 6 temes, totes amb tres variants
 > per tema; 12 de la unitat 9 (Aplicacions de les derivades) en 4 temes, també amb tres
 > variants; 15 de la unitat 10 (Representació de funcions) en 5 temes, també amb tres variants; 12 de la unitat 13 (Probabilitat) en 4 temes, també amb tres
-> variants; 6 de la unitat 14 (la distribució binomial) en 2 temes, també amb tres variants; i 37 de la PAU (les dues
-> sèries de juny de 2026, les tres convocatòries de 2025, setembre de 2024 i la sèrie 1 de juny de 2024). **Les 87 preguntes de les unitats 7 a 10, 13 i 14 ofereixen una tria** en algun
+> variants; 6 de la unitat 14 (la distribució binomial) en 2 temes, també amb tres variants; i 43 de la PAU (les dues
+> sèries de juny de 2026, les tres convocatòries de 2025 i les tres de 2024). **Les 87 preguntes de les unitats 7 a 10, 13 i 14 ofereixen una tria** en algun
 > apartat: un altre cas, una altra tècnica o una tasca diferent de la del defecte, amb el seu
 > propi Enunciat i Solució, triable des de la mateixa carta. El detall
 > de la feina feta i pendent és a [`handout.md`](handout.md).
@@ -24,9 +24,9 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
 
 1. Obre `index.html` amb doble clic. No cal servidor ni connexió.
 2. A l'esquerra hi ha els temes, agrupats per unitat. La PAU hi té el seu grup propi, amb
-   quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat. Cada unitat es plega i es desplega
-   clicant-ne el títol. Plegada, diu quantes preguntes seves hi ha a l'examen, i el navegador
-   recorda quines has plegat.
+   quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat. Totes les unitats, PAU inclosa, surten plegades: cada una es desplega clicant-ne
+   el títol. Plegada, diu quantes preguntes seves hi ha a l'examen, i el navegador recorda quines
+   has desplegat.
 3. **Cada clic a un tema hi afegeix una pregunta** d'aquell tema. Un segon clic n'afegeix una
    altra, si n'hi ha. El quadret diu quantes n'hi ha a l'examen, i el número de la dreta,
    quantes en té el tema.

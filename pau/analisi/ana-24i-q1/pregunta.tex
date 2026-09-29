@@ -1,0 +1,68 @@
+Considereu la funció $f(x)=-2+10\,(x-1)\ln x$, definida per a $x>0$.
+
+\begin{apartats}
+
+\apartat{0,75}
+Comproveu que $f(x)$ té una arrel a l'interval $[1,\,1{,}5]$ i busqueu un interval d'una dècima de longitud que
+també contingui aquesta mateixa arrel.
+
+\begin{solucio}
+Com que es tracta d'una funció contínua a l'interval $[1,\,1{,}5]$, i $f(1)=-2<0$ i
+$f(1{,}5)=-2+5\ln1{,}5=0{,}027\ldots>0$, el teorema de Bolzano ens assegura que hi ha una arrel a l'interval
+$(1,\,1{,}5)$. Temptejant altres punts d'aquest interval, veiem que $f(1{,}3)=-2+3\ln1{,}3=-1{,}212\ldots<0$;
+per tant, l'arrel és a l'interval $[1{,}3,\,1{,}5]$. I també $f(1{,}4)=-2+4\ln1{,}4=-0{,}654\ldots<0$ i, per tant,
+l'arrel és a l'interval $[1{,}4,\,1{,}5]$.
+
+\textit{Pauta oficial:} 0,25 per justificar que té una arrel a l'interval $[1,\,1{,}5]$ i 0,5 per afinar-lo a
+una dècima (no importa si fan més o menys temptejos fins a arribar a la dècima, mentre siguin correctes).
+\end{solucio}
+
+\apartat{1}
+Sense calcular els punts crítics, justifiqueu que $f(x)$ és decreixent a l'interval $(0,1)$ i creixent a
+$(1,+\infty)$. Quins màxims i mínims té aquesta funció?
+
+\begin{solucio}
+Calculem la derivada, $f'(x)=10\left(\ln x+\dfrac{x-1}{x}\right)$, i observem que, d'entrada, no sabem aïllar la
+$x$ de l'equació $f'(x)=0$. Però es veu clarament que a l'interval $(0,1)$ tenim $\ln x<0$ i
+$\frac{x-1}{x}<0$; per tant, $f'(x)<0$, i la funció serà decreixent. De la mateixa manera, a l'interval
+$(1,+\infty)$ tenim $\ln x>0$ i $\frac{x-1}{x}>0$; per tant, $f'(x)>0$, i la funció serà creixent. En
+conseqüència, $f(x)$ té un únic punt crític, al punt $x=1$, que és un mínim, i no té cap màxim.
+
+\textit{Pauta oficial:} 0,25 pel càlcul de la derivada, 0,5 per l'estudi del creixement i decreixement, i 0,25
+pels màxims i mínims.
+\end{solucio}
+
+\apartat{0,75}
+Calculeu $\lim_{x\to0^+}f(x)$ i $\lim_{x\to+\infty}f(x)$, i feu un esbós de la gràfica d'aquesta funció.
+
+\begin{solucio}
+Els dos límits demanats són immediats:
+\[
+\lim_{x\to0^+}\bigl(-2+10(x-1)\ln x\bigr)=-2+10(-1)(-\infty)=+\infty,
+\]
+\[
+\lim_{x\to+\infty}\bigl(-2+10(x-1)\ln x\bigr)=-2+10\cdot(+\infty)\cdot(+\infty)=+\infty .
+\]
+Tenint en compte totes aquestes dades, la gràfica d'aquesta funció és:
+\begin{center}
+\begin{tikzpicture}[x=1.8cm,y=0.5cm]
+  \draw[->] (-0.2,0) -- (2.4,0) node[below right] {$x$};
+  \draw[->] (0,-2.8) -- (0,6.4) node[above left] {$y$};
+  \begin{scope}
+    \clip (-0.2,-2.8) rectangle (2.4,6.2);
+    \draw[\colorgrafica,thick,domain=0.04:2.2,samples=150,smooth] plot (\x,{-2+10*((\x)-1)*ln(\x)});
+  \end{scope}
+  \fill (1,-2) circle (1.3pt);
+  \node[below,font=\scriptsize] at (1,-2) {$(1,-2)$};
+  \draw (1,0.12) -- (1,-0.12);
+  \node[above,font=\scriptsize] at (1,0.1) {$1$};
+  \draw (2,0.12) -- (2,-0.12);
+  \node[below,font=\scriptsize] at (2,-0.1) {$2$};
+\end{tikzpicture}
+\end{center}
+
+\textit{Pauta oficial:} 0,25 per cada límit i 0,25 per l'esbós de la gràfica (no cal precisar els talls amb
+l'eix d'abscisses, perquè no s'han calculat, però sí que s'ha de notar que un d'ells és entre 1,4 i 1,5).
+\end{solucio}
+
+\end{apartats}

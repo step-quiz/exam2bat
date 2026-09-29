@@ -1,0 +1,70 @@
+Considereu les rectes
+\[
+r\colon\frac{x-5}{4}=\frac{y-4}{3}=\frac{z-3}{-1}\qquad\text{i}\qquad
+s\colon\left\{\begin{aligned}x&=4+2k\\y&=3+k\\z&=-1\end{aligned}\right.
+\]
+
+\begin{apartats}
+
+\apartat{1,25}
+Quina és la seva posició relativa? Calculeu l'equació implícita d'un pla $\pi$ que sigui paral·lel a les dues
+rectes i que passi per l'origen de coordenades.
+
+\begin{solucio}
+La recta $r$ té vector director $(4,3,-1)$, i la recta $s$, $(2,1,0)$. No són proporcionals; per tant, les rectes
+es creuen o es tallen. Com que aquest determinant és diferent de zero,
+\[
+\begin{vmatrix}5-4&4-3&3-(-1)\\4&3&-1\\2&1&0\end{vmatrix}=0+16-2-24+1-0=-9\neq0,
+\]
+les rectes $r$ i $s$ es creuen.\\
+Per ser paral·lel a les dues rectes, el pla $\pi$ té la direcció formada pels seus dos vectors directors; com
+que, a més, ha de passar pel punt $(0,0,0)$, la seva equació implícita serà
+\[
+\begin{vmatrix}x-0&y-0&z-0\\4&3&-1\\2&1&0\end{vmatrix}=0+4z-2y-6z+x-0=x-2y-2z=0 .
+\]
+
+\textit{Pauta oficial:} 0,5 per la discussió de la posició relativa i 0,75 per l'equació del pla demanat.
+\end{solucio}
+
+\apartat{1,25}
+Calculeu l'equació de la recta $t$ que talla les dues rectes $r$ i $s$ perpendicularment.
+
+\begin{solucio}
+Si partim del vector normal del pla $\pi$ de l'apartat anterior, $\vec v=(1,-2,-2)$, que és perpendicular a totes
+dues rectes, podem calcular l'equació del pla $\pi_1$ que conté el vector $\vec v$ i la recta $r$,
+\begin{align*}
+\begin{vmatrix}x-5&y-4&z-3\\4&3&-1\\1&-2&-2\end{vmatrix}
+&=-6(x-5)-8(z-3)-(y-4)-3(z-3)-2(x-5)+8(y-4)\\
+&=-8x+7y-11z+45=0,
+\end{align*}
+i l'equació del pla $\pi_2$ que conté el vector $\vec v$ i la recta $s$,
+\[
+\begin{vmatrix}x-4&y-3&z+1\\2&1&0\\1&-2&-2\end{vmatrix}=-2(x-4)-4(z+1)+0-(z+1)-0+4(y-3)=-2x+4y-5z-9=0 .
+\]
+La recta $t$ que busquem és la que té per equació
+\[
+\left.\begin{aligned}8x-7y+11z&=45\\2x-4y+5z&=-9\end{aligned}\right\}.
+\]
+Alternativament, podem prendre un punt genèric de la recta $r$, que és de la forma $R=(5,4,3)+\lambda(4,3,-1)$, i
+un punt genèric de $s$, que és de la forma $S=(4,3,-1)+\mu(2,1,0)$, i imposar que el vector
+\[
+\overrightarrow{RS}=(4+2\mu,\,3+\mu,\,-1)-(5+4\lambda,\,4+3\lambda,\,3-\lambda)=(-4\lambda+2\mu-1,\,-3\lambda+\mu-1,\,\lambda-4)
+\]
+sigui perpendicular als vectors directors respectius, $(4,3,-1)$ i $(2,1,0)$, de les rectes $r$ i $s$. Obtenim el
+sistema d'equacions
+\begin{align*}
+4(-4\lambda+2\mu-1)+3(-3\lambda+\mu-1)-(\lambda-4)&=-26\lambda+11\mu-3=0,\\
+2(-4\lambda+2\mu-1)+1(-3\lambda+\mu-1)+0(\lambda-4)&=-11\lambda+5\mu-3=0 .
+\end{align*}
+Resolent-lo, obtenim $\lambda=2$ i $\mu=5$, que ens donen els punts buscats, $R=(13,10,1)\in r$ i
+$S=(14,8,-1)\in s$. Efectivament, el vector $\overrightarrow{RS}=(1,-2,-2)$ és perpendicular a $r$ i a $s$ (és el
+vector normal del pla de l'apartat anterior), i l'equació de la recta $t$ que passa per aquests dos punts és
+\[
+\frac{x-13}{1}=\frac{y-10}{-2}=\frac{z-1}{-2}.
+\]
+
+\textit{Pauta oficial:} 0,5 pel plantejament i 0,75 per l'equació de la recta perpendicular (tant si ho fan
+d'una manera com de l'altra, o de qualsevol altra forma, mentre sigui correcta i estigui ben explicada).
+\end{solucio}
+
+\end{apartats}

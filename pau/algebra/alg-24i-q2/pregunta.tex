@@ -1,0 +1,58 @@
+Considereu les matrius
+\[
+P=\begin{pmatrix}2&1&-1\\2&1&0\\1&0&1\end{pmatrix},\qquad
+Q=\begin{pmatrix}2&2&2\\2&2&2\\2&2&2\end{pmatrix}\quad\text{i}\quad
+R=\begin{pmatrix}1&2&3\\1&1&1\\3&2&1\end{pmatrix}.
+\]
+
+\begin{apartats}
+
+\apartat{1,25}
+Decidiu si la matriu $P$ és invertible i, en cas de ser-ho, calculeu la seva inversa. Expliqueu detalladament
+el procediment seguit.
+
+\begin{solucio}
+Calculem el determinant de $P$:
+\[
+\det(P)=\begin{vmatrix}2&1&-1\\2&1&0\\1&0&1\end{vmatrix}=2+0+0-(-1+0+2)=1 .
+\]
+Com que és diferent de zero, la matriu $P$ és invertible, i la seva inversa és
+\[
+P^{-1}=\frac{1}{\det(P)}\left(\operatorname{Adj}P\right)^t=\frac11
+\begin{pmatrix}
+\begin{vmatrix}1&0\\0&1\end{vmatrix}&-\begin{vmatrix}2&0\\1&1\end{vmatrix}&\begin{vmatrix}2&1\\1&0\end{vmatrix}\\[8pt]
+-\begin{vmatrix}1&-1\\0&1\end{vmatrix}&\begin{vmatrix}2&-1\\1&1\end{vmatrix}&-\begin{vmatrix}2&1\\1&0\end{vmatrix}\\[8pt]
+\begin{vmatrix}1&-1\\1&0\end{vmatrix}&-\begin{vmatrix}2&-1\\2&0\end{vmatrix}&\begin{vmatrix}2&1\\2&1\end{vmatrix}
+\end{pmatrix}^{\!t}
+=\begin{pmatrix}1&-1&1\\-2&3&-2\\-1&1&0\end{pmatrix}.
+\]
+
+\textit{Pauta oficial:} 0,5 pel determinant, 0,25 per deduir que $P$ és invertible, i 0,5 pel càlcul de la
+inversa. Si donen directament el resultat final sense explicar els passos seguits, compteu 0 punts encara que el
+resultat sigui correcte (la resposta es pot trobar amb la calculadora sense entendre res, i per això l'enunciat
+demana explícitament detallar el procediment). La inversa també es pot calcular pel mètode de Gauss: compteu-ho
+bé, en la mesura que el que facin sigui correcte i estigui ben explicat.
+\end{solucio}
+
+\apartat{1,25}
+Calculeu una matriu $X$ de 3 files i 3 columnes que compleixi $PX+Q=2R$.
+
+\begin{solucio}
+La matriu $X$ la podem trobar aïllant-la de l'equació lineal:
+\[
+PX+Q=2R\;\Rightarrow\;PX=2R-Q\;\Rightarrow\;P^{-1}PX=P^{-1}(2R-Q)\;\Rightarrow\;X=P^{-1}(2R-Q).
+\]
+\begin{align*}
+X&=\begin{pmatrix}1&-1&1\\-2&3&-2\\-1&1&0\end{pmatrix}
+\left(2\begin{pmatrix}1&2&3\\1&1&1\\3&2&1\end{pmatrix}-\begin{pmatrix}2&2&2\\2&2&2\\2&2&2\end{pmatrix}\right)\\
+&=\begin{pmatrix}1&-1&1\\-2&3&-2\\-1&1&0\end{pmatrix}\begin{pmatrix}0&2&4\\0&0&0\\4&2&0\end{pmatrix}
+=\begin{pmatrix}4&4&4\\-8&-8&-8\\0&-2&-4\end{pmatrix}.
+\end{align*}
+
+\textit{Pauta oficial:} 0,5 per aïllar correctament la $X$ (compteu 0 si multipliquen per $P^{-1}$ pel costat
+equivocat), i 0,75 pels càlculs i el resultat final. Si donen directament el resultat sense explicar els passos,
+compteu 0 punts. També es pot trobar la matriu $X$, de manera més llarga, plantejant-la amb nou incògnites i
+resolent l'equació casella per casella: compteu-ho bé si ho fan així, correctament i ben explicat.
+\end{solucio}
+
+\end{apartats}

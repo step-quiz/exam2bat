@@ -328,14 +328,20 @@ function mostra(id, quin) {
 }
 
 // ── pintat ───────────────────────────────────────────────────────────
-// Unitats plegades a la llista de temes. És una preferència de qui fa els exàmens, no part de
-// l'examen: no va a l'adreça, sinó a la memòria del navegador, si la hi deixa (obert com a
-// fitxer local, alguns navegadors no la hi deixen; aleshores tot surt desplegat, com abans).
-const plegades = new Set();
-try { JSON.parse(localStorage.getItem('banc-plegades') || '[]').forEach(u => plegades.add(u)); }
-catch { /* sense memòria del navegador: tot desplegat */ }
-const desaPlegades = () => {
-  try { localStorage.setItem('banc-plegades', JSON.stringify([...plegades])); } catch { /* res */ }
+// Unitats desplegades a la llista de temes. És una preferència de qui fa els exàmens, no part de
+// l'examen: no va a l'adreça, sinó a la memòria del navegador, si la hi deixa. Per defecte, totes
+// les unitats, PAU inclosa, surten plegades, i el navegador recorda les que s'hi despleguen. Sense
+// memòria (obert com a fitxer local, alguns navegadors no la hi deixen) o amb una memòria mal
+// formada, tot surt plegat. La clau antiga, 'banc-plegades', era de quan per defecte tot sortia
+// desplegat; ja no es fa servir, i s'esborra.
+const desplegades = new Set();
+try {
+  const d = JSON.parse(localStorage.getItem('banc-desplegades') || '[]');
+  if (Array.isArray(d)) d.forEach(u => desplegades.add(u));
+  localStorage.removeItem('banc-plegades');
+} catch { /* sense memòria del navegador, o mal formada: tot plegat */ }
+const desaDesplegades = () => {
+  try { localStorage.setItem('banc-desplegades', JSON.stringify([...desplegades])); } catch { /* res */ }
 };
 
 function pintaTemes() {
@@ -344,7 +350,7 @@ function pintaTemes() {
   Object.entries(BANC.unitats).forEach(([u, info]) => {
     const temes = BANC.temes.filter(t => t.unitat === u);
     if (!temes.length) return;
-    const plegada = plegades.has(u);
+    const plegada = !desplegades.has(u);
     // Plegada, la unitat encara diu quantes preguntes seves hi ha a l'examen.
     const triades = examen.filter(p => temes.some(t => t.slug === p.slug)).length;
     const cap = document.createElement('li');
@@ -359,8 +365,8 @@ function pintaTemes() {
       <span class="grup-text"><span class="grup-nom">${esc(info.nom)}</span> ${esc(info.subtitol)}</span>
       ${plegada && triades ? `<span class="grup-n">${triades} a l'examen</span>` : ''}`;
     b.onclick = () => {
-      if (plegada) plegades.delete(u); else plegades.add(u);
-      desaPlegades();
+      if (plegada) desplegades.add(u); else desplegades.delete(u);
+      desaDesplegades();
       pintaTemes();
       // El botó s'ha tornat a crear: el focus hi torna, per a qui navega amb el teclat.
       document.querySelector(`#temes .grup-boto[data-unitat="${u}"]`)?.focus();

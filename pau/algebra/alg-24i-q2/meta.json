@@ -1,0 +1,11 @@
+{
+  "titol": "La inversa d'una matriu 3×3 i una equació matricial PX + Q = 2R",
+  "unitats": [],
+  "dificultat": "●●○",
+  "minuts": 22,
+  "etiquetes": [
+    "matriu inversa",
+    "equació matricial",
+    "determinant"
+  ]
+}
