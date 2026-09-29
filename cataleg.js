@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-29 08:08 UTC",
+ "generat": "2026-09-29 08:30 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -246,6 +246,218 @@ const BANC = {
  "main": "% =====================================================================\n%  main.tex — Carpeta d'exàmens\n%  Compila amb:  pdflatex main.tex\n% =====================================================================\n\n\\documentclass[11pt,a4paper]{article}\n\n% Interruptor: comenta una línia i descomenta l'altra.\n%   \\solucionsfalse → examen de l'alumnat\n%   \\solucionstrue  → full del professorat, amb les solucions\n\\newif\\ifsolucions \\solucionsfalse\n%\\newif\\ifsolucions \\solucionstrue\n\n\\input{headers.tex}\n\\input{defs.tex}\n\n% La capçalera del centre (logo, curs, departament, casella de nota) NO és al\n% banc: viu aquí, a la teva carpeta. Si hi tens un capsalera.tex, s'incorpora;\n% si no, els exàmens surten sense capçalera.\n\\IfFileExists{capsalera.tex}{\\input{capsalera.tex}}{}\n\n\\begin{document}\n\\input{prova-1.tex}\n%\\input{prova-2.tex}\n\\end{document}\n",
  "versio": "920aa212",
  "preguntes": [
+  {
+   "id": "pau/algebra/alg-23j-q2",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-23j-q2",
+   "titol": "Dues matrius amb AB = A i BA = B, i per què totes dues són idempotents",
+   "punts": 2.5,
+   "apartats": [
+    1.5,
+    1.0
+   ],
+   "apartats_curt": [
+    1.5,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "producte de matrius",
+    "matriu idempotent",
+    "demostració"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 1",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu les dues matrius següents:\n\\[\nA=\\begin{pmatrix}2&-3&-5\\\\-1&4&5\\\\1&-3&-4\\end{pmatrix},\\qquad B=\\begin{pmatrix}2&2&0\\\\-1&-1&0\\\\1&2&1\\end{pmatrix}.\n\\]\n\n\\begin{apartats}\n\n\\apartat{1,5}\nCalculeu les matrius $A\\cdot B$ i $B\\cdot A$.\n\n\\begin{solucio}\n\\[\nA\\cdot B=\\begin{pmatrix}2&-3&-5\\\\-1&4&5\\\\1&-3&-4\\end{pmatrix}\\cdot\\begin{pmatrix}2&2&0\\\\-1&-1&0\\\\1&2&1\\end{pmatrix}\n=\\begin{pmatrix}2&-3&-5\\\\-1&4&5\\\\1&-3&-4\\end{pmatrix}=A,\n\\]\n\\[\nB\\cdot A=\\begin{pmatrix}2&2&0\\\\-1&-1&0\\\\1&2&1\\end{pmatrix}\\cdot\\begin{pmatrix}2&-3&-5\\\\-1&4&5\\\\1&-3&-4\\end{pmatrix}\n=\\begin{pmatrix}2&2&0\\\\-1&-1&0\\\\1&2&1\\end{pmatrix}=B .\n\\]\nLa resolució es donarà per bona encara que no apareguin els càlculs intermedis.\n\n\\textit{Pauta oficial:} 0,75 pel càlcul del producte $A\\cdot B$ i 0,75 pel càlcul del producte $B\\cdot A$.\n\\end{solucio}\n\n\\apartat{1}\nSiguin $C$ i $D$ dues matrius quadrades del mateix ordre que satisfan $C\\cdot D=C$ i $D\\cdot C=D$. Comproveu que les dues\nmatrius, $C$ i $D$, són idempotents.\n\n\\emph{Nota:} Una matriu quadrada s'anomena \\emph{idempotent} si coincideix amb el seu quadrat.\n\n\\begin{solucio}\nSabem que $(*)$ $C\\cdot D=C$ i $(**)$ $D\\cdot C=D$. Aleshores,\n\\[\nC^2=C\\cdot C\\underset{(*)}{=}(C\\cdot D)\\cdot C=C\\cdot(D\\cdot C)\\underset{(**)}{=}C\\cdot D\\underset{(*)}{=}C,\\qquad\nD^2=D\\cdot D\\underset{(**)}{=}(D\\cdot C)\\cdot D=D\\cdot(C\\cdot D)\\underset{(*)}{=}D\\cdot C\\underset{(**)}{=}D .\n\\]\nI, per tant, efectivament les dues matrius, $C$ i $D$, són idempotents.\n\n\\textit{Pauta oficial:} 0,5 per la comprovació que la matriu $C$ és idempotent i 0,5 per la comprovació que la matriu\n$D$ és idempotent.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-23j-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-23j-q2/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-23j-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-23j-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/algebra/alg-23j-q4",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-23j-q4",
+   "titol": "Sistema amb paràmetre λ: discussió amb un determinant cúbic, i els tres plans que es tallen en una recta",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "Rouché-Frobenius",
+    "regla de Cramer",
+    "interpretació geomètrica"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 1",
+   "unitats": [],
+   "tries": [],
+   "tex": "Sigui el sistema d'equacions lineals següent, que depèn del paràmetre real $\\lambda$:\n\\[\n\\left\\{\\begin{aligned}\nx+2\\lambda y+(2+\\lambda)z&=0\\\\\n(2+\\lambda)x+y+2\\lambda z&=3\\\\\n2\\lambda x+(2+\\lambda)y+z&=-3\n\\end{aligned}\\right.\n\\]\n\n\\begin{apartats}\n\n\\apartat{1,25}\nDiscutiu el sistema per als diferents valors del paràmetre $\\lambda$.\n\n\\begin{solucio}\nLa matriu del sistema i la matriu ampliada són\n$M|\\overline{M}=\\left(\\begin{array}{ccc|c}1&2\\lambda&2+\\lambda&0\\\\2+\\lambda&1&2\\lambda&3\\\\2\\lambda&2+\\lambda&1&-3\\end{array}\\right)$.\nCalculem el determinant de la matriu del sistema i estudiem per a quins valors s'anul·la:\n\\[\n\\begin{vmatrix}1&2\\lambda&2+\\lambda\\\\2+\\lambda&1&2\\lambda\\\\2\\lambda&2+\\lambda&1\\end{vmatrix}=9\\lambda^3+9=9\\left(\\lambda^3+1\\right).\n\\]\nQuan resolem l'equació $9\\left(\\lambda^3+1\\right)=0$, obtenim $\\lambda^3=-1$ i, d'aquí, $\\lambda=-1$. Per tant, tenim dos\ncasos per discutir.\\\\\n\\textbf{Cas I: $\\lambda\\neq-1$.} Com que $|M|\\neq0$, aleshores $\\operatorname{rang}M=3=\\operatorname{rang}\\overline{M}=$ nombre\nd'incògnites. En virtut del teorema de Rouché-Frobenius, es tracta d'un \\fbox{sistema compatible determinat (SCD)} i, per\ntant, el sistema té una única solució.\\\\\n\\textbf{Cas II: $\\lambda=-1$.}\n$M|\\overline{M}=\\left(\\begin{array}{ccc|c}1&-2&1&0\\\\1&1&-2&3\\\\-2&1&1&-3\\end{array}\\right)$. Com que $|M|=0$, aleshores\n$\\operatorname{rang}M<3$, però, com que $\\begin{vmatrix}1&-2\\\\1&1\\end{vmatrix}=1+2=3\\neq0$, $\\operatorname{rang}M=2$. D'altra\nbanda, si orlem l'anterior menor,\n$\\begin{vmatrix}1&-2&0\\\\1&1&3\\\\-2&1&-3\\end{vmatrix}=-3+12-3-6=0$ i, per tant, $\\operatorname{rang}\\overline{M}=2$. Aleshores,\ncom que $\\operatorname{rang}M=2=\\operatorname{rang}\\overline{M}<$ nombre d'incògnites $=3$, es tracta d'un \\fbox{sistema compatible\nindeterminat (SCI)} amb $3-2=1$ grau de llibertat.\\\\\nDe forma alternativa, el primer determinant es podria haver calculat utilitzant les propietats dels determinants,\nsumant a la tercera fila les dues primeres:\n\\[\n\\begin{vmatrix}1&2\\lambda&2+\\lambda\\\\2+\\lambda&1&2\\lambda\\\\2\\lambda&2+\\lambda&1\\end{vmatrix}\n=(3+3\\lambda)\\begin{vmatrix}1&2\\lambda&2+\\lambda\\\\2+\\lambda&1&2\\lambda\\\\1&1&1\\end{vmatrix}\n=3(1+\\lambda)\\left(3\\lambda^2-3\\lambda+3\\right)=9(1+\\lambda)\\left(\\lambda^2-\\lambda+1\\right).\n\\]\n\n\\textit{Pauta oficial:} 0,25 per l'expressió de les matrius del sistema, 0,25 pel càlcul del determinant, 0,25 per\ntenir el punt singular que anul·la el determinant, 0,25 per la discussió del cas $\\lambda\\neq-1$ i 0,25 per la\ndiscussió del cas $\\lambda=-1$.\n\\end{solucio}\n\n\\apartat{1,25}\nPer al cas $\\lambda=-1$, resoleu el sistema, interpreteu-lo geomètricament i identifiqueu-ne la solució.\n\n\\begin{solucio}\nSabem que es tracta d'un SCI amb un grau de llibertat, i el menor d'ordre 2 no nul indica les equacions i les\nincògnites que ens hem de quedar: $\\left\\{\\begin{aligned}x-2y&=-z\\\\x+y&=3+2z\\end{aligned}\\right.$. Ara podem resoldre\naplicant el mètode de Cramer:\n\\[\nx=\\frac{\\begin{vmatrix}-z&-2\\\\3+2z&1\\end{vmatrix}}{\\begin{vmatrix}1&-2\\\\1&1\\end{vmatrix}}=\\frac{3z+6}{3}=z+2,\\qquad\ny=\\frac{\\begin{vmatrix}1&-z\\\\1&3+2z\\end{vmatrix}}{\\begin{vmatrix}1&-2\\\\1&1\\end{vmatrix}}=\\frac{3+3z}{3}=z+1 .\n\\]\nSolució: \\fbox{$x=z+2$, $y=z+1$, amb $z$ com a paràmetre}.\\\\\nInterpretació geomètrica: cadascuna de les equacions és un pla de $\\mathbb{R}^3$. El fet que la solució tingui un grau de\nllibertat ens indica que aquests tres plans es tallen en una recta, que és la formada pels punts de la forma\n$(z+2,\\,z+1,\\,z)$. Com que $(z+2,\\,z+1,\\,z)=(2,1,0)+z(1,1,1)$, la recta intersecció és la que passa pel punt $(2,1,0)$\ni té vector director $(1,1,1)$.\n\n\\textit{Pauta oficial:} 0,25 per la identificació del tipus de solució, 0,25 per la resolució de les incògnites $x$ i\n$y$ (o les que escaigui), 0,25 per l'expressió de la solució del sistema, 0,25 per indicar que els tres plans es tallen\nen una recta i 0,25 per identificar la recta solució.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-23j-q4/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-23j-q4/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-23j-q4/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-23j-q4/out/solucio.pdf"
+  },
+  {
+   "id": "pau/algebra/alg-23j2-q2",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-23j2-q2",
+   "titol": "Sistema lineal amb paràmetre k: discussió per Gauss, i resolució per a k = 0 i k = 1",
+   "punts": 2.5,
+   "apartats": [
+    1.5,
+    1.0
+   ],
+   "apartats_curt": [
+    1.5,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "mètode de Gauss",
+    "Rouché-Frobenius",
+    "paràmetre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 5",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu el sistema d'equacions lineals\n\\[\n\\left.\\begin{aligned}\nx-y+kz&=-1\\\\\nx+ky+z&=3\\\\\n2x+(k-1)y+2z&=2\n\\end{aligned}\\right\\},\n\\]\nen què $k$ és un paràmetre real.\n\n\\begin{apartats}\n\n\\apartat{1,5}\nDiscutiu el sistema en funció del valor de $k$.\n\n\\begin{solucio}\nApliquem el mètode de Gauss. Substituïm la fila 2, $F_2$, per $F_2-F_1$, on $F_1$ denota la primera fila, i la fila\n3, $F_3$, per $F_3-2F_1$; i després substituïm $F_3$ per $F_3-F_2$:\n\\[\n\\left(\\begin{array}{ccc|c}1&-1&k&-1\\\\1&k&1&3\\\\2&k-1&2&2\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&-1&k&-1\\\\0&k+1&1-k&4\\\\0&k+1&2-2k&4\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&-1&k&-1\\\\0&k+1&1-k&4\\\\0&0&1-k&0\\end{array}\\right).\n\\]\nDistingim casos:\\\\\nSi $k\\neq-1$ i $k\\neq1$, tenim $\\operatorname{rang}M=\\operatorname{rang}M_A=$ nombre d'incògnites $=3$ i, per tant, és un\nsistema compatible determinat ($M$ denota la matriu del sistema, i $M_A$, la matriu ampliada).\\\\\nSi $k=1$, obtenim la matriu\n$\\left(\\begin{array}{ccc|c}1&-1&1&-1\\\\0&2&0&4\\\\0&0&0&0\\end{array}\\right)$: $\\operatorname{rang}M=\\operatorname{rang}M_A=2$ i, per\ntant, és un sistema compatible indeterminat amb un grau de llibertat.\\\\\nSi $k=-1$, obtenim la matriu\n$\\left(\\begin{array}{ccc|c}1&-1&-1&-1\\\\0&0&2&4\\\\0&0&2&0\\end{array}\\right)$. Fem un pas més canviant $F_3$ per $F_3-F_2$, i\nobtenim la matriu $\\left(\\begin{array}{ccc|c}1&-1&-1&-1\\\\0&0&2&4\\\\0&0&0&-4\\end{array}\\right)$, que correspon a un sistema\nincompatible, ja que $\\operatorname{rang}M_A=3>\\operatorname{rang}M=2$.\n\n\\textit{Pauta oficial:} 0,25 per la forma matricial del sistema, 0,5 per determinar els diferents casos que cal\nestudiar, sigui pel mètode de Gauss o pel càlcul de rangs per determinants, i 0,75 pels tres casos (0,25 per cada\ncas).\n\\end{solucio}\n\n\\apartat{1}\nResoleu el sistema per a $k=0$ i per a $k=1$.\n\n\\begin{solucio}\nRecuperem els càlculs de l'apartat anterior. Per a $k=1$, obtenim $y=2$ i $x=1-z$; per tant, les solucions són de\nla forma $(x,y,z)=(1-z,\\,2,\\,z)$, o bé $(x,y,z)=(x,\\,2,\\,1-x)$.\\\\\nPer a $k=0$, obtenim la matriu\n$\\left(\\begin{array}{ccc|c}1&-1&0&-1\\\\1&0&1&3\\\\2&-1&2&2\\end{array}\\right)$ i, després de fer Gauss,\n$\\left(\\begin{array}{ccc|c}1&-1&0&-1\\\\0&1&1&4\\\\0&0&1&0\\end{array}\\right)$. Per tant, la solució és $z=0$, $y=4$ i $x=3$.\n\n\\textit{Pauta oficial:} 0,5 per donar les solucions del cas $k=0$ i 0,5 per donar les solucions del cas $k=1$.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-23j2-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-23j2-q2/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-23j2-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-23j2-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/algebra/alg-23j2-q5",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-23j2-q5",
+   "titol": "Matrius de la forma (a b; b a): un producte amb una inversa i les que compleixen A² = I",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●○○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "matriu inversa",
+    "producte de matrius",
+    "equació matricial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 5",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu la família $S$ de matrius de la forma $\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$, en què $a,b\\in\\mathbb{R}$.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nCalculeu $\\begin{pmatrix}2&3\\\\3&2\\end{pmatrix}\\cdot\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}^{-1}$.\n\n\\begin{solucio}\n\\[\n\\begin{pmatrix}2&3\\\\3&2\\end{pmatrix}\\cdot\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}^{-1}\n=\\begin{pmatrix}2&3\\\\3&2\\end{pmatrix}\\cdot\\frac13\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}\n=\\frac13\\begin{pmatrix}1&4\\\\4&1\\end{pmatrix}=\\begin{pmatrix}\\frac13&\\frac43\\\\[3pt]\\frac43&\\frac13\\end{pmatrix}.\n\\]\n\n\\textit{Pauta oficial:} 0,75 pel càlcul de la matriu inversa i 0,5 pel producte de matrius.\n\\end{solucio}\n\n\\apartat{1,25}\nTrobeu totes les matrius de la família $S$, és a dir, de la forma $A=\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$, que verifiquin\nla igualtat $A^2=I$, en què $I$ és la matriu identitat d'ordre 2.\n\n\\begin{solucio}\nCalculem el quadrat d'una matriu de la família $S$ i imposem que doni la matriu identitat:\n\\[\nA^2=\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}=\\begin{pmatrix}a^2+b^2&2ab\\\\2ab&a^2+b^2\\end{pmatrix}\n=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}.\n\\]\nVeiem que cal $2ab=0$ i $a^2+b^2=1$, i que hi ha 4 solucions: $a=0$ i $b=\\pm1$, i $a=\\pm1$ i $b=0$. Per tant, les 4\nmatrius possibles són\n\\[\n\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix},\\quad\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix},\\quad\n\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},\\quad\\begin{pmatrix}0&-1\\\\-1&0\\end{pmatrix}.\n\\]\n\n\\textit{Pauta oficial:} 0,5 pel càlcul d'$A^2$, 0,25 per donar les dues equacions per calcular $a$ i $b$, i 0,5 per\nles quatre matrius que són solució.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-23j2-q5/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-23j2-q5/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-23j2-q5/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-23j2-q5/out/solucio.pdf"
+  },
+  {
+   "id": "pau/algebra/alg-23s-q1",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-23s-q1",
+   "titol": "La inversa a partir de (A − 2I)² = 3I i una equació matricial",
+   "punts": 2.5,
+   "apartats": [
+    0.5,
+    1.25,
+    0.75
+   ],
+   "apartats_curt": [
+    0.5,
+    1.25,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "matriu inversa",
+    "equació matricial",
+    "operacions amb matrius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2023, sèrie 2",
+   "unitats": [],
+   "tries": [],
+   "tex": "Siguin $A=\\begin{pmatrix}2&1\\\\3&2\\end{pmatrix}$, $B=\\begin{pmatrix}2&-1\\\\-3&2\\end{pmatrix}$ i la matriu identitat\nd'ordre dos $I=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$.\n\n\\begin{apartats}\n\n\\apartat{0,5}\nComproveu que $(A-2I)^2=3I$.\n\n\\begin{solucio}\n\\[\n(A-2I)^2=\\left[\\begin{pmatrix}2&1\\\\3&2\\end{pmatrix}-\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}\\right]^2\n=\\begin{pmatrix}0&1\\\\3&0\\end{pmatrix}^2=\\begin{pmatrix}0&1\\\\3&0\\end{pmatrix}\\begin{pmatrix}0&1\\\\3&0\\end{pmatrix}\n=\\begin{pmatrix}3&0\\\\0&3\\end{pmatrix}=3I .\n\\]\n\n\\textit{Pauta oficial:} 0,25 per plantejar correctament la comprovació i 0,25 per fer bé els càlculs.\n\\end{solucio}\n\n\\apartat{1,25}\nUtilitzant la igualtat de l'apartat anterior, trobeu la matriu inversa de la matriu $A$ en funció de les matrius\n$A$ i $I$, i comproveu que coincideix amb la matriu $B$.\n\n\\begin{solucio}\n\\[\n(A-2I)^2=3I\\iff A^2-4A+4I=3I\\iff A^2-4A=-I\\iff4A-A^2=I,\n\\]\ni, traient factor comú $A$, $(4I-A)\\cdot A=I\\iff\\boxed{A^{-1}=4I-A}$. Aleshores,\n\\[\nA^{-1}=4I-A=\\begin{pmatrix}4&0\\\\0&4\\end{pmatrix}-\\begin{pmatrix}2&1\\\\3&2\\end{pmatrix}=\\begin{pmatrix}2&-1\\\\-3&2\\end{pmatrix}=B .\n\\]\n\n\\textit{Pauta oficial:} 0,25 pel càlcul del quadrat, 0,25 per la factorització, 0,25 per les operacions\nmatricials, 0,25 per l'expressió de la matriu inversa, i 0,25 pel càlcul de la matriu inversa i per veure que\ncoincideix amb $B$.\n\\end{solucio}\n\n\\apartat{0,75}\nCalculeu la matriu $X$ que satisfà la igualtat $A\\cdot X=B$.\n\n\\begin{solucio}\nDe $A\\cdot X=B$, aïllant la matriu $X$ (multiplicant per la inversa d'$A$ per l'esquerra):\n$A^{-1}\\cdot(AX)=A^{-1}\\cdot B$ i, com que $A^{-1}=B$, $\\left(A^{-1}A\\right)X=B\\cdot B\\iff\\boxed{X=B^2}$.\n\\[\nX=\\begin{pmatrix}2&-1\\\\-3&2\\end{pmatrix}\\begin{pmatrix}2&-1\\\\-3&2\\end{pmatrix}=\\boxed{\\begin{pmatrix}7&-4\\\\-12&7\\end{pmatrix}}.\n\\]\nEl càlcul de la matriu $X$ també es pot plantejar en termes d'un sistema d'equacions lineals; la puntuació serà\nla mateixa, repartida en els diferents passos de la resolució.\n\n\\textit{Pauta oficial:} 0,5 per aïllar correctament i aplicar el resultat de l'apartat b), i 0,25 pel càlcul de la\nmatriu $X$.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-23s-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-23s-q1/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-23s-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-23s-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/algebra/alg-23s-q3",
+   "unitat": "pau",
+   "tema": "algebra",
+   "codi": "alg-23s-q3",
+   "titol": "Sistema lineal amb paràmetre m: discussió per Gauss i resolució per a m = 1",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "Rouché-Frobenius",
+    "mètode de Gauss",
+    "paràmetre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2023, sèrie 2",
+   "unitats": [],
+   "tries": [],
+   "tex": "Sigui el sistema d'equacions lineals\n\\[\n\\left.\\begin{aligned}\n2x+y&=1+z\\\\\nmy+z&=2-x\\\\\nmz+3&=3x+y\n\\end{aligned}\\right\\},\n\\]\nen què $m$ és un nombre real.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nDiscutiu el sistema segons els valors del paràmetre $m$.\n\n\\begin{solucio}\nEl sistema, en la forma normal, és\n$\\left\\{\\begin{aligned}2x+y-z&=1\\\\x+my+z&=2\\\\3x+y-mz&=3\\end{aligned}\\right.$.\nCalculem el determinant de la matriu dels coeficients:\n\\[\n|A|=\\begin{vmatrix}2&1&-1\\\\1&m&1\\\\3&1&-m\\end{vmatrix}=\\left(-2m^2-1+3\\right)-(-3m-m+2)=-2m^2+4m=2m(2-m).\n\\]\n$|A|=0\\rightarrow m=0$ i $m=2$, que són els valors que cal tenir en compte en la discussió. Tenim tres casos:\\\\\nSi $m\\neq0$ i $m\\neq2$, com que $\\operatorname{rang}(A)=3$ [$|A|\\neq0$] $=\\operatorname{rang}(A^*)$ $=$ nombre\nd'incògnites, tenim un \\textbf{SCD} (sistema compatible determinat): \\textbf{solució única}.\\\\\nSi $m=0$, per Gauss obtenim\n\\[\nA^*=\\left(\\begin{array}{ccc|c}2&1&-1&1\\\\1&0&1&2\\\\3&1&0&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&0&1&2\\\\2&1&-1&1\\\\3&1&0&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&0&1&2\\\\0&-1&3&3\\\\0&-1&3&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&0&1&2\\\\0&-1&3&3\\\\0&0&0&0\\end{array}\\right)\n\\]\n(intercanviant $f_1$ i $f_2$; fent $2f_1-f_2$ i $3f_1-f_3$; i fent $f_3-f_2$).\n$\\operatorname{rang}(A)=2=\\operatorname{rang}(A^*)<3=$ nombre d'incògnites. Per tant, es tracta d'un \\textbf{SCI}\n(sistema compatible indeterminat) amb $3-2=1$ grau de llibertat: infinites solucions, que depenen d'un paràmetre.\\\\\nSi $m=2$, per Gauss obtenim\n\\[\n\\left(\\begin{array}{ccc|c}2&1&-1&1\\\\1&2&1&2\\\\3&1&-2&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&2&1&2\\\\2&1&-1&1\\\\3&1&-2&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&2&1&2\\\\0&3&3&3\\\\0&5&5&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&2&1&2\\\\0&1&1&1\\\\0&0&0&-6\\end{array}\\right)\n\\]\n(intercanviant $f_1$ i $f_2$; fent $2f_1-f_2$ i $3f_1-f_3$; i fent $f_2/3$ i $3f_3-5f_2$).\n$\\operatorname{rang}(A)=2\\neq\\operatorname{rang}(A^*)=3\\Rightarrow$ \\fbox{\\textbf{SI} (sistema incompatible): no hi ha\nsolució.}\n\n\\textit{Pauta oficial:} 0,25 pel plantejament matricial i el determinant de la matriu de coeficients, 0,25 pel\ncàlcul dels valors singulars, i 0,75 per la discussió (0,25 per cada cas). L'apartat es pot resoldre també via el\ncàlcul de rangs.\n\\end{solucio}\n\n\\apartat{1,25}\nResoleu el sistema, si té solució, per al cas $m=1$.\n\n\\begin{solucio}\nSi $m=1$, quan substituïm en el sistema obtenim\n\\[\nA^*=\\left(\\begin{array}{ccc|c}2&1&-1&1\\\\1&1&1&2\\\\3&1&-1&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&1&1&2\\\\2&1&-1&1\\\\3&1&-1&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&1&1&2\\\\0&1&3&3\\\\0&2&4&3\\end{array}\\right)\n\\sim\\left(\\begin{array}{ccc|c}1&1&1&2\\\\0&1&3&3\\\\0&0&-2&-3\\end{array}\\right)\n\\]\n(intercanviant $f_1$ i $f_2$; fent $2f_1-f_2$ i $3f_1-f_3$; i fent $f_3-2f_2$), és a dir,\n\\[\n\\left\\{\\begin{aligned}x+y+z&=2\\\\y+3z&=3\\\\2z&=3\\end{aligned}\\right.\n\\;\\rightarrow\\;\n\\left\\{\\begin{aligned}x-\\tfrac32+\\tfrac32&=2\\\\y+3\\cdot\\tfrac32&=3\\\\z&=\\tfrac32\\end{aligned}\\right.\n\\;\\rightarrow\\;\n\\boxed{\\;x=2,\\quad y=-\\tfrac32,\\quad z=\\tfrac32\\;}\n\\]\n\n\\textit{Pauta oficial:} 0,25 per la substitució del paràmetre, 0,25 pel procediment de resolució, i 0,75 per la\nresolució (0,25 per cada variable). L'apartat es pot resoldre també pel mètode de Cramer.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/algebra/alg-23s-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/algebra/alg-23s-q3/out/solucio.pdf",
+   "pdf_curt": "pau/algebra/alg-23s-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/algebra/alg-23s-q3/out/solucio.pdf"
+  },
   {
    "id": "pau/algebra/alg-24i-q2",
    "unitat": "pau",
@@ -576,6 +788,342 @@ const BANC = {
    "pdf_solucio": "pau/algebra/alg-26j2-q2/out/solucio.pdf",
    "pdf_curt": "pau/algebra/alg-26j2-q2/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/algebra/alg-26j2-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23j-q1",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23j-q1",
+   "titol": "Una cúbica per condicions: un punt d'inflexió amb la seva tangent i un extrem",
+   "punts": 2.5,
+   "apartats": [
+    2.5
+   ],
+   "apartats_curt": [
+    2.5
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "coeficients per condicions",
+    "punt d'inflexió",
+    "extrems relatius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 1",
+   "unitats": [
+    "u8",
+    "u9"
+   ],
+   "tries": [],
+   "tex": "\\begin{apartats}\n\n\\apartat{2,5}\nCalculeu els coeficients $a$, $b$, $c$ i $d$ de la funció $f(x)=ax^3+bx^2+cx+d$ si sabem que l'equació de la recta\ntangent a la gràfica de la funció $f$ en el punt d'inflexió $(1,0)$ és $y=-3x+3$ i que la funció té un extrem relatiu\nen el punt de la gràfica d'abscissa $x=0$.\n\n\\begin{solucio}\nSi calculem les funcions derivades successives, tenim $f'(x)=3ax^2+2bx+c$ i $f''(x)=6ax+2b$. Si anem traduint en\ntermes de $f$ i de les seves derivades les condicions de l'enunciat, obtenim:\n\\begin{itemize}\n\\item $f$ passa per $(1,0)\\rightarrow f(1)=0\\rightarrow a+b+c+d=0$ (equació 1);\n\\item $(1,0)$ és un punt d'inflexió $\\rightarrow f''(1)=0\\rightarrow6a+2b=0$ (equació 2);\n\\item el pendent de la tangent en $x=1$ és igual a $-3\\rightarrow f'(1)=-3\\rightarrow3a+2b+c=-3$ (equació 3);\n\\item $f$ té un extrem en $x=0\\rightarrow f'(0)=0\\rightarrow c=0$ (equació 4).\n\\end{itemize}\nResolent el sistema format per les equacions (1), (2), (3) i (4), obtenim la solució del problema:\n\\[\n\\boxed{a=1,\\quad b=-3,\\quad c=0,\\quad d=2}.\n\\]\n\n\\textit{Pauta oficial:} 0,5 per la traducció de cadascuna de les quatre condicions i 0,5 per la resolució final del\nsistema.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23j-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23j-q1/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23j-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23j-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23j-q3",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23j-q3",
+   "titol": "Una funció a partir de la seva derivada a trossos, i la tangent a la derivada",
+   "punts": 2.5,
+   "apartats": [
+    1.5,
+    1.0
+   ],
+   "apartats_curt": [
+    1.5,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "primitives",
+    "funció a trossos",
+    "continuïtat"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 1",
+   "unitats": [
+    "u7",
+    "u8",
+    "u11"
+   ],
+   "tries": [],
+   "tex": "Sigui\n\\[\nf'(x)=\\begin{cases}x-1,&\\text{si }x\\le2\\\\[3pt]\\dfrac{1}{x-1},&\\text{si }x>2\\end{cases}\n\\]\nla funció derivada d'una funció derivable $f(x)$ que passa pel punt $A=(0,3)$.\n\n\\begin{apartats}\n\n\\apartat{1,5}\nCalculeu la funció $f(x)$.\n\n\\begin{solucio}\nIntegrant,\n\\[\nf(x)=\\begin{cases}\\int(x-1)\\,dx,&\\text{si }x<2\\\\[3pt]\\int\\frac{1}{x-1}\\,dx,&\\text{si }x>2\\end{cases}\n\\;\\rightarrow\\;\nf(x)=\\begin{cases}\\frac12x^2-x+k,&\\text{si }x<2\\\\[3pt]\\ln|x-1|+k',&\\text{si }x>2\\end{cases}\n\\]\nTrobem els valors de les constants $k$ i $k'$:\n\\begin{itemize}\n\\item $f(x)$ passa pel punt $A=(0,3)$; per tant, $\\frac12\\cdot0^2-0+k=3\\rightarrow k=3$.\n\\item Com que $f(x)$ és derivable, llavors és contínua, i ho és en el punt d'abscissa 2; per tant, els límits\nlaterals de la funció $f(x)$ en 2 han de coincidir: $\\frac12\\,2^2-2+3=\\ln|2-1|+k'\\rightarrow k'=3$.\n\\end{itemize}\nPer tant, la funció $f(x)$ serà\n\\[\n\\boxed{f(x)=\\begin{cases}\\frac12x^2-x+3,&\\text{si }x\\le2\\\\[3pt]\\ln|x-1|+3,&\\text{si }x>2\\end{cases}}\n\\]\nEs puntuarà per igual l'expressió $\\ln|x-1|$ que l'expressió $\\ln(x-1)$.\n\n\\textit{Pauta oficial:} 0,5 pel càlcul de les primitives, 0,25 pel càlcul de la constant $k$, 0,5 per argumentar la\ncontinuïtat de la funció $f$ i 0,25 pel càlcul de la constant $k'$.\n\\end{solucio}\n\n\\apartat{1}\nCalculeu l'equació de la recta tangent a la funció $f'(x)$ en el punt d'abscissa $x=3$.\n\n\\begin{solucio}\nApliquem l'equació de la recta tangent a una funció $g(x)$ en el punt d'abscissa $a$: $y-g(a)=g'(a)\\cdot(x-a)$. Ara la\nfunció és $f'$, és a dir, $g(x)=\\begin{cases}x-1,&\\text{si }x\\le2\\\\\\frac{1}{x-1},&\\text{si }x>2\\end{cases}$, i $a=3$. Cal\ntrobar $g'(x)$, $g'(3)$ i $g(3)$:\n\\[\ng'(x)=f''(x)=\\begin{cases}1,&\\text{si }x<2\\\\[3pt]\\dfrac{-1}{(x-1)^2},&\\text{si }x>2\\end{cases},\\qquad\ng'(3)=-\\frac14,\\qquad g(3)=\\frac12 .\n\\]\n\\[\ny-\\frac12=-\\frac14\\cdot(x-3)\\;\\rightarrow\\;\\boxed{y=-\\frac14\\,x+\\frac54}.\n\\]\n\n\\textit{Pauta oficial:} 0,25 per la fórmula de la recta tangent, 0,25 pel càlcul de $f''(x)=g'(x)$, 0,25 pel càlcul\nde $g(3)$ i de $g'(3)$, i 0,25 pel càlcul final de la recta tangent.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23j-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23j-q3/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23j-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23j-q3/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23j-q5",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23j-q5",
+   "titol": "Optimització: el tancat del gos adossat al mur, i quant s'estalvia posant-lo a la cantonada",
+   "punts": 2.5,
+   "apartats": [
+    1.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.75,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "cost mínim",
+    "problema en context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 1",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "La Núria té un jardí rectangular i vol fer-hi un tancat (rectangular o quadrat) de $8\\ \\text{m}^2$ per al seu gos. Ha pensat\nde posar el tancat tocant al mur del jardí, tal com es mostra a la figura, per estalviar-se així un dels quatre costats.\nEl preu de la tanca que vol fer servir és de 2,5 €/m.\n\\begin{center}\n\\begin{tikzpicture}[scale=0.6]\n  \\draw[line width=1.6pt] (0,0) rectangle (7,3.6);\n  \\draw[dashed,thick] (2.5,3.6) -- (2.5,2.0) -- (4.5,2.0) -- (4.5,3.6);\n  \\node[font=\\tiny,align=center] at (3.5,2.8) {Tancat\\\\per al gos};\n  \\node[font=\\small] at (0.8,0.45) {Jardí};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat{1,75}\nQuines dimensions ha de tenir el tancat perquè el cost sigui mínim? Quin és aquest cost mínim?\n\n\\begin{solucio}\nEl tancat té forma de rectangle. Anomenem $x$ la base del rectangle, i $y$, l'altura. Sabem que l'àrea del tancat és de\n$8\\ \\text{m}^2$; per tant, podem escriure $x\\cdot y=8$ i, aïllant, $y=\\frac8x$. El cost del tancat és\n$C(x,y)=2{,}5\\cdot(2y+x)$ i, substituint, obtenim\n\\[\nC(x)=2{,}5\\cdot\\left(2\\cdot\\frac8x+x\\right)=2{,}5\\cdot\\left(\\frac{16+x^2}{x}\\right).\n\\]\nPer calcular el cost mínim, calcularem els extrems relatius de la funció $C(x)$ a partir de la primera derivada,\nigualant-la a 0:\n\\[\nC'(x)=2{,}5\\cdot\\left(\\frac{2x\\cdot x-\\left(16+x^2\\right)\\cdot1}{x^2}\\right)=2{,}5\\cdot\\left(\\frac{x^2-16}{x^2}\\right)=0\n\\;\\rightarrow\\;x=\\pm4 .\n\\]\nPel context del problema, només té sentit la solució positiva. Per comprovar si en $x=4$ hi ha un mínim, calculem la\nsegona derivada i n'observem el signe:\n\\[\nC''(x)=2{,}5\\cdot\\left(\\frac{2x\\cdot x^2-\\left(x^2-16\\right)\\cdot2x}{x^4}\\right)\n=2{,}5\\cdot\\left(\\frac{2x^3-\\left(2x^3-32x\\right)}{x^4}\\right)=2{,}5\\cdot\\frac{32}{x^3}.\n\\]\nCom que $C''(4)>0$, en $x=4$ hi ha un mínim. Per tant, les dimensions del tancat seran de \\textbf{4 m de base i 2 m\nd'altura}, i el cost serà de\n\\[\nC(4)=2{,}5\\cdot\\left(\\frac{16+4^2}{4}\\right)=\\boxed{20\\ \\text{€}}.\n\\]\n\n\\textit{Pauta oficial:} 0,25 per l'assignació de les variables i la lligadura d'igualtat de l'àrea, 0,25 per la funció\ncost, 0,25 per la derivada primera, 0,25 per l'abscissa del punt singular, 0,25 per argumentar que es tracta d'un\nmínim, 0,25 per les dimensions finals i 0,25 pel cost mínim. Per trobar el punt singular, es pot utilitzar la funció\n$C(x)$ o bé la funció $f(x)=\\frac{16+x^2}{x}$.\n\\end{solucio}\n\n\\apartat{0,75}\nSi manteniu la forma rectangular o quadrada del tancat i feu que un dels vèrtexs del jardí coincideixi amb un vèrtex del\ntancat, quants euros us podeu estalviar? Raoneu com posaríeu el tancat i justifiqueu amb càlculs matemàtics les\ndimensions de la vostra proposta.\n\n\\begin{solucio}\nPer estalviar amb la tanca, podem posar el tancat a una cantonada del jardí:\n\\begin{center}\n\\begin{tikzpicture}[scale=0.6]\n  \\draw[line width=1.6pt] (0,0) rectangle (7,3.6);\n  \\draw[dashed,thick] (0,1.9) -- (1.9,1.9) -- (1.9,3.6);\n  \\node[font=\\tiny,align=center] at (0.95,2.75) {Tancat\\\\per al gos};\n  \\node[font=\\small] at (0.8,0.45) {Jardí};\n\\end{tikzpicture}\n\\end{center}\nAra podem reproduir els càlculs de l'apartat a) amb la nova situació. En aquest cas, el cost del tancat és\n$C(x,y)=2{,}5\\cdot(y+x)$ i, com que $y=\\frac8x$, $C(x)=2{,}5\\cdot\\left(\\frac8x+x\\right)=2{,}5\\cdot\\left(\\frac{8+x^2}{x}\\right)$.\nCalculant la primera derivada i igualant-la a 0:\n\\[\nC'(x)=2{,}5\\cdot\\left(\\frac{2x\\cdot x-\\left(8+x^2\\right)\\cdot1}{x^2}\\right)=2{,}5\\cdot\\left(\\frac{x^2-8}{x^2}\\right)=0\n\\;\\rightarrow\\;x=\\pm\\sqrt8=\\pm2\\sqrt2\\approx\\pm2{,}83 .\n\\]\nAnàlogament, l'única solució que té sentit és la positiva. Per comprovar si en $x=2\\sqrt2$ hi ha un mínim, calculem la\nsegona derivada i n'observem el signe:\n\\[\nC''(x)=2{,}5\\cdot\\left(\\frac{2x\\cdot x^2-\\left(x^2-8\\right)\\cdot2x}{x^4}\\right)\n=2{,}5\\cdot\\left(\\frac{2x^3-\\left(2x^3-16x\\right)}{x^4}\\right)=2{,}5\\cdot\\frac{16}{x^3}.\n\\]\nCom que $C''\\!\\left(2\\sqrt2\\right)>0$, en $x=2\\sqrt2$ hi ha un mínim, i l'altura del tancat serà\n$y=\\frac{8}{2\\sqrt2}=2\\sqrt2$. Per tant, el tancat tindrà forma quadrada, de costat $2\\sqrt2\\approx2{,}83$ m. En aquest cas,\nel preu mínim serà\n\\[\nC\\!\\left(2\\sqrt2\\right)=2{,}5\\cdot\\left(\\frac{8+\\left(2\\sqrt2\\right)^2}{2\\sqrt2}\\right)=2{,}5\\cdot\\frac{16}{\\sqrt8}=2{,}5\\cdot2\\sqrt8=14{,}14\\ \\text{€},\n\\]\ni tindríem un estalvi de $20-14{,}14=\\boxed{5{,}86\\ \\text{€}}$.\n\n\\textit{Pauta oficial:} 0,25 per situar el tancat correctament i per la funció cost, 0,25 per la derivada, el punt\nsingular i la justificació de mínim, i 0,25 per les dimensions i el càlcul de l'estalvi. Qualsevol altra argumentació\ncorrecta serà considerada vàlida, encara que no es faci servir el càlcul diferencial, sempre que s'argumenti amb càlculs\nmatemàtics.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23j-q5/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23j-q5/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23j-q5/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23j-q5/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23j2-q1",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23j2-q1",
+   "titol": "Dues paràboles: àrea entre totes dues, una recta tangent i la representació de les tres gràfiques",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "àrea entre corbes",
+    "recta tangent",
+    "representació"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 5",
+   "unitats": [
+    "u8",
+    "u12"
+   ],
+   "tries": [],
+   "tex": "Considereu les funcions $f(x)=-x^2+x+6$ i $g(x)=-9x+3x^2$.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nCalculeu l'àrea de la regió delimitada per les dues funcions.\n\n\\begin{solucio}\nPunts de tall: $-x^2+x+6=-9x+3x^2\\rightarrow4x^2-10x-6=0$,\n\\[\nx=\\frac{10\\pm\\sqrt{(-10)^2-4\\cdot4\\cdot(-6)}}{8}=\\frac{10\\pm14}{8}=3,\\ -\\frac12 .\n\\]\nComprovem la posició de cada una de les corbes: a l'interval $\\left(-\\frac12,3\\right)$, $f(x)>g(x)$. Per tant,\n\\begin{align*}\nA&=\\int_{-\\frac12}^{3}\\bigl(f(x)-g(x)\\bigr)\\,dx=\\int_{-\\frac12}^{3}\\Bigl(-x^2+x+6-\\left(-9x+3x^2\\right)\\Bigr)\\,dx\n=\\int_{-\\frac12}^{3}\\left(-4x^2+10x+6\\right)dx\\\\\n&=\\left[-\\frac43x^3+5x^2+6x\\right]_{-\\frac12}^{3}=(-36+45+18)-\\left(\\frac4{24}+\\frac54-3\\right)\n=27-\\left(-\\frac{19}{12}\\right)=\\boxed{\\frac{343}{12}\\ \\text{u}^2}.\n\\end{align*}\n\n\\textit{Pauta oficial:} 0,5 per calcular les abscisses dels punts de tall de les dues funcions, 0,25 per plantejar\nl'àrea demanada com una integral definida, 0,25 pel càlcul de la primitiva i 0,25 per aplicar correctament la\nregla de Barrow i donar el resultat final.\n\\end{solucio}\n\n\\apartat{1,25}\nTrobeu l'equació de la recta tangent a la funció $f(x)$ en el punt $(-2,0)$. Representeu aquesta recta tangent i les\nfuncions $f(x)$ i $g(x)$ en uns mateixos eixos de coordenades.\n\n\\begin{solucio}\nEl pendent ve donat per la derivada de la funció: $f'(x)=-2x+1\\rightarrow f'(-2)=-2(-2)+1=5$. I la recta passa\npel punt $(-2,0)$, perquè $f(-2)=0$. Així, la recta tangent serà de la forma $y=5x+n$, amb $0=5(-2)+n$, és a\ndir, $n=10$: tenim $y=5x+10$.\\\\\nPer fer la representació gràfica, observem que la recta $y=5x+10$ passa pels punts $(0,10)$ i $(-2,0)$. La gràfica\nde la funció $f$ és una paràbola amb les branques cap avall i el vèrtex en el punt\n$f'(x)=-2x+1=0\\rightarrow x=\\frac12\\rightarrow\\left(\\frac12,\\frac{25}{4}\\right)$, i els punts de tall amb l'eix\nd'abscisses són $(-2,0)$ i $(3,0)$, ja que $-x^2+x+6=0\\rightarrow x=-2$ i $x=3$. La gràfica de la funció $g$ és una\nparàbola amb les branques cap amunt i el vèrtex en el punt\n$g'(x)=-9+6x=0\\rightarrow x=\\frac32\\rightarrow\\left(\\frac32,-\\frac{27}{4}\\right)$, i els punts de tall amb l'eix\nd'abscisses són $(0,0)$ i $(3,0)$, ja que $-9x+3x^2=0\\rightarrow x=0$ i $x=3$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.6cm,y=0.26cm]\n  \\draw[gray!55,very thin,xstep=1,ystep=2] (-4,-8) grid (5,12);\n  \\draw[->] (-4.3,0) -- (5.3,0) node[below right] {$x$};\n  \\draw[->] (0,-8.4) -- (0,12.6) node[above left] {$y$};\n  \\begin{scope}\n    \\clip (-4,-8) rectangle (5,12);\n    \\draw[\\colorgrafica,thick,domain=-3.2:4.2,samples=100,smooth] plot (\\x,{-(\\x)*(\\x)+(\\x)+6});\n    \\draw[thick,domain=-1.4:4.4,samples=100,smooth] plot (\\x,{3*(\\x)*(\\x)-9*(\\x)});\n    \\draw[thick,dashed] (-3.6,-8) -- (0.4,12);\n  \\end{scope}\n  \\foreach \\p in {(-0.5,5.25),(0.5,6.25),(3,0),(1.5,-6.75),(-2,0)} \\fill \\p circle (1.6pt);\n  \\node[above left,font=\\tiny] at (-0.5,5.25) {$(-0{,}5;\\,5{,}25)$};\n  \\node[above right,font=\\tiny] at (0.5,6.25) {$(0{,}5;\\,6{,}25)$};\n  \\node[above right,font=\\tiny] at (3,0) {$(3,0)$};\n  \\node[below,font=\\tiny] at (1.5,-6.75) {$(1{,}5;\\,-6{,}75)$};\n  \\node[font=\\scriptsize,\\colorgrafica] at (2.9,3.6) {$y=-x^2+x+6$};\n  \\node[font=\\scriptsize] at (4.2,10.3) {$y=3x^2-9x$};\n  \\node[font=\\scriptsize,left] at (-3.2,-5.2) {$y=5x+10$};\n\\end{tikzpicture}\n\\end{center}\n\n\\textit{Pauta oficial:} 0,5 per l'equació de la recta tangent demanada, i 0,75 per la representació gràfica de les\ntres gràfiques: 0,25 per la gràfica de la recta i 0,25 per cada una de les paràboles.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23j2-q1/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23j2-q1/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23j2-q1/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23j2-q1/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23j2-q4",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23j2-q4",
+   "titol": "Optimització: on posar la torre perquè el cablejat als dos pobles sigui el més barat",
+   "punts": 2.5,
+   "apartats": [
+    2.5
+   ],
+   "apartats_curt": [
+    2.5
+   ],
+   "te_curt": false,
+   "dificultat": "●●●",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "teorema de Pitàgores",
+    "problema en context"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 5",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "En una carretera principal hi trobem el poble $A$. A 12 km del poble $A$, hi ha un encreuament $O$ amb una carretera\nsecundària que talla perpendicularment la carretera principal. A 9 km de l'encreuament, a la carretera secundària,\nhi trobem el poble $B$. Es vol construir una torre de comunicacions $T$ en un punt de la carretera principal situat\nentre el poble $A$ i l'encreuament $O$. Aquesta torre ha d'estar connectada amb cadascun dels dos pobles en línia recta\nper cable. Sabem que instal·lar el cable entre la torre $T$ i el poble $B$ té un preu de 250 €/km i, en canvi,\ninstal·lar el cable entre la torre $T$ i el poble $A$ té un preu de 125 €/km.\n\\begin{center}\n\\begin{tikzpicture}[scale=0.45]\n  \\draw[thick] (0,9) -- (0,0) -- (13.5,0);\n  \\draw[dotted,thick] (0,9) -- (6.5,0);\n  \\fill (0,9) circle (4pt); \\fill (0,0) circle (4pt); \\fill (6.5,0) circle (4pt); \\fill (12,0) circle (4pt);\n  \\node[right,font=\\scriptsize] at (0.2,9) {$B$: poble $B$};\n  \\node[left,font=\\scriptsize,align=right] at (-0.2,4.5) {Carretera\\\\secundària};\n  \\node[left,font=\\scriptsize] at (-0.2,0) {$O$: encreuament};\n  \\node[below,font=\\scriptsize,align=center] at (3.2,-0.3) {Carretera\\\\principal};\n  \\node[below,font=\\scriptsize] at (6.5,-0.3) {$T$: torre};\n  \\node[below,font=\\scriptsize] at (12,-0.3) {$A$: poble $A$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat{2,5}\nDetermineu a quina distància de l'encreuament $O$ a la carretera principal cal situar la torre $T$ perquè el preu del\ncablejat sigui mínim, i quin serà el valor d'aquest preu mínim.\n\n\\begin{solucio}\nSi denotem per $x$ la distància de l'encreuament a la torre, és a dir, $x=d(O,M)$, on $M$ és el punt on se situa la\ntorre, aleshores obtenim:\n\\begin{center}\n\\begin{tikzpicture}[scale=0.4]\n  \\draw (0,9) -- (0,0) -- (12,0);\n  \\draw[dashed] (0,9) -- (5.2,0);\n  \\fill (0,9) circle (3pt) node[above left,font=\\scriptsize] {$B$};\n  \\fill (0,0) circle (3pt) node[below left,font=\\scriptsize] {$O$};\n  \\fill (5.2,0) circle (3pt) node[below,font=\\scriptsize] {$M$};\n  \\fill (12,0) circle (3pt) node[below,font=\\scriptsize] {$A$};\n  \\node[left,font=\\scriptsize] at (0,4.5) {$9$};\n  \\node[above,font=\\scriptsize] at (2.6,0) {$x$};\n  \\node[above,font=\\scriptsize] at (8.6,0) {$12-x$};\n\\end{tikzpicture}\n\\end{center}\nPel teorema de Pitàgores, veiem que $d(B,M)=\\sqrt{81+x^2}$. Així doncs, el preu del cablejat vindrà donat per la\nfunció\n\\[\nP(x)=125\\,(12-x)+250\\sqrt{81+x^2}.\n\\]\nPer trobar el preu mínim, derivem la funció $P$:\n\\[\nP'(x)=-125+250\\cdot\\frac{2x}{2\\sqrt{81+x^2}}.\n\\]\nResolent $P'(x)=0$, obtenim $\\sqrt{81+x^2}=2x$ i, elevant els dos membres al quadrat, tenim $81+x^2=4x^2$, que té com a\nsolució real positiva $x=\\sqrt{27}=3\\sqrt3$ km. Per comprovar que és un mínim, estudiem el signe de la derivada als\nintervals $\\left(0,3\\sqrt3\\right)$ i $\\left(3\\sqrt3,12\\right)$: en el primer, $P'(x)<0$, i en el segon, $P'(x)>0$; per\ntant, deduïm que el mínim de la funció $P$ s'assoleix per a $x=3\\sqrt3$ km, és a dir, situant la torre a\n$3\\sqrt3\\ \\text{km}=5{,}2$ km de l'encreuament.\n\n\\textit{Pauta oficial:} 0,5 pel plantejament del problema, 0,5 per determinar la funció cost que cal optimitzar,\n0,5 pel càlcul de la derivada primera, 0,5 per determinar el candidat a mínim, 0,25 per justificar que,\nefectivament, correspon a un mínim, i 0,25 pel valor del cost mínim.\n\n\\textit{Nota del banc:} el criteri oficial no calcula el preu mínim, que l'enunciat demana i que la pauta puntua:\n\\[\nP\\!\\left(3\\sqrt3\\right)=125\\left(12-3\\sqrt3\\right)+250\\sqrt{108}=1500-375\\sqrt3+1500\\sqrt3=1500+1125\\sqrt3\\approx3\\,448{,}56\\ \\text{€}.\n\\]\nÉs un mínim absolut a l'interval, perquè als extrems el preu és més alt: $P(0)=P(12)=3\\,750$ €.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23j2-q4/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23j2-q4/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23j2-q4/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23j2-q4/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23j2-q6",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23j2-q6",
+   "titol": "f(x) = (ax² + x + b)/(x² + 1): paràmetres per condicions, i els extrems quan a = b",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "coeficients per condicions",
+    "extrems relatius",
+    "funció racional"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 5",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "Sigui la funció $f(x)=\\dfrac{ax^2+x+b}{x^2+1}$.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nCalculeu els valors dels paràmetres $a$ i $b$ si sabem que la gràfica de la funció $f$ té un extrem relatiu en $x=-1$\ni passa pel punt $P=\\left(-2,\\frac{13}{5}\\right)$.\n\n\\begin{solucio}\nLa funció derivada de $f(x)$ és $f'(x)=\\dfrac{-x^2+(2a-2b)x+1}{\\left(x^2+1\\right)^2}$. Imposem la condició d'extrem\nrelatiu: $f'(-1)=0\\rightarrow\\frac{-1+2b-2a+1}{4}=0\\rightarrow a=b$. Imposem que la funció passi pel punt\n$P=\\left(-2,\\frac{13}{5}\\right)$:\n\\[\nf(-2)=\\frac{13}{5}\\;\\rightarrow\\;\\frac{4a-2+b}{5}=\\frac{13}{5}\\;\\rightarrow\\;4a+b=15 .\n\\]\nD'on es dedueix que $a=b=3$.\n\n\\textit{Pauta oficial:} 0,25 pel càlcul de la funció derivada, 0,25 per imposar la condició d'extrem i trobar una\nprimera condició per als paràmetres, 0,25 per imposar que passi pel punt donat i trobar una segona condició, i 0,5\nper trobar els valors dels paràmetres $a$ i $b$.\n\\end{solucio}\n\n\\apartat{1,25}\nPer al cas $a=b$, calculeu i classifiqueu els extrems relatius de la funció.\n\n\\begin{solucio}\nPer a $a=b$, la derivada és $f'(x)=\\dfrac{1-x^2}{\\left(x^2+1\\right)^2}$. Resolem $f'(x)=0$ per trobar els possibles\nextrems relatius, i obtenim $x=1$ i $x=-1$. Com que $f'(-2)<0$, $f'(0)>0$ i $f'(2)<0$, deduïm que la funció té un\nmínim relatiu en $x=-1$ i un màxim relatiu en $x=1$.\n\n\\textit{Pauta oficial:} 0,25 per donar la funció derivada en el cas demanat, 0,5 per trobar els dos candidats a\nextrems i 0,5 per donar i justificar on fa un mínim i on fa un màxim.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23j2-q6/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23j2-q6/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23j2-q6/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23j2-q6/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23s-q2",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23s-q2",
+   "titol": "Tangents a y = 1/x i el triangle d'àrea constant amb els eixos",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●○○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "recta tangent",
+    "paràmetre",
+    "àrea d'un triangle"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2023, sèrie 2",
+   "unitats": [
+    "u8"
+   ],
+   "tries": [],
+   "tex": "Sigui la funció $f(x)=\\dfrac1x$.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nCalculeu l'equació de la recta tangent a la gràfica de la funció $f$ en el punt d'abscissa $x=2$.\n\n\\begin{solucio}\n$f(x)=\\frac1x$ i $f'(x)=-\\frac{1}{x^2}$. La recta passa pel punt $(2,f(2))=\\left(2,\\frac12\\right)$, i el seu\npendent és $f'(2)=-\\frac14$:\n\\[\ny-\\frac12=-\\frac14\\,(x-2)\\;\\Rightarrow\\;y=-\\frac x4+\\frac24+\\frac12 .\n\\]\nPer tant, la recta tangent és $\\boxed{y=-\\frac x4+1}$.\n\n\\textit{Pauta oficial:} 0,25 per trobar el punt, 0,25 per trobar el pendent i 0,25 per trobar la recta tangent.\n\\end{solucio}\n\n\\apartat{0,75}\nCalculeu l'equació de la recta tangent a la gràfica de la funció $f$ en el punt d'abscissa $x=k$, en què $k$ és un\nnombre real positiu.\n\n\\begin{solucio}\nLa recta passa pel punt $(k,f(k))=\\left(k,\\frac1k\\right)$, i el seu pendent és $f'(k)=-\\frac{1}{k^2}$:\n\\[\ny-\\frac1k=-\\frac{1}{k^2}\\,(x-k)\\;\\Rightarrow\\;y=-\\frac{x}{k^2}+\\frac2k .\n\\]\nPer tant, la recta tangent és $\\boxed{y=-\\frac{x}{k^2}+\\frac2k}$.\n\n\\textit{Pauta oficial:} 0,25 per trobar el punt, 0,25 per trobar el pendent i 0,25 per trobar la recta tangent\n(en funció de $k$).\n\\end{solucio}\n\n\\apartat{1}\nComproveu que, tal com es pot veure en la figura de sota, la recta de l'apartat b) determina un triangle d'àrea\nconstant amb els semieixos positius de coordenades. Calculeu aquesta àrea.\n\\begin{center}\n\\begin{tikzpicture}[x=1.1cm,y=1.1cm]\n  \\fill[gray!40] (0,0) -- (2.4,0) -- (0,1.6667) -- cycle;\n  \\draw[->] (-0.3,0) -- (4.4,0);\n  \\draw[->] (0,-0.3) -- (0,3.3);\n  \\begin{scope}\n    \\clip (0,0) rectangle (4.4,3.2);\n    \\draw[\\colorgrafica,thick,domain=0.3:4.3,samples=100,smooth] plot (\\x,{1/\\x});\n    \\draw[thick] (-0.1,1.7361) -- (2.7,-0.2083);\n  \\end{scope}\n  \\fill (1.2,0.8333) circle (1.5pt);\n  \\node[font=\\small] at (1.1,2.7) {$f(x)=\\frac1x$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{solucio}\nCalculem els punts de tall de la recta tangent, $y=\\frac2k-\\frac{x}{k^2}$, amb l'eix d'abscisses i amb l'eix\nd'ordenades:\n\\[\n\\left\\{\\begin{aligned}y&=\\tfrac2k-\\tfrac{x}{k^2}\\\\y&=0\\end{aligned}\\right.\\;\\rightarrow\\;(2k,0),\\qquad\n\\left\\{\\begin{aligned}y&=\\tfrac2k-\\tfrac{x}{k^2}\\\\x&=0\\end{aligned}\\right.\\;\\rightarrow\\;\\left(0,\\tfrac2k\\right).\n\\]\nPer tant,\n\\[\n\\text{Àrea del triangle}=\\frac12\\cdot2k\\cdot\\frac2k=2\\ \\text{u}^2 .\n\\]\nEl triangle té àrea constant, igual a 2 unitats de superfície, per a qualsevol valor del paràmetre $k$.\n\n\\textit{Pauta oficial:} 0,25 per trobar el punt de tall amb l'eix de les abscisses, 0,25 per trobar el punt de\ntall amb l'eix de les ordenades, 0,25 per trobar el valor de l'àrea i 0,25 per expressar que l'àrea és constant\nper a qualsevol valor del paràmetre $k$.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23s-q2/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23s-q2/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23s-q2/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23s-q2/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23s-q4",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23s-q4",
+   "titol": "f(x) = −3x + e^(2x³−1): Bolzano, i l'àrea entre dues corbes que comparteixen l'exponencial",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●○○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "teorema de Bolzano",
+    "àrea entre corbes",
+    "exponencial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2023, sèrie 2",
+   "unitats": [
+    "u7",
+    "u12"
+   ],
+   "tries": [],
+   "tex": "Sigui la funció $f(x)$ definida per $f(x)=-3x+e^{2x^3-1}$.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nJustifiqueu que $f(x)=2$ té una solució en l'interval $(-1,0)$.\n\n\\begin{solucio}\nQue l'equació $f(x)=2$ tingui alguna solució és equivalent a que la funció $g(x)=f(x)-2$ tingui algun zero. La\nfunció $g(x)$ és contínua a l'interval $[-1,0]$, ja que és suma de dues funcions contínues (una funció\npolinòmica, exactament una funció lineal, i una funció exponencial). D'altra banda, podem comprovar que\n\\[\ng(-1)\\cdot g(0)=\\left(3+e^{-3}-2\\right)\\left(0+e^{-1}-2\\right)=\\left(1+e^{-3}\\right)\\left(e^{-1}-2\\right)<0;\n\\]\nper tant, podem aplicar el teorema de Bolzano i afirmar que la funció té un zero a l'interval $(-1,0)$.\n\n\\textit{Pauta oficial:} 0,5 per explicitar que la funció és contínua per poder aplicar el teorema de Bolzano, 0,5\nper comprovar que als extrems de l'interval la funció pren signes diferents, i 0,25 per aplicar el teorema de\nBolzano i concloure l'existència d'una solució.\n\\end{solucio}\n\n\\apartat{1,25}\nSigui la funció $h(x)=-3x^2+e^{2x^3-1}$. Calculeu l'àrea de la regió compresa entre les gràfiques de les funcions\n$f(x)$ i $h(x)$.\n\n\\begin{solucio}\nCalculem els punts de tall entre les dues funcions:\n\\[\nf(x)=h(x)\\;\\rightarrow\\;-3x+e^{2x^3-1}=-3x^2+e^{2x^3-1}\\;\\rightarrow\\;-3x=-3x^2\\;\\rightarrow\\;-3x+3x^2=3x(x-1)=0 .\n\\]\nHi ha, per tant, dues solucions: $x=0$ i $x=1$.\n\\begin{align*}\nA&=\\left|\\int_0^1\\bigl(h(x)-f(x)\\bigr)\\,dx\\right|\n=\\left|\\int_0^1\\Bigl(\\left(-3x^2+e^{2x^3-1}\\right)-\\left(-3x+e^{2x^3-1}\\right)\\Bigr)\\,dx\\right|\\\\\n&=\\left|\\int_0^1\\left(-3x^2+3x\\right)dx\\right|=\\left|\\left[-x^3+\\frac{3x^2}{2}\\right]_0^1\\right|=\\boxed{\\frac12\\ \\text{u}^2}.\n\\end{align*}\nTambé es pot comprovar que la funció $h(x)$ està per sobre de la funció $f(x)$ a l'interval $(0,1)$, i calcular\ndirectament l'àrea amb $A=\\int_0^1\\bigl(h(x)-f(x)\\bigr)\\,dx$.\n\n\\textit{Pauta oficial:} 0,25 per trobar els punts de tall entre les dues funcions, 0,25 pel plantejament de la\nintegral, 0,25 pel càlcul de la primitiva, 0,25 per l'aplicació de la regla de Barrow i 0,25 pel càlcul final.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23s-q4/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23s-q4/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23s-q4/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23s-q4/out/solucio.pdf"
+  },
+  {
+   "id": "pau/analisi/ana-23s-q6",
+   "unitat": "pau",
+   "tema": "analisi",
+   "codi": "ana-23s-q6",
+   "titol": "Optimització: el trapezi isòsceles d'àrea màxima amb els costats de 10 mm",
+   "punts": 2.5,
+   "apartats": [
+    0.5,
+    2.0
+   ],
+   "apartats_curt": [
+    0.5,
+    2.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "optimització",
+    "teorema de Pitàgores",
+    "àrea màxima"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2023, sèrie 2",
+   "unitats": [
+    "u9"
+   ],
+   "tries": [],
+   "tex": "Volem construir una peça metàl·lica que tingui per secció un trapezi isòsceles amb la base superior tres vegades\nmés llarga que la base inferior. Els altres costats del trapezi fan 10 mm, tal com podeu observar en la figura\nsegüent:\n\\begin{center}\n\\begin{tikzpicture}[scale=0.8]\n  \\draw[thick] (0,2.3) -- (4.8,2.3) -- (3.2,0) -- (1.6,0) -- cycle;\n  \\foreach \\p in {(0,2.3),(4.8,2.3),(3.2,0),(1.6,0)} \\fill \\p circle (1.8pt);\n  \\node[above,font=\\small] at (2.4,2.3) {$3x$};\n  \\node[below,font=\\small] at (2.4,0) {$x$};\n  \\node[left,font=\\small] at (0.75,1.15) {10 mm};\n  \\node[right,font=\\small] at (4.05,1.15) {10 mm};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat{0,5}\nExpresseu l'altura del trapezi en funció de la longitud $x$ de la base inferior.\n\n\\begin{solucio}\nA partir de la situació exposada, tenim el gràfic següent:\n\\begin{center}\n\\begin{tikzpicture}[scale=0.8]\n  \\draw[thick] (0,2.3) -- (4.8,2.3) -- (3.2,0) -- (1.6,0) -- cycle;\n  \\draw[dashed] (1.6,2.3) -- (1.6,0);\n  \\node[above,font=\\small] at (2.4,2.3) {$3x$};\n  \\node[below,font=\\small] at (0.8,2.3) {$x$};\n  \\node[left,font=\\small] at (1.62,1.15) {$h$};\n  \\node[below,font=\\small] at (2.4,0) {$x$};\n  \\node[left,font=\\small] at (0.75,1.15) {10 mm};\n  \\node[right,font=\\small] at (4.05,1.15) {10 mm};\n\\end{tikzpicture}\n\\end{center}\nPel teorema de Pitàgores, s'obté que $x^2+h^2=10^2$ i, per tant, $\\boxed{h=\\sqrt{100-x^2}}$.\n\n\\textit{Pauta oficial:} 0,25 per l'aplicació del teorema de Pitàgores i 0,25 per l'expressió final.\n\\end{solucio}\n\n\\apartat{2}\nCalculeu la longitud de la base inferior del trapezi de manera que l'àrea de la peça sigui màxima i trobeu el\nvalor d'aquesta àrea màxima.\n\n\\begin{solucio}\nL'àrea del trapezi és $A(x)=\\dfrac{x+3x}{2}\\cdot h=2x\\cdot\\sqrt{100-x^2}$. Per trobar els candidats a valors que fan\nmàxima aquesta àrea, calcularem la funció derivada, $A'(x)$, i obtindrem les solucions de l'equació $A'(x)=0$:\n\\begin{align*}\nA'(x)&=2\\cdot\\sqrt{100-x^2}+2x\\cdot\\frac{1}{2\\sqrt{100-x^2}}\\,(-2x)\n=2\\sqrt{100-x^2}+\\frac{-2x^2}{\\sqrt{100-x^2}}\\\\\n&=\\frac{2\\left(100-x^2\\right)-2x^2}{\\sqrt{100-x^2}}=\\frac{200-4x^2}{\\sqrt{100-x^2}}=\\frac{4\\left(50-x^2\\right)}{\\sqrt{100-x^2}}.\n\\end{align*}\nPer tant, tindrem $A'(x)=0$ quan $50-x^2=0$, és a dir, $x^2=50$ i $x=\\pm\\sqrt{50}=\\pm5\\sqrt2\\approx\\pm7{,}07$. A\npartir del context de l'enunciat, l'únic candidat és el valor positiu, $x=\\sqrt{50}=7{,}07$ mm. Ara cal comprovar\nque amb aquest valor l'àrea és màxima, i això es comprova veient que per a valors propers l'àrea és més petita:\n\\[\nA(7)=99{,}980,\\qquad A\\!\\left(\\sqrt{50}\\right)=2\\cdot\\sqrt{50}\\cdot\\sqrt{100-50}=2\\cdot\\sqrt{50}\\cdot\\sqrt{50}=100,\\qquad\nA(7{,}1)=99{,}9966 .\n\\]\nPer tant, el valor de la base petita que fa l'àrea màxima és de $5\\sqrt2=7{,}07$ mm, i el valor de l'àrea és de\n$100\\ \\text{mm}^2$. Per comprovar la condició de màxim, també es podria veure que la derivada segona de la funció\nàrea és negativa per al valor $x=\\sqrt{50}$.\n\n\\textit{Pauta oficial:} 0,25 per la formulació de l'àrea del trapezi, 0,25 per l'expressió de l'àrea en funció de\n$x$, 0,5 per la derivada de la funció, 0,25 pel càlcul del punt singular, 0,5 per l'avaluació de la condició de\nmàxim relatiu i 0,25 pel càlcul de l'àrea màxima.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/analisi/ana-23s-q6/out/enunciat.pdf",
+   "pdf_solucio": "pau/analisi/ana-23s-q6/out/solucio.pdf",
+   "pdf_curt": "pau/analisi/ana-23s-q6/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/analisi/ana-23s-q6/out/solucio.pdf"
   },
   {
    "id": "pau/analisi/ana-24i-q1",
@@ -1306,6 +1854,113 @@ const BANC = {
    "pdf_solucio": "pau/analisi/ana-26j2-q4a/out/solucio.pdf",
    "pdf_curt": "pau/analisi/ana-26j2-q4a/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/analisi/ana-26j2-q4a/out/solucio.pdf"
+  },
+  {
+   "id": "pau/geometria/geo-23j-q6",
+   "unitat": "pau",
+   "tema": "geometria",
+   "codi": "geo-23j-q6",
+   "titol": "Dos plans: el pla perpendicular a tots dos, la recta intersecció i el punt més proper",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "plans perpendiculars",
+    "recta intersecció",
+    "projecció ortogonal"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 1",
+   "unitats": [],
+   "tries": [],
+   "tex": "Siguin els plans $\\pi_1$ i $\\pi_2$, determinats respectivament per les equacions $\\pi_1\\colon x+y=3$ i $\\pi_2\\colon x-z=-2$.\n\n\\begin{apartats}\n\n\\apartat{0,75}\nTrobeu l'equació general ($Ax+By+Cz+D=0$) del pla $\\pi_3$, que és perpendicular a $\\pi_1$ i $\\pi_2$, i que passa pel punt\n$P=(4,1,2)$.\n\n\\begin{solucio}\nCom que el pla que busquem és perpendicular a $\\pi_1$ i a $\\pi_2$, els seus vectors directors seran els vectors normals\nde $\\pi_1$ i $\\pi_2$: $\\vec v_1=(1,1,0)$ i $\\vec v_2=(1,0,-1)$. Trobem l'equació general del pla que té vectors directors\n$\\vec v_1$ i $\\vec v_2$ i que passa pel punt $P=(4,1,2)$, amb $X(x,y,z)$ un punt genèric del pla:\n\\[\n\\begin{vmatrix}x-4&1&1\\\\y-1&1&0\\\\z-2&0&-1\\end{vmatrix}=0\\;\\rightarrow\\;\\boxed{x-y+z-5=0}.\n\\]\n\n\\textit{Pauta oficial:} 0,25 pels vectors directors, 0,25 per indicar com trobar el pla i 0,25 pel càlcul de l'equació.\n\\end{solucio}\n\n\\apartat{0,75}\nSigui $r$ la recta d'intersecció de $\\pi_1$ i $\\pi_2$. Calculeu l'equació vectorial de la recta $r$.\n\n\\begin{solucio}\nBusquem la solució del sistema $\\left\\{\\begin{aligned}x+y&=3\\\\x-z&=-2\\end{aligned}\\right.$. Aïllant, obtenim $y=3-x$ i\n$z=2+x$, i, si $x=\\lambda$, tenim $x=\\lambda$, $y=3-\\lambda$ i $z=2+\\lambda$. La recta buscada, en forma vectorial, és\n\\[\n\\boxed{r\\colon(x,y,z)=(0,3,2)+\\lambda\\cdot(1,-1,1),\\ \\lambda\\in\\mathbb{R}}.\n\\]\n\n\\textit{Pauta oficial:} 0,25 per formular la resolució del sistema i 0,5 per trobar l'equació.\n\\end{solucio}\n\n\\apartat{1}\nCalculeu el punt $Q$ de la recta $r$ que és més a prop del punt $P$.\n\n\\begin{solucio}\nTrobem l'equació del pla perpendicular a la recta $r$ que passa pel punt $P$. Aquest és el pla que ens han demanat a\nl'apartat a), $x-y+z-5=0$. (En cas que no ens adonem que ja el tenim, aquest pla tindrà com a vector normal el vector\ndirector de la recta, i serà de la forma $x-y+z+D=0$; imposant que $P$ hi sigui, $4-1+2+D=0\\rightarrow D=-5$.) Ara hem\nde calcular el punt de tall de la recta $r$ i el pla: substituint $x=\\lambda$, $y=3-\\lambda$, $z=2+\\lambda$ a\n$x-y+z=5$, obtenim $\\lambda-(3-\\lambda)+(2+\\lambda)=5\\rightarrow\\lambda=2$, i, substituint $\\lambda=2$ a les equacions\nparamètriques de la recta, obtenim el punt $\\boxed{Q=(2,1,4)}$.\\\\\nDe forma alternativa: el punt $Q$ és la projecció ortogonal del punt $P$ sobre la recta $r$, ja que és el punt que està a\nmenor distància de $P$. Sigui $Q=(\\lambda,\\,3-\\lambda,\\,2+\\lambda)$ un punt genèric de la recta $r$, i $\\vec v=(1,-1,1)$\nel vector director de $r$. Per la condició d'ortogonalitat, tenim que $\\overrightarrow{PQ}\\cdot\\vec v=0$:\n\\[\n(-4+\\lambda,\\,2-\\lambda,\\,\\lambda)\\cdot(1,-1,1)=0\\;\\rightarrow\\;-4+\\lambda-2+\\lambda+\\lambda=0\\;\\rightarrow\\;\\lambda=2,\n\\]\ni, substituint $\\lambda=2$ a la recta $r$, obtenim que $Q=(2,1,4)$.\n\n\\textit{Pauta oficial:} 0,25 per indicar que el punt buscat és la projecció ortogonal, 0,25 pel punt genèric (o per\nplantejar el sistema entre el pla i la recta), 0,25 pel producte escalar (o per resoldre el sistema) i 0,25 per trobar\nel punt.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/geometria/geo-23j-q6/out/enunciat.pdf",
+   "pdf_solucio": "pau/geometria/geo-23j-q6/out/solucio.pdf",
+   "pdf_curt": "pau/geometria/geo-23j-q6/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/geometria/geo-23j-q6/out/solucio.pdf"
+  },
+  {
+   "id": "pau/geometria/geo-23j2-q3",
+   "unitat": "pau",
+   "tema": "geometria",
+   "codi": "geo-23j2-q3",
+   "titol": "Dues rectes sempre paral·leles i el paràmetre que les posa a distància √2",
+   "punts": 2.5,
+   "apartats": [
+    1.25,
+    1.25
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "posició relativa de rectes",
+    "distància entre rectes",
+    "paràmetre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU juny 2023, sèrie 5",
+   "unitats": [],
+   "tries": [],
+   "tex": "Considereu les rectes a l'espai $r\\colon x=-y=z+m$ i\n$s\\colon\\left\\{\\begin{aligned}x+y&=1\\\\x-z&=0\\end{aligned}\\right.$, en què $m$ és un paràmetre real.\n\n\\begin{apartats}\n\n\\apartat{1,25}\nEstudieu la posició relativa per als diferents valors del paràmetre $m$.\n\n\\begin{solucio}\nDeterminem el vector director i un punt de cada recta:\n\\[\nr\\colon x=-y=z+m\\;\\rightarrow\\;\\left\\{\\begin{aligned}&\\vec v_r=(1,-1,1)\\\\&P(0,0,-m)\\end{aligned}\\right.,\\qquad\ns\\;\\rightarrow\\;\\left\\{\\begin{aligned}&\\vec v_s=(1,1,0)\\times(1,0,-1)=(-1,1,-1)\\\\&x=1\\Rightarrow Q(1,0,1)\\end{aligned}\\right..\n\\]\nCom que $\\vec v_r=-\\vec v_s$, els vectors directors de $r$ i de $s$ són linealment dependents, i les rectes seran o\nbé coincidents o bé paral·leles. Si són coincidents, tenen tots els punts en comú, i en concret $Q\\in s$ ho seria\nde $r$. Comprovem si $Q\\in r$: caldria $1=-0=1+m$, que no se satisfà per a cap valor de $m$. Podem assegurar, per\ntant, que les rectes sempre seran paral·leles, independentment de $m$.\n\n\\textit{Pauta oficial:} 0,75 per determinar que les rectes són coincidents o paral·leles, i 0,5 per justificar que\nsón paral·leles per a tot $m$.\n\\end{solucio}\n\n\\apartat{1,25}\nCalculeu $m$ perquè la distància entre les rectes $r$ i $s$ sigui de $\\sqrt2$ unitats.\n\n\\begin{solucio}\nCalculem la distància entre les dues rectes:\n\\[\nd(P,s)=\\frac{\\bigl|\\vec v_s\\times\\overrightarrow{PQ}\\bigr|}{\\left|\\vec v_s\\right|}\n=\\frac{\\left|\\begin{vmatrix}\\vec\\imath&\\vec\\jmath&\\vec k\\\\-1&1&-1\\\\1&0&1+m\\end{vmatrix}\\right|}{\\sqrt3}\n=\\frac{\\bigl|(1+m,\\,m,\\,-1)\\bigr|}{\\sqrt3}=\\frac{\\sqrt{(1+m)^2+m^2+1}}{\\sqrt3}.\n\\]\nCalculem el valor de $m$ perquè sigui $\\sqrt2$:\n\\[\nd(P,s)=\\sqrt2\\iff\\sqrt{(1+m)^2+m^2+1}=\\sqrt2\\,\\sqrt3\\iff(1+m)^2+m^2+1=6\\iff2m^2+2m-4=0,\n\\]\nd'on s'obtenen les solucions $m=1$ i $m=-2$.\n\n\\textit{Pauta oficial:} 0,75 per obtenir correctament la distància entre les dues rectes, i 0,5 per resoldre\ncorrectament l'equació i determinar els dos valors de $m$.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/geometria/geo-23j2-q3/out/enunciat.pdf",
+   "pdf_solucio": "pau/geometria/geo-23j2-q3/out/solucio.pdf",
+   "pdf_curt": "pau/geometria/geo-23j2-q3/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/geometria/geo-23j2-q3/out/solucio.pdf"
+  },
+  {
+   "id": "pau/geometria/geo-23s-q5",
+   "unitat": "pau",
+   "tema": "geometria",
+   "codi": "geo-23s-q5",
+   "titol": "La perpendicular comuna a dues rectes i la distància entre totes dues",
+   "punts": 2.5,
+   "apartats": [
+    1.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.75,
+    0.75
+   ],
+   "te_curt": false,
+   "dificultat": "●●○",
+   "origen": [],
+   "minuts": 22,
+   "minuts_curt": 22,
+   "etiquetes": [
+    "perpendicular comuna",
+    "distància entre rectes",
+    "producte escalar"
+   ],
+   "temes_secundaris": [],
+   "procedencia": "PAU setembre 2023, sèrie 2",
+   "unitats": [],
+   "tries": [],
+   "tex": "Siguin $r_1$ i $r_2$ les rectes definides per $r_1\\colon x-1=y=-z$ i per $r_2\\colon x=y=z$, respectivament.\n\n\\begin{apartats}\n\n\\apartat{1,75}\nCalculeu l'equació paramètrica de la recta que talla perpendicularment les rectes $r_1$ i $r_2$.\n\n\\begin{solucio}\nA partir de les equacions contínues de l'enunciat, podem escriure les rectes $r_1$ i $r_2$ en forma vectorial i\nparamètrica:\n\\[\nr_1\\colon(x,y,z)=(1,0,0)+\\lambda(1,1,-1)=(1+\\lambda,\\,\\lambda,\\,-\\lambda),\\qquad\nr_2\\colon(x,y,z)=(0,0,0)+\\mu(1,1,1)=(\\mu,\\,\\mu,\\,\\mu).\n\\]\nUn vector qualsevol $\\overrightarrow{A_1A_2}$, format en prendre $A_1\\in r_1$ i $A_2\\in r_2$, s'expressa com a\n$\\overrightarrow{A_1A_2}=(\\mu-\\lambda-1,\\,\\mu-\\lambda,\\,\\mu+\\lambda)$, amb $\\mu,\\lambda\\in\\mathbb{R}$. La recta que passi\nper $A_1$ i $A_2$ tallarà $r_1$ i $r_2$ perpendicularment si el vector $\\overrightarrow{A_1A_2}$ és perpendicular als\nvectors directors de cada recta, és a dir, si es compleixen les condicions següents:\n\\begin{align*}\n\\overrightarrow{A_1A_2}\\perp(1,1,-1)&\\;\\rightarrow\\;(\\mu-\\lambda-1,\\,\\mu-\\lambda,\\,\\mu+\\lambda)\\cdot(1,1,-1)=0,\\\\\n\\overrightarrow{A_1A_2}\\perp(1,1,1)&\\;\\rightarrow\\;(\\mu-\\lambda-1,\\,\\mu-\\lambda,\\,\\mu+\\lambda)\\cdot(1,1,1)=0 .\n\\end{align*}\nEfectuant els dos productes escalars, les condicions anteriors es converteixen en el sistema d'equacions\n$\\mu-3\\lambda-1=0$, $3\\mu-\\lambda-1=0$. Si a la segona equació li restem tres vegades la primera, obtenim\n$8\\lambda=-2$ i, per tant, $\\lambda=-\\frac14$; i, quan ho substituïm en la primera, obtenim\n$\\mu=1+3\\lambda=1-\\frac34=\\frac14$. Així, els punts respectius de cada recta són\n$A_1=\\left(\\frac34,-\\frac14,\\frac14\\right)$ i $A_2=\\left(\\frac14,\\frac14,\\frac14\\right)$.\\\\\nLa recta que uneix aquests punts és la perpendicular que talla totes dues rectes, i tindrà vector director\n$\\overrightarrow{A_1A_2}=\\left(-\\frac12,\\frac12,0\\right)\\sim(-1,1,0)$ i equació vectorial\n$(x,y,z)=\\left(\\frac14,\\frac14,\\frac14\\right)+\\alpha(-1,1,0)$. Per tant, l'equació paramètrica serà\n\\[\n\\boxed{(x,y,z)=\\left(\\tfrac14-\\alpha,\\,\\tfrac14+\\alpha,\\,\\tfrac14\\right),\\ \\text{amb }\\alpha\\in\\mathbb{R}}.\n\\]\n\n\\textit{Pauta oficial:} 0,25 per les expressions de $r_1$ i $r_2$, 0,25 pel vector $\\overrightarrow{A_1A_2}$, 0,5 per\nla condició de doble perpendicularitat, 0,5 pel càlcul d'$A_1$ i d'$A_2$, i 0,25 per l'equació de la recta final.\n\\end{solucio}\n\n\\apartat{0,75}\nCalculeu la distància entre $r_1$ i $r_2$.\n\n\\begin{solucio}\nAplicant l'apartat anterior, tenim que\n\\[\nd(r_1,r_2)=d(A_1,A_2)=\\bigl\\|\\overrightarrow{A_1A_2}\\bigr\\|=\\sqrt{\\left(-\\frac12\\right)^2+\\left(\\frac12\\right)^2+0^2}\n=\\frac{1}{\\sqrt2}=\\boxed{\\frac{\\sqrt2}{2}\\ \\text{u}}.\n\\]\nAmb independència de l'apartat a), aquest apartat es pot resoldre aplicant la fórmula general de la distància\nentre dues rectes, o bé via la distància entre una recta i la seva projecció perpendicular sobre l'altra.\n\n\\textit{Pauta oficial:} 0,25 pel plantejament de la distància entre les rectes i 0,5 pel càlcul de la distància.\n\\end{solucio}\n\n\\end{apartats}\n",
+   "pdf": "pau/geometria/geo-23s-q5/out/enunciat.pdf",
+   "pdf_solucio": "pau/geometria/geo-23s-q5/out/solucio.pdf",
+   "pdf_curt": "pau/geometria/geo-23s-q5/out/enunciat.pdf",
+   "pdf_solucio_curt": "pau/geometria/geo-23s-q5/out/solucio.pdf"
   },
   {
    "id": "pau/geometria/geo-24i-q6",
