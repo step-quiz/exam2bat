@@ -50,7 +50,8 @@ exercicis de la setmana 17 i va importar la sèrie 5 de la PAU de juny de 2026. 
 juny de 2025, i la vint-i-novena, setembre de 2025, amb l'exercici 3 sencer com a `pro-25s-q3`, i la trentena, la sèrie 4 de juny de 2025: tota la PAU de 2025 és al
 banc. La trenta-unena va importar setembre de 2024, la primera amb el format antic de sis exercicis, i la trenta-dosena, la sèrie 1 de juny de 2024. La trenta-tresena va deixar la llista de temes plegada
 per defecte i va importar la sèrie 5 de juny de 2024. La trenta-quatrena va importar les tres convocatòries de 2023: la PAU del
-repositori `pau` és sencera al banc. La màquina
+repositori `pau` és sencera al banc. La trenta-cinquena va explicar per què el 2023 no sortia a la
+pàgina (el navegador hi tenia un catàleg antic) i ho va evitar d'ara endavant. La màquina
 funciona de punta a punta. El que queda és
 sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents, la
 resta d'unitats, i estendre les tries a la u10.
@@ -1175,6 +1176,32 @@ tres gràfiques, les dues de la torre i les dues del jardí (sense el dibuix del
 *Overfull*, tots d'igualtats o resultats emmarcats en línia, es van passar a línies pròpies. Les bateries
 (38/19/77) i la integració amb jsdom passen, i el banc complet escriu 1.200 PDF.
 
+### 2.35 Sessió 35 · «No surt res del 2023»: un catàleg antic al navegador
+
+**El símptoma.** Després de pujar les tres convocatòries de 2023 i compilar, el professor no en veia cap a
+la pàgina, tot i que el repositori sí que les contenia.
+
+**El diagnòstic.** El repositori era correcte: les 18 carpetes, les 18 preguntes a `cataleg.js` (148 en
+total, generat el 2026-09-29 a les 08:30 UTC) i els 36 PDF. `app.js` no filtra per convocatòria i ordena
+cada bloc per codi, de manera que el primer clic a Àlgebra, Geometria o Anàlisi dona una pregunta de 2023.
+Carregant l'`index.html` real amb jsdom, el primer clic a Anàlisi dona, efectivament, «PAU juny 2023, sèrie
+1». El problema era, doncs, al navegador: l'`index.html` carregava `cataleg.js` i `app.js` sense cap marca
+de versió, i el navegador podia continuar fent servir la còpia que tenia desada (sobretot en una pestanya
+oberta d'abans, sense recarregar). El segell de dalt de la pàgina («148 preguntes · data») ho delata.
+Probabilitat és l'únic bloc que no comença per 2023, perquè aquell any la PAU no en tenia.
+
+**La solució.** L'`index.html` carrega ara els dos scripts amb un carregador petit que hi afegeix
+`?v=` i un número que canvia cada minut, i els executa en ordre (primer el catàleg i després l'app). Com a
+molt, el navegador fa servir una còpia d'un minut. No calia tocar el *workflow*, que no desa l'`index.html`,
+ni fer servir la `versio` del catàleg, que depèn només del preàmbul TeX. Es va comprovar amb jsdom,
+carregant l'`index.html` real com a fitxer local: el segell, la llista de temes i el primer clic a la PAU
+funcionen igual que abans; els únics errors, de `replaceState` amb adreces `file://`, són de jsdom i ja hi
+eren amb l'`index.html` antic. `app.js` no espera cap esdeveniment de càrrega, i per això es pot carregar
+així sense risc.
+
+**De passada.** El `compila.yml` de la còpia de treball tenia una línia `git add` diferent de la del
+repositori (totes dues desen el mateix); es va copiar la del repositori, que és la que val.
+
 ---
 
 ## 3. Decisions preses
@@ -1896,6 +1923,7 @@ del primer exercici.
 | Un retoc fet a mà en un fitxer baixat es perd a la descàrrega següent | Si val la pena, ha de pujar al banc: `\colorgrafica` en va sortir |
 | Una fórmula destacada després d'una línia curta queda enganxada (TeX hi posa l'espai «curt») | El preàmbul iguala `\abovedisplayshortskip` a l'espai normal |
 | En un Chromium sense pantalla, obrir un PDF el descarrega | Una prova que baixa el `.tex` no ha d'obrir cap visor abans |
+| Una pregunta nova no surt a la pàgina, tot i ser al repositori: el navegador fa servir un `cataleg.js` desat d'abans | Carregador amb `?v=` que canvia cada minut (2.35); per comprovar-ho, el segell de dalt diu quantes preguntes té el catàleg carregat |
 | Llegir dos exercicis per imatge a 64 ppp confon exponents i signes: $e^{2x^3-1}$ semblava $e^{x-1}$ | Enunciats a 92 ppp o més; si un resultat no quadra amb el criteri, primer cal tornar a llegir l'enunciat (2.34) |
 | La prova d'integració amb jsdom llegeix el `cataleg.js` del disc: si és el del repositori, restaurat en empaquetar, hi falten les tries i els casos fallen sense cap error real | Regenerar el catàleg (`--nomes-cataleg`) abans de passar-la (2.33) |
 | Un patró amb `\\[` dins d'una cadena `r"..."` no busca el claudàtor literal: la prova de colors no detectava res, i donava un fals positiu amb `[count=\i]` | Patró corregit i contraprova amb colors reals (2.32) |
@@ -1906,17 +1934,14 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 34. Parteix del de la sessió 33, que ja és al repositori.
+És el lliurament de la sessió 35. Parteix del de la sessió 34, que ja és al repositori.
 
 | Fitxer | Canvi |
 |---|---|
-| `pau/*/*-23s-q*/` (6 carpetes) | **Noves**: setembre de 2023, sèrie 2, `pregunta.tex` i `meta.json` |
-| `pau/*/*-23j2-q*/` (6 carpetes) | **Noves**: juny de 2023, sèrie 5, `pregunta.tex` i `meta.json` |
-| `pau/*/*-23j-q*/` (6 carpetes) | **Noves**: juny de 2023, sèrie 1, `pregunta.tex` i `meta.json` |
-| `README.md` | Estat |
-| `handout.md` | Secció 2.34, i les seccions 6.6, 7.3, 10 i 11 |
+| `index.html` | Els scripts es carreguen amb `?v=` i un número que canvia cada minut (2.35) |
+| `README.md` | Com es llegeix el segell de dalt de la pàgina |
+| `handout.md` | Secció 2.35, i les seccions 10 i 11 |
 
-No porta cap PDF ni `cataleg.js`. Conté també les preguntes dels dos ZIP parcials de la sessió
-(`lliurament-sessio34a` i `34b`), que ja no cal pujar. Després de pujar-lo a `_uploads`, cal fer **Run
-workflow**. Amb la memòria, el resum hauria de dir «36 PDF desats · 1164 reutilitzats». Els tres PDF de
-revisió van a part: no s'han de pujar al repositori.
+No porta cap PDF ni `cataleg.js`, i no cal fer **Run workflow**: l'`index.html` no és una font del banc, i
+en pujar-lo per `_uploads` el lloc es publica igualment al cap d'un parell de minuts. Si es fa, no passa res:
+el resum dirà «0 PDF desats · 1200 reutilitzats».

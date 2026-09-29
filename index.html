@@ -59,7 +59,20 @@
   </div>
 </footer>
 
-<script src="cataleg.js"></script>
-<script src="assets/app.js"></script>
+<!-- El catàleg i l'app es demanen amb un paràmetre que canvia cada minut. Així, després d'una
+     compilació, el navegador no pot continuar ensenyant una còpia antiga que tenia desada: com a
+     molt, en fa servir una d'un minut. Els dos scripts s'executen en ordre (async = false): primer
+     el catàleg i després l'app. També funciona si la pàgina s'obre com a fitxer local. -->
+<script>
+  (function () {
+    var v = Math.floor(Date.now() / 60000);
+    ['cataleg.js', 'assets/app.js'].forEach(function (src) {
+      var s = document.createElement('script');
+      s.src = src + '?v=' + v;
+      s.async = false;
+      document.body.appendChild(s);
+    });
+  })();
+</script>
 </body>
 </html>

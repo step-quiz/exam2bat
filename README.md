@@ -8,7 +8,7 @@ veus l'enunciat i la solució en PDF, i en baixes el codi `.tex`, sol o muntat e
 complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva procedència
 («PAU juny 2026, sèrie 1»).
 
-> **Estat a 28 de setembre de 2026:** 148 preguntes. N'hi ha 24 de la unitat 7 (Límits i
+> **Estat a 29 de setembre de 2026:** 148 preguntes. N'hi ha 24 de la unitat 7 (Límits i
 > continuïtat) en 8 temes i 18 de la unitat 8 (Derivades) en 6 temes, totes amb tres variants
 > per tema; 12 de la unitat 9 (Aplicacions de les derivades) en 4 temes, també amb tres
 > variants; 15 de la unitat 10 (Representació de funcions) en 5 temes, també amb tres variants; 12 de la unitat 13 (Probabilitat) en 4 temes, també amb tres
@@ -22,7 +22,9 @@ complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva
 
 ## Ús
 
-1. Obre `index.html` amb doble clic. No cal servidor ni connexió.
+1. Obre `index.html` amb doble clic. No cal servidor ni connexió. A dalt de tot, un segell diu
+   quantes preguntes té el banc carregat i quan es va generar el catàleg: si hi falta alguna cosa
+   que acabes de compilar, és que el navegador encara no l'ha rebuda, i n'hi ha prou de recarregar.
 2. A l'esquerra hi ha els temes, agrupats per unitat. La PAU hi té el seu grup propi, amb
    quatre blocs: Àlgebra, Geometria, Anàlisi i Probabilitat. Totes les unitats, PAU inclosa, surten plegades: cada una es desplega clicant-ne
    el títol. Plegada, diu quantes preguntes seves hi ha a l'examen, i el navegador recorda quines
