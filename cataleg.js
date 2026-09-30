@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 13:33 UTC",
+ "generat": "2026-09-30 18:09 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -329,6 +329,24 @@ const BANC = {
    "unitat": "u6",
    "nom": "Punts a una distància donada",
    "descripcio": "Punts d'una recta a una distància donada d'un pla, i punts equidistants de dos plans."
+  },
+  {
+   "slug": "primitiva",
+   "unitat": "u11",
+   "nom": "Funció primitiva",
+   "descripcio": "Comprovar una primitiva derivant (F'(x)=f(x) per a tot x), la família F(x)+k i la primitiva que compleix una condició."
+  },
+  {
+   "slug": "integrals-immediates",
+   "unitat": "u11",
+   "nom": "Integrals immediates",
+   "descripcio": "Primitives de polinomis, potències i radicals, 1/x, exponencials i trigonomètriques, sense canvi de variable, per parts ni fraccions simples."
+  },
+  {
+   "slug": "grafiques-primitiva",
+   "unitat": "u11",
+   "nom": "Gràfiques de F, f i f'",
+   "descripcio": "Llegir en la gràfica de f el creixement, els extrems i la curvatura d'una primitiva F, i reconèixer les gràfiques de F, f i f'."
   },
   {
    "slug": "integral-definida",
@@ -4356,6 +4374,402 @@ const BANC = {
    "pdf_solucio": "u10/estudi-trossos/q003/out/solucio.pdf",
    "pdf_curt": "u10/estudi-trossos/q003/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u10/estudi-trossos/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u11/grafiques-primitiva/q001",
+   "unitat": "u11",
+   "tema": "grafiques-primitiva",
+   "codi": "q001",
+   "titol": "La gràfica de f diu com creix i com es corba una primitiva F",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    43,
+    51
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "interpretació gràfica",
+    "monotonia i curvatura"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "primitiva-grafica",
+     "defecte_llarg": "expressio",
+     "defecte_curt": "expressio",
+     "items": [
+      {
+       "id": "expressio",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/expressio/enunciat.pdf",
+       "pdf_solucio": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/expressio/solucio.pdf",
+       "pdf_curt": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/expressio/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/expressio/solucio-curt.pdf"
+      },
+      {
+       "id": "curvatura",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/curvatura/enunciat.pdf",
+       "pdf_solucio": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/curvatura/solucio.pdf",
+       "pdf_curt": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/curvatura/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/grafiques-primitiva/q001/out/tries/primitiva-grafica/curvatura/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "La gràfica de la funció $f$ és la paràbola del dibuix, i $F$ és una primitiva de $f$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.6cm,y=0.45cm]\n  \\draw[gray!55,very thin,step=1] (-1,-1) grid (5,6);\n  \\draw[->] (-1.4,0) -- (5.4,0) node[below right] {$x$};\n  \\draw[->] (0,-1.4) -- (0,6.4) node[above left] {$y$};\n  \\foreach \\i in {1,3,4} \\draw (\\i,0.15) -- (\\i,-0.15) node[below,font=\\scriptsize] {$\\i$};\n  \\draw (2,0.15) -- (2,-0.15) node[pos=0,above,font=\\scriptsize] {$2$};\n  \\foreach \\j in {1,3} \\draw (0.1,\\j) -- (-0.1,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[\\colorgrafica,very thick,domain=-0.6:4.6,samples=60] plot (\\x,{\\x*\\x-4*\\x+3});\n  \\node[\\colorgrafica,font=\\small,right] at (4.5,4.4) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nLlegint la gràfica de $f$, troba els intervals de creixement i de decreixement de $F$, i les abscisses\ndels seus extrems relatius.\n\n\\begin{solucio}\nCom que $F'(x)=f(x)$ per a tot $x$, $F$ creix on $f>0$ i decreix on $f<0$. La paràbola talla l'eix a\n$x=1$ i $x=3$: $F$ creix a $(-\\infty,1)$ i a $(3,+\\infty)$, i decreix a $(1,3)$. Té un màxim relatiu a\n$x=1$ i un mínim relatiu a $x=3$.\n\\end{solucio}\n\n\\begin{tria}{primitiva-grafica}\n\\itemtria{expressio}{1}{1,25}\nTroba l'expressió de $f$ a partir de la gràfica, i la primitiva $F$ que compleix $F(0)=0$. Quant valen\nel màxim i el mínim relatius de $F$?\n\n\\begin{solucio}\nLa paràbola té arrels 1 i 3 i passa per $(0,3)$: $f(x)=a(x-1)(x-3)$ amb $3a=3$, és a dir,\n$f(x)=x^2-4x+3$. Les primitives són $\\frac{x^3}{3}-2x^2+3x+k$, i $F(0)=0$ dona $k=0$.\\\\\nMàxim: $F(1)=\\frac13-2+3=\\frac43$. Mínim: $F(3)=9-18+9=0$.\n\\end{solucio}\n\n\\itemtria{curvatura}{1}{1,25}\nTroba els intervals de concavitat i de convexitat de $F$ i el seu punt d'inflexió. Dibuixa l'aspecte\nque té la gràfica d'una primitiva $F$.\n\n\\begin{solucio}\n$F''(x)=f'(x)$: la curvatura de $F$ la dona el creixement de $f$. La paràbola decreix a $(-\\infty,2)$ i\ncreix a $(2,+\\infty)$; per tant, $F''<0$ a $(-\\infty,2)$, on $F$ és còncava ($\\cap$), i $F''>0$ a\n$(2,+\\infty)$, on és convexa ($\\cup$). El punt d'inflexió és a $x=2$, el vèrtex de la paràbola.\\\\\nLa gràfica de $F$ és la d'una cúbica que puja fins al màxim a $x=1$, baixa fins al mínim a $x=3$\ncanviant de curvatura a $x=2$, i torna a pujar.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCom és la gràfica de $f'$? Relaciona el seu signe amb el creixement de $f$.\n\n\\begin{solucio}\n$f'(x)=2x-4$: una recta que talla l'eix a $x=2$. És negativa a $(-\\infty,2)$, on la paràbola decreix, i\npositiva a $(2,+\\infty)$, on creix. Al vèrtex, $f'(2)=0$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u11/grafiques-primitiva/q001/out/enunciat.pdf",
+   "pdf_solucio": "u11/grafiques-primitiva/q001/out/solucio.pdf",
+   "pdf_curt": "u11/grafiques-primitiva/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u11/grafiques-primitiva/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u11/grafiques-primitiva/q002",
+   "unitat": "u11",
+   "tema": "grafiques-primitiva",
+   "codi": "q002",
+   "titol": "Tres gràfiques: quina és f, quina és f' i quina és una primitiva F",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    43,
+    47
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "interpretació gràfica"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "tres-grafiques",
+     "defecte_llarg": "expressio",
+     "defecte_curt": "expressio",
+     "items": [
+      {
+       "id": "expressio",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/expressio/enunciat.pdf",
+       "pdf_solucio": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/expressio/solucio.pdf",
+       "pdf_curt": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/expressio/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/expressio/solucio-curt.pdf"
+      },
+      {
+       "id": "altra-primitiva",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/altra-primitiva/enunciat.pdf",
+       "pdf_solucio": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/altra-primitiva/solucio.pdf",
+       "pdf_curt": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/altra-primitiva/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/grafiques-primitiva/q002/out/tries/tres-grafiques/altra-primitiva/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Les tres gràfiques del dibuix són les d'una funció $f$, de la seva derivada $f'$ i d'una primitiva $F$\nde $f$, en un ordre qualsevol.\n\\begin{center}\n\\foreach \\nom/\\funcio/\\dom in {A/{\\x*\\x-1}/{-2.05:2.05},B/{2*\\x}/{-1.6:1.6},C/{\\x*\\x*\\x/3-\\x}/{-2.25:2.25}}{%\n\\begin{tikzpicture}[x=0.55cm,y=0.45cm]\n  \\draw[gray!55,very thin,step=1] (-2.5,-3.5) grid (2.5,3.5);\n  \\draw[->] (-2.7,0) -- (2.9,0) node[below,font=\\scriptsize] {$x$};\n  \\draw[->] (0,-3.7) -- (0,3.9) node[left,font=\\scriptsize] {$y$};\n  \\foreach \\i in {-2,-1,1,2} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\tiny] {$\\i$};\n  \\foreach \\j in {-2,2} \\draw (0.1,\\j) -- (-0.1,\\j) node[left,font=\\tiny] {$\\j$};\n  \\draw[\\colorgrafica,very thick,domain=\\dom,samples=60] plot (\\x,\\funcio);\n  \\node[font=\\small\\bfseries] at (0,-4.6) {\\nom};\n\\end{tikzpicture}\\hspace{0.8cm}}\n\\end{center}\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDigues quina gràfica és $f$, quina és $f'$ i quina és $F$. Justifica-ho.\n\n\\begin{solucio}\nOn una funció té un extrem relatiu, la seva derivada s'anul·la. La C té extrems a $x=-1$ i $x=1$, on la\nA val 0; i la A té un mínim a $x=0$, on la B val 0. Per tant, la A és la derivada de la C, i la B és la\nderivada de la A: $F$ és la C, $f$ és la A i $f'$ és la B.\\\\\nTambé es veu en el creixement: la C creix on la A és positiva, i la A creix on la B és positiva.\n\\end{solucio}\n\n\\begin{tria}{tres-grafiques}\n\\itemtria{expressio}{1}{1,25}\nLa gràfica A és la de $y=x^2-1$. Troba la primitiva de $x^2-1$ que passa per l'origen, i comprova que\nté els extrems relatius on els té la gràfica C.\n\n\\begin{solucio}\n$F(x)=\\frac{x^3}{3}-x+k$, i $F(0)=0$ dona $k=0$: $F(x)=\\frac{x^3}{3}-x$. $F'(x)=x^2-1=0$ a $x=\\pm1$:\nmàxim $F(-1)=\\frac23$ i mínim $F(1)=-\\frac23$, els de la gràfica C.\n\\end{solucio}\n\n\\itemtria{altra-primitiva}{1}{1,25}\nLa gràfica A és la de $y=x^2-1$. Troba la primitiva $G$ de $x^2-1$ que passa pel punt $(0,2)$. Quina\nrelació té la seva gràfica amb la C? On té els extrems relatius?\n\n\\begin{solucio}\n$G(x)=\\frac{x^3}{3}-x+k$ i $G(0)=k=2$: $G(x)=\\frac{x^3}{3}-x+2$. Com que $G$ i la C es diferencien en la\nconstant 2, la gràfica de $G$ és la C desplaçada 2 unitats cap amunt. Té els extrems a les mateixes\nabscisses: màxim $\\left(-1,\\frac83\\right)$ i mínim $\\left(1,\\frac43\\right)$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nHi ha alguna primitiva de la funció A que tingui un sol extrem relatiu? Raona-ho.\n\n\\begin{solucio}\nNo. Totes les primitives de $f$ són $F(x)+k$, i tenen la mateixa derivada $f$, que s'anul·la i canvia\nde signe a $x=-1$ i a $x=1$. Totes tenen un màxim a $x=-1$ i un mínim a $x=1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u11/grafiques-primitiva/q002/out/enunciat.pdf",
+   "pdf_solucio": "u11/grafiques-primitiva/q002/out/solucio.pdf",
+   "pdf_curt": "u11/grafiques-primitiva/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u11/grafiques-primitiva/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u11/integrals-immediates/q001",
+   "unitat": "u11",
+   "tema": "integrals-immediates",
+   "codi": "q001",
+   "titol": "Integrals immediates de polinomis, de radicals i de racionals senzilles",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    52,
+    53,
+    54
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "integrals immediates",
+    "potències",
+    "logaritme"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "immediates-potencies",
+     "defecte_llarg": "radicals",
+     "defecte_curt": "radicals",
+     "items": [
+      {
+       "id": "radicals",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/integrals-immediates/q001/out/tries/immediates-potencies/radicals/enunciat.pdf",
+       "pdf_solucio": "u11/integrals-immediates/q001/out/tries/immediates-potencies/radicals/solucio.pdf",
+       "pdf_curt": "u11/integrals-immediates/q001/out/tries/immediates-potencies/radicals/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/integrals-immediates/q001/out/tries/immediates-potencies/radicals/solucio-curt.pdf"
+      },
+      {
+       "id": "racionals",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/integrals-immediates/q001/out/tries/immediates-potencies/racionals/enunciat.pdf",
+       "pdf_solucio": "u11/integrals-immediates/q001/out/tries/immediates-potencies/racionals/solucio.pdf",
+       "pdf_curt": "u11/integrals-immediates/q001/out/tries/immediates-potencies/racionals/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/integrals-immediates/q001/out/tries/immediates-potencies/racionals/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula les integrals $\\displaystyle\\int(3x^2+4x-2)\\,dx$ i $\\displaystyle\\int(x-1)^3\\,dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int(3x^2+4x-2)\\,dx=x^3+2x^2-2x+k$ i $\\displaystyle\\int(x-1)^3\\,dx=\\frac{(x-1)^4}{4}+k$.\n\\end{solucio}\n\n\\begin{tria}{immediates-potencies}\n\\itemtria{radicals}{1}{1,25}\nCalcula $\\displaystyle\\int\\left(2\\sqrt x-\\frac{1}{\\sqrt x}\\right)dx$ i\n$\\displaystyle\\int\\frac{1}{\\sqrt[3]x}\\,dx$.\n\n\\begin{solucio}\nEscrivint les arrels com a potències, $2x^{1/2}-x^{-1/2}$ i $x^{-1/3}$:\n\\[\n\\int\\left(2x^{1/2}-x^{-1/2}\\right)dx=2\\,\\frac{x^{3/2}}{3/2}-\\frac{x^{1/2}}{1/2}+k=\\frac43x\\sqrt x-2\\sqrt x+k,\n\\qquad\n\\int x^{-1/3}\\,dx=\\frac{x^{2/3}}{2/3}+k=\\frac32\\sqrt[3]{x^2}+k.\n\\]\n\\end{solucio}\n\n\\itemtria{racionals}{1}{1,25}\nCalcula $\\displaystyle\\int\\left(\\frac1x+\\frac2{x^2}\\right)dx$ i\n$\\displaystyle\\int\\left(\\frac{3}{x+2}-\\frac{1}{(x-3)^2}\\right)dx$.\n\n\\begin{solucio}\n$\\frac1x$ té primitiva $\\ln|x|$, i $\\frac2{x^2}=2x^{-2}$ té primitiva $2\\frac{x^{-1}}{-1}=-\\frac2x$:\n$\\displaystyle\\int\\left(\\frac1x+\\frac2{x^2}\\right)dx=\\ln|x|-\\frac2x+k$.\\\\\nDe la mateixa manera, amb $x+2$ i $x-3$ al lloc de $x$:\n$\\displaystyle\\int\\left(\\frac{3}{x+2}-\\frac{1}{(x-3)^2}\\right)dx=3\\ln|x+2|+\\frac{1}{x-3}+k$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula $\\displaystyle\\int(1-2x)^2\\,dx$ desenvolupant el quadrat. Un company ha obtingut\n$-\\frac{(1-2x)^3}{6}+k$. Té raó?\n\n\\begin{solucio}\n$\\displaystyle\\int(1-4x+4x^2)\\,dx=x-2x^2+\\frac43x^3+k$. El company també té raó: la derivada de\n$-\\frac{(1-2x)^3}{6}$ és $-\\frac{3(1-2x)^2\\cdot(-2)}{6}=(1-2x)^2$. Les dues primitives es diferencien en\nuna constant: $-\\frac{(1-2x)^3}{6}=-\\frac16+x-2x^2+\\frac43x^3$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u11/integrals-immediates/q001/out/enunciat.pdf",
+   "pdf_solucio": "u11/integrals-immediates/q001/out/solucio.pdf",
+   "pdf_curt": "u11/integrals-immediates/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u11/integrals-immediates/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u11/integrals-immediates/q002",
+   "unitat": "u11",
+   "tema": "integrals-immediates",
+   "codi": "q002",
+   "titol": "Integrals immediates d'exponencials, logaritmes, trigonomètriques i quocients que se separen",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    48,
+    49,
+    50
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "integrals immediates",
+    "exponencials",
+    "trigonomètriques"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "immediates-altres",
+     "defecte_llarg": "trigonometriques",
+     "defecte_curt": "trigonometriques",
+     "items": [
+      {
+       "id": "trigonometriques",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/integrals-immediates/q002/out/tries/immediates-altres/trigonometriques/enunciat.pdf",
+       "pdf_solucio": "u11/integrals-immediates/q002/out/tries/immediates-altres/trigonometriques/solucio.pdf",
+       "pdf_curt": "u11/integrals-immediates/q002/out/tries/immediates-altres/trigonometriques/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/integrals-immediates/q002/out/tries/immediates-altres/trigonometriques/solucio-curt.pdf"
+      },
+      {
+       "id": "quocients",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/integrals-immediates/q002/out/tries/immediates-altres/quocients/enunciat.pdf",
+       "pdf_solucio": "u11/integrals-immediates/q002/out/tries/immediates-altres/quocients/solucio.pdf",
+       "pdf_curt": "u11/integrals-immediates/q002/out/tries/immediates-altres/quocients/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/integrals-immediates/q002/out/tries/immediates-altres/quocients/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula les integrals $\\displaystyle\\int\\left(e^{2x}+2^x\\right)dx$ i\n$\\displaystyle\\int\\frac{4}{2x+3}\\,dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int\\left(e^{2x}+2^x\\right)dx=\\frac{e^{2x}}{2}+\\frac{2^x}{\\ln2}+k$. Com que la derivada de\n$2x+3$ és 2, $\\displaystyle\\int\\frac{4}{2x+3}\\,dx=2\\int\\frac{2}{2x+3}\\,dx=2\\ln|2x+3|+k$.\n\\end{solucio}\n\n\\begin{tria}{immediates-altres}\n\\itemtria{trigonometriques}{1}{1,25}\nCalcula $\\displaystyle\\int\\bigl(\\cos(3x)+3\\sin x\\bigr)\\,dx$ i $\\displaystyle\\int\\sin(x-\\pi)\\,dx$.\nComprova els resultats derivant.\n\n\\begin{solucio}\n$\\displaystyle\\int\\bigl(\\cos(3x)+3\\sin x\\bigr)\\,dx=\\frac{\\sin(3x)}{3}-3\\cos x+k$: la derivada és\n$\\frac{3\\cos(3x)}{3}+3\\sin x$.\\\\\n$\\displaystyle\\int\\sin(x-\\pi)\\,dx=-\\cos(x-\\pi)+k$: la derivada és $\\sin(x-\\pi)$.\n\\end{solucio}\n\n\\itemtria{quocients}{1}{1,25}\nCalcula $\\displaystyle\\int\\frac{x^2+1}{x}\\,dx$ i $\\displaystyle\\int\\frac{(x+1)^2}{\\sqrt x}\\,dx$,\nseparant cada quocient en una suma.\n\n\\begin{solucio}\n$\\frac{x^2+1}{x}=x+\\frac1x$, i $\\displaystyle\\int\\frac{x^2+1}{x}\\,dx=\\frac{x^2}{2}+\\ln|x|+k$.\\\\\n$\\frac{(x+1)^2}{\\sqrt x}=\\frac{x^2+2x+1}{x^{1/2}}=x^{3/2}+2x^{1/2}+x^{-1/2}$, i\n\\[\n\\int\\frac{(x+1)^2}{\\sqrt x}\\,dx=\\frac25x^{5/2}+\\frac43x^{3/2}+2x^{1/2}+k\n=\\frac25x^2\\sqrt x+\\frac43x\\sqrt x+2\\sqrt x+k.\n\\]\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula $\\displaystyle\\int\\left(\\frac{1}{1+x^2}+\\frac{1}{\\sqrt{1-x^2}}\\right)dx$ i comprova el\nresultat derivant.\n\n\\begin{solucio}\nSón dues integrals immediates: $\\operatorname{arctg}x+\\arcsin x+k$. Derivant,\n$\\frac{1}{1+x^2}+\\frac{1}{\\sqrt{1-x^2}}$, que és la funció de partida.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u11/integrals-immediates/q002/out/enunciat.pdf",
+   "pdf_solucio": "u11/integrals-immediates/q002/out/solucio.pdf",
+   "pdf_curt": "u11/integrals-immediates/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u11/integrals-immediates/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u11/primitiva/q001",
+   "unitat": "u11",
+   "tema": "primitiva",
+   "codi": "q001",
+   "titol": "Comprovar una primitiva derivant, i la primitiva que compleix una condició",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    43,
+    45,
+    46
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "constant d'integració"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "primitiva-condicions",
+     "defecte_llarg": "un-punt",
+     "defecte_curt": "un-punt",
+     "items": [
+      {
+       "id": "un-punt",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/primitiva/q001/out/tries/primitiva-condicions/un-punt/enunciat.pdf",
+       "pdf_solucio": "u11/primitiva/q001/out/tries/primitiva-condicions/un-punt/solucio.pdf",
+       "pdf_curt": "u11/primitiva/q001/out/tries/primitiva-condicions/un-punt/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/primitiva/q001/out/tries/primitiva-condicions/un-punt/solucio-curt.pdf"
+      },
+      {
+       "id": "segona-derivada",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/primitiva/q001/out/tries/primitiva-condicions/segona-derivada/enunciat.pdf",
+       "pdf_solucio": "u11/primitiva/q001/out/tries/primitiva-condicions/segona-derivada/solucio.pdf",
+       "pdf_curt": "u11/primitiva/q001/out/tries/primitiva-condicions/segona-derivada/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/primitiva/q001/out/tries/primitiva-condicions/segona-derivada/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $F(x)=(x^2+1)^3$ és una primitiva de $f(x)=6x(x^2+1)^2$. Explica per què\n$G(x)=(x^2+1)^3-5$ també n'és una primitiva.\n\n\\begin{solucio}\n$F'(x)=3(x^2+1)^2\\cdot2x=6x(x^2+1)^2=f(x)$ per a tot $x$, i per tant $F$ és una primitiva de $f$.\\\\\n$G(x)=F(x)-5$, i la derivada d'una constant és 0: $G'(x)=F'(x)=f(x)$. Totes les funcions $F(x)+k$ són\nprimitives de $f$.\n\\end{solucio}\n\n\\begin{tria}{primitiva-condicions}\n\\itemtria{un-punt}{1}{1,25}\nTroba la primitiva $F$ de la funció $f(x)=3x^2-4x+1$ que compleix $F(1)=2$.\n\n\\begin{solucio}\nLes primitives de $f$ són $F(x)=x^3-2x^2+x+k$. Com que $F(1)=1-2+1+k=k$, la condició $F(1)=2$ dona\n$k=2$: $F(x)=x^3-2x^2+x+2$.\n\\end{solucio}\n\n\\itemtria{segona-derivada}{1}{1,25}\nTroba la funció $F$ que compleix $F''(x)=6x$, $F'(1)=2$ i $F(0)=1$.\n\n\\begin{solucio}\n$F'$ és una primitiva de $F''$: $F'(x)=3x^2+k_1$, i $F'(1)=3+k_1=2$ dona $k_1=-1$.\\\\\n$F$ és una primitiva de $F'(x)=3x^2-1$: $F(x)=x^3-x+k_2$, i $F(0)=k_2=1$. Per tant, $F(x)=x^3-x+1$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nLes funcions $F(x)=\\sin^2x$ i $G(x)=-\\cos^2x$, són primitives de la mateixa funció? En quant es\ndiferencien?\n\n\\begin{solucio}\n$F'(x)=2\\sin x\\cos x=\\sin(2x)$ i $G'(x)=-2\\cos x\\cdot(-\\sin x)=\\sin(2x)$: totes dues són primitives de\n$\\sin(2x)$. Es diferencien en una constant: $F(x)-G(x)=\\sin^2x+\\cos^2x=1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u11/primitiva/q001/out/enunciat.pdf",
+   "pdf_solucio": "u11/primitiva/q001/out/solucio.pdf",
+   "pdf_curt": "u11/primitiva/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u11/primitiva/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u11/primitiva/q002",
+   "unitat": "u11",
+   "tema": "primitiva",
+   "codi": "q002",
+   "titol": "Primitives amb una condició inicial, i la posició a partir de la velocitat",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    45,
+    46,
+    51,
+    123
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "condició inicial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "primitiva-condicio",
+     "defecte_llarg": "exponencial",
+     "defecte_curt": "exponencial",
+     "items": [
+      {
+       "id": "exponencial",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/primitiva/q002/out/tries/primitiva-condicio/exponencial/enunciat.pdf",
+       "pdf_solucio": "u11/primitiva/q002/out/tries/primitiva-condicio/exponencial/solucio.pdf",
+       "pdf_curt": "u11/primitiva/q002/out/tries/primitiva-condicio/exponencial/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/primitiva/q002/out/tries/primitiva-condicio/exponencial/solucio-curt.pdf"
+      },
+      {
+       "id": "velocitat",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u11/primitiva/q002/out/tries/primitiva-condicio/velocitat/enunciat.pdf",
+       "pdf_solucio": "u11/primitiva/q002/out/tries/primitiva-condicio/velocitat/solucio.pdf",
+       "pdf_curt": "u11/primitiva/q002/out/tries/primitiva-condicio/velocitat/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u11/primitiva/q002/out/tries/primitiva-condicio/velocitat/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $F(x)=\\ln(x^2+4)$ és una primitiva de $f(x)=\\dfrac{2x}{x^2+4}$. Quina és la primitiva\nde $f$ que val 0 a $x=0$?\n\n\\begin{solucio}\n$F'(x)=\\dfrac{1}{x^2+4}\\cdot2x=\\dfrac{2x}{x^2+4}=f(x)$ per a tot $x$.\\\\\nLes primitives de $f$ són $\\ln(x^2+4)+k$. A $x=0$ valen $\\ln4+k$, que és 0 si $k=-\\ln4$: la primitiva\nbuscada és $\\ln(x^2+4)-\\ln4=\\ln\\dfrac{x^2+4}{4}$.\n\\end{solucio}\n\n\\begin{tria}{primitiva-condicio}\n\\itemtria{exponencial}{1}{1,25}\nTroba la primitiva de $f(x)=e^{2x}+\\dfrac1x$, per a $x>0$, que compleix $F(1)=\\dfrac{e^2}{2}$.\n\n\\begin{solucio}\n$F(x)=\\dfrac{e^{2x}}{2}+\\ln x+k$. Com que $F(1)=\\dfrac{e^2}{2}+0+k$, la condició dona $k=0$:\n$F(x)=\\dfrac{e^{2x}}{2}+\\ln x$.\n\\end{solucio}\n\n\\itemtria{velocitat}{1}{1,25}\nUn mòbil es desplaça en línia recta amb velocitat $v(t)=3t^2-2t$ (en m/s). Sabent que la posició és la\nprimitiva de la velocitat, i que a l'instant $t=0$ el mòbil és a $s(0)=5$\\,m, troba la posició $s(t)$ i\non és a l'instant $t=2$.\n\n\\begin{solucio}\n$s(t)=t^3-t^2+k$, i $s(0)=k=5$: $s(t)=t^3-t^2+5$. A l'instant $t=2$, $s(2)=8-4+5=9$\\,m.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nSi $f$ és un polinomi de grau 3, de quin grau són les seves primitives? Troba la primitiva de\n$f(x)=4x^3-6x$ que s'anul·la a $x=1$.\n\n\\begin{solucio}\nDe grau 4: integrar $x^n$ dona $\\frac{x^{n+1}}{n+1}$, que té un grau més (i derivar en treu un).\\\\\n$F(x)=x^4-3x^2+k$, i $F(1)=1-3+k=0$ dona $k=2$: $F(x)=x^4-3x^2+2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u11/primitiva/q002/out/enunciat.pdf",
+   "pdf_solucio": "u11/primitiva/q002/out/solucio.pdf",
+   "pdf_curt": "u11/primitiva/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u11/primitiva/q002/out/solucio-curt.pdf"
   },
   {
    "id": "u12/area-corba-eix/q001",
