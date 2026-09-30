@@ -358,6 +358,10 @@ paritat, i finalment desa els PDF i el catàleg amb un commit propi. Si mentrest
 push a la branca, el bot incorpora aquell commit i torna a provar-ho, fins a tres cops. També es
 pot llançar a mà, des de **Actions → Compila el banc → Run workflow**.
 
+**Canvis que arriben per *pull request*.** Quan una sessió de Claude treballa directament sobre el
+repositori, lliura els canvis com una *pull request* cap a `main`. N'hi ha prou de fer **Merge pull
+request → Confirm merge**: la fusió és un push normal a `main`, i l'Action s'executa sola.
+
 **Canvis que arriben per `_uploads`.** Els lliuraments es pugen com a ZIP a la carpeta
 `_uploads`, i un workflow d'extracció els descomprimeix a l'arrel. Aquest commit del bot **no**
 dispara «Compila el banc», perquè GitHub no encadena workflows. Per això, després de cada

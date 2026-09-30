@@ -1,6 +1,6 @@
 {
   "titol": "La inversa a partir de (A − 2I)² = 3I i una equació matricial",
-  "unitats": [],
+  "unitats": ["u1", "u2"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

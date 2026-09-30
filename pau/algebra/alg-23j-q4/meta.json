@@ -1,6 +1,6 @@
 {
   "titol": "Sistema amb paràmetre λ: discussió amb un determinant cúbic, i els tres plans que es tallen en una recta",
-  "unitats": [],
+  "unitats": ["u2", "u3", "u5"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

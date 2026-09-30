@@ -1,6 +1,6 @@
 {
   "titol": "Matrius M i N: invertibilitat de MN i de NM, i un sistema compatible indeterminat",
-  "unitats": [],
+  "unitats": ["u1", "u2", "u3"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

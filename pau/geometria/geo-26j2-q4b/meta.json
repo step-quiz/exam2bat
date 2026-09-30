@@ -1,6 +1,6 @@
 {
   "titol": "Braç robòtic: distància recorreguda, distància a un pla i punt de xoc",
-  "unitats": [],
+  "unitats": ["u5", "u6"],
   "dificultat": "●○○",
   "minuts": 22,
   "etiquetes": [

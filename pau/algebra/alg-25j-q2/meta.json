@@ -1,6 +1,6 @@
 {
   "titol": "Sistema lineal amb paràmetre p: discussió, resolució i solucions amb xy = 10",
-  "unitats": [],
+  "unitats": ["u2", "u3"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

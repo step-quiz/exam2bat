@@ -1,6 +1,6 @@
 {
   "titol": "Sistema amb paràmetre a i la posició relativa de tres plans",
-  "unitats": [],
+  "unitats": ["u2", "u3", "u5"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

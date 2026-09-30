@@ -1,6 +1,6 @@
 {
   "titol": "Dues matrius amb AB = A i BA = B, i per què totes dues són idempotents",
-  "unitats": [],
+  "unitats": ["u1"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [
