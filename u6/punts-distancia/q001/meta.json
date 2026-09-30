@@ -1,0 +1,15 @@
+{
+  "titol": "Punts d'una recta a una distància donada d'un pla, i plans a una distància donada",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    88,
+    92
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "distància punt-pla",
+    "paràmetres"
+  ]
+}

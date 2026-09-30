@@ -1,0 +1,15 @@
+{
+  "titol": "Àrea entre dues paràboles i entre dues corbes que es creuen dins l'interval",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    114,
+    111
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "àrea entre corbes",
+    "integral definida"
+  ]
+}

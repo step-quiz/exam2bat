@@ -1,0 +1,54 @@
+Considera el punt $P(3,-1,2)$ i el pla $\pi\colon 2x-y+2z+1=0$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula la distància del punt $P$ al pla $\pi$.
+
+\begin{solucio}
+\[
+d(P,\pi)=\frac{|2\cdot3-(-1)+2\cdot2+1|}{\sqrt{2^2+(-1)^2+2^2}}=\frac{12}{3}=4.
+\]
+\end{solucio}
+
+\begin{tria}{altres-distancies}
+\itemtria{recta-pla}{1}{1,25}
+Comprova que la recta $r\colon\left\{\begin{aligned}x&=1+t\\y&=2+2t\\z&=-1\end{aligned}\right.$ és
+paral·lela a $\pi$ i calcula la distància entre $r$ i $\pi$.
+
+\begin{solucio}
+$\vec u=(1,2,0)$ i $\vec n=(2,-1,2)$: $\vec u\cdot\vec n=2-2+0=0$, i el punt $(1,2,-1)$ de $r$ no és
+de $\pi$ ($2-2-2+1=-1\ne0$). La recta és paral·lela al pla, i la distància és la de qualsevol punt de
+la recta al pla:
+\[
+d(r,\pi)=\frac{|2-2-2+1|}{3}=\frac13.
+\]
+\end{solucio}
+
+\itemtria{plans-paralels}{1}{1,25}
+Comprova que el pla $\pi'\colon 4x-2y+4z-16=0$ és paral·lel a $\pi$ i calcula la distància entre tots
+dos plans.
+
+\begin{solucio}
+$\pi'$ és $2x-y+2z-8=0$: el mateix vector normal que $\pi$ i un altre terme independent. Són
+paral·lels. La distància és la d'un punt qualsevol de $\pi$, per exemple $(0,1,0)$, a $\pi'$:
+\[
+d(\pi,\pi')=\frac{|0-1+0-8|}{3}=\frac93=3.
+\]
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba el punt $Q$ del pla $\pi$ més proper a $P$, i comprova que $|\overrightarrow{PQ}|$ coincideix amb la
+distància del primer apartat.
+
+\begin{solucio}
+$Q$ és el punt de tall de $\pi$ amb la recta perpendicular per $P$, $(3+2t,\ -1-t,\ 2+2t)$:
+$2(3+2t)-(-1-t)+2(2+2t)+1=12+9t=0$, $t=-\frac43$, i
+$Q=\left(\frac13,\frac13,-\frac23\right)$. Aleshores
+$\overrightarrow{PQ}=-\frac43(2,-1,2)$ i $|\overrightarrow{PQ}|=\frac43\cdot3=4$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

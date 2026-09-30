@@ -1,0 +1,16 @@
+{
+  "titol": "Projecció i simètric d'un punt respecte d'un pla, i el pla respecte del qual dos punts són simètrics",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    76,
+    90,
+    86
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "projecció ortogonal",
+    "punt simètric"
+  ]
+}

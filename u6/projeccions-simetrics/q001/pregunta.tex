@@ -1,0 +1,42 @@
+Considera el punt $P(3,-2,4)$ i el pla $\pi\colon x-2y+2z-6=0$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Troba la projecció ortogonal $Q$ del punt $P$ sobre el pla $\pi$.
+
+\begin{solucio}
+La recta perpendicular a $\pi$ per $P$ és $(3+t,\ -2-2t,\ 4+2t)$. Substituint al pla:
+$(3+t)-2(-2-2t)+2(4+2t)-6=9+9t=0$, $t=-1$. La projecció és $Q=(2,0,2)$.
+\end{solucio}
+
+\begin{tria}{simetria}
+\itemtria{simetric-pla}{1}{1,25}
+Troba el punt simètric $P'$ de $P$ respecte del pla $\pi$.
+
+\begin{solucio}
+$Q$ és el punt mitjà de $P$ i $P'$: $P'=2Q-P=(4-3,\ 0+2,\ 4-4)=(1,2,0)$.\\
+Comprovació: $\overrightarrow{PP'}=(-2,4,-4)$ és proporcional a $\vec n=(1,-2,2)$, i el punt mitjà,
+$(2,0,2)$, és de $\pi$.
+\end{solucio}
+
+\itemtria{pla-mediador}{1}{1,25}
+Troba el pla respecte del qual els punts $A(1,2,3)$ i $B(3,6,-1)$ són simètrics.
+
+\begin{solucio}
+És el pla perpendicular a $\overrightarrow{AB}=(2,4,-4)$, o a $(1,2,-2)$, que passa pel punt mitjà de
+$A$ i $B$, $M(2,4,1)$: $x+2y-2z+D=0$ amb $2+8-2+D=0$, $D=-8$. El pla és $x+2y-2z-8=0$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula la distància de $P$ a $\pi$ amb la fórmula, i comprova que és igual a $|\overrightarrow{PQ}|$.
+
+\begin{solucio}
+$d(P,\pi)=\dfrac{|3+4+8-6|}{\sqrt{1+4+4}}=\dfrac93=3$, i $\overrightarrow{PQ}=(-1,2,-2)$ té mòdul
+$\sqrt{1+4+4}=3$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

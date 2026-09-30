@@ -1,0 +1,17 @@
+{
+  "titol": "Primitives amb logaritmes, una integral amb valor absolut i la linealitat",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    55,
+    39,
+    35
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "integrals immediates (u11)",
+    "regla de Barrow",
+    "valor absolut"
+  ]
+}

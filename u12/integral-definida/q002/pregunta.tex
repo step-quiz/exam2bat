@@ -1,0 +1,42 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula les integrals indefinides $\displaystyle\int\frac{3}{x-1}\,dx$ i
+$\displaystyle\int\frac{2}{(x+1)^2}\,dx$.
+
+\begin{solucio}
+$\displaystyle\int\frac{3}{x-1}\,dx=3\ln|x-1|+k$. Escrivint $\frac2{(x+1)^2}=2(x+1)^{-2}$,
+\[
+\int\frac{2}{(x+1)^2}\,dx=2\,\frac{(x+1)^{-1}}{-1}+k=-\frac{2}{x+1}+k.
+\]
+\end{solucio}
+
+\begin{tria}{barrow-racionals}
+\itemtria{barrow}{1}{1,25}
+Calcula $\displaystyle\int_2^4\frac{3}{x-1}\,dx$ i $\displaystyle\int_0^1\frac{2}{(x+1)^2}\,dx$.
+
+\begin{solucio}
+$\displaystyle\int_2^4\frac{3}{x-1}\,dx=\bigl[3\ln|x-1|\bigr]_2^4=3\ln3-3\ln1=3\ln3$.\\
+$\displaystyle\int_0^1\frac{2}{(x+1)^2}\,dx=\left[-\frac{2}{x+1}\right]_0^1=-1-(-2)=1$.
+\end{solucio}
+
+\itemtria{limit-desconegut}{1}{1,25}
+Troba el valor de $a>0$ perquè $\displaystyle\int_0^a(2x+1)\,dx=6$.
+
+\begin{solucio}
+$\displaystyle\int_0^a(2x+1)\,dx=\bigl[x^2+x\bigr]_0^a=a^2+a$. Cal $a^2+a=6$, és a dir, $a^2+a-6=0$, amb
+solucions $a=2$ i $a=-3$. Com que $a>0$, $a=2$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula $\displaystyle\int_1^4\frac{3}{\sqrt x}\,dx$.
+
+\begin{solucio}
+$\frac3{\sqrt x}=3x^{-1/2}$, amb primitiva $3\cdot\frac{x^{1/2}}{1/2}=6\sqrt x$:
+$\displaystyle\int_1^4\frac{3}{\sqrt x}\,dx=\bigl[6\sqrt x\bigr]_1^4=12-6=6$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

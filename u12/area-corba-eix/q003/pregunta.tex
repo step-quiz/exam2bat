@@ -1,0 +1,48 @@
+Considera la funció $f(x)=x^2-3x$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Troba els punts de tall de la gràfica de $f$ amb l'eix $X$ i una primitiva de $f$.
+
+\begin{solucio}
+$x^2-3x=x(x-3)=0$: $x=0$ i $x=3$. Una primitiva és $F(x)=\dfrac{x^3}3-\dfrac{3x^2}2$.
+\end{solucio}
+
+\begin{tria}{area-parabola}
+\itemtria{area-dues-regions}{1}{1,25}
+Calcula l'àrea de la regió tancada per la gràfica de $f$ i l'eix $X$, i l'àrea de la regió limitada per
+la gràfica de $f$, l'eix $X$ i les rectes $x=0$ i $x=4$.
+
+\begin{solucio}
+Entre 0 i 3, $f\le0$: $\bigl|F(3)-F(0)\bigr|=\left|9-\frac{27}2\right|=\frac92$ unitats quadrades.\\
+Fins a $x=4$ cal afegir el tros $[3,4]$, on $f\ge0$:
+$F(4)-F(3)=\left(\frac{64}3-24\right)-\left(9-\frac{27}2\right)=-\frac83+\frac92=\frac{11}6$. En total,
+$\frac92+\frac{11}6=\frac{19}3$ unitats quadrades.
+\end{solucio}
+
+\itemtria{parametre-area}{1}{1,25}
+Troba el valor de $k>0$ perquè l'àrea de la regió tancada per la paràbola $y=x^2-kx$ i l'eix $X$ sigui
+de 36 unitats quadrades.
+
+\begin{solucio}
+Talla l'eix a $x=0$ i $x=k$, i entre aquests valors és negativa:
+\[
+\left|\int_0^k(x^2-kx)\,dx\right|=\left|\left[\frac{x^3}3-\frac{kx^2}2\right]_0^k\right|
+=\left|\frac{k^3}3-\frac{k^3}2\right|=\frac{k^3}6.
+\]
+Cal $\frac{k^3}6=36$, és a dir, $k^3=216$, i $k=6$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula l'àrea de la regió tancada per la gràfica de $y=x^3-x^2$ i l'eix $X$.
+
+\begin{solucio}
+$x^3-x^2=x^2(x-1)=0$: $x=0$ i $x=1$, i entre aquests valors és negativa:
+$\left|\displaystyle\int_0^1(x^3-x^2)\,dx\right|=\left|\frac14-\frac13\right|=\frac1{12}$ unitats quadrades.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
