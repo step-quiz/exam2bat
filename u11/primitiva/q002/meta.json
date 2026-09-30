@@ -1,0 +1,18 @@
+{
+  "titol": "Primitives amb una condició inicial, i la posició a partir de la velocitat",
+  "dificultat": "●○○",
+  "temes_secundaris": [],
+  "origen": [
+    45,
+    46,
+    51,
+    123
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "condició inicial"
+  ]
+}

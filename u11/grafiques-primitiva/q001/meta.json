@@ -1,0 +1,17 @@
+{
+  "titol": "La gràfica de f diu com creix i com es corba una primitiva F",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    43,
+    51
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "interpretació gràfica",
+    "monotonia i curvatura"
+  ]
+}

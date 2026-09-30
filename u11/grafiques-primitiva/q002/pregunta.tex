@@ -1,0 +1,59 @@
+Les tres gràfiques del dibuix són les d'una funció $f$, de la seva derivada $f'$ i d'una primitiva $F$
+de $f$, en un ordre qualsevol.
+\begin{center}
+\foreach \nom/\funcio/\dom in {A/{\x*\x-1}/{-2.05:2.05},B/{2*\x}/{-1.6:1.6},C/{\x*\x*\x/3-\x}/{-2.25:2.25}}{%
+\begin{tikzpicture}[x=0.55cm,y=0.45cm]
+  \draw[gray!55,very thin,step=1] (-2.5,-3.5) grid (2.5,3.5);
+  \draw[->] (-2.7,0) -- (2.9,0) node[below,font=\scriptsize] {$x$};
+  \draw[->] (0,-3.7) -- (0,3.9) node[left,font=\scriptsize] {$y$};
+  \foreach \i in {-2,-1,1,2} \draw (\i,0.12) -- (\i,-0.12) node[below,font=\tiny] {$\i$};
+  \foreach \j in {-2,2} \draw (0.1,\j) -- (-0.1,\j) node[left,font=\tiny] {$\j$};
+  \draw[\colorgrafica,very thick,domain=\dom,samples=60] plot (\x,\funcio);
+  \node[font=\small\bfseries] at (0,-4.6) {\nom};
+\end{tikzpicture}\hspace{0.8cm}}
+\end{center}
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Digues quina gràfica és $f$, quina és $f'$ i quina és $F$. Justifica-ho.
+
+\begin{solucio}
+On una funció té un extrem relatiu, la seva derivada s'anul·la. La C té extrems a $x=-1$ i $x=1$, on la
+A val 0; i la A té un mínim a $x=0$, on la B val 0. Per tant, la A és la derivada de la C, i la B és la
+derivada de la A: $F$ és la C, $f$ és la A i $f'$ és la B.\\
+També es veu en el creixement: la C creix on la A és positiva, i la A creix on la B és positiva.
+\end{solucio}
+
+\begin{tria}{tres-grafiques}
+\itemtria{expressio}{1}{1,25}
+La gràfica A és la de $y=x^2-1$. Troba la primitiva de $x^2-1$ que passa per l'origen, i comprova que
+té els extrems relatius on els té la gràfica C.
+
+\begin{solucio}
+$F(x)=\frac{x^3}{3}-x+k$, i $F(0)=0$ dona $k=0$: $F(x)=\frac{x^3}{3}-x$. $F'(x)=x^2-1=0$ a $x=\pm1$:
+màxim $F(-1)=\frac23$ i mínim $F(1)=-\frac23$, els de la gràfica C.
+\end{solucio}
+
+\itemtria{altra-primitiva}{1}{1,25}
+La gràfica A és la de $y=x^2-1$. Troba la primitiva $G$ de $x^2-1$ que passa pel punt $(0,2)$. Quina
+relació té la seva gràfica amb la C? On té els extrems relatius?
+
+\begin{solucio}
+$G(x)=\frac{x^3}{3}-x+k$ i $G(0)=k=2$: $G(x)=\frac{x^3}{3}-x+2$. Com que $G$ i la C es diferencien en la
+constant 2, la gràfica de $G$ és la C desplaçada 2 unitats cap amunt. Té els extrems a les mateixes
+abscisses: màxim $\left(-1,\frac83\right)$ i mínim $\left(1,\frac43\right)$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Hi ha alguna primitiva de la funció A que tingui un sol extrem relatiu? Raona-ho.
+
+\begin{solucio}
+No. Totes les primitives de $f$ són $F(x)+k$, i tenen la mateixa derivada $f$, que s'anul·la i canvia
+de signe a $x=-1$ i a $x=1$. Totes tenen un màxim a $x=-1$ i un mínim a $x=1$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
