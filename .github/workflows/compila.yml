@@ -71,7 +71,7 @@ jobs:
             echo "Cap canvi als fitxers generats."
             exit 0
           fi
-          git commit -m "build: PDF i catàleg [skip ci]"
+          git commit -m "build: PDF i catàleg"
           # Si mentre es compilava algú ha fet push a la branca (un canvi al
           # README, per exemple, que no dispara l'Action), aquest push seria
           # rebutjat. S'incorporen aquells commits i es torna a provar. El rebase
