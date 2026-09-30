@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 11:34 UTC",
+ "generat": "2026-09-30 11:57 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -269,6 +269,24 @@ const BANC = {
    "unitat": "u2",
    "nom": "Matriu inversa",
    "descripcio": "Condició d'invertibilitat, inversa per adjunts i inverses amb paràmetres."
+  },
+  {
+   "slug": "gauss-classificacio",
+   "unitat": "u3",
+   "nom": "Resoldre i classificar sistemes",
+   "descripcio": "Forma matricial, mètode de Gauss, teorema de Rouché-Fröbenius i sistemes compatibles determinats, indeterminats i incompatibles."
+  },
+  {
+   "slug": "discussio-parametre",
+   "unitat": "u3",
+   "nom": "Discussió de sistemes amb un paràmetre",
+   "descripcio": "Discutir un sistema segons un paràmetre i resoldre'l en els casos compatibles."
+  },
+  {
+   "slug": "problemes-sistemes",
+   "unitat": "u3",
+   "nom": "Problemes amb sistemes d'equacions",
+   "descripcio": "Plantejar, resoldre i interpretar problemes que es modelitzen amb un sistema lineal."
   },
   {
    "slug": "algebra",
@@ -6061,6 +6079,603 @@ const BANC = {
    "pdf_solucio": "u2/rang-determinants/q003/out/solucio.pdf",
    "pdf_curt": "u2/rang-determinants/q003/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u2/rang-determinants/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/discussio-parametre/q001",
+   "unitat": "u3",
+   "tema": "discussio-parametre",
+   "codi": "q001",
+   "titol": "Sistema amb paràmetre: incompatible, indeterminat o determinat, i una solució donada",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    60,
+    66,
+    64
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "discussió amb paràmetre",
+    "Rouché-Fröbenius",
+    "sistema indeterminat"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "cas-concret",
+     "defecte_llarg": "resol-indeterminat",
+     "defecte_curt": "resol-indeterminat",
+     "items": [
+      {
+       "id": "resol-indeterminat",
+       "llarg": 0.75,
+       "curt": 1.25,
+       "pdf": "u3/discussio-parametre/q001/out/tries/cas-concret/resol-indeterminat/enunciat.pdf",
+       "pdf_solucio": "u3/discussio-parametre/q001/out/tries/cas-concret/resol-indeterminat/solucio.pdf",
+       "pdf_curt": "u3/discussio-parametre/q001/out/tries/cas-concret/resol-indeterminat/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/discussio-parametre/q001/out/tries/cas-concret/resol-indeterminat/solucio-curt.pdf"
+      },
+      {
+       "id": "solucio-donada",
+       "llarg": 0.75,
+       "curt": 1.25,
+       "pdf": "u3/discussio-parametre/q001/out/tries/cas-concret/solucio-donada/enunciat.pdf",
+       "pdf_solucio": "u3/discussio-parametre/q001/out/tries/cas-concret/solucio-donada/solucio.pdf",
+       "pdf_curt": "u3/discussio-parametre/q001/out/tries/cas-concret/solucio-donada/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/discussio-parametre/q001/out/tries/cas-concret/solucio-donada/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el sistema següent, en què $m$ és un nombre real:\n\\[\n\\left.\\begin{aligned}\nx+y-z&=-1\\\\\n2x+my&=-1\\\\\n(m+1)x+3y&=1\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nDiscuteix el sistema segons els valors de $m$.\n\n\\begin{solucio}\nSiguin $A$ la matriu de coeficients i $A^*$ l'ampliada. Desenvolupant per la tercera columna, que només\nté un element no nul,\n\\[\n|A|=\\begin{vmatrix}1&1&-1\\\\2&m&0\\\\m+1&3&0\\end{vmatrix}\n=-\\begin{vmatrix}2&m\\\\m+1&3\\end{vmatrix}=-(6-m^2-m)=m^2+m-6=(m-2)(m+3).\n\\]\n\\begin{itemize}\n\\item Si $m\\ne2$ i $m\\ne-3$: $\\operatorname{rang}A=\\operatorname{rang}A^*=3$, compatible determinat.\n\\item Si $m=2$: $\\begin{vmatrix}1&-1\\\\2&0\\end{vmatrix}=2\\ne0$, $\\operatorname{rang}A=2$; i amb les columnes\nde $x$, de $z$ i dels termes independents, $\\begin{vmatrix}1&-1&-1\\\\2&0&-1\\\\3&0&1\\end{vmatrix}=5\\ne0$:\n$\\operatorname{rang}A^*=3$. Incompatible.\n\\item Si $m=-3$: la tercera fila de $A^*$ és l'oposada de la segona, $(-2\\ \\ 3\\ \\ 0\\,|\\,1)=-(2\\ \\ {-3}\\ \\ 0\\,|\\,{-1})$,\ni $\\begin{vmatrix}1&1\\\\2&-3\\end{vmatrix}=-5\\ne0$: $\\operatorname{rang}A=\\operatorname{rang}A^*=2<3$.\nCompatible indeterminat.\n\\end{itemize}\n\\end{solucio}\n\n\\begin{tria}{cas-concret}\n\\itemtria{resol-indeterminat}{0,75}{1,25}\nResol el sistema en el cas en què és compatible indeterminat.\n\n\\begin{solucio}\nPer a $m=-3$ n'hi ha prou amb les dues primeres equacions:\n$\\left.\\begin{aligned}x+y-z&=-1\\\\2x-3y&=-1\\end{aligned}\\right\\}$. Amb $y=2\\lambda+1$, la segona dona\n$2x=3y-1=6\\lambda+2$, $x=3\\lambda+1$, i la primera, $z=x+y+1=5\\lambda+3$.\\\\\nLes solucions són $(x,y,z)=(3\\lambda+1,\\ 2\\lambda+1,\\ 5\\lambda+3)$, amb $\\lambda\\in\\mathbb R$.\n(Si es pren $y=\\lambda$, surten fraccions: $x=\\frac{3\\lambda-1}2$, $z=\\frac{5\\lambda+1}2$, que és la\nmateixa família.)\n\\end{solucio}\n\n\\itemtria{solucio-donada}{0,75}{1,25}\nHi ha algun valor de $m$ per al qual $(x,y,z)=(1,-1,1)$ sigui solució del sistema? En aquest cas, el\nsistema té altres solucions?\n\n\\begin{solucio}\nSubstituint el punt: la primera equació, $1-1-1=-1$, es compleix per a qualsevol $m$; la segona dona\n$2-m=-1$, és a dir, $m=3$; i la tercera, $(m+1)-3=1$, també $m=3$. Per tant, $(1,-1,1)$ és solució\nnomés si $m=3$.\\\\\nPer a $m=3$, $|A|=(3-2)(3+3)=6\\ne0$: el sistema és compatible determinat, i $(1,-1,1)$ n'és l'única\nsolució.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nResol el sistema per a $m=1$.\n\n\\begin{solucio}\nPer a $m=1$: $\\left.\\begin{aligned}x+y-z&=-1\\\\2x+y&=-1\\\\2x+3y&=1\\end{aligned}\\right\\}$. Restant la segona\na la tercera, $2y=2$, $y=1$; aleshores $x=-1$, i $z=x+y+1=1$. La solució és $(x,y,z)=(-1,1,1)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/discussio-parametre/q001/out/enunciat.pdf",
+   "pdf_solucio": "u3/discussio-parametre/q001/out/solucio.pdf",
+   "pdf_curt": "u3/discussio-parametre/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/discussio-parametre/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/discussio-parametre/q002",
+   "unitat": "u3",
+   "tema": "discussio-parametre",
+   "codi": "q002",
+   "titol": "Sistema amb el paràmetre també als termes independents, per Rouché o per Gauss",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    60,
+    64,
+    66,
+    43
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "discussió amb paràmetre",
+    "mètode de Gauss",
+    "Rouché-Fröbenius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "metode-discussio",
+     "defecte_llarg": "rouche",
+     "defecte_curt": "rouche",
+     "items": [
+      {
+       "id": "rouche",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/discussio-parametre/q002/out/tries/metode-discussio/rouche/enunciat.pdf",
+       "pdf_solucio": "u3/discussio-parametre/q002/out/tries/metode-discussio/rouche/solucio.pdf",
+       "pdf_curt": "u3/discussio-parametre/q002/out/tries/metode-discussio/rouche/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/discussio-parametre/q002/out/tries/metode-discussio/rouche/solucio-curt.pdf"
+      },
+      {
+       "id": "gauss",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/discussio-parametre/q002/out/tries/metode-discussio/gauss/enunciat.pdf",
+       "pdf_solucio": "u3/discussio-parametre/q002/out/tries/metode-discussio/gauss/solucio.pdf",
+       "pdf_curt": "u3/discussio-parametre/q002/out/tries/metode-discussio/gauss/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/discussio-parametre/q002/out/tries/metode-discussio/gauss/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el sistema següent, en què $m$ és un nombre real:\n\\[\n\\left.\\begin{aligned}\nx+y+z&=2\\\\\nx+2y+3z&=m\\\\\n2x+3y+mz&=m+2\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{apartats}\n\n\\begin{tria}{metode-discussio}\n\\itemtria{rouche}{1}{1,25}\nDiscuteix el sistema segons els valors de $m$ amb el teorema de Rouché-Fröbenius.\n\n\\begin{solucio}\n$|A|=\\begin{vmatrix}1&1&1\\\\1&2&3\\\\2&3&m\\end{vmatrix}=2m+6+3-4-9-m=m-4$.\n\\begin{itemize}\n\\item Si $m\\ne4$: $\\operatorname{rang}A=\\operatorname{rang}A^*=3$, compatible determinat.\n\\item Si $m=4$: $\\begin{vmatrix}1&1\\\\1&2\\end{vmatrix}=1\\ne0$, $\\operatorname{rang}A=2$. La matriu ampliada és\n$\\left(\\begin{array}{ccc|c}1&1&1&2\\\\1&2&3&4\\\\2&3&4&6\\end{array}\\right)$, i la tercera fila és la suma de\nles dues primeres: $\\operatorname{rang}A^*=2<3$. Compatible indeterminat.\n\\end{itemize}\nEl sistema no és incompatible per a cap valor de $m$.\n\\end{solucio}\n\n\\itemtria{gauss}{1}{1,25}\nDiscuteix el sistema segons els valors de $m$ pel mètode de Gauss.\n\n\\begin{solucio}\n\\[\n\\left(\\begin{array}{ccc|c}1&1&1&2\\\\1&2&3&m\\\\2&3&m&m+2\\end{array}\\right)\n\\xrightarrow[F_3-2F_1]{F_2-F_1}\n\\left(\\begin{array}{ccc|c}1&1&1&2\\\\0&1&2&m-2\\\\0&1&m-2&m-2\\end{array}\\right)\n\\xrightarrow{F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&1&1&2\\\\0&1&2&m-2\\\\0&0&m-4&0\\end{array}\\right).\n\\]\n\\begin{itemize}\n\\item Si $m\\ne4$, queda un sistema esglaonat amb tres equacions: compatible determinat.\n\\item Si $m=4$, l'última fila és $0=0$ i queden dues equacions amb tres incògnites: compatible\nindeterminat.\n\\end{itemize}\nCom que l'últim terme independent és sempre 0, no hi ha cap fila del tipus $0=k$ amb $k\\ne0$: el\nsistema no és incompatible per a cap valor de $m$.\n\\end{solucio}\n\\end{tria}\n\n\\apartat[1,25]{0,75}\nResol el sistema en el cas en què és compatible indeterminat.\n\n\\begin{solucio}\nPer a $m=4$: $\\left.\\begin{aligned}x+y+z&=2\\\\y+2z&=2\\end{aligned}\\right\\}$. Amb $z=\\lambda$:\n$y=2-2\\lambda$ i $x=2-y-z=\\lambda$. Les solucions són $(x,y,z)=(\\lambda,\\ 2-2\\lambda,\\ \\lambda)$, amb\n$\\lambda\\in\\mathbb R$.\n\\end{solucio}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nResol el sistema per a $m\\ne4$, en funció de $m$. Per a quin valor de $m$ la solució té $x=y$?\n\n\\begin{solucio}\nDel sistema esglaonat, $(m-4)z=0$ dona $z=0$; aleshores $y+2z=m-2$ dona $y=m-2$, i\n$x=2-y-z=4-m$. La solució és $(x,y,z)=(4-m,\\ m-2,\\ 0)$.\\\\\n$x=y$ vol dir $4-m=m-2$, és a dir, $m=3$: la solució és $(1,1,0)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/discussio-parametre/q002/out/enunciat.pdf",
+   "pdf_solucio": "u3/discussio-parametre/q002/out/solucio.pdf",
+   "pdf_curt": "u3/discussio-parametre/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/discussio-parametre/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/discussio-parametre/q003",
+   "unitat": "u3",
+   "tema": "discussio-parametre",
+   "codi": "q003",
+   "titol": "Sistema homogeni amb paràmetre i un sistema 2×2 amb paràmetre",
+   "punts": 2.5,
+   "apartats": [
+    1.0,
+    0.75,
+    0.75
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    60,
+    66,
+    55
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "sistema homogeni",
+    "discussió amb paràmetre"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "solucions-no-trivials",
+     "defecte_llarg": "resol-m3",
+     "defecte_curt": "resol-m3",
+     "items": [
+      {
+       "id": "resol-m3",
+       "llarg": 0.75,
+       "curt": 1.25,
+       "pdf": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/resol-m3/enunciat.pdf",
+       "pdf_solucio": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/resol-m3/solucio.pdf",
+       "pdf_curt": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/resol-m3/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/resol-m3/solucio-curt.pdf"
+      },
+      {
+       "id": "amb-z-1",
+       "llarg": 0.75,
+       "curt": 1.25,
+       "pdf": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/amb-z-1/enunciat.pdf",
+       "pdf_solucio": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/amb-z-1/solucio.pdf",
+       "pdf_curt": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/amb-z-1/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/discussio-parametre/q003/out/tries/solucions-no-trivials/amb-z-1/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el sistema homogeni següent, en què $m$ és un nombre real:\n\\[\n\\left.\\begin{aligned}\nx+y+z&=0\\\\\nx+my+2z&=0\\\\\nmx+y+2z&=0\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{1}\nDiscuteix el sistema segons els valors de $m$.\n\n\\begin{solucio}\nUn sistema homogeni sempre és compatible: $(0,0,0)$ n'és solució, i $\\operatorname{rang}A=\\operatorname{rang}A^*$\nperquè la columna afegida és nul·la.\n\\[\n|A|=\\begin{vmatrix}1&1&1\\\\1&m&2\\\\m&1&2\\end{vmatrix}=2m+2m+1-m^2-2-2=-m^2+4m-3=-(m-1)(m-3).\n\\]\n\\begin{itemize}\n\\item Si $m\\ne1$ i $m\\ne3$: $\\operatorname{rang}A=3$, compatible determinat. L'única solució és\n$(0,0,0)$.\n\\item Si $m=1$ o $m=3$: $|A|=0$ i $\\begin{vmatrix}1&1\\\\1&2\\end{vmatrix}=1\\ne0$ (files 1 i 2, columnes 1\ni 3), de manera que $\\operatorname{rang}A=2<3$: compatible indeterminat.\n\\end{itemize}\n\\end{solucio}\n\n\\begin{tria}{solucions-no-trivials}\n\\itemtria{resol-m3}{0,75}{1,25}\nResol el sistema per a $m=3$.\n\n\\begin{solucio}\nPer a $m=3$ n'hi ha prou amb les dues primeres equacions:\n$\\left.\\begin{aligned}x+y+z&=0\\\\x+3y+2z&=0\\end{aligned}\\right\\}$. Restant-les, $2y+z=0$, $z=-2y$; i\n$x=-y-z=y$. Amb $y=\\lambda$, les solucions són $(x,y,z)=(\\lambda,\\ \\lambda,\\ -2\\lambda)$, amb\n$\\lambda\\in\\mathbb R$. (Comprovació a la tercera: $3\\lambda+\\lambda-4\\lambda=0$.)\n\\end{solucio}\n\n\\itemtria{amb-z-1}{0,75}{1,25}\nPer a quins valors de $m$ el sistema té alguna solució amb $z=1$? Troba-la.\n\n\\begin{solucio}\nSi $m\\ne1$ i $m\\ne3$, l'única solució és $(0,0,0)$, amb $z=0$. Cal mirar els dos casos indeterminats.\\\\\nPer a $m=1$, les dues últimes equacions són iguals, $x+y+2z=0$, i restant-hi la primera surt $z=0$:\ncap solució té $z=1$.\\\\\nPer a $m=3$, les solucions són $(\\lambda,\\lambda,-2\\lambda)$: $-2\\lambda=1$ dona $\\lambda=-\\frac12$, i la\nsolució és $\\left(-\\frac12,-\\frac12,1\\right)$. Només passa per a $m=3$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDiscuteix el sistema $\\left.\\begin{aligned}mx+y&=2\\\\x+my&=m+1\\end{aligned}\\right\\}$ segons els valors\nde $m$.\n\n\\begin{solucio}\n$|A|=\\begin{vmatrix}m&1\\\\1&m\\end{vmatrix}=m^2-1=(m-1)(m+1)$.\n\\begin{itemize}\n\\item Si $m\\ne\\pm1$: $\\operatorname{rang}A=\\operatorname{rang}A^*=2$, compatible determinat.\n\\item Si $m=1$: les dues equacions són $x+y=2$: $\\operatorname{rang}A=\\operatorname{rang}A^*=1<2$,\ncompatible indeterminat.\n\\item Si $m=-1$: $\\left.\\begin{aligned}-x+y&=2\\\\x-y&=0\\end{aligned}\\right\\}$. $\\operatorname{rang}A=1$, i\n$\\begin{vmatrix}-1&2\\\\1&0\\end{vmatrix}=-2\\ne0$ dona $\\operatorname{rang}A^*=2$: incompatible.\n\\end{itemize}\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/discussio-parametre/q003/out/enunciat.pdf",
+   "pdf_solucio": "u3/discussio-parametre/q003/out/solucio.pdf",
+   "pdf_curt": "u3/discussio-parametre/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/discussio-parametre/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/gauss-classificacio/q001",
+   "unitat": "u3",
+   "tema": "gauss-classificacio",
+   "codi": "q001",
+   "titol": "Resoldre per Gauss, un sistema indeterminat i un sistema escrit en forma matricial",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    43,
+    38,
+    39,
+    41
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "mètode de Gauss",
+    "classificació de sistemes",
+    "forma matricial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "classificar",
+     "defecte_llarg": "indeterminat",
+     "defecte_curt": "indeterminat",
+     "items": [
+      {
+       "id": "indeterminat",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/gauss-classificacio/q001/out/tries/classificar/indeterminat/enunciat.pdf",
+       "pdf_solucio": "u3/gauss-classificacio/q001/out/tries/classificar/indeterminat/solucio.pdf",
+       "pdf_curt": "u3/gauss-classificacio/q001/out/tries/classificar/indeterminat/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/gauss-classificacio/q001/out/tries/classificar/indeterminat/solucio-curt.pdf"
+      },
+      {
+       "id": "afegeix-equacio",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/gauss-classificacio/q001/out/tries/classificar/afegeix-equacio/enunciat.pdf",
+       "pdf_solucio": "u3/gauss-classificacio/q001/out/tries/classificar/afegeix-equacio/solucio.pdf",
+       "pdf_curt": "u3/gauss-classificacio/q001/out/tries/classificar/afegeix-equacio/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/gauss-classificacio/q001/out/tries/classificar/afegeix-equacio/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nResol pel mètode de Gauss el sistema\n\\[\n\\left.\\begin{aligned}\nx+2y-z&=-3\\\\\n2x-y+z&=5\\\\\n3x+y+2z&=6\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{solucio}\n\\[\n\\left(\\begin{array}{ccc|c}1&2&-1&-3\\\\2&-1&1&5\\\\3&1&2&6\\end{array}\\right)\n\\xrightarrow[F_3-3F_1]{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}1&2&-1&-3\\\\0&-5&3&11\\\\0&-5&5&15\\end{array}\\right)\n\\xrightarrow{F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&2&-1&-3\\\\0&-5&3&11\\\\0&0&2&4\\end{array}\\right).\n\\]\nDe baix a dalt: $2z=4$, $z=2$; $-5y+6=11$, $y=-1$; $x=-3-2y+z=1$. És compatible determinat, amb\nsolució $(x,y,z)=(1,-1,2)$.\n\\end{solucio}\n\n\\begin{tria}{classificar}\n\\itemtria{indeterminat}{1}{1,25}\nResol i classifica el sistema\n\\[\n\\left.\\begin{aligned}\nx-y+2z&=1\\\\\n2x+y-z&=5\\\\\n4x-y+3z&=7\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{solucio}\n\\[\n\\left(\\begin{array}{ccc|c}1&-1&2&1\\\\2&1&-1&5\\\\4&-1&3&7\\end{array}\\right)\n\\xrightarrow[F_3-4F_1]{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}1&-1&2&1\\\\0&3&-5&3\\\\0&3&-5&3\\end{array}\\right)\n\\xrightarrow{F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&-1&2&1\\\\0&3&-5&3\\\\0&0&0&0\\end{array}\\right).\n\\]\nQueden dues equacions amb tres incògnites: és compatible indeterminat. Amb $z=3\\lambda$, la segona dona\n$3y=3+15\\lambda$, $y=1+5\\lambda$, i la primera, $x=1+y-2z=2-\\lambda$. Les solucions són\n$(x,y,z)=(2-\\lambda,\\ 1+5\\lambda,\\ 3\\lambda)$, amb $\\lambda\\in\\mathbb R$.\n\\end{solucio}\n\n\\itemtria{afegeix-equacio}{1}{1,25}\nConsidera el sistema $\\left.\\begin{aligned}x+y&=3\\\\x-y&=1\\end{aligned}\\right\\}$. Afegeix-hi una\ntercera equació de la forma $ax+by=c$ de manera que el sistema continuï sent compatible, i una altra\nde manera que passi a ser incompatible. Justifica-ho.\n\n\\begin{solucio}\nEl sistema té una sola solució, $(x,y)=(2,1)$. Resposta oberta.\\\\\nContinua sent compatible si la tercera equació també la compleix: per exemple, $2x+3y=7$, perquè\n$4+3=7$. El sistema de tres equacions és compatible determinat, amb la mateixa solució.\\\\\nPassa a ser incompatible si la tercera equació no la compleix: per exemple, $x+y=4$, que contradiu la\nprimera. Cap parella $(x,y)$ no compleix les tres equacions alhora.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu amb equacions el sistema\n$\\begin{pmatrix}1&2\\\\3&-1\\\\2&1\\end{pmatrix}\\begin{pmatrix}a\\\\b\\end{pmatrix}=\\begin{pmatrix}4\\\\5\\\\6\\end{pmatrix}$\ni digues si és compatible.\n\n\\begin{solucio}\nÉs el sistema $\\left.\\begin{aligned}a+2b&=4\\\\3a-b&=5\\\\2a+b&=6\\end{aligned}\\right\\}$. Les dues primeres\nequacions donen $a=2$, $b=1$, però la tercera no es compleix: $2\\cdot2+1=5\\ne6$. És incompatible.\n(També: $\\begin{vmatrix}1&2\\\\3&-1\\end{vmatrix}=-7\\ne0$ i $\\begin{vmatrix}1&2&4\\\\3&-1&5\\\\2&1&6\\end{vmatrix}=-7\\ne0$,\nde manera que el rang de la matriu és 2 i el de l'ampliada, 3.)\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/gauss-classificacio/q001/out/enunciat.pdf",
+   "pdf_solucio": "u3/gauss-classificacio/q001/out/solucio.pdf",
+   "pdf_curt": "u3/gauss-classificacio/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/gauss-classificacio/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/gauss-classificacio/q002",
+   "unitat": "u3",
+   "tema": "gauss-classificacio",
+   "codi": "q002",
+   "titol": "Classificar amb el teorema de Rouché-Fröbenius i resoldre un sistema indeterminat",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    55,
+    56,
+    42,
+    38
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "Rouché-Fröbenius",
+    "sistema indeterminat",
+    "forma matricial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rouche-tasca",
+     "defecte_llarg": "resol-indeterminat",
+     "defecte_curt": "resol-indeterminat",
+     "items": [
+      {
+       "id": "resol-indeterminat",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/resol-indeterminat/enunciat.pdf",
+       "pdf_solucio": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/resol-indeterminat/solucio.pdf",
+       "pdf_curt": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/resol-indeterminat/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/resol-indeterminat/solucio-curt.pdf"
+      },
+      {
+       "id": "mes-equacions",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/mes-equacions/enunciat.pdf",
+       "pdf_solucio": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/mes-equacions/solucio.pdf",
+       "pdf_curt": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/mes-equacions/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/gauss-classificacio/q002/out/tries/rouche-tasca/mes-equacions/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el sistema\n\\[\n\\left.\\begin{aligned}\nx+2y-z&=3\\\\\n2x+y+z&=3\\\\\nx-y+2z&=0\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu-lo en forma matricial i classifica'l amb el teorema de Rouché-Fröbenius.\n\n\\begin{solucio}\n$\\begin{pmatrix}1&2&-1\\\\2&1&1\\\\1&-1&2\\end{pmatrix}\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=\\begin{pmatrix}3\\\\3\\\\0\\end{pmatrix}$.\nSigui $A$ la matriu de coeficients i $A^*$ l'ampliada.\\\\\n$|A|=2+2+2+1-8+1=0$ i $\\begin{vmatrix}1&2\\\\2&1\\end{vmatrix}=-3\\ne0$: $\\operatorname{rang}A=2$.\\\\\nA $A^*$, la tercera fila és la segona menys la primera, també al terme independent ($0=3-3$): tots els\nmenors d'ordre 3 són nuls i $\\operatorname{rang}A^*=2$.\\\\\n$\\operatorname{rang}A=\\operatorname{rang}A^*=2<3$: és compatible indeterminat, amb un paràmetre.\n\\end{solucio}\n\n\\begin{tria}{rouche-tasca}\n\\itemtria{resol-indeterminat}{1}{1,25}\nResol el sistema i dona'n dues solucions particulars.\n\n\\begin{solucio}\nN'hi ha prou amb les dues primeres equacions. Amb $z=\\lambda$:\n$\\left.\\begin{aligned}x+2y&=3+\\lambda\\\\2x+y&=3-\\lambda\\end{aligned}\\right\\}$. Restant a la segona el doble\nde la primera, $-3y=-3-3\\lambda$, $y=1+\\lambda$, i $x=3+\\lambda-2y=1-\\lambda$.\\\\\nLes solucions són $(x,y,z)=(1-\\lambda,\\ 1+\\lambda,\\ \\lambda)$. Per exemple, amb $\\lambda=0$, $(1,1,0)$, i\namb $\\lambda=1$, $(0,2,1)$.\n\\end{solucio}\n\n\\itemtria{mes-equacions}{1}{1,25}\nEstudia amb el teorema de Rouché-Fröbenius aquest altre sistema, de tres equacions i dues incògnites, i\nresol-lo si és compatible:\n$\\left.\\begin{aligned}x+2y&=5\\\\3x-y&=1\\\\2x+y&=4\\end{aligned}\\right\\}$\n\n\\begin{solucio}\n$\\begin{vmatrix}1&2\\\\3&-1\\end{vmatrix}=-7\\ne0$: el rang de la matriu de coeficients és 2, el màxim.\nL'ampliada és quadrada: $\\begin{vmatrix}1&2&5\\\\3&-1&1\\\\2&1&4\\end{vmatrix}=-4+4+15+10-1-24=0$, i el seu\nrang també és 2.\\\\\n$\\operatorname{rang}A=\\operatorname{rang}A^*=2=$ nombre d'incògnites: és compatible determinat. De les\ndues primeres, $x=1$ i $y=2$, que també compleixen la tercera: $2+2=4$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nClassifica el sistema $\\left.\\begin{aligned}x-y+z&=1\\\\-2x+2y-2z&=3\\end{aligned}\\right\\}$. Canvia'n el\nterme independent de la segona equació perquè sigui compatible. De quants paràmetres dependran llavors\nles solucions?\n\n\\begin{solucio}\nLes dues files de coeficients són proporcionals: $\\operatorname{rang}A=1$. A l'ampliada,\n$\\begin{vmatrix}1&1\\\\-2&3\\end{vmatrix}=5\\ne0$: $\\operatorname{rang}A^*=2$. És incompatible.\\\\\nAmb terme independent $-2$, la segona equació és la primera multiplicada per $-2$:\n$\\operatorname{rang}A=\\operatorname{rang}A^*=1<3$. És compatible indeterminat, i les solucions depenen\nde $3-1=2$ paràmetres.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/gauss-classificacio/q002/out/enunciat.pdf",
+   "pdf_solucio": "u3/gauss-classificacio/q002/out/solucio.pdf",
+   "pdf_curt": "u3/gauss-classificacio/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/gauss-classificacio/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/gauss-classificacio/q003",
+   "unitat": "u3",
+   "tema": "gauss-classificacio",
+   "codi": "q003",
+   "titol": "Gauss en un sistema determinat i un d'incompatible, i quan un sistema no pot ser determinat",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    43,
+    42,
+    38,
+    39
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "mètode de Gauss",
+    "sistema incompatible",
+    "forma matricial"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "tipus-sistema",
+     "defecte_llarg": "incompatible",
+     "defecte_curt": "incompatible",
+     "items": [
+      {
+       "id": "incompatible",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/incompatible/enunciat.pdf",
+       "pdf_solucio": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/incompatible/solucio.pdf",
+       "pdf_curt": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/incompatible/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/incompatible/solucio-curt.pdf"
+      },
+      {
+       "id": "inventa-sistema",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/inventa-sistema/enunciat.pdf",
+       "pdf_solucio": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/inventa-sistema/solucio.pdf",
+       "pdf_curt": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/inventa-sistema/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/gauss-classificacio/q003/out/tries/tipus-sistema/inventa-sistema/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu en forma matricial i resol pel mètode de Gauss el sistema\n\\[\n\\left.\\begin{aligned}\n2x+y-z&=3\\\\\nx-y+2z&=4\\\\\n3x+2y+z&=7\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{solucio}\n$\\begin{pmatrix}2&1&-1\\\\1&-1&2\\\\3&2&1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=\\begin{pmatrix}3\\\\4\\\\7\\end{pmatrix}$.\nCanviant l'ordre de les dues primeres equacions:\n\\[\n\\left(\\begin{array}{ccc|c}1&-1&2&4\\\\2&1&-1&3\\\\3&2&1&7\\end{array}\\right)\n\\xrightarrow[F_3-3F_1]{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}1&-1&2&4\\\\0&3&-5&-5\\\\0&5&-5&-5\\end{array}\\right)\n\\xrightarrow{3F_3-5F_2}\n\\left(\\begin{array}{ccc|c}1&-1&2&4\\\\0&3&-5&-5\\\\0&0&10&10\\end{array}\\right).\n\\]\n$z=1$; $3y-5=-5$, $y=0$; $x=4+y-2z=2$. És compatible determinat: $(x,y,z)=(2,0,1)$.\n\\end{solucio}\n\n\\begin{tria}{tipus-sistema}\n\\itemtria{incompatible}{1}{1,25}\nAplica el mètode de Gauss i classifica el sistema\n\\[\n\\left.\\begin{aligned}\nx+2y-z&=1\\\\\n2x+3y+z&=4\\\\\n3x+5y&=6\n\\end{aligned}\\right\\}\n\\]\n\n\\begin{solucio}\n\\[\n\\left(\\begin{array}{ccc|c}1&2&-1&1\\\\2&3&1&4\\\\3&5&0&6\\end{array}\\right)\n\\xrightarrow[F_3-3F_1]{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}1&2&-1&1\\\\0&-1&3&2\\\\0&-1&3&3\\end{array}\\right)\n\\xrightarrow{F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&2&-1&1\\\\0&-1&3&2\\\\0&0&0&1\\end{array}\\right).\n\\]\nL'última fila diu $0=1$: el sistema és incompatible. (La suma de les dues primeres equacions és\n$3x+5y=5$, que contradiu la tercera.)\n\\end{solucio}\n\n\\itemtria{inventa-sistema}{1}{1,25}\nEscriu un sistema de tres equacions amb tres incògnites, en què totes les equacions tinguin les tres\nincògnites, que tingui com a única solució $(x,y,z)=(1,-1,2)$. Justifica que la solució és única.\n\n\\begin{solucio}\nResposta oberta. Cada equació ha de complir-se amb $(1,-1,2)$: es trien els coeficients i el terme\nindependent és el valor del primer membre en aquest punt. Per exemple,\n$\\left.\\begin{aligned}x+2y-z&=-3\\\\2x-y+z&=5\\\\3x+y+2z&=6\\end{aligned}\\right\\}$.\\\\\nLa solució és única si el determinant de la matriu de coeficients no és nul:\n$\\begin{vmatrix}1&2&-1\\\\2&-1&1\\\\3&1&2\\end{vmatrix}=-2+6-2-3-1-8=-10\\ne0$. Aleshores\n$\\operatorname{rang}A=\\operatorname{rang}A^*=3$, i és compatible determinat.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu en forma matricial el sistema $\\left.\\begin{aligned}x+y-z+t&=2\\\\2x-z+3t&=1\\end{aligned}\\right\\}$.\nPot ser compatible determinat? Justifica-ho sense resoldre'l.\n\n\\begin{solucio}\n$\\begin{pmatrix}1&1&-1&1\\\\2&0&-1&3\\end{pmatrix}\\begin{pmatrix}x\\\\y\\\\z\\\\t\\end{pmatrix}=\\begin{pmatrix}2\\\\1\\end{pmatrix}$.\\\\\nLa matriu de coeficients té dues files: el seu rang és com a molt 2, menor que el nombre d'incògnites,\n4. Un sistema així no pot ser mai compatible determinat. Aquí $\\begin{vmatrix}1&1\\\\2&0\\end{vmatrix}=-2\\ne0$,\ni els dos rangs valen 2: és compatible indeterminat, amb $4-2=2$ paràmetres.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/gauss-classificacio/q003/out/enunciat.pdf",
+   "pdf_solucio": "u3/gauss-classificacio/q003/out/solucio.pdf",
+   "pdf_curt": "u3/gauss-classificacio/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/gauss-classificacio/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/problemes-sistemes/q001",
+   "unitat": "u3",
+   "tema": "problemes-sistemes",
+   "codi": "q001",
+   "titol": "Tres comandes d'una papereria: el preu de cada article",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    90,
+    94,
+    56
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "problema",
+    "mètode de Gauss",
+    "Rouché-Fröbenius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "informacio",
+     "defecte_llarg": "resol",
+     "defecte_curt": "resol",
+     "items": [
+      {
+       "id": "resol",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/problemes-sistemes/q001/out/tries/informacio/resol/enunciat.pdf",
+       "pdf_solucio": "u3/problemes-sistemes/q001/out/tries/informacio/resol/solucio.pdf",
+       "pdf_curt": "u3/problemes-sistemes/q001/out/tries/informacio/resol/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/problemes-sistemes/q001/out/tries/informacio/resol/solucio-curt.pdf"
+      },
+      {
+       "id": "dues-comandes",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/problemes-sistemes/q001/out/tries/informacio/dues-comandes/enunciat.pdf",
+       "pdf_solucio": "u3/problemes-sistemes/q001/out/tries/informacio/dues-comandes/solucio.pdf",
+       "pdf_curt": "u3/problemes-sistemes/q001/out/tries/informacio/dues-comandes/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/problemes-sistemes/q001/out/tries/informacio/dues-comandes/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Una papereria ven llibretes, bolígrafs i carpetes a una escola, sempre al mateix preu. La primera comanda\nva ser de 10 llibretes, 20 bolígrafs i 5 carpetes, i va costar 65\\,€; la segona, de 20 llibretes, 10\nbolígrafs i 10 carpetes, i va costar 85\\,€; i la tercera, de 5 llibretes, 30 bolígrafs i 15 carpetes, i\nva costar 100\\,€.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nPlanteja un sistema d'equacions que permeti trobar el preu de cada article i escriu-lo en forma\nmatricial.\n\n\\begin{solucio}\nSiguin $x$, $y$ i $z$ els preus, en euros, d'una llibreta, un bolígraf i una carpeta. Dividint cada\nequació per 5:\n\\[\n\\left.\\begin{aligned}10x+20y+5z&=65\\\\20x+10y+10z&=85\\\\5x+30y+15z&=100\\end{aligned}\\right\\}\n\\ \\Longleftrightarrow\\\n\\begin{pmatrix}2&4&1\\\\4&2&2\\\\1&6&3\\end{pmatrix}\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=\\begin{pmatrix}13\\\\17\\\\20\\end{pmatrix}.\n\\]\n\\end{solucio}\n\n\\begin{tria}{informacio}\n\\itemtria{resol}{1}{1,25}\nResol el sistema pel mètode de Gauss i interpreta'n la solució.\n\n\\begin{solucio}\n\\[\n\\left(\\begin{array}{ccc|c}2&4&1&13\\\\4&2&2&17\\\\1&6&3&20\\end{array}\\right)\n\\xrightarrow[2F_3-F_1]{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}2&4&1&13\\\\0&-6&0&-9\\\\0&8&5&27\\end{array}\\right)\n\\xrightarrow{3F_3+4F_2}\n\\left(\\begin{array}{ccc|c}2&4&1&13\\\\0&-6&0&-9\\\\0&0&15&45\\end{array}\\right).\n\\]\n$z=3$; $-6y=-9$, $y=1{,}5$; $2x=13-6-3=4$, $x=2$. Una llibreta val 2\\,€, un bolígraf 1,50\\,€ i una\ncarpeta 3\\,€.\n\\end{solucio}\n\n\\itemtria{dues-comandes}{1}{1,25}\nSi només es coneguessin les dues primeres comandes, es podria saber el preu de cada article? Justifica-ho\namb el teorema de Rouché-Fröbenius, i digues quins preus es poden saber i quins no.\n\n\\begin{solucio}\nAmb les dues primeres equacions, $\\left.\\begin{aligned}2x+4y+z&=13\\\\4x+2y+2z&=17\\end{aligned}\\right\\}$,\n$\\begin{vmatrix}2&4\\\\4&2\\end{vmatrix}=-12\\ne0$: $\\operatorname{rang}A=\\operatorname{rang}A^*=2<3$. És\ncompatible indeterminat, i els preus no es poden saber tots.\\\\\nAra bé, restant a la segona el doble de la primera, $-6y=-9$: el preu del bolígraf sí que es pot saber,\n1,50\\,€. En canvi, llibreta i carpeta només compleixen $2x+z=7$: per exemple, 2\\,€ i 3\\,€, o bé 1\\,€ i\n5\\,€, o bé 3\\,€ i 1\\,€.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nL'any anterior, els tres articles valien un 10\\,\\% menys, i les tres comandes haurien costat un 10\\,\\%\nmenys. Quin sistema en resulta? Quina relació hi ha entre la seva solució i la d'aquest any? Cal\nresoldre'l?\n\n\\begin{solucio}\nLa matriu de coeficients és la mateixa i els termes independents es multipliquen per 0,9:\n$AX'=0{,}9B$. Si $AX=B$, aleshores $A(0{,}9X)=0{,}9B$: $X'=0{,}9X$ és solució, i és l'única perquè\n$|A|=-30\\ne0$. No cal resoldre'l: els preus de l'any anterior eren els d'ara multiplicats per 0,9\n(1,80\\,€, 1,35\\,€ i 2,70\\,€).\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/problemes-sistemes/q001/out/enunciat.pdf",
+   "pdf_solucio": "u3/problemes-sistemes/q001/out/solucio.pdf",
+   "pdf_curt": "u3/problemes-sistemes/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/problemes-sistemes/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/problemes-sistemes/q002",
+   "unitat": "u3",
+   "tema": "problemes-sistemes",
+   "codi": "q002",
+   "titol": "Accions de tres empreses: un sistema indeterminat i la dada que en fixa la solució",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    92,
+    90,
+    56
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "problema",
+    "sistema indeterminat",
+    "Rouché-Fröbenius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "mes-informacio",
+     "defecte_llarg": "preus-enters",
+     "defecte_curt": "preus-enters",
+     "items": [
+      {
+       "id": "preus-enters",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/problemes-sistemes/q002/out/tries/mes-informacio/preus-enters/enunciat.pdf",
+       "pdf_solucio": "u3/problemes-sistemes/q002/out/tries/mes-informacio/preus-enters/solucio.pdf",
+       "pdf_curt": "u3/problemes-sistemes/q002/out/tries/mes-informacio/preus-enters/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/problemes-sistemes/q002/out/tries/mes-informacio/preus-enters/solucio-curt.pdf"
+      },
+      {
+       "id": "tercera-compra",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/problemes-sistemes/q002/out/tries/mes-informacio/tercera-compra/enunciat.pdf",
+       "pdf_solucio": "u3/problemes-sistemes/q002/out/tries/mes-informacio/tercera-compra/solucio.pdf",
+       "pdf_curt": "u3/problemes-sistemes/q002/out/tries/mes-informacio/tercera-compra/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/problemes-sistemes/q002/out/tries/mes-informacio/tercera-compra/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "La Marta compra 100 accions de l'empresa A, 50 de la B i 200 de la C, i paga 1.500\\,€. En Pau compra\n200 accions de l'empresa A, 150 de la B i 100 de la C, i paga 2.200\\,€.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nPlanteja un sistema d'equacions i estudia amb el teorema de Rouché-Fröbenius si es pot saber el preu de\ncada acció.\n\n\\begin{solucio}\nSiguin $x$, $y$ i $z$ els preus, en euros, d'una acció de A, de B i de C. Dividint per 50:\n\\[\n\\left.\\begin{aligned}100x+50y+200z&=1500\\\\200x+150y+100z&=2200\\end{aligned}\\right\\}\n\\ \\Longleftrightarrow\\\n\\left.\\begin{aligned}2x+y+4z&=30\\\\4x+3y+2z&=44\\end{aligned}\\right\\}\n\\]\n$\\begin{vmatrix}2&1\\\\4&3\\end{vmatrix}=2\\ne0$: $\\operatorname{rang}A=\\operatorname{rang}A^*=2<3$. És\ncompatible indeterminat: hi ha infinites solucions, i amb aquestes dades no es pot saber el preu de\ncada acció.\n\\end{solucio}\n\n\\begin{tria}{mes-informacio}\n\\itemtria{preus-enters}{1}{1,25}\nResol el sistema. Si se sap que els tres preus són nombres enters entre 1\\,€ i 12\\,€, quines\npossibilitats hi ha?\n\n\\begin{solucio}\n$\\left(\\begin{array}{ccc|c}2&1&4&30\\\\4&3&2&44\\end{array}\\right)\\xrightarrow{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}2&1&4&30\\\\0&1&-6&-16\\end{array}\\right)$. Amb $z=\\lambda$: $y=6\\lambda-16$ i\n$2x=30-y-4\\lambda=46-10\\lambda$, $x=23-5\\lambda$.\\\\\nSi $z$ és enter, $x$ i $y$ també. Cal $1\\le6\\lambda-16\\le12$, és a dir, $\\lambda\\in\\{3,4\\}$, i\n$1\\le23-5\\lambda\\le12$, que tots dos compleixen. Hi ha dues possibilitats: $(x,y,z)=(8,2,3)$ i\n$(x,y,z)=(3,8,4)$.\n\\end{solucio}\n\n\\itemtria{tercera-compra}{1}{1,25}\nLa Laia compra 50 accions de cada empresa i paga 750\\,€. Amb aquesta dada, es pot saber el preu de cada\nacció? Troba'l.\n\n\\begin{solucio}\nLa tercera equació és $50x+50y+50z=750$, és a dir, $x+y+z=15$. Ara\n$|A|=\\begin{vmatrix}2&1&4\\\\4&3&2\\\\1&1&1\\end{vmatrix}=6+2+16-12-4-4=4\\ne0$: el sistema és compatible\ndeterminat, i el preu de cada acció queda determinat.\\\\\n$\\left(\\begin{array}{ccc|c}1&1&1&15\\\\2&1&4&30\\\\4&3&2&44\\end{array}\\right)\\xrightarrow[F_3-4F_1]{F_2-2F_1}\n\\left(\\begin{array}{ccc|c}1&1&1&15\\\\0&-1&2&0\\\\0&-1&-2&-16\\end{array}\\right)\\xrightarrow{F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&1&1&15\\\\0&-1&2&0\\\\0&0&-4&-16\\end{array}\\right)$.\\\\\n$z=4$, $y=2z=8$, $x=15-8-4=3$: una acció de A val 3\\,€; una de B, 8\\,€, i una de C, 4\\,€.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nExplica per què, amb les dades de només dues compres, no es pot saber mai el preu de les accions de tres\nempreses, siguin quines siguin les quantitats i els imports.\n\n\\begin{solucio}\nDues compres donen un sistema de dues equacions amb tres incògnites. La matriu de coeficients té dues\nfiles, i el seu rang és com a molt 2, menor que el nombre d'incògnites. Pel teorema de\nRouché-Fröbenius, el sistema no pot ser compatible determinat: o bé és incompatible (les dades serien\ncontradictòries), o bé és compatible indeterminat, amb infinites solucions.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/problemes-sistemes/q002/out/enunciat.pdf",
+   "pdf_solucio": "u3/problemes-sistemes/q002/out/solucio.pdf",
+   "pdf_curt": "u3/problemes-sistemes/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/problemes-sistemes/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u3/problemes-sistemes/q003",
+   "unitat": "u3",
+   "tema": "problemes-sistemes",
+   "codi": "q003",
+   "titol": "Préstecs d'una biblioteca amb percentatges, i un model econòmic d'equilibri",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    94,
+    100,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "problema",
+    "mètode de Gauss",
+    "model econòmic"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "resolucio",
+     "defecte_llarg": "resol",
+     "defecte_curt": "resol",
+     "items": [
+      {
+       "id": "resol",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/problemes-sistemes/q003/out/tries/resolucio/resol/enunciat.pdf",
+       "pdf_solucio": "u3/problemes-sistemes/q003/out/tries/resolucio/resol/solucio.pdf",
+       "pdf_curt": "u3/problemes-sistemes/q003/out/tries/resolucio/resol/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/problemes-sistemes/q003/out/tries/resolucio/resol/solucio-curt.pdf"
+      },
+      {
+       "id": "model-economic",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u3/problemes-sistemes/q003/out/tries/resolucio/model-economic/enunciat.pdf",
+       "pdf_solucio": "u3/problemes-sistemes/q003/out/tries/resolucio/model-economic/solucio.pdf",
+       "pdf_curt": "u3/problemes-sistemes/q003/out/tries/resolucio/model-economic/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u3/problemes-sistemes/q003/out/tries/resolucio/model-economic/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Una biblioteca va fer 300 préstecs en una setmana, entre llibres, còmics i pel·lícules. Els còmics i el\ndoble de les pel·lícules en van ser 80 més que els llibres. Si se suma el 20\\,\\% dels llibres, el 30\\,\\%\ndels còmics i el 50\\,\\% de les pel·lícules, que són els que es van tornar amb retard, s'obtenen 88\npréstecs.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nPlanteja un sistema d'equacions que permeti saber quants préstecs de cada tipus es van fer.\n\n\\begin{solucio}\nSiguin $x$, $y$ i $z$ els préstecs de llibres, de còmics i de pel·lícules:\n\\[\n\\left.\\begin{aligned}x+y+z&=300\\\\y+2z&=x+80\\\\0{,}2x+0{,}3y+0{,}5z&=88\\end{aligned}\\right\\}\n\\ \\Longleftrightarrow\\\n\\left.\\begin{aligned}x+y+z&=300\\\\-x+y+2z&=80\\\\2x+3y+5z&=880\\end{aligned}\\right\\}\n\\]\n(la tercera, multiplicada per 10).\n\\end{solucio}\n\n\\begin{tria}{resolucio}\n\\itemtria{resol}{1}{1,25}\nResol el sistema pel mètode de Gauss i interpreta'n la solució.\n\n\\begin{solucio}\n\\[\n\\left(\\begin{array}{ccc|c}1&1&1&300\\\\-1&1&2&80\\\\2&3&5&880\\end{array}\\right)\n\\xrightarrow[F_3-2F_1]{F_2+F_1}\n\\left(\\begin{array}{ccc|c}1&1&1&300\\\\0&2&3&380\\\\0&1&3&280\\end{array}\\right)\n\\xrightarrow{2F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&1&1&300\\\\0&2&3&380\\\\0&0&3&180\\end{array}\\right).\n\\]\n$z=60$; $2y=380-180$, $y=100$; $x=300-100-60=140$. Es van fer 140 préstecs de llibres, 100 de còmics\ni 60 de pel·lícules.\n\\end{solucio}\n\n\\itemtria{model-economic}{1}{1,25}\nAquest altre problema és d'un model econòmic. Una empresa elèctrica i una d'aigua es proveeixen\nmútuament: per produir 1\\,€ d'electricitat es consumeixen 0,10\\,€ d'electricitat i 0,20\\,€ d'aigua, i\nper produir 1\\,€ d'aigua, 0,30\\,€ d'electricitat i 0,10\\,€ d'aigua. A més, fora de les dues empreses es\ndemanen 60\\,€ d'electricitat i 30\\,€ d'aigua. Quant ha de produir cada empresa perquè la producció\ncobreixi el consum de les dues empreses i la demanda de fora?\n\n\\begin{solucio}\nSiguin $E$ i $W$ les produccions, en euros, d'electricitat i d'aigua. La producció de cada una ha de ser\nigual al que en consumeixen les dues empreses més la demanda exterior:\n\\[\n\\left.\\begin{aligned}E&=0{,}1E+0{,}3W+60\\\\W&=0{,}2E+0{,}1W+30\\end{aligned}\\right\\}\n\\ \\Longleftrightarrow\\\n\\left.\\begin{aligned}9E-3W&=600\\\\-2E+9W&=300\\end{aligned}\\right\\}\n\\]\nDe la primera, $W=3E-200$; substituint, $-2E+27E-1800=300$, $E=84$, i $W=52$. L'empresa elèctrica ha\nde produir 84\\,€ i la d'aigua, 52\\,€.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula el determinant de la matriu de coeficients del sistema de l'apartat a). Si les dades de la\nsetmana següent fossin unes altres, amb les mateixes relacions, el sistema tindria sempre una única\nsolució? I el problema? Raona-ho.\n\n\\begin{solucio}\n$\\begin{vmatrix}1&1&1\\\\-1&1&2\\\\2&3&5\\end{vmatrix}=5+4-3-2-6+5=3\\ne0$. Com que el determinant no depèn dels\ntermes independents, el sistema és compatible determinat amb qualsevol dada: té sempre una única\nsolució.\\\\\nEl problema, però, només té solució si aquesta solució és de nombres naturals: amb unes altres dades,\npodria sortir un nombre negatiu o no enter, que no correspondria a cap nombre de préstecs.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u3/problemes-sistemes/q003/out/enunciat.pdf",
+   "pdf_solucio": "u3/problemes-sistemes/q003/out/solucio.pdf",
+   "pdf_curt": "u3/problemes-sistemes/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u3/problemes-sistemes/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u7/bolzano-biseccio/q001",
