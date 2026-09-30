@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 07:28 UTC",
+ "generat": "2026-09-30 10:35 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -233,6 +233,24 @@ const BANC = {
    "unitat": "u14",
    "nom": "Probabilitats amb la binomial",
    "descripcio": "Probabilitats d'una binomial: exactament, «almenys», «com a molt» i el contrari, en abstracte i en context."
+  },
+  {
+   "slug": "operacions-matrius",
+   "unitat": "u1",
+   "nom": "Operacions amb matrius",
+   "descripcio": "Tipus de matrius, sumes i productes, dimensions, productes possibles i matrius en context."
+  },
+  {
+   "slug": "commutativitat",
+   "unitat": "u1",
+   "nom": "El producte no és commutatiu",
+   "descripcio": "Comprovar si dues matrius commuten, conseqüències per a la distributiva i el quadrat d'una suma, i matrius que commuten amb una de donada."
+  },
+  {
+   "slug": "potencies-matrius",
+   "unitat": "u1",
+   "nom": "Potències de matrius",
+   "descripcio": "Potència n-èsima per recurrència, matrius nilpotents, idempotents i periòdiques."
   },
   {
    "slug": "algebra",
@@ -2633,6 +2651,590 @@ const BANC = {
    "pdf_solucio": "pau/probabilitat/pro-26j2-q3/out/solucio.pdf",
    "pdf_curt": "pau/probabilitat/pro-26j2-q3/out/enunciat.pdf",
    "pdf_solucio_curt": "pau/probabilitat/pro-26j2-q3/out/solucio.pdf"
+  },
+  {
+   "id": "u1/commutativitat/q001",
+   "unitat": "u1",
+   "tema": "commutativitat",
+   "codi": "q001",
+   "titol": "Dues matrius que no commuten: la distributiva, el quadrat d'una suma i matrius que commuten",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    16,
+    69
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "commutativitat",
+    "propietat distributiva"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "consequencia",
+     "defecte_llarg": "distributiva",
+     "defecte_curt": "distributiva",
+     "items": [
+      {
+       "id": "distributiva",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/commutativitat/q001/out/tries/consequencia/distributiva/enunciat.pdf",
+       "pdf_solucio": "u1/commutativitat/q001/out/tries/consequencia/distributiva/solucio.pdf",
+       "pdf_curt": "u1/commutativitat/q001/out/tries/consequencia/distributiva/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/commutativitat/q001/out/tries/consequencia/distributiva/solucio-curt.pdf"
+      },
+      {
+       "id": "quadrat-suma",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/commutativitat/q001/out/tries/consequencia/quadrat-suma/enunciat.pdf",
+       "pdf_solucio": "u1/commutativitat/q001/out/tries/consequencia/quadrat-suma/solucio.pdf",
+       "pdf_curt": "u1/commutativitat/q001/out/tries/consequencia/quadrat-suma/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/commutativitat/q001/out/tries/consequencia/quadrat-suma/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera les matrius\n\\[\nA=\\begin{pmatrix}1&2\\\\-1&0\\end{pmatrix},\\qquad\nB=\\begin{pmatrix}3&-2\\\\1&1\\end{pmatrix}\\qquad\\text{i}\\qquad\nC=\\begin{pmatrix}0&1\\\\2&-1\\end{pmatrix}.\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova si $A$ i $B$ commuten.\n\n\\begin{solucio}\n\\[\nAB=\\begin{pmatrix}3+2&-2+2\\\\-3+0&2+0\\end{pmatrix}=\\begin{pmatrix}5&0\\\\-3&2\\end{pmatrix},\\qquad\nBA=\\begin{pmatrix}3+2&6+0\\\\1-1&2+0\\end{pmatrix}=\\begin{pmatrix}5&6\\\\0&2\\end{pmatrix}.\n\\]\n$AB\\ne BA$: no commuten.\n\\end{solucio}\n\n\\begin{tria}{consequencia}\n\\itemtria{distributiva}{1}{1,25}\nComprova que $A(B+C)=AB+AC$. És cert també que $(B+C)A=AB+AC$? Per què?\n\n\\begin{solucio}\n$B+C=\\begin{pmatrix}3&-1\\\\3&0\\end{pmatrix}$ i\n\\[\nA(B+C)=\\begin{pmatrix}9&-1\\\\-3&1\\end{pmatrix},\\qquad\nAB+AC=\\begin{pmatrix}5&0\\\\-3&2\\end{pmatrix}+\\begin{pmatrix}4&-1\\\\0&-1\\end{pmatrix}\n=\\begin{pmatrix}9&-1\\\\-3&1\\end{pmatrix}.\n\\]\nCoincideixen: el producte és distributiu. En canvi,\n$(B+C)A=BA+CA=\\begin{pmatrix}4&6\\\\3&6\\end{pmatrix}\\ne AB+AC$. La distributiva val per a cada costat,\nperò $(B+C)A=BA+CA$, i $BA\\ne AB$.\n\\end{solucio}\n\n\\itemtria{quadrat-suma}{1}{1,25}\nCalcula $(A+B)^2$ i $A^2+2AB+B^2$. Per què no coincideixen? Quina condició haurien de complir $A$ i\n$B$ perquè coincidissin?\n\n\\begin{solucio}\n$A+B=\\begin{pmatrix}4&0\\\\0&1\\end{pmatrix}$, i $(A+B)^2=\\begin{pmatrix}16&0\\\\0&1\\end{pmatrix}$. D'altra\nbanda, $A^2=\\begin{pmatrix}-1&2\\\\-1&-2\\end{pmatrix}$, $B^2=\\begin{pmatrix}7&-8\\\\4&-1\\end{pmatrix}$ i\n\\[\nA^2+2AB+B^2=\\begin{pmatrix}-1+10+7&2+0-8\\\\-1-6+4&-2+4-1\\end{pmatrix}=\\begin{pmatrix}16&-6\\\\-3&1\\end{pmatrix}.\n\\]\nNo coincideixen perquè $(A+B)^2=(A+B)(A+B)=A^2+AB+BA+B^2$, i $AB+BA\\ne2AB$. Coincidirien si i només si\n$AB=BA$, és a dir, si $A$ i $B$ commutessin.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba una matriu, diferent de $A$, de la identitat i de la matriu nul·la, que commuti amb $A$. Justifica\nque commuta.\n\n\\begin{solucio}\nResposta oberta. Per exemple, $A^2=\\begin{pmatrix}-1&2\\\\-1&-2\\end{pmatrix}$: $A\\cdot A^2=A^3=A^2\\cdot A$.\nQualsevol matriu de la forma $aA+bI$ també serveix, perquè $A(aA+bI)=aA^2+bA=(aA+bI)A$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/commutativitat/q001/out/enunciat.pdf",
+   "pdf_solucio": "u1/commutativitat/q001/out/solucio.pdf",
+   "pdf_curt": "u1/commutativitat/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/commutativitat/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/commutativitat/q002",
+   "unitat": "u1",
+   "tema": "commutativitat",
+   "codi": "q002",
+   "titol": "Dues matrius 3×3 que sí que commuten, paràmetres perquè commutin i la suma per diferència",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    69,
+    16
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "commutativitat",
+    "paràmetres",
+    "demostració"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "commuten-quan",
+     "defecte_llarg": "dos-parametres",
+     "defecte_curt": "dos-parametres",
+     "items": [
+      {
+       "id": "dos-parametres",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/commutativitat/q002/out/tries/commuten-quan/dos-parametres/enunciat.pdf",
+       "pdf_solucio": "u1/commutativitat/q002/out/tries/commuten-quan/dos-parametres/solucio.pdf",
+       "pdf_curt": "u1/commutativitat/q002/out/tries/commuten-quan/dos-parametres/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/commutativitat/q002/out/tries/commuten-quan/dos-parametres/solucio-curt.pdf"
+      },
+      {
+       "id": "diagonals",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/commutativitat/q002/out/tries/commuten-quan/diagonals/enunciat.pdf",
+       "pdf_solucio": "u1/commutativitat/q002/out/tries/commuten-quan/diagonals/solucio.pdf",
+       "pdf_curt": "u1/commutativitat/q002/out/tries/commuten-quan/diagonals/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/commutativitat/q002/out/tries/commuten-quan/diagonals/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova si les matrius\n$A=\\begin{pmatrix}1&0&1\\\\0&2&0\\\\1&0&1\\end{pmatrix}$ i\n$B=\\begin{pmatrix}0&1&0\\\\1&0&1\\\\0&1&0\\end{pmatrix}$ commuten.\n\n\\begin{solucio}\n\\[\nAB=\\begin{pmatrix}0&2&0\\\\2&0&2\\\\0&2&0\\end{pmatrix},\\qquad\nBA=\\begin{pmatrix}0&2&0\\\\2&0&2\\\\0&2&0\\end{pmatrix}.\n\\]\n$AB=BA$: aquestes dues matrius commuten. És un cas particular: en general, el producte de matrius no és\ncommutatiu.\n\\end{solucio}\n\n\\begin{tria}{commuten-quan}\n\\itemtria{dos-parametres}{1}{1,25}\nTroba els valors de $a$ i $b$ perquè les matrius\n$P=\\begin{pmatrix}a&1\\\\2&3\\end{pmatrix}$ i $Q=\\begin{pmatrix}1&b\\\\4&-1\\end{pmatrix}$ commutin.\n\n\\begin{solucio}\n\\[\nPQ=\\begin{pmatrix}a+4&ab-1\\\\14&2b-3\\end{pmatrix},\\qquad\nQP=\\begin{pmatrix}a+2b&1+3b\\\\4a-2&1\\end{pmatrix}.\n\\]\nIgualant element a element: $a+4=a+2b$, d'on $b=2$; $14=4a-2$, d'on $a=4$; $2b-3=1$, que es compleix\namb $b=2$; i $ab-1=1+3b$, que amb $a=4$ i $b=2$ dona $7=7$. Commuten només si $a=4$ i $b=2$.\n\\end{solucio}\n\n\\itemtria{diagonals}{1}{1,25}\nDemostra que dues matrius diagonals d'ordre 2 qualssevol commuten. Commuta també una matriu diagonal\nqualsevol amb $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$?\n\n\\begin{solucio}\n$\\begin{pmatrix}a&0\\\\0&b\\end{pmatrix}\\begin{pmatrix}c&0\\\\0&d\\end{pmatrix}=\\begin{pmatrix}ac&0\\\\0&bd\\end{pmatrix}\n=\\begin{pmatrix}c&0\\\\0&d\\end{pmatrix}\\begin{pmatrix}a&0\\\\0&b\\end{pmatrix}$, perquè $ac=ca$ i $bd=db$.\\\\\nEn canvi, $\\begin{pmatrix}a&0\\\\0&b\\end{pmatrix}\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=\\begin{pmatrix}0&a\\\\0&0\\end{pmatrix}$\ni $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}\\begin{pmatrix}a&0\\\\0&b\\end{pmatrix}=\\begin{pmatrix}0&b\\\\0&0\\end{pmatrix}$:\nnomés commuten si $a=b$. Una diagonal qualsevol no hi commuta; per exemple, $\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDemostra que, si dues matrius quadrades $X$ i $Y$ commuten, aleshores $(X+Y)(X-Y)=X^2-Y^2$. Comprova que\namb $X=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$ i $Y=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ la igualtat no\nes compleix.\n\n\\begin{solucio}\n$(X+Y)(X-Y)=X^2-XY+YX-Y^2$, i si $XY=YX$ els dos termes del mig s'anul·len: queda $X^2-Y^2$.\\\\\nAmb les matrius donades, $X+Y=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$, $X-Y=\\begin{pmatrix}1&-1\\\\0&0\\end{pmatrix}$,\n$(X+Y)(X-Y)=\\begin{pmatrix}1&-1\\\\0&0\\end{pmatrix}$, mentre que $X^2-Y^2=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$:\nno coincideixen, perquè $XY=Y\\ne0=YX$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/commutativitat/q002/out/enunciat.pdf",
+   "pdf_solucio": "u1/commutativitat/q002/out/solucio.pdf",
+   "pdf_curt": "u1/commutativitat/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/commutativitat/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/commutativitat/q003",
+   "unitat": "u1",
+   "tema": "commutativitat",
+   "codi": "q003",
+   "titol": "Les matrius que commuten amb una de donada",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    16,
+    69,
+    85
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "commutativitat",
+    "matrius que commuten"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "matrius-que-commuten",
+     "defecte_llarg": "totes",
+     "defecte_curt": "totes",
+     "items": [
+      {
+       "id": "totes",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/commutativitat/q003/out/tries/matrius-que-commuten/totes/enunciat.pdf",
+       "pdf_solucio": "u1/commutativitat/q003/out/tries/matrius-que-commuten/totes/solucio.pdf",
+       "pdf_curt": "u1/commutativitat/q003/out/tries/matrius-que-commuten/totes/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/commutativitat/q003/out/tries/matrius-que-commuten/totes/solucio-curt.pdf"
+      },
+      {
+       "id": "un-parametre",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/commutativitat/q003/out/tries/matrius-que-commuten/un-parametre/enunciat.pdf",
+       "pdf_solucio": "u1/commutativitat/q003/out/tries/matrius-que-commuten/un-parametre/solucio.pdf",
+       "pdf_curt": "u1/commutativitat/q003/out/tries/matrius-que-commuten/un-parametre/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/commutativitat/q003/out/tries/matrius-que-commuten/un-parametre/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Sigui $A=\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $A$ no commuta amb $B=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$.\n\n\\begin{solucio}\n\\[\nAB=\\begin{pmatrix}3&2\\\\1&1\\end{pmatrix},\\qquad BA=\\begin{pmatrix}1&2\\\\1&3\\end{pmatrix}.\n\\]\n$AB\\ne BA$: no commuten.\n\\end{solucio}\n\n\\begin{tria}{matrius-que-commuten}\n\\itemtria{totes}{1}{1,25}\nTroba totes les matrius quadrades d'ordre 2 que commuten amb $A$.\n\n\\begin{solucio}\nSigui $X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$. Aleshores\n\\[\nAX=\\begin{pmatrix}a+2c&b+2d\\\\c&d\\end{pmatrix},\\qquad XA=\\begin{pmatrix}a&2a+b\\\\c&2c+d\\end{pmatrix}.\n\\]\nIgualant: $a+2c=a$ dona $c=0$; $b+2d=2a+b$ dona $d=a$; $d=2c+d$ torna a donar $c=0$. Les matrius que\ncommuten amb $A$ són les de la forma $X=\\begin{pmatrix}a&b\\\\0&a\\end{pmatrix}$, amb $a,b\\in\\mathbb R$.\n\\end{solucio}\n\n\\itemtria{un-parametre}{1}{1,25}\nTroba el valor de $k$ perquè $A$ commuti amb $M=\\begin{pmatrix}k&3\\\\0&2\\end{pmatrix}$.\n\n\\begin{solucio}\n\\[\nAM=\\begin{pmatrix}k&3+4\\\\0&2\\end{pmatrix}=\\begin{pmatrix}k&7\\\\0&2\\end{pmatrix},\\qquad\nMA=\\begin{pmatrix}k&2k+3\\\\0&2\\end{pmatrix}.\n\\]\nNomés difereixen en l'element de la fila 1 i la columna 2: cal $7=2k+3$, és a dir, $k=2$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDemostra que, si una matriu $B$ commuta amb $A$, aleshores $B$ també commuta amb $A+5I$.\n\n\\begin{solucio}\n$B(A+5I)=BA+5B$ i $(A+5I)B=AB+5B$. Com que $AB=BA$, les dues expressions són iguals. (La identitat\ncommuta amb qualsevol matriu: $BI=B=IB$.)\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/commutativitat/q003/out/enunciat.pdf",
+   "pdf_solucio": "u1/commutativitat/q003/out/solucio.pdf",
+   "pdf_curt": "u1/commutativitat/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/commutativitat/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/operacions-matrius/q001",
+   "unitat": "u1",
+   "tema": "operacions-matrius",
+   "codi": "q001",
+   "titol": "Combinació de productes, quins productes es poden fer i una equació matricial senzilla",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    12,
+    13,
+    15,
+    49
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "operacions amb matrius",
+    "producte de matrius",
+    "dimensions"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "productes",
+     "defecte_llarg": "quins-es-poden-fer",
+     "defecte_curt": "quins-es-poden-fer",
+     "items": [
+      {
+       "id": "quins-es-poden-fer",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/operacions-matrius/q001/out/tries/productes/quins-es-poden-fer/enunciat.pdf",
+       "pdf_solucio": "u1/operacions-matrius/q001/out/tries/productes/quins-es-poden-fer/solucio.pdf",
+       "pdf_curt": "u1/operacions-matrius/q001/out/tries/productes/quins-es-poden-fer/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/operacions-matrius/q001/out/tries/productes/quins-es-poden-fer/solucio-curt.pdf"
+      },
+      {
+       "id": "un-sol-element",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/operacions-matrius/q001/out/tries/productes/un-sol-element/enunciat.pdf",
+       "pdf_solucio": "u1/operacions-matrius/q001/out/tries/productes/un-sol-element/solucio.pdf",
+       "pdf_curt": "u1/operacions-matrius/q001/out/tries/productes/un-sol-element/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/operacions-matrius/q001/out/tries/productes/un-sol-element/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera les matrius\n\\[\nA=\\begin{pmatrix}2&-1\\\\0&3\\end{pmatrix},\\qquad\nB=\\begin{pmatrix}1&0&2\\\\-1&4&1\\end{pmatrix}\\qquad\\text{i}\\qquad\nC=\\begin{pmatrix}1&2\\\\0&-1\\\\3&1\\end{pmatrix}.\n\\]\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula $3A-2BC$.\n\n\\begin{solucio}\n$B$ és $2\\times3$ i $C$ és $3\\times2$: $BC$ és $2\\times2$, com $A$, i l'operació es pot fer.\n\\[\nBC=\\begin{pmatrix}1+0+6&2+0+2\\\\-1+0+3&-2-4+1\\end{pmatrix}=\\begin{pmatrix}7&4\\\\2&-5\\end{pmatrix},\\qquad\n3A-2BC=\\begin{pmatrix}6&-3\\\\0&9\\end{pmatrix}-\\begin{pmatrix}14&8\\\\4&-10\\end{pmatrix}\n=\\begin{pmatrix}-8&-11\\\\-4&19\\end{pmatrix}.\n\\]\n\\end{solucio}\n\n\\begin{tria}{productes}\n\\itemtria{quins-es-poden-fer}{1}{1,25}\nQuins dels productes $AB$, $BA$, $AC$ i $CA$ es poden fer? Calcula els que siguin possibles.\n\n\\begin{solucio}\nUn producte es pot fer si el nombre de columnes del primer factor és igual al nombre de files del segon.\n\\begin{itemize}\n\\item $AB$: $(2\\times2)(2\\times3)$, sí; és $2\\times3$.\n\\item $BA$: $(2\\times3)(2\\times2)$, no, perquè $3\\ne2$.\n\\item $AC$: $(2\\times2)(3\\times2)$, no, perquè $2\\ne3$.\n\\item $CA$: $(3\\times2)(2\\times2)$, sí; és $3\\times2$.\n\\end{itemize}\n\\[\nAB=\\begin{pmatrix}3&-4&3\\\\-3&12&3\\end{pmatrix},\\qquad\nCA=\\begin{pmatrix}2&5\\\\0&-3\\\\6&0\\end{pmatrix}.\n\\]\n\\end{solucio}\n\n\\itemtria{un-sol-element}{1}{1,25}\nDigues, sense calcular-les, quina dimensió tenen $BC$ i $CB$. Després, calcula només l'element de la\nfila 2 i la columna 3 de $CB$.\n\n\\begin{solucio}\n$BC$ és $(2\\times3)(3\\times2)$, de dimensió $2\\times2$; $CB$ és $(3\\times2)(2\\times3)$, de dimensió\n$3\\times3$. Els dos productes existeixen, però no tenen ni tan sols la mateixa dimensió.\\\\\nL'element $(CB)_{23}$ és el producte de la fila 2 de $C$ per la columna 3 de $B$:\n\\[\n(CB)_{23}=(0\\ \\ {-1})\\begin{pmatrix}2\\\\1\\end{pmatrix}=0\\cdot2+(-1)\\cdot1=-1.\n\\]\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba la matriu $X$ que compleix $X+3A=BC$.\n\n\\begin{solucio}\n$X=BC-3A=\\begin{pmatrix}7&4\\\\2&-5\\end{pmatrix}-\\begin{pmatrix}6&-3\\\\0&9\\end{pmatrix}\n=\\begin{pmatrix}1&7\\\\2&-14\\end{pmatrix}$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/operacions-matrius/q001/out/enunciat.pdf",
+   "pdf_solucio": "u1/operacions-matrius/q001/out/solucio.pdf",
+   "pdf_curt": "u1/operacions-matrius/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/operacions-matrius/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/operacions-matrius/q002",
+   "unitat": "u1",
+   "tema": "operacions-matrius",
+   "codi": "q002",
+   "titol": "Autobusos de tres línies: la matriu d'una situació i productes amb sentit",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    17,
+    13,
+    15
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "matrius en context",
+    "producte de matrius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "producte-context",
+     "defecte_llarg": "passatgers-dia",
+     "defecte_curt": "passatgers-dia",
+     "items": [
+      {
+       "id": "passatgers-dia",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/operacions-matrius/q002/out/tries/producte-context/passatgers-dia/enunciat.pdf",
+       "pdf_solucio": "u1/operacions-matrius/q002/out/tries/producte-context/passatgers-dia/solucio.pdf",
+       "pdf_curt": "u1/operacions-matrius/q002/out/tries/producte-context/passatgers-dia/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/operacions-matrius/q002/out/tries/producte-context/passatgers-dia/solucio-curt.pdf"
+      },
+      {
+       "id": "autobusos-linia",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/operacions-matrius/q002/out/tries/producte-context/autobusos-linia/enunciat.pdf",
+       "pdf_solucio": "u1/operacions-matrius/q002/out/tries/producte-context/autobusos-linia/solucio.pdf",
+       "pdf_curt": "u1/operacions-matrius/q002/out/tries/producte-context/autobusos-linia/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/operacions-matrius/q002/out/tries/producte-context/autobusos-linia/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Una empresa d'autobusos té tres línies, A, B i C. Dilluns van sortir 4 autobusos de la línia A, 2 de la B\ni 5 de la C. Dimarts, 3 de la A, 3 de la B i 4 de la C. Dimecres, 2 de la A, 4 de la B i 3 de la C. Un\nautobús de la línia A porta 50 passatgers; un de la B, 40, i un de la C, 60.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu la matriu $M$ que té una fila per a cada dia i una columna per a cada línia, i la matriu columna\n$P$ amb els passatgers de cada autobús. Quina dimensió té cadascuna?\n\n\\begin{solucio}\n\\[\nM=\\begin{pmatrix}4&2&5\\\\3&3&4\\\\2&4&3\\end{pmatrix}\\quad(3\\times3),\\qquad\nP=\\begin{pmatrix}50\\\\40\\\\60\\end{pmatrix}\\quad(3\\times1).\n\\]\nLes files de $M$ són dilluns, dimarts i dimecres, i les columnes, les línies A, B i C.\n\\end{solucio}\n\n\\begin{tria}{producte-context}\n\\itemtria{passatgers-dia}{1}{1,25}\nAmb un producte de matrius, calcula quants passatgers van viatjar cada dia, suposant que tots els\nautobusos anaven plens.\n\n\\begin{solucio}\nCada fila de $M$ multiplicada per $P$ dona els passatgers d'un dia:\n\\[\nMP=\\begin{pmatrix}4\\cdot50+2\\cdot40+5\\cdot60\\\\3\\cdot50+3\\cdot40+4\\cdot60\\\\2\\cdot50+4\\cdot40+3\\cdot60\\end{pmatrix}\n=\\begin{pmatrix}580\\\\510\\\\440\\end{pmatrix}.\n\\]\nDilluns van viatjar 580 passatgers; dimarts, 510, i dimecres, 440.\n\\end{solucio}\n\n\\itemtria{autobusos-linia}{1}{1,25}\nAmb un producte de matrius, calcula quants autobusos de cada línia van sortir en els tres dies plegats.\nQuina matriu has de multiplicar per $M$, i per quin costat? Per què?\n\n\\begin{solucio}\nCal sumar cada columna de $M$, és a dir, sumar les files. Això ho fa una matriu fila de uns multiplicada\nper l'esquerra: $(1\\ \\ 1\\ \\ 1)$ és $1\\times3$ i $M$ és $3\\times3$, i el producte és $1\\times3$, un\nnombre per línia.\n\\[\n(1\\ \\ 1\\ \\ 1)\\,M=(4+3+2\\ \\ \\ 2+3+4\\ \\ \\ 5+4+3)=(9\\ \\ 9\\ \\ 12).\n\\]\nVan sortir 9 autobusos de la línia A, 9 de la B i 12 de la C. Per la dreta, $M\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}$\nsumaria les files de cada dia: seria el total d'autobusos de cada dia, no de cada línia.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nUn bitllet costa 1,50\\,€. Quina operació amb matrius dona la recaptació de cada dia, amb els autobusos\nplens? Calcula-la i digues quin dia es va recaptar més.\n\n\\begin{solucio}\nLa recaptació és $1{,}5\\cdot MP$:\n\\[\n1{,}5\\begin{pmatrix}580\\\\510\\\\440\\end{pmatrix}=\\begin{pmatrix}870\\\\765\\\\660\\end{pmatrix}.\n\\]\nEs van recaptar 870\\,€ dilluns, 765\\,€ dimarts i 660\\,€ dimecres: dilluns és el dia que més.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/operacions-matrius/q002/out/enunciat.pdf",
+   "pdf_solucio": "u1/operacions-matrius/q002/out/solucio.pdf",
+   "pdf_curt": "u1/operacions-matrius/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/operacions-matrius/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/operacions-matrius/q003",
+   "unitat": "u1",
+   "tema": "operacions-matrius",
+   "codi": "q003",
+   "titol": "Tipus de matrius, dimensions de AB i BA, i elements desconeguts d'un producte",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    42,
+    49,
+    15,
+    13
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "tipus de matrius",
+    "producte de matrius",
+    "dimensions"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "dimensions",
+     "defecte_llarg": "calcula-ab-ba",
+     "defecte_curt": "calcula-ab-ba",
+     "items": [
+      {
+       "id": "calcula-ab-ba",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/operacions-matrius/q003/out/tries/dimensions/calcula-ab-ba/enunciat.pdf",
+       "pdf_solucio": "u1/operacions-matrius/q003/out/tries/dimensions/calcula-ab-ba/solucio.pdf",
+       "pdf_curt": "u1/operacions-matrius/q003/out/tries/dimensions/calcula-ab-ba/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/operacions-matrius/q003/out/tries/dimensions/calcula-ab-ba/solucio-curt.pdf"
+      },
+      {
+       "id": "inventa-dimensions",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/operacions-matrius/q003/out/tries/dimensions/inventa-dimensions/enunciat.pdf",
+       "pdf_solucio": "u1/operacions-matrius/q003/out/tries/dimensions/inventa-dimensions/solucio.pdf",
+       "pdf_curt": "u1/operacions-matrius/q003/out/tries/dimensions/inventa-dimensions/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/operacions-matrius/q003/out/tries/dimensions/inventa-dimensions/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu una matriu triangular inferior $L$ d'ordre 3 amb tots els elements de sota la diagonal diferents\nde zero, i una matriu diagonal $D$ d'ordre 3. Calcula $LD$. Quin tipus de matriu en surt?\n\n\\begin{solucio}\nResposta oberta. Per exemple:\n\\[\nL=\\begin{pmatrix}2&0&0\\\\1&3&0\\\\-1&4&1\\end{pmatrix},\\quad\nD=\\begin{pmatrix}1&0&0\\\\0&-2&0\\\\0&0&3\\end{pmatrix},\\quad\nLD=\\begin{pmatrix}2&0&0\\\\1&-6&0\\\\-1&-8&3\\end{pmatrix}.\n\\]\nMultiplicar per una diagonal per la dreta multiplica cada columna de $L$ pel seu element de la diagonal:\nels zeros de sobre la diagonal es conserven, i $LD$ torna a ser triangular inferior.\n\\end{solucio}\n\n\\begin{tria}{dimensions}\n\\itemtria{calcula-ab-ba}{1}{1,25}\nSiguin\n$A=\\begin{pmatrix}1&0&-1\\\\2&1&0\\end{pmatrix}$ i\n$B=\\begin{pmatrix}3&1\\\\0&2\\\\1&-1\\end{pmatrix}$.\nCalcula $AB$ i $BA$. Tenen la mateixa dimensió?\n\n\\begin{solucio}\n$AB$ és $(2\\times3)(3\\times2)$, de dimensió $2\\times2$, i $BA$ és $(3\\times2)(2\\times3)$, de dimensió\n$3\\times3$:\n\\[\nAB=\\begin{pmatrix}2&2\\\\6&4\\end{pmatrix},\\qquad\nBA=\\begin{pmatrix}5&1&-3\\\\4&2&0\\\\-1&-1&-1\\end{pmatrix}.\n\\]\nTots dos productes existeixen, però no tenen la mateixa dimensió: no té cap sentit preguntar-se si són\niguals.\n\\end{solucio}\n\n\\itemtria{inventa-dimensions}{1}{1,25}\nInventa dues matrius $A$ i $B$, cap de les dues quadrada, tals que $AB$ sigui una matriu $3\\times3$ i\n$BA$ una matriu $2\\times2$. Quines dimensions han de tenir? Calcula $AB$ per comprovar-ho.\n\n\\begin{solucio}\nSi $A$ és $m\\times n$, $B$ ha de ser $n\\times m$ perquè existeixin tots dos productes; aleshores $AB$ és\n$m\\times m$ i $BA$ és $n\\times n$. Cal $m=3$ i $n=2$: $A$ és $3\\times2$ i $B$ és $2\\times3$.\\\\\nResposta oberta. Per exemple:\n\\[\nA=\\begin{pmatrix}1&0\\\\2&1\\\\0&3\\end{pmatrix},\\quad\nB=\\begin{pmatrix}1&1&0\\\\0&2&1\\end{pmatrix},\\quad\nAB=\\begin{pmatrix}1&1&0\\\\2&4&1\\\\0&6&3\\end{pmatrix}.\n\\]\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba $x$ i $y$ perquè\n$\\begin{pmatrix}x&1\\\\2&y\\end{pmatrix}\\begin{pmatrix}1\\\\3\\end{pmatrix}=\\begin{pmatrix}5\\\\11\\end{pmatrix}$.\n\n\\begin{solucio}\n$\\begin{pmatrix}x+3\\\\2+3y\\end{pmatrix}=\\begin{pmatrix}5\\\\11\\end{pmatrix}$: $x+3=5$, d'on $x=2$, i\n$2+3y=11$, d'on $y=3$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/operacions-matrius/q003/out/enunciat.pdf",
+   "pdf_solucio": "u1/operacions-matrius/q003/out/solucio.pdf",
+   "pdf_curt": "u1/operacions-matrius/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/operacions-matrius/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/potencies-matrius/q001",
+   "unitat": "u1",
+   "tema": "potencies-matrius",
+   "codi": "q001",
+   "titol": "Potència n-èsima d'una matriu triangular i les seves aplicacions",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    81
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "potències de matrius",
+    "potència n-èsima"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "us-potencia",
+     "defecte_llarg": "expressio",
+     "defecte_curt": "expressio",
+     "items": [
+      {
+       "id": "expressio",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/potencies-matrius/q001/out/tries/us-potencia/expressio/enunciat.pdf",
+       "pdf_solucio": "u1/potencies-matrius/q001/out/tries/us-potencia/expressio/solucio.pdf",
+       "pdf_curt": "u1/potencies-matrius/q001/out/tries/us-potencia/expressio/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/potencies-matrius/q001/out/tries/us-potencia/expressio/solucio-curt.pdf"
+      },
+      {
+       "id": "troba-n",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/potencies-matrius/q001/out/tries/us-potencia/troba-n/enunciat.pdf",
+       "pdf_solucio": "u1/potencies-matrius/q001/out/tries/us-potencia/troba-n/solucio.pdf",
+       "pdf_curt": "u1/potencies-matrius/q001/out/tries/us-potencia/troba-n/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/potencies-matrius/q001/out/tries/us-potencia/troba-n/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Sigui $A=\\begin{pmatrix}1&0\\\\3&1\\end{pmatrix}$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula $A^2$ i $A^3$, i dedueix-ne $A^n$ per a qualsevol nombre natural $n$.\n\n\\begin{solucio}\n\\[\nA^2=\\begin{pmatrix}1&0\\\\3&1\\end{pmatrix}\\begin{pmatrix}1&0\\\\3&1\\end{pmatrix}=\\begin{pmatrix}1&0\\\\6&1\\end{pmatrix},\\qquad\nA^3=A^2A=\\begin{pmatrix}1&0\\\\9&1\\end{pmatrix}.\n\\]\nCada vegada que es multiplica per $A$, l'element de la fila 2 i la columna 1 augmenta en 3, i la resta no\ncanvia: $A^n=\\begin{pmatrix}1&0\\\\3n&1\\end{pmatrix}$.\n\\end{solucio}\n\n\\begin{tria}{us-potencia}\n\\itemtria{expressio}{1}{1,25}\nCalcula $A^{10}-2A^5$.\n\n\\begin{solucio}\nAmb la fórmula de $A^n$:\n\\[\nA^{10}-2A^5=\\begin{pmatrix}1&0\\\\30&1\\end{pmatrix}-2\\begin{pmatrix}1&0\\\\15&1\\end{pmatrix}\n=\\begin{pmatrix}1-2&0\\\\30-30&1-2\\end{pmatrix}=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I.\n\\]\n\\end{solucio}\n\n\\itemtria{troba-n}{1}{1,25}\nHi ha algun nombre natural $n$ tal que $A^n=\\begin{pmatrix}1&0\\\\60&1\\end{pmatrix}$? I tal que\n$A^n=\\begin{pmatrix}1&0\\\\50&1\\end{pmatrix}$? Justifica-ho.\n\n\\begin{solucio}\n$A^n=\\begin{pmatrix}1&0\\\\3n&1\\end{pmatrix}$, i per tant cal que l'element de la fila 2 i la columna 1\nsigui $3n$.\\\\\nPer a la primera, $3n=60$ dona $n=20$: $A^{20}=\\begin{pmatrix}1&0\\\\60&1\\end{pmatrix}$.\\\\\nPer a la segona, $3n=50$ dona $n=\\frac{50}3$, que no és natural: cap potència de $A$ és igual a\naquesta matriu.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nComprova que la fórmula de $A^n$ és coherent: calcula $A^n\\cdot A$ fent-la servir i veu que dona la\nfórmula de $A^{n+1}$.\n\n\\begin{solucio}\n\\[\nA^n\\cdot A=\\begin{pmatrix}1&0\\\\3n&1\\end{pmatrix}\\begin{pmatrix}1&0\\\\3&1\\end{pmatrix}\n=\\begin{pmatrix}1&0\\\\3n+3&1\\end{pmatrix}=\\begin{pmatrix}1&0\\\\3(n+1)&1\\end{pmatrix}=A^{n+1}.\n\\]\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/potencies-matrius/q001/out/enunciat.pdf",
+   "pdf_solucio": "u1/potencies-matrius/q001/out/solucio.pdf",
+   "pdf_curt": "u1/potencies-matrius/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/potencies-matrius/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/potencies-matrius/q002",
+   "unitat": "u1",
+   "tema": "potencies-matrius",
+   "codi": "q002",
+   "titol": "Una matriu nilpotent de grau 3 i les nilpotents de grau 2",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    85,
+    81
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "matriu nilpotent",
+    "potències de matrius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "nilpotents",
+     "defecte_llarg": "grau-2",
+     "defecte_curt": "grau-2",
+     "items": [
+      {
+       "id": "grau-2",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/potencies-matrius/q002/out/tries/nilpotents/grau-2/enunciat.pdf",
+       "pdf_solucio": "u1/potencies-matrius/q002/out/tries/nilpotents/grau-2/solucio.pdf",
+       "pdf_curt": "u1/potencies-matrius/q002/out/tries/nilpotents/grau-2/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/potencies-matrius/q002/out/tries/nilpotents/grau-2/solucio-curt.pdf"
+      },
+      {
+       "id": "sense-calcular",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/potencies-matrius/q002/out/tries/nilpotents/sense-calcular/enunciat.pdf",
+       "pdf_solucio": "u1/potencies-matrius/q002/out/tries/nilpotents/sense-calcular/solucio.pdf",
+       "pdf_curt": "u1/potencies-matrius/q002/out/tries/nilpotents/sense-calcular/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/potencies-matrius/q002/out/tries/nilpotents/sense-calcular/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Una matriu quadrada $A$ és \\emph{nilpotent} si alguna de les seves potències és la matriu nul·la. Si $n$\nés el menor enter positiu tal que $A^n=0$, es diu que $A$ és nilpotent de grau $n$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nDemostra que la matriu $N=\\begin{pmatrix}0&1&0\\\\-1&0&1\\\\0&1&0\\end{pmatrix}$ és nilpotent de grau 3.\n\n\\begin{solucio}\n\\[\nN^2=\\begin{pmatrix}-1&0&1\\\\0&0&0\\\\-1&0&1\\end{pmatrix}\\ne0,\\qquad\nN^3=N^2N=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}.\n\\]\n$N^2\\ne0$ i $N^3=0$: $N$ és nilpotent de grau 3.\n\\end{solucio}\n\n\\begin{tria}{nilpotents}\n\\itemtria{grau-2}{1}{1,25}\nTroba totes les matrius de la forma $B=\\begin{pmatrix}a&1\\\\b&-a\\end{pmatrix}$ que són nilpotents de\ngrau 2.\n\n\\begin{solucio}\n\\[\nB^2=\\begin{pmatrix}a&1\\\\b&-a\\end{pmatrix}\\begin{pmatrix}a&1\\\\b&-a\\end{pmatrix}\n=\\begin{pmatrix}a^2+b&0\\\\0&a^2+b\\end{pmatrix}.\n\\]\n$B^2=0$ si i només si $b=-a^2$. Com que $B\\ne0$ (té un 1), són nilpotents de grau 2 totes les matrius\n$B=\\begin{pmatrix}a&1\\\\-a^2&-a\\end{pmatrix}$, amb $a\\in\\mathbb R$.\n\\end{solucio}\n\n\\itemtria{sense-calcular}{1}{1,25}\nSense fer cap producte més, digues quant valen $N^4$ i $N^{100}$. Després, calcula $(I+N)^3$ fent servir\nque $N^3=0$.\n\n\\begin{solucio}\n$N^4=N^3N=0$, i per a qualsevol $k\\ge3$, $N^k=N^3N^{k-3}=0$: també $N^{100}=0$.\\\\\nCom que $I$ commuta amb $N$, el cub d'una suma es desenvolupa com amb nombres:\n$(I+N)^3=I+3N+3N^2+N^3=I+3N+3N^2$.\n\\[\n(I+N)^3=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}+\\begin{pmatrix}0&3&0\\\\-3&0&3\\\\0&3&0\\end{pmatrix}\n+\\begin{pmatrix}-3&0&3\\\\0&0&0\\\\-3&0&3\\end{pmatrix}=\\begin{pmatrix}-2&3&3\\\\-3&1&3\\\\-3&3&4\\end{pmatrix}.\n\\]\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nComprova que $(I-N)(I+N+N^2)=I$.\n\n\\begin{solucio}\n$(I-N)(I+N+N^2)=I+N+N^2-N-N^2-N^3=I-N^3=I$, perquè $N^3=0$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/potencies-matrius/q002/out/enunciat.pdf",
+   "pdf_solucio": "u1/potencies-matrius/q002/out/solucio.pdf",
+   "pdf_curt": "u1/potencies-matrius/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/potencies-matrius/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u1/potencies-matrius/q003",
+   "unitat": "u1",
+   "tema": "potencies-matrius",
+   "codi": "q003",
+   "titol": "Una matriu idempotent, un paràmetre i les potències que es repeteixen",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    81,
+    85
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "matriu idempotent",
+    "potències de matrius"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "tipus-potencies",
+     "defecte_llarg": "parametre-idempotent",
+     "defecte_curt": "parametre-idempotent",
+     "items": [
+      {
+       "id": "parametre-idempotent",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/potencies-matrius/q003/out/tries/tipus-potencies/parametre-idempotent/enunciat.pdf",
+       "pdf_solucio": "u1/potencies-matrius/q003/out/tries/tipus-potencies/parametre-idempotent/solucio.pdf",
+       "pdf_curt": "u1/potencies-matrius/q003/out/tries/tipus-potencies/parametre-idempotent/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/potencies-matrius/q003/out/tries/tipus-potencies/parametre-idempotent/solucio-curt.pdf"
+      },
+      {
+       "id": "periodica",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u1/potencies-matrius/q003/out/tries/tipus-potencies/periodica/enunciat.pdf",
+       "pdf_solucio": "u1/potencies-matrius/q003/out/tries/tipus-potencies/periodica/solucio.pdf",
+       "pdf_curt": "u1/potencies-matrius/q003/out/tries/tipus-potencies/periodica/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u1/potencies-matrius/q003/out/tries/tipus-potencies/periodica/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Una matriu quadrada $A$ és \\emph{idempotent} si $A^2=A$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $A=\\begin{pmatrix}2&-2\\\\1&-1\\end{pmatrix}$ és idempotent, i dedueix-ne $A^n$ per a\nqualsevol nombre natural $n$.\n\n\\begin{solucio}\n\\[\nA^2=\\begin{pmatrix}4-2&-4+2\\\\2-1&-2+1\\end{pmatrix}=\\begin{pmatrix}2&-2\\\\1&-1\\end{pmatrix}=A.\n\\]\nAleshores $A^3=A^2A=AA=A^2=A$ i, repetint-ho, $A^n=A$ per a qualsevol $n\\ge1$.\n\\end{solucio}\n\n\\begin{tria}{tipus-potencies}\n\\itemtria{parametre-idempotent}{1}{1,25}\nTroba el valor de $m$ perquè la matriu $M=\\begin{pmatrix}m&2\\\\-1&-1\\end{pmatrix}$ sigui idempotent.\n\n\\begin{solucio}\n\\[\nM^2=\\begin{pmatrix}m^2-2&2m-2\\\\-m+1&-1\\end{pmatrix}.\n\\]\nCal que $M^2=M$, element a element: $m^2-2=m$, $2m-2=2$, $-m+1=-1$ i $-1=-1$. La primera equació dona\n$m=2$ o $m=-1$; la segona i la tercera, $m=2$. Només $m=2$ les compleix totes: $M$ és idempotent si i\nnomés si $m=2$.\n\\end{solucio}\n\n\\itemtria{periodica}{1}{1,25}\nSigui $B=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$. Calcula $B^2$, $B^3$ i $B^4$, i fes-los servir per\ntrobar $B^{2027}$.\n\n\\begin{solucio}\n\\[\nB^2=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I,\\qquad\nB^3=B^2B=-B=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix},\\qquad\nB^4=(B^2)^2=I.\n\\]\nLes potències es repeteixen cada 4. Com que $2027=4\\cdot506+3$,\n$B^{2027}=(B^4)^{506}B^3=B^3=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nDemostra que, si una matriu $A$ és idempotent, la matriu $I-A$ també ho és.\n\n\\begin{solucio}\n$(I-A)^2=I-A-A+A^2=I-2A+A$, perquè $A^2=A$. Queda $I-A$: és idempotent. (La identitat commuta amb $A$,\ni per això el quadrat es desenvolupa com amb nombres.)\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u1/potencies-matrius/q003/out/enunciat.pdf",
+   "pdf_solucio": "u1/potencies-matrius/q003/out/solucio.pdf",
+   "pdf_curt": "u1/potencies-matrius/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u1/potencies-matrius/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u10/asimptotes/q001",
