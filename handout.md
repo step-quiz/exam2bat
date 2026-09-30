@@ -54,7 +54,7 @@ repositori `pau` és sencera al banc. La trenta-cinquena va explicar per què el
 pàgina (el navegador hi tenia un catàleg antic) i ho va evitar d'ara endavant. La trenta-sisena va
 afegir les unitats 1 a 6 al registre, va dir quines unitats necessiten les 25 PAU d'àlgebra i
 geometria, i va posar al dia el calendari. La màquina funciona de punta a punta. El que queda és
-contingut: les unitats 1, 2, 5, 6, 11 i 12 (i, si es decideix, la 3), en l'ordre del calendari (7.4).
+contingut: les unitats 1, 2, 3, 5, 6, 11 i 12, en l'ordre del calendari (7.4).
 
 ---
 
@@ -1232,7 +1232,7 @@ no eren a `temes.json`: el build rebutja qualsevol unitat que no hi sigui.
 **Verificat:** `prova_validacio.py`, `prova_sortida.py` i `prova_paritat.py` passen sense canvis, i el
 catàleg es genera amb 148 preguntes i cap avís.
 
-**Pendent de decidir** (7.6): si es fa la u3; què es fa amb la u11, que té només dos exercicis; i si el
+**Pendent de decidir** (7.6): què es fa amb la u11, que té només dos exercicis; i si el
 banc cobreix continguts de la PAU que no té cap exercici assignat.
 
 ---
@@ -1307,6 +1307,7 @@ banc cobreix continguts de la PAU que no té cap exercici assignat.
 | A optimització, la tria va al pas d'optimitzar i no al model, i el valor trobat continua sent un màxim en un punt crític | Disseny | Els apartats hi van encadenats, i el `nomesllarg` justifica el màxim amb la derivada |
 | El cas 4 de `prova_sortida.py` no depèn de si la pregunta té tries | Disseny | Si no, calia moure'l cada vegada que una unitat rebia tries |
 | Un build complet esborra de `out/` els PDF que ja no genera cap font; un build amb `--pregunta`, no | Disseny, arran d'una fallada (2.18) | `out/` és generat i ha de reflectir les fonts; un build parcial no les ha mirades totes |
+| La u3 (Sistemes d'equacions) també entra al banc, com la resta d'unitats del curs | Professor (sessió 36) | És al curs, setmanes 23–26 |
 
 ---
 
@@ -1865,9 +1866,6 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
 
 ### 7.6 Decisions obertes
 
-- **Si es fa la u3 (Sistemes d'equacions).** No era a la llista d'unitats pendents que va donar el
-  professor a la sessió 36. Té 14 exercicis en quatre setmanes, i 9 de les 15 PAU d'àlgebra són
-  sistemes amb paràmetre.
 - **Què es fa amb la u11.** Només té dos exercicis (52 i 54), i donen per a un sol tema. Hi ha tres
   opcions: un sol tema amb tres variants; fer servir les integrals immediates com a primer apartat de
   preguntes de la u12; o afegir exercicis a la setmana 34.
