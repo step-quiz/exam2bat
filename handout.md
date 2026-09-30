@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 30 de setembre de 2026 · **Estat:** 157 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2 i 61 de la PAU), 105 amb tries · 3.292 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2, 9 de la unitat 3 i 61 de la PAU), 114 amb tries · 3.460 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -56,8 +56,8 @@ afegir les unitats 1 a 6 al registre, va dir quines unitats necessiten les 25 PA
 geometria, i va posar al dia el calendari. La trenta-setena va fer la u1, Matrius: tres temes amb tres
 variants cadascun, totes amb tria. La trenta-vuitena va descobrir per què el catàleg nou no arribava a
 la web (Cloudflare Pages no publica els commits amb «[skip ci]», i el del bot en portava) i va fer la u2,
-Determinants. La màquina funciona de punta a punta. El que queda és
-contingut: les unitats 3, 5, 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
+Determinants. La trenta-novena va fer la u3, Sistemes d'equacions. La màquina funciona de punta a punta. El que queda és
+contingut: les unitats 5, 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
 
 ---
 
@@ -1329,6 +1329,55 @@ Les nou preguntes compilen amb el preàmbul oficial, a una pàgina cadascuna i s
 Tres PDF es van revisar a ull, entre ells la previsualització de la tria `relaciona`, la de fórmula més
 ampla. Les tres bateries passen, amb 166 preguntes i 39 temes.
 
+### 2.39 Sessió 39 · La unitat 3: Sistemes d'equacions
+
+**El material.** Els 14 exercicis practicats a les setmanes 23 a 26, llegits al solucionari: expressió
+matricial i classificació (38, 39, 41, 42), el mètode de Gauss (43), el teorema de Rouché-Fröbenius sense
+paràmetre (55, 56), la discussió amb un paràmetre (60, 64, 66) i problemes (90, 92, 94, 100). La regla
+de Cramer (58) i la resolució amb la matriu inversa (53) no són a cap setmana: les solucions del banc
+resolen els sistemes determinats per Gauss.
+
+**El solucionari s'equivoca al 100** (el model de Leontief). Planteja «$10p_1=2p_2+3p_3$» i hi substitueix
+les demandes, i en treu uns 38, 86 i 89 unitats. El plantejament correcte és que la producció de cada
+empresa cobreix el que en consumeixen les tres més la demanda exterior: $p_1=0{,}4p_2+0{,}5p_3+44$,
+$p_2=0{,}2p_1+0{,}2p_3+24$, $p_3=0{,}3p_1+0{,}1p_2+36$, amb solució $p_1\approx104{,}5$, $p_2\approx59{,}6$
+i $p_3\approx73{,}3$ (comprovat amb SymPy). El banc hi fa referència amb un model propi de dos sectors,
+ben plantejat i amb solució entera. Al 60a hi ha, a més, una errada menor: diu «rang 2 < nombre
+d'incògnites, compatible determinat», i ha de dir «= nombre d'incògnites». La resta de solucions dels
+exercicis assignats es van comprovar i són correctes.
+
+**La PAU.** Nou de les 15 preguntes d'àlgebra són sistemes amb paràmetre (u2 i u3). La majoria es
+discuteixen amb rangs i determinants, i alguna per Gauss (`alg-23j2-q2`, `alg-23s-q3`): per això la
+discussió pot ser tria (`discussio-parametre/q002`). Algunes demanen una solució amb una condició afegida
+(`alg-24s-q2`, `alg-25j-q2`), o modificar o afegir una equació (`alg-24j-q2`, `alg-26j-q2`), que el banc
+recull a les tries. La interpretació geomètrica (tres plans) és de la u5, i la u3 no la demana.
+
+**Tres temes**, amb tres variants cadascun:
+
+| Tema | Exercicis |
+|---|---|
+| `gauss-classificacio` · Resoldre i classificar sistemes | 38, 39, 41, 42, 43, 55, 56 |
+| `discussio-parametre` · Discussió de sistemes amb un paràmetre | 60, 64, 66 |
+| `problemes-sistemes` · Problemes amb sistemes d'equacions | 90, 92, 94, 100 |
+
+Els de resoldre i de problemes segueixen el patró de 0,75 + 1 + 0,75. Els de discussió posen més pes a
+la discussió: 1 + 0,75 + 0,75 a 1 h 30, amb uns 20 minuts, i a 50 min, discussió i un cas resolt, d'1,25
+cadascun.
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `gauss-classificacio` | q001, afegir una equació perquè el sistema continuï sent compatible o passi a ser incompatible, com el 39 (`afegeix-equacio`); q002, tres equacions amb dues incògnites, estudiades per Rouché (`mes-equacions`); q003, inventar un sistema amb una solució única donada, i justificar que és única (`inventa-sistema`) |
+| `discussio-parametre` | q001, el valor de $m$ perquè un punt sigui solució, i si és l'única (`solucio-donada`); q002, discutir per Gauss en lloc de per Rouché (`gauss`), és a dir, la tria és el primer apartat; q003, per a quins $m$ hi ha una solució amb $z=1$ (`amb-z-1`) |
+| `problemes-sistemes` | q001, què se'n pot saber només amb dues comandes: el preu del bolígraf sí, els altres no (`dues-comandes`); q002, una tercera compra que fixa la solució (`tercera-compra`); q003, un model econòmic d'equilibri de dos sectors, com el 100 (`model-economic`) |
+
+**Verificació.** Cada sistema, determinant, rang i menor citat, i cada pas de Gauss (matriu per matriu),
+es van comprovar amb SymPy abans d'escriure'ls, i els desenvolupaments de Sarrus, terme a terme un cop
+escrits. Les nou preguntes compilen amb el preàmbul oficial, a una pàgina cadascuna i sense cap avís
+(108 PDF). Quatre PDF es van revisar a ull, entre ells la versió de 50 min de la q002 de discussió, amb
+la tria com a primer apartat. Les tres bateries passen, amb 175 preguntes i 42 temes.
+
 ---
 
 ## 3. Decisions preses
@@ -1405,6 +1454,8 @@ ampla. Les tres bateries passen, amb 166 preguntes i 39 temes.
 | La u11 no té tema propi: les integrals immediates (exercicis 52 i 54) entren com a primer apartat de preguntes de la u12 | Professor (sessió 36) | Només té dos exercicis assignats, que no donen per a un tema amb tres variants |
 | La u1 inclou les matrius idempotents i les que commuten amb una de donada, amb l'enunciat definint-ne el concepte | Disseny (2.37) | Surten a la PAU (`alg-23j-q2`, `alg-25i-q4b`) i es resolen amb la tècnica del 85b, que és practicat |
 | Cap commit no porta `[skip ci]` ni etiquetes semblants | Disseny, arran d'una fallada (2.38) | Cloudflare Pages, que publica la web, se salta aquests commits, i el catàleg nou no arribava mai |
+| A la u3, els sistemes compatibles determinats es resolen per Gauss, no per Cramer | Disseny (2.39) | La regla de Cramer (exercici 58) no és a cap setmana assignada; Gauss sí (43, 66) |
+| Una tria pot ser el primer apartat d'una pregunta | Disseny (2.39) | A `discussio-parametre/q002`, la tria ofereix discutir per Rouché o per Gauss; el lletrejat i la versió de 50 min en surten bé |
 
 ---
 
@@ -1829,6 +1880,23 @@ Tres temes, un per a cada setmana de la u2 (setmanes 20, 21 i 22), amb els 13 ex
 | Matriu inversa | `q002` | Matriu 3×3 amb paràmetre: quan és singular, la inversa i una comprovació | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 99, 96, 100 |
 | Matriu inversa | `q003` | Matriu 2×2 amb paràmetre: quan és invertible, la inversa i les que coincideixen amb la seva | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 100, 96, 99 |
 
+### 6.11 Unitat 3 · Sistemes d'equacions (9 preguntes)
+
+Tres temes, amb els 14 exercicis practicats a les setmanes 23 a 26 (2.39). Cada tema té tres variants,
+totes amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Resoldre i classificar sistemes | `q001` | Resoldre per Gauss, un sistema indeterminat i un sistema escrit en forma matricial | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 38, 39, 41 |
+| Resoldre i classificar sistemes | `q002` | Classificar amb el teorema de Rouché-Fröbenius i resoldre un sistema indeterminat | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 55, 56, 42, 38 |
+| Resoldre i classificar sistemes | `q003` | Gauss en un sistema determinat i un d'incompatible, i quan un sistema no pot ser determinat | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 42, 38, 39 |
+| Discussió de sistemes amb un paràmetre | `q001` | Sistema amb paràmetre: incompatible, indeterminat o determinat, i una solució donada | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 60, 66, 64 |
+| Discussió de sistemes amb un paràmetre | `q002` | Sistema amb el paràmetre també als termes independents, per Rouché o per Gauss | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 60, 64, 66, 43 |
+| Discussió de sistemes amb un paràmetre | `q003` | Sistema homogeni amb paràmetre i un sistema 2×2 amb paràmetre | 1,00 + 0,75 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 60, 66, 55 |
+| Problemes amb sistemes d'equacions | `q001` | Tres comandes d'una papereria: el preu de cada article | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 90, 94, 56 |
+| Problemes amb sistemes d'equacions | `q002` | Accions de tres empreses: un sistema indeterminat i la dada que en fixa la solució | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 92, 90, 56 |
+| Problemes amb sistemes d'equacions | `q003` | Préstecs d'una biblioteca amb percentatges, i un model econòmic d'equilibri | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 94, 100, 90 |
+
 ## 7. Feina pendent
 
 ### 7.1 Com s'apliquen els lliuraments
@@ -1922,7 +1990,7 @@ l'ordre numèric.
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 · **binomial feta** (2.26); la normal, sense exercicis practicats |
 | u1 Matrius | 18–19 | 24 de gener de 2027 · **feta** (2.37): tres temes amb tres variants, totes amb tria |
 | u2 Determinants | 20–22 | 14 de febrer de 2027 · **feta** (2.38): tres temes amb tres variants, totes amb tria |
-| u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 |
+| u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 · **feta** (2.39): tres temes amb tres variants, totes amb tria |
 | u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 |
 | u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 |
 | u11 Integrals | 34 | 9 de maig de 2027 |
@@ -1936,7 +2004,7 @@ unitat.
 |---|---|---|
 | u1 | s18: 12, 13, 15, 16, 17 · s19: 42, 49, 69, 81, 85 | **Fets** (2.37): `operacions-matrius`, `commutativitat` i `potencies-matrius` |
 | u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | **Fets** (2.38): `calcul-determinants`, `rang-determinants` i `matriu-inversa` |
-| u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | Gauss i classificació (38–43); discussió amb paràmetre (55–66); problemes (90–100) |
+| u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | **Fets** (2.39): `gauss-classificacio`, `discussio-parametre` i `problemes-sistemes` |
 | u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | Equacions de la recta (43–49, 63); equacions del pla (53–59, 66); posició relativa de dues rectes (71–73, 79–81); recta i pla, i plans (74–77, 84, 85) |
 | u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | Projecció i simètrics (74, 76, 90); distància punt-pla i recta-pla (86, 97, 139); punts a una distància donada o equidistants (88, 92, 115) |
 | u11 | s34: 52, 54 | Cap tema propi: les integrals immediates (52, 54) són el primer apartat de preguntes de la u12 |
@@ -1978,7 +2046,7 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
   pantalles tàctils. Cal mostrar-los d'una altra manera.
 - **Estendre les tries a la resta del banc.** Des de la sessió 16, les 24 preguntes de la u7
   ja en tenen, i des de la 17 totes canvien el cas, la tècnica o el sentit del raonament
-  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1, i des de la 38, la u2.
+  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1; des de la 38, la u2, i des de la 39, la u3.
   Per a les unitats que vinguin, el mateix mètode: llegir la
   pregunta sencera, verificar l'alternativa abans d'escriure-la i verificar el fitxer just
   després. A la u7 encara s'hi podrien afegir, com a ítems nous, els límits no racionals que surten
@@ -2128,15 +2196,14 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 38, com a *pull request* (7.1). El canvi de `compila.yml` (treure
-`[skip ci]`) el va fer el professor des de la web, i ja és a `main`.
+És el lliurament de la sessió 39, com a *pull request* (7.1).
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els tres temes de la u2 |
-| `u2/<tema>/q001` … `q003` | Les nou preguntes de la u2: `pregunta.tex` i `meta.json` |
-| `handout.md` | Seccions 1, 2.38, 3, 6.10, 7.4, 7.5, 10 i 11 |
-| `README.md` | L'estat del banc, i Cloudflare Pages i `[skip ci]` |
+| `temes.json` | Els tres temes de la u3 |
+| `u3/<tema>/q001` … `q003` | Les nou preguntes de la u3: `pregunta.tex` i `meta.json` |
+| `handout.md` | Seccions 1, 2.39, 3, 6.11, 7.4, 7.5 i 11 |
+| `README.md` | L'estat del banc |
 
 No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes noves, i
 Cloudflare publica el catàleg nou uns minuts després.

@@ -269,6 +269,24 @@
       "descripcio": "Condició d'invertibilitat, inversa per adjunts i inverses amb paràmetres."
     },
     {
+      "slug": "gauss-classificacio",
+      "unitat": "u3",
+      "nom": "Resoldre i classificar sistemes",
+      "descripcio": "Forma matricial, mètode de Gauss, teorema de Rouché-Fröbenius i sistemes compatibles determinats, indeterminats i incompatibles."
+    },
+    {
+      "slug": "discussio-parametre",
+      "unitat": "u3",
+      "nom": "Discussió de sistemes amb un paràmetre",
+      "descripcio": "Discutir un sistema segons un paràmetre i resoldre'l en els casos compatibles."
+    },
+    {
+      "slug": "problemes-sistemes",
+      "unitat": "u3",
+      "nom": "Problemes amb sistemes d'equacions",
+      "descripcio": "Plantejar, resoldre i interpretar problemes que es modelitzen amb un sistema lineal."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",

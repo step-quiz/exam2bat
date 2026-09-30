@@ -1,0 +1,64 @@
+La Marta compra 100 accions de l'empresa A, 50 de la B i 200 de la C, i paga 1.500\,€. En Pau compra
+200 accions de l'empresa A, 150 de la B i 100 de la C, i paga 2.200\,€.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Planteja un sistema d'equacions i estudia amb el teorema de Rouché-Fröbenius si es pot saber el preu de
+cada acció.
+
+\begin{solucio}
+Siguin $x$, $y$ i $z$ els preus, en euros, d'una acció de A, de B i de C. Dividint per 50:
+\[
+\left.\begin{aligned}100x+50y+200z&=1500\\200x+150y+100z&=2200\end{aligned}\right\}
+\ \Longleftrightarrow\
+\left.\begin{aligned}2x+y+4z&=30\\4x+3y+2z&=44\end{aligned}\right\}
+\]
+$\begin{vmatrix}2&1\\4&3\end{vmatrix}=2\ne0$: $\operatorname{rang}A=\operatorname{rang}A^*=2<3$. És
+compatible indeterminat: hi ha infinites solucions, i amb aquestes dades no es pot saber el preu de
+cada acció.
+\end{solucio}
+
+\begin{tria}{mes-informacio}
+\itemtria{preus-enters}{1}{1,25}
+Resol el sistema. Si se sap que els tres preus són nombres enters entre 1\,€ i 12\,€, quines
+possibilitats hi ha?
+
+\begin{solucio}
+$\left(\begin{array}{ccc|c}2&1&4&30\\4&3&2&44\end{array}\right)\xrightarrow{F_2-2F_1}
+\left(\begin{array}{ccc|c}2&1&4&30\\0&1&-6&-16\end{array}\right)$. Amb $z=\lambda$: $y=6\lambda-16$ i
+$2x=30-y-4\lambda=46-10\lambda$, $x=23-5\lambda$.\\
+Si $z$ és enter, $x$ i $y$ també. Cal $1\le6\lambda-16\le12$, és a dir, $\lambda\in\{3,4\}$, i
+$1\le23-5\lambda\le12$, que tots dos compleixen. Hi ha dues possibilitats: $(x,y,z)=(8,2,3)$ i
+$(x,y,z)=(3,8,4)$.
+\end{solucio}
+
+\itemtria{tercera-compra}{1}{1,25}
+La Laia compra 50 accions de cada empresa i paga 750\,€. Amb aquesta dada, es pot saber el preu de cada
+acció? Troba'l.
+
+\begin{solucio}
+La tercera equació és $50x+50y+50z=750$, és a dir, $x+y+z=15$. Ara
+$|A|=\begin{vmatrix}2&1&4\\4&3&2\\1&1&1\end{vmatrix}=6+2+16-12-4-4=4\ne0$: el sistema és compatible
+determinat, i el preu de cada acció queda determinat.\\
+$\left(\begin{array}{ccc|c}1&1&1&15\\2&1&4&30\\4&3&2&44\end{array}\right)\xrightarrow[F_3-4F_1]{F_2-2F_1}
+\left(\begin{array}{ccc|c}1&1&1&15\\0&-1&2&0\\0&-1&-2&-16\end{array}\right)\xrightarrow{F_3-F_2}
+\left(\begin{array}{ccc|c}1&1&1&15\\0&-1&2&0\\0&0&-4&-16\end{array}\right)$.\\
+$z=4$, $y=2z=8$, $x=15-8-4=3$: una acció de A val 3\,€; una de B, 8\,€, i una de C, 4\,€.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Explica per què, amb les dades de només dues compres, no es pot saber mai el preu de les accions de tres
+empreses, siguin quines siguin les quantitats i els imports.
+
+\begin{solucio}
+Dues compres donen un sistema de dues equacions amb tres incògnites. La matriu de coeficients té dues
+files, i el seu rang és com a molt 2, menor que el nombre d'incògnites. Pel teorema de
+Rouché-Fröbenius, el sistema no pot ser compatible determinat: o bé és incompatible (les dades serien
+contradictòries), o bé és compatible indeterminat, amb infinites solucions.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

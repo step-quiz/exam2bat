@@ -1,0 +1,17 @@
+{
+  "titol": "Accions de tres empreses: un sistema indeterminat i la dada que en fixa la solució",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    92,
+    90,
+    56
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "problema",
+    "sistema indeterminat",
+    "Rouché-Fröbenius"
+  ]
+}

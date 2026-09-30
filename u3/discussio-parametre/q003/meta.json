@@ -1,0 +1,16 @@
+{
+  "titol": "Sistema homogeni amb paràmetre i un sistema 2×2 amb paràmetre",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    60,
+    66,
+    55
+  ],
+  "minuts": 20,
+  "minuts_curt": 12,
+  "etiquetes": [
+    "sistema homogeni",
+    "discussió amb paràmetre"
+  ]
+}

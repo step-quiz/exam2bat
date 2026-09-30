@@ -1,0 +1,18 @@
+{
+  "titol": "Sistema amb el paràmetre també als termes independents, per Rouché o per Gauss",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    60,
+    64,
+    66,
+    43
+  ],
+  "minuts": 20,
+  "minuts_curt": 12,
+  "etiquetes": [
+    "discussió amb paràmetre",
+    "mètode de Gauss",
+    "Rouché-Fröbenius"
+  ]
+}
