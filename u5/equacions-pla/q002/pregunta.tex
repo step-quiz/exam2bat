@@ -1,0 +1,47 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Escriu les equacions paramètriques i general del pla $\pi$ que passa pel punt $P(1,2,-1)$ i té vectors
+directors $\vec u=(1,0,2)$ i $\vec v=(0,1,-1)$.
+
+\begin{solucio}
+Paramètriques: $\left\{\begin{aligned}x&=1+\lambda\\y&=2+\mu\\z&=-1+2\lambda-\mu\end{aligned}\right.$\\
+General:
+$\begin{vmatrix}x-1&y-2&z+1\\1&0&2\\0&1&-1\end{vmatrix}=-2(x-1)+(y-2)+(z+1)=0$, és a dir,
+$\pi\colon 2x-y-z-1=0$.
+\end{solucio}
+
+\begin{tria}{pla-dades}
+\itemtria{valor-m}{1}{1,25}
+Troba el valor de $m$ perquè el pla $mx+2y-z+3=0$ passi pel punt $Q(2,-1,5)$. Per a aquest valor, troba
+els punts on el pla talla els eixos de coordenades.
+
+\begin{solucio}
+$2m-2-5+3=0$, $m=2$. El pla és $2x+2y-z+3=0$.\\
+Talls: amb $OX$, $2x+3=0$, $\left(-\frac32,0,0\right)$; amb $OY$, $\left(0,-\frac32,0\right)$; amb $OZ$,
+$-z+3=0$, $(0,0,3)$.
+\end{solucio}
+
+\itemtria{pla-paralel}{1}{1,25}
+Troba l'equació del pla paral·lel a $\pi$ que passa pel punt $Q(3,0,1)$. Per què tots dos tenen el
+mateix vector normal?
+
+\begin{solucio}
+Dos plans paral·lels tenen vectors normals proporcionals, perquè tots dos són perpendiculars a la
+mateixa direcció. Es pot prendre el de $\pi$, $(2,-1,-1)$: $2x-y-z+D=0$. Com que passa per $Q$,
+$6-0-1+D=0$, $D=-5$. El pla és $2x-y-z-5=0$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba l'equació del pla que passa per l'origen i és perpendicular a la recta
+$\left\{\begin{aligned}x&=1+2t\\y&=-t\\z&=3\end{aligned}\right.$
+
+\begin{solucio}
+El vector director de la recta, $(2,-1,0)$, és normal al pla: $2x-y+D=0$, i com que passa per l'origen,
+$D=0$. El pla és $2x-y=0$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

@@ -1,0 +1,16 @@
+{
+  "titol": "Recta donada per dos plans i paral·lela a un pla, un paràmetre i tres plans en una recta",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    74,
+    84,
+    77
+  ],
+  "minuts": 20,
+  "minuts_curt": 12,
+  "etiquetes": [
+    "posició relativa recta-pla",
+    "tres plans"
+  ]
+}

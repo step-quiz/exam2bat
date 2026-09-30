@@ -1,0 +1,58 @@
+Considera la recta $r\colon\left\{\begin{aligned}x+y-z&=1\\2x-y+z&=5\end{aligned}\right.$ i el pla
+$\pi\colon x+2y-2z+1=0$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia la posició relativa de $r$ i $\pi$.
+
+\begin{solucio}
+Les tres equacions formen un sistema amb
+$M=\begin{pmatrix}1&1&-1\\2&-1&1\\1&2&-2\end{pmatrix}$ i termes independents $1$, $5$ i $-1$.
+$|M|=0$ i $\begin{vmatrix}1&1\\2&-1\end{vmatrix}=-3\ne0$: $\operatorname{rang}M=2$. A l'ampliada,
+$\begin{vmatrix}1&1&1\\2&-1&5\\1&2&-1\end{vmatrix}=3\ne0$: $\operatorname{rang}M^*=3$. El sistema és
+incompatible: la recta i el pla són paral·lels.
+\end{solucio}
+
+\begin{tria}{recta-pla-casos}
+\itemtria{parametre}{1}{1,25}
+Estudia, segons els valors de $a$, la posició relativa de la recta
+$\left\{\begin{aligned}x&=t\\y&=1+t\\z&=2t\end{aligned}\right.$ i el pla $x+ay+z-1=0$. Troba el punt de
+tall per a $a=1$.
+
+\begin{solucio}
+Substituint: $t+a(1+t)+2t-1=(a+3)t+(a-1)=0$.
+\begin{itemize}
+\item Si $a\ne-3$, hi ha un sol valor de $t$: es tallen en un punt.
+\item Si $a=-3$, queda $-4=0$, sense solució: són paral·lels.
+\end{itemize}
+Per a $a=1$: $4t=0$, $t=0$, i el punt de tall és $(0,1,0)$.
+\end{solucio}
+
+\itemtria{pla-per-l-origen}{1}{1,25}
+Troba el pla que conté la recta $r$ i passa per l'origen. Quina relació té amb $\pi$?
+
+\begin{solucio}
+En paramètriques, $r$ és $(2,\ -1+\lambda,\ \lambda)$: passa per $A(2,-1,0)$ amb vector director
+$(0,1,1)$. El pla passa per l'origen amb vectors directors $\overrightarrow{OA}=(2,-1,0)$ i $(0,1,1)$:
+\[
+\begin{vmatrix}x&y&z\\2&-1&0\\0&1&1\end{vmatrix}=-x-2y+2z=0\ \Longrightarrow\ x+2y-2z=0.
+\]
+Té el mateix vector normal que $\pi$, $(1,2,-2)$, i un altre terme independent: és el pla paral·lel a
+$\pi$ que passa per l'origen. Per això $r$ és paral·lela a $\pi$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Estudia la posició relativa dels plans $x+y+z=2$, $x-y+2z=1$ i $3x+y+4z=5$.
+
+\begin{solucio}
+La tercera equació és el doble de la primera més la segona, també en els termes independents
+($2\cdot2+1=5$). $\begin{vmatrix}1&1\\1&-1\end{vmatrix}=-2\ne0$, i
+$\operatorname{rang}M=\operatorname{rang}M^*=2$: cap parella de plans no és paral·lela, i els tres es
+tallen en una recta.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
