@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 30 de setembre de 2026 · **Estat:** 148 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 61 de la PAU), 87 amb tries · 2.968 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+**Data:** 30 de setembre de 2026 · **Estat:** 157 preguntes (24 de la unitat 7, 18 de la unitat
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1 i 61 de la PAU), 96 amb tries · 3.130 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -53,8 +53,9 @@ per defecte i va importar la sèrie 5 de juny de 2024. La trenta-quatrena va imp
 repositori `pau` és sencera al banc. La trenta-cinquena va explicar per què el 2023 no sortia a la
 pàgina (el navegador hi tenia un catàleg antic) i ho va evitar d'ara endavant. La trenta-sisena va
 afegir les unitats 1 a 6 al registre, va dir quines unitats necessiten les 25 PAU d'àlgebra i
-geometria, i va posar al dia el calendari. La màquina funciona de punta a punta. El que queda és
-contingut: les unitats 1, 2, 3, 5, 6, 11 i 12, en l'ordre del calendari (7.4).
+geometria, i va posar al dia el calendari. La trenta-setena va fer la u1, Matrius: tres temes amb tres
+variants cadascun, totes amb tria. La màquina funciona de punta a punta. El que queda és
+contingut: les unitats 2, 3, 5, 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
 
 ---
 
@@ -1234,6 +1235,47 @@ catàleg es genera amb 148 preguntes i cap avís.
 
 **Pendent de decidir** (7.6): si el banc cobreix continguts de la PAU que no té cap exercici assignat.
 
+
+### 2.37 Sessió 37 · La unitat 1: Matrius
+
+**El material.** Els 10 exercicis que els alumnes practiquen a les setmanes 18 i 19, llegits al
+solucionari del llibre (repositori `sol`): operacions i dimensions (12, 13, 15, 42, 49), una situació
+real en forma de matriu (17), commutativitat i distributiva (16, 69), la potència $n$-èsima d'una matriu
+amb paràmetre (81) i les matrius nilpotents (85). Cap exercici assignat de la u1 no demana ni la inversa
+ni el rang: al curs, totes dues es fan a la u2, i per això la u1 del banc no en té.
+
+**La PAU.** En surten dues preguntes que la u1 cobreix: `alg-23j-q2` (productes i matrius idempotents) i
+`alg-25i-q4b` (el valor d'un paràmetre perquè dues matrius commutin). Per això el banc hi afegeix les
+matrius idempotents i les que commuten amb una de donada, que es resolen amb la mateixa tècnica que el 85b
+(una matriu amb incògnites, igualada element a element). En totes dues, l'enunciat defineix el concepte,
+com fa la PAU.
+
+**Tres temes**, amb tres variants cadascun:
+
+| Tema | Exercicis |
+|---|---|
+| `operacions-matrius` · Operacions amb matrius | 12, 13, 15, 17, 42, 49 |
+| `commutativitat` · El producte no és commutatiu | 16, 69 |
+| `potencies-matrius` · Potències de matrius | 81, 85 |
+
+Totes segueixen el patró de la u13 i la u14: 0,75 + 1 + 0,75 a 1 h 30, i a 50 min els dos primers
+apartats, d'1,25 cadascun (el tercer és `nomesllarg`). La q002 de commutativitat té dues matrius 3×3 que
+**sí** que commuten, a propòsit: l'alumne no pot donar per fet que la resposta sempre és «no».
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `operacions-matrius` | q001, la dimensió de $BC$ i de $CB$ sense calcular-les, i un sol element de $CB$ (`un-sol-element`); q002, quina matriu cal multiplicar per $M$, i per quin costat, per sumar per línies i no per dies (`autobusos-linia`); q003, inventar dues matrius no quadrades amb $AB$ de $3\times3$ i $BA$ de $2\times2$ (`inventa-dimensions`) |
+| `commutativitat` | q001, $(A+B)^2$ davant de $A^2+2AB+B^2$ (`quadrat-suma`); q002, demostrar que dues diagonals sempre commuten, i que una diagonal no commuta sempre amb qualsevol matriu (`diagonals`); q003, un sol paràmetre en lloc de totes les matrius que commuten (`un-parametre`) |
+| `potencies-matrius` | q001, per a quins $n$ una matriu és una potència de $A$ (`troba-n`); q002, $N^{100}$ i $(I+N)^3$ fent servir que $N^3=0$ (`sense-calcular`); q003, una matriu periòdica i $B^{2027}$ (`periodica`) |
+
+**Verificació.** Tots els productes, potències i paràmetres es van calcular amb SymPy abans d'escriure'ls,
+i els resultats intermedis de les solucions es van tornar a comprovar un cop escrits. Les nou preguntes
+compilen amb el preàmbul oficial (TeX Live amb els mateixos paquets que l'Action), cadascuna a una pàgina
+i sense cap avís: 108 PDF, previsualitzacions de les tries incloses. Tres solucions es van revisar a ull.
+Les tres bateries de proves passen, i el catàleg té 157 preguntes i 36 temes.
+
 ---
 
 ## 3. Decisions preses
@@ -1308,6 +1350,7 @@ catàleg es genera amb 148 preguntes i cap avís.
 | Un build complet esborra de `out/` els PDF que ja no genera cap font; un build amb `--pregunta`, no | Disseny, arran d'una fallada (2.18) | `out/` és generat i ha de reflectir les fonts; un build parcial no les ha mirades totes |
 | La u3 (Sistemes d'equacions) també entra al banc, com la resta d'unitats del curs | Professor (sessió 36) | És al curs, setmanes 23–26 |
 | La u11 no té tema propi: les integrals immediates (exercicis 52 i 54) entren com a primer apartat de preguntes de la u12 | Professor (sessió 36) | Només té dos exercicis assignats, que no donen per a un tema amb tres variants |
+| La u1 inclou les matrius idempotents i les que commuten amb una de donada, amb l'enunciat definint-ne el concepte | Disseny (2.37) | Surten a la PAU (`alg-23j-q2`, `alg-25i-q4b`) i es resolen amb la tècnica del 85b, que és practicat |
 
 ---
 
@@ -1698,6 +1741,23 @@ variables contínues en queden fora. Cada tema té tres variants, totes amb tria
 | Probabilitats amb la binomial | `q002` | Respostes «No ho sé»: la negació, «com a mínim» i «com a molt» | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 21, 50, 53, 100, 101 |
 | Probabilitats amb la binomial | `q003` | Una B(6; 0,8) en abstracte: probabilitats puntuals, acumulades i d'un interval | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 21, 50, 53, 100, 101 |
 
+### 6.9 Unitat 1 · Matrius (9 preguntes)
+
+Tres temes, un per a cada grup dels 10 exercicis practicats a les setmanes 18 i 19 (2.37). Cada tema té
+tres variants, totes amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Operacions amb matrius | `q001` | Combinació de productes, quins productes es poden fer i una equació matricial senzilla | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 12, 13, 15, 49 |
+| Operacions amb matrius | `q002` | Autobusos de tres línies: la matriu d'una situació i productes amb sentit | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 17, 13, 15 |
+| Operacions amb matrius | `q003` | Tipus de matrius, dimensions de AB i BA, i elements desconeguts d'un producte | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 42, 49, 15, 13 |
+| El producte no és commutatiu | `q001` | Dues matrius que no commuten: la distributiva, el quadrat d'una suma i matrius que commuten | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 16, 69 |
+| El producte no és commutatiu | `q002` | Dues matrius 3×3 que sí que commuten, paràmetres perquè commutin i la suma per diferència | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 69, 16 |
+| El producte no és commutatiu | `q003` | Les matrius que commuten amb una de donada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 16, 69, 85 |
+| Potències de matrius | `q001` | Potència n-èsima d'una matriu triangular i les seves aplicacions | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 81 |
+| Potències de matrius | `q002` | Una matriu nilpotent de grau 3 i les nilpotents de grau 2 | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 85, 81 |
+| Potències de matrius | `q003` | Una matriu idempotent, un paràmetre i les potències que es repeteixen | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 81, 85 |
+
 ## 7. Feina pendent
 
 ### 7.1 Com s'apliquen els lliuraments
@@ -1789,7 +1849,7 @@ l'ordre numèric.
 | u10 Representació de funcions | 11–12 (i 17, després de l'examen) | 6 de desembre de 2026 · **completa**: tres variants per tema; també els exercicis de la setmana 17 (84, 108, 123 i 124), sessió 27 |
 | u13 Probabilitat | 13–14 | 20 de desembre de 2026 · **completa**: quatre temes amb tres variants, totes amb tria |
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 · **binomial feta** (2.26); la normal, sense exercicis practicats |
-| u1 Matrius | 18–19 | 24 de gener de 2027 |
+| u1 Matrius | 18–19 | 24 de gener de 2027 · **feta** (2.37): tres temes amb tres variants, totes amb tria |
 | u2 Determinants | 20–22 | 14 de febrer de 2027 |
 | u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 |
 | u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 |
@@ -1803,7 +1863,7 @@ unitat.
 
 | Unitat | Exercicis practicats | Temes proposats |
 |---|---|---|
-| u1 | s18: 12, 13, 15, 16, 17 · s19: 42, 49, 69, 81, 85 | Tipus de matrius i operacions (12, 13, 15, 17, 42, 49); matrius que commuten (16, 69); potències, nilpotents i idempotents (81, 85) |
+| u1 | s18: 12, 13, 15, 16, 17 · s19: 42, 49, 69, 81, 85 | **Fets** (2.37): `operacions-matrius`, `commutativitat` i `potencies-matrius` |
 | u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | Càlcul de determinants (35–44); rang amb paràmetres (79–87); inversa i invertibilitat (95–100) |
 | u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | Gauss i classificació (38–43); discussió amb paràmetre (55–66); problemes (90–100) |
 | u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | Equacions de la recta (43–49, 63); equacions del pla (53–59, 66); posició relativa de dues rectes (71–73, 79–81); recta i pla, i plans (74–77, 84, 85) |
@@ -1847,7 +1907,7 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
   pantalles tàctils. Cal mostrar-los d'una altra manera.
 - **Estendre les tries a la resta del banc.** Des de la sessió 16, les 24 preguntes de la u7
   ja en tenen, i des de la 17 totes canvien el cas, la tècnica o el sentit del raonament
-  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, i des de la 26, la u14.
+  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, i des de la 37, la u1.
   Per a les unitats que vinguin, el mateix mètode: llegir la
   pregunta sencera, verificar l'alternativa abans d'escriure-la i verificar el fitxer just
   després. A la u7 encara s'hi podrien afegir, com a ítems nous, els límits no racionals que surten
@@ -1996,14 +2056,14 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 36, i el primer que arriba com a *pull request* (7.1). Parteix de `main`
-tal com era després de la pujada de `source/`.
+És el lliurament de la sessió 37, com a *pull request* (7.1).
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Les unitats 1, 2, 3, 5 i 6, i totes les unitats en l'ordre del curs (2.36) |
-| `pau/algebra/*/meta.json` (15) i `pau/geometria/*/meta.json` (10) | El camp `unitats`, que era buit |
-| `handout.md` | Seccions 1, 2.36, 7.1, 7.2, 7.4, 7.6 i 11 |
+| `temes.json` | Els tres temes de la u1 |
+| `u1/<tema>/q001` … `q003` | Les nou preguntes de la u1: `pregunta.tex` i `meta.json` |
+| `handout.md` | Seccions 1, 2.37, 6.9, 7.4, 7.5 i 11 |
+| `README.md` | L'estat del banc |
 
-No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action «Compila el banc» s'executa sola,
-perquè `temes.json` i els `meta.json` són fonts. No ha de recompilar cap PDF: el resum dirà «0 PDF desats».
+No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action «Compila el banc» s'executa sola
+i compila les preguntes noves.

@@ -1,0 +1,58 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Comprova si les matrius
+$A=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix}$ i
+$B=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}$ commuten.
+
+\begin{solucio}
+\[
+AB=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix},\qquad
+BA=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix}.
+\]
+$AB=BA$: aquestes dues matrius commuten. És un cas particular: en general, el producte de matrius no és
+commutatiu.
+\end{solucio}
+
+\begin{tria}{commuten-quan}
+\itemtria{dos-parametres}{1}{1,25}
+Troba els valors de $a$ i $b$ perquè les matrius
+$P=\begin{pmatrix}a&1\\2&3\end{pmatrix}$ i $Q=\begin{pmatrix}1&b\\4&-1\end{pmatrix}$ commutin.
+
+\begin{solucio}
+\[
+PQ=\begin{pmatrix}a+4&ab-1\\14&2b-3\end{pmatrix},\qquad
+QP=\begin{pmatrix}a+2b&1+3b\\4a-2&1\end{pmatrix}.
+\]
+Igualant element a element: $a+4=a+2b$, d'on $b=2$; $14=4a-2$, d'on $a=4$; $2b-3=1$, que es compleix
+amb $b=2$; i $ab-1=1+3b$, que amb $a=4$ i $b=2$ dona $7=7$. Commuten només si $a=4$ i $b=2$.
+\end{solucio}
+
+\itemtria{diagonals}{1}{1,25}
+Demostra que dues matrius diagonals d'ordre 2 qualssevol commuten. Commuta també una matriu diagonal
+qualsevol amb $\begin{pmatrix}0&1\\0&0\end{pmatrix}$?
+
+\begin{solucio}
+$\begin{pmatrix}a&0\\0&b\end{pmatrix}\begin{pmatrix}c&0\\0&d\end{pmatrix}=\begin{pmatrix}ac&0\\0&bd\end{pmatrix}
+=\begin{pmatrix}c&0\\0&d\end{pmatrix}\begin{pmatrix}a&0\\0&b\end{pmatrix}$, perquè $ac=ca$ i $bd=db$.\\
+En canvi, $\begin{pmatrix}a&0\\0&b\end{pmatrix}\begin{pmatrix}0&1\\0&0\end{pmatrix}=\begin{pmatrix}0&a\\0&0\end{pmatrix}$
+i $\begin{pmatrix}0&1\\0&0\end{pmatrix}\begin{pmatrix}a&0\\0&b\end{pmatrix}=\begin{pmatrix}0&b\\0&0\end{pmatrix}$:
+només commuten si $a=b$. Una diagonal qualsevol no hi commuta; per exemple, $\begin{pmatrix}1&0\\0&2\end{pmatrix}$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Demostra que, si dues matrius quadrades $X$ i $Y$ commuten, aleshores $(X+Y)(X-Y)=X^2-Y^2$. Comprova que
+amb $X=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ i $Y=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ la igualtat no
+es compleix.
+
+\begin{solucio}
+$(X+Y)(X-Y)=X^2-XY+YX-Y^2$, i si $XY=YX$ els dos termes del mig s'anul·len: queda $X^2-Y^2$.\\
+Amb les matrius donades, $X+Y=\begin{pmatrix}1&1\\0&0\end{pmatrix}$, $X-Y=\begin{pmatrix}1&-1\\0&0\end{pmatrix}$,
+$(X+Y)(X-Y)=\begin{pmatrix}1&-1\\0&0\end{pmatrix}$, mentre que $X^2-Y^2=\begin{pmatrix}1&0\\0&0\end{pmatrix}$:
+no coincideixen, perquè $XY=Y\ne0=YX$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

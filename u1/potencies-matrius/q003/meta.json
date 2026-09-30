@@ -1,0 +1,15 @@
+{
+  "titol": "Una matriu idempotent, un paràmetre i les potències que es repeteixen",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    81,
+    85
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "matriu idempotent",
+    "potències de matrius"
+  ]
+}

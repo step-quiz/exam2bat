@@ -1,0 +1,63 @@
+Considera les matrius
+\[
+A=\begin{pmatrix}1&2\\-1&0\end{pmatrix},\qquad
+B=\begin{pmatrix}3&-2\\1&1\end{pmatrix}\qquad\text{i}\qquad
+C=\begin{pmatrix}0&1\\2&-1\end{pmatrix}.
+\]
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Comprova si $A$ i $B$ commuten.
+
+\begin{solucio}
+\[
+AB=\begin{pmatrix}3+2&-2+2\\-3+0&2+0\end{pmatrix}=\begin{pmatrix}5&0\\-3&2\end{pmatrix},\qquad
+BA=\begin{pmatrix}3+2&6+0\\1-1&2+0\end{pmatrix}=\begin{pmatrix}5&6\\0&2\end{pmatrix}.
+\]
+$AB\ne BA$: no commuten.
+\end{solucio}
+
+\begin{tria}{consequencia}
+\itemtria{distributiva}{1}{1,25}
+Comprova que $A(B+C)=AB+AC$. És cert també que $(B+C)A=AB+AC$? Per què?
+
+\begin{solucio}
+$B+C=\begin{pmatrix}3&-1\\3&0\end{pmatrix}$ i
+\[
+A(B+C)=\begin{pmatrix}9&-1\\-3&1\end{pmatrix},\qquad
+AB+AC=\begin{pmatrix}5&0\\-3&2\end{pmatrix}+\begin{pmatrix}4&-1\\0&-1\end{pmatrix}
+=\begin{pmatrix}9&-1\\-3&1\end{pmatrix}.
+\]
+Coincideixen: el producte és distributiu. En canvi,
+$(B+C)A=BA+CA=\begin{pmatrix}4&6\\3&6\end{pmatrix}\ne AB+AC$. La distributiva val per a cada costat,
+però $(B+C)A=BA+CA$, i $BA\ne AB$.
+\end{solucio}
+
+\itemtria{quadrat-suma}{1}{1,25}
+Calcula $(A+B)^2$ i $A^2+2AB+B^2$. Per què no coincideixen? Quina condició haurien de complir $A$ i
+$B$ perquè coincidissin?
+
+\begin{solucio}
+$A+B=\begin{pmatrix}4&0\\0&1\end{pmatrix}$, i $(A+B)^2=\begin{pmatrix}16&0\\0&1\end{pmatrix}$. D'altra
+banda, $A^2=\begin{pmatrix}-1&2\\-1&-2\end{pmatrix}$, $B^2=\begin{pmatrix}7&-8\\4&-1\end{pmatrix}$ i
+\[
+A^2+2AB+B^2=\begin{pmatrix}-1+10+7&2+0-8\\-1-6+4&-2+4-1\end{pmatrix}=\begin{pmatrix}16&-6\\-3&1\end{pmatrix}.
+\]
+No coincideixen perquè $(A+B)^2=(A+B)(A+B)=A^2+AB+BA+B^2$, i $AB+BA\ne2AB$. Coincidirien si i només si
+$AB=BA$, és a dir, si $A$ i $B$ commutessin.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba una matriu, diferent de $A$, de la identitat i de la matriu nul·la, que commuti amb $A$. Justifica
+que commuta.
+
+\begin{solucio}
+Resposta oberta. Per exemple, $A^2=\begin{pmatrix}-1&2\\-1&-2\end{pmatrix}$: $A\cdot A^2=A^3=A^2\cdot A$.
+Qualsevol matriu de la forma $aA+bI$ també serveix, perquè $A(aA+bI)=aA^2+bA=(aA+bI)A$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

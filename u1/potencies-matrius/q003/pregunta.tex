@@ -1,0 +1,54 @@
+Una matriu quadrada $A$ és \emph{idempotent} si $A^2=A$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Comprova que $A=\begin{pmatrix}2&-2\\1&-1\end{pmatrix}$ és idempotent, i dedueix-ne $A^n$ per a
+qualsevol nombre natural $n$.
+
+\begin{solucio}
+\[
+A^2=\begin{pmatrix}4-2&-4+2\\2-1&-2+1\end{pmatrix}=\begin{pmatrix}2&-2\\1&-1\end{pmatrix}=A.
+\]
+Aleshores $A^3=A^2A=AA=A^2=A$ i, repetint-ho, $A^n=A$ per a qualsevol $n\ge1$.
+\end{solucio}
+
+\begin{tria}{tipus-potencies}
+\itemtria{parametre-idempotent}{1}{1,25}
+Troba el valor de $m$ perquè la matriu $M=\begin{pmatrix}m&2\\-1&-1\end{pmatrix}$ sigui idempotent.
+
+\begin{solucio}
+\[
+M^2=\begin{pmatrix}m^2-2&2m-2\\-m+1&-1\end{pmatrix}.
+\]
+Cal que $M^2=M$, element a element: $m^2-2=m$, $2m-2=2$, $-m+1=-1$ i $-1=-1$. La primera equació dona
+$m=2$ o $m=-1$; la segona i la tercera, $m=2$. Només $m=2$ les compleix totes: $M$ és idempotent si i
+només si $m=2$.
+\end{solucio}
+
+\itemtria{periodica}{1}{1,25}
+Sigui $B=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$. Calcula $B^2$, $B^3$ i $B^4$, i fes-los servir per
+trobar $B^{2027}$.
+
+\begin{solucio}
+\[
+B^2=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-I,\qquad
+B^3=B^2B=-B=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+B^4=(B^2)^2=I.
+\]
+Les potències es repeteixen cada 4. Com que $2027=4\cdot506+3$,
+$B^{2027}=(B^4)^{506}B^3=B^3=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Demostra que, si una matriu $A$ és idempotent, la matriu $I-A$ també ho és.
+
+\begin{solucio}
+$(I-A)^2=I-A-A+A^2=I-2A+A$, perquè $A^2=A$. Queda $I-A$: és idempotent. (La identitat commuta amb $A$,
+i per això el quadrat es desenvolupa com amb nombres.)
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

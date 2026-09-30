@@ -1,0 +1,63 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Escriu una matriu triangular inferior $L$ d'ordre 3 amb tots els elements de sota la diagonal diferents
+de zero, i una matriu diagonal $D$ d'ordre 3. Calcula $LD$. Quin tipus de matriu en surt?
+
+\begin{solucio}
+Resposta oberta. Per exemple:
+\[
+L=\begin{pmatrix}2&0&0\\1&3&0\\-1&4&1\end{pmatrix},\quad
+D=\begin{pmatrix}1&0&0\\0&-2&0\\0&0&3\end{pmatrix},\quad
+LD=\begin{pmatrix}2&0&0\\1&-6&0\\-1&-8&3\end{pmatrix}.
+\]
+Multiplicar per una diagonal per la dreta multiplica cada columna de $L$ pel seu element de la diagonal:
+els zeros de sobre la diagonal es conserven, i $LD$ torna a ser triangular inferior.
+\end{solucio}
+
+\begin{tria}{dimensions}
+\itemtria{calcula-ab-ba}{1}{1,25}
+Siguin
+$A=\begin{pmatrix}1&0&-1\\2&1&0\end{pmatrix}$ i
+$B=\begin{pmatrix}3&1\\0&2\\1&-1\end{pmatrix}$.
+Calcula $AB$ i $BA$. Tenen la mateixa dimensió?
+
+\begin{solucio}
+$AB$ és $(2\times3)(3\times2)$, de dimensió $2\times2$, i $BA$ és $(3\times2)(2\times3)$, de dimensió
+$3\times3$:
+\[
+AB=\begin{pmatrix}2&2\\6&4\end{pmatrix},\qquad
+BA=\begin{pmatrix}5&1&-3\\4&2&0\\-1&-1&-1\end{pmatrix}.
+\]
+Tots dos productes existeixen, però no tenen la mateixa dimensió: no té cap sentit preguntar-se si són
+iguals.
+\end{solucio}
+
+\itemtria{inventa-dimensions}{1}{1,25}
+Inventa dues matrius $A$ i $B$, cap de les dues quadrada, tals que $AB$ sigui una matriu $3\times3$ i
+$BA$ una matriu $2\times2$. Quines dimensions han de tenir? Calcula $AB$ per comprovar-ho.
+
+\begin{solucio}
+Si $A$ és $m\times n$, $B$ ha de ser $n\times m$ perquè existeixin tots dos productes; aleshores $AB$ és
+$m\times m$ i $BA$ és $n\times n$. Cal $m=3$ i $n=2$: $A$ és $3\times2$ i $B$ és $2\times3$.\\
+Resposta oberta. Per exemple:
+\[
+A=\begin{pmatrix}1&0\\2&1\\0&3\end{pmatrix},\quad
+B=\begin{pmatrix}1&1&0\\0&2&1\end{pmatrix},\quad
+AB=\begin{pmatrix}1&1&0\\2&4&1\\0&6&3\end{pmatrix}.
+\]
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba $x$ i $y$ perquè
+$\begin{pmatrix}x&1\\2&y\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}5\\11\end{pmatrix}$.
+
+\begin{solucio}
+$\begin{pmatrix}x+3\\2+3y\end{pmatrix}=\begin{pmatrix}5\\11\end{pmatrix}$: $x+3=5$, d'on $x=2$, i
+$2+3y=11$, d'on $y=3$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

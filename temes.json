@@ -233,6 +233,24 @@
       "descripcio": "Probabilitats d'una binomial: exactament, «almenys», «com a molt» i el contrari, en abstracte i en context."
     },
     {
+      "slug": "operacions-matrius",
+      "unitat": "u1",
+      "nom": "Operacions amb matrius",
+      "descripcio": "Tipus de matrius, sumes i productes, dimensions, productes possibles i matrius en context."
+    },
+    {
+      "slug": "commutativitat",
+      "unitat": "u1",
+      "nom": "El producte no és commutatiu",
+      "descripcio": "Comprovar si dues matrius commuten, conseqüències per a la distributiva i el quadrat d'una suma, i matrius que commuten amb una de donada."
+    },
+    {
+      "slug": "potencies-matrius",
+      "unitat": "u1",
+      "nom": "Potències de matrius",
+      "descripcio": "Potència n-èsima per recurrència, matrius nilpotents, idempotents i periòdiques."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",
