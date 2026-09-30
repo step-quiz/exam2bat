@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 12:49 UTC",
+ "generat": "2026-09-30 13:33 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -311,6 +311,42 @@ const BANC = {
    "unitat": "u5",
    "nom": "Posició relativa de rectes i plans",
    "descripcio": "Posició relativa d'una recta i un pla, de dos plans i de tres plans, amb paràmetres."
+  },
+  {
+   "slug": "distancies-pla",
+   "unitat": "u6",
+   "nom": "Distàncies a un pla",
+   "descripcio": "Distància d'un punt a un pla, d'una recta paral·lela a un pla i entre plans paral·lels, i el punt del pla més proper a un punt."
+  },
+  {
+   "slug": "projeccions-simetrics",
+   "unitat": "u6",
+   "nom": "Projeccions i punts simètrics",
+   "descripcio": "Projecció ortogonal d'un punt sobre un pla i sobre una recta, i punt simètric respecte d'un pla i d'una recta."
+  },
+  {
+   "slug": "punts-distancia",
+   "unitat": "u6",
+   "nom": "Punts a una distància donada",
+   "descripcio": "Punts d'una recta a una distància donada d'un pla, i punts equidistants de dos plans."
+  },
+  {
+   "slug": "integral-definida",
+   "unitat": "u12",
+   "nom": "Integrals immediates i regla de Barrow",
+   "descripcio": "Primitives de polinomis i de funcions racionals senzilles (u11), integral definida amb la regla de Barrow, propietats i interpretació geomètrica."
+  },
+  {
+   "slug": "area-corba-eix",
+   "unitat": "u12",
+   "nom": "Àrea entre una corba i l'eix X",
+   "descripcio": "Talls amb l'eix, àrea de regions per sobre i per sota de l'eix, i paràmetres a partir d'una àrea."
+  },
+  {
+   "slug": "area-dues-corbes",
+   "unitat": "u12",
+   "nom": "Àrea entre dues corbes",
+   "descripcio": "Punts de tall de dues corbes, àrea entre elles, i àrees amb una recta tangent."
   },
   {
    "slug": "algebra",
@@ -4322,6 +4358,588 @@ const BANC = {
    "pdf_solucio_curt": "u10/estudi-trossos/q003/out/solucio-curt.pdf"
   },
   {
+   "id": "u12/area-corba-eix/q001",
+   "unitat": "u12",
+   "tema": "area-corba-eix",
+   "codi": "q001",
+   "titol": "Àrea entre una cúbica i l'eix X: per què la integral no és l'àrea",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    79,
+    88
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "àrea",
+    "integral definida"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "area-signe",
+     "defecte_llarg": "area",
+     "defecte_curt": "area",
+     "items": [
+      {
+       "id": "area",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-corba-eix/q001/out/tries/area-signe/area/enunciat.pdf",
+       "pdf_solucio": "u12/area-corba-eix/q001/out/tries/area-signe/area/solucio.pdf",
+       "pdf_curt": "u12/area-corba-eix/q001/out/tries/area-signe/area/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-corba-eix/q001/out/tries/area-signe/area/solucio-curt.pdf"
+      },
+      {
+       "id": "error-signe",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-corba-eix/q001/out/tries/area-signe/error-signe/enunciat.pdf",
+       "pdf_solucio": "u12/area-corba-eix/q001/out/tries/area-signe/error-signe/solucio.pdf",
+       "pdf_curt": "u12/area-corba-eix/q001/out/tries/area-signe/error-signe/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-corba-eix/q001/out/tries/area-signe/error-signe/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la funció $f(x)=x^3-4x$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba els punts on la gràfica de $f$ talla l'eix $X$, i una primitiva de $f$.\n\n\\begin{solucio}\n$x^3-4x=x(x-2)(x+2)=0$: talla l'eix a $x=-2$, $x=0$ i $x=2$. Una primitiva és\n$F(x)=\\dfrac{x^4}4-2x^2$.\n\\end{solucio}\n\n\\begin{tria}{area-signe}\n\\itemtria{area}{1}{1,25}\nCalcula l'àrea de la regió tancada per la gràfica de $f$ i l'eix $X$.\n\n\\begin{solucio}\nHi ha dues regions, $[-2,0]$ i $[0,2]$, i cal integrar-les per separat:\n\\[\n\\left|\\int_{-2}^0 f(x)\\,dx\\right|+\\left|\\int_0^2 f(x)\\,dx\\right|\n=\\bigl|F(0)-F(-2)\\bigr|+\\bigl|F(2)-F(0)\\bigr|=|0-(4-8)|+|(4-8)-0|=4+4=8.\n\\]\nL'àrea és de 8 unitats quadrades.\n\\end{solucio}\n\n\\itemtria{error-signe}{1}{1,25}\nUn company calcula $\\displaystyle\\int_{-2}^2 f(x)\\,dx$, obté 0 i diu que l'àrea tancada per la gràfica i\nl'eix $X$ és 0. Explica on és l'error i calcula l'àrea correcta.\n\n\\begin{solucio}\nLa integral és correcta: $F(2)-F(-2)=-4-(-4)=0$. Però a $[-2,0]$ la funció és positiva, i a $[0,2]$,\nnegativa: la integral hi dona $+4$ i $-4$, que es compensen. L'àrea és la suma dels valors absoluts de\nles integrals de cada tros: $|4|+|-4|=8$ unitats quadrades.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula l'àrea de la regió tancada per la paràbola $y=-x^2+4$ i l'eix $X$.\n\n\\begin{solucio}\nTalla l'eix a $x=\\pm2$, i entre aquests valors és positiva:\n$\\displaystyle\\int_{-2}^2(-x^2+4)\\,dx=\\left[-\\frac{x^3}3+4x\\right]_{-2}^2=\\frac{16}3-\\left(-\\frac{16}3\\right)=\\frac{32}3$\nunitats quadrades.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/area-corba-eix/q001/out/enunciat.pdf",
+   "pdf_solucio": "u12/area-corba-eix/q001/out/solucio.pdf",
+   "pdf_curt": "u12/area-corba-eix/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/area-corba-eix/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/area-corba-eix/q002",
+   "unitat": "u12",
+   "tema": "area-corba-eix",
+   "codi": "q002",
+   "titol": "Àrea sota una arrel i la recta vertical que dona una àrea donada",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    80,
+    79
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "àrea",
+    "integral definida",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "area-arrel",
+     "defecte_llarg": "area",
+     "defecte_curt": "area",
+     "items": [
+      {
+       "id": "area",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-corba-eix/q002/out/tries/area-arrel/area/enunciat.pdf",
+       "pdf_solucio": "u12/area-corba-eix/q002/out/tries/area-arrel/area/solucio.pdf",
+       "pdf_curt": "u12/area-corba-eix/q002/out/tries/area-arrel/area/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-corba-eix/q002/out/tries/area-arrel/area/solucio-curt.pdf"
+      },
+      {
+       "id": "recta-desconeguda",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-corba-eix/q002/out/tries/area-arrel/recta-desconeguda/enunciat.pdf",
+       "pdf_solucio": "u12/area-corba-eix/q002/out/tries/area-arrel/recta-desconeguda/solucio.pdf",
+       "pdf_curt": "u12/area-corba-eix/q002/out/tries/area-arrel/recta-desconeguda/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-corba-eix/q002/out/tries/area-arrel/recta-desconeguda/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la funció $f(x)=\\sqrt{x-3}$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba el domini de $f$, el punt on talla l'eix $X$ i una primitiva de $f$.\n\n\\begin{solucio}\nEl domini és $[3,+\\infty)$, i $f(x)=0$ només per a $x=3$. Escrivint $f(x)=(x-3)^{1/2}$, una primitiva és\n$F(x)=\\dfrac{(x-3)^{3/2}}{3/2}=\\dfrac23\\sqrt{(x-3)^3}$.\n\\end{solucio}\n\n\\begin{tria}{area-arrel}\n\\itemtria{area}{1}{1,25}\nCalcula l'àrea de la regió limitada per la gràfica de $f$, l'eix $X$ i la recta $x=4$. I si la recta\nfos $x=7$?\n\n\\begin{solucio}\nEntre 3 i 4, $f\\ge0$: $\\displaystyle\\int_3^4\\sqrt{x-3}\\,dx=\\left[\\frac23\\sqrt{(x-3)^3}\\right]_3^4=\\frac23$\nunitats quadrades.\\\\\nFins a $x=7$: $\\dfrac23\\sqrt{4^3}=\\dfrac23\\cdot8=\\dfrac{16}3$ unitats quadrades.\n\\end{solucio}\n\n\\itemtria{recta-desconeguda}{1}{1,25}\nTroba el valor de $b>3$ perquè l'àrea de la regió limitada per la gràfica de $f$, l'eix $X$ i la recta\n$x=b$ sigui de 18 unitats quadrades.\n\n\\begin{solucio}\nL'àrea és $\\displaystyle\\int_3^b\\sqrt{x-3}\\,dx=\\frac23(b-3)^{3/2}$. Cal $\\frac23(b-3)^{3/2}=18$, és a dir,\n$(b-3)^{3/2}=27$. Aleshores $b-3=27^{2/3}=9$, i $b=12$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula l'àrea de la regió tancada per la paràbola $y=x^2-9$ i l'eix $X$.\n\n\\begin{solucio}\nTalla l'eix a $x=\\pm3$, i entre aquests valors és negativa:\n$\\left|\\displaystyle\\int_{-3}^3(x^2-9)\\,dx\\right|=\\left|\\left[\\frac{x^3}3-9x\\right]_{-3}^3\\right|=|-18-18|=36$\nunitats quadrades.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/area-corba-eix/q002/out/enunciat.pdf",
+   "pdf_solucio": "u12/area-corba-eix/q002/out/solucio.pdf",
+   "pdf_curt": "u12/area-corba-eix/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/area-corba-eix/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/area-corba-eix/q003",
+   "unitat": "u12",
+   "tema": "area-corba-eix",
+   "codi": "q003",
+   "titol": "Àrea entre una paràbola i l'eix X, i el paràmetre per a una àrea donada",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    79,
+    88
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "àrea",
+    "integral definida",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "area-parabola",
+     "defecte_llarg": "area-dues-regions",
+     "defecte_curt": "area-dues-regions",
+     "items": [
+      {
+       "id": "area-dues-regions",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-corba-eix/q003/out/tries/area-parabola/area-dues-regions/enunciat.pdf",
+       "pdf_solucio": "u12/area-corba-eix/q003/out/tries/area-parabola/area-dues-regions/solucio.pdf",
+       "pdf_curt": "u12/area-corba-eix/q003/out/tries/area-parabola/area-dues-regions/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-corba-eix/q003/out/tries/area-parabola/area-dues-regions/solucio-curt.pdf"
+      },
+      {
+       "id": "parametre-area",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-corba-eix/q003/out/tries/area-parabola/parametre-area/enunciat.pdf",
+       "pdf_solucio": "u12/area-corba-eix/q003/out/tries/area-parabola/parametre-area/solucio.pdf",
+       "pdf_curt": "u12/area-corba-eix/q003/out/tries/area-parabola/parametre-area/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-corba-eix/q003/out/tries/area-parabola/parametre-area/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la funció $f(x)=x^2-3x$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba els punts de tall de la gràfica de $f$ amb l'eix $X$ i una primitiva de $f$.\n\n\\begin{solucio}\n$x^2-3x=x(x-3)=0$: $x=0$ i $x=3$. Una primitiva és $F(x)=\\dfrac{x^3}3-\\dfrac{3x^2}2$.\n\\end{solucio}\n\n\\begin{tria}{area-parabola}\n\\itemtria{area-dues-regions}{1}{1,25}\nCalcula l'àrea de la regió tancada per la gràfica de $f$ i l'eix $X$, i l'àrea de la regió limitada per\nla gràfica de $f$, l'eix $X$ i les rectes $x=0$ i $x=4$.\n\n\\begin{solucio}\nEntre 0 i 3, $f\\le0$: $\\bigl|F(3)-F(0)\\bigr|=\\left|9-\\frac{27}2\\right|=\\frac92$ unitats quadrades.\\\\\nFins a $x=4$ cal afegir el tros $[3,4]$, on $f\\ge0$:\n$F(4)-F(3)=\\left(\\frac{64}3-24\\right)-\\left(9-\\frac{27}2\\right)=-\\frac83+\\frac92=\\frac{11}6$. En total,\n$\\frac92+\\frac{11}6=\\frac{19}3$ unitats quadrades.\n\\end{solucio}\n\n\\itemtria{parametre-area}{1}{1,25}\nTroba el valor de $k>0$ perquè l'àrea de la regió tancada per la paràbola $y=x^2-kx$ i l'eix $X$ sigui\nde 36 unitats quadrades.\n\n\\begin{solucio}\nTalla l'eix a $x=0$ i $x=k$, i entre aquests valors és negativa:\n\\[\n\\left|\\int_0^k(x^2-kx)\\,dx\\right|=\\left|\\left[\\frac{x^3}3-\\frac{kx^2}2\\right]_0^k\\right|\n=\\left|\\frac{k^3}3-\\frac{k^3}2\\right|=\\frac{k^3}6.\n\\]\nCal $\\frac{k^3}6=36$, és a dir, $k^3=216$, i $k=6$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula l'àrea de la regió tancada per la gràfica de $y=x^3-x^2$ i l'eix $X$.\n\n\\begin{solucio}\n$x^3-x^2=x^2(x-1)=0$: $x=0$ i $x=1$, i entre aquests valors és negativa:\n$\\left|\\displaystyle\\int_0^1(x^3-x^2)\\,dx\\right|=\\left|\\frac14-\\frac13\\right|=\\frac1{12}$ unitats quadrades.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/area-corba-eix/q003/out/enunciat.pdf",
+   "pdf_solucio": "u12/area-corba-eix/q003/out/solucio.pdf",
+   "pdf_curt": "u12/area-corba-eix/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/area-corba-eix/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/area-dues-corbes/q001",
+   "unitat": "u12",
+   "tema": "area-dues-corbes",
+   "codi": "q001",
+   "titol": "Àrea entre una paràbola i una recta, i entre dues corbes amb tres talls",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    111,
+    114
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "àrea entre corbes",
+    "integral definida"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "area-corbes",
+     "defecte_llarg": "area",
+     "defecte_curt": "area",
+     "items": [
+      {
+       "id": "area",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-dues-corbes/q001/out/tries/area-corbes/area/enunciat.pdf",
+       "pdf_solucio": "u12/area-dues-corbes/q001/out/tries/area-corbes/area/solucio.pdf",
+       "pdf_curt": "u12/area-dues-corbes/q001/out/tries/area-corbes/area/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-dues-corbes/q001/out/tries/area-corbes/area/solucio-curt.pdf"
+      },
+      {
+       "id": "tres-talls",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-dues-corbes/q001/out/tries/area-corbes/tres-talls/enunciat.pdf",
+       "pdf_solucio": "u12/area-dues-corbes/q001/out/tries/area-corbes/tres-talls/solucio.pdf",
+       "pdf_curt": "u12/area-dues-corbes/q001/out/tries/area-corbes/tres-talls/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-dues-corbes/q001/out/tries/area-corbes/tres-talls/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera les funcions $f(x)=x^2-1$ i $g(x)=x+1$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba els punts de tall de les gràfiques de $f$ i $g$, i una primitiva de $g(x)-f(x)$.\n\n\\begin{solucio}\n$x^2-1=x+1$, és a dir, $x^2-x-2=0$: $x=-1$ i $x=2$, als punts $(-1,0)$ i $(2,3)$.\n$g(x)-f(x)=-x^2+x+2$, amb primitiva $-\\dfrac{x^3}3+\\dfrac{x^2}2+2x$.\n\\end{solucio}\n\n\\begin{tria}{area-corbes}\n\\itemtria{area}{1}{1,25}\nCalcula l'àrea de la regió tancada per les gràfiques de $f$ i $g$.\n\n\\begin{solucio}\nEntre $-1$ i $2$, $g\\ge f$ (per exemple, a $x=0$, $g=1>f=-1$):\n\\[\n\\int_{-1}^2(-x^2+x+2)\\,dx=\\left[-\\frac{x^3}3+\\frac{x^2}2+2x\\right]_{-1}^2\n=\\frac{10}3-\\left(-\\frac76\\right)=\\frac92\n\\]\nunitats quadrades.\n\\end{solucio}\n\n\\itemtria{tres-talls}{1}{1,25}\nCalcula l'àrea de la regió tancada per les gràfiques de $y=x^3$ i $y=x$.\n\n\\begin{solucio}\n$x^3=x$ dona $x=-1$, $0$ i $1$: hi ha dues regions, i la funció que queda per sobre canvia. A $[-1,0]$,\n$x^3\\ge x$, i a $[0,1]$, $x\\ge x^3$:\n\\[\n\\int_{-1}^0(x^3-x)\\,dx+\\int_0^1(x-x^3)\\,dx=\\frac14+\\frac14=\\frac12\n\\]\nunitats quadrades.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula l'àrea de la regió tancada per la paràbola $y=x^2$ i la recta $y=4$.\n\n\\begin{solucio}\nEs tallen a $x=\\pm2$, i entre aquests valors la recta és per sobre:\n$\\displaystyle\\int_{-2}^2(4-x^2)\\,dx=\\left[4x-\\frac{x^3}3\\right]_{-2}^2=\\frac{16}3+\\frac{16}3=\\frac{32}3$\nunitats quadrades.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/area-dues-corbes/q001/out/enunciat.pdf",
+   "pdf_solucio": "u12/area-dues-corbes/q001/out/solucio.pdf",
+   "pdf_curt": "u12/area-dues-corbes/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/area-dues-corbes/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/area-dues-corbes/q002",
+   "unitat": "u12",
+   "tema": "area-dues-corbes",
+   "codi": "q002",
+   "titol": "Àrees amb la recta tangent a una paràbola",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    96,
+    111
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "àrea entre corbes",
+    "recta tangent"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "area-tangent",
+     "defecte_llarg": "amb-eix-y",
+     "defecte_curt": "amb-eix-y",
+     "items": [
+      {
+       "id": "amb-eix-y",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-y/enunciat.pdf",
+       "pdf_solucio": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-y/solucio.pdf",
+       "pdf_curt": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-y/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-y/solucio-curt.pdf"
+      },
+      {
+       "id": "amb-eix-x",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-x/enunciat.pdf",
+       "pdf_solucio": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-x/solucio.pdf",
+       "pdf_curt": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-x/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-dues-corbes/q002/out/tries/area-tangent/amb-eix-x/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la funció $f(x)=x^2$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba l'equació de la recta tangent a la gràfica de $f$ al punt d'abscissa $x=1$, i una primitiva de\n$x^2-2x+1$.\n\n\\begin{solucio}\n$f(1)=1$ i $f'(x)=2x$, $f'(1)=2$: la tangent és $y-1=2(x-1)$, és a dir, $y=2x-1$.\\\\\nCom que $x^2-2x+1=(x-1)^2$, una primitiva és $\\dfrac{(x-1)^3}3$.\n\\end{solucio}\n\n\\begin{tria}{area-tangent}\n\\itemtria{amb-eix-y}{1}{1,25}\nCalcula l'àrea de la regió limitada per la gràfica de $f$, la recta tangent i l'eix $Y$.\n\n\\begin{solucio}\nLa paràbola és per sobre de la tangent, i totes dues es toquen a $x=1$. La regió va de $x=0$ a $x=1$:\n\\[\n\\int_0^1\\bigl(x^2-(2x-1)\\bigr)\\,dx=\\left[\\frac{(x-1)^3}3\\right]_0^1=0-\\left(-\\frac13\\right)=\\frac13\n\\]\nunitats quadrades.\n\\end{solucio}\n\n\\itemtria{amb-eix-x}{1}{1,25}\nCalcula l'àrea de la regió limitada per la gràfica de $f$, la recta tangent i l'eix $X$.\n\n\\begin{solucio}\nLa tangent talla l'eix $X$ a $x=\\frac12$. La regió és la que hi ha sota la paràbola entre 0 i 1, menys\nel triangle sota la tangent entre $\\frac12$ i 1, de base $\\frac12$ i altura 1:\n\\[\n\\int_0^1x^2\\,dx-\\frac12\\cdot\\frac12\\cdot1=\\frac13-\\frac14=\\frac1{12}\n\\]\nunitats quadrades.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula l'àrea de la regió tancada per la paràbola $y=x^2$ i la recta $y=2x$.\n\n\\begin{solucio}\n$x^2=2x$ dona $x=0$ i $x=2$, i entre aquests valors la recta és per sobre:\n$\\displaystyle\\int_0^2(2x-x^2)\\,dx=\\left[x^2-\\frac{x^3}3\\right]_0^2=4-\\frac83=\\frac43$ unitats quadrades.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/area-dues-corbes/q002/out/enunciat.pdf",
+   "pdf_solucio": "u12/area-dues-corbes/q002/out/solucio.pdf",
+   "pdf_curt": "u12/area-dues-corbes/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/area-dues-corbes/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/area-dues-corbes/q003",
+   "unitat": "u12",
+   "tema": "area-dues-corbes",
+   "codi": "q003",
+   "titol": "Àrea entre dues paràboles i entre dues corbes que es creuen dins l'interval",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    114,
+    111
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "àrea entre corbes",
+    "integral definida"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "area-paraboles",
+     "defecte_llarg": "area",
+     "defecte_curt": "area",
+     "items": [
+      {
+       "id": "area",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-dues-corbes/q003/out/tries/area-paraboles/area/enunciat.pdf",
+       "pdf_solucio": "u12/area-dues-corbes/q003/out/tries/area-paraboles/area/solucio.pdf",
+       "pdf_curt": "u12/area-dues-corbes/q003/out/tries/area-paraboles/area/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-dues-corbes/q003/out/tries/area-paraboles/area/solucio-curt.pdf"
+      },
+      {
+       "id": "amb-rectes-verticals",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/area-dues-corbes/q003/out/tries/area-paraboles/amb-rectes-verticals/enunciat.pdf",
+       "pdf_solucio": "u12/area-dues-corbes/q003/out/tries/area-paraboles/amb-rectes-verticals/solucio.pdf",
+       "pdf_curt": "u12/area-dues-corbes/q003/out/tries/area-paraboles/amb-rectes-verticals/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/area-dues-corbes/q003/out/tries/area-paraboles/amb-rectes-verticals/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera les funcions $f(x)=x^2-2x$ i $g(x)=-x^2+4$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba els punts de tall de les dues paràboles, i una primitiva de $g(x)-f(x)$.\n\n\\begin{solucio}\n$x^2-2x=-x^2+4$, és a dir, $2x^2-2x-4=0$, o $x^2-x-2=0$: $x=-1$ i $x=2$, als punts $(-1,3)$ i $(2,0)$.\n$g(x)-f(x)=-2x^2+2x+4$, amb primitiva $-\\dfrac{2x^3}3+x^2+4x$.\n\\end{solucio}\n\n\\begin{tria}{area-paraboles}\n\\itemtria{area}{1}{1,25}\nCalcula l'àrea de la regió tancada per les dues paràboles.\n\n\\begin{solucio}\nEntre $-1$ i 2, $g\\ge f$ (a $x=0$, $g=4>f=0$):\n\\[\n\\int_{-1}^2(-2x^2+2x+4)\\,dx=\\left[-\\frac{2x^3}3+x^2+4x\\right]_{-1}^2=\\frac{20}3-\\left(-\\frac73\\right)=9\n\\]\nunitats quadrades.\n\\end{solucio}\n\n\\itemtria{amb-rectes-verticals}{1}{1,25}\nCalcula l'àrea de la regió limitada per les gràfiques de $y=x^2$ i $y=x$ i les rectes $x=0$ i $x=2$.\n\n\\begin{solucio}\nLes dues corbes es tallen a $x=0$ i $x=1$, i la de sobre canvia: a $[0,1]$, $x\\ge x^2$, i a $[1,2]$,\n$x^2\\ge x$.\n\\[\n\\int_0^1(x-x^2)\\,dx+\\int_1^2(x^2-x)\\,dx=\\frac16+\\frac56=1\n\\]\nunitat quadrada.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula l'àrea de la regió tancada per la gràfica de $f$ i l'eix $X$.\n\n\\begin{solucio}\n$x^2-2x=0$ dona $x=0$ i $x=2$, i entre aquests valors $f\\le0$:\n$\\left|\\displaystyle\\int_0^2(x^2-2x)\\,dx\\right|=\\left|\\frac83-4\\right|=\\frac43$ unitats quadrades.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/area-dues-corbes/q003/out/enunciat.pdf",
+   "pdf_solucio": "u12/area-dues-corbes/q003/out/solucio.pdf",
+   "pdf_curt": "u12/area-dues-corbes/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/area-dues-corbes/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/integral-definida/q001",
+   "unitat": "u12",
+   "tema": "integral-definida",
+   "codi": "q001",
+   "titol": "Primitives de polinomis, regla de Barrow i una integral llegida en una gràfica",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    55,
+    35,
+    39
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "integrals immediates (u11)",
+    "regla de Barrow",
+    "interpretació geomètrica"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "integral-definida",
+     "defecte_llarg": "barrow",
+     "defecte_curt": "barrow",
+     "items": [
+      {
+       "id": "barrow",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/integral-definida/q001/out/tries/integral-definida/barrow/enunciat.pdf",
+       "pdf_solucio": "u12/integral-definida/q001/out/tries/integral-definida/barrow/solucio.pdf",
+       "pdf_curt": "u12/integral-definida/q001/out/tries/integral-definida/barrow/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/integral-definida/q001/out/tries/integral-definida/barrow/solucio-curt.pdf"
+      },
+      {
+       "id": "grafica",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/integral-definida/q001/out/tries/integral-definida/grafica/enunciat.pdf",
+       "pdf_solucio": "u12/integral-definida/q001/out/tries/integral-definida/grafica/solucio.pdf",
+       "pdf_curt": "u12/integral-definida/q001/out/tries/integral-definida/grafica/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/integral-definida/q001/out/tries/integral-definida/grafica/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula les integrals indefinides $\\displaystyle\\int(3x^2-4x+1)\\,dx$ i $\\displaystyle\\int(x-2)^3\\,dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int(3x^2-4x+1)\\,dx=x^3-2x^2+x+k$ i $\\displaystyle\\int(x-2)^3\\,dx=\\frac{(x-2)^4}{4}+k$.\n\\end{solucio}\n\n\\begin{tria}{integral-definida}\n\\itemtria{barrow}{1}{1,25}\nCalcula $\\displaystyle\\int_0^2(3x^2-4x+1)\\,dx$ i $\\displaystyle\\int_1^3(x-2)^3\\,dx$. Per què la segona val 0?\n\n\\begin{solucio}\nPer la regla de Barrow:\n$\\displaystyle\\int_0^2(3x^2-4x+1)\\,dx=\\bigl[x^3-2x^2+x\\bigr]_0^2=(8-8+2)-0=2$ i\n$\\displaystyle\\int_1^3(x-2)^3\\,dx=\\left[\\frac{(x-2)^4}{4}\\right]_1^3=\\frac14-\\frac14=0$.\\\\\nLa funció $(x-2)^3$ és negativa a $[1,2]$ i positiva a $[2,3]$, i les dues regions són iguals\n(simètriques respecte del punt $(2,0)$): les seves contribucions es compensen.\n\\end{solucio}\n\n\\itemtria{grafica}{1}{1,25}\nLa gràfica de la funció $f$ és la del dibuix. Calcula, sense buscar-ne cap primitiva,\n$\\displaystyle\\int_{-2}^4 f(x)\\,dx$ i $\\displaystyle\\int_0^3 f(x)\\,dx$.\n\\begin{center}\n\\begin{tikzpicture}[x=0.7cm,y=0.7cm]\n  \\draw[gray!55,very thin,step=1] (-3,-1) grid (5,3);\n  \\draw[->] (-3.4,0) -- (5.4,0) node[below right] {$x$};\n  \\draw[->] (0,-1.4) -- (0,3.4) node[above left] {$y$};\n  \\foreach \\i in {-2,2,4} \\draw (\\i,0.12) -- (\\i,-0.12) node[below,font=\\scriptsize] {$\\i$};\n  \\foreach \\j in {1,2} \\draw (0.12,\\j) -- (-0.12,\\j) node[left,font=\\scriptsize] {$\\j$};\n  \\draw[\\colorgrafica,very thick] (-3,-1) -- (0,2) -- (2,2) -- (5,-1);\n  \\node[\\colorgrafica,font=\\small] at (3.9,1.6) {$y=f(x)$};\n\\end{tikzpicture}\n\\end{center}\n\n\\begin{solucio}\nEntre $-2$ i $4$, $f\\ge0$, i la integral és l'àrea sota la gràfica: un triangle de base 2 i altura 2, un\nrectangle $2\\times2$ i un altre triangle igual. $\\displaystyle\\int_{-2}^4 f(x)\\,dx=2+4+2=8$.\\\\\nEntre 0 i 3: el rectangle, 4, més el trapezi de bases 2 i 1 i altura 1, $\\frac{2+1}2=1{,}5$. En total,\n$5{,}5$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nSabent que $\\displaystyle\\int_0^3 g(x)\\,dx=5$ i $\\displaystyle\\int_0^3 h(x)\\,dx=-2$, calcula\n$\\displaystyle\\int_0^3\\bigl(2g(x)-3h(x)\\bigr)\\,dx$ i $\\displaystyle\\int_3^0 g(x)\\,dx$.\n\n\\begin{solucio}\nPer la linealitat de la integral, $2\\cdot5-3\\cdot(-2)=16$. Canviar l'ordre dels límits canvia el signe:\n$\\displaystyle\\int_3^0 g(x)\\,dx=-5$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/integral-definida/q001/out/enunciat.pdf",
+   "pdf_solucio": "u12/integral-definida/q001/out/solucio.pdf",
+   "pdf_curt": "u12/integral-definida/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/integral-definida/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/integral-definida/q002",
+   "unitat": "u12",
+   "tema": "integral-definida",
+   "codi": "q002",
+   "titol": "Primitives racionals, regla de Barrow i el límit d'integració desconegut",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    55,
+    39
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "integrals immediates (u11)",
+    "regla de Barrow"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "barrow-racionals",
+     "defecte_llarg": "barrow",
+     "defecte_curt": "barrow",
+     "items": [
+      {
+       "id": "barrow",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/integral-definida/q002/out/tries/barrow-racionals/barrow/enunciat.pdf",
+       "pdf_solucio": "u12/integral-definida/q002/out/tries/barrow-racionals/barrow/solucio.pdf",
+       "pdf_curt": "u12/integral-definida/q002/out/tries/barrow-racionals/barrow/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/integral-definida/q002/out/tries/barrow-racionals/barrow/solucio-curt.pdf"
+      },
+      {
+       "id": "limit-desconegut",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/integral-definida/q002/out/tries/barrow-racionals/limit-desconegut/enunciat.pdf",
+       "pdf_solucio": "u12/integral-definida/q002/out/tries/barrow-racionals/limit-desconegut/solucio.pdf",
+       "pdf_curt": "u12/integral-definida/q002/out/tries/barrow-racionals/limit-desconegut/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/integral-definida/q002/out/tries/barrow-racionals/limit-desconegut/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula les integrals indefinides $\\displaystyle\\int\\frac{3}{x-1}\\,dx$ i\n$\\displaystyle\\int\\frac{2}{(x+1)^2}\\,dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int\\frac{3}{x-1}\\,dx=3\\ln|x-1|+k$. Escrivint $\\frac2{(x+1)^2}=2(x+1)^{-2}$,\n\\[\n\\int\\frac{2}{(x+1)^2}\\,dx=2\\,\\frac{(x+1)^{-1}}{-1}+k=-\\frac{2}{x+1}+k.\n\\]\n\\end{solucio}\n\n\\begin{tria}{barrow-racionals}\n\\itemtria{barrow}{1}{1,25}\nCalcula $\\displaystyle\\int_2^4\\frac{3}{x-1}\\,dx$ i $\\displaystyle\\int_0^1\\frac{2}{(x+1)^2}\\,dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int_2^4\\frac{3}{x-1}\\,dx=\\bigl[3\\ln|x-1|\\bigr]_2^4=3\\ln3-3\\ln1=3\\ln3$.\\\\\n$\\displaystyle\\int_0^1\\frac{2}{(x+1)^2}\\,dx=\\left[-\\frac{2}{x+1}\\right]_0^1=-1-(-2)=1$.\n\\end{solucio}\n\n\\itemtria{limit-desconegut}{1}{1,25}\nTroba el valor de $a>0$ perquè $\\displaystyle\\int_0^a(2x+1)\\,dx=6$.\n\n\\begin{solucio}\n$\\displaystyle\\int_0^a(2x+1)\\,dx=\\bigl[x^2+x\\bigr]_0^a=a^2+a$. Cal $a^2+a=6$, és a dir, $a^2+a-6=0$, amb\nsolucions $a=2$ i $a=-3$. Com que $a>0$, $a=2$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula $\\displaystyle\\int_1^4\\frac{3}{\\sqrt x}\\,dx$.\n\n\\begin{solucio}\n$\\frac3{\\sqrt x}=3x^{-1/2}$, amb primitiva $3\\cdot\\frac{x^{1/2}}{1/2}=6\\sqrt x$:\n$\\displaystyle\\int_1^4\\frac{3}{\\sqrt x}\\,dx=\\bigl[6\\sqrt x\\bigr]_1^4=12-6=6$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/integral-definida/q002/out/enunciat.pdf",
+   "pdf_solucio": "u12/integral-definida/q002/out/solucio.pdf",
+   "pdf_curt": "u12/integral-definida/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/integral-definida/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u12/integral-definida/q003",
+   "unitat": "u12",
+   "tema": "integral-definida",
+   "codi": "q003",
+   "titol": "Primitives amb logaritmes, una integral amb valor absolut i la linealitat",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    55,
+    39,
+    35
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "integrals immediates (u11)",
+    "regla de Barrow",
+    "valor absolut"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "calcul-integral",
+     "defecte_llarg": "barrow",
+     "defecte_curt": "barrow",
+     "items": [
+      {
+       "id": "barrow",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/integral-definida/q003/out/tries/calcul-integral/barrow/enunciat.pdf",
+       "pdf_solucio": "u12/integral-definida/q003/out/tries/calcul-integral/barrow/solucio.pdf",
+       "pdf_curt": "u12/integral-definida/q003/out/tries/calcul-integral/barrow/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/integral-definida/q003/out/tries/calcul-integral/barrow/solucio-curt.pdf"
+      },
+      {
+       "id": "valor-absolut",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u12/integral-definida/q003/out/tries/calcul-integral/valor-absolut/enunciat.pdf",
+       "pdf_solucio": "u12/integral-definida/q003/out/tries/calcul-integral/valor-absolut/solucio.pdf",
+       "pdf_curt": "u12/integral-definida/q003/out/tries/calcul-integral/valor-absolut/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u12/integral-definida/q003/out/tries/calcul-integral/valor-absolut/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula les integrals indefinides $\\displaystyle\\int(x^3-2x+5)\\,dx$ i\n$\\displaystyle\\int\\left(\\frac1x-\\frac1{x^2}\\right)dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int(x^3-2x+5)\\,dx=\\frac{x^4}4-x^2+5x+k$ i\n$\\displaystyle\\int\\left(\\frac1x-\\frac1{x^2}\\right)dx=\\ln|x|+\\frac1x+k$.\n\\end{solucio}\n\n\\begin{tria}{calcul-integral}\n\\itemtria{barrow}{1}{1,25}\nCalcula $\\displaystyle\\int_1^e\\left(\\frac1x-\\frac1{x^2}\\right)dx$ i $\\displaystyle\\int_{-1}^1(x^3-2x+5)\\,dx$.\n\n\\begin{solucio}\n$\\displaystyle\\int_1^e\\left(\\frac1x-\\frac1{x^2}\\right)dx=\\left[\\ln x+\\frac1x\\right]_1^e\n=\\left(1+\\frac1e\\right)-(0+1)=\\frac1e$.\\\\\n$\\displaystyle\\int_{-1}^1(x^3-2x+5)\\,dx=\\left[\\frac{x^4}4-x^2+5x\\right]_{-1}^1\n=\\left(\\frac14-1+5\\right)-\\left(\\frac14-1-5\\right)=10$.\n\\end{solucio}\n\n\\itemtria{valor-absolut}{1}{1,25}\nCalcula $\\displaystyle\\int_{-1}^3|x-1|\\,dx$.\n\n\\begin{solucio}\n$|x-1|=1-x$ si $x\\le1$ i $x-1$ si $x\\ge1$:\n\\[\n\\int_{-1}^3|x-1|\\,dx=\\int_{-1}^1(1-x)\\,dx+\\int_1^3(x-1)\\,dx\n=\\left[x-\\frac{x^2}2\\right]_{-1}^1+\\left[\\frac{x^2}2-x\\right]_1^3=2+2=4.\n\\]\n(Geomètricament, són dos triangles de base 2 i altura 2.)\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula $\\displaystyle\\int_0^2(x^2+1)\\,dx$, i fes-lo servir per calcular $\\displaystyle\\int_0^2(3x^2+3)\\,dx$\nsense cap primitiva més.\n\n\\begin{solucio}\n$\\displaystyle\\int_0^2(x^2+1)\\,dx=\\left[\\frac{x^3}3+x\\right]_0^2=\\frac83+2=\\frac{14}3$. Com que\n$3x^2+3=3(x^2+1)$, la segona val $3\\cdot\\frac{14}3=14$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u12/integral-definida/q003/out/enunciat.pdf",
+   "pdf_solucio": "u12/integral-definida/q003/out/solucio.pdf",
+   "pdf_curt": "u12/integral-definida/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u12/integral-definida/q003/out/solucio-curt.pdf"
+  },
+  {
    "id": "u13/espai-mostral/q001",
    "unitat": "u13",
    "tema": "espai-mostral",
@@ -7488,6 +8106,588 @@ const BANC = {
    "pdf_solucio": "u5/posicio-rectes-plans/q003/out/solucio.pdf",
    "pdf_curt": "u5/posicio-rectes-plans/q003/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u5/posicio-rectes-plans/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/distancies-pla/q001",
+   "unitat": "u6",
+   "tema": "distancies-pla",
+   "codi": "q001",
+   "titol": "Distància d'un punt a un pla, d'una recta paral·lela i entre plans paral·lels, i el punt més proper",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    86,
+    97,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "distància punt-pla",
+    "distància recta-pla"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "altres-distancies",
+     "defecte_llarg": "recta-pla",
+     "defecte_curt": "recta-pla",
+     "items": [
+      {
+       "id": "recta-pla",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/distancies-pla/q001/out/tries/altres-distancies/recta-pla/enunciat.pdf",
+       "pdf_solucio": "u6/distancies-pla/q001/out/tries/altres-distancies/recta-pla/solucio.pdf",
+       "pdf_curt": "u6/distancies-pla/q001/out/tries/altres-distancies/recta-pla/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/distancies-pla/q001/out/tries/altres-distancies/recta-pla/solucio-curt.pdf"
+      },
+      {
+       "id": "plans-paralels",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/distancies-pla/q001/out/tries/altres-distancies/plans-paralels/enunciat.pdf",
+       "pdf_solucio": "u6/distancies-pla/q001/out/tries/altres-distancies/plans-paralels/solucio.pdf",
+       "pdf_curt": "u6/distancies-pla/q001/out/tries/altres-distancies/plans-paralels/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/distancies-pla/q001/out/tries/altres-distancies/plans-paralels/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el punt $P(3,-1,2)$ i el pla $\\pi\\colon 2x-y+2z+1=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula la distància del punt $P$ al pla $\\pi$.\n\n\\begin{solucio}\n\\[\nd(P,\\pi)=\\frac{|2\\cdot3-(-1)+2\\cdot2+1|}{\\sqrt{2^2+(-1)^2+2^2}}=\\frac{12}{3}=4.\n\\]\n\\end{solucio}\n\n\\begin{tria}{altres-distancies}\n\\itemtria{recta-pla}{1}{1,25}\nComprova que la recta $r\\colon\\left\\{\\begin{aligned}x&=1+t\\\\y&=2+2t\\\\z&=-1\\end{aligned}\\right.$ és\nparal·lela a $\\pi$ i calcula la distància entre $r$ i $\\pi$.\n\n\\begin{solucio}\n$\\vec u=(1,2,0)$ i $\\vec n=(2,-1,2)$: $\\vec u\\cdot\\vec n=2-2+0=0$, i el punt $(1,2,-1)$ de $r$ no és\nde $\\pi$ ($2-2-2+1=-1\\ne0$). La recta és paral·lela al pla, i la distància és la de qualsevol punt de\nla recta al pla:\n\\[\nd(r,\\pi)=\\frac{|2-2-2+1|}{3}=\\frac13.\n\\]\n\\end{solucio}\n\n\\itemtria{plans-paralels}{1}{1,25}\nComprova que el pla $\\pi'\\colon 4x-2y+4z-16=0$ és paral·lel a $\\pi$ i calcula la distància entre tots\ndos plans.\n\n\\begin{solucio}\n$\\pi'$ és $2x-y+2z-8=0$: el mateix vector normal que $\\pi$ i un altre terme independent. Són\nparal·lels. La distància és la d'un punt qualsevol de $\\pi$, per exemple $(0,1,0)$, a $\\pi'$:\n\\[\nd(\\pi,\\pi')=\\frac{|0-1+0-8|}{3}=\\frac93=3.\n\\]\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba el punt $Q$ del pla $\\pi$ més proper a $P$, i comprova que $|\\overrightarrow{PQ}|$ coincideix amb la\ndistància del primer apartat.\n\n\\begin{solucio}\n$Q$ és el punt de tall de $\\pi$ amb la recta perpendicular per $P$, $(3+2t,\\ -1-t,\\ 2+2t)$:\n$2(3+2t)-(-1-t)+2(2+2t)+1=12+9t=0$, $t=-\\frac43$, i\n$Q=\\left(\\frac13,\\frac13,-\\frac23\\right)$. Aleshores\n$\\overrightarrow{PQ}=-\\frac43(2,-1,2)$ i $|\\overrightarrow{PQ}|=\\frac43\\cdot3=4$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/distancies-pla/q001/out/enunciat.pdf",
+   "pdf_solucio": "u6/distancies-pla/q001/out/solucio.pdf",
+   "pdf_curt": "u6/distancies-pla/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/distancies-pla/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/distancies-pla/q002",
+   "unitat": "u6",
+   "tema": "distancies-pla",
+   "codi": "q002",
+   "titol": "Recta perpendicular a un pla, punt de tall i distància, i a quin costat del pla és un punt",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    139,
+    86,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "distància punt-pla",
+    "recta perpendicular"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "recta-perpendicular",
+     "defecte_llarg": "tall-i-distancia",
+     "defecte_curt": "tall-i-distancia",
+     "items": [
+      {
+       "id": "tall-i-distancia",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/distancies-pla/q002/out/tries/recta-perpendicular/tall-i-distancia/enunciat.pdf",
+       "pdf_solucio": "u6/distancies-pla/q002/out/tries/recta-perpendicular/tall-i-distancia/solucio.pdf",
+       "pdf_curt": "u6/distancies-pla/q002/out/tries/recta-perpendicular/tall-i-distancia/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/distancies-pla/q002/out/tries/recta-perpendicular/tall-i-distancia/solucio-curt.pdf"
+      },
+      {
+       "id": "costats-del-pla",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/distancies-pla/q002/out/tries/recta-perpendicular/costats-del-pla/enunciat.pdf",
+       "pdf_solucio": "u6/distancies-pla/q002/out/tries/recta-perpendicular/costats-del-pla/solucio.pdf",
+       "pdf_curt": "u6/distancies-pla/q002/out/tries/recta-perpendicular/costats-del-pla/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/distancies-pla/q002/out/tries/recta-perpendicular/costats-del-pla/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el punt $P(2,5,-3)$ i el pla $\\pi\\colon x+2y+2z-3=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu l'equació de la recta $r$ perpendicular a $\\pi$ que passa per $P$.\n\n\\begin{solucio}\nEl vector normal del pla, $(1,2,2)$, és el vector director de la recta:\n$r\\colon\\dfrac{x-2}{1}=\\dfrac{y-5}{2}=\\dfrac{z+3}{2}$, o bé $(2+t,\\ 5+2t,\\ -3+2t)$.\n\\end{solucio}\n\n\\begin{tria}{recta-perpendicular}\n\\itemtria{tall-i-distancia}{1}{1,25}\nTroba el punt de tall de $r$ amb $\\pi$ i calcula la distància de $P$ a $\\pi$ de dues maneres.\n\n\\begin{solucio}\n$(2+t)+2(5+2t)+2(-3+2t)-3=3+9t=0$, $t=-\\frac13$: el punt de tall és\n$Q=\\left(\\frac53,\\frac{13}3,-\\frac{11}3\\right)$.\\\\\nAmb la fórmula: $d(P,\\pi)=\\dfrac{|2+10-6-3|}{\\sqrt{1+4+4}}=\\dfrac33=1$. I com a distància entre $P$ i\n$Q$: $\\overrightarrow{PQ}=-\\frac13(1,2,2)$, de mòdul $\\frac13\\cdot3=1$.\n\\end{solucio}\n\n\\itemtria{costats-del-pla}{1}{1,25}\nEstan el punt $P$ i l'origen de coordenades al mateix costat del pla $\\pi$? Calcula la distància de\ncadascun a $\\pi$.\n\n\\begin{solucio}\nEl signe de $x+2y+2z-3$ diu a quin costat del pla és cada punt. A $P$ val $2+10-6-3=3>0$, i a\nl'origen, $-3<0$: són a costats oposats.\\\\\n$d(P,\\pi)=\\dfrac{|3|}{3}=1$ i $d(O,\\pi)=\\dfrac{|-3|}{3}=1$: tots dos són a la mateixa distància del pla.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba el pla $\\pi'$ paral·lel a $\\pi$ que passa per $P$, i la distància entre $\\pi$ i $\\pi'$.\n\n\\begin{solucio}\n$\\pi'\\colon x+2y+2z+D=0$ amb $2+10-6+D=0$, $D=-6$: $\\pi'\\colon x+2y+2z-6=0$. La distància entre els\ndos plans és la de $P$ a $\\pi$, que és 1. (Amb la fórmula, el punt $(0,0,\\frac32)$ de $\\pi$ dona\n$\\frac{|3-6|}{3}=1$.)\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/distancies-pla/q002/out/enunciat.pdf",
+   "pdf_solucio": "u6/distancies-pla/q002/out/solucio.pdf",
+   "pdf_curt": "u6/distancies-pla/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/distancies-pla/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/distancies-pla/q003",
+   "unitat": "u6",
+   "tema": "distancies-pla",
+   "codi": "q003",
+   "titol": "Recta donada per dos plans i paral·lela a un pla, distàncies i plans a una distància donada",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    97,
+    86
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "distància recta-pla",
+    "plans paral·lels"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "distancia-casos",
+     "defecte_llarg": "plans-paralels",
+     "defecte_curt": "plans-paralels",
+     "items": [
+      {
+       "id": "plans-paralels",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/distancies-pla/q003/out/tries/distancia-casos/plans-paralels/enunciat.pdf",
+       "pdf_solucio": "u6/distancies-pla/q003/out/tries/distancia-casos/plans-paralels/solucio.pdf",
+       "pdf_curt": "u6/distancies-pla/q003/out/tries/distancia-casos/plans-paralels/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/distancies-pla/q003/out/tries/distancia-casos/plans-paralels/solucio-curt.pdf"
+      },
+      {
+       "id": "recta-secant",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/distancies-pla/q003/out/tries/distancia-casos/recta-secant/enunciat.pdf",
+       "pdf_solucio": "u6/distancies-pla/q003/out/tries/distancia-casos/recta-secant/solucio.pdf",
+       "pdf_curt": "u6/distancies-pla/q003/out/tries/distancia-casos/recta-secant/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/distancies-pla/q003/out/tries/distancia-casos/recta-secant/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la recta $r\\colon\\left\\{\\begin{aligned}x-y&=1\\\\y-z&=2\\end{aligned}\\right.$ i el pla\n$\\pi\\colon x+y-2z+4=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia la posició relativa de $r$ i $\\pi$, i calcula la distància entre tots dos.\n\n\\begin{solucio}\nAmb $z=\\lambda$: $y=2+\\lambda$ i $x=3+\\lambda$. La recta passa per $(3,2,0)$ amb $\\vec u=(1,1,1)$, i\n$\\vec u\\cdot\\vec n=1+1-2=0$. El punt $(3,2,0)$ no és de $\\pi$ ($3+2+4=9\\ne0$): la recta és paral·lela\nal pla.\n\\[\nd(r,\\pi)=\\frac{|3+2-0+4|}{\\sqrt{1+1+4}}=\\frac9{\\sqrt6}=\\frac{3\\sqrt6}2.\n\\]\n\\end{solucio}\n\n\\begin{tria}{distancia-casos}\n\\itemtria{plans-paralels}{1}{1,25}\nCalcula la distància entre el pla $\\pi$ i el pla $\\pi'\\colon 2x+2y-4z-3=0$.\n\n\\begin{solucio}\n$\\pi'$ és $x+y-2z-\\frac32=0$: té el mateix vector normal que $\\pi$, i són paral·lels. Amb el punt\n$(-4,0,0)$ de $\\pi$:\n\\[\nd(\\pi,\\pi')=\\frac{\\left|-4-\\frac32\\right|}{\\sqrt6}=\\frac{11}{2\\sqrt6}=\\frac{11\\sqrt6}{12}.\n\\]\n\\end{solucio}\n\n\\itemtria{recta-secant}{1}{1,25}\nCalcula la distància entre la recta\n$s\\colon\\left\\{\\begin{aligned}x&=2t\\\\y&=-t\\\\z&=1\\end{aligned}\\right.$ i el pla $\\pi$.\n\n\\begin{solucio}\n$\\vec v=(2,-1,0)$ i $\\vec v\\cdot\\vec n=2-1+0=1\\ne0$: la recta talla el pla, i la distància és 0.\nEl punt de tall: $2t-t-2+4=0$, $t=-2$, és a dir, $(-4,2,1)$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els plans paral·lels a $\\pi$ que són a una distància $\\sqrt6$ de l'origen.\n\n\\begin{solucio}\nSón de la forma $x+y-2z+D=0$, amb $\\dfrac{|D|}{\\sqrt6}=\\sqrt6$, és a dir, $|D|=6$: els plans\n$x+y-2z+6=0$ i $x+y-2z-6=0$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/distancies-pla/q003/out/enunciat.pdf",
+   "pdf_solucio": "u6/distancies-pla/q003/out/solucio.pdf",
+   "pdf_curt": "u6/distancies-pla/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/distancies-pla/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/projeccions-simetrics/q001",
+   "unitat": "u6",
+   "tema": "projeccions-simetrics",
+   "codi": "q001",
+   "titol": "Projecció i simètric d'un punt respecte d'un pla, i el pla respecte del qual dos punts són simètrics",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    76,
+    90,
+    86
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "projecció ortogonal",
+    "punt simètric"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "simetria",
+     "defecte_llarg": "simetric-pla",
+     "defecte_curt": "simetric-pla",
+     "items": [
+      {
+       "id": "simetric-pla",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/projeccions-simetrics/q001/out/tries/simetria/simetric-pla/enunciat.pdf",
+       "pdf_solucio": "u6/projeccions-simetrics/q001/out/tries/simetria/simetric-pla/solucio.pdf",
+       "pdf_curt": "u6/projeccions-simetrics/q001/out/tries/simetria/simetric-pla/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/projeccions-simetrics/q001/out/tries/simetria/simetric-pla/solucio-curt.pdf"
+      },
+      {
+       "id": "pla-mediador",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/projeccions-simetrics/q001/out/tries/simetria/pla-mediador/enunciat.pdf",
+       "pdf_solucio": "u6/projeccions-simetrics/q001/out/tries/simetria/pla-mediador/solucio.pdf",
+       "pdf_curt": "u6/projeccions-simetrics/q001/out/tries/simetria/pla-mediador/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/projeccions-simetrics/q001/out/tries/simetria/pla-mediador/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el punt $P(3,-2,4)$ i el pla $\\pi\\colon x-2y+2z-6=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba la projecció ortogonal $Q$ del punt $P$ sobre el pla $\\pi$.\n\n\\begin{solucio}\nLa recta perpendicular a $\\pi$ per $P$ és $(3+t,\\ -2-2t,\\ 4+2t)$. Substituint al pla:\n$(3+t)-2(-2-2t)+2(4+2t)-6=9+9t=0$, $t=-1$. La projecció és $Q=(2,0,2)$.\n\\end{solucio}\n\n\\begin{tria}{simetria}\n\\itemtria{simetric-pla}{1}{1,25}\nTroba el punt simètric $P'$ de $P$ respecte del pla $\\pi$.\n\n\\begin{solucio}\n$Q$ és el punt mitjà de $P$ i $P'$: $P'=2Q-P=(4-3,\\ 0+2,\\ 4-4)=(1,2,0)$.\\\\\nComprovació: $\\overrightarrow{PP'}=(-2,4,-4)$ és proporcional a $\\vec n=(1,-2,2)$, i el punt mitjà,\n$(2,0,2)$, és de $\\pi$.\n\\end{solucio}\n\n\\itemtria{pla-mediador}{1}{1,25}\nTroba el pla respecte del qual els punts $A(1,2,3)$ i $B(3,6,-1)$ són simètrics.\n\n\\begin{solucio}\nÉs el pla perpendicular a $\\overrightarrow{AB}=(2,4,-4)$, o a $(1,2,-2)$, que passa pel punt mitjà de\n$A$ i $B$, $M(2,4,1)$: $x+2y-2z+D=0$ amb $2+8-2+D=0$, $D=-8$. El pla és $x+2y-2z-8=0$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula la distància de $P$ a $\\pi$ amb la fórmula, i comprova que és igual a $|\\overrightarrow{PQ}|$.\n\n\\begin{solucio}\n$d(P,\\pi)=\\dfrac{|3+4+8-6|}{\\sqrt{1+4+4}}=\\dfrac93=3$, i $\\overrightarrow{PQ}=(-1,2,-2)$ té mòdul\n$\\sqrt{1+4+4}=3$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/projeccions-simetrics/q001/out/enunciat.pdf",
+   "pdf_solucio": "u6/projeccions-simetrics/q001/out/solucio.pdf",
+   "pdf_curt": "u6/projeccions-simetrics/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/projeccions-simetrics/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/projeccions-simetrics/q002",
+   "unitat": "u6",
+   "tema": "projeccions-simetrics",
+   "codi": "q002",
+   "titol": "Projecció i simètric d'un punt respecte d'una recta, i distància d'un punt a una recta",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    74,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "projecció ortogonal",
+    "punt simètric"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "simetric-recta",
+     "defecte_llarg": "calcula-simetric",
+     "defecte_curt": "calcula-simetric",
+     "items": [
+      {
+       "id": "calcula-simetric",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/calcula-simetric/enunciat.pdf",
+       "pdf_solucio": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/calcula-simetric/solucio.pdf",
+       "pdf_curt": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/calcula-simetric/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/calcula-simetric/solucio-curt.pdf"
+      },
+      {
+       "id": "comprova-simetric",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/comprova-simetric/enunciat.pdf",
+       "pdf_solucio": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/comprova-simetric/solucio.pdf",
+       "pdf_curt": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/comprova-simetric/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/projeccions-simetrics/q002/out/tries/simetric-recta/comprova-simetric/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el punt $P(4,1,1)$ i la recta\n$r\\colon\\left\\{\\begin{aligned}x&=1+t\\\\y&=2t\\\\z&=-1+2t\\end{aligned}\\right.$\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba la projecció ortogonal $Q$ del punt $P$ sobre la recta $r$.\n\n\\begin{solucio}\nEl pla perpendicular a $r$ per $P$ té com a vector normal $\\vec u=(1,2,2)$: $x+2y+2z+D=0$, amb\n$4+2+2+D=0$, $D=-8$. El tall amb $r$: $(1+t)+4t+2(-1+2t)-8=9t-9=0$, $t=1$. La projecció és\n$Q=(2,2,1)$.\n\\end{solucio}\n\n\\begin{tria}{simetric-recta}\n\\itemtria{calcula-simetric}{1}{1,25}\nTroba el punt simètric $P'$ de $P$ respecte de la recta $r$.\n\n\\begin{solucio}\n$Q$ és el punt mitjà de $P$ i $P'$: $P'=2Q-P=(4-4,\\ 4-1,\\ 2-1)=(0,3,1)$.\n\\end{solucio}\n\n\\itemtria{comprova-simetric}{1}{1,25}\nComprova, sense calcular la projecció, que el punt $P'(0,3,1)$ és el simètric de $P$ respecte de $r$.\n\n\\begin{solucio}\nCal comprovar dues coses. El punt mitjà de $P$ i $P'$, $M(2,2,1)$, ha de ser de $r$: amb $t=1$, la\nrecta dona $(2,2,1)$. I $\\overrightarrow{PP'}=(-4,2,0)$ ha de ser perpendicular a $\\vec u=(1,2,2)$:\n$-4+4+0=0$. Totes dues es compleixen: $P'$ és el simètric de $P$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula la distància del punt $P$ a la recta $r$.\n\n\\begin{solucio}\nÉs la distància de $P$ a la seva projecció $Q$: $\\overrightarrow{PQ}=(-2,1,0)$, i\n$d(P,r)=|\\overrightarrow{PQ}|=\\sqrt{4+1+0}=\\sqrt5$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/projeccions-simetrics/q002/out/enunciat.pdf",
+   "pdf_solucio": "u6/projeccions-simetrics/q002/out/solucio.pdf",
+   "pdf_curt": "u6/projeccions-simetrics/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/projeccions-simetrics/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/projeccions-simetrics/q003",
+   "unitat": "u6",
+   "tema": "projeccions-simetrics",
+   "codi": "q003",
+   "titol": "Un focus i una paret: projecció, imatge en un mirall i distàncies",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    139,
+    76,
+    90
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "projecció ortogonal",
+    "punt simètric",
+    "distància punt-pla"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "focus",
+     "defecte_llarg": "simetric",
+     "defecte_curt": "simetric",
+     "items": [
+      {
+       "id": "simetric",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/projeccions-simetrics/q003/out/tries/focus/simetric/enunciat.pdf",
+       "pdf_solucio": "u6/projeccions-simetrics/q003/out/tries/focus/simetric/solucio.pdf",
+       "pdf_curt": "u6/projeccions-simetrics/q003/out/tries/focus/simetric/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/projeccions-simetrics/q003/out/tries/focus/simetric/solucio-curt.pdf"
+      },
+      {
+       "id": "distancia-dues-maneres",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/projeccions-simetrics/q003/out/tries/focus/distancia-dues-maneres/enunciat.pdf",
+       "pdf_solucio": "u6/projeccions-simetrics/q003/out/tries/focus/distancia-dues-maneres/solucio.pdf",
+       "pdf_curt": "u6/projeccions-simetrics/q003/out/tries/focus/distancia-dues-maneres/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/projeccions-simetrics/q003/out/tries/focus/distancia-dues-maneres/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Un focus de llum és al punt $P(5,-1,5)$ i il·lumina perpendicularment una paret que ocupa part del pla\n$\\pi\\colon 2x-y+2z-3=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu la recta perpendicular a la paret que passa per $P$ i troba en quin punt $Q$ la talla.\n\n\\begin{solucio}\nAmb vector director $\\vec n=(2,-1,2)$: $(5+2t,\\ -1-t,\\ 5+2t)$. Substituint:\n$2(5+2t)-(-1-t)+2(5+2t)-3=18+9t=0$, $t=-2$, i $Q=(1,1,1)$.\n\\end{solucio}\n\n\\begin{tria}{focus}\n\\itemtria{simetric}{1}{1,25}\nLa paret és un mirall. Troba el punt $P'$ on es veu la imatge del focus, que és el simètric de $P$\nrespecte del pla.\n\n\\begin{solucio}\n$Q$ és el punt mitjà de $P$ i $P'$: $P'=2Q-P=(2-5,\\ 2+1,\\ 2-5)=(-3,3,-3)$.\n\\end{solucio}\n\n\\itemtria{distancia-dues-maneres}{1}{1,25}\nCalcula la distància del focus a la paret amb la fórmula de la distància d'un punt a un pla, i també\ncom a distància entre $P$ i $Q$.\n\n\\begin{solucio}\n$d(P,\\pi)=\\dfrac{|10+1+10-3|}{\\sqrt{4+1+4}}=\\dfrac{18}3=6$. D'altra banda,\n$\\overrightarrow{PQ}=(-4,2,-4)$ i $|\\overrightarrow{PQ}|=\\sqrt{16+4+16}=6$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba el pla paral·lel a la paret que conté el focus, i la distància entre aquest pla i la paret.\n\n\\begin{solucio}\n$2x-y+2z+D=0$ amb $10+1+10+D=0$, $D=-21$: el pla $2x-y+2z-21=0$. La distància entre els dos plans, amb el\npunt $Q(1,1,1)$ de la paret, és $\\dfrac{|2-1+2-21|}{3}=\\dfrac{18}{3}=6$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/projeccions-simetrics/q003/out/enunciat.pdf",
+   "pdf_solucio": "u6/projeccions-simetrics/q003/out/solucio.pdf",
+   "pdf_curt": "u6/projeccions-simetrics/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/projeccions-simetrics/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/punts-distancia/q001",
+   "unitat": "u6",
+   "tema": "punts-distancia",
+   "codi": "q001",
+   "titol": "Punts d'una recta a una distància donada d'un pla, i plans a una distància donada",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    88,
+    92
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "distància punt-pla",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "a-distancia-2",
+     "defecte_llarg": "punts-recta",
+     "defecte_curt": "punts-recta",
+     "items": [
+      {
+       "id": "punts-recta",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/punts-distancia/q001/out/tries/a-distancia-2/punts-recta/enunciat.pdf",
+       "pdf_solucio": "u6/punts-distancia/q001/out/tries/a-distancia-2/punts-recta/solucio.pdf",
+       "pdf_curt": "u6/punts-distancia/q001/out/tries/a-distancia-2/punts-recta/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/punts-distancia/q001/out/tries/a-distancia-2/punts-recta/solucio-curt.pdf"
+      },
+      {
+       "id": "plans-a-distancia",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/punts-distancia/q001/out/tries/a-distancia-2/plans-a-distancia/enunciat.pdf",
+       "pdf_solucio": "u6/punts-distancia/q001/out/tries/a-distancia-2/plans-a-distancia/solucio.pdf",
+       "pdf_curt": "u6/punts-distancia/q001/out/tries/a-distancia-2/plans-a-distancia/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/punts-distancia/q001/out/tries/a-distancia-2/plans-a-distancia/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la recta $r\\colon\\left\\{\\begin{aligned}x&=1+\\lambda\\\\y&=2-\\lambda\\\\z&=2\\lambda\\end{aligned}\\right.$\ni el pla $\\pi\\colon 2x+y-2z-1=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $r$ talla el pla $\\pi$ i troba el punt de tall.\n\n\\begin{solucio}\n$\\vec u=(1,-1,2)$ i $\\vec n=(2,1,-2)$: $\\vec u\\cdot\\vec n=2-1-4=-3\\ne0$, i la recta talla el pla.\nSubstituint: $2(1+\\lambda)+(2-\\lambda)-4\\lambda-1=3-3\\lambda=0$, $\\lambda=1$: el punt $(2,1,2)$.\n\\end{solucio}\n\n\\begin{tria}{a-distancia-2}\n\\itemtria{punts-recta}{1}{1,25}\nTroba els punts de la recta $r$ que són a distància 2 del pla $\\pi$.\n\n\\begin{solucio}\nUn punt de $r$ és $(1+\\lambda,\\ 2-\\lambda,\\ 2\\lambda)$, i $|\\vec n|=\\sqrt{4+1+4}=3$:\n\\[\n\\frac{|2(1+\\lambda)+(2-\\lambda)-4\\lambda-1|}{3}=\\frac{|3-3\\lambda|}{3}=|1-\\lambda|=2.\n\\]\n$1-\\lambda=2$ dona $\\lambda=-1$, i $1-\\lambda=-2$, $\\lambda=3$. Els punts són $(0,3,-2)$ i $(4,-1,6)$.\n\\end{solucio}\n\n\\itemtria{plans-a-distancia}{1}{1,25}\nTroba els plans paral·lels a $\\pi$ que són a distància 2 de $\\pi$.\n\n\\begin{solucio}\nSón de la forma $2x+y-2z+D=0$. La distància entre plans paral·lels, amb el punt $(0,1,0)$ de $\\pi$:\n$\\dfrac{|1+D|}{3}=2$, és a dir, $1+D=\\pm6$: $D=5$ o $D=-7$. Els plans són $2x+y-2z+5=0$ i\n$2x+y-2z-7=0$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els punts de l'eix $OX$ que són a distància 2 del pla $\\pi$.\n\n\\begin{solucio}\nUn punt de l'eix és $(x,0,0)$: $\\dfrac{|2x-1|}{3}=2$, $2x-1=\\pm6$. Els punts són\n$\\left(\\frac72,0,0\\right)$ i $\\left(-\\frac52,0,0\\right)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/punts-distancia/q001/out/enunciat.pdf",
+   "pdf_solucio": "u6/punts-distancia/q001/out/solucio.pdf",
+   "pdf_curt": "u6/punts-distancia/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/punts-distancia/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/punts-distancia/q002",
+   "unitat": "u6",
+   "tema": "punts-distancia",
+   "codi": "q002",
+   "titol": "Punts equidistants de dos plans, sobre una recta i a tot l'espai",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    115,
+    88
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "punts equidistants",
+    "distància punt-pla"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "equidistants",
+     "defecte_llarg": "punts-recta",
+     "defecte_curt": "punts-recta",
+     "items": [
+      {
+       "id": "punts-recta",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/punts-distancia/q002/out/tries/equidistants/punts-recta/enunciat.pdf",
+       "pdf_solucio": "u6/punts-distancia/q002/out/tries/equidistants/punts-recta/solucio.pdf",
+       "pdf_curt": "u6/punts-distancia/q002/out/tries/equidistants/punts-recta/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/punts-distancia/q002/out/tries/equidistants/punts-recta/solucio-curt.pdf"
+      },
+      {
+       "id": "plans-bisectors",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/punts-distancia/q002/out/tries/equidistants/plans-bisectors/enunciat.pdf",
+       "pdf_solucio": "u6/punts-distancia/q002/out/tries/equidistants/plans-bisectors/solucio.pdf",
+       "pdf_curt": "u6/punts-distancia/q002/out/tries/equidistants/plans-bisectors/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/punts-distancia/q002/out/tries/equidistants/plans-bisectors/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera els plans $\\pi_1\\colon x+2y+2z+1=0$ i $\\pi_2\\colon 2x-y+2z+3=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que els plans $\\pi_1$ i $\\pi_2$ no són paral·lels, i calcula la distància de l'origen a\ncadascun.\n\n\\begin{solucio}\nEls vectors normals, $(1,2,2)$ i $(2,-1,2)$, no són proporcionals: els plans es tallen. Tots dos tenen\nmòdul 3:\n$d(O,\\pi_1)=\\dfrac{|1|}{3}=\\dfrac13$ i $d(O,\\pi_2)=\\dfrac{|3|}{3}=1$.\n\\end{solucio}\n\n\\begin{tria}{equidistants}\n\\itemtria{punts-recta}{1}{1,25}\nTroba els punts de la recta $r\\colon x=y=z-1$ que són a la mateixa distància de $\\pi_1$ i de\n$\\pi_2$.\n\n\\begin{solucio}\nUn punt de $r$ és $(\\lambda,\\ \\lambda,\\ 1+\\lambda)$. Com que els dos vectors normals tenen mòdul 3, cal\n$|\\lambda+2\\lambda+2+2\\lambda+1|=|2\\lambda-\\lambda+2+2\\lambda+3|$, és a dir, $|5\\lambda+3|=|3\\lambda+5|$.\\\\\n$5\\lambda+3=3\\lambda+5$ dona $\\lambda=1$, i $5\\lambda+3=-(3\\lambda+5)$, $\\lambda=-1$. Els punts són\n$(1,1,2)$, a distància $\\frac83$ de tots dos plans, i $(-1,-1,0)$, a distància $\\frac23$.\n\\end{solucio}\n\n\\itemtria{plans-bisectors}{1}{1,25}\nTroba els punts de l'espai que són a la mateixa distància de $\\pi_1$ i de $\\pi_2$. Quina figura formen?\n\n\\begin{solucio}\nCal $\\dfrac{|x+2y+2z+1|}{3}=\\dfrac{|2x-y+2z+3|}{3}$, és a dir, $x+2y+2z+1=\\pm(2x-y+2z+3)$.\\\\\nAmb el signe $+$: $-x+3y-2=0$, és a dir, $x-3y+2=0$. Amb el signe $-$: $3x+y+4z+4=0$.\\\\\nFormen dos plans, que contenen la recta on es tallen $\\pi_1$ i $\\pi_2$: són els plans bisectors dels\nangles que formen.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els punts de l'eix $OZ$ que són a la mateixa distància de $\\pi_1$ i de $\\pi_2$.\n\n\\begin{solucio}\nUn punt de l'eix és $(0,0,z)$: $|2z+1|=|2z+3|$. Amb el mateix signe, $1=3$, impossible; amb signes\noposats, $2z+1=-2z-3$, $z=-1$. Només n'hi ha un: $(0,0,-1)$, a distància $\\frac13$ de tots dos plans.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/punts-distancia/q002/out/enunciat.pdf",
+   "pdf_solucio": "u6/punts-distancia/q002/out/solucio.pdf",
+   "pdf_curt": "u6/punts-distancia/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/punts-distancia/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u6/punts-distancia/q003",
+   "unitat": "u6",
+   "tema": "punts-distancia",
+   "codi": "q003",
+   "titol": "Recta paral·lela a un pla, punts a un terç de distància i el pla que conté la recta",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    92,
+    97,
+    88
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "distància recta-pla",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "a-distancia",
+     "defecte_llarg": "punts-a-un-terc",
+     "defecte_curt": "punts-a-un-terc",
+     "items": [
+      {
+       "id": "punts-a-un-terc",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/punts-distancia/q003/out/tries/a-distancia/punts-a-un-terc/enunciat.pdf",
+       "pdf_solucio": "u6/punts-distancia/q003/out/tries/a-distancia/punts-a-un-terc/solucio.pdf",
+       "pdf_curt": "u6/punts-distancia/q003/out/tries/a-distancia/punts-a-un-terc/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/punts-distancia/q003/out/tries/a-distancia/punts-a-un-terc/solucio-curt.pdf"
+      },
+      {
+       "id": "pla-que-conte-r",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u6/punts-distancia/q003/out/tries/a-distancia/pla-que-conte-r/enunciat.pdf",
+       "pdf_solucio": "u6/punts-distancia/q003/out/tries/a-distancia/pla-que-conte-r/solucio.pdf",
+       "pdf_curt": "u6/punts-distancia/q003/out/tries/a-distancia/pla-que-conte-r/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u6/punts-distancia/q003/out/tries/a-distancia/pla-que-conte-r/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera el pla $\\pi\\colon x+2y+2z-4=0$ i la recta\n$r\\colon\\left\\{\\begin{aligned}x&=2\\lambda\\\\y&=1-\\lambda\\\\z&=2\\end{aligned}\\right.$\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $r$ és paral·lela a $\\pi$ i calcula la distància entre tots dos.\n\n\\begin{solucio}\n$\\vec u=(2,-1,0)$ i $\\vec n=(1,2,2)$: $\\vec u\\cdot\\vec n=2-2+0=0$. El punt $(0,1,2)$ de $r$ no és de\n$\\pi$ ($0+2+4-4=2\\ne0$): són paral·lels, i\n\\[\nd(r,\\pi)=\\frac{|0+2+4-4|}{\\sqrt{1+4+4}}=\\frac23.\n\\]\n\\end{solucio}\n\n\\begin{tria}{a-distancia}\n\\itemtria{punts-a-un-terc}{1}{1,25}\nTroba els punts de la recta $s\\colon\\left\\{\\begin{aligned}x&=t\\\\y&=t\\\\z&=1-t\\end{aligned}\\right.$ que\ndisten $\\frac13$ del pla $\\pi$.\n\n\\begin{solucio}\n$\\dfrac{|t+2t+2(1-t)-4|}{3}=\\dfrac{|t-2|}{3}=\\dfrac13$, és a dir, $|t-2|=1$: $t=3$ o $t=1$. Els punts són\n$(3,3,-2)$ i $(1,1,0)$.\n\\end{solucio}\n\n\\itemtria{pla-que-conte-r}{1}{1,25}\nTroba el pla que conté la recta $r$ i és paral·lel a $\\pi$, i comprova que la distància entre els dos\nplans és la distància entre $r$ i $\\pi$.\n\n\\begin{solucio}\n$x+2y+2z+D=0$ amb el punt $(0,1,2)$ de $r$: $2+4+D=0$, $D=-6$. El pla és $x+2y+2z-6=0$, i conté $r$\nperquè hi conté un punt i la recta és paral·lela a $\\pi$. Amb el punt $(0,0,2)$ de $\\pi$:\n$\\dfrac{|4-6|}{3}=\\dfrac23$, com a l'apartat anterior.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els valors de $k$ perquè el punt $(k,0,0)$ sigui a distància 1 del pla $\\pi$.\n\n\\begin{solucio}\n$\\dfrac{|k-4|}{3}=1$, és a dir, $k-4=\\pm3$: $k=7$ o $k=1$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u6/punts-distancia/q003/out/enunciat.pdf",
+   "pdf_solucio": "u6/punts-distancia/q003/out/solucio.pdf",
+   "pdf_curt": "u6/punts-distancia/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u6/punts-distancia/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u7/bolzano-biseccio/q001",
