@@ -1232,8 +1232,7 @@ no eren a `temes.json`: el build rebutja qualsevol unitat que no hi sigui.
 **Verificat:** `prova_validacio.py`, `prova_sortida.py` i `prova_paritat.py` passen sense canvis, i el
 catàleg es genera amb 148 preguntes i cap avís.
 
-**Pendent de decidir** (7.6): què es fa amb la u11, que té només dos exercicis; i si el
-banc cobreix continguts de la PAU que no té cap exercici assignat.
+**Pendent de decidir** (7.6): si el banc cobreix continguts de la PAU que no té cap exercici assignat.
 
 ---
 
@@ -1308,6 +1307,7 @@ banc cobreix continguts de la PAU que no té cap exercici assignat.
 | El cas 4 de `prova_sortida.py` no depèn de si la pregunta té tries | Disseny | Si no, calia moure'l cada vegada que una unitat rebia tries |
 | Un build complet esborra de `out/` els PDF que ja no genera cap font; un build amb `--pregunta`, no | Disseny, arran d'una fallada (2.18) | `out/` és generat i ha de reflectir les fonts; un build parcial no les ha mirades totes |
 | La u3 (Sistemes d'equacions) també entra al banc, com la resta d'unitats del curs | Professor (sessió 36) | És al curs, setmanes 23–26 |
+| La u11 no té tema propi: les integrals immediates (exercicis 52 i 54) entren com a primer apartat de preguntes de la u12 | Professor (sessió 36) | Només té dos exercicis assignats, que no donen per a un tema amb tres variants |
 
 ---
 
@@ -1808,7 +1808,7 @@ unitat.
 | u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | Gauss i classificació (38–43); discussió amb paràmetre (55–66); problemes (90–100) |
 | u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | Equacions de la recta (43–49, 63); equacions del pla (53–59, 66); posició relativa de dues rectes (71–73, 79–81); recta i pla, i plans (74–77, 84, 85) |
 | u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | Projecció i simètrics (74, 76, 90); distància punt-pla i recta-pla (86, 97, 139); punts a una distància donada o equidistants (88, 92, 115) |
-| u11 | s34: 52, 54 | Integrals immediates: polinòmiques i racionals (52, 54) |
+| u11 | s34: 52, 54 | Cap tema propi: les integrals immediates (52, 54) són el primer apartat de preguntes de la u12 |
 | u12 | s35: 35, 39, 55, 79 · s36: 80, 88, 96, 111, 114 | Integral definida i Barrow (35, 39, 55); àrea entre una corba i l'eix (79, 80, 88); àrea entre dues corbes (96, 111, 114) |
 
 Cap exercici assignat no cobreix els angles, la perpendicular comuna a dues rectes, el producte
@@ -1866,9 +1866,6 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
 
 ### 7.6 Decisions obertes
 
-- **Què es fa amb la u11.** Només té dos exercicis (52 i 54), i donen per a un sol tema. Hi ha tres
-  opcions: un sol tema amb tres variants; fer servir les integrals immediates com a primer apartat de
-  preguntes de la u12; o afegir exercicis a la setmana 34.
 - **Continguts PAU sense cap exercici assignat.** Els angles, la perpendicular comuna, el producte
   vectorial i el mixt, i les equacions matricials. En depenen `geo-23s-q5`, `geo-24i-q6`,
   `geo-23j2-q3`, `geo-26j-q4b`, `alg-23s-q1`, `alg-24i-q2` i `alg-23j2-q5`. Amb la regla que el banc
