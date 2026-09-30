@@ -1,0 +1,16 @@
+{
+  "titol": "Matriu 2×2 amb paràmetre: quan és invertible, la inversa i les que coincideixen amb la seva",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    100,
+    96,
+    99
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "matriu inversa",
+    "paràmetres"
+  ]
+}

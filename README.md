@@ -8,13 +8,13 @@ veus l'enunciat i la solució en PDF, i en baixes el codi `.tex`, sol o muntat e
 complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva procedència
 («PAU juny 2026, sèrie 1»).
 
-> **Estat a 30 de setembre de 2026:** 157 preguntes. N'hi ha 24 de la unitat 7 (Límits i
+> **Estat a 30 de setembre de 2026:** 166 preguntes. N'hi ha 24 de la unitat 7 (Límits i
 > continuïtat) en 8 temes i 18 de la unitat 8 (Derivades) en 6 temes, totes amb tres variants
 > per tema; 12 de la unitat 9 (Aplicacions de les derivades) en 4 temes, també amb tres
 > variants; 15 de la unitat 10 (Representació de funcions) en 5 temes, també amb tres variants; 12 de la unitat 13 (Probabilitat) en 4 temes, també amb tres
 > variants; 6 de la unitat 14 (la distribució binomial) en 2 temes, també amb tres variants; 9 de la unitat 1 (Matrius) en 3 temes, també
-> amb tres variants; i 61 de la PAU (totes les
-> convocatòries del repositori `pau`, de 2023 a 2026). **Les 96 preguntes de les unitats 1, 7 a 10, 13 i 14 ofereixen una tria** en algun
+> amb tres variants; 9 de la unitat 2 (Determinants) en 3 temes, també amb tres variants; i 61 de la PAU (totes les
+> convocatòries del repositori `pau`, de 2023 a 2026). **Les 105 preguntes de les unitats 1, 2, 7 a 10, 13 i 14 ofereixen una tria** en algun
 > apartat: un altre cas, una altra tècnica o una tasca diferent de la del defecte, amb el seu
 > propi Enunciat i Solució, triable des de la mateixa carta. El detall
 > de la feina feta i pendent és a [`handout.md`](handout.md).
@@ -379,10 +379,17 @@ El repositori ha de ser **privat**, perquè conté les solucions. Amb el pla gra
 les Actions en repositoris privats consumeixen minuts d'una quota mensual; cada build en
 gasta uns pocs.
 
-GitHub Pages no serveix per publicar el lloc. Amb el pla gratuït només publica repositoris
-públics, i amb un pla de pagament el lloc publicat seria igualment públic, amb les solucions.
-Per això el lloc està pensat per obrir-se en local: baixant el repositori (Code → Download
-ZIP) i fent doble clic a `index.html`.
+El lloc està pensat per obrir-se en local: baixant el repositori (Code → Download ZIP) i fent
+doble clic a `index.html`. A més, el professor el publica a `exam2bat.step-quiz.net` amb
+**Cloudflare Pages**, que publica sol cada commit de `main`. Si aquell lloc no té cap control
+d'accés (per exemple, Cloudflare Access), qualsevol persona que en sàpiga l'adreça hi veu les
+solucions.
+
+**Cap commit no pot portar `[skip ci]`** (ni `[ci skip]` ni `[cf-pages-skip]`) al missatge.
+Cloudflare Pages no publica els commits que en porten, i si el commit del bot que desa el catàleg
+en portés, la web continuaria mostrant el catàleg anterior. Per això el commit del bot es diu només
+«build: PDF i catàleg». No cal l'etiqueta per evitar un bucle: un commit fet amb el `GITHUB_TOKEN`
+no dispara cap workflow, i «Compila el banc» només s'engega amb canvis a les fonts.
 
 ### Veure el lloc des del Codespace
 

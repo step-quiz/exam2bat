@@ -1,0 +1,49 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia el rang de les matrius $P=\begin{pmatrix}2&-1&3\\-4&2&-6\end{pmatrix}$ i
+$Q=\begin{pmatrix}1&2\\3&-1\\0&4\end{pmatrix}$.
+
+\begin{solucio}
+$P\ne0$, i tots els menors d'ordre 2 de $P$ són nuls:
+$\begin{vmatrix}2&-1\\-4&2\end{vmatrix}=0$, $\begin{vmatrix}2&3\\-4&-6\end{vmatrix}=0$,
+$\begin{vmatrix}-1&3\\2&-6\end{vmatrix}=0$ (la segona fila és $-2$ vegades la primera). $\operatorname{rang}P=1$.\\
+$\begin{vmatrix}1&2\\3&-1\end{vmatrix}=-7\ne0$, i $Q$ no té menors d'ordre 3: $\operatorname{rang}Q=2$.
+\end{solucio}
+
+\begin{tria}{rang-construir}
+\itemtria{segons-parametre}{1}{1,25}
+Estudia el rang de $M=\begin{pmatrix}1&2&a\\2&a&2\\1&1&1\end{pmatrix}$ segons els valors de $a$.
+
+\begin{solucio}
+$|M|=a+4+2a-a^2-2-4=-a^2+3a-2=-(a-1)(a-2)$.
+\begin{itemize}
+\item Si $a\ne1$ i $a\ne2$, $|M|\ne0$ i $\operatorname{rang}M=3$.
+\item Si $a=1$ o $a=2$, $|M|=0$. El menor $\begin{vmatrix}1&2\\1&1\end{vmatrix}=-1$ (files 1 i 3,
+columnes 1 i 2) no depèn de $a$ i és diferent de zero: $\operatorname{rang}M=2$.
+\end{itemize}
+\end{solucio}
+
+\itemtria{afegeix-fila}{1}{1,25}
+Considera $A=\begin{pmatrix}1&-2&3\\2&1&0\end{pmatrix}$. Afegeix-hi una tercera fila de manera que el
+rang sigui 3, i una altra de manera que sigui 2. Comprova-ho.
+
+\begin{solucio}
+Resposta oberta. $\operatorname{rang}A=2$, perquè $\begin{vmatrix}1&-2\\2&1\end{vmatrix}=5\ne0$.\\
+Amb la fila $(0\ \ 0\ \ 1)$: $\begin{vmatrix}1&-2&3\\2&1&0\\0&0&1\end{vmatrix}=5\ne0$, i el rang és 3.\\
+Amb la suma de les dues, $(3\ \ {-1}\ \ 3)$: el determinant és nul, perquè una fila és combinació de les
+altres, i el menor d'abans continua sent diferent de zero: el rang és 2.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula el rang de $R=\begin{pmatrix}1&2&0&-1\\2&-1&1&3\\3&1&1&2\end{pmatrix}$.
+
+\begin{solucio}
+$\begin{vmatrix}1&2\\2&-1\end{vmatrix}=-5\ne0$, i el rang és almenys 2. La tercera fila és la suma de les
+dues primeres, de manera que tots els menors d'ordre 3 són nuls: $\operatorname{rang}R=2$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

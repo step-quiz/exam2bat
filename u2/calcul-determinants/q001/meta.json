@@ -1,0 +1,17 @@
+{
+  "titol": "Determinants d'ordre 2 i 3, el determinant d'una suma i els valors que n'anul·len un",
+  "dificultat": "●○○",
+  "temes_secundaris": [],
+  "origen": [
+    35,
+    37,
+    41,
+    36
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "determinants",
+    "regla de Sarrus"
+  ]
+}

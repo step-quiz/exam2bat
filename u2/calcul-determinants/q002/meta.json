@@ -1,0 +1,16 @@
+{
+  "titol": "Un determinant d'ordre 3 amb paràmetre: arrels, relació entre paràmetres i signe",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    41,
+    44,
+    37
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "determinants",
+    "paràmetres"
+  ]
+}

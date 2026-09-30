@@ -1,0 +1,17 @@
+{
+  "titol": "Determinants amb lletres: factoritzar, famílies de matrius i un d'ordre 3",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    37,
+    41,
+    36
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "determinants",
+    "paràmetres",
+    "regla de Sarrus"
+  ]
+}

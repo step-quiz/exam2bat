@@ -1,0 +1,47 @@
+Considera la matriu $M=\begin{pmatrix}1&a&1\\a&1&1\\1&1&a\end{pmatrix}$, en què $a$ és un nombre real.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula $|M|$ i comprova que és igual a $-(a-1)^2(a+2)$.
+
+\begin{solucio}
+Per Sarrus: $|M|=a+a+a-1-1-a^3=-a^3+3a-2$.\\
+D'altra banda, $-(a-1)^2(a+2)=-(a^2-2a+1)(a+2)=-(a^3-3a+2)=-a^3+3a-2$: coincideixen.
+\end{solucio}
+
+\begin{tria}{rang-parametre}
+\itemtria{estudia-rang}{1}{1,25}
+Estudia el rang de $M$ segons els valors de $a$.
+
+\begin{solucio}
+\begin{itemize}
+\item Si $a\ne1$ i $a\ne-2$, $|M|\ne0$: $\operatorname{rang}M=3$.
+\item Si $a=1$, les tres files són $(1\ \ 1\ \ 1)$: $\operatorname{rang}M=1$.
+\item Si $a=-2$, $M=\begin{pmatrix}1&-2&1\\-2&1&1\\1&1&-2\end{pmatrix}$, $|M|=0$ i
+$\begin{vmatrix}1&-2\\-2&1\end{vmatrix}=-3\ne0$: $\operatorname{rang}M=2$.
+\end{itemize}
+\end{solucio}
+
+\itemtria{rang-1}{1}{1,25}
+Troba els valors de $p$ i $q$ perquè la matriu $\begin{pmatrix}1&p&3\\2&4&q\end{pmatrix}$ tingui rang 1.
+
+\begin{solucio}
+La matriu no és nul·la, i té rang 1 si i només si tots els seus menors d'ordre 2 són nuls:
+$\begin{vmatrix}1&p\\2&4\end{vmatrix}=4-2p=0$ dona $p=2$, i $\begin{vmatrix}1&3\\2&q\end{vmatrix}=q-6=0$
+dona $q=6$. Amb $p=2$ i $q=6$, el tercer menor, $\begin{vmatrix}2&3\\4&6\end{vmatrix}$, també és nul: la
+segona fila és el doble de la primera.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Per a $a=-2$, troba una combinació lineal de les files de $M$ que doni la fila nul·la.
+
+\begin{solucio}
+Amb $a=-2$, les files són $F_1=(1\ \ {-2}\ \ 1)$, $F_2=(-2\ \ 1\ \ 1)$ i $F_3=(1\ \ 1\ \ {-2})$.
+$F_1+F_2+F_3=(0\ \ 0\ \ 0)$: la tercera fila és $F_3=-F_1-F_2$, i per això el rang no arriba a 3.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

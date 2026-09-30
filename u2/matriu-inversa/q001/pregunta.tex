@@ -1,0 +1,56 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula la inversa de $A=\begin{pmatrix}5&3\\3&2\end{pmatrix}$ i comprova-la.
+
+\begin{solucio}
+$|A|=10-9=1\ne0$: és invertible. $A^{-1}=\dfrac1{|A|}(\operatorname{Adj}A)^t=\begin{pmatrix}2&-3\\-3&5\end{pmatrix}$.\\
+Comprovació: $\begin{pmatrix}5&3\\3&2\end{pmatrix}\begin{pmatrix}2&-3\\-3&5\end{pmatrix}
+=\begin{pmatrix}10-9&-15+15\\6-6&-9+10\end{pmatrix}=I$.
+\end{solucio}
+
+\begin{tria}{inversa-tasca}
+\itemtria{ordre-3}{1}{1,25}
+Calcula la inversa de $B=\begin{pmatrix}1&1&0\\0&1&1\\1&2&2\end{pmatrix}$.
+
+\begin{solucio}
+$|B|=2+1+0-0-2-0=1\ne0$: és invertible. Els adjunts de cada element són
+\[
+\operatorname{Adj}B=\begin{pmatrix}0&1&-1\\-2&2&-1\\1&-1&1\end{pmatrix},\qquad
+B^{-1}=\frac1{|B|}(\operatorname{Adj}B)^t=\begin{pmatrix}0&-2&1\\1&2&-1\\-1&-1&1\end{pmatrix}.
+\]
+\end{solucio}
+
+\itemtria{relaciona}{1}{1,25}
+Relaciona cada matriu amb la seva inversa, sense calcular cap inversa:
+\[
+\text{a) }\begin{pmatrix}1&1\\0&2\end{pmatrix}\quad
+\text{b) }\begin{pmatrix}2&1\\1&1\end{pmatrix}\quad
+\text{c) }\begin{pmatrix}0&1\\1&2\end{pmatrix}\qquad
+\text{I) }\begin{pmatrix}-2&1\\1&0\end{pmatrix}\quad
+\text{II) }\frac12\begin{pmatrix}2&-1\\0&1\end{pmatrix}\quad
+\text{III) }\begin{pmatrix}1&-1\\-1&2\end{pmatrix}
+\]
+
+\begin{solucio}
+N'hi ha prou de comprovar quin producte dona la identitat. Per exemple,
+$\begin{pmatrix}1&1\\0&2\end{pmatrix}\cdot\frac12\begin{pmatrix}2&-1\\0&1\end{pmatrix}
+=\frac12\begin{pmatrix}2&0\\0&2\end{pmatrix}=I$.\\
+Així: a) $\to$ II), b) $\to$ III) i c) $\to$ I). (També es poden reconèixer pel determinant: el de la
+inversa és l'invers del de la matriu; a) té determinant 2, i II), $\frac12$.)
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Per què la matriu $\begin{pmatrix}2&4\\3&6\end{pmatrix}$ no té inversa? Troba el valor de $x$ per al qual
+$\begin{pmatrix}2&4\\3&x\end{pmatrix}$ no és invertible.
+
+\begin{solucio}
+$\begin{vmatrix}2&4\\3&6\end{vmatrix}=12-12=0$: una matriu quadrada és invertible si i només si el seu
+determinant no és nul.\\
+$\begin{vmatrix}2&4\\3&x\end{vmatrix}=2x-12=0$ si $x=6$: només per a $x=6$ no és invertible.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

@@ -1,0 +1,46 @@
+Considera la matriu $A=\begin{pmatrix}a&1\\4&a\end{pmatrix}$, en què $a$ és un nombre real.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Per a quins valors de $a$ és invertible la matriu $A$?
+
+\begin{solucio}
+$|A|=a^2-4$, que s'anul·la per a $a=2$ i $a=-2$. $A$ és invertible si i només si $a\ne2$ i $a\ne-2$.
+\end{solucio}
+
+\begin{tria}{inversa-condicio}
+\itemtria{inversa-a3}{1}{1,25}
+Calcula $A^{-1}$ per a $a=3$ i comprova-la.
+
+\begin{solucio}
+Per a $a=3$, $|A|=5$ i
+$A^{-1}=\dfrac15\begin{pmatrix}3&-1\\-4&3\end{pmatrix}=\begin{pmatrix}\frac35&-\frac15\\[2pt]-\frac45&\frac35\end{pmatrix}$.\\
+Comprovació: $\begin{pmatrix}3&1\\4&3\end{pmatrix}\cdot\dfrac15\begin{pmatrix}3&-1\\-4&3\end{pmatrix}
+=\dfrac15\begin{pmatrix}5&0\\0&5\end{pmatrix}=I$.
+\end{solucio}
+
+\itemtria{inversa-igual}{1}{1,25}
+Troba totes les matrius de la forma $M=\begin{pmatrix}p&1\\q&-p\end{pmatrix}$ que són iguals a la seva
+inversa.
+
+\begin{solucio}
+$M^{-1}=M$ vol dir que $M\cdot M=I$.
+$M^2=\begin{pmatrix}p^2+q&0\\0&q+p^2\end{pmatrix}$, que és $I$ si i només si $p^2+q=1$. Són les
+matrius $M=\begin{pmatrix}p&1\\1-p^2&-p\end{pmatrix}$, amb $p\in\mathbb R$; per exemple, amb $p=0$,
+$\begin{pmatrix}0&1\\1&0\end{pmatrix}$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula la inversa de la matriu $T=\begin{pmatrix}1&0&0\\2&1&0\\0&3&1\end{pmatrix}$.
+
+\begin{solucio}
+$T$ és triangular: $|T|=1\cdot1\cdot1=1$. Amb els adjunts,
+$\operatorname{Adj}T=\begin{pmatrix}1&-2&6\\0&1&-3\\0&0&1\end{pmatrix}$ i
+$T^{-1}=(\operatorname{Adj}T)^t=\begin{pmatrix}1&0&0\\-2&1&0\\6&-3&1\end{pmatrix}$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

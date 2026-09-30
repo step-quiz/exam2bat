@@ -1,0 +1,16 @@
+{
+  "titol": "Inversa d'una matriu 2×2 i d'una 3×3 per adjunts, i quan no n'hi ha",
+  "dificultat": "●○○",
+  "temes_secundaris": [],
+  "origen": [
+    96,
+    95,
+    99
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "matriu inversa",
+    "adjunts"
+  ]
+}

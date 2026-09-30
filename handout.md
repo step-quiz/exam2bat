@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 30 de setembre de 2026 · **Estat:** 157 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1 i 61 de la PAU), 96 amb tries · 3.130 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2 i 61 de la PAU), 105 amb tries · 3.292 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -54,8 +54,10 @@ repositori `pau` és sencera al banc. La trenta-cinquena va explicar per què el
 pàgina (el navegador hi tenia un catàleg antic) i ho va evitar d'ara endavant. La trenta-sisena va
 afegir les unitats 1 a 6 al registre, va dir quines unitats necessiten les 25 PAU d'àlgebra i
 geometria, i va posar al dia el calendari. La trenta-setena va fer la u1, Matrius: tres temes amb tres
-variants cadascun, totes amb tria. La màquina funciona de punta a punta. El que queda és
-contingut: les unitats 2, 3, 5, 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
+variants cadascun, totes amb tria. La trenta-vuitena va descobrir per què el catàleg nou no arribava a
+la web (Cloudflare Pages no publica els commits amb «[skip ci]», i el del bot en portava) i va fer la u2,
+Determinants. La màquina funciona de punta a punta. El que queda és
+contingut: les unitats 3, 5, 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
 
 ---
 
@@ -1179,6 +1181,10 @@ tres gràfiques, les dues de la torre i les dues del jardí (sense el dibuix del
 
 ### 2.35 Sessió 35 · «No surt res del 2023»: un catàleg antic al navegador
 
+> **Nota de la sessió 38.** La causa real va ser segurament una altra: Cloudflare Pages no publicava el
+> commit del bot, que portava `[skip ci]` (2.38). El carregador amb `?v=` continua sent útil, però no ho
+> arreglava.
+
 **El símptoma.** Després de pujar les tres convocatòries de 2023 i compilar, el professor no en veia cap a
 la pàgina, tot i que el repositori sí que les contenia.
 
@@ -1276,6 +1282,53 @@ compilen amb el preàmbul oficial (TeX Live amb els mateixos paquets que l'Actio
 i sense cap avís: 108 PDF, previsualitzacions de les tries incloses. Tres solucions es van revisar a ull.
 Les tres bateries de proves passen, i el catàleg té 157 preguntes i 36 temes.
 
+### 2.38 Sessió 38 · El catàleg que Cloudflare no publicava, i la unitat 2
+
+**El símptoma.** Després de fusionar la u1, l'Action «Compila el banc» va acabar en verd i va desar el
+catàleg nou (157 preguntes, generat a les 10:35 UTC), però la web, fins i tot recarregada, continuava
+dient «148 preguntes · 07:28 UTC» i no mostrava la u1.
+
+**La causa.** La web `exam2bat.step-quiz.net` la publica **Cloudflare Pages**, que publica sol cada
+commit de `main`, però **se salta els commits que porten `[skip ci]` al missatge**. El commit del bot que
+desa els PDF i el catàleg es deia «build: PDF i catàleg [skip ci]». Cloudflare no el publicava mai, i el
+catàleg nou només arribava a la web quan algú feia després un altre commit. Les hores ho confirmen: el
+catàleg de les 07:28 UTC va aparèixer a la web amb la fusió de la PR #2 (09:20 UTC), i el de les 10:35
+no hi va arribar. Segurament va ser també la causa real del símptoma de la sessió 35 (2.35), que es va
+atribuir a la memòria cau del navegador.
+
+**La solució.** El professor va treure ` [skip ci]` del missatge del commit del bot a `compila.yml`, des
+de la web de GitHub. L'etiqueta sobrava: un commit fet amb el `GITHUB_TOKEN` no dispara cap workflow, i
+«Compila el banc» només s'engega amb canvis a les fonts (el filtre de camins). Aquell mateix commit, que
+no portava l'etiqueta, va publicar la u1. Queda anotat a la secció 10 i al README: cap commit del
+projecte no pot portar `[skip ci]`, `[ci skip]` ni `[cf-pages-skip]`.
+
+**La unitat 2.** Els 13 exercicis practicats de les setmanes 20 a 22, llegits al solucionari: càlcul de
+determinants (35, 36, 37, 41, 44), rang (79, 80, 83, 87) i inversa (95, 96, 99, 100). Cap exercici
+assignat no treballa les propietats dels determinants (el 45 no hi és), i per això el banc no en fa cap
+pregunta. Tampoc no hi ha equacions matricials.
+
+**Tres temes**, un per setmana, amb tres variants cadascun:
+
+| Tema | Exercicis |
+|---|---|
+| `calcul-determinants` · Càlcul de determinants | 35, 36, 37, 41, 44 |
+| `rang-determinants` · Rang d'una matriu | 79, 80, 83, 87 |
+| `matriu-inversa` · Matriu inversa | 95, 96, 99, 100 |
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `calcul-determinants` | q001, inventar matrius amb un determinant donat, com el 36 (`inventa`); q002, el paràmetre perquè el determinant valgui 5, no 0 (`valor-donat`); q003, totes les matrius d'una família amb determinant nul (`familia`) |
+| `rang-determinants` | q001, afegir una fila perquè el rang sigui 3 o 2, com el 80 (`afegeix-fila`); q002, dos paràmetres perquè una matriu tingui rang 1, com el 87 (`rang-1`); q003, el rang de dues matrius sense calcular cap determinant d'ordre 3 (`sense-calcular`) |
+| `matriu-inversa` | q001, relacionar matrius i inverses comprovant productes, com el 95 (`relaciona`); q002, dos paràmetres, amb una suma de quadrats que només s'anul·la a l'origen (`dos-parametres`); q003, les matrius iguals a la seva inversa (`inversa-igual`) |
+
+**Verificació.** Tots els determinants, rangs, adjunts i inverses es van calcular amb SymPy abans
+d'escriure'ls, i cada desenvolupament de Sarrus de les solucions es va tornar a comprovar terme a terme.
+Les nou preguntes compilen amb el preàmbul oficial, a una pàgina cadascuna i sense cap avís (108 PDF).
+Tres PDF es van revisar a ull, entre ells la previsualització de la tria `relaciona`, la de fórmula més
+ampla. Les tres bateries passen, amb 166 preguntes i 39 temes.
+
 ---
 
 ## 3. Decisions preses
@@ -1351,6 +1404,7 @@ Les tres bateries de proves passen, i el catàleg té 157 preguntes i 36 temes.
 | La u3 (Sistemes d'equacions) també entra al banc, com la resta d'unitats del curs | Professor (sessió 36) | És al curs, setmanes 23–26 |
 | La u11 no té tema propi: les integrals immediates (exercicis 52 i 54) entren com a primer apartat de preguntes de la u12 | Professor (sessió 36) | Només té dos exercicis assignats, que no donen per a un tema amb tres variants |
 | La u1 inclou les matrius idempotents i les que commuten amb una de donada, amb l'enunciat definint-ne el concepte | Disseny (2.37) | Surten a la PAU (`alg-23j-q2`, `alg-25i-q4b`) i es resolen amb la tècnica del 85b, que és practicat |
+| Cap commit no porta `[skip ci]` ni etiquetes semblants | Disseny, arran d'una fallada (2.38) | Cloudflare Pages, que publica la web, se salta aquests commits, i el catàleg nou no arribava mai |
 
 ---
 
@@ -1758,6 +1812,23 @@ tres variants, totes amb tria. Els punts de la taula són els del defecte.
 | Potències de matrius | `q002` | Una matriu nilpotent de grau 3 i les nilpotents de grau 2 | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 85, 81 |
 | Potències de matrius | `q003` | Una matriu idempotent, un paràmetre i les potències que es repeteixen | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 81, 85 |
 
+### 6.10 Unitat 2 · Determinants (9 preguntes)
+
+Tres temes, un per a cada setmana de la u2 (setmanes 20, 21 i 22), amb els 13 exercicis practicats
+(2.38). Cada tema té tres variants, totes amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Càlcul de determinants | `q001` | Determinants d'ordre 2 i 3, el determinant d'una suma i els valors que n'anul·len un | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 35, 37, 41, 36 |
+| Càlcul de determinants | `q002` | Un determinant d'ordre 3 amb paràmetre: arrels, relació entre paràmetres i signe | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 41, 44, 37 |
+| Càlcul de determinants | `q003` | Determinants amb lletres: factoritzar, famílies de matrius i un d'ordre 3 | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 37, 41, 36 |
+| Rang d'una matriu | `q001` | Rang per menors, rang segons un paràmetre i afegir una fila per fixar-lo | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 79, 83, 80 |
+| Rang d'una matriu | `q002` | Rang d'una matriu 3×3 segons un paràmetre i les files que en depenen | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 83, 87, 79 |
+| Rang d'una matriu | `q003` | Rang d'una matriu 2×2 i d'una 3×4 amb paràmetre, i el rang màxim | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 87, 83, 79 |
+| Matriu inversa | `q001` | Inversa d'una matriu 2×2 i d'una 3×3 per adjunts, i quan no n'hi ha | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 96, 95, 99 |
+| Matriu inversa | `q002` | Matriu 3×3 amb paràmetre: quan és singular, la inversa i una comprovació | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 99, 96, 100 |
+| Matriu inversa | `q003` | Matriu 2×2 amb paràmetre: quan és invertible, la inversa i les que coincideixen amb la seva | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 100, 96, 99 |
+
 ## 7. Feina pendent
 
 ### 7.1 Com s'apliquen els lliuraments
@@ -1850,7 +1921,7 @@ l'ordre numèric.
 | u13 Probabilitat | 13–14 | 20 de desembre de 2026 · **completa**: quatre temes amb tres variants, totes amb tria |
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 · **binomial feta** (2.26); la normal, sense exercicis practicats |
 | u1 Matrius | 18–19 | 24 de gener de 2027 · **feta** (2.37): tres temes amb tres variants, totes amb tria |
-| u2 Determinants | 20–22 | 14 de febrer de 2027 |
+| u2 Determinants | 20–22 | 14 de febrer de 2027 · **feta** (2.38): tres temes amb tres variants, totes amb tria |
 | u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 |
 | u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 |
 | u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 |
@@ -1864,7 +1935,7 @@ unitat.
 | Unitat | Exercicis practicats | Temes proposats |
 |---|---|---|
 | u1 | s18: 12, 13, 15, 16, 17 · s19: 42, 49, 69, 81, 85 | **Fets** (2.37): `operacions-matrius`, `commutativitat` i `potencies-matrius` |
-| u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | Càlcul de determinants (35–44); rang amb paràmetres (79–87); inversa i invertibilitat (95–100) |
+| u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | **Fets** (2.38): `calcul-determinants`, `rang-determinants` i `matriu-inversa` |
 | u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | Gauss i classificació (38–43); discussió amb paràmetre (55–66); problemes (90–100) |
 | u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | Equacions de la recta (43–49, 63); equacions del pla (53–59, 66); posició relativa de dues rectes (71–73, 79–81); recta i pla, i plans (74–77, 84, 85) |
 | u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | Projecció i simètrics (74, 76, 90); distància punt-pla i recta-pla (86, 97, 139); punts a una distància donada o equidistants (88, 92, 115) |
@@ -1907,7 +1978,7 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
   pantalles tàctils. Cal mostrar-los d'una altra manera.
 - **Estendre les tries a la resta del banc.** Des de la sessió 16, les 24 preguntes de la u7
   ja en tenen, i des de la 17 totes canvien el cas, la tècnica o el sentit del raonament
-  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, i des de la 37, la u1.
+  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1, i des de la 38, la u2.
   Per a les unitats que vinguin, el mateix mètode: llegir la
   pregunta sencera, verificar l'alternativa abans d'escriure-la i verificar el fitxer just
   després. A la u7 encara s'hi podrien afegir, com a ítems nous, els límits no racionals que surten
@@ -2034,7 +2105,8 @@ del primer exercici.
 | Una macro amb `@` definida fora de `\makeatletter` | Tot el bloc dins de `\makeatletter … \makeatother` |
 | `\si` xoca amb `siunitx` si mai s'hi carrega | El build fallaria en voler redefinir-la; caldria reanomenar-la |
 | `grep [ÈE]` no funciona amb UTF-8 | Fer servir Python amb normalització Unicode |
-| El commit del bot podria tornar a disparar l'Action | Filtre de camins, `[skip ci]` i `GITHUB_TOKEN` |
+| El commit del bot podria tornar a disparar l'Action | Filtre de camins i `GITHUB_TOKEN` (mai `[skip ci]`: vegeu la fila següent) |
+| Cloudflare Pages no publica cap commit amb `[skip ci]`, `[ci skip]` o `[cf-pages-skip]` al missatge: el catàleg nou no arribava a la web | El commit del bot es diu «build: PDF i catàleg», sense etiqueta (2.38). Cap commit del projecte no en pot portar |
 | `decodeURIComponent` llança una excepció amb un `%` solt | `try/catch`: l'adreça es llegeix sense descodificar (regla 5 d'`app.js`) |
 | Un objecte `{}` troba `__proto__` i `constructor` com si fossin temes | `PER_TEMA` es crea amb `Object.create(null)` |
 | Si la branca avança durant el build, el push del bot és rebutjat | `git pull --rebase` i fins a tres intents |
@@ -2056,14 +2128,15 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 37, com a *pull request* (7.1).
+És el lliurament de la sessió 38, com a *pull request* (7.1). El canvi de `compila.yml` (treure
+`[skip ci]`) el va fer el professor des de la web, i ja és a `main`.
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els tres temes de la u1 |
-| `u1/<tema>/q001` … `q003` | Les nou preguntes de la u1: `pregunta.tex` i `meta.json` |
-| `handout.md` | Seccions 1, 2.37, 6.9, 7.4, 7.5 i 11 |
-| `README.md` | L'estat del banc |
+| `temes.json` | Els tres temes de la u2 |
+| `u2/<tema>/q001` … `q003` | Les nou preguntes de la u2: `pregunta.tex` i `meta.json` |
+| `handout.md` | Seccions 1, 2.38, 3, 6.10, 7.4, 7.5, 10 i 11 |
+| `README.md` | L'estat del banc, i Cloudflare Pages i `[skip ci]` |
 
-No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action «Compila el banc» s'executa sola
-i compila les preguntes noves.
+No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes noves, i
+Cloudflare publica el catàleg nou uns minuts després.
