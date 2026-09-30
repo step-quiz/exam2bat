@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 11:57 UTC",
+ "generat": "2026-09-30 12:49 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -287,6 +287,30 @@ const BANC = {
    "unitat": "u3",
    "nom": "Problemes amb sistemes d'equacions",
    "descripcio": "Plantejar, resoldre i interpretar problemes que es modelitzen amb un sistema lineal."
+  },
+  {
+   "slug": "equacions-recta",
+   "unitat": "u5",
+   "nom": "Equacions de la recta",
+   "descripcio": "Equacions vectorial, paramètriques, contínua i implícita d'una recta, i punts alineats."
+  },
+  {
+   "slug": "equacions-pla",
+   "unitat": "u5",
+   "nom": "Equacions del pla",
+   "descripcio": "Pla per tres punts, per un punt i dos vectors o amb un vector normal; plans paral·lels i perpendiculars a una recta, punts coplanaris i talls amb els eixos."
+  },
+  {
+   "slug": "posicio-rectes",
+   "unitat": "u5",
+   "nom": "Posició relativa de dues rectes",
+   "descripcio": "Rectes coincidents, paral·leles, secants o que es creuen, punt de tall, pla que les conté i paràmetres."
+  },
+  {
+   "slug": "posicio-rectes-plans",
+   "unitat": "u5",
+   "nom": "Posició relativa de rectes i plans",
+   "descripcio": "Posició relativa d'una recta i un pla, de dos plans i de tres plans, amb paràmetres."
   },
   {
    "slug": "algebra",
@@ -6676,6 +6700,794 @@ const BANC = {
    "pdf_solucio": "u3/problemes-sistemes/q003/out/solucio.pdf",
    "pdf_curt": "u3/problemes-sistemes/q003/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u3/problemes-sistemes/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/equacions-pla/q001",
+   "unitat": "u5",
+   "tema": "equacions-pla",
+   "codi": "q001",
+   "titol": "Pla per tres punts, pla perpendicular a una recta, punt coplanari i talls amb els eixos",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    53,
+    56,
+    66,
+    59
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "equació del pla",
+    "punts coplanaris"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "pla-condicio",
+     "defecte_llarg": "perpendicular-recta",
+     "defecte_curt": "perpendicular-recta",
+     "items": [
+      {
+       "id": "perpendicular-recta",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-pla/q001/out/tries/pla-condicio/perpendicular-recta/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-pla/q001/out/tries/pla-condicio/perpendicular-recta/solucio.pdf",
+       "pdf_curt": "u5/equacions-pla/q001/out/tries/pla-condicio/perpendicular-recta/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-pla/q001/out/tries/pla-condicio/perpendicular-recta/solucio-curt.pdf"
+      },
+      {
+       "id": "coplanari",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-pla/q001/out/tries/pla-condicio/coplanari/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-pla/q001/out/tries/pla-condicio/coplanari/solucio.pdf",
+       "pdf_curt": "u5/equacions-pla/q001/out/tries/pla-condicio/coplanari/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-pla/q001/out/tries/pla-condicio/coplanari/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera els punts $A(1,0,2)$, $B(2,1,0)$ i $C(0,3,1)$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba l'equació general del pla $\\pi$ que passa per $A$, $B$ i $C$.\n\n\\begin{solucio}\n$\\overrightarrow{AB}=(1,1,-2)$ i $\\overrightarrow{AC}=(-1,3,-1)$ no són proporcionals: els punts no estan\nalineats i determinen un pla.\n\\[\n\\begin{vmatrix}x-1&y&z-2\\\\1&1&-2\\\\-1&3&-1\\end{vmatrix}=5(x-1)+3y+4(z-2)=0\n\\ \\Longrightarrow\\ \\pi\\colon 5x+3y+4z-13=0.\n\\]\nComprovació: $B$ dona $10+3+0-13=0$, i $C$, $0+9+4-13=0$.\n\\end{solucio}\n\n\\begin{tria}{pla-condicio}\n\\itemtria{perpendicular-recta}{1}{1,25}\nTroba l'equació del pla que passa per $P(2,-1,3)$ i és perpendicular a la recta\n\\[\nr\\colon\\frac{x-1}{2}=\\frac{y}{-1}=\\frac{z+2}{3}.\n\\]\n\n\\begin{solucio}\nEl vector director de $r$, $(2,-1,3)$, és un vector normal del pla: $2x-y+3z+D=0$. Com que passa per\n$P$, $4+1+9+D=0$, $D=-14$. El pla és $2x-y+3z-14=0$.\n\\end{solucio}\n\n\\itemtria{coplanari}{1}{1,25}\nTroba el valor de $k$ perquè el punt $D(k,2,3)$ sigui coplanari amb $A$, $B$ i $C$.\n\n\\begin{solucio}\nEls quatre punts són coplanaris si $D$ és del pla $\\pi$: $5k+6+12-13=0$, és a dir, $5k=-5$, $k=-1$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els punts on el pla $2x-3y+6z-12=0$ talla els eixos de coordenades.\n\n\\begin{solucio}\nEix $OX$ ($y=z=0$): $2x=12$, $(6,0,0)$. Eix $OY$ ($x=z=0$): $-3y=12$, $(0,-4,0)$. Eix $OZ$ ($x=y=0$):\n$6z=12$, $(0,0,2)$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/equacions-pla/q001/out/enunciat.pdf",
+   "pdf_solucio": "u5/equacions-pla/q001/out/solucio.pdf",
+   "pdf_curt": "u5/equacions-pla/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/equacions-pla/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/equacions-pla/q002",
+   "unitat": "u5",
+   "tema": "equacions-pla",
+   "codi": "q002",
+   "titol": "Pla amb un punt i dos vectors, un pla per un punt i un de paral·lel",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    53,
+    54,
+    55,
+    59,
+    56
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "equació del pla",
+    "plans paral·lels"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "pla-dades",
+     "defecte_llarg": "valor-m",
+     "defecte_curt": "valor-m",
+     "items": [
+      {
+       "id": "valor-m",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-pla/q002/out/tries/pla-dades/valor-m/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-pla/q002/out/tries/pla-dades/valor-m/solucio.pdf",
+       "pdf_curt": "u5/equacions-pla/q002/out/tries/pla-dades/valor-m/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-pla/q002/out/tries/pla-dades/valor-m/solucio-curt.pdf"
+      },
+      {
+       "id": "pla-paralel",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-pla/q002/out/tries/pla-dades/pla-paralel/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-pla/q002/out/tries/pla-dades/pla-paralel/solucio.pdf",
+       "pdf_curt": "u5/equacions-pla/q002/out/tries/pla-dades/pla-paralel/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-pla/q002/out/tries/pla-dades/pla-paralel/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu les equacions paramètriques i general del pla $\\pi$ que passa pel punt $P(1,2,-1)$ i té vectors\ndirectors $\\vec u=(1,0,2)$ i $\\vec v=(0,1,-1)$.\n\n\\begin{solucio}\nParamètriques: $\\left\\{\\begin{aligned}x&=1+\\lambda\\\\y&=2+\\mu\\\\z&=-1+2\\lambda-\\mu\\end{aligned}\\right.$\\\\\nGeneral:\n$\\begin{vmatrix}x-1&y-2&z+1\\\\1&0&2\\\\0&1&-1\\end{vmatrix}=-2(x-1)+(y-2)+(z+1)=0$, és a dir,\n$\\pi\\colon 2x-y-z-1=0$.\n\\end{solucio}\n\n\\begin{tria}{pla-dades}\n\\itemtria{valor-m}{1}{1,25}\nTroba el valor de $m$ perquè el pla $mx+2y-z+3=0$ passi pel punt $Q(2,-1,5)$. Per a aquest valor, troba\nels punts on el pla talla els eixos de coordenades.\n\n\\begin{solucio}\n$2m-2-5+3=0$, $m=2$. El pla és $2x+2y-z+3=0$.\\\\\nTalls: amb $OX$, $2x+3=0$, $\\left(-\\frac32,0,0\\right)$; amb $OY$, $\\left(0,-\\frac32,0\\right)$; amb $OZ$,\n$-z+3=0$, $(0,0,3)$.\n\\end{solucio}\n\n\\itemtria{pla-paralel}{1}{1,25}\nTroba l'equació del pla paral·lel a $\\pi$ que passa pel punt $Q(3,0,1)$. Per què tots dos tenen el\nmateix vector normal?\n\n\\begin{solucio}\nDos plans paral·lels tenen vectors normals proporcionals, perquè tots dos són perpendiculars a la\nmateixa direcció. Es pot prendre el de $\\pi$, $(2,-1,-1)$: $2x-y-z+D=0$. Com que passa per $Q$,\n$6-0-1+D=0$, $D=-5$. El pla és $2x-y-z-5=0$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba l'equació del pla que passa per l'origen i és perpendicular a la recta\n$\\left\\{\\begin{aligned}x&=1+2t\\\\y&=-t\\\\z&=3\\end{aligned}\\right.$\n\n\\begin{solucio}\nEl vector director de la recta, $(2,-1,0)$, és normal al pla: $2x-y+D=0$, i com que passa per l'origen,\n$D=0$. El pla és $2x-y=0$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/equacions-pla/q002/out/enunciat.pdf",
+   "pdf_solucio": "u5/equacions-pla/q002/out/solucio.pdf",
+   "pdf_curt": "u5/equacions-pla/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/equacions-pla/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/equacions-pla/q003",
+   "unitat": "u5",
+   "tema": "equacions-pla",
+   "codi": "q003",
+   "titol": "Pla per tres punts, punts coplanaris i pla que conté una recta i un punt",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    53,
+    66,
+    59
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "equació del pla",
+    "punts coplanaris"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "pla-punts",
+     "defecte_llarg": "coplanaris",
+     "defecte_curt": "coplanaris",
+     "items": [
+      {
+       "id": "coplanaris",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-pla/q003/out/tries/pla-punts/coplanaris/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-pla/q003/out/tries/pla-punts/coplanaris/solucio.pdf",
+       "pdf_curt": "u5/equacions-pla/q003/out/tries/pla-punts/coplanaris/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-pla/q003/out/tries/pla-punts/coplanaris/solucio-curt.pdf"
+      },
+      {
+       "id": "recta-i-punt",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-pla/q003/out/tries/pla-punts/recta-i-punt/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-pla/q003/out/tries/pla-punts/recta-i-punt/solucio.pdf",
+       "pdf_curt": "u5/equacions-pla/q003/out/tries/pla-punts/recta-i-punt/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-pla/q003/out/tries/pla-punts/recta-i-punt/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera els punts $A(0,0,1)$, $B(1,2,0)$ i $C(2,1,1)$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nTroba l'equació general del pla $\\pi$ que passa per $A$, $B$ i $C$.\n\n\\begin{solucio}\n$\\overrightarrow{AB}=(1,2,-1)$ i $\\overrightarrow{AC}=(2,1,0)$.\n\\[\n\\begin{vmatrix}x&y&z-1\\\\1&2&-1\\\\2&1&0\\end{vmatrix}=x-2y-3(z-1)=0\n\\ \\Longrightarrow\\ \\pi\\colon x-2y-3z+3=0.\n\\]\nComprovació: $B$ dona $1-4-0+3=0$, i $C$, $2-2-3+3=0$.\n\\end{solucio}\n\n\\begin{tria}{pla-punts}\n\\itemtria{coplanaris}{1}{1,25}\nSi $D$ és el punt $(k,0,0)$, quant ha de valer $k$ perquè $A$, $B$, $C$ i $D$ siguin coplanaris? Són\ncoplanaris $A$, $B$, $C$ i $E(1,1,1)$?\n\n\\begin{solucio}\n$D$ ha de ser del pla $\\pi$: $k+3=0$, $k=-3$.\\\\\nPer a $E$: $1-2-3+3=-1\\ne0$. $E$ no és del pla $\\pi$, i els quatre punts no són coplanaris.\n\\end{solucio}\n\n\\itemtria{recta-i-punt}{1}{1,25}\nTroba l'equació del pla que conté la recta $r\\colon\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{-1}$ i el punt\n$P(0,1,2)$.\n\n\\begin{solucio}\nEl pla passa per $R(1,0,-1)$, un punt de $r$, i té com a vectors directors el de la recta,\n$(1,2,-1)$, i $\\overrightarrow{RP}=(-1,1,3)$, que no hi és proporcional.\n\\[\n\\begin{vmatrix}x-1&y&z+1\\\\1&2&-1\\\\-1&1&3\\end{vmatrix}=7(x-1)-2y+3(z+1)=0\n\\ \\Longrightarrow\\ 7x-2y+3z-4=0.\n\\]\nComprovació: $P$ dona $0-2+6-4=0$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els punts on el pla $\\pi$ talla els eixos de coordenades.\n\n\\begin{solucio}\nEix $OX$: $x+3=0$, $(-3,0,0)$. Eix $OY$: $-2y+3=0$, $\\left(0,\\frac32,0\\right)$. Eix $OZ$: $-3z+3=0$,\n$(0,0,1)$, que és el punt $A$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/equacions-pla/q003/out/enunciat.pdf",
+   "pdf_solucio": "u5/equacions-pla/q003/out/solucio.pdf",
+   "pdf_curt": "u5/equacions-pla/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/equacions-pla/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/equacions-recta/q001",
+   "unitat": "u5",
+   "tema": "equacions-recta",
+   "codi": "q001",
+   "titol": "Totes les equacions d'una recta, per dos punts, punts alineats i si un punt hi pertany",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    43,
+    46,
+    47,
+    45,
+    63
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "equacions de la recta",
+    "punts alineats"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "recta-punts",
+     "defecte_llarg": "dos-punts",
+     "defecte_curt": "dos-punts",
+     "items": [
+      {
+       "id": "dos-punts",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-recta/q001/out/tries/recta-punts/dos-punts/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-recta/q001/out/tries/recta-punts/dos-punts/solucio.pdf",
+       "pdf_curt": "u5/equacions-recta/q001/out/tries/recta-punts/dos-punts/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-recta/q001/out/tries/recta-punts/dos-punts/solucio-curt.pdf"
+      },
+      {
+       "id": "alineats",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-recta/q001/out/tries/recta-punts/alineats/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-recta/q001/out/tries/recta-punts/alineats/solucio.pdf",
+       "pdf_curt": "u5/equacions-recta/q001/out/tries/recta-punts/alineats/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-recta/q001/out/tries/recta-punts/alineats/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu les equacions vectorial, paramètriques i contínua de la recta $r$ que passa pel punt $A(2,-1,3)$\ni té vector director $\\vec v=(1,-2,2)$.\n\n\\begin{solucio}\nVectorial: $(x,y,z)=(2,-1,3)+t(1,-2,2)$.\n\\[\n\\text{Paramètriques: }\\left\\{\\begin{aligned}x&=2+t\\\\y&=-1-2t\\\\z&=3+2t\\end{aligned}\\right.\n\\qquad\n\\text{Contínua: }\\frac{x-2}{1}=\\frac{y+1}{-2}=\\frac{z-3}{2}.\n\\]\n\\end{solucio}\n\n\\begin{tria}{recta-punts}\n\\itemtria{dos-punts}{1}{1,25}\nEscriu les equacions contínua i implícita de la recta que passa per $B(1,0,2)$ i $C(3,-1,5)$.\n\n\\begin{solucio}\nVector director: $\\overrightarrow{BC}=(2,-1,3)$. Contínua: $\\dfrac{x-1}{2}=\\dfrac{y}{-1}=\\dfrac{z-2}{3}$.\\\\\nIgualant dues a dues: $-(x-1)=2y$ i $3(x-1)=2(z-2)$. Implícita:\n$\\left\\{\\begin{aligned}x+2y-1&=0\\\\3x-2z+1&=0\\end{aligned}\\right.$\n\\end{solucio}\n\n\\itemtria{alineats}{1}{1,25}\nTroba el valor de $a$ perquè els punts $P(1,2,-1)$, $Q(3,1,1)$ i $R(7,a,5)$ estiguin alineats.\n\n\\begin{solucio}\nEstan alineats si $\\overrightarrow{PQ}=(2,-1,2)$ i $\\overrightarrow{PR}=(6,a-2,6)$ són proporcionals:\n$\\dfrac62=\\dfrac{a-2}{-1}=\\dfrac62$. La primera i la tercera components ja donen la raó 3, i cal\n$a-2=-3$, és a dir, $a=-1$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu dos punts de la recta $r$ del primer apartat, diferents de $A$. Pertany a $r$ el punt $S(5,-7,9)$?\n\n\\begin{solucio}\nResposta oberta. Amb $t=1$, $(3,-3,5)$, i amb $t=-1$, $(1,1,1)$.\\\\\n$S$ hi pertany si hi ha un mateix $t$ per a les tres coordenades: $2+t=5$ dona $t=3$, i amb $t=3$,\n$y=-1-6=-7$ i $z=3+6=9$. Sí que hi pertany.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/equacions-recta/q001/out/enunciat.pdf",
+   "pdf_solucio": "u5/equacions-recta/q001/out/solucio.pdf",
+   "pdf_curt": "u5/equacions-recta/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/equacions-recta/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/equacions-recta/q002",
+   "unitat": "u5",
+   "tema": "equacions-recta",
+   "codi": "q002",
+   "titol": "Recta paral·lela a una altra, de implícita a paramètrica i punts alineats amb dos paràmetres",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    49,
+    46,
+    63
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "equacions de la recta",
+    "recta paral·lela",
+    "forma implícita"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "altres-formes",
+     "defecte_llarg": "implicita-parametrica",
+     "defecte_curt": "implicita-parametrica",
+     "items": [
+      {
+       "id": "implicita-parametrica",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-recta/q002/out/tries/altres-formes/implicita-parametrica/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-recta/q002/out/tries/altres-formes/implicita-parametrica/solucio.pdf",
+       "pdf_curt": "u5/equacions-recta/q002/out/tries/altres-formes/implicita-parametrica/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-recta/q002/out/tries/altres-formes/implicita-parametrica/solucio-curt.pdf"
+      },
+      {
+       "id": "alineats-dos-parametres",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-recta/q002/out/tries/altres-formes/alineats-dos-parametres/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-recta/q002/out/tries/altres-formes/alineats-dos-parametres/solucio.pdf",
+       "pdf_curt": "u5/equacions-recta/q002/out/tries/altres-formes/alineats-dos-parametres/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-recta/q002/out/tries/altres-formes/alineats-dos-parametres/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu les equacions paramètriques i contínua de la recta que passa per $P(1,-2,0)$ i és paral·lela a\nla recta $r\\colon\\dfrac{x-3}{2}=y+1=\\dfrac{z-2}{-3}$.\n\n\\begin{solucio}\nUna recta paral·lela a $r$ té el mateix vector director, $\\vec u=(2,1,-3)$.\\\\\nParamètriques: $\\left\\{\\begin{aligned}x&=1+2t\\\\y&=-2+t\\\\z&=-3t\\end{aligned}\\right.$\\qquad\nContínua: $\\dfrac{x-1}{2}=\\dfrac{y+2}{1}=\\dfrac{z}{-3}$.\n\\end{solucio}\n\n\\begin{tria}{altres-formes}\n\\itemtria{implicita-parametrica}{1}{1,25}\nEscriu en forma paramètrica la recta\n$s\\colon\\left\\{\\begin{aligned}x+y-z&=1\\\\2x-y+z&=5\\end{aligned}\\right.$, i dona'n un punt i un vector\ndirector.\n\n\\begin{solucio}\nÉs un sistema compatible indeterminat. Amb $z=\\lambda$: sumant les equacions, $3x=6$, $x=2$; i de la\nprimera, $y=1-x+z=\\lambda-1$.\n$s\\colon\\left\\{\\begin{aligned}x&=2\\\\y&=-1+\\lambda\\\\z&=\\lambda\\end{aligned}\\right.$ Un punt és\n$(2,-1,0)$, i un vector director, $(0,1,1)$.\n\\end{solucio}\n\n\\itemtria{alineats-dos-parametres}{1}{1,25}\nTroba els valors de $a$ i $b$ perquè els punts $A(1,0,2)$, $B(2,1,a)$ i $C(4,b,8)$ estiguin alineats.\n\n\\begin{solucio}\n$\\overrightarrow{AB}=(1,1,a-2)$ i $\\overrightarrow{AC}=(3,b,6)$ han de ser proporcionals. La primera\ncomponent dona la raó 3: $b=3\\cdot1=3$ i $6=3(a-2)$, és a dir, $a=4$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu en forma implícita la recta $\\dfrac{x-1}{2}=\\dfrac{y+3}{-1}=\\dfrac{z}{4}$.\n\n\\begin{solucio}\nIgualant la primera fracció amb cadascuna de les altres: $-(x-1)=2(y+3)$ i $4(x-1)=2z$.\n$\\left\\{\\begin{aligned}x+2y+5&=0\\\\2x-z-2&=0\\end{aligned}\\right.$\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/equacions-recta/q002/out/enunciat.pdf",
+   "pdf_solucio": "u5/equacions-recta/q002/out/solucio.pdf",
+   "pdf_curt": "u5/equacions-recta/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/equacions-recta/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/equacions-recta/q003",
+   "unitat": "u5",
+   "tema": "equacions-recta",
+   "codi": "q003",
+   "titol": "La recta per dos punts, un punt alineat i els talls amb els plans coordenats",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    47,
+    63,
+    45,
+    46
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "equacions de la recta",
+    "punts alineats"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "punts-recta",
+     "defecte_llarg": "alineat",
+     "defecte_curt": "alineat",
+     "items": [
+      {
+       "id": "alineat",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-recta/q003/out/tries/punts-recta/alineat/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-recta/q003/out/tries/punts-recta/alineat/solucio.pdf",
+       "pdf_curt": "u5/equacions-recta/q003/out/tries/punts-recta/alineat/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-recta/q003/out/tries/punts-recta/alineat/solucio-curt.pdf"
+      },
+      {
+       "id": "talls-plans-coordenats",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/equacions-recta/q003/out/tries/punts-recta/talls-plans-coordenats/enunciat.pdf",
+       "pdf_solucio": "u5/equacions-recta/q003/out/tries/punts-recta/talls-plans-coordenats/solucio.pdf",
+       "pdf_curt": "u5/equacions-recta/q003/out/tries/punts-recta/talls-plans-coordenats/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/equacions-recta/q003/out/tries/punts-recta/talls-plans-coordenats/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera els punts $A(0,1,-2)$ i $B(2,-3,4)$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEscriu les equacions vectorial i paramètriques de la recta $r$ que passa per $A$ i $B$.\n\n\\begin{solucio}\n$\\overrightarrow{AB}=(2,-4,6)$, i també serveix $\\vec v=(1,-2,3)$, proporcional.\\\\\nVectorial: $(x,y,z)=(0,1,-2)+t(1,-2,3)$.\\quad\nParamètriques: $\\left\\{\\begin{aligned}x&=t\\\\y&=1-2t\\\\z&=-2+3t\\end{aligned}\\right.$\n\\end{solucio}\n\n\\begin{tria}{punts-recta}\n\\itemtria{alineat}{1}{1,25}\nTroba el valor de $a$ perquè el punt $C(a,-7,10)$ estigui alineat amb $A$ i $B$.\n\n\\begin{solucio}\n$C$ ha de ser de la recta $r$. De la segona coordenada, $1-2t=-7$, $t=4$. Amb $t=4$, $z=-2+12=10$, que\ncoincideix: el punt és de la recta si $a=x=4$.\n\\end{solucio}\n\n\\itemtria{talls-plans-coordenats}{1}{1,25}\nTroba els punts on la recta $r$ talla els plans coordenats $z=0$ i $x=0$.\n\n\\begin{solucio}\nAmb $z=0$: $-2+3t=0$, $t=\\frac23$, i el punt és $\\left(\\frac23,-\\frac13,0\\right)$.\\\\\nAmb $x=0$: $t=0$, i el punt és $A(0,1,-2)$ mateix: la recta talla el pla $x=0$ a $A$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu la recta $r$ en forma contínua i en forma implícita.\n\n\\begin{solucio}\nContínua: $\\dfrac{x}{1}=\\dfrac{y-1}{-2}=\\dfrac{z+2}{3}$.\\\\\nDe $-2x=y-1$ i $3x=z+2$:\n$\\left\\{\\begin{aligned}2x+y-1&=0\\\\3x-z-2&=0\\end{aligned}\\right.$\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/equacions-recta/q003/out/enunciat.pdf",
+   "pdf_solucio": "u5/equacions-recta/q003/out/solucio.pdf",
+   "pdf_curt": "u5/equacions-recta/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/equacions-recta/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/posicio-rectes/q001",
+   "unitat": "u5",
+   "tema": "posicio-rectes",
+   "codi": "q001",
+   "titol": "Rectes paral·leles, rectes secants i el paràmetre perquè dues rectes es tallin",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    71,
+    72,
+    80,
+    79
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "posició relativa de rectes",
+    "punt de tall"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rectes-tasca",
+     "defecte_llarg": "punt-de-tall",
+     "defecte_curt": "punt-de-tall",
+     "items": [
+      {
+       "id": "punt-de-tall",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes/q001/out/tries/rectes-tasca/punt-de-tall/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes/q001/out/tries/rectes-tasca/punt-de-tall/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes/q001/out/tries/rectes-tasca/punt-de-tall/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes/q001/out/tries/rectes-tasca/punt-de-tall/solucio-curt.pdf"
+      },
+      {
+       "id": "pla-de-les-paraleles",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes/q001/out/tries/rectes-tasca/pla-de-les-paraleles/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes/q001/out/tries/rectes-tasca/pla-de-les-paraleles/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes/q001/out/tries/rectes-tasca/pla-de-les-paraleles/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes/q001/out/tries/rectes-tasca/pla-de-les-paraleles/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia la posició relativa de les rectes\n\\[\nr\\colon\\frac{x-1}{2}=\\frac{y+1}{-1}=\\frac{z}{3}\\qquad\\text{i}\\qquad\ns\\colon\\frac{x-3}{-4}=\\frac{y-2}{2}=\\frac{z+1}{-6}.\n\\]\n\n\\begin{solucio}\n$r$ passa per $P(1,-1,0)$ amb $\\vec u=(2,-1,3)$, i $s$, per $Q(3,2,-1)$ amb $\\vec v=(-4,2,-6)=-2\\vec u$:\n$\\operatorname{rang}(\\vec u,\\vec v)=1$. A més, $\\overrightarrow{PQ}=(2,3,-1)$ no és proporcional a\n$\\vec u$, i $\\operatorname{rang}(\\vec u,\\vec v,\\overrightarrow{PQ})=2$. Les rectes són paral·leles (no\ncoincidents).\n\\end{solucio}\n\n\\begin{tria}{rectes-tasca}\n\\itemtria{punt-de-tall}{1}{1,25}\nComprova que les rectes\n$r'\\colon\\left\\{\\begin{aligned}x&=1+\\lambda\\\\y&=2\\lambda\\\\z&=-1+\\lambda\\end{aligned}\\right.$ i\n$s'\\colon\\left\\{\\begin{aligned}x&=3-\\mu\\\\y&=1+\\mu\\\\z&=-2+2\\mu\\end{aligned}\\right.$ es tallen, i troba'n el\npunt de tall.\n\n\\begin{solucio}\nEls vectors directors, $(1,2,1)$ i $(-1,1,2)$, no són proporcionals: les rectes es tallen o es creuen.\nIgualant: $1+\\lambda=3-\\mu$, $2\\lambda=1+\\mu$ i $-1+\\lambda=-2+2\\mu$. De les dues primeres,\n$\\lambda+\\mu=2$ i $2\\lambda-\\mu=1$, d'on $\\lambda=1$ i $\\mu=1$, que també compleixen la tercera\n($0=0$). Es tallen al punt $(2,2,0)$.\n\\end{solucio}\n\n\\itemtria{pla-de-les-paraleles}{1}{1,25}\nTroba l'equació del pla que conté les dues rectes $r$ i $s$ del primer apartat.\n\n\\begin{solucio}\nEl pla passa per $P(1,-1,0)$ i té com a vectors directors $\\vec u=(2,-1,3)$ i\n$\\overrightarrow{PQ}=(2,3,-1)$:\n\\[\n\\begin{vmatrix}x-1&y+1&z\\\\2&-1&3\\\\2&3&-1\\end{vmatrix}=-8(x-1)+8(y+1)+8z=0\n\\ \\Longrightarrow\\ x-y-z-2=0.\n\\]\nComprovació: $Q$ dona $3-2+1-2=0$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba el valor de $m$ perquè les rectes $\\dfrac{x-m}{-1}=\\dfrac{y+1}{1}=\\dfrac{z-1}{2}$ i\n$\\left\\{\\begin{aligned}x&=3+\\lambda\\\\y&=2\\lambda\\\\z&=1+3\\lambda\\end{aligned}\\right.$ es tallin en un punt.\n\n\\begin{solucio}\nEls vectors directors, $(-1,1,2)$ i $(1,2,3)$, no són proporcionals. Amb $P(m,-1,1)$ i $Q(3,0,1)$,\n$\\overrightarrow{PQ}=(3-m,1,0)$, i es tallen si els tres vectors tenen rang 2:\n\\[\n\\begin{vmatrix}-1&1&2\\\\1&2&3\\\\3-m&1&0\\end{vmatrix}=m+2=0\\ \\Longrightarrow\\ m=-2.\n\\]\n(El punt de tall és $(1,-4,-5)$.)\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/posicio-rectes/q001/out/enunciat.pdf",
+   "pdf_solucio": "u5/posicio-rectes/q001/out/solucio.pdf",
+   "pdf_curt": "u5/posicio-rectes/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/posicio-rectes/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/posicio-rectes/q002",
+   "unitat": "u5",
+   "tema": "posicio-rectes",
+   "codi": "q002",
+   "titol": "Rectes que es creuen, posició segons un paràmetre i rectes paral·leles amb el pla que les conté",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    71,
+    81,
+    80
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "posició relativa de rectes",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rectes-parametre",
+     "defecte_llarg": "segons-m",
+     "defecte_curt": "segons-m",
+     "items": [
+      {
+       "id": "segons-m",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes/q002/out/tries/rectes-parametre/segons-m/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes/q002/out/tries/rectes-parametre/segons-m/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes/q002/out/tries/rectes-parametre/segons-m/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes/q002/out/tries/rectes-parametre/segons-m/solucio-curt.pdf"
+      },
+      {
+       "id": "m-paraleles",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes/q002/out/tries/rectes-parametre/m-paraleles/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes/q002/out/tries/rectes-parametre/m-paraleles/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes/q002/out/tries/rectes-parametre/m-paraleles/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes/q002/out/tries/rectes-parametre/m-paraleles/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia la posició relativa de les rectes\n$r\\colon\\left\\{\\begin{aligned}x&=1+t\\\\y&=2-t\\\\z&=3t\\end{aligned}\\right.$ i\n$s\\colon\\left\\{\\begin{aligned}x&=2\\lambda\\\\y&=1+\\lambda\\\\z&=2+\\lambda\\end{aligned}\\right.$\n\n\\begin{solucio}\n$r$ passa per $P(1,2,0)$ amb $\\vec u=(1,-1,3)$, i $s$, per $Q(0,1,2)$ amb $\\vec v=(2,1,1)$, que no són\nproporcionals: $\\operatorname{rang}(\\vec u,\\vec v)=2$. Amb $\\overrightarrow{PQ}=(-1,-1,2)$:\n\\[\n\\begin{vmatrix}1&-1&3\\\\2&1&1\\\\-1&-1&2\\end{vmatrix}=5\\ne0,\n\\]\ni $\\operatorname{rang}(\\vec u,\\vec v,\\overrightarrow{PQ})=3$. Les rectes es creuen.\n\\end{solucio}\n\n\\begin{tria}{rectes-parametre}\n\\itemtria{segons-m}{1}{1,25}\nEstudia, segons els valors de $m$, la posició relativa de les rectes\n$r'\\colon\\dfrac{x+2}{1}=\\dfrac{y+2}{2}=\\dfrac{z-2}{2}$ i\n$s'\\colon\\left\\{\\begin{aligned}x&=2+\\lambda\\\\y&=-2+2\\lambda\\\\z&=1+m\\lambda\\end{aligned}\\right.$\n\n\\begin{solucio}\n$P(-2,-2,2)$, $\\vec u=(1,2,2)$; $Q(2,-2,1)$, $\\vec v=(1,2,m)$; $\\overrightarrow{PQ}=(4,0,-1)$.\n\\[\n\\begin{vmatrix}1&2&2\\\\1&2&m\\\\4&0&-1\\end{vmatrix}=8(m-2).\n\\]\n\\begin{itemize}\n\\item Si $m\\ne2$: $\\vec u$ i $\\vec v$ no són proporcionals i el determinant no és nul: es creuen.\n\\item Si $m=2$: $\\vec v=\\vec u$, i $\\overrightarrow{PQ}$ no hi és proporcional: són paral·leles.\n\\end{itemize}\nNo es tallen per a cap valor de $m$.\n\\end{solucio}\n\n\\itemtria{m-paraleles}{1}{1,25}\nTroba el valor de $m$ perquè les rectes\n$r'\\colon\\dfrac{x-1}{2}=\\dfrac{y+1}{m}=\\dfrac{z-2}{-2}$ i\n$s'\\colon\\left\\{\\begin{aligned}x&=3+\\lambda\\\\y&=\\lambda\\\\z&=1-\\lambda\\end{aligned}\\right.$ siguin paral·leles,\ni troba l'equació del pla que les conté.\n\n\\begin{solucio}\nCal que $(2,m,-2)$ sigui proporcional a $(1,1,-1)$: $m=2$. A més, $P(1,-1,2)$ no és de $s'$ (amb $x=1$,\n$\\lambda=-2$ i $y=-2\\ne-1$): són paral·leles, no coincidents.\\\\\nEl pla passa per $Q(3,0,1)$ amb vectors directors $(1,1,-1)$ i $\\overrightarrow{QP}=(-2,-1,1)$:\n\\[\n\\begin{vmatrix}x-3&y&z-1\\\\1&1&-1\\\\-2&-1&1\\end{vmatrix}=y+z-1=0.\n\\]\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu la recta $t$ que passa per l'origen i és paral·lela a $s$. Quina és la posició relativa de $t$ i\n$r$?\n\n\\begin{solucio}\n$t\\colon (x,y,z)=\\mu(2,1,1)$. Amb $\\vec u=(1,-1,3)$, $(2,1,1)$ i el vector que va de $P(1,2,0)$ a\nl'origen, $(-1,-2,0)$:\n\\[\n\\begin{vmatrix}1&-1&3\\\\2&1&1\\\\-1&-2&0\\end{vmatrix}=-6\\ne0.\n\\]\nEls vectors directors no són proporcionals i el rang és 3: $t$ i $r$ es creuen.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/posicio-rectes/q002/out/enunciat.pdf",
+   "pdf_solucio": "u5/posicio-rectes/q002/out/solucio.pdf",
+   "pdf_curt": "u5/posicio-rectes/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/posicio-rectes/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/posicio-rectes/q003",
+   "unitat": "u5",
+   "tema": "posicio-rectes",
+   "codi": "q003",
+   "titol": "Dues rectes secants, el pla que les conté i rectes que es creuen",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    72,
+    73,
+    71
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "posició relativa de rectes",
+    "pla que conté dues rectes"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rectes-secants",
+     "defecte_llarg": "pla-que-les-conte",
+     "defecte_curt": "pla-que-les-conte",
+     "items": [
+      {
+       "id": "pla-que-les-conte",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes/q003/out/tries/rectes-secants/pla-que-les-conte/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes/q003/out/tries/rectes-secants/pla-que-les-conte/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes/q003/out/tries/rectes-secants/pla-que-les-conte/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes/q003/out/tries/rectes-secants/pla-que-les-conte/solucio-curt.pdf"
+      },
+      {
+       "id": "amb-la-diagonal",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes/q003/out/tries/rectes-secants/amb-la-diagonal/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes/q003/out/tries/rectes-secants/amb-la-diagonal/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes/q003/out/tries/rectes-secants/amb-la-diagonal/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes/q003/out/tries/rectes-secants/amb-la-diagonal/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera les rectes $r\\colon\\dfrac{x+1}{1}=\\dfrac{y-2}{-1}=\\dfrac{z-1}{2}$ i\n$s\\colon\\left\\{\\begin{aligned}x&=-1+2\\mu\\\\y&=-1+\\mu\\\\z&=6-\\mu\\end{aligned}\\right.$\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que les rectes es tallen i troba'n el punt de tall.\n\n\\begin{solucio}\n$\\vec u=(1,-1,2)$ i $\\vec v=(2,1,-1)$ no són proporcionals. En paramètriques, $r$ és\n$(-1+t,\\ 2-t,\\ 1+2t)$. Igualant: $-1+t=-1+2\\mu$, $2-t=-1+\\mu$ i $1+2t=6-\\mu$. Les dues primeres donen\n$t=2\\mu$ i $2-2\\mu=-1+\\mu$, és a dir, $\\mu=1$ i $t=2$, que compleixen la tercera ($5=5$). Es tallen al\npunt $(1,0,5)$.\n\\end{solucio}\n\n\\begin{tria}{rectes-secants}\n\\itemtria{pla-que-les-conte}{1}{1,25}\nTroba l'equació del pla que conté les dues rectes.\n\n\\begin{solucio}\nEl pla passa per $P(-1,2,1)$, de $r$, i té com a vectors directors $\\vec u$ i $\\vec v$:\n\\[\n\\begin{vmatrix}x+1&y-2&z-1\\\\1&-1&2\\\\2&1&-1\\end{vmatrix}=-(x+1)+5(y-2)+3(z-1)=0\n\\ \\Longrightarrow\\ x-5y-3z+14=0.\n\\]\nComprovació: el punt $(-1,-1,6)$ de $s$ dona $-1+5-18+14=0$.\n\\end{solucio}\n\n\\itemtria{amb-la-diagonal}{1}{1,25}\nEstudia la posició relativa de la recta $r$ i la recta $x=y=z$.\n\n\\begin{solucio}\nLa recta $x=y=z$ passa per l'origen $O$ amb vector director $(1,1,1)$, que no és proporcional a\n$\\vec u=(1,-1,2)$. Amb $\\overrightarrow{PO}=(1,-2,-1)$, on $P(-1,2,1)$ és de $r$:\n\\[\n\\begin{vmatrix}1&-1&2\\\\1&1&1\\\\1&-2&-1\\end{vmatrix}=-7\\ne0.\n\\]\nEl rang és 3: les dues rectes es creuen.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEscriu les equacions d'una recta que es creui amb $r$. Justifica-ho.\n\n\\begin{solucio}\nResposta oberta. Per exemple, l'eix $OX$: passa per l'origen amb vector director $(1,0,0)$, que no és\nproporcional a $\\vec u$. Amb $\\overrightarrow{PO}=(1,-2,-1)$:\n$\\begin{vmatrix}1&-1&2\\\\1&0&0\\\\1&-2&-1\\end{vmatrix}=-5\\ne0$. El rang és 3: l'eix $OX$ i $r$ es creuen.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/posicio-rectes/q003/out/enunciat.pdf",
+   "pdf_solucio": "u5/posicio-rectes/q003/out/solucio.pdf",
+   "pdf_curt": "u5/posicio-rectes/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/posicio-rectes/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/posicio-rectes-plans/q001",
+   "unitat": "u5",
+   "tema": "posicio-rectes-plans",
+   "codi": "q001",
+   "titol": "Recta paral·lela a un pla, posició segons dos paràmetres i plans paral·lels o perpendiculars",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    74,
+    84,
+    85
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "posició relativa recta-pla",
+    "plans perpendiculars"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "recta-pla",
+     "defecte_llarg": "parametres",
+     "defecte_curt": "parametres",
+     "items": [
+      {
+       "id": "parametres",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/parametres/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/parametres/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/parametres/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/parametres/solucio-curt.pdf"
+      },
+      {
+       "id": "punt-de-tall",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/punt-de-tall/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/punt-de-tall/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/punt-de-tall/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes-plans/q001/out/tries/recta-pla/punt-de-tall/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia la posició relativa de la recta\n$r\\colon\\left\\{\\begin{aligned}x&=1+2t\\\\y&=-1+t\\\\z&=3-t\\end{aligned}\\right.$ i el pla\n$\\pi\\colon x-y+z-1=0$.\n\n\\begin{solucio}\nSubstituint la recta al pla: $(1+2t)-(-1+t)+(3-t)-1=4$, i l'equació $4=0$ no té solució. La recta i el\npla no tenen cap punt en comú: són paral·lels. (Ho confirma que $\\vec u=(2,1,-1)$ i $\\vec n=(1,-1,1)$\ncompleixen $\\vec u\\cdot\\vec n=2-1-1=0$.)\n\\end{solucio}\n\n\\begin{tria}{recta-pla}\n\\itemtria{parametres}{1}{1,25}\nEstudia, segons els valors de $a$ i $b$, la posició relativa del pla $ax+2y-z+b=0$ i la recta\n\\[\n\\frac{x-1}{1}=\\frac{y+1}{2}=\\frac{z-3}{-1}.\n\\]\n\n\\begin{solucio}\nEn paramètriques, la recta és $(1+t,\\ -1+2t,\\ 3-t)$. Substituint:\n$a(1+t)+2(-1+2t)-(3-t)+b=(a+5)t+(a+b-5)=0$.\n\\begin{itemize}\n\\item Si $a\\ne-5$, hi ha un sol valor de $t$: es tallen en un punt.\n\\item Si $a=-5$, queda $b-10=0$. Si $b=10$, qualsevol $t$ la compleix: la recta és continguda al pla.\nSi $b\\ne10$, cap: són paral·lels.\n\\end{itemize}\n\\end{solucio}\n\n\\itemtria{punt-de-tall}{1}{1,25}\nComprova que la recta\n$s\\colon\\left\\{\\begin{aligned}x&=2+t\\\\y&=-t\\\\z&=1+2t\\end{aligned}\\right.$ talla el pla\n$x+y+z-7=0$, i troba el punt de tall.\n\n\\begin{solucio}\nSubstituint: $(2+t)+(-t)+(1+2t)-7=2t-4=0$, $t=2$. Hi ha una sola solució: es tallen al punt\n$(4,-2,5)$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nConsidera els plans $\\pi_1\\colon ax+2y-4z=1$ i $\\pi_2\\colon x+y-2z=3$. Troba el valor de $a$ perquè\nsiguin paral·lels, i el valor de $a$ perquè siguin perpendiculars.\n\n\\begin{solucio}\nParal·lels: els vectors normals $(a,2,-4)$ i $(1,1,-2)$ han de ser proporcionals, $\\frac a1=\\frac21=\\frac{-4}{-2}$,\nés a dir, $a=2$. Com que $\\frac13\\ne2$, no són coincidents.\\\\\nPerpendiculars: els vectors normals han de ser perpendiculars, $a+2+8=0$, és a dir, $a=-10$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/posicio-rectes-plans/q001/out/enunciat.pdf",
+   "pdf_solucio": "u5/posicio-rectes-plans/q001/out/solucio.pdf",
+   "pdf_curt": "u5/posicio-rectes-plans/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/posicio-rectes-plans/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/posicio-rectes-plans/q002",
+   "unitat": "u5",
+   "tema": "posicio-rectes-plans",
+   "codi": "q002",
+   "titol": "Dos plans paral·lels, tres plans que es tallen en un punt o en una recta",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    76,
+    77,
+    85
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "posició relativa de plans",
+    "tres plans"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "tres-plans",
+     "defecte_llarg": "un-punt",
+     "defecte_curt": "un-punt",
+     "items": [
+      {
+       "id": "un-punt",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/un-punt/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/un-punt/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/un-punt/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/un-punt/solucio-curt.pdf"
+      },
+      {
+       "id": "tercer-pla",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/tercer-pla/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/tercer-pla/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/tercer-pla/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes-plans/q002/out/tries/tres-plans/tercer-pla/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia la posició relativa dels plans\n$\\pi\\colon\\left\\{\\begin{aligned}x&=1+\\lambda+\\mu\\\\y&=2-\\lambda\\\\z&=\\mu\\end{aligned}\\right.$ i\n$\\pi'\\colon 2x+2y-2z+1=0$.\n\n\\begin{solucio}\nL'equació general de $\\pi$, que passa per $(1,2,0)$ amb vectors directors $(1,-1,0)$ i $(1,0,1)$:\n\\[\n\\begin{vmatrix}x-1&y-2&z\\\\1&-1&0\\\\1&0&1\\end{vmatrix}=-(x-1)-(y-2)+z=0\n\\ \\Longrightarrow\\ x+y-z-3=0.\n\\]\nEls coeficients de $\\pi$ i $\\pi'$ són proporcionals, $\\frac12=\\frac12=\\frac{-1}{-2}$, però els termes\nindependents no, $\\frac{-3}1\\ne\\frac12$: $\\operatorname{rang}M=1$ i $\\operatorname{rang}M^*=2$. Els plans són\nparal·lels.\n\\end{solucio}\n\n\\begin{tria}{tres-plans}\n\\itemtria{un-punt}{1}{1,25}\nEstudia la posició relativa dels plans $x+y+z=6$, $x-y+2z=5$ i $2x+y-z=1$.\n\n\\begin{solucio}\n$|M|=\\begin{vmatrix}1&1&1\\\\1&-1&2\\\\2&1&-1\\end{vmatrix}=7\\ne0$:\n$\\operatorname{rang}M=\\operatorname{rang}M^*=3$. Els tres plans es tallen en un sol punt:\n\\[\n\\left(\\begin{array}{ccc|c}1&1&1&6\\\\1&-1&2&5\\\\2&1&-1&1\\end{array}\\right)\n\\xrightarrow[F_3-2F_1]{F_2-F_1}\n\\left(\\begin{array}{ccc|c}1&1&1&6\\\\0&-2&1&-1\\\\0&-1&-3&-11\\end{array}\\right)\n\\xrightarrow{2F_3-F_2}\n\\left(\\begin{array}{ccc|c}1&1&1&6\\\\0&-2&1&-1\\\\0&0&-7&-21\\end{array}\\right),\n\\]\n$z=3$, $y=2$, $x=1$: el punt $(1,2,3)$.\n\\end{solucio}\n\n\\itemtria{tercer-pla}{1}{1,25}\nEscriu un pla $\\pi_3$, diferent dels altres dos, de manera que els plans $\\pi_1\\colon x+2y-z=1$,\n$\\pi_2\\colon 2x-y+z=4$ i $\\pi_3$ es tallin en una recta. Justifica-ho.\n\n\\begin{solucio}\nResposta oberta. $\\pi_1$ i $\\pi_2$ no són paral·lels (els vectors normals no són proporcionals) i es\ntallen en una recta. Qualsevol pla que sigui combinació lineal dels dos la conté: per exemple,\n$\\pi_1+\\pi_2$, és a dir, $\\pi_3\\colon 3x+y=5$.\\\\\nAleshores la tercera fila de $M^*$ és la suma de les dues primeres i\n$\\begin{vmatrix}1&2\\\\2&-1\\end{vmatrix}=-5\\ne0$: $\\operatorname{rang}M=\\operatorname{rang}M^*=2$, i els tres\nplans es tallen en una recta.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba el valor de $a$ perquè els plans $ax+3y-z=2$ i $2x-y+az=0$ siguin perpendiculars. Hi ha algun\nvalor de $a$ per al qual siguin paral·lels?\n\n\\begin{solucio}\nPerpendiculars: $(a,3,-1)\\cdot(2,-1,a)=2a-3-a=a-3=0$, $a=3$.\\\\\nParal·lels: caldria $\\frac a2=\\frac3{-1}=\\frac{-1}a$. La primera igualtat dona $a=-6$, i aleshores\n$\\frac{-1}{-6}=\\frac16\\ne-3$. No són paral·lels per a cap valor de $a$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/posicio-rectes-plans/q002/out/enunciat.pdf",
+   "pdf_solucio": "u5/posicio-rectes-plans/q002/out/solucio.pdf",
+   "pdf_curt": "u5/posicio-rectes-plans/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/posicio-rectes-plans/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u5/posicio-rectes-plans/q003",
+   "unitat": "u5",
+   "tema": "posicio-rectes-plans",
+   "codi": "q003",
+   "titol": "Recta donada per dos plans i paral·lela a un pla, un paràmetre i tres plans en una recta",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    74,
+    84,
+    77
+   ],
+   "minuts": 20,
+   "minuts_curt": 12,
+   "etiquetes": [
+    "posició relativa recta-pla",
+    "tres plans"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "recta-pla-casos",
+     "defecte_llarg": "parametre",
+     "defecte_curt": "parametre",
+     "items": [
+      {
+       "id": "parametre",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/parametre/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/parametre/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/parametre/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/parametre/solucio-curt.pdf"
+      },
+      {
+       "id": "pla-per-l-origen",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/pla-per-l-origen/enunciat.pdf",
+       "pdf_solucio": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/pla-per-l-origen/solucio.pdf",
+       "pdf_curt": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/pla-per-l-origen/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u5/posicio-rectes-plans/q003/out/tries/recta-pla-casos/pla-per-l-origen/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la recta $r\\colon\\left\\{\\begin{aligned}x+y-z&=1\\\\2x-y+z&=5\\end{aligned}\\right.$ i el pla\n$\\pi\\colon x+2y-2z+1=0$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia la posició relativa de $r$ i $\\pi$.\n\n\\begin{solucio}\nLes tres equacions formen un sistema amb\n$M=\\begin{pmatrix}1&1&-1\\\\2&-1&1\\\\1&2&-2\\end{pmatrix}$ i termes independents $1$, $5$ i $-1$.\n$|M|=0$ i $\\begin{vmatrix}1&1\\\\2&-1\\end{vmatrix}=-3\\ne0$: $\\operatorname{rang}M=2$. A l'ampliada,\n$\\begin{vmatrix}1&1&1\\\\2&-1&5\\\\1&2&-1\\end{vmatrix}=3\\ne0$: $\\operatorname{rang}M^*=3$. El sistema és\nincompatible: la recta i el pla són paral·lels.\n\\end{solucio}\n\n\\begin{tria}{recta-pla-casos}\n\\itemtria{parametre}{1}{1,25}\nEstudia, segons els valors de $a$, la posició relativa de la recta\n$\\left\\{\\begin{aligned}x&=t\\\\y&=1+t\\\\z&=2t\\end{aligned}\\right.$ i el pla $x+ay+z-1=0$. Troba el punt de\ntall per a $a=1$.\n\n\\begin{solucio}\nSubstituint: $t+a(1+t)+2t-1=(a+3)t+(a-1)=0$.\n\\begin{itemize}\n\\item Si $a\\ne-3$, hi ha un sol valor de $t$: es tallen en un punt.\n\\item Si $a=-3$, queda $-4=0$, sense solució: són paral·lels.\n\\end{itemize}\nPer a $a=1$: $4t=0$, $t=0$, i el punt de tall és $(0,1,0)$.\n\\end{solucio}\n\n\\itemtria{pla-per-l-origen}{1}{1,25}\nTroba el pla que conté la recta $r$ i passa per l'origen. Quina relació té amb $\\pi$?\n\n\\begin{solucio}\nEn paramètriques, $r$ és $(2,\\ -1+\\lambda,\\ \\lambda)$: passa per $A(2,-1,0)$ amb vector director\n$(0,1,1)$. El pla passa per l'origen amb vectors directors $\\overrightarrow{OA}=(2,-1,0)$ i $(0,1,1)$:\n\\[\n\\begin{vmatrix}x&y&z\\\\2&-1&0\\\\0&1&1\\end{vmatrix}=-x-2y+2z=0\\ \\Longrightarrow\\ x+2y-2z=0.\n\\]\nTé el mateix vector normal que $\\pi$, $(1,2,-2)$, i un altre terme independent: és el pla paral·lel a\n$\\pi$ que passa per l'origen. Per això $r$ és paral·lela a $\\pi$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nEstudia la posició relativa dels plans $x+y+z=2$, $x-y+2z=1$ i $3x+y+4z=5$.\n\n\\begin{solucio}\nLa tercera equació és el doble de la primera més la segona, també en els termes independents\n($2\\cdot2+1=5$). $\\begin{vmatrix}1&1\\\\1&-1\\end{vmatrix}=-2\\ne0$, i\n$\\operatorname{rang}M=\\operatorname{rang}M^*=2$: cap parella de plans no és paral·lela, i els tres es\ntallen en una recta.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u5/posicio-rectes-plans/q003/out/enunciat.pdf",
+   "pdf_solucio": "u5/posicio-rectes-plans/q003/out/solucio.pdf",
+   "pdf_curt": "u5/posicio-rectes-plans/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u5/posicio-rectes-plans/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u7/bolzano-biseccio/q001",
