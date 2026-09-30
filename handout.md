@@ -60,7 +60,8 @@ Determinants. La trenta-novena va fer la u3, Sistemes d'equacions, i la quarante
 l'espai, amb quatre temes. La quaranta-unena va fer la u6, Angles i distàncies a l'espai, i la u12, La
 integral definida, amb les integrals immediates de la u11 com a primer apartat: **totes les unitats del
 curs tenen preguntes al banc**. La quaranta-dosena va donar a la u11, Integrals, un tema propi reduït:
-tres temes amb dues variants cadascun. La màquina funciona de punta a punta. El que queda és
+tres temes amb dues variants cadascun. La quaranta-tresena va revisar a fons tota aquesta feina i no
+hi va trobar cap error matemàtic. La màquina funciona de punta a punta. El que queda és
 sobretot calibrar-lo amb els exàmens reals (7.4), el filtre PAU per unitats fetes (7.5) i les decisions obertes (7.6).
 
 ---
@@ -1488,7 +1489,7 @@ i relacionar les gràfiques de $F$, $f$ i $f'$. Com que el tema és curt, cada t
 en lloc de tres. Les nou preguntes de la u12 continuen tenint les integrals immediates com a apartat a).
 
 **Temes**, a partir de les activitats de la secció «Funció primitiva» i «Integrals de funcions
-elementals» del solucionari (43–54), totes sense canvi de variable:
+elementals» del solucionari (43–54), i del 123, totes sense canvi de variable:
 
 | Tema | Exercicis |
 |---|---|
@@ -1514,6 +1515,25 @@ script les va escriure sense protegir la barra inversa). S'han restituït.
 **Verificació.** Totes les primitives es van comprovar derivant-les amb SymPy. Les sis preguntes
 compilen a una pàgina i sense cap avís, i les gràfiques es van revisar sobre el PDF compilat. Les tres
 bateries passen, amb 211 preguntes i 55 temes.
+
+### 2.43 Sessió 43 · Revisió a fons de la feina de les sessions 36 a 42
+
+El professor va demanar una revisió completa de tot el que s'havia fet des de la sessió 36. Es va tornar
+a comprovar, pregunta per pregunta i amb SymPy, cada resultat de les 63 preguntes noves (u1, u2, u3, u5,
+u6, u11 i u12): productes, potències, determinants (63, comparats automàticament amb el text), rangs,
+inverses, sistemes i passos de Gauss, distàncies, projeccions, primitives, integrals i àrees. També es van
+comprovar els desenvolupaments de Sarrus terme a terme, les unitats de les 25 preguntes PAU, els recomptes
+del README (150 preguntes amb tria i 61 PAU) i, sobre les imatges del solucionari, els nou errors que
+aquest document li atribueix (u3 60a i 100, u5 80, u6 88 i 139, u11 54a i 54d, u12 55c i 55g).
+
+**Cap error matemàtic.** Només es van corregir tres detalls de redacció: «de implícita» per
+«d'implícita» al títol de `u5/equacions-recta/q002`; «la posició és *la* primitiva de la velocitat» per
+«*una* primitiva» a `u11/primitiva/q002`, i, en aquest document, l'origen dels exercicis de la u11 (també
+el 123) i les dues decisions sobre la u11 de la secció 3, que ara remeten a la 2.42.
+
+**Una trampa evitada.** En netejar després del build local, esborrar totes les carpetes `out/` va esborrar
+també PDF que el bot ja havia desat al repositori. Es van restaurar amb `git restore` abans de cap commit,
+i queda anotat a la secció 10.
 
 ---
 
@@ -1588,7 +1608,7 @@ bateries passen, amb 211 preguntes i 55 temes.
 | El cas 4 de `prova_sortida.py` no depèn de si la pregunta té tries | Disseny | Si no, calia moure'l cada vegada que una unitat rebia tries |
 | Un build complet esborra de `out/` els PDF que ja no genera cap font; un build amb `--pregunta`, no | Disseny, arran d'una fallada (2.18) | `out/` és generat i ha de reflectir les fonts; un build parcial no les ha mirades totes |
 | La u3 (Sistemes d'equacions) també entra al banc, com la resta d'unitats del curs | Professor (sessió 36) | És al curs, setmanes 23–26 |
-| La u11 no té tema propi: les integrals immediates (exercicis 52 i 54) entren com a primer apartat de preguntes de la u12 | Professor (sessió 36) | Només té dos exercicis assignats, que no donen per a un tema amb tres variants |
+| La u11 no té tema propi: les integrals immediates (exercicis 52 i 54) entren com a primer apartat de preguntes de la u12 | Professor (sessió 36); **substituïda a la 2.42** | Només té dos exercicis assignats, que no donen per a un tema amb tres variants |
 | La u1 inclou les matrius idempotents i les que commuten amb una de donada, amb l'enunciat definint-ne el concepte | Disseny (2.37) | Surten a la PAU (`alg-23j-q2`, `alg-25i-q4b`) i es resolen amb la tècnica del 85b, que és practicat |
 | Cap commit no porta `[skip ci]` ni etiquetes semblants | Disseny, arran d'una fallada (2.38) | Cloudflare Pages, que publica la web, se salta aquests commits, i el catàleg nou no arribava mai |
 | A la u3, els sistemes compatibles determinats es resolen per Gauss, no per Cramer | Disseny (2.39) | La regla de Cramer (exercici 58) no és a cap setmana assignada; Gauss sí (43, 66) |
@@ -1596,7 +1616,7 @@ bateries passen, amb 211 preguntes i 55 temes.
 | La u5 té quatre temes | Disseny (2.40) | És la unitat més gran: 23 exercicis en cinc setmanes, amb dos blocs (equacions i posicions relatives) de pes semblant |
 | A la u5, el vector normal d'un pla es calcula amb el determinant $\lvert X-P,\ \vec u,\ \vec v\rvert=0$, no amb el producte vectorial | Disseny (2.40) | És el mètode del solucionari als exercicis assignats (53, 66, 73); el producte vectorial no surt a cap exercici assignat |
 | A la u6, les projeccions es troben amb la recta perpendicular (sobre un pla) o el pla perpendicular (sobre una recta), i les distàncies, amb la fórmula de punt a pla | Disseny (2.41) | És el mètode del solucionari als exercicis assignats; la distància entre rectes, els angles i el producte vectorial no surten a cap exercici assignat |
-| A la u12, l'apartat a) de cada pregunta són integrals immediates de la u11 (polinomis i racionals, com el 52 i el 54) | Professor (2.41) | La u11 només té aquests dos exercicis, i no té tema propi |
+| A la u12, l'apartat a) de cada pregunta són integrals immediates de la u11 (polinomis i racionals, com el 52 i el 54) | Professor (2.41) | La u11 només té aquests dos exercicis; des de la 2.42 també té temes propis, en versió reduïda |
 | La u11 sí que té temes propis, en versió reduïda: primitiva, integrals immediates i gràfiques de $F$, $f$ i $f'$, sense canvi de variable, per parts ni fraccions simples, amb dues variants per tema | Professor (2.42) | Substitueix la decisió de la sessió 36; la u12 manté les integrals immediates com a apartat a) |
 
 ---
@@ -2403,19 +2423,19 @@ del primer exercici.
 | Un patró amb `\\[` dins d'una cadena `r"..."` no busca el claudàtor literal: la prova de colors no detectava res, i donava un fals positiu amb `[count=\i]` | Patró corregit i contraprova amb colors reals (2.32) |
 | Dos PDF de la mateixa font no eren idèntics (data i identificador aleatori), i Git els desava tots a cada execució | PDF reproduïbles i memòria (2.23) |
 | Un PDF que ja no genera cap font (el d'un ítem retirat) fa fallar `prova_sortida.py` | Un build complet l'esborra (2.18); perquè l'esborrat arribi al repositori, el pas «Desa» ha de fer `git add -A` (secció 11) |
+| Per no pujar PDF en una *pull request*, esborrar les carpetes `out/` després del build local també esborra PDF que ja són al repositori (els hi desa el bot) | `git restore cataleg.js` i `git add` només dels `.tex` i `meta.json`; els `out/` modificats es restauren amb `git restore`, i només s'esborren els d'una pregunta nova, que encara no hi són (2.43) |
 
 ---
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 42, com a *pull request* (7.1).
+És el lliurament de la sessió 43, com a *pull request* (7.1).
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els tres temes de la u11 |
-| `u11/<tema>/q001` i `q002` | Les sis preguntes de la u11 |
-| `handout.md` | Seccions 1, 2.41 (fórmules restituïdes), 2.42, 3, 6.15, 7.4 i 11 |
-| `README.md` | L'estat del banc |
+| `u5/equacions-recta/q002/meta.json` | «d'implícita» al títol |
+| `u11/primitiva/q002/pregunta.tex` | «una primitiva» a la tria `velocitat` |
+| `handout.md` | Seccions 1, 2.42, 2.43, 3, 10 i 11 |
 
-No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes noves, i
-Cloudflare publica el catàleg nou uns minuts després.
+No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes canviades,
+i Cloudflare publica el catàleg nou uns minuts després.
