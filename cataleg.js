@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 18:09 UTC",
+ "generat": "2026-09-30 20:10 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -4765,7 +4765,7 @@ const BANC = {
      ]
     }
    ],
-   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $F(x)=\\ln(x^2+4)$ és una primitiva de $f(x)=\\dfrac{2x}{x^2+4}$. Quina és la primitiva\nde $f$ que val 0 a $x=0$?\n\n\\begin{solucio}\n$F'(x)=\\dfrac{1}{x^2+4}\\cdot2x=\\dfrac{2x}{x^2+4}=f(x)$ per a tot $x$.\\\\\nLes primitives de $f$ són $\\ln(x^2+4)+k$. A $x=0$ valen $\\ln4+k$, que és 0 si $k=-\\ln4$: la primitiva\nbuscada és $\\ln(x^2+4)-\\ln4=\\ln\\dfrac{x^2+4}{4}$.\n\\end{solucio}\n\n\\begin{tria}{primitiva-condicio}\n\\itemtria{exponencial}{1}{1,25}\nTroba la primitiva de $f(x)=e^{2x}+\\dfrac1x$, per a $x>0$, que compleix $F(1)=\\dfrac{e^2}{2}$.\n\n\\begin{solucio}\n$F(x)=\\dfrac{e^{2x}}{2}+\\ln x+k$. Com que $F(1)=\\dfrac{e^2}{2}+0+k$, la condició dona $k=0$:\n$F(x)=\\dfrac{e^{2x}}{2}+\\ln x$.\n\\end{solucio}\n\n\\itemtria{velocitat}{1}{1,25}\nUn mòbil es desplaça en línia recta amb velocitat $v(t)=3t^2-2t$ (en m/s). Sabent que la posició és la\nprimitiva de la velocitat, i que a l'instant $t=0$ el mòbil és a $s(0)=5$\\,m, troba la posició $s(t)$ i\non és a l'instant $t=2$.\n\n\\begin{solucio}\n$s(t)=t^3-t^2+k$, i $s(0)=k=5$: $s(t)=t^3-t^2+5$. A l'instant $t=2$, $s(2)=8-4+5=9$\\,m.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nSi $f$ és un polinomi de grau 3, de quin grau són les seves primitives? Troba la primitiva de\n$f(x)=4x^3-6x$ que s'anul·la a $x=1$.\n\n\\begin{solucio}\nDe grau 4: integrar $x^n$ dona $\\frac{x^{n+1}}{n+1}$, que té un grau més (i derivar en treu un).\\\\\n$F(x)=x^4-3x^2+k$, i $F(1)=1-3+k=0$ dona $k=2$: $F(x)=x^4-3x^2+2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nComprova que $F(x)=\\ln(x^2+4)$ és una primitiva de $f(x)=\\dfrac{2x}{x^2+4}$. Quina és la primitiva\nde $f$ que val 0 a $x=0$?\n\n\\begin{solucio}\n$F'(x)=\\dfrac{1}{x^2+4}\\cdot2x=\\dfrac{2x}{x^2+4}=f(x)$ per a tot $x$.\\\\\nLes primitives de $f$ són $\\ln(x^2+4)+k$. A $x=0$ valen $\\ln4+k$, que és 0 si $k=-\\ln4$: la primitiva\nbuscada és $\\ln(x^2+4)-\\ln4=\\ln\\dfrac{x^2+4}{4}$.\n\\end{solucio}\n\n\\begin{tria}{primitiva-condicio}\n\\itemtria{exponencial}{1}{1,25}\nTroba la primitiva de $f(x)=e^{2x}+\\dfrac1x$, per a $x>0$, que compleix $F(1)=\\dfrac{e^2}{2}$.\n\n\\begin{solucio}\n$F(x)=\\dfrac{e^{2x}}{2}+\\ln x+k$. Com que $F(1)=\\dfrac{e^2}{2}+0+k$, la condició dona $k=0$:\n$F(x)=\\dfrac{e^{2x}}{2}+\\ln x$.\n\\end{solucio}\n\n\\itemtria{velocitat}{1}{1,25}\nUn mòbil es desplaça en línia recta amb velocitat $v(t)=3t^2-2t$ (en m/s). Sabent que la posició és una\nprimitiva de la velocitat, i que a l'instant $t=0$ el mòbil és a $s(0)=5$\\,m, troba la posició $s(t)$ i\non és a l'instant $t=2$.\n\n\\begin{solucio}\n$s(t)=t^3-t^2+k$, i $s(0)=k=5$: $s(t)=t^3-t^2+5$. A l'instant $t=2$, $s(2)=8-4+5=9$\\,m.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nSi $f$ és un polinomi de grau 3, de quin grau són les seves primitives? Troba la primitiva de\n$f(x)=4x^3-6x$ que s'anul·la a $x=1$.\n\n\\begin{solucio}\nDe grau 4: integrar $x^n$ dona $\\frac{x^{n+1}}{n+1}$, que té un grau més (i derivar en treu un).\\\\\n$F(x)=x^4-3x^2+k$, i $F(1)=1-3+k=0$ dona $k=2$: $F(x)=x^4-3x^2+2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
    "pdf": "u11/primitiva/q002/out/enunciat.pdf",
    "pdf_solucio": "u11/primitiva/q002/out/solucio.pdf",
    "pdf_curt": "u11/primitiva/q002/out/enunciat-curt.pdf",
@@ -8003,7 +8003,7 @@ const BANC = {
    "unitat": "u5",
    "tema": "equacions-recta",
    "codi": "q002",
-   "titol": "Recta paral·lela a una altra, de implícita a paramètrica i punts alineats amb dos paràmetres",
+   "titol": "Recta paral·lela a una altra, d'implícita a paramètrica i punts alineats amb dos paràmetres",
    "punts": 2.5,
    "apartats": [
     0.75,
