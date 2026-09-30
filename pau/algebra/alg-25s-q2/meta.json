@@ -1,6 +1,6 @@
 {
   "titol": "Sistema lineal amb paràmetre m: discussió, un cas determinat i el cas indeterminat",
-  "unitats": [],
+  "unitats": ["u2", "u3"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

@@ -1,6 +1,6 @@
 {
   "titol": "Sistema lineal amb paràmetre k: discussió, Cramer, el cas indeterminat i com fer-lo incompatible",
-  "unitats": [],
+  "unitats": ["u2", "u3"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

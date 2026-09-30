@@ -1,6 +1,6 @@
 {
   "titol": "Pla perpendicular a x + y = 0 per dos punts, i la recta dels punts equidistants",
-  "unitats": [],
+  "unitats": ["u5", "u6"],
   "dificultat": "●●○",
   "minuts": 22,
   "etiquetes": [

@@ -1,6 +1,6 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
-**Data:** 28 de setembre de 2026 · **Estat:** 148 preguntes (24 de la unitat 7, 18 de la unitat
+**Data:** 30 de setembre de 2026 · **Estat:** 148 preguntes (24 de la unitat 7, 18 de la unitat
 8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14 i 61 de la PAU), 87 amb tries · 2.968 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
@@ -51,10 +51,10 @@ juny de 2025, i la vint-i-novena, setembre de 2025, amb l'exercici 3 sencer com 
 banc. La trenta-unena va importar setembre de 2024, la primera amb el format antic de sis exercicis, i la trenta-dosena, la sèrie 1 de juny de 2024. La trenta-tresena va deixar la llista de temes plegada
 per defecte i va importar la sèrie 5 de juny de 2024. La trenta-quatrena va importar les tres convocatòries de 2023: la PAU del
 repositori `pau` és sencera al banc. La trenta-cinquena va explicar per què el 2023 no sortia a la
-pàgina (el navegador hi tenia un catàleg antic) i ho va evitar d'ara endavant. La màquina
-funciona de punta a punta. El que queda és
-sobretot contingut: la u9, que acaba el 22 de novembre, els 56 exercicis PAU pendents, la
-resta d'unitats, i estendre les tries a la u10.
+pàgina (el navegador hi tenia un catàleg antic) i ho va evitar d'ara endavant. La trenta-sisena va
+afegir les unitats 1 a 6 al registre, va dir quines unitats necessiten les 25 PAU d'àlgebra i
+geometria, i va posar al dia el calendari. La màquina funciona de punta a punta. El que queda és
+contingut: les unitats 1, 2, 5, 6, 11 i 12 (i, si es decideix, la 3), en l'ordre del calendari (7.4).
 
 ---
 
@@ -1202,6 +1202,39 @@ així sense risc.
 **De passada.** El `compila.yml` de la còpia de treball tenia una línia `git add` diferent de la del
 repositori (totes dues desen el mateix); es va copiar la del repositori, que és la que val.
 
+### 2.36 Sessió 36 · Les unitats 1 a 6 al registre, i les 25 PAU que deien «per definir»
+
+La sessió va començar amb una anàlisi de la feina pendent de les unitats 1, 2, 5, 6, 11 i 12, a partir
+de la programació real del curs: `tasques.js` del repositori `sol` i el full de Classroom, que ja porta
+els exercicis de totes les setmanes (vegeu 7.4). En sortien dues troballes. El calendari d'aquest document
+estava desfasat. A més, 25 preguntes PAU no podien dir quines unitats necessiten, perquè aquestes unitats
+no eren a `temes.json`: el build rebutja qualsevol unitat que no hi sigui.
+
+- **`temes.json` té les unitats 1, 2, 3, 5 i 6**, amb els títols del full de programació. La u4 no hi és,
+  perquè es fa dins de la u5 (secció 3). Les unitats queden en l'**ordre del curs**: u7–u10, u13, u14,
+  u1–u3, u5, u6, u11, u12 i la PAU. És l'ordre de la llista de temes, i la seqüència que necessitarà el
+  filtre PAU per unitats fetes (7.5). Una unitat sense temes no surt a la llista, i per això la pàgina no
+  canvia fins que en tingui.
+- **Les 25 preguntes PAU d'àlgebra (15) i de geometria (10) tenen `unitats`.** El professor va fixar la
+  font: per a la PAU, només el repositori `pau`. Les unitats surten, doncs, del criteri oficial (`-s`) i
+  de les pistes (`-p`) de cada exercici, amb aquest criteri:
+  - Un sistema amb paràmetre es discuteix amb rangs i determinants: **u2 i u3**. Si cal interpretar-lo com
+    a tres plans, també la **u5** (`alg-23j-q4`, `alg-25i-q2`, `alg-26j-q2`).
+  - Una pregunta de matrius que només en fa productes és de la **u1** (`alg-23j-q2`). Si hi surt la inversa
+    o la invertibilitat, **u1 i u2**, perquè al curs la inversa s'assigna a la u2 (exercicis 95–100).
+    `alg-26j2-q2` hi afegeix un sistema: **u1, u2 i u3**.
+  - Les deu de geometria demanen alguna distància, una projecció, un simètric o un producte vectorial:
+    **u5 i u6**. Els vectors (u4) compten com a u5.
+- **Ara el build no dona cap avís.** Abans en donava 25, un per a cada pregunta amb `unitats` buida.
+- **El lliurament canvia.** Els canvis arriben com una *pull request*, i el professor només l'ha de
+  fusionar (7.1).
+
+**Verificat:** `prova_validacio.py`, `prova_sortida.py` i `prova_paritat.py` passen sense canvis, i el
+catàleg es genera amb 148 preguntes i cap avís.
+
+**Pendent de decidir** (7.6): si es fa la u3; què es fa amb la u11, que té només dos exercicis; i si el
+banc cobreix continguts de la PAU que no té cap exercici assignat.
+
 ---
 
 ## 3. Decisions preses
@@ -1689,18 +1722,25 @@ fitxers de font que canvia. Tot es fa des de la web de GitHub; no cal el Codespa
   permís per escriure-hi. Es creen i s'editen des de la web de GitHub, enganxant-ne el
   contingut.
 
+**Des de la sessió 36, el lliurament és una *pull request*.** La sessió treballa directament sobre
+el repositori, en una branca pròpia, i en obre una *pull request* cap a `main`. El professor només ha
+de fer **Merge pull request → Confirm merge**. Aquesta fusió és un push normal a `main`, i per tant
+l'Action «Compila el banc» s'executa sola quan toca alguna font: no cal cap ZIP, ni `_uploads`, ni
+Run workflow. El mètode del ZIP continua valent quan la sessió no té accés al repositori. Les regles
+no canvien: la *pull request* mai no porta PDF, ni `cataleg.js`, ni res de `.github/workflows/`.
+
 **A la sessió 5**, `compila.yml` es va crear des de la web, i l'Action va sortir en verd per
 primera vegada: set passos, amb tots els PDF compilats amb el preàmbul oficial. L'últim
 lliurament de la sessió és l'apartat 11.
 
 ### 7.2 Dades del professor
 
-- **Unitats 1 a 6: resolt.** Els títols surten del full de programació i la u4 la va confirmar
-  el professor. Són Matrius (u1), Determinants (u2), Sistemes d'equacions (u3), Vectors a
-  l'espai (u4, que es fa dins de la u5), Rectes i plans en l'espai (u5) i Angles i distàncies
-  a l'espai (u6). S'han d'afegir a `temes.json`, i llavors es poden omplir les `unitats`
-  d'`alg-26j-q2` i de `geo-26j-q4b`. Mentre no hi siguin, les targetes diuen «per definir» i el
-  build n'avisa. Una PAU que necessiti vectors ha de dir `u5`, no `u4`.
+- **Unitats 1 a 6: fet a la sessió 36 (2.36).** Són Matrius (u1), Determinants (u2), Sistemes
+  d'equacions (u3), Vectors a l'espai (u4, que es fa dins de la u5), Rectes i plans en l'espai (u5)
+  i Angles i distàncies a l'espai (u6). Són a `temes.json`, i les 25 PAU d'àlgebra i geometria ja
+  diuen quines necessiten. Una PAU que necessiti vectors ha de dir `u5`, no `u4`.
+- **Exercicis de totes les setmanes: resolt.** El full de Classroom (a `source/` d'aquest repositori
+  i al repositori `sol`) i `tasques.js` ja porten els exercicis de les setmanes 18 a 36 (7.4).
 - **Pendent de confirmar: els exercicis 30 i 34 de la u9.** Són a les setmanes 9 i 10, però al
   solucionari no surten a cap secció d'aplicacions de la derivada: el 34 hi apareix com un
   exercici de domini d'un logaritme, i el 30 no s'hi troba. Els altres catorze sí que encaixen.
@@ -1750,11 +1790,28 @@ l'ordre numèric.
 | u14 Distribucions de probabilitat | 15–16 | 3 de gener de 2027 · **binomial feta** (2.26); la normal, sense exercicis practicats |
 | u1 Matrius | 18–19 | 24 de gener de 2027 |
 | u2 Determinants | 20–22 | 14 de febrer de 2027 |
-| u3 Sistemes d'equacions | 23–25 | 7 de març de 2027 |
-| u5 Rectes i plans en l'espai (amb la u4) | 26–30 | 11 d'abril de 2027 |
-| u6 Angles i distàncies a l'espai | 31–32 | 25 d'abril de 2027 |
-| u11 Integrals | 33–34 | 9 de maig de 2027 |
+| u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 |
+| u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 |
+| u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 |
+| u11 Integrals | 34 | 9 de maig de 2027 |
 | u12 La integral definida | 35–36 | 23 de maig de 2027 |
+
+Les setmanes i els exercicis de les unitats que falten, segons `tasques.js` (sessió 36). Els temes són
+una **proposta** feta a partir de la secció del llibre d'on surt cada exercici; es fixen quan es fa la
+unitat.
+
+| Unitat | Exercicis practicats | Temes proposats |
+|---|---|---|
+| u1 | s18: 12, 13, 15, 16, 17 · s19: 42, 49, 69, 81, 85 | Tipus de matrius i operacions (12, 13, 15, 17, 42, 49); matrius que commuten (16, 69); potències, nilpotents i idempotents (81, 85) |
+| u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | Càlcul de determinants (35–44); rang amb paràmetres (79–87); inversa i invertibilitat (95–100) |
+| u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | Gauss i classificació (38–43); discussió amb paràmetre (55–66); problemes (90–100) |
+| u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | Equacions de la recta (43–49, 63); equacions del pla (53–59, 66); posició relativa de dues rectes (71–73, 79–81); recta i pla, i plans (74–77, 84, 85) |
+| u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | Projecció i simètrics (74, 76, 90); distància punt-pla i recta-pla (86, 97, 139); punts a una distància donada o equidistants (88, 92, 115) |
+| u11 | s34: 52, 54 | Integrals immediates: polinòmiques i racionals (52, 54) |
+| u12 | s35: 35, 39, 55, 79 · s36: 80, 88, 96, 111, 114 | Integral definida i Barrow (35, 39, 55); àrea entre una corba i l'eix (79, 80, 88); àrea entre dues corbes (96, 111, 114) |
+
+Cap exercici assignat no cobreix els angles, la perpendicular comuna a dues rectes, el producte
+vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a la PAU (7.6).
 
 - **Calibrar els minuts** amb dades reals, a partir del primer examen de la u7. Ara són
   estimacions: uns 16–20 minuts per pregunta a 1 h 30 i uns 10–12 a 50 min.
@@ -1808,6 +1865,16 @@ l'ordre numèric.
 
 ### 7.6 Decisions obertes
 
+- **Si es fa la u3 (Sistemes d'equacions).** No era a la llista d'unitats pendents que va donar el
+  professor a la sessió 36. Té 14 exercicis en quatre setmanes, i 9 de les 15 PAU d'àlgebra són
+  sistemes amb paràmetre.
+- **Què es fa amb la u11.** Només té dos exercicis (52 i 54), i donen per a un sol tema. Hi ha tres
+  opcions: un sol tema amb tres variants; fer servir les integrals immediates com a primer apartat de
+  preguntes de la u12; o afegir exercicis a la setmana 34.
+- **Continguts PAU sense cap exercici assignat.** Els angles, la perpendicular comuna, el producte
+  vectorial i el mixt, i les equacions matricials. En depenen `geo-23s-q5`, `geo-24i-q6`,
+  `geo-23j2-q3`, `geo-26j-q4b`, `alg-23s-q1`, `alg-24i-q2` i `alg-23j2-q5`. Amb la regla que el banc
+  no surt dels exercicis practicats, no hi tindrien tema.
 - **Com s'importa l'exercici 3 de setembre de 2025.** ✅ Decidit a la sessió 29 (2.29): una sola
   vegada, sencer, amb el codi `pro-25s-q3`. Text original: el repositori `pau` el té dues vegades,
   com a `pro-25s-q3ab` i com a `ana-25s-q3c`. És un sol exercici de 2,5 punts: a) i b) de
@@ -1934,14 +2001,14 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 35. Parteix del de la sessió 34, que ja és al repositori.
+És el lliurament de la sessió 36, i el primer que arriba com a *pull request* (7.1). Parteix de `main`
+tal com era després de la pujada de `source/`.
 
 | Fitxer | Canvi |
 |---|---|
-| `index.html` | Els scripts es carreguen amb `?v=` i un número que canvia cada minut (2.35) |
-| `README.md` | Com es llegeix el segell de dalt de la pàgina |
-| `handout.md` | Secció 2.35, i les seccions 10 i 11 |
+| `temes.json` | Les unitats 1, 2, 3, 5 i 6, i totes les unitats en l'ordre del curs (2.36) |
+| `pau/algebra/*/meta.json` (15) i `pau/geometria/*/meta.json` (10) | El camp `unitats`, que era buit |
+| `handout.md` | Seccions 1, 2.36, 7.1, 7.2, 7.4, 7.6 i 11 |
 
-No porta cap PDF ni `cataleg.js`, i no cal fer **Run workflow**: l'`index.html` no és una font del banc, i
-en pujar-lo per `_uploads` el lloc es publica igualment al cap d'un parell de minuts. Si es fa, no passa res:
-el resum dirà «0 PDF desats · 1200 reutilitzats».
+No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action «Compila el banc» s'executa sola,
+perquè `temes.json` i els `meta.json` són fonts. No ha de recompilar cap PDF: el resum dirà «0 PDF desats».

@@ -16,14 +16,6 @@
       "nom": "Unitat 10",
       "subtitol": "Representació de funcions"
     },
-    "u11": {
-      "nom": "Unitat 11",
-      "subtitol": "Integrals"
-    },
-    "u12": {
-      "nom": "Unitat 12",
-      "subtitol": "La integral definida"
-    },
     "u13": {
       "nom": "Unitat 13",
       "subtitol": "Probabilitat"
@@ -31,6 +23,34 @@
     "u14": {
       "nom": "Unitat 14",
       "subtitol": "Distribucions de probabilitat"
+    },
+    "u1": {
+      "nom": "Unitat 1",
+      "subtitol": "Matrius"
+    },
+    "u2": {
+      "nom": "Unitat 2",
+      "subtitol": "Determinants"
+    },
+    "u3": {
+      "nom": "Unitat 3",
+      "subtitol": "Sistemes d'equacions"
+    },
+    "u5": {
+      "nom": "Unitat 5",
+      "subtitol": "Rectes i plans en l'espai"
+    },
+    "u6": {
+      "nom": "Unitat 6",
+      "subtitol": "Angles i distàncies a l'espai"
+    },
+    "u11": {
+      "nom": "Unitat 11",
+      "subtitol": "Integrals"
+    },
+    "u12": {
+      "nom": "Unitat 12",
+      "subtitol": "La integral definida"
     },
     "pau": {
       "nom": "PAU",
