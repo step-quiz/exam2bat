@@ -59,7 +59,8 @@ la web (Cloudflare Pages no publica els commits amb «[skip ci]», i el del bot 
 Determinants. La trenta-novena va fer la u3, Sistemes d'equacions, i la quarantena, la u5, Rectes i plans en
 l'espai, amb quatre temes. La quaranta-unena va fer la u6, Angles i distàncies a l'espai, i la u12, La
 integral definida, amb les integrals immediates de la u11 com a primer apartat: **totes les unitats del
-curs tenen preguntes al banc**. La màquina funciona de punta a punta. El que queda és
+curs tenen preguntes al banc**. La quaranta-dosena va donar a la u11, Integrals, un tema propi reduït:
+tres temes amb dues variants cadascun. La màquina funciona de punta a punta. El que queda és
 sobretot calibrar-lo amb els exàmens reals (7.4), el filtre PAU per unitats fetes (7.5) i les decisions obertes (7.6).
 
 ---
@@ -1443,12 +1444,12 @@ trossos, dibuixada amb TikZ com les de la u7.
 
 | Exercici | Error | Correcte |
 |---|---|---|
-| u6, 88 | El segon punt, $(-6,19,-8)$: de $\lvert\lambda+4vert=6$ en treu $\lambda=-8$ | $\lambda=-10$, el punt $(-8,23,-10)$ |
-| u6, 139 | La recta perpendicular pren $(1,2,3)$ com a vector director, en lloc de $ec n=(1,1,3)$ | Projecció $\left(rac5{11},rac{16}{11},-rac7{11}ight)$ i distància $rac6{\sqrt{11}}$, no $\sqrt{7/2}$ |
-| u11, 54a | $\intrac4{x-2}\,dx=4\ln\lvert x+2vert+k$ | $4\ln\lvert x-2vert+k$ |
-| u11, 54d | $\intrac1{(x+4)^2}\,dx=-rac1{x-4}+k$ | $-rac1{x+4}+k$ |
-| u12, 55c | $rac94\sqrt[3]9+rac{195}{12}$ | $rac{27}4\sqrt[3]9+rac{199}{12}$ |
-| u12, 55g | A la solució hi diu $\cos2x$ en lloc de $\cos^2x$ | El resultat, $rac\pi2$, és correcte |
+| u6, 88 | El segon punt, $(-6,19,-8)$: de $\lvert\lambda+4\rvert=6$ en treu $\lambda=-8$ | $\lambda=-10$, el punt $(-8,23,-10)$ |
+| u6, 139 | La recta perpendicular pren $(1,2,3)$ com a vector director, en lloc de $\vec n=(1,1,3)$ | Projecció $\left(\frac5{11},\frac{16}{11},-\frac7{11}\right)$ i distància $\frac6{\sqrt{11}}$, no $\sqrt{7/2}$ |
+| u11, 54a | $\int\frac4{x-2}\,dx=4\ln\lvert x+2\rvert+k$ | $4\ln\lvert x-2\rvert+k$ |
+| u11, 54d | $\int\frac1{(x+4)^2}\,dx=-\frac1{x-4}+k$ | $-\frac1{x+4}+k$ |
+| u12, 55c | $\frac94\sqrt[3]9+\frac{195}{12}$ | $\frac{27}4\sqrt[3]9+\frac{199}{12}$ |
+| u12, 55g | A la solució hi diu $\cos2x$ en lloc de $\cos^2x$ | El resultat, $\frac\pi2$, és correcte |
 
 **Temes**, amb tres variants cadascun:
 
@@ -1466,7 +1467,7 @@ trossos, dibuixada amb TikZ com les de la u7.
 | Tema | Què demana l'alternativa |
 |---|---|
 | `distancies-pla` | q001, la distància entre dos plans paral·lels (`plans-paralels`); q002, a quin costat del pla és cada punt, pel signe (`costats-del-pla`); q003, una recta que talla el pla, amb distància 0 (`recta-secant`) |
-| `projeccions-simetrics` | q001, el pla respecte del qual dos punts són simètrics (`pla-mediador`); q002, comprovar un simètric sense calcular la projecció (`comprova-simetric`); q003, la distància de dues maneres, amb la fórmula i com a $\lvert\overrightarrow{PQ}vert$ (`distancia-dues-maneres`) |
+| `projeccions-simetrics` | q001, el pla respecte del qual dos punts són simètrics (`pla-mediador`); q002, comprovar un simètric sense calcular la projecció (`comprova-simetric`); q003, la distància de dues maneres, amb la fórmula i com a $\lvert\overrightarrow{PQ}\rvert$ (`distancia-dues-maneres`) |
 | `punts-distancia` | q001, els plans paral·lels a una distància donada (`plans-a-distancia`); q002, tots els punts equidistants de dos plans: els plans bisectors (`plans-bisectors`); q003, el pla que conté una recta paral·lela a un pla (`pla-que-conte-r`) |
 | `integral-definida` | q001, una integral llegida en una gràfica, com el 35 (`grafica`); q002, el límit d'integració desconegut (`limit-desconegut`); q003, una integral amb valor absolut, com el 55e (`valor-absolut`) |
 | `area-corba-eix` | q001, per què $\int_{-2}^2f=0$ no és l'àrea (`error-signe`); q002, la recta vertical que dona una àrea donada (`recta-desconeguda`); q003, el paràmetre d'una paràbola per a una àrea donada (`parametre-area`) |
@@ -1477,6 +1478,42 @@ calcular amb SymPy abans d'escriure'ls. Les divuit preguntes compilen amb el pre
 pàgina i sense cap avís (216 PDF). Totes les solucions es van revisar a ull, i la gràfica, sobre el PDF
 compilat; dues fórmules partides entre línies i una repetició es van corregir. Les tres bateries passen,
 amb 205 preguntes i 52 temes.
+
+### 2.42 Sessió 42 · La unitat 11, en versió reduïda
+
+**El professor canvia de criteri.** La u11 passa a tenir temes propis, en una versió reduïda de la
+unitat: integrals indefinides senzilles, **sense canvi de variable, sense integració per parts i sense
+fraccions simples**. És, bàsicament, el concepte de primitiva, entendre que $F'(x)=f(x)$ per a tot $x$,
+i relacionar les gràfiques de $F$, $f$ i $f'$. Com que el tema és curt, cada tema té **dues variants**
+en lloc de tres. Les nou preguntes de la u12 continuen tenint les integrals immediates com a apartat a).
+
+**Temes**, a partir de les activitats de la secció «Funció primitiva» i «Integrals de funcions
+elementals» del solucionari (43–54), totes sense canvi de variable:
+
+| Tema | Exercicis |
+|---|---|
+| `primitiva` · Funció primitiva | 43, 45, 46, 51, 123 |
+| `integrals-immediates` · Integrals immediates | 48, 49, 50, 52, 53, 54 |
+| `grafiques-primitiva` · Gràfiques de $F$, $f$ i $f'$ | 43, 47, 51 (el llibre no en té cap exercici amb gràfiques) |
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `primitiva` | q001, la funció a partir de la segona derivada, amb dues constants (`segona-derivada`); q002, la posició d'un mòbil a partir de la velocitat, com el 123 (`velocitat`) |
+| `integrals-immediates` | q001, integrals racionals amb logaritmes i potències negatives (`racionals`) en lloc de radicals; q002, quocients que se separen en una suma (`quocients`) en lloc de trigonomètriques |
+| `grafiques-primitiva` | q001, la curvatura de $F$ llegida en el creixement de $f$ (`curvatura`); q002, la primitiva que passa per un altre punt, desplaçada verticalment (`altra-primitiva`) |
+
+Les dues preguntes de `grafiques-primitiva` porten gràfiques TikZ: la paràbola $f$ de la q001, i les tres
+gràfiques A, B i C de la q002 ($f=x^2-1$, $f'=2x$ i $F=\frac{x^3}{3}-x$, desordenades).
+
+**Una correcció del lliurament anterior.** A la taula d'errors del solucionari de la sessió 41, les
+ordres `\frac`, `\vec`, `\rvert` i `\right` havien quedat convertides en caràcters de control (un
+script les va escriure sense protegir la barra inversa). S'han restituït.
+
+**Verificació.** Totes les primitives es van comprovar derivant-les amb SymPy. Les sis preguntes
+compilen a una pàgina i sense cap avís, i les gràfiques es van revisar sobre el PDF compilat. Les tres
+bateries passen, amb 211 preguntes i 55 temes.
 
 ---
 
@@ -1560,6 +1597,7 @@ amb 205 preguntes i 52 temes.
 | A la u5, el vector normal d'un pla es calcula amb el determinant $\lvert X-P,\ \vec u,\ \vec v\rvert=0$, no amb el producte vectorial | Disseny (2.40) | És el mètode del solucionari als exercicis assignats (53, 66, 73); el producte vectorial no surt a cap exercici assignat |
 | A la u6, les projeccions es troben amb la recta perpendicular (sobre un pla) o el pla perpendicular (sobre una recta), i les distàncies, amb la fórmula de punt a pla | Disseny (2.41) | És el mètode del solucionari als exercicis assignats; la distància entre rectes, els angles i el producte vectorial no surten a cap exercici assignat |
 | A la u12, l'apartat a) de cada pregunta són integrals immediates de la u11 (polinomis i racionals, com el 52 i el 54) | Professor (2.41) | La u11 només té aquests dos exercicis, i no té tema propi |
+| La u11 sí que té temes propis, en versió reduïda: primitiva, integrals immediates i gràfiques de $F$, $f$ i $f'$, sense canvi de variable, per parts ni fraccions simples, amb dues variants per tema | Professor (2.42) | Substitueix la decisió de la sessió 36; la u12 manté les integrals immediates com a apartat a) |
 
 ---
 
@@ -2056,6 +2094,20 @@ amb tria. Els punts de la taula són els del defecte.
 | Àrea entre dues corbes | `q002` | Àrees amb la recta tangent a una paràbola | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 96, 111 |
 | Àrea entre dues corbes | `q003` | Àrea entre dues paràboles i entre dues corbes que es creuen dins l'interval | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 114, 111 |
 
+### 6.15 Unitat 11 · Integrals, versió reduïda (6 preguntes)
+
+Tres temes amb dues variants cadascun (2.42), totes amb tria. Sense canvi de variable, per parts ni
+fraccions simples. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Funció primitiva | `q001` | Comprovar una primitiva derivant, i la primitiva que compleix una condició | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 45, 46 |
+| Funció primitiva | `q002` | Primitives amb una condició inicial, i la posició a partir de la velocitat | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 45, 46, 51, 123 |
+| Integrals immediates | `q001` | Integrals immediates de polinomis, de radicals i de racionals senzilles | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 52, 53, 54 |
+| Integrals immediates | `q002` | Integrals immediates d'exponencials, logaritmes, trigonomètriques i quocients que se separen | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 48, 49, 50 |
+| Gràfiques de F, f i f' | `q001` | La gràfica de f diu com creix i com es corba una primitiva F | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 43, 51 |
+| Gràfiques de F, f i f' | `q002` | Tres gràfiques: quina és f, quina és f' i quina és una primitiva F | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 43, 47 |
+
 ## 7. Feina pendent
 
 ### 7.1 Com s'apliquen els lliuraments
@@ -2152,7 +2204,7 @@ l'ordre numèric.
 | u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 · **feta** (2.39): tres temes amb tres variants, totes amb tria |
 | u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 · **feta** (2.40): quatre temes amb tres variants, totes amb tria |
 | u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 · **feta** (2.41): tres temes amb tres variants, totes amb tria |
-| u11 Integrals | 34 | 9 de maig de 2027 · **feta** (2.41), com a primer apartat de totes les preguntes de la u12 |
+| u11 Integrals | 34 | 9 de maig de 2027 · **feta** (2.42), en versió reduïda: tres temes amb dues variants, totes amb tria; a més, apartat a) de les preguntes de la u12 (2.41) |
 | u12 La integral definida | 35–36 | 23 de maig de 2027 · **feta** (2.41): tres temes amb tres variants, totes amb tria |
 
 Les setmanes i els exercicis de les unitats que falten, segons `tasques.js` (sessió 36). Els temes són
@@ -2166,7 +2218,7 @@ unitat.
 | u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | **Fets** (2.39): `gauss-classificacio`, `discussio-parametre` i `problemes-sistemes` |
 | u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | **Fets** (2.40): `equacions-recta`, `equacions-pla`, `posicio-rectes` i `posicio-rectes-plans` |
 | u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | **Fets** (2.41): `distancies-pla`, `projeccions-simetrics` i `punts-distancia` |
-| u11 | s34: 52, 54 | **Fet** (2.41): cap tema propi; les integrals immediates (52, 54) són l'apartat a) de les nou preguntes de la u12 |
+| u11 | s34: 52, 54 | **Fets** (2.42): `primitiva`, `integrals-immediates` i `grafiques-primitiva`, amb dues variants; les integrals immediates són també l'apartat a) de les nou preguntes de la u12 (2.41) |
 | u12 | s35: 35, 39, 55, 79 · s36: 80, 88, 96, 111, 114 | **Fets** (2.41): `integral-definida`, `area-corba-eix` i `area-dues-corbes` |
 
 Cap exercici assignat no cobreix els angles, la perpendicular comuna a dues rectes, el producte
@@ -2356,14 +2408,13 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 41, com a *pull request* (7.1).
+És el lliurament de la sessió 42, com a *pull request* (7.1).
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els tres temes de la u6 i els tres de la u12 |
-| `u6/<tema>/q001` … `q003` | Les nou preguntes de la u6 |
-| `u12/<tema>/q001` … `q003` | Les nou preguntes de la u12, amb la u11 com a apartat a) |
-| `handout.md` | Seccions 1, 2.41, 3, 6.13, 6.14, 7.4, 7.5, 7.6 i 11 |
+| `temes.json` | Els tres temes de la u11 |
+| `u11/<tema>/q001` i `q002` | Les sis preguntes de la u11 |
+| `handout.md` | Seccions 1, 2.41 (fórmules restituïdes), 2.42, 3, 6.15, 7.4 i 11 |
 | `README.md` | L'estat del banc |
 
 No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes noves, i

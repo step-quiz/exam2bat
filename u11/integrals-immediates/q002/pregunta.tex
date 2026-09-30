@@ -1,0 +1,48 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula les integrals $\displaystyle\int\left(e^{2x}+2^x\right)dx$ i
+$\displaystyle\int\frac{4}{2x+3}\,dx$.
+
+\begin{solucio}
+$\displaystyle\int\left(e^{2x}+2^x\right)dx=\frac{e^{2x}}{2}+\frac{2^x}{\ln2}+k$. Com que la derivada de
+$2x+3$ és 2, $\displaystyle\int\frac{4}{2x+3}\,dx=2\int\frac{2}{2x+3}\,dx=2\ln|2x+3|+k$.
+\end{solucio}
+
+\begin{tria}{immediates-altres}
+\itemtria{trigonometriques}{1}{1,25}
+Calcula $\displaystyle\int\bigl(\cos(3x)+3\sin x\bigr)\,dx$ i $\displaystyle\int\sin(x-\pi)\,dx$.
+Comprova els resultats derivant.
+
+\begin{solucio}
+$\displaystyle\int\bigl(\cos(3x)+3\sin x\bigr)\,dx=\frac{\sin(3x)}{3}-3\cos x+k$: la derivada és
+$\frac{3\cos(3x)}{3}+3\sin x$.\\
+$\displaystyle\int\sin(x-\pi)\,dx=-\cos(x-\pi)+k$: la derivada és $\sin(x-\pi)$.
+\end{solucio}
+
+\itemtria{quocients}{1}{1,25}
+Calcula $\displaystyle\int\frac{x^2+1}{x}\,dx$ i $\displaystyle\int\frac{(x+1)^2}{\sqrt x}\,dx$,
+separant cada quocient en una suma.
+
+\begin{solucio}
+$\frac{x^2+1}{x}=x+\frac1x$, i $\displaystyle\int\frac{x^2+1}{x}\,dx=\frac{x^2}{2}+\ln|x|+k$.\\
+$\frac{(x+1)^2}{\sqrt x}=\frac{x^2+2x+1}{x^{1/2}}=x^{3/2}+2x^{1/2}+x^{-1/2}$, i
+\[
+\int\frac{(x+1)^2}{\sqrt x}\,dx=\frac25x^{5/2}+\frac43x^{3/2}+2x^{1/2}+k
+=\frac25x^2\sqrt x+\frac43x\sqrt x+2\sqrt x+k.
+\]
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula $\displaystyle\int\left(\frac{1}{1+x^2}+\frac{1}{\sqrt{1-x^2}}\right)dx$ i comprova el
+resultat derivant.
+
+\begin{solucio}
+Són dues integrals immediates: $\operatorname{arctg}x+\arcsin x+k$. Derivant,
+$\frac{1}{1+x^2}+\frac{1}{\sqrt{1-x^2}}$, que és la funció de partida.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

@@ -1,0 +1,16 @@
+{
+  "titol": "Tres gràfiques: quina és f, quina és f' i quina és una primitiva F",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    43,
+    47
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "primitiva",
+    "F'(x)=f(x)",
+    "interpretació gràfica"
+  ]
+}

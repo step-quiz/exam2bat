@@ -1,0 +1,42 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Comprova que $F(x)=(x^2+1)^3$ és una primitiva de $f(x)=6x(x^2+1)^2$. Explica per què
+$G(x)=(x^2+1)^3-5$ també n'és una primitiva.
+
+\begin{solucio}
+$F'(x)=3(x^2+1)^2\cdot2x=6x(x^2+1)^2=f(x)$ per a tot $x$, i per tant $F$ és una primitiva de $f$.\\
+$G(x)=F(x)-5$, i la derivada d'una constant és 0: $G'(x)=F'(x)=f(x)$. Totes les funcions $F(x)+k$ són
+primitives de $f$.
+\end{solucio}
+
+\begin{tria}{primitiva-condicions}
+\itemtria{un-punt}{1}{1,25}
+Troba la primitiva $F$ de la funció $f(x)=3x^2-4x+1$ que compleix $F(1)=2$.
+
+\begin{solucio}
+Les primitives de $f$ són $F(x)=x^3-2x^2+x+k$. Com que $F(1)=1-2+1+k=k$, la condició $F(1)=2$ dona
+$k=2$: $F(x)=x^3-2x^2+x+2$.
+\end{solucio}
+
+\itemtria{segona-derivada}{1}{1,25}
+Troba la funció $F$ que compleix $F''(x)=6x$, $F'(1)=2$ i $F(0)=1$.
+
+\begin{solucio}
+$F'$ és una primitiva de $F''$: $F'(x)=3x^2+k_1$, i $F'(1)=3+k_1=2$ dona $k_1=-1$.\\
+$F$ és una primitiva de $F'(x)=3x^2-1$: $F(x)=x^3-x+k_2$, i $F(0)=k_2=1$. Per tant, $F(x)=x^3-x+1$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Les funcions $F(x)=\sin^2x$ i $G(x)=-\cos^2x$, són primitives de la mateixa funció? En quant es
+diferencien?
+
+\begin{solucio}
+$F'(x)=2\sin x\cos x=\sin(2x)$ i $G'(x)=-2\cos x\cdot(-\sin x)=\sin(2x)$: totes dues són primitives de
+$\sin(2x)$. Es diferencien en una constant: $F(x)-G(x)=\sin^2x+\cos^2x=1$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

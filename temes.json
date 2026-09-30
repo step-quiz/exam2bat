@@ -329,6 +329,24 @@
       "descripcio": "Punts d'una recta a una distància donada d'un pla, i punts equidistants de dos plans."
     },
     {
+      "slug": "primitiva",
+      "unitat": "u11",
+      "nom": "Funció primitiva",
+      "descripcio": "Comprovar una primitiva derivant (F'(x)=f(x) per a tot x), la família F(x)+k i la primitiva que compleix una condició."
+    },
+    {
+      "slug": "integrals-immediates",
+      "unitat": "u11",
+      "nom": "Integrals immediates",
+      "descripcio": "Primitives de polinomis, potències i radicals, 1/x, exponencials i trigonomètriques, sense canvi de variable, per parts ni fraccions simples."
+    },
+    {
+      "slug": "grafiques-primitiva",
+      "unitat": "u11",
+      "nom": "Gràfiques de F, f i f'",
+      "descripcio": "Llegir en la gràfica de f el creixement, els extrems i la curvatura d'una primitiva F, i reconèixer les gràfiques de F, f i f'."
+    },
+    {
       "slug": "integral-definida",
       "unitat": "u12",
       "nom": "Integrals immediates i regla de Barrow",
