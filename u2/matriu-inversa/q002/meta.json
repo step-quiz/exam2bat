@@ -1,0 +1,16 @@
+{
+  "titol": "Matriu 3×3 amb paràmetre: quan és singular, la inversa i una comprovació",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    99,
+    96,
+    100
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "matriu inversa",
+    "paràmetres"
+  ]
+}

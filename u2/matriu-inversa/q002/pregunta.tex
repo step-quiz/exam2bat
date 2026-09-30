@@ -1,0 +1,48 @@
+Considera la matriu $A=\begin{pmatrix}1&m&0\\2&1&1\\1&0&1\end{pmatrix}$, en què $m$ és un nombre real.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Per a quins valors de $m$ la matriu $A$ és singular (no té inversa)?
+
+\begin{solucio}
+Per Sarrus: $|A|=1+m+0-0-0-2m=1-m$. $A$ és singular si i només si $|A|=0$, és a dir, per a $m=1$.
+\end{solucio}
+
+\begin{tria}{inversa-parametre}
+\itemtria{inversa-m0}{1}{1,25}
+Calcula la inversa de $A$ per a $m=0$.
+
+\begin{solucio}
+Per a $m=0$, $|A|=1$. Els adjunts són
+\[
+\operatorname{Adj}A=\begin{pmatrix}1&-1&-1\\0&1&0\\0&-1&1\end{pmatrix},\qquad
+A^{-1}=(\operatorname{Adj}A)^t=\begin{pmatrix}1&0&0\\-1&1&-1\\-1&0&1\end{pmatrix}.
+\]
+\end{solucio}
+
+\itemtria{dos-parametres}{1}{1,25}
+Per a quins valors de $a$ i $b$ és invertible la matriu $\begin{pmatrix}a+b&2b\\a&a+b\end{pmatrix}$?
+
+\begin{solucio}
+$\begin{vmatrix}a+b&2b\\a&a+b\end{vmatrix}=(a+b)^2-2ab=a^2+b^2$. Una suma de quadrats només és nul·la si
+tots dos són nuls: la matriu és invertible per a qualsevol parella $(a,b)\ne(0,0)$, i només deixa de
+ser-ho per a $a=b=0$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Comprova, sense calcular cap inversa, que per a $m=2$ la matriu
+$B=\begin{pmatrix}-1&2&-2\\1&-1&1\\1&-2&3\end{pmatrix}$ és la inversa de $A$.
+
+\begin{solucio}
+Per a $m=2$, $A=\begin{pmatrix}1&2&0\\2&1&1\\1&0&1\end{pmatrix}$, i
+\[
+AB=\begin{pmatrix}-1+2+0&2-2+0&-2+2+0\\-2+1+1&4-1-2&-4+1+3\\-1+0+1&2+0-2&-2+0+3\end{pmatrix}=I.
+\]
+Com que $AB=I$, $B=A^{-1}$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

@@ -1,0 +1,16 @@
+{
+  "titol": "Rang d'una matriu 2×2 i d'una 3×4 amb paràmetre, i el rang màxim",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    87,
+    83,
+    79
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "rang",
+    "paràmetres"
+  ]
+}

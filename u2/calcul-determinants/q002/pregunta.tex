@@ -1,0 +1,41 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula el determinant $D(a)=\begin{vmatrix}a&1&0\\1&a&1\\0&1&a\end{vmatrix}$ i troba els valors de $a$
+que l'anul·len.
+
+\begin{solucio}
+Per Sarrus: $D(a)=a^3+0+0-0-a-a=a^3-2a=a(a^2-2)$. S'anul·la per a $a=0$, $a=\sqrt2$ i $a=-\sqrt2$.
+\end{solucio}
+
+\begin{tria}{determinant-parametres}
+\itemtria{relacio}{1}{1,25}
+Quina relació han de complir $m$ i $n$ perquè el determinant
+$\begin{vmatrix}m&2&1\\n&1&0\\2&-1&3\end{vmatrix}$ sigui nul? Dona dues parelles $(m,n)$ que la
+compleixin.
+
+\begin{solucio}
+Per Sarrus: $3m+0-n-2-0-6n=3m-7n-2$. És nul si i només si $3m-7n=2$.\\
+Per exemple, $(m,n)=(3,1)$, perquè $9-7=2$, o $(m,n)=(-4,-2)$, perquè $-12+14=2$.
+\end{solucio}
+
+\itemtria{valor-donat}{1}{1,25}
+Troba els valors de $a$ per als quals $\begin{vmatrix}2&a&1\\1&0&-1\\a&1&3\end{vmatrix}=5$.
+
+\begin{solucio}
+Per Sarrus: $0-a^2+1-0+2-3a=-a^2-3a+3$. Cal $-a^2-3a+3=5$, és a dir, $a^2+3a+2=0$, d'on
+$a=-1$ o $a=-2$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Per a quins valors de $a$ el determinant $D(a)$ del primer apartat és positiu?
+
+\begin{solucio}
+$D(a)=a(a-\sqrt2)(a+\sqrt2)$, que canvia de signe a $-\sqrt2$, $0$ i $\sqrt2$. Estudiant el signe de cada
+factor, $D(a)>0$ si $-\sqrt2<a<0$ o si $a>\sqrt2$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

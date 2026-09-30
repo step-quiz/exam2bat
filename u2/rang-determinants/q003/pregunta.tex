@@ -1,0 +1,53 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia el rang de $\begin{pmatrix}a&2\\2&a\end{pmatrix}$ segons els valors de $a$.
+
+\begin{solucio}
+El determinant és $a^2-4$, que s'anul·la per a $a=2$ i $a=-2$.
+\begin{itemize}
+\item Si $a\ne\pm2$, el rang és 2.
+\item Si $a=2$ o $a=-2$, el determinant és nul, però la matriu té elements no nuls (el 2): el rang és 1.
+\end{itemize}
+\end{solucio}
+
+\begin{tria}{rang-rectangular}
+\itemtria{parametre-3x4}{1}{1,25}
+Estudia el rang de $A=\begin{pmatrix}1&1&2&1\\2&-1&1&k\\1&-2&-1&3\end{pmatrix}$ segons els valors de $k$.
+
+\begin{solucio}
+$\begin{vmatrix}1&1\\2&-1\end{vmatrix}=-3\ne0$: el rang és almenys 2. Hi ha quatre menors d'ordre 3. Dos
+d'ells són
+\[
+\begin{vmatrix}1&1&2\\2&-1&1\\1&-2&-1\end{vmatrix}=0,\qquad
+\begin{vmatrix}1&1&1\\2&-1&k\\1&-2&3\end{vmatrix}=3(k-4),
+\]
+i els altres dos també són múltiples de $k-4$. Si $k\ne4$, $\operatorname{rang}A=3$; si $k=4$, tots els
+menors d'ordre 3 són nuls i $\operatorname{rang}A=2$.
+\end{solucio}
+
+\itemtria{sense-calcular}{1}{1,25}
+Sense calcular cap determinant d'ordre 3, digues el rang de
+$\begin{pmatrix}1&2&3\\2&4&6\\-1&-2&-3\end{pmatrix}$ i de
+$\begin{pmatrix}1&0&0&5\\0&1&0&2\\0&0&1&7\end{pmatrix}$. Justifica-ho.
+
+\begin{solucio}
+A la primera, la segona fila és el doble de la primera i la tercera n'és l'oposada: totes les files són
+proporcionals a una fila no nul·la, i el rang és 1.\\
+La segona conté, a les tres primeres columnes, la matriu identitat d'ordre 3, que té determinant $1\ne0$.
+Com que només té tres files, el rang és 3.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Quin és el rang màxim que pot tenir una matriu $3\times2$? I una $2\times5$? Per què?
+
+\begin{solucio}
+El rang d'una matriu $m\times n$ és l'ordre del menor no nul més gran, i un menor no pot tenir més files
+que la matriu ni més columnes: el rang és, com a molt, el menor dels nombres $m$ i $n$. Una $3\times2$ té
+rang 2 com a màxim, i una $2\times5$, també 2.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

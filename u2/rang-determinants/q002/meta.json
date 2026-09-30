@@ -1,0 +1,17 @@
+{
+  "titol": "Rang d'una matriu 3×3 segons un paràmetre i les files que en depenen",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    83,
+    87,
+    79
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "rang",
+    "paràmetres",
+    "combinació lineal"
+  ]
+}

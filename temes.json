@@ -251,6 +251,24 @@
       "descripcio": "Potència n-èsima per recurrència, matrius nilpotents, idempotents i periòdiques."
     },
     {
+      "slug": "calcul-determinants",
+      "unitat": "u2",
+      "nom": "Càlcul de determinants",
+      "descripcio": "Determinants d'ordre 2 i 3, amb lletres, valors que els anul·len i relacions entre paràmetres."
+    },
+    {
+      "slug": "rang-determinants",
+      "unitat": "u2",
+      "nom": "Rang d'una matriu",
+      "descripcio": "Rang per menors, rang segons un paràmetre i matrius amb un rang donat."
+    },
+    {
+      "slug": "matriu-inversa",
+      "unitat": "u2",
+      "nom": "Matriu inversa",
+      "descripcio": "Condició d'invertibilitat, inversa per adjunts i inverses amb paràmetres."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",
