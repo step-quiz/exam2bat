@@ -1,6 +1,6 @@
 /* FITXER GENERAT PER build/build.py — NO L'EDITIS MAI */
 const BANC = {
- "generat": "2026-09-30 11:20 UTC",
+ "generat": "2026-09-30 11:34 UTC",
  "unitats": {
   "u7": {
    "nom": "Unitat 7",
@@ -251,6 +251,24 @@ const BANC = {
    "unitat": "u1",
    "nom": "Potències de matrius",
    "descripcio": "Potència n-èsima per recurrència, matrius nilpotents, idempotents i periòdiques."
+  },
+  {
+   "slug": "calcul-determinants",
+   "unitat": "u2",
+   "nom": "Càlcul de determinants",
+   "descripcio": "Determinants d'ordre 2 i 3, amb lletres, valors que els anul·len i relacions entre paràmetres."
+  },
+  {
+   "slug": "rang-determinants",
+   "unitat": "u2",
+   "nom": "Rang d'una matriu",
+   "descripcio": "Rang per menors, rang segons un paràmetre i matrius amb un rang donat."
+  },
+  {
+   "slug": "matriu-inversa",
+   "unitat": "u2",
+   "nom": "Matriu inversa",
+   "descripcio": "Condició d'invertibilitat, inversa per adjunts i inverses amb paràmetres."
   },
   {
    "slug": "algebra",
@@ -5454,6 +5472,595 @@ const BANC = {
    "pdf_solucio": "u14/binomial-probabilitats/q003/out/solucio.pdf",
    "pdf_curt": "u14/binomial-probabilitats/q003/out/enunciat-curt.pdf",
    "pdf_solucio_curt": "u14/binomial-probabilitats/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/calcul-determinants/q001",
+   "unitat": "u2",
+   "tema": "calcul-determinants",
+   "codi": "q001",
+   "titol": "Determinants d'ordre 2 i 3, el determinant d'una suma i els valors que n'anul·len un",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    35,
+    37,
+    41,
+    36
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "determinants",
+    "regla de Sarrus"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "ordre-3",
+     "defecte_llarg": "sarrus",
+     "defecte_curt": "sarrus",
+     "items": [
+      {
+       "id": "sarrus",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/calcul-determinants/q001/out/tries/ordre-3/sarrus/enunciat.pdf",
+       "pdf_solucio": "u2/calcul-determinants/q001/out/tries/ordre-3/sarrus/solucio.pdf",
+       "pdf_curt": "u2/calcul-determinants/q001/out/tries/ordre-3/sarrus/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/calcul-determinants/q001/out/tries/ordre-3/sarrus/solucio-curt.pdf"
+      },
+      {
+       "id": "inventa",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/calcul-determinants/q001/out/tries/ordre-3/inventa/enunciat.pdf",
+       "pdf_solucio": "u2/calcul-determinants/q001/out/tries/ordre-3/inventa/solucio.pdf",
+       "pdf_curt": "u2/calcul-determinants/q001/out/tries/ordre-3/inventa/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/calcul-determinants/q001/out/tries/ordre-3/inventa/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera les matrius $A=\\begin{pmatrix}2&-1\\\\3&1\\end{pmatrix}$ i $B=\\begin{pmatrix}1&2\\\\-1&0\\end{pmatrix}$.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula $|A|$, $|B|$, $|A+B|$ i $|A-B|$. És cert que $|A+B|=|A|+|B|$?\n\n\\begin{solucio}\n$|A|=2\\cdot1-(-1)\\cdot3=5$ i $|B|=1\\cdot0-2\\cdot(-1)=2$.\\\\\n$A+B=\\begin{pmatrix}3&1\\\\2&1\\end{pmatrix}$, $|A+B|=3-2=1$; $A-B=\\begin{pmatrix}1&-3\\\\4&1\\end{pmatrix}$,\n$|A-B|=1+12=13$.\\\\\n$|A|+|B|=7\\ne1=|A+B|$: el determinant d'una suma no és la suma dels determinants.\n\\end{solucio}\n\n\\begin{tria}{ordre-3}\n\\itemtria{sarrus}{1}{1,25}\nCalcula el determinant de $M=\\begin{pmatrix}1&2&-1\\\\3&0&2\\\\-2&1&4\\end{pmatrix}$.\n\n\\begin{solucio}\nPer la regla de Sarrus:\n\\[\n|M|=1\\cdot0\\cdot4+2\\cdot2\\cdot(-2)+(-1)\\cdot3\\cdot1-(-1)\\cdot0\\cdot(-2)-2\\cdot3\\cdot4-1\\cdot2\\cdot1\n=0-8-3-0-24-2=-37.\n\\]\n\\end{solucio}\n\n\\itemtria{inventa}{1}{1,25}\nEscriu una matriu $2\\times2$ sense cap element nul que tingui determinant 1, i una matriu $3\\times3$ que\nno sigui triangular i que tingui determinant 2. Comprova-ho.\n\n\\begin{solucio}\nResposta oberta. Per exemple, $\\begin{pmatrix}2&3\\\\1&2\\end{pmatrix}$: $4-3=1$.\\\\\nPer a la $3\\times3$, per exemple, $\\begin{pmatrix}2&0&0\\\\1&1&1\\\\0&1&2\\end{pmatrix}$ (no és triangular):\n$2\\cdot(2-1)-0+0=2$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nTroba els valors de $x$ que anul·len el determinant $\\begin{vmatrix}x-1&2\\\\3&x\\end{vmatrix}$.\n\n\\begin{solucio}\n$\\begin{vmatrix}x-1&2\\\\3&x\\end{vmatrix}=x(x-1)-6=x^2-x-6=(x-3)(x+2)$. S'anul·la per a $x=3$ i per a\n$x=-2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/calcul-determinants/q001/out/enunciat.pdf",
+   "pdf_solucio": "u2/calcul-determinants/q001/out/solucio.pdf",
+   "pdf_curt": "u2/calcul-determinants/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/calcul-determinants/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/calcul-determinants/q002",
+   "unitat": "u2",
+   "tema": "calcul-determinants",
+   "codi": "q002",
+   "titol": "Un determinant d'ordre 3 amb paràmetre: arrels, relació entre paràmetres i signe",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    41,
+    44,
+    37
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "determinants",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "determinant-parametres",
+     "defecte_llarg": "relacio",
+     "defecte_curt": "relacio",
+     "items": [
+      {
+       "id": "relacio",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/calcul-determinants/q002/out/tries/determinant-parametres/relacio/enunciat.pdf",
+       "pdf_solucio": "u2/calcul-determinants/q002/out/tries/determinant-parametres/relacio/solucio.pdf",
+       "pdf_curt": "u2/calcul-determinants/q002/out/tries/determinant-parametres/relacio/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/calcul-determinants/q002/out/tries/determinant-parametres/relacio/solucio-curt.pdf"
+      },
+      {
+       "id": "valor-donat",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/calcul-determinants/q002/out/tries/determinant-parametres/valor-donat/enunciat.pdf",
+       "pdf_solucio": "u2/calcul-determinants/q002/out/tries/determinant-parametres/valor-donat/solucio.pdf",
+       "pdf_curt": "u2/calcul-determinants/q002/out/tries/determinant-parametres/valor-donat/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/calcul-determinants/q002/out/tries/determinant-parametres/valor-donat/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula el determinant $D(a)=\\begin{vmatrix}a&1&0\\\\1&a&1\\\\0&1&a\\end{vmatrix}$ i troba els valors de $a$\nque l'anul·len.\n\n\\begin{solucio}\nPer Sarrus: $D(a)=a^3+0+0-0-a-a=a^3-2a=a(a^2-2)$. S'anul·la per a $a=0$, $a=\\sqrt2$ i $a=-\\sqrt2$.\n\\end{solucio}\n\n\\begin{tria}{determinant-parametres}\n\\itemtria{relacio}{1}{1,25}\nQuina relació han de complir $m$ i $n$ perquè el determinant\n$\\begin{vmatrix}m&2&1\\\\n&1&0\\\\2&-1&3\\end{vmatrix}$ sigui nul? Dona dues parelles $(m,n)$ que la\ncompleixin.\n\n\\begin{solucio}\nPer Sarrus: $3m+0-n-2-0-6n=3m-7n-2$. És nul si i només si $3m-7n=2$.\\\\\nPer exemple, $(m,n)=(3,1)$, perquè $9-7=2$, o $(m,n)=(-4,-2)$, perquè $-12+14=2$.\n\\end{solucio}\n\n\\itemtria{valor-donat}{1}{1,25}\nTroba els valors de $a$ per als quals $\\begin{vmatrix}2&a&1\\\\1&0&-1\\\\a&1&3\\end{vmatrix}=5$.\n\n\\begin{solucio}\nPer Sarrus: $0-a^2+1-0+2-3a=-a^2-3a+3$. Cal $-a^2-3a+3=5$, és a dir, $a^2+3a+2=0$, d'on\n$a=-1$ o $a=-2$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nPer a quins valors de $a$ el determinant $D(a)$ del primer apartat és positiu?\n\n\\begin{solucio}\n$D(a)=a(a-\\sqrt2)(a+\\sqrt2)$, que canvia de signe a $-\\sqrt2$, $0$ i $\\sqrt2$. Estudiant el signe de cada\nfactor, $D(a)>0$ si $-\\sqrt2<a<0$ o si $a>\\sqrt2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/calcul-determinants/q002/out/enunciat.pdf",
+   "pdf_solucio": "u2/calcul-determinants/q002/out/solucio.pdf",
+   "pdf_curt": "u2/calcul-determinants/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/calcul-determinants/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/calcul-determinants/q003",
+   "unitat": "u2",
+   "tema": "calcul-determinants",
+   "codi": "q003",
+   "titol": "Determinants amb lletres: factoritzar, famílies de matrius i un d'ordre 3",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    37,
+    41,
+    36
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "determinants",
+    "paràmetres",
+    "regla de Sarrus"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "determinant-lletres",
+     "defecte_llarg": "ordre-3-lletres",
+     "defecte_curt": "ordre-3-lletres",
+     "items": [
+      {
+       "id": "ordre-3-lletres",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/calcul-determinants/q003/out/tries/determinant-lletres/ordre-3-lletres/enunciat.pdf",
+       "pdf_solucio": "u2/calcul-determinants/q003/out/tries/determinant-lletres/ordre-3-lletres/solucio.pdf",
+       "pdf_curt": "u2/calcul-determinants/q003/out/tries/determinant-lletres/ordre-3-lletres/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/calcul-determinants/q003/out/tries/determinant-lletres/ordre-3-lletres/solucio-curt.pdf"
+      },
+      {
+       "id": "familia",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/calcul-determinants/q003/out/tries/determinant-lletres/familia/enunciat.pdf",
+       "pdf_solucio": "u2/calcul-determinants/q003/out/tries/determinant-lletres/familia/solucio.pdf",
+       "pdf_curt": "u2/calcul-determinants/q003/out/tries/determinant-lletres/familia/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/calcul-determinants/q003/out/tries/determinant-lletres/familia/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula $\\begin{vmatrix}a-2&3\\\\4&a+2\\end{vmatrix}$ i troba els valors de $a$ per als quals és nul.\n\n\\begin{solucio}\n$(a-2)(a+2)-12=a^2-4-12=a^2-16$. És nul per a $a=4$ i per a $a=-4$.\n\\end{solucio}\n\n\\begin{tria}{determinant-lletres}\n\\itemtria{ordre-3-lletres}{1}{1,25}\nCalcula el determinant $\\begin{vmatrix}x&1&1\\\\1&x&1\\\\1&1&x\\end{vmatrix}$, comprova que és igual a\n$(x-1)^2(x+2)$ i digues per a quins valors de $x$ s'anul·la.\n\n\\begin{solucio}\nPer Sarrus: $x^3+1+1-x-x-x=x^3-3x+2$. D'altra banda, $(x-1)^2(x+2)=(x^2-2x+1)(x+2)=x^3-3x+2$: coincideixen.\nS'anul·la per a $x=1$ i per a $x=-2$.\n\\end{solucio}\n\n\\itemtria{familia}{1}{1,25}\nTroba totes les matrius de la forma $\\begin{pmatrix}a&b\\\\b&a\\end{pmatrix}$ que tenen determinant nul, i\ntotes les que tenen determinant 1 amb $b=0$.\n\n\\begin{solucio}\n$\\begin{vmatrix}a&b\\\\b&a\\end{vmatrix}=a^2-b^2=(a-b)(a+b)$. És nul si i només si $b=a$ o $b=-a$: les\nmatrius $\\begin{pmatrix}a&a\\\\a&a\\end{pmatrix}$ i $\\begin{pmatrix}a&-a\\\\-a&a\\end{pmatrix}$.\\\\\nAmb $b=0$, el determinant és $a^2$, i val 1 si $a=1$ o $a=-1$: les matrius $I$ i $-I$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula el determinant $\\begin{vmatrix}2&-1&3\\\\1&4&-2\\\\0&5&1\\end{vmatrix}$.\n\n\\begin{solucio}\nPer Sarrus: $8+0+15-0+1+20=44$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/calcul-determinants/q003/out/enunciat.pdf",
+   "pdf_solucio": "u2/calcul-determinants/q003/out/solucio.pdf",
+   "pdf_curt": "u2/calcul-determinants/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/calcul-determinants/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/matriu-inversa/q001",
+   "unitat": "u2",
+   "tema": "matriu-inversa",
+   "codi": "q001",
+   "titol": "Inversa d'una matriu 2×2 i d'una 3×3 per adjunts, i quan no n'hi ha",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    96,
+    95,
+    99
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "matriu inversa",
+    "adjunts"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "inversa-tasca",
+     "defecte_llarg": "ordre-3",
+     "defecte_curt": "ordre-3",
+     "items": [
+      {
+       "id": "ordre-3",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/matriu-inversa/q001/out/tries/inversa-tasca/ordre-3/enunciat.pdf",
+       "pdf_solucio": "u2/matriu-inversa/q001/out/tries/inversa-tasca/ordre-3/solucio.pdf",
+       "pdf_curt": "u2/matriu-inversa/q001/out/tries/inversa-tasca/ordre-3/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/matriu-inversa/q001/out/tries/inversa-tasca/ordre-3/solucio-curt.pdf"
+      },
+      {
+       "id": "relaciona",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/matriu-inversa/q001/out/tries/inversa-tasca/relaciona/enunciat.pdf",
+       "pdf_solucio": "u2/matriu-inversa/q001/out/tries/inversa-tasca/relaciona/solucio.pdf",
+       "pdf_curt": "u2/matriu-inversa/q001/out/tries/inversa-tasca/relaciona/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/matriu-inversa/q001/out/tries/inversa-tasca/relaciona/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula la inversa de $A=\\begin{pmatrix}5&3\\\\3&2\\end{pmatrix}$ i comprova-la.\n\n\\begin{solucio}\n$|A|=10-9=1\\ne0$: és invertible. $A^{-1}=\\dfrac1{|A|}(\\operatorname{Adj}A)^t=\\begin{pmatrix}2&-3\\\\-3&5\\end{pmatrix}$.\\\\\nComprovació: $\\begin{pmatrix}5&3\\\\3&2\\end{pmatrix}\\begin{pmatrix}2&-3\\\\-3&5\\end{pmatrix}\n=\\begin{pmatrix}10-9&-15+15\\\\6-6&-9+10\\end{pmatrix}=I$.\n\\end{solucio}\n\n\\begin{tria}{inversa-tasca}\n\\itemtria{ordre-3}{1}{1,25}\nCalcula la inversa de $B=\\begin{pmatrix}1&1&0\\\\0&1&1\\\\1&2&2\\end{pmatrix}$.\n\n\\begin{solucio}\n$|B|=2+1+0-0-2-0=1\\ne0$: és invertible. Els adjunts de cada element són\n\\[\n\\operatorname{Adj}B=\\begin{pmatrix}0&1&-1\\\\-2&2&-1\\\\1&-1&1\\end{pmatrix},\\qquad\nB^{-1}=\\frac1{|B|}(\\operatorname{Adj}B)^t=\\begin{pmatrix}0&-2&1\\\\1&2&-1\\\\-1&-1&1\\end{pmatrix}.\n\\]\n\\end{solucio}\n\n\\itemtria{relaciona}{1}{1,25}\nRelaciona cada matriu amb la seva inversa, sense calcular cap inversa:\n\\[\n\\text{a) }\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}\\quad\n\\text{b) }\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}\\quad\n\\text{c) }\\begin{pmatrix}0&1\\\\1&2\\end{pmatrix}\\qquad\n\\text{I) }\\begin{pmatrix}-2&1\\\\1&0\\end{pmatrix}\\quad\n\\text{II) }\\frac12\\begin{pmatrix}2&-1\\\\0&1\\end{pmatrix}\\quad\n\\text{III) }\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}\n\\]\n\n\\begin{solucio}\nN'hi ha prou de comprovar quin producte dona la identitat. Per exemple,\n$\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}\\cdot\\frac12\\begin{pmatrix}2&-1\\\\0&1\\end{pmatrix}\n=\\frac12\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}=I$.\\\\\nAixí: a) $\\to$ II), b) $\\to$ III) i c) $\\to$ I). (També es poden reconèixer pel determinant: el de la\ninversa és l'invers del de la matriu; a) té determinant 2, i II), $\\frac12$.)\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nPer què la matriu $\\begin{pmatrix}2&4\\\\3&6\\end{pmatrix}$ no té inversa? Troba el valor de $x$ per al qual\n$\\begin{pmatrix}2&4\\\\3&x\\end{pmatrix}$ no és invertible.\n\n\\begin{solucio}\n$\\begin{vmatrix}2&4\\\\3&6\\end{vmatrix}=12-12=0$: una matriu quadrada és invertible si i només si el seu\ndeterminant no és nul.\\\\\n$\\begin{vmatrix}2&4\\\\3&x\\end{vmatrix}=2x-12=0$ si $x=6$: només per a $x=6$ no és invertible.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/matriu-inversa/q001/out/enunciat.pdf",
+   "pdf_solucio": "u2/matriu-inversa/q001/out/solucio.pdf",
+   "pdf_curt": "u2/matriu-inversa/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/matriu-inversa/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/matriu-inversa/q002",
+   "unitat": "u2",
+   "tema": "matriu-inversa",
+   "codi": "q002",
+   "titol": "Matriu 3×3 amb paràmetre: quan és singular, la inversa i una comprovació",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    99,
+    96,
+    100
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "matriu inversa",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "inversa-parametre",
+     "defecte_llarg": "inversa-m0",
+     "defecte_curt": "inversa-m0",
+     "items": [
+      {
+       "id": "inversa-m0",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/matriu-inversa/q002/out/tries/inversa-parametre/inversa-m0/enunciat.pdf",
+       "pdf_solucio": "u2/matriu-inversa/q002/out/tries/inversa-parametre/inversa-m0/solucio.pdf",
+       "pdf_curt": "u2/matriu-inversa/q002/out/tries/inversa-parametre/inversa-m0/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/matriu-inversa/q002/out/tries/inversa-parametre/inversa-m0/solucio-curt.pdf"
+      },
+      {
+       "id": "dos-parametres",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/matriu-inversa/q002/out/tries/inversa-parametre/dos-parametres/enunciat.pdf",
+       "pdf_solucio": "u2/matriu-inversa/q002/out/tries/inversa-parametre/dos-parametres/solucio.pdf",
+       "pdf_curt": "u2/matriu-inversa/q002/out/tries/inversa-parametre/dos-parametres/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/matriu-inversa/q002/out/tries/inversa-parametre/dos-parametres/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la matriu $A=\\begin{pmatrix}1&m&0\\\\2&1&1\\\\1&0&1\\end{pmatrix}$, en què $m$ és un nombre real.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nPer a quins valors de $m$ la matriu $A$ és singular (no té inversa)?\n\n\\begin{solucio}\nPer Sarrus: $|A|=1+m+0-0-0-2m=1-m$. $A$ és singular si i només si $|A|=0$, és a dir, per a $m=1$.\n\\end{solucio}\n\n\\begin{tria}{inversa-parametre}\n\\itemtria{inversa-m0}{1}{1,25}\nCalcula la inversa de $A$ per a $m=0$.\n\n\\begin{solucio}\nPer a $m=0$, $|A|=1$. Els adjunts són\n\\[\n\\operatorname{Adj}A=\\begin{pmatrix}1&-1&-1\\\\0&1&0\\\\0&-1&1\\end{pmatrix},\\qquad\nA^{-1}=(\\operatorname{Adj}A)^t=\\begin{pmatrix}1&0&0\\\\-1&1&-1\\\\-1&0&1\\end{pmatrix}.\n\\]\n\\end{solucio}\n\n\\itemtria{dos-parametres}{1}{1,25}\nPer a quins valors de $a$ i $b$ és invertible la matriu $\\begin{pmatrix}a+b&2b\\\\a&a+b\\end{pmatrix}$?\n\n\\begin{solucio}\n$\\begin{vmatrix}a+b&2b\\\\a&a+b\\end{vmatrix}=(a+b)^2-2ab=a^2+b^2$. Una suma de quadrats només és nul·la si\ntots dos són nuls: la matriu és invertible per a qualsevol parella $(a,b)\\ne(0,0)$, i només deixa de\nser-ho per a $a=b=0$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nComprova, sense calcular cap inversa, que per a $m=2$ la matriu\n$B=\\begin{pmatrix}-1&2&-2\\\\1&-1&1\\\\1&-2&3\\end{pmatrix}$ és la inversa de $A$.\n\n\\begin{solucio}\nPer a $m=2$, $A=\\begin{pmatrix}1&2&0\\\\2&1&1\\\\1&0&1\\end{pmatrix}$, i\n\\[\nAB=\\begin{pmatrix}-1+2+0&2-2+0&-2+2+0\\\\-2+1+1&4-1-2&-4+1+3\\\\-1+0+1&2+0-2&-2+0+3\\end{pmatrix}=I.\n\\]\nCom que $AB=I$, $B=A^{-1}$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/matriu-inversa/q002/out/enunciat.pdf",
+   "pdf_solucio": "u2/matriu-inversa/q002/out/solucio.pdf",
+   "pdf_curt": "u2/matriu-inversa/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/matriu-inversa/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/matriu-inversa/q003",
+   "unitat": "u2",
+   "tema": "matriu-inversa",
+   "codi": "q003",
+   "titol": "Matriu 2×2 amb paràmetre: quan és invertible, la inversa i les que coincideixen amb la seva",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    100,
+    96,
+    99
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "matriu inversa",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "inversa-condicio",
+     "defecte_llarg": "inversa-a3",
+     "defecte_curt": "inversa-a3",
+     "items": [
+      {
+       "id": "inversa-a3",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-a3/enunciat.pdf",
+       "pdf_solucio": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-a3/solucio.pdf",
+       "pdf_curt": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-a3/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-a3/solucio-curt.pdf"
+      },
+      {
+       "id": "inversa-igual",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-igual/enunciat.pdf",
+       "pdf_solucio": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-igual/solucio.pdf",
+       "pdf_curt": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-igual/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/matriu-inversa/q003/out/tries/inversa-condicio/inversa-igual/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la matriu $A=\\begin{pmatrix}a&1\\\\4&a\\end{pmatrix}$, en què $a$ és un nombre real.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nPer a quins valors de $a$ és invertible la matriu $A$?\n\n\\begin{solucio}\n$|A|=a^2-4$, que s'anul·la per a $a=2$ i $a=-2$. $A$ és invertible si i només si $a\\ne2$ i $a\\ne-2$.\n\\end{solucio}\n\n\\begin{tria}{inversa-condicio}\n\\itemtria{inversa-a3}{1}{1,25}\nCalcula $A^{-1}$ per a $a=3$ i comprova-la.\n\n\\begin{solucio}\nPer a $a=3$, $|A|=5$ i\n$A^{-1}=\\dfrac15\\begin{pmatrix}3&-1\\\\-4&3\\end{pmatrix}=\\begin{pmatrix}\\frac35&-\\frac15\\\\[2pt]-\\frac45&\\frac35\\end{pmatrix}$.\\\\\nComprovació: $\\begin{pmatrix}3&1\\\\4&3\\end{pmatrix}\\cdot\\dfrac15\\begin{pmatrix}3&-1\\\\-4&3\\end{pmatrix}\n=\\dfrac15\\begin{pmatrix}5&0\\\\0&5\\end{pmatrix}=I$.\n\\end{solucio}\n\n\\itemtria{inversa-igual}{1}{1,25}\nTroba totes les matrius de la forma $M=\\begin{pmatrix}p&1\\\\q&-p\\end{pmatrix}$ que són iguals a la seva\ninversa.\n\n\\begin{solucio}\n$M^{-1}=M$ vol dir que $M\\cdot M=I$.\n$M^2=\\begin{pmatrix}p^2+q&0\\\\0&q+p^2\\end{pmatrix}$, que és $I$ si i només si $p^2+q=1$. Són les\nmatrius $M=\\begin{pmatrix}p&1\\\\1-p^2&-p\\end{pmatrix}$, amb $p\\in\\mathbb R$; per exemple, amb $p=0$,\n$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula la inversa de la matriu $T=\\begin{pmatrix}1&0&0\\\\2&1&0\\\\0&3&1\\end{pmatrix}$.\n\n\\begin{solucio}\n$T$ és triangular: $|T|=1\\cdot1\\cdot1=1$. Amb els adjunts,\n$\\operatorname{Adj}T=\\begin{pmatrix}1&-2&6\\\\0&1&-3\\\\0&0&1\\end{pmatrix}$ i\n$T^{-1}=(\\operatorname{Adj}T)^t=\\begin{pmatrix}1&0&0\\\\-2&1&0\\\\6&-3&1\\end{pmatrix}$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/matriu-inversa/q003/out/enunciat.pdf",
+   "pdf_solucio": "u2/matriu-inversa/q003/out/solucio.pdf",
+   "pdf_curt": "u2/matriu-inversa/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/matriu-inversa/q003/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/rang-determinants/q001",
+   "unitat": "u2",
+   "tema": "rang-determinants",
+   "codi": "q001",
+   "titol": "Rang per menors, rang segons un paràmetre i afegir una fila per fixar-lo",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●○○",
+   "origen": [
+    79,
+    83,
+    80
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "rang",
+    "menors",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rang-construir",
+     "defecte_llarg": "segons-parametre",
+     "defecte_curt": "segons-parametre",
+     "items": [
+      {
+       "id": "segons-parametre",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/rang-determinants/q001/out/tries/rang-construir/segons-parametre/enunciat.pdf",
+       "pdf_solucio": "u2/rang-determinants/q001/out/tries/rang-construir/segons-parametre/solucio.pdf",
+       "pdf_curt": "u2/rang-determinants/q001/out/tries/rang-construir/segons-parametre/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/rang-determinants/q001/out/tries/rang-construir/segons-parametre/solucio-curt.pdf"
+      },
+      {
+       "id": "afegeix-fila",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/rang-determinants/q001/out/tries/rang-construir/afegeix-fila/enunciat.pdf",
+       "pdf_solucio": "u2/rang-determinants/q001/out/tries/rang-construir/afegeix-fila/solucio.pdf",
+       "pdf_curt": "u2/rang-determinants/q001/out/tries/rang-construir/afegeix-fila/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/rang-determinants/q001/out/tries/rang-construir/afegeix-fila/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia el rang de les matrius $P=\\begin{pmatrix}2&-1&3\\\\-4&2&-6\\end{pmatrix}$ i\n$Q=\\begin{pmatrix}1&2\\\\3&-1\\\\0&4\\end{pmatrix}$.\n\n\\begin{solucio}\n$P\\ne0$, i tots els menors d'ordre 2 de $P$ són nuls:\n$\\begin{vmatrix}2&-1\\\\-4&2\\end{vmatrix}=0$, $\\begin{vmatrix}2&3\\\\-4&-6\\end{vmatrix}=0$,\n$\\begin{vmatrix}-1&3\\\\2&-6\\end{vmatrix}=0$ (la segona fila és $-2$ vegades la primera). $\\operatorname{rang}P=1$.\\\\\n$\\begin{vmatrix}1&2\\\\3&-1\\end{vmatrix}=-7\\ne0$, i $Q$ no té menors d'ordre 3: $\\operatorname{rang}Q=2$.\n\\end{solucio}\n\n\\begin{tria}{rang-construir}\n\\itemtria{segons-parametre}{1}{1,25}\nEstudia el rang de $M=\\begin{pmatrix}1&2&a\\\\2&a&2\\\\1&1&1\\end{pmatrix}$ segons els valors de $a$.\n\n\\begin{solucio}\n$|M|=a+4+2a-a^2-2-4=-a^2+3a-2=-(a-1)(a-2)$.\n\\begin{itemize}\n\\item Si $a\\ne1$ i $a\\ne2$, $|M|\\ne0$ i $\\operatorname{rang}M=3$.\n\\item Si $a=1$ o $a=2$, $|M|=0$. El menor $\\begin{vmatrix}1&2\\\\1&1\\end{vmatrix}=-1$ (files 1 i 3,\ncolumnes 1 i 2) no depèn de $a$ i és diferent de zero: $\\operatorname{rang}M=2$.\n\\end{itemize}\n\\end{solucio}\n\n\\itemtria{afegeix-fila}{1}{1,25}\nConsidera $A=\\begin{pmatrix}1&-2&3\\\\2&1&0\\end{pmatrix}$. Afegeix-hi una tercera fila de manera que el\nrang sigui 3, i una altra de manera que sigui 2. Comprova-ho.\n\n\\begin{solucio}\nResposta oberta. $\\operatorname{rang}A=2$, perquè $\\begin{vmatrix}1&-2\\\\2&1\\end{vmatrix}=5\\ne0$.\\\\\nAmb la fila $(0\\ \\ 0\\ \\ 1)$: $\\begin{vmatrix}1&-2&3\\\\2&1&0\\\\0&0&1\\end{vmatrix}=5\\ne0$, i el rang és 3.\\\\\nAmb la suma de les dues, $(3\\ \\ {-1}\\ \\ 3)$: el determinant és nul, perquè una fila és combinació de les\naltres, i el menor d'abans continua sent diferent de zero: el rang és 2.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nCalcula el rang de $R=\\begin{pmatrix}1&2&0&-1\\\\2&-1&1&3\\\\3&1&1&2\\end{pmatrix}$.\n\n\\begin{solucio}\n$\\begin{vmatrix}1&2\\\\2&-1\\end{vmatrix}=-5\\ne0$, i el rang és almenys 2. La tercera fila és la suma de les\ndues primeres, de manera que tots els menors d'ordre 3 són nuls: $\\operatorname{rang}R=2$.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/rang-determinants/q001/out/enunciat.pdf",
+   "pdf_solucio": "u2/rang-determinants/q001/out/solucio.pdf",
+   "pdf_curt": "u2/rang-determinants/q001/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/rang-determinants/q001/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/rang-determinants/q002",
+   "unitat": "u2",
+   "tema": "rang-determinants",
+   "codi": "q002",
+   "titol": "Rang d'una matriu 3×3 segons un paràmetre i les files que en depenen",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    83,
+    87,
+    79
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "rang",
+    "paràmetres",
+    "combinació lineal"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rang-parametre",
+     "defecte_llarg": "estudia-rang",
+     "defecte_curt": "estudia-rang",
+     "items": [
+      {
+       "id": "estudia-rang",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/rang-determinants/q002/out/tries/rang-parametre/estudia-rang/enunciat.pdf",
+       "pdf_solucio": "u2/rang-determinants/q002/out/tries/rang-parametre/estudia-rang/solucio.pdf",
+       "pdf_curt": "u2/rang-determinants/q002/out/tries/rang-parametre/estudia-rang/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/rang-determinants/q002/out/tries/rang-parametre/estudia-rang/solucio-curt.pdf"
+      },
+      {
+       "id": "rang-1",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/rang-determinants/q002/out/tries/rang-parametre/rang-1/enunciat.pdf",
+       "pdf_solucio": "u2/rang-determinants/q002/out/tries/rang-parametre/rang-1/solucio.pdf",
+       "pdf_curt": "u2/rang-determinants/q002/out/tries/rang-parametre/rang-1/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/rang-determinants/q002/out/tries/rang-parametre/rang-1/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "Considera la matriu $M=\\begin{pmatrix}1&a&1\\\\a&1&1\\\\1&1&a\\end{pmatrix}$, en què $a$ és un nombre real.\n\n\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nCalcula $|M|$ i comprova que és igual a $-(a-1)^2(a+2)$.\n\n\\begin{solucio}\nPer Sarrus: $|M|=a+a+a-1-1-a^3=-a^3+3a-2$.\\\\\nD'altra banda, $-(a-1)^2(a+2)=-(a^2-2a+1)(a+2)=-(a^3-3a+2)=-a^3+3a-2$: coincideixen.\n\\end{solucio}\n\n\\begin{tria}{rang-parametre}\n\\itemtria{estudia-rang}{1}{1,25}\nEstudia el rang de $M$ segons els valors de $a$.\n\n\\begin{solucio}\n\\begin{itemize}\n\\item Si $a\\ne1$ i $a\\ne-2$, $|M|\\ne0$: $\\operatorname{rang}M=3$.\n\\item Si $a=1$, les tres files són $(1\\ \\ 1\\ \\ 1)$: $\\operatorname{rang}M=1$.\n\\item Si $a=-2$, $M=\\begin{pmatrix}1&-2&1\\\\-2&1&1\\\\1&1&-2\\end{pmatrix}$, $|M|=0$ i\n$\\begin{vmatrix}1&-2\\\\-2&1\\end{vmatrix}=-3\\ne0$: $\\operatorname{rang}M=2$.\n\\end{itemize}\n\\end{solucio}\n\n\\itemtria{rang-1}{1}{1,25}\nTroba els valors de $p$ i $q$ perquè la matriu $\\begin{pmatrix}1&p&3\\\\2&4&q\\end{pmatrix}$ tingui rang 1.\n\n\\begin{solucio}\nLa matriu no és nul·la, i té rang 1 si i només si tots els seus menors d'ordre 2 són nuls:\n$\\begin{vmatrix}1&p\\\\2&4\\end{vmatrix}=4-2p=0$ dona $p=2$, i $\\begin{vmatrix}1&3\\\\2&q\\end{vmatrix}=q-6=0$\ndona $q=6$. Amb $p=2$ i $q=6$, el tercer menor, $\\begin{vmatrix}2&3\\\\4&6\\end{vmatrix}$, també és nul: la\nsegona fila és el doble de la primera.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nPer a $a=-2$, troba una combinació lineal de les files de $M$ que doni la fila nul·la.\n\n\\begin{solucio}\nAmb $a=-2$, les files són $F_1=(1\\ \\ {-2}\\ \\ 1)$, $F_2=(-2\\ \\ 1\\ \\ 1)$ i $F_3=(1\\ \\ 1\\ \\ {-2})$.\n$F_1+F_2+F_3=(0\\ \\ 0\\ \\ 0)$: la tercera fila és $F_3=-F_1-F_2$, i per això el rang no arriba a 3.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/rang-determinants/q002/out/enunciat.pdf",
+   "pdf_solucio": "u2/rang-determinants/q002/out/solucio.pdf",
+   "pdf_curt": "u2/rang-determinants/q002/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/rang-determinants/q002/out/solucio-curt.pdf"
+  },
+  {
+   "id": "u2/rang-determinants/q003",
+   "unitat": "u2",
+   "tema": "rang-determinants",
+   "codi": "q003",
+   "titol": "Rang d'una matriu 2×2 i d'una 3×4 amb paràmetre, i el rang màxim",
+   "punts": 2.5,
+   "apartats": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "apartats_curt": [
+    1.25,
+    1.25
+   ],
+   "te_curt": true,
+   "dificultat": "●●○",
+   "origen": [
+    87,
+    83,
+    79
+   ],
+   "minuts": 18,
+   "minuts_curt": 11,
+   "etiquetes": [
+    "rang",
+    "paràmetres"
+   ],
+   "temes_secundaris": [],
+   "procedencia": null,
+   "unitats": [],
+   "tries": [
+    {
+     "id": "rang-rectangular",
+     "defecte_llarg": "parametre-3x4",
+     "defecte_curt": "parametre-3x4",
+     "items": [
+      {
+       "id": "parametre-3x4",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/rang-determinants/q003/out/tries/rang-rectangular/parametre-3x4/enunciat.pdf",
+       "pdf_solucio": "u2/rang-determinants/q003/out/tries/rang-rectangular/parametre-3x4/solucio.pdf",
+       "pdf_curt": "u2/rang-determinants/q003/out/tries/rang-rectangular/parametre-3x4/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/rang-determinants/q003/out/tries/rang-rectangular/parametre-3x4/solucio-curt.pdf"
+      },
+      {
+       "id": "sense-calcular",
+       "llarg": 1.0,
+       "curt": 1.25,
+       "pdf": "u2/rang-determinants/q003/out/tries/rang-rectangular/sense-calcular/enunciat.pdf",
+       "pdf_solucio": "u2/rang-determinants/q003/out/tries/rang-rectangular/sense-calcular/solucio.pdf",
+       "pdf_curt": "u2/rang-determinants/q003/out/tries/rang-rectangular/sense-calcular/enunciat-curt.pdf",
+       "pdf_solucio_curt": "u2/rang-determinants/q003/out/tries/rang-rectangular/sense-calcular/solucio-curt.pdf"
+      }
+     ]
+    }
+   ],
+   "tex": "\\begin{apartats}\n\n\\apartat[1,25]{0,75}\nEstudia el rang de $\\begin{pmatrix}a&2\\\\2&a\\end{pmatrix}$ segons els valors de $a$.\n\n\\begin{solucio}\nEl determinant és $a^2-4$, que s'anul·la per a $a=2$ i $a=-2$.\n\\begin{itemize}\n\\item Si $a\\ne\\pm2$, el rang és 2.\n\\item Si $a=2$ o $a=-2$, el determinant és nul, però la matriu té elements no nuls (el 2): el rang és 1.\n\\end{itemize}\n\\end{solucio}\n\n\\begin{tria}{rang-rectangular}\n\\itemtria{parametre-3x4}{1}{1,25}\nEstudia el rang de $A=\\begin{pmatrix}1&1&2&1\\\\2&-1&1&k\\\\1&-2&-1&3\\end{pmatrix}$ segons els valors de $k$.\n\n\\begin{solucio}\n$\\begin{vmatrix}1&1\\\\2&-1\\end{vmatrix}=-3\\ne0$: el rang és almenys 2. Hi ha quatre menors d'ordre 3. Dos\nd'ells són\n\\[\n\\begin{vmatrix}1&1&2\\\\2&-1&1\\\\1&-2&-1\\end{vmatrix}=0,\\qquad\n\\begin{vmatrix}1&1&1\\\\2&-1&k\\\\1&-2&3\\end{vmatrix}=3(k-4),\n\\]\ni els altres dos també són múltiples de $k-4$. Si $k\\ne4$, $\\operatorname{rang}A=3$; si $k=4$, tots els\nmenors d'ordre 3 són nuls i $\\operatorname{rang}A=2$.\n\\end{solucio}\n\n\\itemtria{sense-calcular}{1}{1,25}\nSense calcular cap determinant d'ordre 3, digues el rang de\n$\\begin{pmatrix}1&2&3\\\\2&4&6\\\\-1&-2&-3\\end{pmatrix}$ i de\n$\\begin{pmatrix}1&0&0&5\\\\0&1&0&2\\\\0&0&1&7\\end{pmatrix}$. Justifica-ho.\n\n\\begin{solucio}\nA la primera, la segona fila és el doble de la primera i la tercera n'és l'oposada: totes les files són\nproporcionals a una fila no nul·la, i el rang és 1.\\\\\nLa segona conté, a les tres primeres columnes, la matriu identitat d'ordre 3, que té determinant $1\\ne0$.\nCom que només té tres files, el rang és 3.\n\\end{solucio}\n\\end{tria}\n\n\\begin{nomesllarg}\n\\apartat{0,75}\nQuin és el rang màxim que pot tenir una matriu $3\\times2$? I una $2\\times5$? Per què?\n\n\\begin{solucio}\nEl rang d'una matriu $m\\times n$ és l'ordre del menor no nul més gran, i un menor no pot tenir més files\nque la matriu ni més columnes: el rang és, com a molt, el menor dels nombres $m$ i $n$. Una $3\\times2$ té\nrang 2 com a màxim, i una $2\\times5$, també 2.\n\\end{solucio}\n\\end{nomesllarg}\n\n\\end{apartats}\n",
+   "pdf": "u2/rang-determinants/q003/out/enunciat.pdf",
+   "pdf_solucio": "u2/rang-determinants/q003/out/solucio.pdf",
+   "pdf_curt": "u2/rang-determinants/q003/out/enunciat-curt.pdf",
+   "pdf_solucio_curt": "u2/rang-determinants/q003/out/solucio-curt.pdf"
   },
   {
    "id": "u7/bolzano-biseccio/q001",
