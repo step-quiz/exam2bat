@@ -1,0 +1,17 @@
+{
+  "titol": "Tres comandes d'una papereria: el preu de cada article",
+  "dificultat": "●○○",
+  "temes_secundaris": [],
+  "origen": [
+    90,
+    94,
+    56
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "problema",
+    "mètode de Gauss",
+    "Rouché-Fröbenius"
+  ]
+}

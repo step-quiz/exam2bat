@@ -1,0 +1,65 @@
+Considera el sistema
+\[
+\left.\begin{aligned}
+x+2y-z&=3\\
+2x+y+z&=3\\
+x-y+2z&=0
+\end{aligned}\right\}
+\]
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Escriu-lo en forma matricial i classifica'l amb el teorema de Rouché-Fröbenius.
+
+\begin{solucio}
+$\begin{pmatrix}1&2&-1\\2&1&1\\1&-1&2\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix}=\begin{pmatrix}3\\3\\0\end{pmatrix}$.
+Sigui $A$ la matriu de coeficients i $A^*$ l'ampliada.\\
+$|A|=2+2+2+1-8+1=0$ i $\begin{vmatrix}1&2\\2&1\end{vmatrix}=-3\ne0$: $\operatorname{rang}A=2$.\\
+A $A^*$, la tercera fila és la segona menys la primera, també al terme independent ($0=3-3$): tots els
+menors d'ordre 3 són nuls i $\operatorname{rang}A^*=2$.\\
+$\operatorname{rang}A=\operatorname{rang}A^*=2<3$: és compatible indeterminat, amb un paràmetre.
+\end{solucio}
+
+\begin{tria}{rouche-tasca}
+\itemtria{resol-indeterminat}{1}{1,25}
+Resol el sistema i dona'n dues solucions particulars.
+
+\begin{solucio}
+N'hi ha prou amb les dues primeres equacions. Amb $z=\lambda$:
+$\left.\begin{aligned}x+2y&=3+\lambda\\2x+y&=3-\lambda\end{aligned}\right\}$. Restant a la segona el doble
+de la primera, $-3y=-3-3\lambda$, $y=1+\lambda$, i $x=3+\lambda-2y=1-\lambda$.\\
+Les solucions són $(x,y,z)=(1-\lambda,\ 1+\lambda,\ \lambda)$. Per exemple, amb $\lambda=0$, $(1,1,0)$, i
+amb $\lambda=1$, $(0,2,1)$.
+\end{solucio}
+
+\itemtria{mes-equacions}{1}{1,25}
+Estudia amb el teorema de Rouché-Fröbenius aquest altre sistema, de tres equacions i dues incògnites, i
+resol-lo si és compatible:
+$\left.\begin{aligned}x+2y&=5\\3x-y&=1\\2x+y&=4\end{aligned}\right\}$
+
+\begin{solucio}
+$\begin{vmatrix}1&2\\3&-1\end{vmatrix}=-7\ne0$: el rang de la matriu de coeficients és 2, el màxim.
+L'ampliada és quadrada: $\begin{vmatrix}1&2&5\\3&-1&1\\2&1&4\end{vmatrix}=-4+4+15+10-1-24=0$, i el seu
+rang també és 2.\\
+$\operatorname{rang}A=\operatorname{rang}A^*=2=$ nombre d'incògnites: és compatible determinat. De les
+dues primeres, $x=1$ i $y=2$, que també compleixen la tercera: $2+2=4$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Classifica el sistema $\left.\begin{aligned}x-y+z&=1\\-2x+2y-2z&=3\end{aligned}\right\}$. Canvia'n el
+terme independent de la segona equació perquè sigui compatible. De quants paràmetres dependran llavors
+les solucions?
+
+\begin{solucio}
+Les dues files de coeficients són proporcionals: $\operatorname{rang}A=1$. A l'ampliada,
+$\begin{vmatrix}1&1\\-2&3\end{vmatrix}=5\ne0$: $\operatorname{rang}A^*=2$. És incompatible.\\
+Amb terme independent $-2$, la segona equació és la primera multiplicada per $-2$:
+$\operatorname{rang}A=\operatorname{rang}A^*=1<3$. És compatible indeterminat, i les solucions depenen
+de $3-1=2$ paràmetres.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

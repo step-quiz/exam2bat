@@ -1,0 +1,68 @@
+Considera el sistema següent, en què $m$ és un nombre real:
+\[
+\left.\begin{aligned}
+x+y+z&=2\\
+x+2y+3z&=m\\
+2x+3y+mz&=m+2
+\end{aligned}\right\}
+\]
+
+\begin{apartats}
+
+\begin{tria}{metode-discussio}
+\itemtria{rouche}{1}{1,25}
+Discuteix el sistema segons els valors de $m$ amb el teorema de Rouché-Fröbenius.
+
+\begin{solucio}
+$|A|=\begin{vmatrix}1&1&1\\1&2&3\\2&3&m\end{vmatrix}=2m+6+3-4-9-m=m-4$.
+\begin{itemize}
+\item Si $m\ne4$: $\operatorname{rang}A=\operatorname{rang}A^*=3$, compatible determinat.
+\item Si $m=4$: $\begin{vmatrix}1&1\\1&2\end{vmatrix}=1\ne0$, $\operatorname{rang}A=2$. La matriu ampliada és
+$\left(\begin{array}{ccc|c}1&1&1&2\\1&2&3&4\\2&3&4&6\end{array}\right)$, i la tercera fila és la suma de
+les dues primeres: $\operatorname{rang}A^*=2<3$. Compatible indeterminat.
+\end{itemize}
+El sistema no és incompatible per a cap valor de $m$.
+\end{solucio}
+
+\itemtria{gauss}{1}{1,25}
+Discuteix el sistema segons els valors de $m$ pel mètode de Gauss.
+
+\begin{solucio}
+\[
+\left(\begin{array}{ccc|c}1&1&1&2\\1&2&3&m\\2&3&m&m+2\end{array}\right)
+\xrightarrow[F_3-2F_1]{F_2-F_1}
+\left(\begin{array}{ccc|c}1&1&1&2\\0&1&2&m-2\\0&1&m-2&m-2\end{array}\right)
+\xrightarrow{F_3-F_2}
+\left(\begin{array}{ccc|c}1&1&1&2\\0&1&2&m-2\\0&0&m-4&0\end{array}\right).
+\]
+\begin{itemize}
+\item Si $m\ne4$, queda un sistema esglaonat amb tres equacions: compatible determinat.
+\item Si $m=4$, l'última fila és $0=0$ i queden dues equacions amb tres incògnites: compatible
+indeterminat.
+\end{itemize}
+Com que l'últim terme independent és sempre 0, no hi ha cap fila del tipus $0=k$ amb $k\ne0$: el
+sistema no és incompatible per a cap valor de $m$.
+\end{solucio}
+\end{tria}
+
+\apartat[1,25]{0,75}
+Resol el sistema en el cas en què és compatible indeterminat.
+
+\begin{solucio}
+Per a $m=4$: $\left.\begin{aligned}x+y+z&=2\\y+2z&=2\end{aligned}\right\}$. Amb $z=\lambda$:
+$y=2-2\lambda$ i $x=2-y-z=\lambda$. Les solucions són $(x,y,z)=(\lambda,\ 2-2\lambda,\ \lambda)$, amb
+$\lambda\in\mathbb R$.
+\end{solucio}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Resol el sistema per a $m\ne4$, en funció de $m$. Per a quin valor de $m$ la solució té $x=y$?
+
+\begin{solucio}
+Del sistema esglaonat, $(m-4)z=0$ dona $z=0$; aleshores $y+2z=m-2$ dona $y=m-2$, i
+$x=2-y-z=4-m$. La solució és $(x,y,z)=(4-m,\ m-2,\ 0)$.\\
+$x=y$ vol dir $4-m=m-2$, és a dir, $m=3$: la solució és $(1,1,0)$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

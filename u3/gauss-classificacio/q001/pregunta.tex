@@ -1,0 +1,77 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Resol pel mètode de Gauss el sistema
+\[
+\left.\begin{aligned}
+x+2y-z&=-3\\
+2x-y+z&=5\\
+3x+y+2z&=6
+\end{aligned}\right\}
+\]
+
+\begin{solucio}
+\[
+\left(\begin{array}{ccc|c}1&2&-1&-3\\2&-1&1&5\\3&1&2&6\end{array}\right)
+\xrightarrow[F_3-3F_1]{F_2-2F_1}
+\left(\begin{array}{ccc|c}1&2&-1&-3\\0&-5&3&11\\0&-5&5&15\end{array}\right)
+\xrightarrow{F_3-F_2}
+\left(\begin{array}{ccc|c}1&2&-1&-3\\0&-5&3&11\\0&0&2&4\end{array}\right).
+\]
+De baix a dalt: $2z=4$, $z=2$; $-5y+6=11$, $y=-1$; $x=-3-2y+z=1$. És compatible determinat, amb
+solució $(x,y,z)=(1,-1,2)$.
+\end{solucio}
+
+\begin{tria}{classificar}
+\itemtria{indeterminat}{1}{1,25}
+Resol i classifica el sistema
+\[
+\left.\begin{aligned}
+x-y+2z&=1\\
+2x+y-z&=5\\
+4x-y+3z&=7
+\end{aligned}\right\}
+\]
+
+\begin{solucio}
+\[
+\left(\begin{array}{ccc|c}1&-1&2&1\\2&1&-1&5\\4&-1&3&7\end{array}\right)
+\xrightarrow[F_3-4F_1]{F_2-2F_1}
+\left(\begin{array}{ccc|c}1&-1&2&1\\0&3&-5&3\\0&3&-5&3\end{array}\right)
+\xrightarrow{F_3-F_2}
+\left(\begin{array}{ccc|c}1&-1&2&1\\0&3&-5&3\\0&0&0&0\end{array}\right).
+\]
+Queden dues equacions amb tres incògnites: és compatible indeterminat. Amb $z=3\lambda$, la segona dona
+$3y=3+15\lambda$, $y=1+5\lambda$, i la primera, $x=1+y-2z=2-\lambda$. Les solucions són
+$(x,y,z)=(2-\lambda,\ 1+5\lambda,\ 3\lambda)$, amb $\lambda\in\mathbb R$.
+\end{solucio}
+
+\itemtria{afegeix-equacio}{1}{1,25}
+Considera el sistema $\left.\begin{aligned}x+y&=3\\x-y&=1\end{aligned}\right\}$. Afegeix-hi una
+tercera equació de la forma $ax+by=c$ de manera que el sistema continuï sent compatible, i una altra
+de manera que passi a ser incompatible. Justifica-ho.
+
+\begin{solucio}
+El sistema té una sola solució, $(x,y)=(2,1)$. Resposta oberta.\\
+Continua sent compatible si la tercera equació també la compleix: per exemple, $2x+3y=7$, perquè
+$4+3=7$. El sistema de tres equacions és compatible determinat, amb la mateixa solució.\\
+Passa a ser incompatible si la tercera equació no la compleix: per exemple, $x+y=4$, que contradiu la
+primera. Cap parella $(x,y)$ no compleix les tres equacions alhora.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Escriu amb equacions el sistema
+$\begin{pmatrix}1&2\\3&-1\\2&1\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}4\\5\\6\end{pmatrix}$
+i digues si és compatible.
+
+\begin{solucio}
+És el sistema $\left.\begin{aligned}a+2b&=4\\3a-b&=5\\2a+b&=6\end{aligned}\right\}$. Les dues primeres
+equacions donen $a=2$, $b=1$, però la tercera no es compleix: $2\cdot2+1=5\ne6$. És incompatible.
+(També: $\begin{vmatrix}1&2\\3&-1\end{vmatrix}=-7\ne0$ i $\begin{vmatrix}1&2&4\\3&-1&5\\2&1&6\end{vmatrix}=-7\ne0$,
+de manera que el rang de la matriu és 2 i el de l'ampliada, 3.)
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

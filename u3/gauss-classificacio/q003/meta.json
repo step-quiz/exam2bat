@@ -1,0 +1,18 @@
+{
+  "titol": "Gauss en un sistema determinat i un d'incompatible, i quan un sistema no pot ser determinat",
+  "dificultat": "●○○",
+  "temes_secundaris": [],
+  "origen": [
+    43,
+    42,
+    38,
+    39
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "mètode de Gauss",
+    "sistema incompatible",
+    "forma matricial"
+  ]
+}

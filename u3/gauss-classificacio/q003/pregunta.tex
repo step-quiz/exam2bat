@@ -1,0 +1,76 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Escriu en forma matricial i resol pel mètode de Gauss el sistema
+\[
+\left.\begin{aligned}
+2x+y-z&=3\\
+x-y+2z&=4\\
+3x+2y+z&=7
+\end{aligned}\right\}
+\]
+
+\begin{solucio}
+$\begin{pmatrix}2&1&-1\\1&-1&2\\3&2&1\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix}=\begin{pmatrix}3\\4\\7\end{pmatrix}$.
+Canviant l'ordre de les dues primeres equacions:
+\[
+\left(\begin{array}{ccc|c}1&-1&2&4\\2&1&-1&3\\3&2&1&7\end{array}\right)
+\xrightarrow[F_3-3F_1]{F_2-2F_1}
+\left(\begin{array}{ccc|c}1&-1&2&4\\0&3&-5&-5\\0&5&-5&-5\end{array}\right)
+\xrightarrow{3F_3-5F_2}
+\left(\begin{array}{ccc|c}1&-1&2&4\\0&3&-5&-5\\0&0&10&10\end{array}\right).
+\]
+$z=1$; $3y-5=-5$, $y=0$; $x=4+y-2z=2$. És compatible determinat: $(x,y,z)=(2,0,1)$.
+\end{solucio}
+
+\begin{tria}{tipus-sistema}
+\itemtria{incompatible}{1}{1,25}
+Aplica el mètode de Gauss i classifica el sistema
+\[
+\left.\begin{aligned}
+x+2y-z&=1\\
+2x+3y+z&=4\\
+3x+5y&=6
+\end{aligned}\right\}
+\]
+
+\begin{solucio}
+\[
+\left(\begin{array}{ccc|c}1&2&-1&1\\2&3&1&4\\3&5&0&6\end{array}\right)
+\xrightarrow[F_3-3F_1]{F_2-2F_1}
+\left(\begin{array}{ccc|c}1&2&-1&1\\0&-1&3&2\\0&-1&3&3\end{array}\right)
+\xrightarrow{F_3-F_2}
+\left(\begin{array}{ccc|c}1&2&-1&1\\0&-1&3&2\\0&0&0&1\end{array}\right).
+\]
+L'última fila diu $0=1$: el sistema és incompatible. (La suma de les dues primeres equacions és
+$3x+5y=5$, que contradiu la tercera.)
+\end{solucio}
+
+\itemtria{inventa-sistema}{1}{1,25}
+Escriu un sistema de tres equacions amb tres incògnites, en què totes les equacions tinguin les tres
+incògnites, que tingui com a única solució $(x,y,z)=(1,-1,2)$. Justifica que la solució és única.
+
+\begin{solucio}
+Resposta oberta. Cada equació ha de complir-se amb $(1,-1,2)$: es trien els coeficients i el terme
+independent és el valor del primer membre en aquest punt. Per exemple,
+$\left.\begin{aligned}x+2y-z&=-3\\2x-y+z&=5\\3x+y+2z&=6\end{aligned}\right\}$.\\
+La solució és única si el determinant de la matriu de coeficients no és nul:
+$\begin{vmatrix}1&2&-1\\2&-1&1\\3&1&2\end{vmatrix}=-2+6-2-3-1-8=-10\ne0$. Aleshores
+$\operatorname{rang}A=\operatorname{rang}A^*=3$, i és compatible determinat.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Escriu en forma matricial el sistema $\left.\begin{aligned}x+y-z+t&=2\\2x-z+3t&=1\end{aligned}\right\}$.
+Pot ser compatible determinat? Justifica-ho sense resoldre'l.
+
+\begin{solucio}
+$\begin{pmatrix}1&1&-1&1\\2&0&-1&3\end{pmatrix}\begin{pmatrix}x\\y\\z\\t\end{pmatrix}=\begin{pmatrix}2\\1\end{pmatrix}$.\\
+La matriu de coeficients té dues files: el seu rang és com a molt 2, menor que el nombre d'incògnites,
+4. Un sistema així no pot ser mai compatible determinat. Aquí $\begin{vmatrix}1&1\\2&0\end{vmatrix}=-2\ne0$,
+i els dos rangs valen 2: és compatible indeterminat, amb $4-2=2$ paràmetres.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

@@ -1,0 +1,18 @@
+{
+  "titol": "Classificar amb el teorema de Rouché-Fröbenius i resoldre un sistema indeterminat",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    55,
+    56,
+    42,
+    38
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "Rouché-Fröbenius",
+    "sistema indeterminat",
+    "forma matricial"
+  ]
+}

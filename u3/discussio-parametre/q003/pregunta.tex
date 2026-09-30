@@ -1,0 +1,69 @@
+Considera el sistema homogeni següent, en què $m$ és un nombre real:
+\[
+\left.\begin{aligned}
+x+y+z&=0\\
+x+my+2z&=0\\
+mx+y+2z&=0
+\end{aligned}\right\}
+\]
+
+\begin{apartats}
+
+\apartat[1,25]{1}
+Discuteix el sistema segons els valors de $m$.
+
+\begin{solucio}
+Un sistema homogeni sempre és compatible: $(0,0,0)$ n'és solució, i $\operatorname{rang}A=\operatorname{rang}A^*$
+perquè la columna afegida és nul·la.
+\[
+|A|=\begin{vmatrix}1&1&1\\1&m&2\\m&1&2\end{vmatrix}=2m+2m+1-m^2-2-2=-m^2+4m-3=-(m-1)(m-3).
+\]
+\begin{itemize}
+\item Si $m\ne1$ i $m\ne3$: $\operatorname{rang}A=3$, compatible determinat. L'única solució és
+$(0,0,0)$.
+\item Si $m=1$ o $m=3$: $|A|=0$ i $\begin{vmatrix}1&1\\1&2\end{vmatrix}=1\ne0$ (files 1 i 2, columnes 1
+i 3), de manera que $\operatorname{rang}A=2<3$: compatible indeterminat.
+\end{itemize}
+\end{solucio}
+
+\begin{tria}{solucions-no-trivials}
+\itemtria{resol-m3}{0,75}{1,25}
+Resol el sistema per a $m=3$.
+
+\begin{solucio}
+Per a $m=3$ n'hi ha prou amb les dues primeres equacions:
+$\left.\begin{aligned}x+y+z&=0\\x+3y+2z&=0\end{aligned}\right\}$. Restant-les, $2y+z=0$, $z=-2y$; i
+$x=-y-z=y$. Amb $y=\lambda$, les solucions són $(x,y,z)=(\lambda,\ \lambda,\ -2\lambda)$, amb
+$\lambda\in\mathbb R$. (Comprovació a la tercera: $3\lambda+\lambda-4\lambda=0$.)
+\end{solucio}
+
+\itemtria{amb-z-1}{0,75}{1,25}
+Per a quins valors de $m$ el sistema té alguna solució amb $z=1$? Troba-la.
+
+\begin{solucio}
+Si $m\ne1$ i $m\ne3$, l'única solució és $(0,0,0)$, amb $z=0$. Cal mirar els dos casos indeterminats.\\
+Per a $m=1$, les dues últimes equacions són iguals, $x+y+2z=0$, i restant-hi la primera surt $z=0$:
+cap solució té $z=1$.\\
+Per a $m=3$, les solucions són $(\lambda,\lambda,-2\lambda)$: $-2\lambda=1$ dona $\lambda=-\frac12$, i la
+solució és $\left(-\frac12,-\frac12,1\right)$. Només passa per a $m=3$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Discuteix el sistema $\left.\begin{aligned}mx+y&=2\\x+my&=m+1\end{aligned}\right\}$ segons els valors
+de $m$.
+
+\begin{solucio}
+$|A|=\begin{vmatrix}m&1\\1&m\end{vmatrix}=m^2-1=(m-1)(m+1)$.
+\begin{itemize}
+\item Si $m\ne\pm1$: $\operatorname{rang}A=\operatorname{rang}A^*=2$, compatible determinat.
+\item Si $m=1$: les dues equacions són $x+y=2$: $\operatorname{rang}A=\operatorname{rang}A^*=1<2$,
+compatible indeterminat.
+\item Si $m=-1$: $\left.\begin{aligned}-x+y&=2\\x-y&=0\end{aligned}\right\}$. $\operatorname{rang}A=1$, i
+$\begin{vmatrix}-1&2\\1&0\end{vmatrix}=-2\ne0$ dona $\operatorname{rang}A^*=2$: incompatible.
+\end{itemize}
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

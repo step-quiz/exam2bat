@@ -1,0 +1,72 @@
+Una biblioteca va fer 300 préstecs en una setmana, entre llibres, còmics i pel·lícules. Els còmics i el
+doble de les pel·lícules en van ser 80 més que els llibres. Si se suma el 20\,\% dels llibres, el 30\,\%
+dels còmics i el 50\,\% de les pel·lícules, que són els que es van tornar amb retard, s'obtenen 88
+préstecs.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Planteja un sistema d'equacions que permeti saber quants préstecs de cada tipus es van fer.
+
+\begin{solucio}
+Siguin $x$, $y$ i $z$ els préstecs de llibres, de còmics i de pel·lícules:
+\[
+\left.\begin{aligned}x+y+z&=300\\y+2z&=x+80\\0{,}2x+0{,}3y+0{,}5z&=88\end{aligned}\right\}
+\ \Longleftrightarrow\
+\left.\begin{aligned}x+y+z&=300\\-x+y+2z&=80\\2x+3y+5z&=880\end{aligned}\right\}
+\]
+(la tercera, multiplicada per 10).
+\end{solucio}
+
+\begin{tria}{resolucio}
+\itemtria{resol}{1}{1,25}
+Resol el sistema pel mètode de Gauss i interpreta'n la solució.
+
+\begin{solucio}
+\[
+\left(\begin{array}{ccc|c}1&1&1&300\\-1&1&2&80\\2&3&5&880\end{array}\right)
+\xrightarrow[F_3-2F_1]{F_2+F_1}
+\left(\begin{array}{ccc|c}1&1&1&300\\0&2&3&380\\0&1&3&280\end{array}\right)
+\xrightarrow{2F_3-F_2}
+\left(\begin{array}{ccc|c}1&1&1&300\\0&2&3&380\\0&0&3&180\end{array}\right).
+\]
+$z=60$; $2y=380-180$, $y=100$; $x=300-100-60=140$. Es van fer 140 préstecs de llibres, 100 de còmics
+i 60 de pel·lícules.
+\end{solucio}
+
+\itemtria{model-economic}{1}{1,25}
+Aquest altre problema és d'un model econòmic. Una empresa elèctrica i una d'aigua es proveeixen
+mútuament: per produir 1\,€ d'electricitat es consumeixen 0,10\,€ d'electricitat i 0,20\,€ d'aigua, i
+per produir 1\,€ d'aigua, 0,30\,€ d'electricitat i 0,10\,€ d'aigua. A més, fora de les dues empreses es
+demanen 60\,€ d'electricitat i 30\,€ d'aigua. Quant ha de produir cada empresa perquè la producció
+cobreixi el consum de les dues empreses i la demanda de fora?
+
+\begin{solucio}
+Siguin $E$ i $W$ les produccions, en euros, d'electricitat i d'aigua. La producció de cada una ha de ser
+igual al que en consumeixen les dues empreses més la demanda exterior:
+\[
+\left.\begin{aligned}E&=0{,}1E+0{,}3W+60\\W&=0{,}2E+0{,}1W+30\end{aligned}\right\}
+\ \Longleftrightarrow\
+\left.\begin{aligned}9E-3W&=600\\-2E+9W&=300\end{aligned}\right\}
+\]
+De la primera, $W=3E-200$; substituint, $-2E+27E-1800=300$, $E=84$, i $W=52$. L'empresa elèctrica ha
+de produir 84\,€ i la d'aigua, 52\,€.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula el determinant de la matriu de coeficients del sistema de l'apartat a). Si les dades de la
+setmana següent fossin unes altres, amb les mateixes relacions, el sistema tindria sempre una única
+solució? I el problema? Raona-ho.
+
+\begin{solucio}
+$\begin{vmatrix}1&1&1\\-1&1&2\\2&3&5\end{vmatrix}=5+4-3-2-6+5=3\ne0$. Com que el determinant no depèn dels
+termes independents, el sistema és compatible determinat amb qualsevol dada: té sempre una única
+solució.\\
+El problema, però, només té solució si aquesta solució és de nombres naturals: amb unes altres dades,
+podria sortir un nombre negatiu o no enter, que no correspondria a cap nombre de préstecs.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

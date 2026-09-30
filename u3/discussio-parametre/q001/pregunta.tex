@@ -1,0 +1,69 @@
+Considera el sistema següent, en què $m$ és un nombre real:
+\[
+\left.\begin{aligned}
+x+y-z&=-1\\
+2x+my&=-1\\
+(m+1)x+3y&=1
+\end{aligned}\right\}
+\]
+
+\begin{apartats}
+
+\apartat[1,25]{1}
+Discuteix el sistema segons els valors de $m$.
+
+\begin{solucio}
+Siguin $A$ la matriu de coeficients i $A^*$ l'ampliada. Desenvolupant per la tercera columna, que només
+té un element no nul,
+\[
+|A|=\begin{vmatrix}1&1&-1\\2&m&0\\m+1&3&0\end{vmatrix}
+=-\begin{vmatrix}2&m\\m+1&3\end{vmatrix}=-(6-m^2-m)=m^2+m-6=(m-2)(m+3).
+\]
+\begin{itemize}
+\item Si $m\ne2$ i $m\ne-3$: $\operatorname{rang}A=\operatorname{rang}A^*=3$, compatible determinat.
+\item Si $m=2$: $\begin{vmatrix}1&-1\\2&0\end{vmatrix}=2\ne0$, $\operatorname{rang}A=2$; i amb les columnes
+de $x$, de $z$ i dels termes independents, $\begin{vmatrix}1&-1&-1\\2&0&-1\\3&0&1\end{vmatrix}=5\ne0$:
+$\operatorname{rang}A^*=3$. Incompatible.
+\item Si $m=-3$: la tercera fila de $A^*$ és l'oposada de la segona, $(-2\ \ 3\ \ 0\,|\,1)=-(2\ \ {-3}\ \ 0\,|\,{-1})$,
+i $\begin{vmatrix}1&1\\2&-3\end{vmatrix}=-5\ne0$: $\operatorname{rang}A=\operatorname{rang}A^*=2<3$.
+Compatible indeterminat.
+\end{itemize}
+\end{solucio}
+
+\begin{tria}{cas-concret}
+\itemtria{resol-indeterminat}{0,75}{1,25}
+Resol el sistema en el cas en què és compatible indeterminat.
+
+\begin{solucio}
+Per a $m=-3$ n'hi ha prou amb les dues primeres equacions:
+$\left.\begin{aligned}x+y-z&=-1\\2x-3y&=-1\end{aligned}\right\}$. Amb $y=2\lambda+1$, la segona dona
+$2x=3y-1=6\lambda+2$, $x=3\lambda+1$, i la primera, $z=x+y+1=5\lambda+3$.\\
+Les solucions són $(x,y,z)=(3\lambda+1,\ 2\lambda+1,\ 5\lambda+3)$, amb $\lambda\in\mathbb R$.
+(Si es pren $y=\lambda$, surten fraccions: $x=\frac{3\lambda-1}2$, $z=\frac{5\lambda+1}2$, que és la
+mateixa família.)
+\end{solucio}
+
+\itemtria{solucio-donada}{0,75}{1,25}
+Hi ha algun valor de $m$ per al qual $(x,y,z)=(1,-1,1)$ sigui solució del sistema? En aquest cas, el
+sistema té altres solucions?
+
+\begin{solucio}
+Substituint el punt: la primera equació, $1-1-1=-1$, es compleix per a qualsevol $m$; la segona dona
+$2-m=-1$, és a dir, $m=3$; i la tercera, $(m+1)-3=1$, també $m=3$. Per tant, $(1,-1,1)$ és solució
+només si $m=3$.\\
+Per a $m=3$, $|A|=(3-2)(3+3)=6\ne0$: el sistema és compatible determinat, i $(1,-1,1)$ n'és l'única
+solució.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Resol el sistema per a $m=1$.
+
+\begin{solucio}
+Per a $m=1$: $\left.\begin{aligned}x+y-z&=-1\\2x+y&=-1\\2x+3y&=1\end{aligned}\right\}$. Restant la segona
+a la tercera, $2y=2$, $y=1$; aleshores $x=-1$, i $z=x+y+1=1$. La solució és $(x,y,z)=(-1,1,1)$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
