@@ -1,0 +1,62 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia la posició relativa dels plans
+$\pi\colon\left\{\begin{aligned}x&=1+\lambda+\mu\\y&=2-\lambda\\z&=\mu\end{aligned}\right.$ i
+$\pi'\colon 2x+2y-2z+1=0$.
+
+\begin{solucio}
+L'equació general de $\pi$, que passa per $(1,2,0)$ amb vectors directors $(1,-1,0)$ i $(1,0,1)$:
+\[
+\begin{vmatrix}x-1&y-2&z\\1&-1&0\\1&0&1\end{vmatrix}=-(x-1)-(y-2)+z=0
+\ \Longrightarrow\ x+y-z-3=0.
+\]
+Els coeficients de $\pi$ i $\pi'$ són proporcionals, $\frac12=\frac12=\frac{-1}{-2}$, però els termes
+independents no, $\frac{-3}1\ne\frac12$: $\operatorname{rang}M=1$ i $\operatorname{rang}M^*=2$. Els plans són
+paral·lels.
+\end{solucio}
+
+\begin{tria}{tres-plans}
+\itemtria{un-punt}{1}{1,25}
+Estudia la posició relativa dels plans $x+y+z=6$, $x-y+2z=5$ i $2x+y-z=1$.
+
+\begin{solucio}
+$|M|=\begin{vmatrix}1&1&1\\1&-1&2\\2&1&-1\end{vmatrix}=7\ne0$:
+$\operatorname{rang}M=\operatorname{rang}M^*=3$. Els tres plans es tallen en un sol punt:
+\[
+\left(\begin{array}{ccc|c}1&1&1&6\\1&-1&2&5\\2&1&-1&1\end{array}\right)
+\xrightarrow[F_3-2F_1]{F_2-F_1}
+\left(\begin{array}{ccc|c}1&1&1&6\\0&-2&1&-1\\0&-1&-3&-11\end{array}\right)
+\xrightarrow{2F_3-F_2}
+\left(\begin{array}{ccc|c}1&1&1&6\\0&-2&1&-1\\0&0&-7&-21\end{array}\right),
+\]
+$z=3$, $y=2$, $x=1$: el punt $(1,2,3)$.
+\end{solucio}
+
+\itemtria{tercer-pla}{1}{1,25}
+Escriu un pla $\pi_3$, diferent dels altres dos, de manera que els plans $\pi_1\colon x+2y-z=1$,
+$\pi_2\colon 2x-y+z=4$ i $\pi_3$ es tallin en una recta. Justifica-ho.
+
+\begin{solucio}
+Resposta oberta. $\pi_1$ i $\pi_2$ no són paral·lels (els vectors normals no són proporcionals) i es
+tallen en una recta. Qualsevol pla que sigui combinació lineal dels dos la conté: per exemple,
+$\pi_1+\pi_2$, és a dir, $\pi_3\colon 3x+y=5$.\\
+Aleshores la tercera fila de $M^*$ és la suma de les dues primeres i
+$\begin{vmatrix}1&2\\2&-1\end{vmatrix}=-5\ne0$: $\operatorname{rang}M=\operatorname{rang}M^*=2$, i els tres
+plans es tallen en una recta.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba el valor de $a$ perquè els plans $ax+3y-z=2$ i $2x-y+az=0$ siguin perpendiculars. Hi ha algun
+valor de $a$ per al qual siguin paral·lels?
+
+\begin{solucio}
+Perpendiculars: $(a,3,-1)\cdot(2,-1,a)=2a-3-a=a-3=0$, $a=3$.\\
+Paral·lels: caldria $\frac a2=\frac3{-1}=\frac{-1}a$. La primera igualtat dona $a=-6$, i aleshores
+$\frac{-1}{-6}=\frac16\ne-3$. No són paral·lels per a cap valor de $a$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

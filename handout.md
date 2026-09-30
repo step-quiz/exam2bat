@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 30 de setembre de 2026 · **Estat:** 157 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2, 9 de la unitat 3 i 61 de la PAU), 114 amb tries · 3.460 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2, 9 de la unitat 3, 12 de la unitat 5 i 61 de la PAU), 126 amb tries · 3.688 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -56,8 +56,9 @@ afegir les unitats 1 a 6 al registre, va dir quines unitats necessiten les 25 PA
 geometria, i va posar al dia el calendari. La trenta-setena va fer la u1, Matrius: tres temes amb tres
 variants cadascun, totes amb tria. La trenta-vuitena va descobrir per què el catàleg nou no arribava a
 la web (Cloudflare Pages no publica els commits amb «[skip ci]», i el del bot en portava) i va fer la u2,
-Determinants. La trenta-novena va fer la u3, Sistemes d'equacions. La màquina funciona de punta a punta. El que queda és
-contingut: les unitats 5, 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
+Determinants. La trenta-novena va fer la u3, Sistemes d'equacions, i la quarantena, la u5, Rectes i plans en
+l'espai, amb quatre temes. La màquina funciona de punta a punta. El que queda és
+contingut: les unitats 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
 
 ---
 
@@ -1378,6 +1379,48 @@ escrits. Les nou preguntes compilen amb el preàmbul oficial, a una pàgina cada
 (108 PDF). Quatre PDF es van revisar a ull, entre ells la versió de 50 min de la q002 de discussió, amb
 la tria com a primer apartat. Les tres bateries passen, amb 175 preguntes i 42 temes.
 
+### 2.40 Sessió 40 · La unitat 5: Rectes i plans en l'espai
+
+**El material.** Els 23 exercicis practicats a les setmanes 27 a 31, llegits al solucionari: equacions de
+la recta (43, 45, 46, 47, 49) i punts alineats (63); equacions del pla (53, 54, 55, 56, 59) i punts
+coplanaris (66); posició relativa de dues rectes (71, 72, 73, 79, 80, 81); i de recta i pla, dos plans i
+tres plans (74, 76, 77, 84, 85). Els vectors de la u4 hi són com a eina: el vector normal d'un pla
+es troba, com al solucionari, amb el determinant $\lvert X-P,\ \vec u,\ \vec v\rvert=0$, i el producte
+escalar només per a plans perpendiculars (85). El producte vectorial, les distàncies i els angles no
+surten a cap exercici assignat.
+
+**El solucionari s'equivoca al 80.** Conclou que les rectes són paral·leles «quan $m=2$», però per a
+$m=2$ el punt $(1,-1,2)$ de $r$ és de $s$: són coincidents. Les paral·leles són les de $m=-2$, i el pla que
+calcula el mateix solucionari, $x-y-2=0$, és el de $m=-2$. La resta de resultats dels exercicis
+assignats es van comprovar i són correctes.
+
+**Quatre temes**, perquè és la unitat més gran, amb tres variants cadascun:
+
+| Tema | Exercicis |
+|---|---|
+| `equacions-recta` · Equacions de la recta | 43, 45, 46, 47, 49, 63 |
+| `equacions-pla` · Equacions del pla | 53, 54, 55, 56, 59, 66 |
+| `posicio-rectes` · Posició relativa de dues rectes | 71, 72, 73, 79, 80, 81 |
+| `posicio-rectes-plans` · Posició relativa de rectes i plans | 74, 76, 77, 84, 85 |
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `equacions-recta` | q001, el paràmetre perquè tres punts estiguin alineats, com el 63 (`alineats`); q002, amb dos paràmetres (`alineats-dos-parametres`); q003, els talls de la recta amb dos plans coordenats (`talls-plans-coordenats`) |
+| `equacions-pla` | q001, un punt coplanari amb tres de donats, com el 66 (`coplanari`); q002, el pla paral·lel per un punt, com el 55 (`pla-paralel`); q003, el pla que conté una recta i un punt (`recta-i-punt`) |
+| `posicio-rectes` | q001, el pla que conté dues rectes paral·leles (`pla-de-les-paraleles`); q002, el paràmetre que les fa paral·leles i el pla que les conté, com el 80 (`m-paraleles`); q003, la posició respecte de la recta $x=y=z$, que es creua amb $r$ (`amb-la-diagonal`) |
+| `posicio-rectes-plans` | q001, trobar el punt de tall d'una recta i un pla, com el 74 (`punt-de-tall`); q002, inventar un tercer pla perquè tres plans es tallin en una recta (`tercer-pla`); q003, el pla que conté la recta i l'origen, que resulta paral·lel a $\pi$ (`pla-per-l-origen`) |
+
+**Verificació.** Totes les equacions, posicions relatives, punts de tall, rangs i paràmetres es van
+calcular amb SymPy abans d'escriure'ls. A més, aquesta sessió va fer un programa que extreu cada
+determinant escrit als `.tex` (a les unitats 1, 2, 3 i 5) i el compara amb el que en calcula SymPy. En
+va trobar un d'erroni, que ja s'havia escrit: un determinant que val $m+2$ figurava com $-3m-6$ (el
+resultat, $m=-2$, era correcte). Es va corregir, i ara els 63 determinants escrits a les quatre unitats
+coincideixen. Les dotze preguntes compilen amb el preàmbul oficial, a una pàgina i sense cap avís (144
+PDF); totes les solucions es van revisar a ull, i tres enunciats i dues solucions amb fórmules partides
+entre línies es van passar a mode destacat. Les tres bateries passen, amb 187 preguntes i 46 temes.
+
 ---
 
 ## 3. Decisions preses
@@ -1456,6 +1499,8 @@ la tria com a primer apartat. Les tres bateries passen, amb 175 preguntes i 42 t
 | Cap commit no porta `[skip ci]` ni etiquetes semblants | Disseny, arran d'una fallada (2.38) | Cloudflare Pages, que publica la web, se salta aquests commits, i el catàleg nou no arribava mai |
 | A la u3, els sistemes compatibles determinats es resolen per Gauss, no per Cramer | Disseny (2.39) | La regla de Cramer (exercici 58) no és a cap setmana assignada; Gauss sí (43, 66) |
 | Una tria pot ser el primer apartat d'una pregunta | Disseny (2.39) | A `discussio-parametre/q002`, la tria ofereix discutir per Rouché o per Gauss; el lletrejat i la versió de 50 min en surten bé |
+| La u5 té quatre temes | Disseny (2.40) | És la unitat més gran: 23 exercicis en cinc setmanes, amb dos blocs (equacions i posicions relatives) de pes semblant |
+| A la u5, el vector normal d'un pla es calcula amb el determinant $\lvert X-P,\ \vec u,\ \vec v\rvert=0$, no amb el producte vectorial | Disseny (2.40) | És el mètode del solucionari als exercicis assignats (53, 66, 73); el producte vectorial no surt a cap exercici assignat |
 
 ---
 
@@ -1897,6 +1942,26 @@ totes amb tria. Els punts de la taula són els del defecte.
 | Problemes amb sistemes d'equacions | `q002` | Accions de tres empreses: un sistema indeterminat i la dada que en fixa la solució | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 92, 90, 56 |
 | Problemes amb sistemes d'equacions | `q003` | Préstecs d'una biblioteca amb percentatges, i un model econòmic d'equilibri | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 94, 100, 90 |
 
+### 6.12 Unitat 5 · Rectes i plans en l'espai (12 preguntes)
+
+Quatre temes, amb els 23 exercicis practicats a les setmanes 27 a 31 (2.40). Cada tema té tres variants,
+totes amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Equacions de la recta | `q001` | Totes les equacions d'una recta, per dos punts, punts alineats i si un punt hi pertany | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 43, 46, 47, 45, 63 |
+| Equacions de la recta | `q002` | Recta paral·lela a una altra, de implícita a paramètrica i punts alineats amb dos paràmetres | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 49, 46, 63 |
+| Equacions de la recta | `q003` | La recta per dos punts, un punt alineat i els talls amb els plans coordenats | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 47, 63, 45, 46 |
+| Equacions del pla | `q001` | Pla per tres punts, pla perpendicular a una recta, punt coplanari i talls amb els eixos | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 53, 56, 66, 59 |
+| Equacions del pla | `q002` | Pla amb un punt i dos vectors, un pla per un punt i un de paral·lel | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 53, 54, 55, 59, 56 |
+| Equacions del pla | `q003` | Pla per tres punts, punts coplanaris i pla que conté una recta i un punt | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 53, 66, 59 |
+| Posició relativa de dues rectes | `q001` | Rectes paral·leles, rectes secants i el paràmetre perquè dues rectes es tallin | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 71, 72, 80, 79 |
+| Posició relativa de dues rectes | `q002` | Rectes que es creuen, posició segons un paràmetre i rectes paral·leles amb el pla que les conté | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 71, 81, 80 |
+| Posició relativa de dues rectes | `q003` | Dues rectes secants, el pla que les conté i rectes que es creuen | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 72, 73, 71 |
+| Posició relativa de rectes i plans | `q001` | Recta paral·lela a un pla, posició segons dos paràmetres i plans paral·lels o perpendiculars | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 74, 84, 85 |
+| Posició relativa de rectes i plans | `q002` | Dos plans paral·lels, tres plans que es tallen en un punt o en una recta | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 76, 77, 85 |
+| Posició relativa de rectes i plans | `q003` | Recta donada per dos plans i paral·lela a un pla, un paràmetre i tres plans en una recta | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 74, 84, 77 |
+
 ## 7. Feina pendent
 
 ### 7.1 Com s'apliquen els lliuraments
@@ -1991,7 +2056,7 @@ l'ordre numèric.
 | u1 Matrius | 18–19 | 24 de gener de 2027 · **feta** (2.37): tres temes amb tres variants, totes amb tria |
 | u2 Determinants | 20–22 | 14 de febrer de 2027 · **feta** (2.38): tres temes amb tres variants, totes amb tria |
 | u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 · **feta** (2.39): tres temes amb tres variants, totes amb tria |
-| u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 |
+| u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 · **feta** (2.40): quatre temes amb tres variants, totes amb tria |
 | u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 |
 | u11 Integrals | 34 | 9 de maig de 2027 |
 | u12 La integral definida | 35–36 | 23 de maig de 2027 |
@@ -2005,7 +2070,7 @@ unitat.
 | u1 | s18: 12, 13, 15, 16, 17 · s19: 42, 49, 69, 81, 85 | **Fets** (2.37): `operacions-matrius`, `commutativitat` i `potencies-matrius` |
 | u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | **Fets** (2.38): `calcul-determinants`, `rang-determinants` i `matriu-inversa` |
 | u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | **Fets** (2.39): `gauss-classificacio`, `discussio-parametre` i `problemes-sistemes` |
-| u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | Equacions de la recta (43–49, 63); equacions del pla (53–59, 66); posició relativa de dues rectes (71–73, 79–81); recta i pla, i plans (74–77, 84, 85) |
+| u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | **Fets** (2.40): `equacions-recta`, `equacions-pla`, `posicio-rectes` i `posicio-rectes-plans` |
 | u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | Projecció i simètrics (74, 76, 90); distància punt-pla i recta-pla (86, 97, 139); punts a una distància donada o equidistants (88, 92, 115) |
 | u11 | s34: 52, 54 | Cap tema propi: les integrals immediates (52, 54) són el primer apartat de preguntes de la u12 |
 | u12 | s35: 35, 39, 55, 79 · s36: 80, 88, 96, 111, 114 | Integral definida i Barrow (35, 39, 55); àrea entre una corba i l'eix (79, 80, 88); àrea entre dues corbes (96, 111, 114) |
@@ -2046,7 +2111,7 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
   pantalles tàctils. Cal mostrar-los d'una altra manera.
 - **Estendre les tries a la resta del banc.** Des de la sessió 16, les 24 preguntes de la u7
   ja en tenen, i des de la 17 totes canvien el cas, la tècnica o el sentit del raonament
-  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1; des de la 38, la u2, i des de la 39, la u3.
+  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1; des de la 38, la u2; des de la 39, la u3, i des de la 40, la u5.
   Per a les unitats que vinguin, el mateix mètode: llegir la
   pregunta sencera, verificar l'alternativa abans d'escriure-la i verificar el fitxer just
   després. A la u7 encara s'hi podrien afegir, com a ítems nous, els límits no racionals que surten
@@ -2196,13 +2261,13 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 39, com a *pull request* (7.1).
+És el lliurament de la sessió 40, com a *pull request* (7.1).
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els tres temes de la u3 |
-| `u3/<tema>/q001` … `q003` | Les nou preguntes de la u3: `pregunta.tex` i `meta.json` |
-| `handout.md` | Seccions 1, 2.39, 3, 6.11, 7.4, 7.5 i 11 |
+| `temes.json` | Els quatre temes de la u5 |
+| `u5/<tema>/q001` … `q003` | Les dotze preguntes de la u5: `pregunta.tex` i `meta.json` |
+| `handout.md` | Seccions 1, 2.40, 3, 6.12, 7.4, 7.5 i 11 |
 | `README.md` | L'estat del banc |
 
 No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes noves, i

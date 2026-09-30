@@ -1,0 +1,60 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia la posició relativa de les rectes
+\[
+r\colon\frac{x-1}{2}=\frac{y+1}{-1}=\frac{z}{3}\qquad\text{i}\qquad
+s\colon\frac{x-3}{-4}=\frac{y-2}{2}=\frac{z+1}{-6}.
+\]
+
+\begin{solucio}
+$r$ passa per $P(1,-1,0)$ amb $\vec u=(2,-1,3)$, i $s$, per $Q(3,2,-1)$ amb $\vec v=(-4,2,-6)=-2\vec u$:
+$\operatorname{rang}(\vec u,\vec v)=1$. A més, $\overrightarrow{PQ}=(2,3,-1)$ no és proporcional a
+$\vec u$, i $\operatorname{rang}(\vec u,\vec v,\overrightarrow{PQ})=2$. Les rectes són paral·leles (no
+coincidents).
+\end{solucio}
+
+\begin{tria}{rectes-tasca}
+\itemtria{punt-de-tall}{1}{1,25}
+Comprova que les rectes
+$r'\colon\left\{\begin{aligned}x&=1+\lambda\\y&=2\lambda\\z&=-1+\lambda\end{aligned}\right.$ i
+$s'\colon\left\{\begin{aligned}x&=3-\mu\\y&=1+\mu\\z&=-2+2\mu\end{aligned}\right.$ es tallen, i troba'n el
+punt de tall.
+
+\begin{solucio}
+Els vectors directors, $(1,2,1)$ i $(-1,1,2)$, no són proporcionals: les rectes es tallen o es creuen.
+Igualant: $1+\lambda=3-\mu$, $2\lambda=1+\mu$ i $-1+\lambda=-2+2\mu$. De les dues primeres,
+$\lambda+\mu=2$ i $2\lambda-\mu=1$, d'on $\lambda=1$ i $\mu=1$, que també compleixen la tercera
+($0=0$). Es tallen al punt $(2,2,0)$.
+\end{solucio}
+
+\itemtria{pla-de-les-paraleles}{1}{1,25}
+Troba l'equació del pla que conté les dues rectes $r$ i $s$ del primer apartat.
+
+\begin{solucio}
+El pla passa per $P(1,-1,0)$ i té com a vectors directors $\vec u=(2,-1,3)$ i
+$\overrightarrow{PQ}=(2,3,-1)$:
+\[
+\begin{vmatrix}x-1&y+1&z\\2&-1&3\\2&3&-1\end{vmatrix}=-8(x-1)+8(y+1)+8z=0
+\ \Longrightarrow\ x-y-z-2=0.
+\]
+Comprovació: $Q$ dona $3-2+1-2=0$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba el valor de $m$ perquè les rectes $\dfrac{x-m}{-1}=\dfrac{y+1}{1}=\dfrac{z-1}{2}$ i
+$\left\{\begin{aligned}x&=3+\lambda\\y&=2\lambda\\z&=1+3\lambda\end{aligned}\right.$ es tallin en un punt.
+
+\begin{solucio}
+Els vectors directors, $(-1,1,2)$ i $(1,2,3)$, no són proporcionals. Amb $P(m,-1,1)$ i $Q(3,0,1)$,
+$\overrightarrow{PQ}=(3-m,1,0)$, i es tallen si els tres vectors tenen rang 2:
+\[
+\begin{vmatrix}-1&1&2\\1&2&3\\3-m&1&0\end{vmatrix}=m+2=0\ \Longrightarrow\ m=-2.
+\]
+(El punt de tall és $(1,-4,-5)$.)
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

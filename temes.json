@@ -287,6 +287,30 @@
       "descripcio": "Plantejar, resoldre i interpretar problemes que es modelitzen amb un sistema lineal."
     },
     {
+      "slug": "equacions-recta",
+      "unitat": "u5",
+      "nom": "Equacions de la recta",
+      "descripcio": "Equacions vectorial, paramètriques, contínua i implícita d'una recta, i punts alineats."
+    },
+    {
+      "slug": "equacions-pla",
+      "unitat": "u5",
+      "nom": "Equacions del pla",
+      "descripcio": "Pla per tres punts, per un punt i dos vectors o amb un vector normal; plans paral·lels i perpendiculars a una recta, punts coplanaris i talls amb els eixos."
+    },
+    {
+      "slug": "posicio-rectes",
+      "unitat": "u5",
+      "nom": "Posició relativa de dues rectes",
+      "descripcio": "Rectes coincidents, paral·leles, secants o que es creuen, punt de tall, pla que les conté i paràmetres."
+    },
+    {
+      "slug": "posicio-rectes-plans",
+      "unitat": "u5",
+      "nom": "Posició relativa de rectes i plans",
+      "descripcio": "Posició relativa d'una recta i un pla, de dos plans i de tres plans, amb paràmetres."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",

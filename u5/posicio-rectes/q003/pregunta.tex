@@ -1,0 +1,53 @@
+Considera les rectes $r\colon\dfrac{x+1}{1}=\dfrac{y-2}{-1}=\dfrac{z-1}{2}$ i
+$s\colon\left\{\begin{aligned}x&=-1+2\mu\\y&=-1+\mu\\z&=6-\mu\end{aligned}\right.$
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Comprova que les rectes es tallen i troba'n el punt de tall.
+
+\begin{solucio}
+$\vec u=(1,-1,2)$ i $\vec v=(2,1,-1)$ no són proporcionals. En paramètriques, $r$ és
+$(-1+t,\ 2-t,\ 1+2t)$. Igualant: $-1+t=-1+2\mu$, $2-t=-1+\mu$ i $1+2t=6-\mu$. Les dues primeres donen
+$t=2\mu$ i $2-2\mu=-1+\mu$, és a dir, $\mu=1$ i $t=2$, que compleixen la tercera ($5=5$). Es tallen al
+punt $(1,0,5)$.
+\end{solucio}
+
+\begin{tria}{rectes-secants}
+\itemtria{pla-que-les-conte}{1}{1,25}
+Troba l'equació del pla que conté les dues rectes.
+
+\begin{solucio}
+El pla passa per $P(-1,2,1)$, de $r$, i té com a vectors directors $\vec u$ i $\vec v$:
+\[
+\begin{vmatrix}x+1&y-2&z-1\\1&-1&2\\2&1&-1\end{vmatrix}=-(x+1)+5(y-2)+3(z-1)=0
+\ \Longrightarrow\ x-5y-3z+14=0.
+\]
+Comprovació: el punt $(-1,-1,6)$ de $s$ dona $-1+5-18+14=0$.
+\end{solucio}
+
+\itemtria{amb-la-diagonal}{1}{1,25}
+Estudia la posició relativa de la recta $r$ i la recta $x=y=z$.
+
+\begin{solucio}
+La recta $x=y=z$ passa per l'origen $O$ amb vector director $(1,1,1)$, que no és proporcional a
+$\vec u=(1,-1,2)$. Amb $\overrightarrow{PO}=(1,-2,-1)$, on $P(-1,2,1)$ és de $r$:
+\[
+\begin{vmatrix}1&-1&2\\1&1&1\\1&-2&-1\end{vmatrix}=-7\ne0.
+\]
+El rang és 3: les dues rectes es creuen.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Escriu les equacions d'una recta que es creui amb $r$. Justifica-ho.
+
+\begin{solucio}
+Resposta oberta. Per exemple, l'eix $OX$: passa per l'origen amb vector director $(1,0,0)$, que no és
+proporcional a $\vec u$. Amb $\overrightarrow{PO}=(1,-2,-1)$:
+$\begin{vmatrix}1&-1&2\\1&0&0\\1&-2&-1\end{vmatrix}=-5\ne0$. El rang és 3: l'eix $OX$ i $r$ es creuen.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

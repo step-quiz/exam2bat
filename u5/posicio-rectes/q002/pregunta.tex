@@ -1,0 +1,66 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia la posició relativa de les rectes
+$r\colon\left\{\begin{aligned}x&=1+t\\y&=2-t\\z&=3t\end{aligned}\right.$ i
+$s\colon\left\{\begin{aligned}x&=2\lambda\\y&=1+\lambda\\z&=2+\lambda\end{aligned}\right.$
+
+\begin{solucio}
+$r$ passa per $P(1,2,0)$ amb $\vec u=(1,-1,3)$, i $s$, per $Q(0,1,2)$ amb $\vec v=(2,1,1)$, que no són
+proporcionals: $\operatorname{rang}(\vec u,\vec v)=2$. Amb $\overrightarrow{PQ}=(-1,-1,2)$:
+\[
+\begin{vmatrix}1&-1&3\\2&1&1\\-1&-1&2\end{vmatrix}=5\ne0,
+\]
+i $\operatorname{rang}(\vec u,\vec v,\overrightarrow{PQ})=3$. Les rectes es creuen.
+\end{solucio}
+
+\begin{tria}{rectes-parametre}
+\itemtria{segons-m}{1}{1,25}
+Estudia, segons els valors de $m$, la posició relativa de les rectes
+$r'\colon\dfrac{x+2}{1}=\dfrac{y+2}{2}=\dfrac{z-2}{2}$ i
+$s'\colon\left\{\begin{aligned}x&=2+\lambda\\y&=-2+2\lambda\\z&=1+m\lambda\end{aligned}\right.$
+
+\begin{solucio}
+$P(-2,-2,2)$, $\vec u=(1,2,2)$; $Q(2,-2,1)$, $\vec v=(1,2,m)$; $\overrightarrow{PQ}=(4,0,-1)$.
+\[
+\begin{vmatrix}1&2&2\\1&2&m\\4&0&-1\end{vmatrix}=8(m-2).
+\]
+\begin{itemize}
+\item Si $m\ne2$: $\vec u$ i $\vec v$ no són proporcionals i el determinant no és nul: es creuen.
+\item Si $m=2$: $\vec v=\vec u$, i $\overrightarrow{PQ}$ no hi és proporcional: són paral·leles.
+\end{itemize}
+No es tallen per a cap valor de $m$.
+\end{solucio}
+
+\itemtria{m-paraleles}{1}{1,25}
+Troba el valor de $m$ perquè les rectes
+$r'\colon\dfrac{x-1}{2}=\dfrac{y+1}{m}=\dfrac{z-2}{-2}$ i
+$s'\colon\left\{\begin{aligned}x&=3+\lambda\\y&=\lambda\\z&=1-\lambda\end{aligned}\right.$ siguin paral·leles,
+i troba l'equació del pla que les conté.
+
+\begin{solucio}
+Cal que $(2,m,-2)$ sigui proporcional a $(1,1,-1)$: $m=2$. A més, $P(1,-1,2)$ no és de $s'$ (amb $x=1$,
+$\lambda=-2$ i $y=-2\ne-1$): són paral·leles, no coincidents.\\
+El pla passa per $Q(3,0,1)$ amb vectors directors $(1,1,-1)$ i $\overrightarrow{QP}=(-2,-1,1)$:
+\[
+\begin{vmatrix}x-3&y&z-1\\1&1&-1\\-2&-1&1\end{vmatrix}=y+z-1=0.
+\]
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Escriu la recta $t$ que passa per l'origen i és paral·lela a $s$. Quina és la posició relativa de $t$ i
+$r$?
+
+\begin{solucio}
+$t\colon (x,y,z)=\mu(2,1,1)$. Amb $\vec u=(1,-1,3)$, $(2,1,1)$ i el vector que va de $P(1,2,0)$ a
+l'origen, $(-1,-2,0)$:
+\[
+\begin{vmatrix}1&-1&3\\2&1&1\\-1&-2&0\end{vmatrix}=-6\ne0.
+\]
+Els vectors directors no són proporcionals i el rang és 3: $t$ i $r$ es creuen.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

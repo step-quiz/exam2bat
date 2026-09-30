@@ -1,0 +1,48 @@
+Considera els punts $A(1,0,2)$, $B(2,1,0)$ i $C(0,3,1)$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Troba l'equació general del pla $\pi$ que passa per $A$, $B$ i $C$.
+
+\begin{solucio}
+$\overrightarrow{AB}=(1,1,-2)$ i $\overrightarrow{AC}=(-1,3,-1)$ no són proporcionals: els punts no estan
+alineats i determinen un pla.
+\[
+\begin{vmatrix}x-1&y&z-2\\1&1&-2\\-1&3&-1\end{vmatrix}=5(x-1)+3y+4(z-2)=0
+\ \Longrightarrow\ \pi\colon 5x+3y+4z-13=0.
+\]
+Comprovació: $B$ dona $10+3+0-13=0$, i $C$, $0+9+4-13=0$.
+\end{solucio}
+
+\begin{tria}{pla-condicio}
+\itemtria{perpendicular-recta}{1}{1,25}
+Troba l'equació del pla que passa per $P(2,-1,3)$ i és perpendicular a la recta
+\[
+r\colon\frac{x-1}{2}=\frac{y}{-1}=\frac{z+2}{3}.
+\]
+
+\begin{solucio}
+El vector director de $r$, $(2,-1,3)$, és un vector normal del pla: $2x-y+3z+D=0$. Com que passa per
+$P$, $4+1+9+D=0$, $D=-14$. El pla és $2x-y+3z-14=0$.
+\end{solucio}
+
+\itemtria{coplanari}{1}{1,25}
+Troba el valor de $k$ perquè el punt $D(k,2,3)$ sigui coplanari amb $A$, $B$ i $C$.
+
+\begin{solucio}
+Els quatre punts són coplanaris si $D$ és del pla $\pi$: $5k+6+12-13=0$, és a dir, $5k=-5$, $k=-1$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba els punts on el pla $2x-3y+6z-12=0$ talla els eixos de coordenades.
+
+\begin{solucio}
+Eix $OX$ ($y=z=0$): $2x=12$, $(6,0,0)$. Eix $OY$ ($x=z=0$): $-3y=12$, $(0,-4,0)$. Eix $OZ$ ($x=y=0$):
+$6z=12$, $(0,0,2)$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

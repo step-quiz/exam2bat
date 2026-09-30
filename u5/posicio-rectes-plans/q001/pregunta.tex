@@ -1,0 +1,54 @@
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia la posició relativa de la recta
+$r\colon\left\{\begin{aligned}x&=1+2t\\y&=-1+t\\z&=3-t\end{aligned}\right.$ i el pla
+$\pi\colon x-y+z-1=0$.
+
+\begin{solucio}
+Substituint la recta al pla: $(1+2t)-(-1+t)+(3-t)-1=4$, i l'equació $4=0$ no té solució. La recta i el
+pla no tenen cap punt en comú: són paral·lels. (Ho confirma que $\vec u=(2,1,-1)$ i $\vec n=(1,-1,1)$
+compleixen $\vec u\cdot\vec n=2-1-1=0$.)
+\end{solucio}
+
+\begin{tria}{recta-pla}
+\itemtria{parametres}{1}{1,25}
+Estudia, segons els valors de $a$ i $b$, la posició relativa del pla $ax+2y-z+b=0$ i la recta
+\[
+\frac{x-1}{1}=\frac{y+1}{2}=\frac{z-3}{-1}.
+\]
+
+\begin{solucio}
+En paramètriques, la recta és $(1+t,\ -1+2t,\ 3-t)$. Substituint:
+$a(1+t)+2(-1+2t)-(3-t)+b=(a+5)t+(a+b-5)=0$.
+\begin{itemize}
+\item Si $a\ne-5$, hi ha un sol valor de $t$: es tallen en un punt.
+\item Si $a=-5$, queda $b-10=0$. Si $b=10$, qualsevol $t$ la compleix: la recta és continguda al pla.
+Si $b\ne10$, cap: són paral·lels.
+\end{itemize}
+\end{solucio}
+
+\itemtria{punt-de-tall}{1}{1,25}
+Comprova que la recta
+$s\colon\left\{\begin{aligned}x&=2+t\\y&=-t\\z&=1+2t\end{aligned}\right.$ talla el pla
+$x+y+z-7=0$, i troba el punt de tall.
+
+\begin{solucio}
+Substituint: $(2+t)+(-t)+(1+2t)-7=2t-4=0$, $t=2$. Hi ha una sola solució: es tallen al punt
+$(4,-2,5)$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Considera els plans $\pi_1\colon ax+2y-4z=1$ i $\pi_2\colon x+y-2z=3$. Troba el valor de $a$ perquè
+siguin paral·lels, i el valor de $a$ perquè siguin perpendiculars.
+
+\begin{solucio}
+Paral·lels: els vectors normals $(a,2,-4)$ i $(1,1,-2)$ han de ser proporcionals, $\frac a1=\frac21=\frac{-4}{-2}$,
+és a dir, $a=2$. Com que $\frac13\ne2$, no són coincidents.\\
+Perpendiculars: els vectors normals han de ser perpendiculars, $a+2+8=0$, és a dir, $a=-10$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
