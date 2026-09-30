@@ -8,15 +8,17 @@ veus l'enunciat i la solució en PDF, i en baixes el codi `.tex`, sol o muntat e
 complet. El banc inclou **preguntes reals de la PAU**, i cadascuna porta la seva procedència
 («PAU juny 2026, sèrie 1»).
 
-> **Estat a 30 de setembre de 2026:** 187 preguntes. N'hi ha 24 de la unitat 7 (Límits i
+> **Estat a 30 de setembre de 2026:** 205 preguntes, de totes les unitats del curs. N'hi ha 24 de la unitat 7 (Límits i
 > continuïtat) en 8 temes i 18 de la unitat 8 (Derivades) en 6 temes, totes amb tres variants
 > per tema; 12 de la unitat 9 (Aplicacions de les derivades) en 4 temes, també amb tres
 > variants; 15 de la unitat 10 (Representació de funcions) en 5 temes, també amb tres variants; 12 de la unitat 13 (Probabilitat) en 4 temes, també amb tres
 > variants; 6 de la unitat 14 (la distribució binomial) en 2 temes, també amb tres variants; 9 de la unitat 1 (Matrius) en 3 temes, també
 > amb tres variants; 9 de la unitat 2 (Determinants) en 3 temes, també amb tres variants;
 > 9 de la unitat 3 (Sistemes d'equacions) en 3 temes, també amb tres variants; 12 de la unitat 5 (Rectes i
-> plans en l'espai) en 4 temes, també amb tres variants; i 61 de la PAU (totes les
-> convocatòries del repositori `pau`, de 2023 a 2026). **Les 126 preguntes de les unitats 1 a 3, 5, 7 a 10, 13 i 14 ofereixen una tria** en algun
+> plans en l'espai) en 4 temes, també amb tres variants; 9 de la unitat 6 (Angles i distàncies a l'espai) i 9 de la
+> unitat 12 (La integral definida, amb les integrals immediates de la u11 com a primer apartat), en 3 temes
+> cadascuna, també amb tres variants; i 61 de la PAU (totes les
+> convocatòries del repositori `pau`, de 2023 a 2026). **Les 144 preguntes de totes les unitats ofereixen una tria** en algun
 > apartat: un altre cas, una altra tècnica o una tasca diferent de la del defecte, amb el seu
 > propi Enunciat i Solució, triable des de la mateixa carta. El detall
 > de la feina feta i pendent és a [`handout.md`](handout.md).

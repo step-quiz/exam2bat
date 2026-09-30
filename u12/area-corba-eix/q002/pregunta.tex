@@ -1,0 +1,45 @@
+Considera la funció $f(x)=\sqrt{x-3}$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Troba el domini de $f$, el punt on talla l'eix $X$ i una primitiva de $f$.
+
+\begin{solucio}
+El domini és $[3,+\infty)$, i $f(x)=0$ només per a $x=3$. Escrivint $f(x)=(x-3)^{1/2}$, una primitiva és
+$F(x)=\dfrac{(x-3)^{3/2}}{3/2}=\dfrac23\sqrt{(x-3)^3}$.
+\end{solucio}
+
+\begin{tria}{area-arrel}
+\itemtria{area}{1}{1,25}
+Calcula l'àrea de la regió limitada per la gràfica de $f$, l'eix $X$ i la recta $x=4$. I si la recta
+fos $x=7$?
+
+\begin{solucio}
+Entre 3 i 4, $f\ge0$: $\displaystyle\int_3^4\sqrt{x-3}\,dx=\left[\frac23\sqrt{(x-3)^3}\right]_3^4=\frac23$
+unitats quadrades.\\
+Fins a $x=7$: $\dfrac23\sqrt{4^3}=\dfrac23\cdot8=\dfrac{16}3$ unitats quadrades.
+\end{solucio}
+
+\itemtria{recta-desconeguda}{1}{1,25}
+Troba el valor de $b>3$ perquè l'àrea de la regió limitada per la gràfica de $f$, l'eix $X$ i la recta
+$x=b$ sigui de 18 unitats quadrades.
+
+\begin{solucio}
+L'àrea és $\displaystyle\int_3^b\sqrt{x-3}\,dx=\frac23(b-3)^{3/2}$. Cal $\frac23(b-3)^{3/2}=18$, és a dir,
+$(b-3)^{3/2}=27$. Aleshores $b-3=27^{2/3}=9$, i $b=12$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula l'àrea de la regió tancada per la paràbola $y=x^2-9$ i l'eix $X$.
+
+\begin{solucio}
+Talla l'eix a $x=\pm3$, i entre aquests valors és negativa:
+$\left|\displaystyle\int_{-3}^3(x^2-9)\,dx\right|=\left|\left[\frac{x^3}3-9x\right]_{-3}^3\right|=|-18-18|=36$
+unitats quadrades.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

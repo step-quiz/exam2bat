@@ -311,6 +311,42 @@
       "descripcio": "Posició relativa d'una recta i un pla, de dos plans i de tres plans, amb paràmetres."
     },
     {
+      "slug": "distancies-pla",
+      "unitat": "u6",
+      "nom": "Distàncies a un pla",
+      "descripcio": "Distància d'un punt a un pla, d'una recta paral·lela a un pla i entre plans paral·lels, i el punt del pla més proper a un punt."
+    },
+    {
+      "slug": "projeccions-simetrics",
+      "unitat": "u6",
+      "nom": "Projeccions i punts simètrics",
+      "descripcio": "Projecció ortogonal d'un punt sobre un pla i sobre una recta, i punt simètric respecte d'un pla i d'una recta."
+    },
+    {
+      "slug": "punts-distancia",
+      "unitat": "u6",
+      "nom": "Punts a una distància donada",
+      "descripcio": "Punts d'una recta a una distància donada d'un pla, i punts equidistants de dos plans."
+    },
+    {
+      "slug": "integral-definida",
+      "unitat": "u12",
+      "nom": "Integrals immediates i regla de Barrow",
+      "descripcio": "Primitives de polinomis i de funcions racionals senzilles (u11), integral definida amb la regla de Barrow, propietats i interpretació geomètrica."
+    },
+    {
+      "slug": "area-corba-eix",
+      "unitat": "u12",
+      "nom": "Àrea entre una corba i l'eix X",
+      "descripcio": "Talls amb l'eix, àrea de regions per sobre i per sota de l'eix, i paràmetres a partir d'una àrea."
+    },
+    {
+      "slug": "area-dues-corbes",
+      "unitat": "u12",
+      "nom": "Àrea entre dues corbes",
+      "descripcio": "Punts de tall de dues corbes, àrea entre elles, i àrees amb una recta tangent."
+    },
+    {
       "slug": "algebra",
       "unitat": "pau",
       "nom": "Àlgebra",

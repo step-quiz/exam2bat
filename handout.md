@@ -1,7 +1,7 @@
 # Handout · Banc de preguntes de Matemàtiques II
 
 **Data:** 30 de setembre de 2026 · **Estat:** 157 preguntes (24 de la unitat 7, 18 de la unitat
-8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2, 9 de la unitat 3, 12 de la unitat 5 i 61 de la PAU), 126 amb tries · 3.688 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
+8, 12 de la unitat 9, 15 de la unitat 10, 12 de la unitat 13, 6 de la unitat 14, 9 de la unitat 1, 9 de la unitat 2, 9 de la unitat 3, 12 de la unitat 5, 9 de la unitat 6, 9 de la unitat 12 i 61 de la PAU), 144 amb tries · 4.012 minuts d'examen al banc · 38 comprovacions del validador, 19 de sortida del build i 77 de
 paritat
 
 Aquest document explica tota la feina feta fins avui i tota la feina pendent, amb prou
@@ -57,8 +57,10 @@ geometria, i va posar al dia el calendari. La trenta-setena va fer la u1, Matriu
 variants cadascun, totes amb tria. La trenta-vuitena va descobrir per què el catàleg nou no arribava a
 la web (Cloudflare Pages no publica els commits amb «[skip ci]», i el del bot en portava) i va fer la u2,
 Determinants. La trenta-novena va fer la u3, Sistemes d'equacions, i la quarantena, la u5, Rectes i plans en
-l'espai, amb quatre temes. La màquina funciona de punta a punta. El que queda és
-contingut: les unitats 6 i 12 (la u11 hi entra com a primer apartat de la u12), en l'ordre del calendari (7.4).
+l'espai, amb quatre temes. La quaranta-unena va fer la u6, Angles i distàncies a l'espai, i la u12, La
+integral definida, amb les integrals immediates de la u11 com a primer apartat: **totes les unitats del
+curs tenen preguntes al banc**. La màquina funciona de punta a punta. El que queda és
+sobretot calibrar-lo amb els exàmens reals (7.4), el filtre PAU per unitats fetes (7.5) i les decisions obertes (7.6).
 
 ---
 
@@ -1421,6 +1423,61 @@ coincideixen. Les dotze preguntes compilen amb el preàmbul oficial, a una pàgi
 PDF); totes les solucions es van revisar a ull, i tres enunciats i dues solucions amb fórmules partides
 entre línies es van passar a mode destacat. Les tres bateries passen, amb 187 preguntes i 46 temes.
 
+### 2.41 Sessió 41 · Les unitats 6 i 12: totes les unitats del curs, al banc
+
+**La u6.** Els 9 exercicis practicats a les setmanes 32 i 33: simètric d'un punt respecte d'una recta
+(74) i d'un pla (76), distància d'un punt a un pla (86), punts d'una recta a una distància donada d'un
+pla (88, 92), punt del pla més proper a un punt (90), distància d'una recta a un pla (97), punts
+equidistants de dos plans (115) i la recta perpendicular a un pla, amb el punt de tall i la distància
+(139). Tot i el títol de la unitat, cap exercici assignat no treballa angles, ni la distància entre dues
+rectes, ni el producte vectorial: el banc no en fa cap pregunta (vegeu 7.6).
+
+**La u12, amb la u11.** Els 9 exercicis de les setmanes 35 i 36: la integral a partir d'una gràfica
+(35), les propietats (39), la regla de Barrow (55), l'àrea entre una corba i l'eix (79, 80, 88) i entre
+dues corbes (96, 111, 114). Com va decidir el professor, la u11 no té tema propi: l'apartat a) de les nou
+preguntes són integrals immediates com les del 52 (polinomis) i el 54 (racionals, amb logaritmes i
+potències negatives). La gràfica de `integral-definida/q001` (tria `grafica`) és una funció lineal a
+trossos, dibuixada amb TikZ com les de la u7.
+
+**El solucionari s'equivoca en sis exercicis**, comprovats amb SymPy:
+
+| Exercici | Error | Correcte |
+|---|---|---|
+| u6, 88 | El segon punt, $(-6,19,-8)$: de $\lvert\lambda+4vert=6$ en treu $\lambda=-8$ | $\lambda=-10$, el punt $(-8,23,-10)$ |
+| u6, 139 | La recta perpendicular pren $(1,2,3)$ com a vector director, en lloc de $ec n=(1,1,3)$ | Projecció $\left(rac5{11},rac{16}{11},-rac7{11}ight)$ i distància $rac6{\sqrt{11}}$, no $\sqrt{7/2}$ |
+| u11, 54a | $\intrac4{x-2}\,dx=4\ln\lvert x+2vert+k$ | $4\ln\lvert x-2vert+k$ |
+| u11, 54d | $\intrac1{(x+4)^2}\,dx=-rac1{x-4}+k$ | $-rac1{x+4}+k$ |
+| u12, 55c | $rac94\sqrt[3]9+rac{195}{12}$ | $rac{27}4\sqrt[3]9+rac{199}{12}$ |
+| u12, 55g | A la solució hi diu $\cos2x$ en lloc de $\cos^2x$ | El resultat, $rac\pi2$, és correcte |
+
+**Temes**, amb tres variants cadascun:
+
+| Tema | Exercicis |
+|---|---|
+| `distancies-pla` · Distàncies a un pla | 86, 90, 97, 139 |
+| `projeccions-simetrics` · Projeccions i punts simètrics | 74, 76, 90, 139 |
+| `punts-distancia` · Punts a una distància donada | 88, 92, 115 |
+| `integral-definida` · Integrals immediates i regla de Barrow | u11: 52, 54 · u12: 35, 39, 55 |
+| `area-corba-eix` · Àrea entre una corba i l'eix X | 79, 80, 88 |
+| `area-dues-corbes` · Àrea entre dues corbes | 96, 111, 114 |
+
+**Tries**, amb el criteri de la regla 16:
+
+| Tema | Què demana l'alternativa |
+|---|---|
+| `distancies-pla` | q001, la distància entre dos plans paral·lels (`plans-paralels`); q002, a quin costat del pla és cada punt, pel signe (`costats-del-pla`); q003, una recta que talla el pla, amb distància 0 (`recta-secant`) |
+| `projeccions-simetrics` | q001, el pla respecte del qual dos punts són simètrics (`pla-mediador`); q002, comprovar un simètric sense calcular la projecció (`comprova-simetric`); q003, la distància de dues maneres, amb la fórmula i com a $\lvert\overrightarrow{PQ}vert$ (`distancia-dues-maneres`) |
+| `punts-distancia` | q001, els plans paral·lels a una distància donada (`plans-a-distancia`); q002, tots els punts equidistants de dos plans: els plans bisectors (`plans-bisectors`); q003, el pla que conté una recta paral·lela a un pla (`pla-que-conte-r`) |
+| `integral-definida` | q001, una integral llegida en una gràfica, com el 35 (`grafica`); q002, el límit d'integració desconegut (`limit-desconegut`); q003, una integral amb valor absolut, com el 55e (`valor-absolut`) |
+| `area-corba-eix` | q001, per què $\int_{-2}^2f=0$ no és l'àrea (`error-signe`); q002, la recta vertical que dona una àrea donada (`recta-desconeguda`); q003, el paràmetre d'una paràbola per a una àrea donada (`parametre-area`) |
+| `area-dues-corbes` | q001, dues corbes amb tres talls i la de sobre que canvia, com el 114 (`tres-talls`); q002, la regió amb la tangent i l'eix $X$ en lloc de l'eix $Y$ (`amb-eix-x`); q003, dues corbes que es creuen dins l'interval (`amb-rectes-verticals`) |
+
+**Verificació.** Totes les distàncies, projeccions, simètrics, primitives, integrals i àrees es van
+calcular amb SymPy abans d'escriure'ls. Les divuit preguntes compilen amb el preàmbul oficial, a una
+pàgina i sense cap avís (216 PDF). Totes les solucions es van revisar a ull, i la gràfica, sobre el PDF
+compilat; dues fórmules partides entre línies i una repetició es van corregir. Les tres bateries passen,
+amb 205 preguntes i 52 temes.
+
 ---
 
 ## 3. Decisions preses
@@ -1501,6 +1558,8 @@ entre línies es van passar a mode destacat. Les tres bateries passen, amb 187 p
 | Una tria pot ser el primer apartat d'una pregunta | Disseny (2.39) | A `discussio-parametre/q002`, la tria ofereix discutir per Rouché o per Gauss; el lletrejat i la versió de 50 min en surten bé |
 | La u5 té quatre temes | Disseny (2.40) | És la unitat més gran: 23 exercicis en cinc setmanes, amb dos blocs (equacions i posicions relatives) de pes semblant |
 | A la u5, el vector normal d'un pla es calcula amb el determinant $\lvert X-P,\ \vec u,\ \vec v\rvert=0$, no amb el producte vectorial | Disseny (2.40) | És el mètode del solucionari als exercicis assignats (53, 66, 73); el producte vectorial no surt a cap exercici assignat |
+| A la u6, les projeccions es troben amb la recta perpendicular (sobre un pla) o el pla perpendicular (sobre una recta), i les distàncies, amb la fórmula de punt a pla | Disseny (2.41) | És el mètode del solucionari als exercicis assignats; la distància entre rectes, els angles i el producte vectorial no surten a cap exercici assignat |
+| A la u12, l'apartat a) de cada pregunta són integrals immediates de la u11 (polinomis i racionals, com el 52 i el 54) | Professor (2.41) | La u11 només té aquests dos exercicis, i no té tema propi |
 
 ---
 
@@ -1962,6 +2021,41 @@ totes amb tria. Els punts de la taula són els del defecte.
 | Posició relativa de rectes i plans | `q002` | Dos plans paral·lels, tres plans que es tallen en un punt o en una recta | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 76, 77, 85 |
 | Posició relativa de rectes i plans | `q003` | Recta donada per dos plans i paral·lela a un pla, un paràmetre i tres plans en una recta | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 20 · 12 | ●●○ | 74, 84, 77 |
 
+### 6.13 Unitat 6 · Angles i distàncies a l'espai (9 preguntes)
+
+Tres temes, amb els 9 exercicis practicats a les setmanes 32 i 33 (2.41). Cada tema té tres variants,
+totes amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Distàncies a un pla | `q001` | Distància d'un punt a un pla, d'una recta paral·lela i entre plans paral·lels, i el punt més proper | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 86, 97, 90 |
+| Distàncies a un pla | `q002` | Recta perpendicular a un pla, punt de tall i distància, i a quin costat del pla és un punt | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 139, 86, 90 |
+| Distàncies a un pla | `q003` | Recta donada per dos plans i paral·lela a un pla, distàncies i plans a una distància donada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 97, 86 |
+| Projeccions i punts simètrics | `q001` | Projecció i simètric d'un punt respecte d'un pla, i el pla respecte del qual dos punts són simètrics | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 76, 90, 86 |
+| Projeccions i punts simètrics | `q002` | Projecció i simètric d'un punt respecte d'una recta, i distància d'un punt a una recta | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 74, 90 |
+| Projeccions i punts simètrics | `q003` | Un focus i una paret: projecció, imatge en un mirall i distàncies | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 139, 76, 90 |
+| Punts a una distància donada | `q001` | Punts d'una recta a una distància donada d'un pla, i plans a una distància donada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 88, 92 |
+| Punts a una distància donada | `q002` | Punts equidistants de dos plans, sobre una recta i a tot l'espai | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 115, 88 |
+| Punts a una distància donada | `q003` | Recta paral·lela a un pla, punts a un terç de distància i el pla que conté la recta | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 92, 97, 88 |
+
+### 6.14 Unitat 12 · La integral definida, amb la u11 (9 preguntes)
+
+Tres temes, amb els 9 exercicis practicats a les setmanes 35 i 36; l'apartat a) de totes les preguntes
+són integrals immediates de la u11 (exercicis 52 i 54, setmana 34). Cada tema té tres variants, totes
+amb tria. Els punts de la taula són els del defecte.
+
+| Tema | Codi | Títol | 1 h 30 | 50 min | Minuts | Dif. | Llibre |
+|---|---|---|---|---|---|---|---|
+| Integrals immediates i regla de Barrow | `q001` | Primitives de polinomis, regla de Barrow i una integral llegida en una gràfica | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 55, 35, 39 |
+| Integrals immediates i regla de Barrow | `q002` | Primitives racionals, regla de Barrow i el límit d'integració desconegut | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 55, 39 |
+| Integrals immediates i regla de Barrow | `q003` | Primitives amb logaritmes, una integral amb valor absolut i la linealitat | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 55, 39, 35 |
+| Àrea entre una corba i l'eix X | `q001` | Àrea entre una cúbica i l'eix X: per què la integral no és l'àrea | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 79, 88 |
+| Àrea entre una corba i l'eix X | `q002` | Àrea sota una arrel i la recta vertical que dona una àrea donada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 80, 79 |
+| Àrea entre una corba i l'eix X | `q003` | Àrea entre una paràbola i l'eix X, i el paràmetre per a una àrea donada | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 79, 88 |
+| Àrea entre dues corbes | `q001` | Àrea entre una paràbola i una recta, i entre dues corbes amb tres talls | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●○○ | 111, 114 |
+| Àrea entre dues corbes | `q002` | Àrees amb la recta tangent a una paràbola | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 96, 111 |
+| Àrea entre dues corbes | `q003` | Àrea entre dues paràboles i entre dues corbes que es creuen dins l'interval | 0,75 + 1,00 + 0,75 | 1,25 + 1,25 | 18 · 11 | ●●○ | 114, 111 |
+
 ## 7. Feina pendent
 
 ### 7.1 Com s'apliquen els lliuraments
@@ -2057,9 +2151,9 @@ l'ordre numèric.
 | u2 Determinants | 20–22 | 14 de febrer de 2027 · **feta** (2.38): tres temes amb tres variants, totes amb tria |
 | u3 Sistemes d'equacions | 23–26 | 14 de març de 2027 · **feta** (2.39): tres temes amb tres variants, totes amb tria |
 | u5 Rectes i plans en l'espai (amb la u4) | 27–31 | 18 d'abril de 2027 · **feta** (2.40): quatre temes amb tres variants, totes amb tria |
-| u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 |
-| u11 Integrals | 34 | 9 de maig de 2027 |
-| u12 La integral definida | 35–36 | 23 de maig de 2027 |
+| u6 Angles i distàncies a l'espai | 32–33 | 2 de maig de 2027 · **feta** (2.41): tres temes amb tres variants, totes amb tria |
+| u11 Integrals | 34 | 9 de maig de 2027 · **feta** (2.41), com a primer apartat de totes les preguntes de la u12 |
+| u12 La integral definida | 35–36 | 23 de maig de 2027 · **feta** (2.41): tres temes amb tres variants, totes amb tria |
 
 Les setmanes i els exercicis de les unitats que falten, segons `tasques.js` (sessió 36). Els temes són
 una **proposta** feta a partir de la secció del llibre d'on surt cada exercici; es fixen quan es fa la
@@ -2071,9 +2165,9 @@ unitat.
 | u2 | s20: 35, 36, 37, 41, 44 · s21: 79, 80, 83, 87 · s22: 95, 96, 99, 100 | **Fets** (2.38): `calcul-determinants`, `rang-determinants` i `matriu-inversa` |
 | u3 | s23: 38, 41, 42, 39, 43 · s24: 55, 56 · s25: 60, 64, 66 · s26: 90, 92, 94, 100 | **Fets** (2.39): `gauss-classificacio`, `discussio-parametre` i `problemes-sistemes` |
 | u5 | s27: 43, 45, 46, 47, 49 · s28: 53, 54, 55, 56, 59 · s29: 63, 66, 71, 72, 73 · s30: 74, 76, 77, 79 · s31: 80, 81, 84, 85 | **Fets** (2.40): `equacions-recta`, `equacions-pla`, `posicio-rectes` i `posicio-rectes-plans` |
-| u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | Projecció i simètrics (74, 76, 90); distància punt-pla i recta-pla (86, 97, 139); punts a una distància donada o equidistants (88, 92, 115) |
-| u11 | s34: 52, 54 | Cap tema propi: les integrals immediates (52, 54) són el primer apartat de preguntes de la u12 |
-| u12 | s35: 35, 39, 55, 79 · s36: 80, 88, 96, 111, 114 | Integral definida i Barrow (35, 39, 55); àrea entre una corba i l'eix (79, 80, 88); àrea entre dues corbes (96, 111, 114) |
+| u6 | s32: 74, 76, 86, 88 · s33: 90, 92, 97, 115, 139 | **Fets** (2.41): `distancies-pla`, `projeccions-simetrics` i `punts-distancia` |
+| u11 | s34: 52, 54 | **Fet** (2.41): cap tema propi; les integrals immediates (52, 54) són l'apartat a) de les nou preguntes de la u12 |
+| u12 | s35: 35, 39, 55, 79 · s36: 80, 88, 96, 111, 114 | **Fets** (2.41): `integral-definida`, `area-corba-eix` i `area-dues-corbes` |
 
 Cap exercici assignat no cobreix els angles, la perpendicular comuna a dues rectes, el producte
 vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a la PAU (7.6).
@@ -2111,7 +2205,7 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
   pantalles tàctils. Cal mostrar-los d'una altra manera.
 - **Estendre les tries a la resta del banc.** Des de la sessió 16, les 24 preguntes de la u7
   ja en tenen, i des de la 17 totes canvien el cas, la tècnica o el sentit del raonament
-  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1; des de la 38, la u2; des de la 39, la u3, i des de la 40, la u5.
+  (regla 16). Des de la 18, també les 18 de la u8, i des de la 19, les 12 de la u9. Des de la 24, també la u10 sencera, des de la 25, la u13, des de la 26, la u14, des de la 37, la u1; des de la 38, la u2; des de la 39, la u3; des de la 40, la u5, i des de la 41, la u6 i la u12.
   Per a les unitats que vinguin, el mateix mètode: llegir la
   pregunta sencera, verificar l'alternativa abans d'escriure-la i verificar el fitxer just
   després. A la u7 encara s'hi podrien afegir, com a ítems nous, els límits no racionals que surten
@@ -2131,7 +2225,8 @@ vectorial i el mixt (àrees i volums) ni les equacions matricials. Tots surten a
 ### 7.6 Decisions obertes
 
 - **Continguts PAU sense cap exercici assignat.** Els angles, la perpendicular comuna, el producte
-  vectorial i el mixt, i les equacions matricials. En depenen `geo-23s-q5`, `geo-24i-q6`,
+  vectorial i el mixt, i les equacions matricials. Amb la u6 feta (2.41) es confirma: cap exercici
+  assignat de la u6 no treballa angles ni la distància entre dues rectes. En depenen `geo-23s-q5`, `geo-24i-q6`,
   `geo-23j2-q3`, `geo-26j-q4b`, `alg-23s-q1`, `alg-24i-q2` i `alg-23j2-q5`. Amb la regla que el banc
   no surt dels exercicis practicats, no hi tindrien tema.
 - **Com s'importa l'exercici 3 de setembre de 2025.** ✅ Decidit a la sessió 29 (2.29): una sola
@@ -2261,13 +2356,14 @@ del primer exercici.
 
 ## 11. Aquest lliurament
 
-És el lliurament de la sessió 40, com a *pull request* (7.1).
+És el lliurament de la sessió 41, com a *pull request* (7.1).
 
 | Fitxer | Canvi |
 |---|---|
-| `temes.json` | Els quatre temes de la u5 |
-| `u5/<tema>/q001` … `q003` | Les dotze preguntes de la u5: `pregunta.tex` i `meta.json` |
-| `handout.md` | Seccions 1, 2.40, 3, 6.12, 7.4, 7.5 i 11 |
+| `temes.json` | Els tres temes de la u6 i els tres de la u12 |
+| `u6/<tema>/q001` … `q003` | Les nou preguntes de la u6 |
+| `u12/<tema>/q001` … `q003` | Les nou preguntes de la u12, amb la u11 com a apartat a) |
+| `handout.md` | Seccions 1, 2.41, 3, 6.13, 6.14, 7.4, 7.5, 7.6 i 11 |
 | `README.md` | L'estat del banc |
 
 No porta cap PDF ni `cataleg.js`. En fusionar la *pull request*, l'Action compila les preguntes noves, i

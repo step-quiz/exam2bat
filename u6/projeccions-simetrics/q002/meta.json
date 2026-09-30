@@ -1,0 +1,15 @@
+{
+  "titol": "Projecció i simètric d'un punt respecte d'una recta, i distància d'un punt a una recta",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    74,
+    90
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "projecció ortogonal",
+    "punt simètric"
+  ]
+}

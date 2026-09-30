@@ -1,0 +1,46 @@
+Considera el punt $P(2,5,-3)$ i el pla $\pi\colon x+2y+2z-3=0$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Escriu l'equació de la recta $r$ perpendicular a $\pi$ que passa per $P$.
+
+\begin{solucio}
+El vector normal del pla, $(1,2,2)$, és el vector director de la recta:
+$r\colon\dfrac{x-2}{1}=\dfrac{y-5}{2}=\dfrac{z+3}{2}$, o bé $(2+t,\ 5+2t,\ -3+2t)$.
+\end{solucio}
+
+\begin{tria}{recta-perpendicular}
+\itemtria{tall-i-distancia}{1}{1,25}
+Troba el punt de tall de $r$ amb $\pi$ i calcula la distància de $P$ a $\pi$ de dues maneres.
+
+\begin{solucio}
+$(2+t)+2(5+2t)+2(-3+2t)-3=3+9t=0$, $t=-\frac13$: el punt de tall és
+$Q=\left(\frac53,\frac{13}3,-\frac{11}3\right)$.\\
+Amb la fórmula: $d(P,\pi)=\dfrac{|2+10-6-3|}{\sqrt{1+4+4}}=\dfrac33=1$. I com a distància entre $P$ i
+$Q$: $\overrightarrow{PQ}=-\frac13(1,2,2)$, de mòdul $\frac13\cdot3=1$.
+\end{solucio}
+
+\itemtria{costats-del-pla}{1}{1,25}
+Estan el punt $P$ i l'origen de coordenades al mateix costat del pla $\pi$? Calcula la distància de
+cadascun a $\pi$.
+
+\begin{solucio}
+El signe de $x+2y+2z-3$ diu a quin costat del pla és cada punt. A $P$ val $2+10-6-3=3>0$, i a
+l'origen, $-3<0$: són a costats oposats.\\
+$d(P,\pi)=\dfrac{|3|}{3}=1$ i $d(O,\pi)=\dfrac{|-3|}{3}=1$: tots dos són a la mateixa distància del pla.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba el pla $\pi'$ paral·lel a $\pi$ que passa per $P$, i la distància entre $\pi$ i $\pi'$.
+
+\begin{solucio}
+$\pi'\colon x+2y+2z+D=0$ amb $2+10-6+D=0$, $D=-6$: $\pi'\colon x+2y+2z-6=0$. La distància entre els
+dos plans és la de $P$ a $\pi$, que és 1. (Amb la fórmula, el punt $(0,0,\frac32)$ de $\pi$ dona
+$\frac{|3-6|}{3}=1$.)
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

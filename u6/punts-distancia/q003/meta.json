@@ -1,0 +1,16 @@
+{
+  "titol": "Recta paral·lela a un pla, punts a un terç de distància i el pla que conté la recta",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    92,
+    97,
+    88
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "distància recta-pla",
+    "paràmetres"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "titol": "Punts equidistants de dos plans, sobre una recta i a tot l'espai",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    115,
+    88
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "punts equidistants",
+    "distància punt-pla"
+  ]
+}

@@ -1,0 +1,43 @@
+Considera el punt $P(4,1,1)$ i la recta
+$r\colon\left\{\begin{aligned}x&=1+t\\y&=2t\\z&=-1+2t\end{aligned}\right.$
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Troba la projecció ortogonal $Q$ del punt $P$ sobre la recta $r$.
+
+\begin{solucio}
+El pla perpendicular a $r$ per $P$ té com a vector normal $\vec u=(1,2,2)$: $x+2y+2z+D=0$, amb
+$4+2+2+D=0$, $D=-8$. El tall amb $r$: $(1+t)+4t+2(-1+2t)-8=9t-9=0$, $t=1$. La projecció és
+$Q=(2,2,1)$.
+\end{solucio}
+
+\begin{tria}{simetric-recta}
+\itemtria{calcula-simetric}{1}{1,25}
+Troba el punt simètric $P'$ de $P$ respecte de la recta $r$.
+
+\begin{solucio}
+$Q$ és el punt mitjà de $P$ i $P'$: $P'=2Q-P=(4-4,\ 4-1,\ 2-1)=(0,3,1)$.
+\end{solucio}
+
+\itemtria{comprova-simetric}{1}{1,25}
+Comprova, sense calcular la projecció, que el punt $P'(0,3,1)$ és el simètric de $P$ respecte de $r$.
+
+\begin{solucio}
+Cal comprovar dues coses. El punt mitjà de $P$ i $P'$, $M(2,2,1)$, ha de ser de $r$: amb $t=1$, la
+recta dona $(2,2,1)$. I $\overrightarrow{PP'}=(-4,2,0)$ ha de ser perpendicular a $\vec u=(1,2,2)$:
+$-4+4+0=0$. Totes dues es compleixen: $P'$ és el simètric de $P$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula la distància del punt $P$ a la recta $r$.
+
+\begin{solucio}
+És la distància de $P$ a la seva projecció $Q$: $\overrightarrow{PQ}=(-2,1,0)$, i
+$d(P,r)=|\overrightarrow{PQ}|=\sqrt{4+1+0}=\sqrt5$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

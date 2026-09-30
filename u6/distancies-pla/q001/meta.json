@@ -1,0 +1,16 @@
+{
+  "titol": "Distància d'un punt a un pla, d'una recta paral·lela i entre plans paral·lels, i el punt més proper",
+  "dificultat": "●○○",
+  "temes_secundaris": [],
+  "origen": [
+    86,
+    97,
+    90
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "distància punt-pla",
+    "distància recta-pla"
+  ]
+}

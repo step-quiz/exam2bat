@@ -1,0 +1,50 @@
+Considera la recta $r\colon\left\{\begin{aligned}x-y&=1\\y-z&=2\end{aligned}\right.$ i el pla
+$\pi\colon x+y-2z+4=0$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Estudia la posició relativa de $r$ i $\pi$, i calcula la distància entre tots dos.
+
+\begin{solucio}
+Amb $z=\lambda$: $y=2+\lambda$ i $x=3+\lambda$. La recta passa per $(3,2,0)$ amb $\vec u=(1,1,1)$, i
+$\vec u\cdot\vec n=1+1-2=0$. El punt $(3,2,0)$ no és de $\pi$ ($3+2+4=9\ne0$): la recta és paral·lela
+al pla.
+\[
+d(r,\pi)=\frac{|3+2-0+4|}{\sqrt{1+1+4}}=\frac9{\sqrt6}=\frac{3\sqrt6}2.
+\]
+\end{solucio}
+
+\begin{tria}{distancia-casos}
+\itemtria{plans-paralels}{1}{1,25}
+Calcula la distància entre el pla $\pi$ i el pla $\pi'\colon 2x+2y-4z-3=0$.
+
+\begin{solucio}
+$\pi'$ és $x+y-2z-\frac32=0$: té el mateix vector normal que $\pi$, i són paral·lels. Amb el punt
+$(-4,0,0)$ de $\pi$:
+\[
+d(\pi,\pi')=\frac{\left|-4-\frac32\right|}{\sqrt6}=\frac{11}{2\sqrt6}=\frac{11\sqrt6}{12}.
+\]
+\end{solucio}
+
+\itemtria{recta-secant}{1}{1,25}
+Calcula la distància entre la recta
+$s\colon\left\{\begin{aligned}x&=2t\\y&=-t\\z&=1\end{aligned}\right.$ i el pla $\pi$.
+
+\begin{solucio}
+$\vec v=(2,-1,0)$ i $\vec v\cdot\vec n=2-1+0=1\ne0$: la recta talla el pla, i la distància és 0.
+El punt de tall: $2t-t-2+4=0$, $t=-2$, és a dir, $(-4,2,1)$.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba els plans paral·lels a $\pi$ que són a una distància $\sqrt6$ de l'origen.
+
+\begin{solucio}
+Són de la forma $x+y-2z+D=0$, amb $\dfrac{|D|}{\sqrt6}=\sqrt6$, és a dir, $|D|=6$: els plans
+$x+y-2z+6=0$ i $x+y-2z-6=0$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

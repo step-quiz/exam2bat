@@ -1,0 +1,48 @@
+Considera els plans $\pi_1\colon x+2y+2z+1=0$ i $\pi_2\colon 2x-y+2z+3=0$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Comprova que els plans $\pi_1$ i $\pi_2$ no són paral·lels, i calcula la distància de l'origen a
+cadascun.
+
+\begin{solucio}
+Els vectors normals, $(1,2,2)$ i $(2,-1,2)$, no són proporcionals: els plans es tallen. Tots dos tenen
+mòdul 3:
+$d(O,\pi_1)=\dfrac{|1|}{3}=\dfrac13$ i $d(O,\pi_2)=\dfrac{|3|}{3}=1$.
+\end{solucio}
+
+\begin{tria}{equidistants}
+\itemtria{punts-recta}{1}{1,25}
+Troba els punts de la recta $r\colon x=y=z-1$ que són a la mateixa distància de $\pi_1$ i de
+$\pi_2$.
+
+\begin{solucio}
+Un punt de $r$ és $(\lambda,\ \lambda,\ 1+\lambda)$. Com que els dos vectors normals tenen mòdul 3, cal
+$|\lambda+2\lambda+2+2\lambda+1|=|2\lambda-\lambda+2+2\lambda+3|$, és a dir, $|5\lambda+3|=|3\lambda+5|$.\\
+$5\lambda+3=3\lambda+5$ dona $\lambda=1$, i $5\lambda+3=-(3\lambda+5)$, $\lambda=-1$. Els punts són
+$(1,1,2)$, a distància $\frac83$ de tots dos plans, i $(-1,-1,0)$, a distància $\frac23$.
+\end{solucio}
+
+\itemtria{plans-bisectors}{1}{1,25}
+Troba els punts de l'espai que són a la mateixa distància de $\pi_1$ i de $\pi_2$. Quina figura formen?
+
+\begin{solucio}
+Cal $\dfrac{|x+2y+2z+1|}{3}=\dfrac{|2x-y+2z+3|}{3}$, és a dir, $x+2y+2z+1=\pm(2x-y+2z+3)$.\\
+Amb el signe $+$: $-x+3y-2=0$, és a dir, $x-3y+2=0$. Amb el signe $-$: $3x+y+4z+4=0$.\\
+Formen dos plans, que contenen la recta on es tallen $\pi_1$ i $\pi_2$: són els plans bisectors dels
+angles que formen.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Troba els punts de l'eix $OZ$ que són a la mateixa distància de $\pi_1$ i de $\pi_2$.
+
+\begin{solucio}
+Un punt de l'eix és $(0,0,z)$: $|2z+1|=|2z+3|$. Amb el mateix signe, $1=3$, impossible; amb signes
+oposats, $2z+1=-2z-3$, $z=-1$. Només n'hi ha un: $(0,0,-1)$, a distància $\frac13$ de tots dos plans.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

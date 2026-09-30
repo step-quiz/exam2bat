@@ -1,0 +1,50 @@
+Considera les funcions $f(x)=x^2-1$ i $g(x)=x+1$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Troba els punts de tall de les gràfiques de $f$ i $g$, i una primitiva de $g(x)-f(x)$.
+
+\begin{solucio}
+$x^2-1=x+1$, és a dir, $x^2-x-2=0$: $x=-1$ i $x=2$, als punts $(-1,0)$ i $(2,3)$.
+$g(x)-f(x)=-x^2+x+2$, amb primitiva $-\dfrac{x^3}3+\dfrac{x^2}2+2x$.
+\end{solucio}
+
+\begin{tria}{area-corbes}
+\itemtria{area}{1}{1,25}
+Calcula l'àrea de la regió tancada per les gràfiques de $f$ i $g$.
+
+\begin{solucio}
+Entre $-1$ i $2$, $g\ge f$ (per exemple, a $x=0$, $g=1>f=-1$):
+\[
+\int_{-1}^2(-x^2+x+2)\,dx=\left[-\frac{x^3}3+\frac{x^2}2+2x\right]_{-1}^2
+=\frac{10}3-\left(-\frac76\right)=\frac92
+\]
+unitats quadrades.
+\end{solucio}
+
+\itemtria{tres-talls}{1}{1,25}
+Calcula l'àrea de la regió tancada per les gràfiques de $y=x^3$ i $y=x$.
+
+\begin{solucio}
+$x^3=x$ dona $x=-1$, $0$ i $1$: hi ha dues regions, i la funció que queda per sobre canvia. A $[-1,0]$,
+$x^3\ge x$, i a $[0,1]$, $x\ge x^3$:
+\[
+\int_{-1}^0(x^3-x)\,dx+\int_0^1(x-x^3)\,dx=\frac14+\frac14=\frac12
+\]
+unitats quadrades.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Calcula l'àrea de la regió tancada per la paràbola $y=x^2$ i la recta $y=4$.
+
+\begin{solucio}
+Es tallen a $x=\pm2$, i entre aquests valors la recta és per sobre:
+$\displaystyle\int_{-2}^2(4-x^2)\,dx=\left[4x-\frac{x^3}3\right]_{-2}^2=\frac{16}3+\frac{16}3=\frac{32}3$
+unitats quadrades.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
