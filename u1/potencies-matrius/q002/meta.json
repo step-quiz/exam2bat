@@ -1,0 +1,15 @@
+{
+  "titol": "Una matriu nilpotent de grau 3 i les nilpotents de grau 2",
+  "dificultat": "●●○",
+  "temes_secundaris": [],
+  "origen": [
+    85,
+    81
+  ],
+  "minuts": 18,
+  "minuts_curt": 11,
+  "etiquetes": [
+    "matriu nilpotent",
+    "potències de matrius"
+  ]
+}

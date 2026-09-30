@@ -1,0 +1,63 @@
+Una empresa d'autobusos té tres línies, A, B i C. Dilluns van sortir 4 autobusos de la línia A, 2 de la B
+i 5 de la C. Dimarts, 3 de la A, 3 de la B i 4 de la C. Dimecres, 2 de la A, 4 de la B i 3 de la C. Un
+autobús de la línia A porta 50 passatgers; un de la B, 40, i un de la C, 60.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Escriu la matriu $M$ que té una fila per a cada dia i una columna per a cada línia, i la matriu columna
+$P$ amb els passatgers de cada autobús. Quina dimensió té cadascuna?
+
+\begin{solucio}
+\[
+M=\begin{pmatrix}4&2&5\\3&3&4\\2&4&3\end{pmatrix}\quad(3\times3),\qquad
+P=\begin{pmatrix}50\\40\\60\end{pmatrix}\quad(3\times1).
+\]
+Les files de $M$ són dilluns, dimarts i dimecres, i les columnes, les línies A, B i C.
+\end{solucio}
+
+\begin{tria}{producte-context}
+\itemtria{passatgers-dia}{1}{1,25}
+Amb un producte de matrius, calcula quants passatgers van viatjar cada dia, suposant que tots els
+autobusos anaven plens.
+
+\begin{solucio}
+Cada fila de $M$ multiplicada per $P$ dona els passatgers d'un dia:
+\[
+MP=\begin{pmatrix}4\cdot50+2\cdot40+5\cdot60\\3\cdot50+3\cdot40+4\cdot60\\2\cdot50+4\cdot40+3\cdot60\end{pmatrix}
+=\begin{pmatrix}580\\510\\440\end{pmatrix}.
+\]
+Dilluns van viatjar 580 passatgers; dimarts, 510, i dimecres, 440.
+\end{solucio}
+
+\itemtria{autobusos-linia}{1}{1,25}
+Amb un producte de matrius, calcula quants autobusos de cada línia van sortir en els tres dies plegats.
+Quina matriu has de multiplicar per $M$, i per quin costat? Per què?
+
+\begin{solucio}
+Cal sumar cada columna de $M$, és a dir, sumar les files. Això ho fa una matriu fila de uns multiplicada
+per l'esquerra: $(1\ \ 1\ \ 1)$ és $1\times3$ i $M$ és $3\times3$, i el producte és $1\times3$, un
+nombre per línia.
+\[
+(1\ \ 1\ \ 1)\,M=(4+3+2\ \ \ 2+3+4\ \ \ 5+4+3)=(9\ \ 9\ \ 12).
+\]
+Van sortir 9 autobusos de la línia A, 9 de la B i 12 de la C. Per la dreta, $M\begin{pmatrix}1\\1\\1\end{pmatrix}$
+sumaria les files de cada dia: seria el total d'autobusos de cada dia, no de cada línia.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Un bitllet costa 1,50\,€. Quina operació amb matrius dona la recaptació de cada dia, amb els autobusos
+plens? Calcula-la i digues quin dia es va recaptar més.
+
+\begin{solucio}
+La recaptació és $1{,}5\cdot MP$:
+\[
+1{,}5\begin{pmatrix}580\\510\\440\end{pmatrix}=\begin{pmatrix}870\\765\\660\end{pmatrix}.
+\]
+Es van recaptar 870\,€ dilluns, 765\,€ dimarts i 660\,€ dimecres: dilluns és el dia que més.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

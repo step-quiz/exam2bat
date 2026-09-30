@@ -1,0 +1,55 @@
+Sigui $A=\begin{pmatrix}1&0\\3&1\end{pmatrix}$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Calcula $A^2$ i $A^3$, i dedueix-ne $A^n$ per a qualsevol nombre natural $n$.
+
+\begin{solucio}
+\[
+A^2=\begin{pmatrix}1&0\\3&1\end{pmatrix}\begin{pmatrix}1&0\\3&1\end{pmatrix}=\begin{pmatrix}1&0\\6&1\end{pmatrix},\qquad
+A^3=A^2A=\begin{pmatrix}1&0\\9&1\end{pmatrix}.
+\]
+Cada vegada que es multiplica per $A$, l'element de la fila 2 i la columna 1 augmenta en 3, i la resta no
+canvia: $A^n=\begin{pmatrix}1&0\\3n&1\end{pmatrix}$.
+\end{solucio}
+
+\begin{tria}{us-potencia}
+\itemtria{expressio}{1}{1,25}
+Calcula $A^{10}-2A^5$.
+
+\begin{solucio}
+Amb la fórmula de $A^n$:
+\[
+A^{10}-2A^5=\begin{pmatrix}1&0\\30&1\end{pmatrix}-2\begin{pmatrix}1&0\\15&1\end{pmatrix}
+=\begin{pmatrix}1-2&0\\30-30&1-2\end{pmatrix}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-I.
+\]
+\end{solucio}
+
+\itemtria{troba-n}{1}{1,25}
+Hi ha algun nombre natural $n$ tal que $A^n=\begin{pmatrix}1&0\\60&1\end{pmatrix}$? I tal que
+$A^n=\begin{pmatrix}1&0\\50&1\end{pmatrix}$? Justifica-ho.
+
+\begin{solucio}
+$A^n=\begin{pmatrix}1&0\\3n&1\end{pmatrix}$, i per tant cal que l'element de la fila 2 i la columna 1
+sigui $3n$.\\
+Per a la primera, $3n=60$ dona $n=20$: $A^{20}=\begin{pmatrix}1&0\\60&1\end{pmatrix}$.\\
+Per a la segona, $3n=50$ dona $n=\frac{50}3$, que no és natural: cap potència de $A$ és igual a
+aquesta matriu.
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Comprova que la fórmula de $A^n$ és coherent: calcula $A^n\cdot A$ fent-la servir i veu que dona la
+fórmula de $A^{n+1}$.
+
+\begin{solucio}
+\[
+A^n\cdot A=\begin{pmatrix}1&0\\3n&1\end{pmatrix}\begin{pmatrix}1&0\\3&1\end{pmatrix}
+=\begin{pmatrix}1&0\\3n+3&1\end{pmatrix}=\begin{pmatrix}1&0\\3(n+1)&1\end{pmatrix}=A^{n+1}.
+\]
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}

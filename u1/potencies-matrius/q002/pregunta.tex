@@ -1,0 +1,55 @@
+Una matriu quadrada $A$ és \emph{nilpotent} si alguna de les seves potències és la matriu nul·la. Si $n$
+és el menor enter positiu tal que $A^n=0$, es diu que $A$ és nilpotent de grau $n$.
+
+\begin{apartats}
+
+\apartat[1,25]{0,75}
+Demostra que la matriu $N=\begin{pmatrix}0&1&0\\-1&0&1\\0&1&0\end{pmatrix}$ és nilpotent de grau 3.
+
+\begin{solucio}
+\[
+N^2=\begin{pmatrix}-1&0&1\\0&0&0\\-1&0&1\end{pmatrix}\ne0,\qquad
+N^3=N^2N=\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix}.
+\]
+$N^2\ne0$ i $N^3=0$: $N$ és nilpotent de grau 3.
+\end{solucio}
+
+\begin{tria}{nilpotents}
+\itemtria{grau-2}{1}{1,25}
+Troba totes les matrius de la forma $B=\begin{pmatrix}a&1\\b&-a\end{pmatrix}$ que són nilpotents de
+grau 2.
+
+\begin{solucio}
+\[
+B^2=\begin{pmatrix}a&1\\b&-a\end{pmatrix}\begin{pmatrix}a&1\\b&-a\end{pmatrix}
+=\begin{pmatrix}a^2+b&0\\0&a^2+b\end{pmatrix}.
+\]
+$B^2=0$ si i només si $b=-a^2$. Com que $B\ne0$ (té un 1), són nilpotents de grau 2 totes les matrius
+$B=\begin{pmatrix}a&1\\-a^2&-a\end{pmatrix}$, amb $a\in\mathbb R$.
+\end{solucio}
+
+\itemtria{sense-calcular}{1}{1,25}
+Sense fer cap producte més, digues quant valen $N^4$ i $N^{100}$. Després, calcula $(I+N)^3$ fent servir
+que $N^3=0$.
+
+\begin{solucio}
+$N^4=N^3N=0$, i per a qualsevol $k\ge3$, $N^k=N^3N^{k-3}=0$: també $N^{100}=0$.\\
+Com que $I$ commuta amb $N$, el cub d'una suma es desenvolupa com amb nombres:
+$(I+N)^3=I+3N+3N^2+N^3=I+3N+3N^2$.
+\[
+(I+N)^3=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}+\begin{pmatrix}0&3&0\\-3&0&3\\0&3&0\end{pmatrix}
++\begin{pmatrix}-3&0&3\\0&0&0\\-3&0&3\end{pmatrix}=\begin{pmatrix}-2&3&3\\-3&1&3\\-3&3&4\end{pmatrix}.
+\]
+\end{solucio}
+\end{tria}
+
+\begin{nomesllarg}
+\apartat{0,75}
+Comprova que $(I-N)(I+N+N^2)=I$.
+
+\begin{solucio}
+$(I-N)(I+N+N^2)=I+N+N^2-N-N^2-N^3=I-N^3=I$, perquè $N^3=0$.
+\end{solucio}
+\end{nomesllarg}
+
+\end{apartats}
